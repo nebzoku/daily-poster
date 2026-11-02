@@ -33,6 +33,11 @@
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
   const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  // Split text into masked words, so each word can rise into view on its own.
+  const maskWords = (text) => text.split(/(\s+)/).map((part, i) =>
+    /^\s+$/.test(part) ? document.createTextNode(" ")
+      : el("span", { class: "wm" }, el("span", { class: "w", style: `--i:${i / 2}` }, part)));
+
   function rgb(hex) { const n = parseInt(hex.slice(1), 16); return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; }
   function luminance(hex) {
     const lin = (c) => ((c /= 255) <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
@@ -66,24 +71,34 @@
       x: (c) => m + (c - 1) * (col + gut), y: (r) => m + (r - 1) * (row + gut) };
   }
 
-  // ---------- info overlay ----------
+  // ---------- info overlay: a black blind that drops from the top ----------
   function setupInfo() {
     const info = $("info");
+    const title = $("intro-title");
+    title.replaceChildren(...maskWords(title.textContent));
     let opener = null;
-    // The How it works button pulses until someone has opened the panel once.
     let seen = false;
     try { seen = localStorage.getItem("dp-info-seen") === "1"; } catch {}
     $("info-open-2").classList.toggle("seen", seen);
     const open = (e) => {
-      opener = e.currentTarget; info.hidden = false; document.body.style.overflow = "hidden"; $("info-close").focus();
+      opener = e.currentTarget;
+      info.inert = false;
+      info.classList.add("open");
+      document.body.style.overflow = "hidden";
+      setTimeout(() => $("info-close").focus({ preventScroll: true }), 50);
       $("info-open-2").classList.add("seen");
       try { localStorage.setItem("dp-info-seen", "1"); } catch {}
     };
-    const close = () => { info.hidden = true; document.body.style.overflow = ""; if (opener) opener.focus(); };
+    const close = () => {
+      info.classList.remove("open");
+      info.inert = true;
+      document.body.style.overflow = "";
+      if (opener) opener.focus({ preventScroll: true });
+    };
     $("info-open").addEventListener("click", open);
     $("info-open-2").addEventListener("click", open);
     $("info-close").addEventListener("click", close);
-    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !info.hidden) close(); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && info.classList.contains("open")) close(); });
   }
 
   // ---------- hero: the day's headlines, cycling ----------
@@ -92,27 +107,44 @@
     const isLatest = !index.length || index[0].date === brief.date;
     $("kicker-title").textContent = isLatest ? "Today's headlines" : "Headlines";
     $("kicker-meta").textContent = `No. ${pad(brief.issue)} · ${day} · ${brief.story.source}`;
-    const spans = brief.headlines.map((t) => el("span", {}, t));
+    const spans = brief.headlines.map((t) => el("span", { class: "hl" }, ...maskWords(t)));
     $("hero-hl").replaceChildren(...spans);
+    $("hero-hl").setAttribute("aria-label", brief.headlines.join(" / "));
     const buttons = brief.headlines.map((t, i) =>
       el("button", { type: "button", "aria-label": `Headline ${i + 1}: ${t}`, onclick: () => { show(i); restart(); } }, String(i + 1).padStart(2, "0")));
     $("hero-count").replaceChildren(...buttons);
 
-    let current = 0, timer = null;
+    let current = -1, timer = null;
+    // The outgoing headline's words lift out of their masks as the next rises in.
     function show(i) {
+      if (i === current) return;
+      const prev = spans[current];
+      if (prev) {
+        prev.classList.remove("on");
+        prev.classList.add("out");
+        setTimeout(() => {
+          if (prev.classList.contains("on")) return;
+          prev.classList.add("reset");
+          prev.classList.remove("out");
+          void prev.offsetWidth;
+          prev.classList.remove("reset");
+        }, 900);
+      }
       current = i;
-      spans.forEach((s, j) => { s.classList.toggle("on", j === i); s.setAttribute("aria-hidden", String(j !== i)); });
+      spans[i].classList.remove("out", "reset");
+      spans[i].classList.add("on");
+      spans.forEach((s, j) => s.setAttribute("aria-hidden", "true"));
       buttons.forEach((b, j) => b.setAttribute("aria-pressed", String(j === i)));
     }
     function restart() {
       clearInterval(timer);
-      if (!reduced) timer = setInterval(() => show((current + 1) % spans.length), 3200);
+      if (!reduced) timer = setInterval(() => show((current + 1) % spans.length), 3800);
     }
     const hero = $("hero-hl").closest(".hero");
     hero.addEventListener("mouseenter", () => clearInterval(timer));
     hero.addEventListener("mouseleave", restart);
-    show(0);
-    restart();
+    // First headline arrives once the page has settled.
+    setTimeout(() => { show(0); restart(); }, reduced ? 0 : 450);
   }
 
   // ---------- the brief ----------
@@ -240,7 +272,7 @@
     $("archive-list").replaceChildren(...index.map((x) => {
       if (x.css) css.add(x.css);
       const bg = x.bg || "#EEEEEC";
-      return el("li", {}, el("a", { href: `?d=${x.date}`, "aria-current": String(x.date === brief.date) },
+      return el("li", { style: `--i:${index.indexOf(x) % 4}` }, el("a", { href: `?d=${x.date}`, "aria-current": String(x.date === brief.date) },
         el("div", { class: "mini", style: `background:${bg};color:${ink(bg)}` },
           el("div", { class: "mini-in" },
             x.thumb ? el("img", { src: x.thumb, alt: "", loading: "lazy", onerror: (e) => e.target.remove() }) : el("span"),
@@ -323,7 +355,7 @@ ${detSVG}
     const d = new URLSearchParams(location.search).get("d");
     brief = window.__BRIEF__ || (await loadJSON(d ? `data/${d}.json` : "data/latest.json")) || (await loadJSON("data/latest.json"));
     index = window.__INDEX__ || (await loadJSON("data/index.json", [])) || [];
-    if (!brief) { $("hero-hl").textContent = "The first brief arrives tomorrow morning."; return; }
+    if (!brief) { $("hero-hl").textContent = "The first brief arrives tomorrow morning."; document.documentElement.classList.add("ready"); return; }
     palette = brief.palette || brief.palettes?.find((p) => p.name === "Vivid") || brief.palettes?.[0];
     document.documentElement.style.setProperty("--accent", palette.colours[0]);
 
@@ -331,6 +363,13 @@ ${detSVG}
     renderOptions("headlines", brief.headlines, "h", (t) => `${words(t)} words`);
     renderOptions("sublines", brief.sublines, "s", (t, i) => `0${i + 1}`);
     renderColour(); renderImages(); renderGrid(); renderArchive(); renderShare();
+
+    // Sections reveal as they scroll into view.
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    }, { rootMargin: "0px 0px -12% 0px", threshold: 0.05 });
+    document.querySelectorAll(".sec, .archive, .foot").forEach((n) => io.observe(n));
+    requestAnimationFrame(() => requestAnimationFrame(() => document.documentElement.classList.add("ready")));
 
     $("copy-figma").addEventListener("click", () => copy(figmaSVG(), "Copied. Paste into Figma with ⌘V"));
     $("copy-caption").addEventListener("click", () => copy(caption(), "Caption copied"));

@@ -197,6 +197,7 @@ main { grid-column: 1 / -1; min-width: 0; }
 .make { margin-top: 40px; display: grid; grid-template-columns: 120px 1fr; column-gap: var(--gap); row-gap: 14px; font-size: 13px; max-width: 620px; }
 .make dt { color: var(--muted); }
 .make dd a { border-bottom: 1px solid var(--line); }
+.grid-settings { display: grid; gap: 4px; margin-top: 12px; padding: 12px 14px; background: #f6f6f4; font: 400 12px/1.5 var(--mono); }
 .share-copy { margin-top: 20px; max-width: 46ch; }
 .caption { margin-top: 32px; display: grid; gap: 14px; justify-items: start; max-width: 520px; }
 .caption pre { margin: 0; width: 100%; padding: 18px 20px; background: #f6f6f4; font: 400 12px/1.6 var(--mono); white-space: pre-wrap; }

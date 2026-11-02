@@ -29,7 +29,7 @@ Share it on Instagram with **#dailyposter** and the day's tag, for example **#da
 
 ## Figma
 
-- **Copy artboard for Figma** on the site copies the artboard with the grid and your chosen copy as layers, which you paste straight into Figma.
+- **Copy artboard for Figma** on the site copies the artboard and your chosen copy as layers to paste into Figma. A paste can't carry a layout grid, so the site lists the grid settings to add.
 - The **Figma plugin** in [`figma-plugin/`](figma-plugin) builds the whole thing: layout grids, colour styles, the copy in the right fonts and the images alongside. See its README to install it.
 
 ## Run your own

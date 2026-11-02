@@ -210,6 +210,10 @@
       ["C", "Column", px(G.col)],
       ["D", "Row", px(G.row)],
     ];
+    const n = (v) => +v.toFixed(1);
+    $("figma-grid").replaceChildren(
+      el("span", {}, `Columns · Count ${G.cols} · Stretch · Margin ${n(G.m)} · Gutter ${n(G.gut)}`),
+      el("span", {}, `Rows · Count ${G.rows} · Stretch · Margin ${n(G.m)} · Gutter ${n(G.gut)}`));
     $("grid-spec").replaceChildren(...rows.flatMap(([k, t, v]) => [el("dt", {}, el("b", {}, k), t), el("dd", {}, v)]));
   }
 
@@ -252,7 +256,8 @@
       el("a", { href: tag("dailyposter"), target: "_blank", rel: "noopener" }, "See them all ↗"));
   }
 
-  // ---------- Figma: an artboard with the grid and the pieces, as SVG that pastes in as layers ----------
+  // ---------- Figma: the artboard and its pieces, as SVG that pastes in as layers ----------
+  // (A paste can't carry a layout grid; the plugin adds real ones.)
   function wrap(text, font, size, width) {
     const ctx = document.createElement("canvas").getContext("2d");
     ctx.font = `${size}px "${font}"`;
@@ -282,16 +287,12 @@
     y += (subLines.length - 1) * sub * 1.35 + 60;
     const details = `${dots(fmt(s.published, { day: "2-digit", month: "2-digit", year: "2-digit" }))}  ${fmt(s.published, { hour: "2-digit", minute: "2-digit" })}  ${s.source}`;
     const detSVG = `<text id="Date, time and source" fill="${fg}" font-family="${esc(t.text)}" font-size="${det}" x="${G.m}" y="${y.toFixed(1)}">${esc(details)}</text>`;
-    const cells = [];
-    for (let c = 1; c <= G.cols; c++) for (let r = 1; r <= G.rows; r++)
-      cells.push(`<rect x="${G.x(c).toFixed(1)}" y="${G.y(r).toFixed(1)}" width="${G.col.toFixed(1)}" height="${G.row.toFixed(1)}" fill="#FF3B30" fill-opacity="0.1"/>`);
     return `<svg xmlns="http://www.w3.org/2000/svg" width="${G.W}" height="${G.H}" viewBox="0 0 ${G.W} ${G.H}">
 <title>Daily Poster No. ${pad(brief.issue)}</title>
 <rect id="Background" width="${G.W}" height="${G.H}" fill="${bg}"/>
 ${hlSVG}
 ${subSVG}
 ${detSVG}
-<g id="Grid (hide before export)">${cells.join("")}</g>
 </svg>`;
   }
 

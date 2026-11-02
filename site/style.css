@@ -51,8 +51,11 @@ h1, h2, p, ol, dl, dd { margin: 0; }
 .top button:hover { color: var(--muted); }
 
 /* ---------- info overlay ---------- */
-.info { position: fixed; inset: 0; z-index: 30; background: var(--bg); overflow: auto; }
-.info-close { position: fixed; top: 16px; right: var(--pad); z-index: 31; }
+.info {
+  --bg: #000000; --fg: #ffffff; --muted: #9a9a96; --faint: #5c5c59; --line: #262626;
+  position: fixed; inset: 0; z-index: 30; background: var(--bg); color: var(--fg); overflow: auto;
+}
+.info-close { position: fixed; top: 16px; right: var(--pad); z-index: 31; color: var(--fg); }
 .info-close:hover { color: var(--muted); }
 .intro {
   display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--gap); row-gap: 48px;

@@ -2,7 +2,7 @@
 
 Design a poster for the sake of it.
 
-In a world of AI and automation, the chance to design something just because you can is getting rarer. Daily Poster gives you just enough guardrails to explore, and nothing to overthink before you start. So go, be free, play, and share what you make.
+Daily Poster is a free design brief that lands every morning. It takes one story from the day's news and turns it into a brief for a 9:16 poster. In a world of AI and automation, the chance to design something just because you can is getting rarer, so the brief gives you just enough guardrails to explore and nothing to overthink before you start. Make your poster, share it with #dailyposter, and see what everyone else did with the same brief.
 
 Every morning a GitHub Action reads a handful of news feeds, asks Claude to pick a story with some weight to it, and publishes a brief:
 

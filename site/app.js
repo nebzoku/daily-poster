@@ -70,7 +70,15 @@
   function setupInfo() {
     const info = $("info");
     let opener = null;
-    const open = (e) => { opener = e.currentTarget; info.hidden = false; document.body.style.overflow = "hidden"; $("info-close").focus(); };
+    // The How it works button pulses until someone has opened the panel once.
+    let seen = false;
+    try { seen = localStorage.getItem("dp-info-seen") === "1"; } catch {}
+    $("info-open-2").classList.toggle("seen", seen);
+    const open = (e) => {
+      opener = e.currentTarget; info.hidden = false; document.body.style.overflow = "hidden"; $("info-close").focus();
+      $("info-open-2").classList.add("seen");
+      try { localStorage.setItem("dp-info-seen", "1"); } catch {}
+    };
     const close = () => { info.hidden = true; document.body.style.overflow = ""; if (opener) opener.focus(); };
     $("info-open").addEventListener("click", open);
     $("info-open-2").addEventListener("click", open);
@@ -82,8 +90,8 @@
   function setupHero() {
     const day = fmt(noon(brief.date), { weekday: "short", day: "numeric", month: "short" });
     const isLatest = !index.length || index[0].date === brief.date;
-    $("kicker").replaceChildren(el("i", { class: "dot", "aria-hidden": "true" }),
-      `${isLatest ? "Today's headline" : "Headline"} · No. ${pad(brief.issue)} · ${day} · ${brief.story.source}`);
+    $("kicker-title").textContent = isLatest ? "Today's headlines" : "Headlines";
+    $("kicker-meta").textContent = `No. ${pad(brief.issue)} · ${day} · ${brief.story.source}`;
     const spans = brief.headlines.map((t) => el("span", {}, t));
     $("hero-hl").replaceChildren(...spans);
     const buttons = brief.headlines.map((t, i) =>

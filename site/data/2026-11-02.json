@@ -1,7 +1,7 @@
 {
   "date": "2026-11-02",
   "issue": 31,
-  "generatedAt": "2026-11-02T15:05:34.391Z",
+  "generatedAt": "2026-11-02T16:11:01.105Z",
   "colour": {
     "name": "Orange",
     "yesterday": "Yellow",
@@ -27,10 +27,10 @@
   "palette": {
     "name": "Vivid",
     "colours": [
-      "#DB7206",
-      "#FED4B9",
-      "#7B6F67",
-      "#2C1302"
+      "#F1592A",
+      "#FFDCD1",
+      "#7D6E69",
+      "#3A1004"
     ]
   },
   "always": [

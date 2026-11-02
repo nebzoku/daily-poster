@@ -15,10 +15,11 @@
     return n;
   };
 
-  // OKLCH hues of the 12 wheel steps (matches scripts/lib/palette.mjs).
+  // The 12 wheel steps and their lead colours (matches scripts/lib/palette.mjs).
   const WHEEL = [
-    ["Red", 27], ["Orange", 55], ["Yellow", 95], ["Lime", 125], ["Green", 145], ["Jade", 165],
-    ["Teal", 195], ["Blue", 250], ["Indigo", 275], ["Violet", 300], ["Magenta", 330], ["Rose", 5],
+    ["Red", "#F33446"], ["Orange", "#F1592A"], ["Yellow", "#F1CF43"], ["Lime", "#B5E643"],
+    ["Green", "#4BF761"], ["Jade", "#4CF1B7"], ["Teal", "#4CEBEB"], ["Blue", "#2987F1"],
+    ["Indigo", "#473CED"], ["Violet", "#8D2EEE"], ["Magenta", "#F43BEC"], ["Rose", "#F33496"],
   ];
 
   const state = { h: 0, s: 0 };
@@ -138,7 +139,7 @@
   function renderColour() {
     const idx = WHEEL.findIndex(([n]) => n === brief.colour.name);
     $("wheel").replaceChildren(...WHEEL.map(([n, h], i) =>
-      el("i", { class: i === idx ? "on" : "", title: n, style: `background: oklch(0.7 0.16 ${h})` })));
+      el("i", { class: i === idx ? "on" : "", title: n, style: `background: ${h}` })));
     $("wheel-key").replaceChildren(`${brief.colour.yesterday} yesterday · `, el("b", {}, `${brief.colour.name} today`), ` · ${brief.colour.tomorrow} tomorrow`);
     const chip = (hex, fixed) => el("button", {
       type: "button", class: "sw" + (fixed ? " fixed" : ""), "aria-label": `Copy ${hex}`, onclick: () => copy(hex),

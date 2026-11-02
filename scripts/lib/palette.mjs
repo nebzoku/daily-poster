@@ -3,21 +3,22 @@
 
 export const EPOCH = "2026-10-03";
 
-// Steps in wheel order. `h` is the OKLCH hue the palette is built in, so the
-// steps look evenly spaced to the eye rather than to the maths.
+// Steps in wheel order. `main` is the day's lead colour: the most vivid version
+// of that hue a screen can show, calibrated to Orange (#F1592A) so every step
+// feels equally bright. `h` is the OKLCH hue the rest of the palette is built on.
 export const WHEEL = [
-  { name: "Red", h: 27 },
-  { name: "Orange", h: 55 },
-  { name: "Yellow", h: 95 },
-  { name: "Lime", h: 125 },
-  { name: "Green", h: 145 },
-  { name: "Jade", h: 165 },
-  { name: "Teal", h: 195 },
-  { name: "Blue", h: 250 },
-  { name: "Indigo", h: 275 },
-  { name: "Violet", h: 300 },
-  { name: "Magenta", h: 330 },
-  { name: "Rose", h: 5 },
+  { name: "Red", h: 22, main: "#F33446" },
+  { name: "Orange", h: 37, main: "#F1592A" },
+  { name: "Yellow", h: 95, main: "#F1CF43" },
+  { name: "Lime", h: 125, main: "#B5E643" },
+  { name: "Green", h: 145, main: "#4BF761" },
+  { name: "Jade", h: 165, main: "#4CF1B7" },
+  { name: "Teal", h: 195, main: "#4CEBEB" },
+  { name: "Blue", h: 255, main: "#2987F1" },
+  { name: "Indigo", h: 275, main: "#473CED" },
+  { name: "Violet", h: 300, main: "#8D2EEE" },
+  { name: "Magenta", h: 330, main: "#F43BEC" },
+  { name: "Rose", h: 355, main: "#F33496" },
 ];
 
 const EPOCH_INDEX = 7; // Blue
@@ -87,10 +88,10 @@ export function oklch(L, C, H) {
 // The day's palette. Everyone uses the same one: Vivid, built on the day's hue.
 // Black and white are always available on top.
 export function paletteFor(date) {
-  const { h } = wheelFor(date);
+  const { h, main } = wheelFor(date);
   return {
     name: "Vivid",
-    colours: [oklch(0.66, 0.26, h), oklch(0.9, 0.06, h), oklch(0.55, 0.02, h), oklch(0.22, 0.05, h)],
+    colours: [main, oklch(0.92, 0.06, h), oklch(0.55, 0.02, h), oklch(0.24, 0.07, h)],
   };
 }
 

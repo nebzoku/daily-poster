@@ -134,7 +134,12 @@ main { grid-column: 1 / -1; min-width: 0; }
   content: ""; position: absolute; left: calc(-1 * var(--gap) + 4px); top: 50%;
   width: 6px; height: 6px; margin-top: -3px; border-radius: 50%; background: var(--accent);
 }
-.opt .meta { font-family: var(--mono); font-size: 11px; color: var(--faint); }
+.opt .meta { font-family: var(--mono); font-size: 11px; color: var(--faint); display: grid; justify-items: end; }
+.opt .meta > span { grid-area: 1 / 1; transition: opacity .15s ease; }
+.opt .m-copy { opacity: 0; color: var(--fg); text-transform: uppercase; font-weight: 500; letter-spacing: .02em; }
+.opt:hover .m-info, .opt:focus-visible .m-info { opacity: 0; }
+.opt:hover .m-copy, .opt:focus-visible .m-copy { opacity: 1; }
+@media (hover: none) { .opt .m-info { opacity: 0; } .opt .m-copy { opacity: 1; color: var(--faint); } }
 .headlines .opt .txt { font-size: clamp(24px, 2.5vw, 38px); font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; }
 .sublines .opt .txt { font-size: 17px; line-height: 1.4; max-width: 44ch; }
 

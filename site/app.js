@@ -127,12 +127,14 @@
     $("story-source").replaceChildren(`${s.source} · ${when} · `, el("a", { href: s.url, target: "_blank", rel: "noopener" }, `Read it on ${s.source} ↗`));
   }
 
+  // Clicking a line copies it, and makes it your pick for the Figma artboard and caption.
   function renderOptions(id, list, key, meta) {
     $(id).replaceChildren(...list.map((t, i) =>
       el("button", {
-        type: "button", class: "opt", "aria-pressed": String(state[key] === i),
-        onclick: () => { state[key] = i; renderOptions(id, list, key, meta); renderShare(); },
-      }, el("span", { class: "txt" }, t), el("span", { class: "meta" }, meta(t, i)))
+        type: "button", class: "opt", "aria-pressed": String(state[key] === i), "aria-label": `Copy: ${t}`,
+        onclick: () => { state[key] = i; renderOptions(id, list, key, meta); renderShare(); copy(t, "Copied"); },
+      }, el("span", { class: "txt" }, t),
+        el("span", { class: "meta" }, el("span", { class: "m-info" }, meta(t, i)), el("span", { class: "m-copy" }, "Copy")))
     ));
   }
 

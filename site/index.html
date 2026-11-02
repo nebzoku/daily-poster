@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Daily Poster</title>
-<meta name="description" content="One poster a day, made from the day's news. A new brief every morning: headlines, colour, type and a grid. Share yours with #dailyposter.">
+<meta name="description" content="Design a poster for the sake of it. A new brief every morning from the day's news, with just enough guardrails to play. Share yours with #dailyposter.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400&family=Geist:wght@300;400;500&family=Geist+Mono:wght@400;500&display=swap">
@@ -29,8 +29,9 @@
 <button type="button" class="info-close" id="info-close">Close</button>
 <section class="intro" id="intro">
   <div class="intro-lead">
-    <h1 id="intro-title">One poster a day, made from the day's news.</h1>
-    <p>Every morning at 5.30 UK time a new brief lands here. It gives you a story, three headlines, the day's colour, a typeface pairing and a grid. Make a 9:16 poster from it, then share it so everyone's take on the same brief sits side by side.</p>
+    <h1 id="intro-title">Design a poster for the sake of it.</h1>
+    <p>In a world of AI and automation, the chance to design something just because you can is getting rarer. Daily Poster gives you just enough guardrails to explore, and nothing to overthink before you start.</p>
+    <p>A new brief lands every morning. So go, be free, play, and share what you make.</p>
   </div>
   <div class="intro-how">
     <h2 class="label">How it works</h2>
@@ -55,20 +56,22 @@
 </section>
 </div>
 
-<section class="hero" aria-labelledby="story-title">
+<section class="hero" aria-label="Today's headlines">
   <p class="kicker" id="kicker"></p>
-  <h2 class="story-title" id="story-title"></h2>
+  <h2 class="hero-hl" id="hero-hl"></h2>
+  <div class="hero-count" id="hero-count" role="group" aria-label="Headline options"></div>
   <div class="hero-actions">
-    <a class="pill" id="story-link" target="_blank" rel="noopener">Read the story</a>
+    <a class="pill" href="#story">Read the story</a>
     <button type="button" class="pill ghost" id="info-open-2">How it works</button>
   </div>
 </section>
 
 <div class="page">
   <main>
-    <section class="sec first">
+    <section class="sec first" id="story">
       <h2 class="label"><span>[00]</span>Story</h2>
       <div class="body">
+        <h3 class="story-title" id="story-title"></h3>
         <p class="summary" id="story-summary"></p>
         <p class="small" id="story-source"></p>
       </div>
@@ -78,7 +81,7 @@
       <h2 class="label"><span>[01]</span>Headline</h2>
       <div class="body">
         <div class="options headlines" id="headlines"></div>
-        <p class="note">Three to six words each. Pick one, or write your own.</p>
+        <p class="note">Three to six words each. Pick one, or write your own. Your pick goes into the Figma artboard and the caption.</p>
       </div>
     </section>
 
@@ -93,7 +96,7 @@
         <div class="wheel" id="wheel" aria-label="The colour wheel"></div>
         <p class="wheel-key" id="wheel-key"></p>
         <div class="swatches" id="swatches"></div>
-        <p class="note">Everyone uses the same palette. The colour moves one step round the wheel each day, and black and white are always allowed. Click a swatch to try it behind the proof and copy its hex.</p>
+        <p class="note">Everyone uses the same palette. The colour moves one step round the wheel each day, and black and white are always allowed. Click a swatch to copy its hex.</p>
       </div>
     </section>
 
@@ -106,10 +109,10 @@
       </div>
     </section>
 
-    <section class="sec">
+    <section class="sec wide">
       <h2 class="label"><span>[05]</span>Image</h2>
       <div class="body">
-        <div class="images" id="images"></div>
+        <div class="gallery" id="images"></div>
         <p class="note">Optional. Photos from Unsplash, free to use with credit.</p>
       </div>
     </section>
@@ -120,7 +123,7 @@
         <figure class="grid-fig" id="grid-fig" aria-label="The 6 by 12 grid on the 1080 by 1920 artboard"></figure>
         <div class="grid-side">
           <dl class="spec" id="grid-spec"></dl>
-          <p class="note">Margin and gutter are measured from the short side. The shaded areas are a suggested layout, not a rule.</p>
+          <p class="note">Margin and gutter are measured from the short side. Where things go on it is up to you.</p>
         </div>
       </div>
     </section>
@@ -135,9 +138,9 @@
         </div>
         <dl class="make">
           <dt>Copy artboard</dt>
-          <dd>Copies a 1080 × 1920 artboard with the grid, the background colour and the copy you picked on the proof. Paste it into Figma with ⌘V.</dd>
+          <dd>Copies a 1080 × 1920 artboard with the grid, the day's colour behind it, and the headline, subline and details you picked as separate layers to arrange. Paste it into Figma with ⌘V.</dd>
           <dt>Figma plugin</dt>
-          <dd>Builds everything for you: the frame with layout grids, the palette as colour styles, text in the right typefaces, and all three images ready to drop in.</dd>
+          <dd>Builds everything for you: the frame with layout grids, the palette as colour styles, every headline and subline in the right typefaces, and all three images beside the artboard, ready to use.</dd>
           <dt>Fonts</dt>
           <dd id="font-links"></dd>
         </dl>
@@ -157,30 +160,7 @@
         <p class="share-links" id="share-links"></p>
       </div>
     </section>
-
-    <section class="sec proof-sec" id="proof-sec">
-      <h2 class="label"><span>[—]</span>Proof</h2>
-      <div class="body" id="proof-slot-mobile"></div>
-    </section>
   </main>
-
-  <aside class="proof-col" id="proof-slot-desktop">
-    <div class="proof-wrap" id="proof-wrap">
-      <div class="proof" id="proof">
-        <div class="pgrid" id="pgrid" aria-hidden="true"></div>
-        <div class="pin">
-          <div class="pimg" id="pimg"></div>
-          <div class="phl" id="phl"><span id="phl-text"></span></div>
-          <p class="psub" id="psub"></p>
-          <div class="pfoot" id="pfoot"></div>
-        </div>
-      </div>
-      <div class="proof-bar">
-        <span>Proof · 1080 × 1920</span>
-        <button type="button" id="grid-toggle" aria-pressed="true">Grid</button>
-      </div>
-    </div>
-  </aside>
 </div>
 
 

@@ -1,6 +1,6 @@
 // Daily Poster: Figma plugin.
 // Builds the day's 1080 × 1920 artboard: layout grids, the palette as colour
-// styles, text in the day's typefaces, and the Unsplash images. Figma includes
+// styles, the copy in the day's typefaces, and the Unsplash images alongside. Figma includes
 // every Google Font, so the typefaces load without installing anything.
 
 figma.showUI(__html__, { width: 320, height: 330 });
@@ -112,38 +112,19 @@ async function build(brief, strings) {
     { pattern: "ROWS", alignment: "STRETCH", count: g.rows, gutterSize: gut, offset: m, visible: true, color: { r: 0.1, g: 0.45, b: 1, a: 0.08 } },
   ];
 
+  // The pieces go in stacked top-left, for the designer to arrange. No layout is implied.
   var hasImage = brief.images && brief.images.length;
-  if (hasImage) {
-    var im = brief.images[0];
-    var hero = await imageRect(im.src, W - 2 * m, span(6, rowH), "Image · " + im.photographer + " on Unsplash");
-    hero.x = m; hero.y = m;
-    poster.appendChild(hero);
-  }
-
-  var hlTop = hasImage ? y(7) : y(2);
-  var hlBottom = y(10) + rowH;
-  var hl = text(brief.headlines[0], display, 180, fg, W - 2 * m);
-  hl.name = "Headline";
-  // shrink until it fits its rows (size, leading and tracking are the designer's to change)
-  while (hl.height > hlBottom - hlTop && hl.fontSize > 24) hl.fontSize = hl.fontSize - 4;
-  hl.x = m; hl.y = hlBottom - hl.height;
+  var hl = text(brief.headlines[0], display, 140, fg, W - 2 * m);
+  hl.name = "Headline"; hl.x = m; hl.y = m;
   poster.appendChild(hl);
 
-  var sub = text(brief.sublines[0], body, 31, fg, span(4, col));
-  sub.name = "Subline"; sub.x = m; sub.y = y(11);
+  var sub = text(brief.sublines[0], body, 34, fg, (W - 2 * m) * 0.65);
+  sub.name = "Subline"; sub.x = m; sub.y = hl.y + hl.height + 60;
   poster.appendChild(sub);
 
-  var footY = y(12) + rowH;
-  var parts = [["Date", strings.date], ["Time", strings.time], ["Source", brief.story.source]];
-  var footTexts = parts.map(function (p) { var t = text(p[1], body, 25, fg); t.name = p[0]; return t; });
-  footTexts[0].x = m;
-  footTexts[1].x = W / 2 - footTexts[1].width / 2;
-  footTexts[2].x = W - m - footTexts[2].width;
-  footTexts.forEach(function (t) { t.y = footY - t.height; poster.appendChild(t); });
-  var rule = figma.createRectangle();
-  rule.name = "Rule"; rule.resize(W - 2 * m, 2); rule.fills = solid(fg);
-  rule.x = m; rule.y = footY - footTexts[0].height - 20;
-  poster.appendChild(rule);
+  var det = text(strings.date + "  " + strings.time + "  " + brief.story.source, body, 26, fg);
+  det.name = "Date, time and source"; det.x = m; det.y = sub.y + sub.height + 50;
+  poster.appendChild(det);
 
   // Everything else from the brief, beside the artboard
   var side = stack("Brief · " + issue, 56);

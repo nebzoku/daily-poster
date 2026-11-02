@@ -1,6 +1,8 @@
 # Daily Poster
 
-One poster a day, made from the day's news.
+Design a poster for the sake of it.
+
+In a world of AI and automation, the chance to design something just because you can is getting rarer. Daily Poster gives you just enough guardrails to explore, and nothing to overthink before you start. So go, be free, play, and share what you make.
 
 Every morning a GitHub Action reads a handful of news feeds, asks Claude to pick a story with some weight to it, and publishes a brief:
 
@@ -11,7 +13,7 @@ Every morning a GitHub Action reads a handful of news feeds, asks Claude to pick
 - **Three Unsplash images**, if you want one
 - **A 6 × 12 grid** at 1080 × 1920, with a 4% margin and 2% gutter measured from the short side
 
-The page has a live proof to try combinations on, a one-click way to set the poster up in Figma, and a ready-made Instagram caption.
+The page has a one-click way to set the poster up in Figma and a ready-made Instagram caption.
 
 ## The rules
 
@@ -27,8 +29,8 @@ Share it on Instagram with **#dailyposter** and the day's tag, for example **#da
 
 ## Figma
 
-- **Copy artboard for Figma** on the site copies the artboard, which you paste straight into Figma.
-- The **Figma plugin** in [`figma-plugin/`](figma-plugin) builds the whole thing: layout grids, colour styles, text in the right fonts and the images. See its README to install it.
+- **Copy artboard for Figma** on the site copies the artboard with the grid and your chosen copy as layers, which you paste straight into Figma.
+- The **Figma plugin** in [`figma-plugin/`](figma-plugin) builds the whole thing: layout grids, colour styles, the copy in the right fonts and the images alongside. See its README to install it.
 
 ## Run your own
 

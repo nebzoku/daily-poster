@@ -74,25 +74,22 @@
     { name: "Date · time · source", c: [1, 6], r: [12, 12], o: 0.12 },
   ];
 
-  // ---------- intro banner ----------
-  function setupIntro() {
-    let hidden = false;
-    try { hidden = localStorage.getItem("dp-intro-hidden") === "1"; } catch {}
-    const apply = () => {
-      $("intro").hidden = hidden;
-      $("intro-show").hidden = !hidden;
-      try { localStorage.setItem("dp-intro-hidden", hidden ? "1" : "0"); } catch {}
-    };
-    $("intro-hide").addEventListener("click", () => { hidden = true; apply(); });
-    $("intro-show").addEventListener("click", () => { hidden = false; apply(); });
-    apply();
+  // ---------- info overlay ----------
+  function setupInfo() {
+    const info = $("info");
+    let opener = null;
+    const open = (e) => { opener = e.currentTarget; info.hidden = false; document.body.style.overflow = "hidden"; $("info-close").focus(); };
+    const close = () => { info.hidden = true; document.body.style.overflow = ""; if (opener) opener.focus(); };
+    $("info-open").addEventListener("click", open);
+    $("info-open-2").addEventListener("click", open);
+    $("info-close").addEventListener("click", close);
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !info.hidden) close(); });
   }
 
   // ---------- rendering ----------
   function renderTop() {
     document.title = `No. ${pad(brief.issue)} · ${brief.headlines[0]} · Daily Poster`;
     $("issue").textContent = `No. ${pad(brief.issue)}`;
-    $("date").textContent = fmt(noon(brief.date), { weekday: "short", day: "2-digit", month: "short", year: "numeric" });
     const i = index.findIndex((x) => x.date === brief.date);
     const link = (a, item) => {
       if (item) { a.href = `?d=${item.date}`; a.removeAttribute("aria-disabled"); }
@@ -104,8 +101,11 @@
 
   function renderStory() {
     const s = brief.story;
-    $("colour-name").textContent = `No. ${pad(brief.issue)} · today is ${brief.colour.name.toLowerCase()}`;
+    const day = fmt(noon(brief.date), { weekday: "short", day: "numeric", month: "short" });
+    $("kicker").replaceChildren(el("i", { class: "dot", "aria-hidden": "true" }),
+      `No. ${pad(brief.issue)} · ${day} · ${brief.colour.name} · ${s.source}`);
     $("story-title").textContent = s.title;
+    $("story-link").href = s.url;
     $("story-summary").textContent = s.summary;
     const when = fmt(s.published, { weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
     $("story-source").replaceChildren(`${s.source} · ${when} · `, el("a", { href: s.url, target: "_blank", rel: "noopener" }, "Read the story ↗"));
@@ -214,13 +214,20 @@
     $("pgrid").replaceChildren(...Array.from({ length: G.cols * G.rows }, () => el("i")));
   }
 
+  // The archive as a wall of each day's proof.
   function renderArchive() {
-    $("archive-list").replaceChildren(...index.map((x) =>
-      el("li", {}, el("a", { href: `?d=${x.date}`, "aria-current": String(x.date === brief.date) },
-        el("span", { class: "n" }, `No. ${pad(x.issue)}`),
-        el("span", { class: "d" }, dots(fmt(noon(x.date), { day: "2-digit", month: "2-digit", year: "2-digit" }))),
-        el("span", { class: "h" }, x.headline),
-        el("span", { class: "c" }, x.colour)))));
+    const css = new Set();
+    $("archive-list").replaceChildren(...index.map((x) => {
+      if (x.css) css.add(x.css);
+      const bg = x.bg || "#EEEEEC";
+      return el("li", {}, el("a", { href: `?d=${x.date}`, "aria-current": String(x.date === brief.date) },
+        el("div", { class: "mini", style: `background:${bg};color:${ink(bg)}` },
+          el("div", { class: "mini-in" },
+            x.thumb ? el("img", { src: x.thumb, alt: "", loading: "lazy", onerror: (e) => e.target.remove() }) : el("span"),
+            el("span", { class: "mini-hl", style: x.display ? `font-family:"${x.display}"` : "" }, x.headline))),
+        el("p", { class: "cap" }, el("span", {}, `[${pad(x.issue)}]`), el("span", {}, x.headline))));
+    }));
+    for (const href of css) if (!document.querySelector(`link[href="${href}"]`)) document.head.append(el("link", { rel: "stylesheet", href }));
   }
 
   // ---------- share ----------
@@ -351,7 +358,7 @@ ${img ? `<rect id="Image: ${esc(im.photographer)} on Unsplash" x="${img.x}" y="$
   }
 
   async function init() {
-    setupIntro();
+    setupInfo();
     const d = new URLSearchParams(location.search).get("d");
     brief = window.__BRIEF__ || (await loadJSON(d ? `data/${d}.json` : "data/latest.json")) || (await loadJSON("data/latest.json"));
     index = window.__INDEX__ || (await loadJSON("data/index.json", [])) || [];

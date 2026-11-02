@@ -7,27 +7,30 @@
 <meta name="description" content="One poster a day, made from the day's news. A new brief every morning: headlines, colour, type and a grid. Share yours with #dailyposter.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&family=Geist+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400&family=Geist:wght@300;400;500&family=Geist+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="style.css">
 <link id="pair-css" rel="stylesheet">
 </head>
 <body>
 <header class="top">
   <a class="brand" href="./">Daily Poster</a>
-  <span class="issue" id="issue"></span>
   <nav class="days" aria-label="Other days">
     <a id="prev" aria-label="Previous day">←</a>
-    <span id="date"></span>
+    <span id="issue"></span>
     <a id="next" aria-label="Next day">→</a>
   </nav>
-  <a class="to-archive" href="#archive">Archive</a>
+  <div class="top-links">
+    <button type="button" id="info-open" aria-haspopup="dialog">Info</button>
+    <a href="#archive">Archive</a>
+  </div>
 </header>
 
-<section class="intro" id="intro" aria-labelledby="intro-title">
+<div class="info" id="info" role="dialog" aria-modal="true" aria-labelledby="intro-title" hidden>
+<button type="button" class="info-close" id="info-close">Close</button>
+<section class="intro" id="intro">
   <div class="intro-lead">
     <h1 id="intro-title">One poster a day, made from the day's news.</h1>
     <p>Every morning at 5.30 UK time a new brief lands here. It gives you a story, three headlines, the day's colour, a typeface pairing and a grid. Make a 9:16 poster from it, then share it so everyone's take on the same brief sits side by side.</p>
-    <button type="button" class="intro-toggle" id="intro-hide">Hide this</button>
   </div>
   <div class="intro-how">
     <h2 class="label">How it works</h2>
@@ -50,21 +53,29 @@
     </ol>
   </div>
 </section>
-<button type="button" class="intro-show" id="intro-show" hidden>How Daily Poster works +</button>
+</div>
+
+<section class="hero" aria-labelledby="story-title">
+  <p class="kicker" id="kicker"></p>
+  <h2 class="story-title" id="story-title"></h2>
+  <div class="hero-actions">
+    <a class="pill" id="story-link" target="_blank" rel="noopener">Read the story</a>
+    <button type="button" class="pill ghost" id="info-open-2">How it works</button>
+  </div>
+</section>
 
 <div class="page">
   <main>
-    <section class="hero">
-      <p class="today"><i class="dot" aria-hidden="true"></i><span id="colour-name"></span></p>
-      <h2 class="story-title" id="story-title"></h2>
-      <div class="hero-meta">
-        <p id="story-summary"></p>
+    <section class="sec first">
+      <h2 class="label"><span>[00]</span>Story</h2>
+      <div class="body">
+        <p class="summary" id="story-summary"></p>
         <p class="small" id="story-source"></p>
       </div>
     </section>
 
     <section class="sec">
-      <h2 class="label"><span>01</span>Headline</h2>
+      <h2 class="label"><span>[01]</span>Headline</h2>
       <div class="body">
         <div class="options headlines" id="headlines"></div>
         <p class="note">Three to six words each. Pick one, or write your own.</p>
@@ -72,12 +83,12 @@
     </section>
 
     <section class="sec">
-      <h2 class="label"><span>02</span>Subline</h2>
+      <h2 class="label"><span>[02]</span>Subline</h2>
       <div class="body"><div class="options sublines" id="sublines"></div></div>
     </section>
 
     <section class="sec">
-      <h2 class="label"><span>03</span>Colour</h2>
+      <h2 class="label"><span>[03]</span>Colour</h2>
       <div class="body">
         <div class="wheel" id="wheel" aria-label="The colour wheel"></div>
         <p class="wheel-key" id="wheel-key"></p>
@@ -87,7 +98,7 @@
     </section>
 
     <section class="sec">
-      <h2 class="label"><span>04</span>Type</h2>
+      <h2 class="label"><span>[04]</span>Type</h2>
       <div class="body">
         <div class="pair" id="pair"></div>
         <p class="reason" id="pair-reason"></p>
@@ -96,7 +107,7 @@
     </section>
 
     <section class="sec">
-      <h2 class="label"><span>05</span>Image</h2>
+      <h2 class="label"><span>[05]</span>Image</h2>
       <div class="body">
         <div class="images" id="images"></div>
         <p class="note">Optional. Photos from Unsplash, free to use with credit.</p>
@@ -104,7 +115,7 @@
     </section>
 
     <section class="sec">
-      <h2 class="label"><span>06</span>Grid</h2>
+      <h2 class="label"><span>[06]</span>Grid</h2>
       <div class="body grid-body">
         <figure class="grid-fig" id="grid-fig" aria-label="The 6 by 12 grid on the 1080 by 1920 artboard"></figure>
         <div class="grid-side">
@@ -115,7 +126,7 @@
     </section>
 
     <section class="sec">
-      <h2 class="label"><span>07</span>Make it</h2>
+      <h2 class="label"><span>[07]</span>Make it</h2>
       <div class="body">
         <p class="lede">Set the poster up in Figma.</p>
         <div class="cta-row">
@@ -134,7 +145,7 @@
     </section>
 
     <section class="sec">
-      <h2 class="label"><span>08</span>Share</h2>
+      <h2 class="label"><span>[08]</span>Share</h2>
       <div class="body">
         <p class="lede">Post it with <b>#dailyposter</b> and <b id="day-tag"></b>.</p>
         <p class="share-copy">The day's tag puts every poster made from the same brief side by side, so you can see what everyone else did with it.</p>
@@ -148,19 +159,9 @@
     </section>
 
     <section class="sec proof-sec" id="proof-sec">
-      <h2 class="label"><span>—</span>Proof</h2>
+      <h2 class="label"><span>[—]</span>Proof</h2>
       <div class="body" id="proof-slot-mobile"></div>
     </section>
-
-    <section class="sec archive" id="archive">
-      <h2 class="label"><span>—</span>Archive</h2>
-      <div class="body"><ol class="archive-list" id="archive-list"></ol></div>
-    </section>
-
-    <footer class="foot">
-      <p>Daily Poster picks a story from the day's news and writes the brief with Claude. Images from <a href="https://unsplash.com/?utm_source=daily_poster&amp;utm_medium=referral">Unsplash</a>.</p>
-      <p><a href="https://github.com/nebzoku/daily-poster">Run your own on GitHub</a></p>
-    </footer>
   </main>
 
   <aside class="proof-col" id="proof-slot-desktop">
@@ -181,6 +182,17 @@
     </div>
   </aside>
 </div>
+
+
+<section class="archive" id="archive" aria-labelledby="archive-title">
+  <h2 class="label" id="archive-title"><span>[—]</span>Archive</h2>
+  <ol class="wall" id="archive-list"></ol>
+</section>
+
+<footer class="foot">
+  <p>Daily Poster picks a story from the day's news and writes the brief with Claude. Images from <a href="https://unsplash.com/?utm_source=daily_poster&amp;utm_medium=referral">Unsplash</a>.</p>
+  <p><a href="https://github.com/nebzoku/daily-poster">Run your own on GitHub</a></p>
+</footer>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script src="app.js"></script>

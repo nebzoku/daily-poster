@@ -223,7 +223,13 @@ async function writeIndex() {
   const index = [];
   for (const f of files) {
     const b = JSON.parse(await readFile(join(DATA, f), "utf8"));
-    index.push({ date: b.date, issue: b.issue, colour: b.colour.name, headline: b.headlines[0] });
+    const pal = b.palette || (b.palettes || []).find((p) => p.name === "Vivid") || {};
+    index.push({
+      date: b.date, issue: b.issue, colour: b.colour.name, headline: b.headlines[0],
+      bg: pal.colours ? pal.colours[0] : null,
+      thumb: b.images && b.images[0] ? b.images[0].thumb : null,
+      display: b.type.display, css: b.type.css,
+    });
   }
   await writeFile(join(DATA, "index.json"), JSON.stringify(index, null, 2) + "\n");
   if (files[0]) await writeFile(join(DATA, "latest.json"), await readFile(join(DATA, files[0]), "utf8"));

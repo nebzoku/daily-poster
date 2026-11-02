@@ -7,7 +7,7 @@
   "editorType": ["figma"],
   "documentAccess": "dynamic-page",
   "networkAccess": {
-    "allowedDomains": ["https://nebzoku.github.io", "https://images.unsplash.com", "https://www.artic.edu", "https://images.metmuseum.org"],
-    "reasoning": "Reads the day's brief from the Daily Poster site and the images it suggests from Unsplash, the Art Institute of Chicago and The Met."
+    "allowedDomains": ["https://nebzoku.github.io", "https://images.unsplash.com", "https://www.artic.edu", "https://images.metmuseum.org", "https://dl.polyhaven.org", "https://cdn.polyhaven.com"],
+    "reasoning": "Reads the day's brief from the Daily Poster site and the images it suggests from Unsplash, the Art Institute of Chicago and The Met, and textures from Poly Haven."
   }
 }

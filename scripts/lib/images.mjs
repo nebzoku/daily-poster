@@ -81,6 +81,61 @@ export async function met(query, n = 6) {
   return out;
 }
 
+// ---------- textures ----------
+
+// Poly Haven: CC0 material textures. No key; the API asks for a "Powered by Poly Haven" credit.
+let polyCache = null;
+export async function polyhaven(query, n = 5) {
+  polyCache ||= await json("https://api.polyhaven.com/assets?t=textures");
+  const words = query.toLowerCase().split(/\s+/).filter(Boolean);
+  const scored = Object.entries(polyCache).map(([id, a]) => {
+    const hay = [a.name, ...(a.categories || []), ...(a.tags || [])].join(" ").toLowerCase();
+    return [id, a, words.reduce((n, w) => n + (hay.includes(w) ? 1 : 0), 0)];
+  }).filter((x) => x[2] > 0).sort((a, b) => b[2] - a[2] || (b[1].download_count || 0) - (a[1].download_count || 0));
+  return scored.slice(0, n).map(([id, a]) => ({
+    id: `polyhaven:${id}`,
+    source: "Poly Haven",
+    licence: "CC0",
+    title: a.name,
+    credit: (a.authors && Object.keys(a.authors).join(", ")) || "Poly Haven",
+    creditUrl: `https://polyhaven.com/a/${id}`,
+    page: `https://polyhaven.com/a/${id}`,
+    alt: `${a.name} texture`,
+    thumb: `https://cdn.polyhaven.com/asset_img/thumbs/${id}.png?width=480&height=480`,
+    src: null,     // filled in for the textures that get picked
+    polyId: id,
+    query,
+  }));
+}
+
+// The flat 2K colour map for a picked Poly Haven texture.
+export async function polyhavenFile(t) {
+  try {
+    const f = await json(`https://api.polyhaven.com/files/${t.polyId}`);
+    const d = f.Diffuse || f.diffuse || f.Color || {};
+    const res = d["2k"] || d["1k"] || Object.values(d)[0];
+    const file = res && (res.jpg || res.png);
+    return file ? file.url : t.thumb;
+  } catch {
+    return t.thumb;
+  }
+}
+
+export async function gatherTextures(queries) {
+  const jobs = [
+    ...queries.map((q) => polyhaven(q, 5)),
+    ...queries.map((q) => unsplash(`${q} texture`, 3)),
+  ];
+  const settled = await Promise.allSettled(jobs);
+  const seen = new Set();
+  const all = [];
+  for (const s of settled) {
+    if (s.status !== "fulfilled") { console.warn("Texture source failed:", s.reason && s.reason.message); continue; }
+    for (const c of s.value) if (!seen.has(c.id)) { seen.add(c.id); all.push(c); }
+  }
+  return all;
+}
+
 // Gather candidates from every source, tolerating any one of them failing.
 export async function gatherCandidates(photoQueries, archiveQueries) {
   const jobs = [

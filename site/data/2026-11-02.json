@@ -1,7 +1,7 @@
 {
   "date": "2026-11-02",
   "issue": 31,
-  "generatedAt": "2026-11-02T20:35:35.872Z",
+  "generatedAt": "2026-11-02T20:48:55.897Z",
   "colour": {
     "name": "Orange",
     "yesterday": "Yellow",
@@ -180,6 +180,56 @@
       "alt": "Woodblock print of boys acting out a lord’s procession",
       "thumb": "https://images.metmuseum.org/CRDImages/as/web-additional/DP151605.jpg",
       "src": "https://images.metmuseum.org/CRDImages/as/web-additional/DP151605.jpg"
+    }
+  ],
+  "textures": [
+    {
+      "id": "polyhaven:cracked_concrete_wall",
+      "source": "Poly Haven",
+      "licence": "CC0",
+      "title": "Cracked Concrete Wall",
+      "credit": "Poly Haven",
+      "creditUrl": "https://polyhaven.com/a/cracked_concrete_wall",
+      "page": "https://polyhaven.com/a/cracked_concrete_wall",
+      "alt": "Cracked Concrete Wall texture",
+      "thumb": "https://cdn.polyhaven.com/asset_img/thumbs/cracked_concrete_wall.png?width=480&height=480",
+      "src": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/cracked_concrete_wall/cracked_concrete_wall_diff_2k.jpg"
+    },
+    {
+      "id": "polyhaven:blue_plaster_weathered",
+      "source": "Poly Haven",
+      "licence": "CC0",
+      "title": "Blue Plaster Weathered",
+      "credit": "Poly Haven",
+      "creditUrl": "https://polyhaven.com/a/blue_plaster_weathered",
+      "page": "https://polyhaven.com/a/blue_plaster_weathered",
+      "alt": "Blue Plaster Weathered texture",
+      "thumb": "https://cdn.polyhaven.com/asset_img/thumbs/blue_plaster_weathered.png?width=480&height=480",
+      "src": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/blue_plaster_weathered/blue_plaster_weathered_diff_2k.jpg"
+    },
+    {
+      "id": "polyhaven:cotton_jersey",
+      "source": "Poly Haven",
+      "licence": "CC0",
+      "title": "Cotton Jersey",
+      "credit": "Poly Haven",
+      "creditUrl": "https://polyhaven.com/a/cotton_jersey",
+      "page": "https://polyhaven.com/a/cotton_jersey",
+      "alt": "Cotton Jersey texture",
+      "thumb": "https://cdn.polyhaven.com/asset_img/thumbs/cotton_jersey.png?width=480&height=480",
+      "src": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/cotton_jersey/cotton_jersey_diff_2k.jpg"
+    },
+    {
+      "id": "polyhaven:rough_linen",
+      "source": "Poly Haven",
+      "licence": "CC0",
+      "title": "Rough Linen",
+      "credit": "Poly Haven",
+      "creditUrl": "https://polyhaven.com/a/rough_linen",
+      "page": "https://polyhaven.com/a/rough_linen",
+      "alt": "Rough Linen texture",
+      "thumb": "https://cdn.polyhaven.com/asset_img/thumbs/rough_linen.png?width=480&height=480",
+      "src": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/rough_linen/rough_linen_diff_2k.jpg"
     }
   ]
 }

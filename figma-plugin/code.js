@@ -186,6 +186,25 @@ async function build(brief, strings) {
     group("Images · optional, credit Unsplash photographers", [imgs]);
   }
 
+  if (brief.textures && brief.textures.length) {
+    var texRow = row("Textures", 24);
+    for (var q = 0; q < brief.textures.length; q++) {
+      var tx = brief.textures[q];
+      var tc = stack("Texture " + (q + 1), 10);
+      var sq = figma.createRectangle();
+      sq.name = tx.title + " · " + tx.source;
+      sq.resize(300, 300);
+      try {
+        var timg = await figma.createImageAsync(tx.src || tx.thumb);
+        sq.fills = [{ type: "IMAGE", imageHash: timg.hash, scaleMode: "FILL" }];
+      } catch (e) { sq.fills = solid("#E5E5E5"); }
+      tc.appendChild(sq);
+      tc.appendChild(text(tx.title + " · " + tx.source, ui, 14, grey, 300));
+      texRow.appendChild(tc);
+    }
+    group("Textures · for type or backgrounds", [texRow]);
+  }
+
   group("Share", [text("Post it with #dailyposter #dailyposter" + pad(brief.issue), ui, 22, dark)]);
 
   figma.viewport.scrollAndZoomIntoView([poster, side]);

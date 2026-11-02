@@ -13,12 +13,13 @@ import { fileURLToPath } from "node:url";
 import { XMLParser } from "fast-xml-parser";
 import { wheelFor, paletteFor, issueNumber, ALWAYS } from "./lib/palette.mjs";
 import { FONT_PAIRS, fontPair, fontAssets } from "./lib/fonts.mjs";
-import { gatherCandidates, interleave } from "./lib/images.mjs";
+import { gatherCandidates, gatherTextures, polyhavenFile, interleave } from "./lib/images.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const DATA = join(ROOT, "site", "data");
 const MODEL = process.env.CLAUDE_MODEL || "claude-sonnet-5-5";
 const IMAGE_COUNT = 10;
+const TEXTURE_COUNT = 4;
 
 const FEEDS = [
   ["BBC News", "https://feeds.bbci.co.uk/news/world/rss.xml"],
@@ -124,10 +125,17 @@ const BRIEF_TOOL = {
         maxItems: 3,
         description: "Three museum-collection search terms, 1 to 2 words each: objects, motifs or scenes likely to appear in prints, paintings, posters or archive photographs.",
       },
+      textureQueries: {
+        type: "array",
+        items: { type: "string" },
+        minItems: 3,
+        maxItems: 3,
+        description: "Three material words for textures a designer could lay over type or a background, 1 to 2 words each, e.g. \"paper\", \"rough plaster\", \"linen\", \"rust\".",
+      },
       fontPairId: { type: "string", enum: FONT_PAIRS.map((f) => f.id) },
       fontReason: { type: "string", description: "One sentence on why this pairing suits the story." },
     },
-    required: ["storyIndex", "storySummary", "headlines", "sublines", "imageQueries", "archiveQueries", "fontPairId", "fontReason"],
+    required: ["storyIndex", "storySummary", "headlines", "sublines", "imageQueries", "archiveQueries", "textureQueries", "fontPairId", "fontReason"],
   },
 };
 
@@ -146,6 +154,7 @@ Then write:
 - Three sublines that give the facts plainly, so the poster still informs.
 - Three Unsplash search terms for atmospheric photography. Unsplash has no news photos, so ask for textures, places, objects and light that evoke the story. Today's colour is ${colour}; lean towards imagery that would sit well with it.
 - Three search terms for museum collections (the Art Institute of Chicago and The Met), to find public-domain prints, paintings, posters and archive photographs that echo the story. Think in motifs and objects a museum would hold: "procession", "ledger", "banner", "crowd", "map".
+- Three material words for textures that suit the story and could be laid over type or a background: paper, plaster, fabric, metal, stone and so on.
 - One typeface pairing from this list, chosen to suit the story:
 ${pairs}
 
@@ -192,62 +201,83 @@ function validate(out, stories) {
   if (out.sublines?.length !== 3) problems.push("need exactly 3 sublines");
   if (out.imageQueries?.length !== 3) problems.push("need exactly 3 image queries");
   if (out.archiveQueries?.length !== 3) problems.push("need exactly 3 archive queries");
+  if (out.textureQueries?.length !== 3) problems.push("need exactly 3 texture queries");
   return problems;
 }
 
-// Claude looks at the candidates and picks the ten an art director would.
-async function pickImages(story, colour, cands) {
-  if (cands.length <= IMAGE_COUNT) return cands;
-  const list = interleave(cands, 40); // mixed sources, so a cap never drops one entirely
+// Claude looks at the candidates and picks what an art director would.
+function pickContent(story, colour, list, texList) {
   const content = [{
     type: "text",
-    text: `You are art-directing the image strip for a daily poster brief. Today's story: "${story.title}". ${story.summary}
+    text: `You are art-directing the images for a daily poster brief. Today's story: "${story.title}". ${story.summary}
 Today's colour is ${colour}.
 
-Below are ${list.length} candidate images, numbered. Pick the ${IMAGE_COUNT} that are the most beautiful, striking and fitting for this story: strong composition, interesting light, texture or graphic quality, and a clear connection to the story's mood or subject. Mix modern photography with archive works (at least three of each if good ones exist). Skip near-duplicates, weak or blurry scans, images dominated by text, and anything that would trivialise the story. Order them so the sequence flows well as a strip.`,
+First, ${list.length} candidate IMAGES, numbered I0, I1… Pick the ${IMAGE_COUNT} that are the most beautiful, striking and fitting for this story: strong composition, interesting light, texture or graphic quality, and a clear connection to the story's mood or subject. Mix modern photography with archive works (at least three of each if good ones exist). Skip near-duplicates, weak or blurry scans, images dominated by text, and anything that would trivialise the story. Order them so the sequence flows well as a strip.
+
+Then ${texList.length} candidate TEXTURES, numbered T0, T1… Pick the ${Math.min(TEXTURE_COUNT, texList.length)} most useful for laying over type or a poster background: flat, evenly lit, rich in grain or surface detail, and in keeping with the story. Prefer a varied set (for example one paper, one fabric, one mineral).`,
   }];
   list.forEach((c, i) => {
-    content.push({ type: "text", text: `[${i}] ${c.source} · ${c.title} · ${c.credit}` });
+    content.push({ type: "text", text: `[I${i}] ${c.source} · ${c.title} · ${c.credit}` });
     content.push({ type: "image", source: { type: "url", url: c.thumb } });
   });
+  texList.forEach((c, i) => {
+    content.push({ type: "text", text: `[T${i}] ${c.source} · ${c.title}` });
+    content.push({ type: "image", source: { type: "url", url: c.thumb } });
+  });
+  return content;
+}
+
+async function pickImages(story, colour, cands, texCands) {
+  const list = interleave(cands, 36);        // mixed sources, so a cap never drops one entirely
+  const texList = interleave(texCands, 14);
   const res = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
     headers: { "content-type": "application/json", "x-api-key": process.env.ANTHROPIC_API_KEY, "anthropic-version": "2023-06-01" },
     body: JSON.stringify({
       model: MODEL,
-      max_tokens: 500,
+      max_tokens: 600,
       tools: [{
         name: "pick_images",
-        description: "Choose the images for the strip, in order.",
+        description: "Choose the images and textures, in order, by their numbers (without the I or T).",
         input_schema: {
           type: "object",
-          properties: { picks: { type: "array", items: { type: "integer" }, minItems: IMAGE_COUNT, maxItems: IMAGE_COUNT } },
-          required: ["picks"],
+          properties: {
+            images: { type: "array", items: { type: "integer" } },
+            textures: { type: "array", items: { type: "integer" } },
+          },
+          required: ["images", "textures"],
         },
       }],
       tool_choice: { type: "tool", name: "pick_images" },
-      messages: [{ role: "user", content }],
+      messages: [{ role: "user", content: pickContent(story, colour, list, texList) }],
     }),
   });
   if (!res.ok) throw new Error(`Claude API ${res.status}: ${await res.text()}`);
-  const call = (await res.json()).content.find((c) => c.type === "tool_use");
-  const picks = [...new Set((call?.input?.picks || []).filter((i) => list[i]))];
-  if (picks.length < IMAGE_COUNT) {
-    for (const c of interleave(list, list.length)) if (picks.length < IMAGE_COUNT && !picks.includes(list.indexOf(c))) picks.push(list.indexOf(c));
-  }
-  return picks.slice(0, IMAGE_COUNT).map((i) => list[i]);
+  const input = (await res.json()).content.find((c) => c.type === "tool_use")?.input || {};
+  const fill = (picks, from, n) => {
+    const out = [...new Set((picks || []).filter((i) => from[i]))];
+    for (let i = 0; out.length < Math.min(n, from.length) && i < from.length; i++) if (!out.includes(i)) out.push(i);
+    return out.slice(0, n).map((i) => from[i]);
+  };
+  return { images: fill(input.images, list, IMAGE_COUNT), textures: fill(input.textures, texList, TEXTURE_COUNT) };
 }
 
 async function chooseImages(brief, story, colour) {
-  const cands = await gatherCandidates(brief.imageQueries, brief.archiveQueries);
-  console.log(`Found ${cands.length} image candidates.`);
-  if (!cands.length) return [];
+  const [cands, texCands] = await Promise.all([
+    gatherCandidates(brief.imageQueries, brief.archiveQueries),
+    gatherTextures(brief.textureQueries || []),
+  ]);
+  console.log(`Found ${cands.length} image and ${texCands.length} texture candidates.`);
+  let picked;
   try {
-    return await pickImages({ title: story.title, summary: brief.storySummary }, colour, cands);
+    picked = await pickImages({ title: story.title, summary: brief.storySummary }, colour, cands, texCands);
   } catch (e) {
     console.warn("Image pick failed, mixing sources instead:", e.message);
-    return interleave(cands, IMAGE_COUNT);
+    picked = { images: interleave(cands, IMAGE_COUNT), textures: interleave(texCands, TEXTURE_COUNT) };
   }
+  for (const t of picked.textures) if (t.polyId) t.src = await polyhavenFile(t);
+  const clean = ({ query, polyId, ...rest }) => rest;
+  return { images: picked.images.map(clean), textures: picked.textures.map(clean) };
 }
 
 async function writeIndex() {
@@ -316,7 +346,7 @@ async function main() {
     always: ALWAYS,
     type: { ...pair, reason: brief.fontReason, ...fontAssets(pair) },
     grid: { format: "9:16", size: [1080, 1920], columns: 6, rows: 12, margin: 48, gutter: 24, column: 144, row: 130, unit: "px" },
-    images: (await chooseImages(brief, story, wheel.name)).map(({ query, ...im }) => im),
+    ...(await chooseImages(brief, story, wheel.name)),
   };
 
   await writeFile(out, JSON.stringify(result, null, 2) + "\n");

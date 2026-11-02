@@ -210,7 +210,7 @@
   function renderImages() {
     const imgs = brief.images || [];
     if (!imgs.length) { $("images").replaceChildren(el("p", { class: "note" }, "No images today.")); return; }
-    const shot = (im, i, copy) => el("figure", { class: "shot", ...(copy ? { "aria-hidden": "true" } : {}) },
+    const shot = (im, i, copy) => el("figure", { class: `shot v${i % 7}`, ...(copy ? { "aria-hidden": "true" } : {}) },
       el("a", { class: "frame", href: im.page, target: "_blank", rel: "noopener",
         ...(copy ? { tabindex: "-1" } : { "aria-label": `${im.alt}. ${im.credit}, ${im.source}` }) },
         el("img", { src: im.thumb, alt: copy ? "" : im.alt, loading: copy ? "lazy" : "eager", draggable: "false",
@@ -219,9 +219,23 @@
         el("span", {}, `[${String(i + 1).padStart(2, "0")}]`),
         el("span", { class: "who" }, im.credit || im.photographer),
         el("span", { class: "src" }, im.source === "Art Institute of Chicago" ? "AIC" : im.source || "Unsplash")));
-    const track = el("div", { class: "track", style: `--drift: ${imgs.length * 8}s` },
+    const track = el("div", { class: "track", style: `--drift: ${imgs.length * 9}s` },
       ...imgs.map((im, i) => shot(im, i, false)), ...imgs.map((im, i) => shot(im, i, true)));
     $("images").replaceChildren(track);
+  }
+
+  // Textures for type or backgrounds, from Poly Haven and Unsplash.
+  function renderTextures() {
+    const tex = brief.textures || [];
+    $("textures").closest(".tex").hidden = !tex.length;
+    $("textures").replaceChildren(...tex.map((t, i) =>
+      el("figure", { class: "tex-tile", style: "margin:0" },
+        el("a", { class: "sq", href: t.page, target: "_blank", rel: "noopener", "aria-label": `${t.title} texture, ${t.source}` },
+          el("img", { src: t.thumb, alt: t.alt, loading: "lazy", onerror: (e) => e.target.parentElement.classList.add("missing") })),
+        el("figcaption", { class: "mono" },
+          el("span", {}, `[T${i + 1}]`),
+          el("span", { class: "who" }, t.title),
+          el("span", { class: "src" }, t.source)))));
   }
 
   // The bare grid on the artboard, with dimension marks. No suggested layout.
@@ -361,7 +375,7 @@ ${detSVG}
     renderType(); setupHero(); renderTop(); renderStory();
     renderOptions("headlines", brief.headlines, "h", (t, i) => `0${i + 1}`);
     renderOptions("sublines", brief.sublines, "s", (t, i) => `0${i + 1}`);
-    renderColour(); renderImages(); renderGrid(); renderArchive(); renderShare();
+    renderColour(); renderImages(); renderTextures(); renderGrid(); renderArchive(); renderShare();
 
     // Sections reveal as they scroll into view.
     const io = new IntersectionObserver((entries) => {

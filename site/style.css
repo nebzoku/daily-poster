@@ -93,6 +93,8 @@ h1, h2, p, ol, dl, dd { margin: 0; }
 .js .sec.in > .label { opacity: 1; transform: none; transition-delay: .15s; }
 .js .sec.in > .body { opacity: 1; transform: none; transition-delay: .25s; }
 .js .sec.in > .strip { opacity: 1; transform: none; transition-delay: .4s; }
+.js .sec > .tex { opacity: 0; transform: translateY(26px); transition: opacity 1s ease, transform 1.2s var(--ease); }
+.js .sec.in > .tex { opacity: 1; transform: none; transition-delay: .55s; }
 .js .archive.in, .js .foot.in { opacity: 1; transform: none; }
 .js .wall li { opacity: 0; transform: translateY(20px); transition: opacity .8s ease, transform 1s var(--ease); transition-delay: calc(var(--i, 0) * 70ms + .2s); }
 .js .archive.in .wall li { opacity: 1; transform: none; }
@@ -226,17 +228,26 @@ main { grid-column: 1 / -1; min-width: 0; }
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
           mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
 }
-.track { display: flex; align-items: flex-end; gap: var(--gap); width: max-content; padding: 24px 0 8px; animation: drift var(--drift, 80s) linear infinite; }
+.track { display: flex; gap: var(--gap); width: max-content; min-height: clamp(320px, 50vh, 540px); padding: 24px 0 8px; animation: drift var(--drift, 80s) linear infinite; }
 .strip:hover .track, .strip:focus-within .track { animation-play-state: paused; }
 @keyframes drift { to { transform: translateX(calc(-50% - var(--gap) / 2)); } }
 .shot { display: grid; gap: 10px; flex: none; margin: 0; color: var(--fg); }
-.shot .frame { display: block; height: clamp(200px, 28vh, 320px); overflow: hidden; background: var(--line); transform-origin: 50% 100%; transition: transform .5s cubic-bezier(.3,1.6,.5,1); }
-.shot img { height: 100%; width: auto; display: block; }
-.shot:nth-child(3n + 2) .frame { height: clamp(160px, 22vh, 250px); }
-.shot:nth-child(3n) .frame { height: clamp(230px, 33vh, 380px); }
-/* hover: a small wiggle that settles into a slight tilt */
-.shot:hover .frame, .shot:focus-visible .frame { animation: wiggle .55s ease-out; transform: rotate(-1.5deg) translateY(-6px); }
-.shot:nth-child(even):hover .frame, .shot:nth-child(even):focus-visible .frame { animation-name: wiggle-r; transform: rotate(1.5deg) translateY(-6px); }
+.shot .frame { display: block; height: var(--h); aspect-ratio: var(--ar); overflow: hidden; background: var(--line); transform-origin: 50% 100%; transition: transform .5s cubic-bezier(.3,1.6,.5,1); }
+.shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* seven size, shape and height variations, so the strip feels pinned up by hand */
+.track { align-items: flex-start; }
+.shot.v0 { --h: clamp(220px, 34vh, 380px); --ar: 4 / 5; align-self: flex-end; }
+.shot.v1 { --h: clamp(140px, 20vh, 220px); --ar: 1 / 1; margin-top: 4vh; }
+.shot.v2 { --h: clamp(260px, 42vh, 460px); --ar: 2 / 3; }
+.shot.v3 { --h: clamp(160px, 24vh, 270px); --ar: 3 / 2; align-self: flex-end; }
+.shot.v4 { --h: clamp(200px, 30vh, 330px); --ar: 3 / 4; margin-top: 10vh; }
+.shot.v5 { --h: clamp(120px, 17vh, 190px); --ar: 1 / 1; align-self: center; }
+.shot.v6 { --h: clamp(200px, 31vh, 350px); --ar: 16 / 11; align-self: flex-end; }
+/* hover, on devices with a mouse: a small wiggle that settles into a tilt */
+@media (hover: hover) and (pointer: fine) {
+  .shot:hover .frame, .shot:focus-visible .frame { animation: wiggle .55s ease-out; transform: rotate(-1.5deg) translateY(-6px); }
+  .shot:nth-child(even):hover .frame, .shot:nth-child(even):focus-visible .frame { animation-name: wiggle-r; transform: rotate(1.5deg) translateY(-6px); }
+}
 @keyframes wiggle { 0% { transform: rotate(0); } 30% { transform: rotate(-3deg) translateY(-6px); } 55% { transform: rotate(1.2deg) translateY(-6px); } 80% { transform: rotate(-2deg) translateY(-6px); } 100% { transform: rotate(-1.5deg) translateY(-6px); } }
 @keyframes wiggle-r { 0% { transform: rotate(0); } 30% { transform: rotate(3deg) translateY(-6px); } 55% { transform: rotate(-1.2deg) translateY(-6px); } 80% { transform: rotate(2deg) translateY(-6px); } 100% { transform: rotate(1.5deg) translateY(-6px); } }
 .shot figcaption { display: flex; gap: 10px; width: 0; min-width: 100%; overflow: hidden; white-space: nowrap; }
@@ -245,9 +256,38 @@ main { grid-column: 1 / -1; min-width: 0; }
 .shot figcaption span:first-child { color: var(--faint); }
 .shot figcaption .who { overflow: hidden; text-overflow: ellipsis; min-width: 0; }
 .shot figcaption .src { color: var(--muted); }
-.shot .frame.missing { width: 200px; display: grid; place-items: center; }
+.shot .frame.missing { display: grid; place-items: center; }
 .shot .frame.missing img { display: none; }
 .shot .frame.missing::after { content: "Image unavailable here"; font-size: 11px; color: var(--muted); }
+/* textures */
+.tex { grid-column: 4 / 13; margin-top: 64px; }
+.tex-label { margin: 0 0 16px; color: var(--fg); }
+.tex-row { display: grid; grid-template-columns: repeat(4, minmax(0, 180px)); gap: var(--gap); }
+.tex-tile { display: grid; gap: 10px; color: var(--fg); }
+.tex-tile .sq { aspect-ratio: 1; overflow: hidden; background: var(--line); }
+.tex-tile img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.6s var(--ease); }
+.tex-tile:hover img { transform: scale(1.18); }
+.tex-tile figcaption { display: grid; grid-template-columns: auto 1fr; column-gap: 10px; row-gap: 2px; line-height: 1.4; }
+.tex-tile figcaption span:first-child { color: var(--faint); grid-row: span 2; align-self: start; }
+.tex-tile figcaption .src { color: var(--muted); }
+.tex-tile .sq.missing { display: grid; place-items: center; }
+.tex-tile .sq.missing img { display: none; }
+.tex-tile .sq.missing::after { content: "Unavailable here"; font-size: 11px; color: var(--muted); }
+
+/* touch screens and narrow windows: no auto-drift, just swipe */
+@media (hover: none), (max-width: 960px) {
+  .strip { overflow-x: auto; -webkit-mask-image: none; mask-image: none; scroll-snap-type: x proximity; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .strip::-webkit-scrollbar { display: none; }
+  .track { animation: none; padding-left: var(--pad); padding-right: var(--pad); min-height: 0; }
+  .track [aria-hidden="true"] { display: none; }
+  .shot { scroll-snap-align: start; scroll-margin-left: var(--pad); }
+  .shot.v0 { --h: 260px; } .shot.v1 { --h: 150px; } .shot.v2 { --h: 300px; } .shot.v3 { --h: 170px; }
+  .shot.v4 { --h: 220px; } .shot.v5 { --h: 130px; } .shot.v6 { --h: 210px; }
+  .shot.v1 { margin-top: 24px; } .shot.v4 { margin-top: 56px; }
+  .tex { grid-column: 1 / -1; }
+  .tex-row { grid-template-columns: repeat(2, 1fr); row-gap: 20px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .strip { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
   .track { animation: none; padding-left: var(--pad); padding-right: var(--pad); }
@@ -323,8 +363,6 @@ main { grid-column: 1 / -1; min-width: 0; }
   main { grid-column: 1 / -1; }
   .hero { min-height: 82svh; }
   .wall { grid-template-columns: repeat(2, 1fr); gap: 28px 12px; }
-  .shot .frame { height: 220px !important; }
-  .shot figcaption .who { max-width: 18ch; }
   .foot { flex-direction: column; }
   .sec { grid-template-columns: 1fr; }
   .sec .label { margin-bottom: 28px; }
@@ -347,7 +385,7 @@ html { scroll-behavior: smooth; }
   html { scroll-behavior: auto; }
   .w { transform: none !important; }
   .hero-hl .hl:not(.on) { visibility: hidden; }
-  .js .top, .js .kicker > *, .js .hero-count, .js .hero-actions, .js .sec > *, .js .archive, .js .foot, .js .wall li, .info .intro-lead p, .info .intro-how, .info .intro-rules { opacity: 1 !important; transform: none !important; }
+  .js .sec > .tex, .js .top, .js .kicker > *, .js .hero-count, .js .hero-actions, .js .sec > *, .js .archive, .js .foot, .js .wall li, .info .intro-lead p, .info .intro-how, .info .intro-rules { opacity: 1 !important; transform: none !important; }
   .js .sec::before { transform: none !important; }
 }
 

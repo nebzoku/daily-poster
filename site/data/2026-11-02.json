@@ -1,0 +1,120 @@
+{
+  "date": "2026-11-02",
+  "issue": 31,
+  "generatedAt": "2026-11-02T14:37:55.915Z",
+  "colour": {
+    "name": "Orange",
+    "degrees": 30,
+    "yesterday": "Yellow",
+    "tomorrow": "Red"
+  },
+  "story": {
+    "title": "India protesters march with 1km banner of deleted voters' names",
+    "summary": "Protesters in New Delhi carried a banner about a kilometre long through the city, listing people who have been removed from India's voter rolls. The march turned a bureaucratic deletion into something you could see and walk beside.",
+    "source": "Al Jazeera",
+    "url": "https://www.aljazeera.com/video/newsfeed/2026/11/1/india-protesters-march-with-1km-banner-of-deleted-voters-names",
+    "published": "2026-11-01T16:42:18.000Z"
+  },
+  "headlines": [
+    "A Kilometre of Missing Names",
+    "Erased, Then Carried Through Delhi",
+    "Every Name Still Counts"
+  ],
+  "sublines": [
+    "Protesters in New Delhi marched with a banner listing voters removed from the rolls.",
+    "A kilometre-long roll call of citizens struck from India's electoral register, carried by hand.",
+    "Names deleted from the voter lists came back onto the street, one metre at a time."
+  ],
+  "palettes": [
+    {
+      "name": "Tonal",
+      "note": "One hue, light to dark.",
+      "colours": [
+        "#FEEEE4",
+        "#F2B58C",
+        "#C16302",
+        "#492200"
+      ]
+    },
+    {
+      "name": "Vivid",
+      "note": "Full-strength hue with a tinted grey.",
+      "colours": [
+        "#DB7206",
+        "#FED4B9",
+        "#7B6F67",
+        "#2C1302"
+      ]
+    },
+    {
+      "name": "Contrast",
+      "note": "The hue, its neighbour and its opposite.",
+      "colours": [
+        "#C96805",
+        "#EFC876",
+        "#03ABEC",
+        "#3C1D05"
+      ]
+    }
+  ],
+  "always": [
+    "#000000",
+    "#FFFFFF"
+  ],
+  "type": {
+    "id": "anton",
+    "display": "Anton",
+    "text": "IBM Plex Mono",
+    "reason": "A tall, condensed headline face can run long like the banner, and a monospaced text face reads like a register of names.",
+    "css": "https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono&display=swap",
+    "displayUrl": "https://fonts.google.com/specimen/Anton",
+    "textUrl": "https://fonts.google.com/specimen/IBM+Plex+Mono"
+  },
+  "grid": {
+    "format": "9:16",
+    "size": [
+      1080,
+      1920
+    ],
+    "columns": 6,
+    "rows": 12,
+    "margin": 0.04,
+    "gutter": 0.02,
+    "basis": "short side"
+  },
+  "images": [
+    {
+      "id": "00nHr1Lpq6w",
+      "query": "handwritten list",
+      "src": "https://images.unsplash.com/photo-1543769657-fcf1236421bc?w=1080&h=1920&fit=crop&crop=entropy&q=80&fm=jpg",
+      "thumb": "https://images.unsplash.com/photo-1543769657-fcf1236421bc?w=540&h=960&fit=crop&crop=entropy&q=70&fm=jpg",
+      "colour": null,
+      "alt": "Handwritten cursive text on paper with diagonal shadows across the page",
+      "page": "https://unsplash.com/photos/handwritten-cursive-text-with-shadows-00nHr1Lpq6w?utm_source=daily_poster_brief&utm_medium=referral",
+      "photographer": "Micah Boswell",
+      "photographerUrl": "https://unsplash.com/@micahboswell?utm_source=daily_poster_brief&utm_medium=referral"
+    },
+    {
+      "id": "EEeGY0XgNSw",
+      "query": "marigold garland",
+      "src": "https://images.unsplash.com/photo-1789971649652-ae5dfeeaa7b4?w=1080&h=1920&fit=crop&crop=entropy&q=80&fm=jpg",
+      "thumb": "https://images.unsplash.com/photo-1789971649652-ae5dfeeaa7b4?w=540&h=960&fit=crop&crop=entropy&q=70&fm=jpg",
+      "colour": null,
+      "alt": "Hanging garlands of orange marigolds and white jasmine in a row",
+      "page": "https://unsplash.com/photos/marigold-and-jasmine-flower-garlands-EEeGY0XgNSw?utm_source=daily_poster_brief&utm_medium=referral",
+      "photographer": "Sangram Rakate",
+      "photographerUrl": "https://unsplash.com/@najaratonajaria?utm_source=daily_poster_brief&utm_medium=referral"
+    },
+    {
+      "id": "Gbgo6lkxID8",
+      "query": "delhi street crowd",
+      "src": "https://images.unsplash.com/photo-1615779167895-7e815e39b79b?w=1080&h=1920&fit=crop&crop=entropy&q=80&fm=jpg",
+      "thumb": "https://images.unsplash.com/photo-1615779167895-7e815e39b79b?w=540&h=960&fit=crop&crop=entropy&q=70&fm=jpg",
+      "colour": null,
+      "alt": "People walking along a busy street in Chandni Chowk, Delhi",
+      "page": "https://unsplash.com/photos/people-walking-on-street-during-daytime-Gbgo6lkxID8?utm_source=daily_poster_brief&utm_medium=referral",
+      "photographer": "Ravi Sharma",
+      "photographerUrl": "https://unsplash.com/@ravinepz?utm_source=daily_poster_brief&utm_medium=referral"
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daily Poster Brief</title>
+<meta name="description" content="One 9:16 poster a day, briefed from the news. Three headlines, three palettes, three images, one typeface pairing and a grid.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&family=Geist+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="style.css">
+<link id="pair-css" rel="stylesheet">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="./">Daily Poster Brief</a>
+  <span class="issue" id="issue"></span>
+  <nav class="days" aria-label="Other days">
+    <a id="prev" aria-label="Previous day">←</a>
+    <span id="date"></span>
+    <a id="next" aria-label="Next day">→</a>
+  </nav>
+  <a class="to-archive" href="#archive">Archive</a>
+</header>
+
+<div class="page">
+  <main>
+    <section class="hero">
+      <p class="today"><i class="dot" aria-hidden="true"></i><span id="colour-name"></span></p>
+      <h1 id="story-title"></h1>
+      <div class="hero-meta">
+        <p id="story-summary"></p>
+        <p class="small" id="story-source"></p>
+      </div>
+    </section>
+
+    <section class="sec">
+      <h2 class="label"><span>01</span>Headline</h2>
+      <div class="body">
+        <div class="options headlines" id="headlines"></div>
+        <p class="note">Three to six words each. Pick one, or write your own.</p>
+      </div>
+    </section>
+
+    <section class="sec">
+      <h2 class="label"><span>02</span>Subline</h2>
+      <div class="body"><div class="options sublines" id="sublines"></div></div>
+    </section>
+
+    <section class="sec">
+      <h2 class="label"><span>03</span>Colour</h2>
+      <div class="body">
+        <div class="wheel" id="wheel" aria-label="The colour wheel"></div>
+        <p class="wheel-key" id="wheel-key"></p>
+        <div class="palettes" id="palettes"></div>
+        <p class="note">Black and white are always available. Click a swatch to try it behind the proof and copy its hex.</p>
+      </div>
+    </section>
+
+    <section class="sec">
+      <h2 class="label"><span>04</span>Type</h2>
+      <div class="body">
+        <div class="pair" id="pair"></div>
+        <p class="reason" id="pair-reason"></p>
+        <p class="note">This pairing is required. Size, leading, tracking and case are yours to decide.</p>
+      </div>
+    </section>
+
+    <section class="sec">
+      <h2 class="label"><span>05</span>Image</h2>
+      <div class="body">
+        <div class="images" id="images"></div>
+        <p class="note">Optional. Photos from Unsplash, free to use with credit.</p>
+      </div>
+    </section>
+
+    <section class="sec">
+      <h2 class="label"><span>06</span>Grid</h2>
+      <div class="body"><dl class="spec" id="grid-spec"></dl></div>
+    </section>
+
+    <section class="sec proof-sec" id="proof-sec">
+      <h2 class="label"><span>07</span>Proof</h2>
+      <div class="body" id="proof-slot-mobile"></div>
+    </section>
+
+    <section class="sec archive" id="archive">
+      <h2 class="label"><span>—</span>Archive</h2>
+      <div class="body"><ol class="archive-list" id="archive-list"></ol></div>
+    </section>
+
+    <footer class="foot">
+      <p>A new brief every morning, picked from the day's news and written with Claude. Images from <a href="https://unsplash.com/?utm_source=daily_poster_brief&amp;utm_medium=referral">Unsplash</a>.</p>
+      <p><a href="https://github.com/nebzoku/daily-poster">Make your own brief on GitHub</a></p>
+    </footer>
+  </main>
+
+  <aside class="proof-col" id="proof-slot-desktop">
+    <div class="proof-wrap" id="proof-wrap">
+      <div class="proof" id="proof">
+        <div class="pgrid" id="pgrid" aria-hidden="true"></div>
+        <div class="pin">
+          <div class="pimg" id="pimg"></div>
+          <div class="phl" id="phl"><span id="phl-text"></span></div>
+          <p class="psub" id="psub"></p>
+          <div class="pfoot" id="pfoot"></div>
+        </div>
+      </div>
+      <div class="proof-bar">
+        <span>Proof · 1080 × 1920</span>
+        <button type="button" id="grid-toggle" aria-pressed="true">Grid</button>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="app.js"></script>
+</body>
+</html>

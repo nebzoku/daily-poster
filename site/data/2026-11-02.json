@@ -1,7 +1,7 @@
 {
   "date": "2026-11-02",
   "issue": 31,
-  "generatedAt": "2026-11-02T16:11:01.105Z",
+  "generatedAt": "2026-11-02T20:12:55.562Z",
   "colour": {
     "name": "Orange",
     "yesterday": "Yellow",
@@ -60,37 +60,124 @@
   },
   "images": [
     {
-      "id": "00nHr1Lpq6w",
-      "query": "handwritten list",
-      "src": "https://images.unsplash.com/photo-1543769657-fcf1236421bc?w=1080&h=1920&fit=crop&crop=entropy&q=80&fm=jpg",
-      "thumb": "https://images.unsplash.com/photo-1543769657-fcf1236421bc?w=540&h=960&fit=crop&crop=entropy&q=70&fm=jpg",
-      "colour": null,
-      "alt": "Handwritten cursive text on paper with diagonal shadows across the page",
-      "page": "https://unsplash.com/photos/handwritten-cursive-text-with-shadows-00nHr1Lpq6w?utm_source=daily_poster&utm_medium=referral",
-      "photographer": "Micah Boswell",
-      "photographerUrl": "https://unsplash.com/@micahboswell?utm_source=daily_poster&utm_medium=referral"
-    },
-    {
-      "id": "EEeGY0XgNSw",
-      "query": "marigold garland",
-      "src": "https://images.unsplash.com/photo-1789971649652-ae5dfeeaa7b4?w=1080&h=1920&fit=crop&crop=entropy&q=80&fm=jpg",
-      "thumb": "https://images.unsplash.com/photo-1789971649652-ae5dfeeaa7b4?w=540&h=960&fit=crop&crop=entropy&q=70&fm=jpg",
-      "colour": null,
-      "alt": "Hanging garlands of orange marigolds and white jasmine in a row",
+      "id": "unsplash:EEeGY0XgNSw",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "Marigold and jasmine garlands",
+      "credit": "Sangram Rakate",
+      "creditUrl": "https://unsplash.com/@najaratonajaria?utm_source=daily_poster&utm_medium=referral",
       "page": "https://unsplash.com/photos/marigold-and-jasmine-flower-garlands-EEeGY0XgNSw?utm_source=daily_poster&utm_medium=referral",
-      "photographer": "Sangram Rakate",
-      "photographerUrl": "https://unsplash.com/@najaratonajaria?utm_source=daily_poster&utm_medium=referral"
+      "alt": "Hanging garlands of orange marigolds and white jasmine in a row",
+      "thumb": "https://images.unsplash.com/photo-1789971649652-ae5dfeeaa7b4?w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1789971649652-ae5dfeeaa7b4?w=1600&q=80&fm=jpg"
     },
     {
-      "id": "Gbgo6lkxID8",
-      "query": "delhi street crowd",
-      "src": "https://images.unsplash.com/photo-1615779167895-7e815e39b79b?w=1080&h=1920&fit=crop&crop=entropy&q=80&fm=jpg",
-      "thumb": "https://images.unsplash.com/photo-1615779167895-7e815e39b79b?w=540&h=960&fit=crop&crop=entropy&q=70&fm=jpg",
-      "colour": null,
-      "alt": "People walking along a busy street in Chandni Chowk, Delhi",
+      "id": "met:365127",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Procession of the Doge in Venice, 1556–61",
+      "credit": "Matteo Pagano",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/365127",
+      "page": "https://www.metmuseum.org/art/collection/search/365127",
+      "alt": "Woodcut of a long ceremonial procession through Venice",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-additional/DP837485.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/web-additional/DP837485.jpg"
+    },
+    {
+      "id": "unsplash:00nHr1Lpq6w",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "Handwritten text with shadows",
+      "credit": "Micah Boswell",
+      "creditUrl": "https://unsplash.com/@micahboswell?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/handwritten-cursive-text-with-shadows-00nHr1Lpq6w?utm_source=daily_poster&utm_medium=referral",
+      "alt": "Handwritten cursive text on paper with diagonal shadows across the page",
+      "thumb": "https://images.unsplash.com/photo-1543769657-fcf1236421bc?w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1543769657-fcf1236421bc?w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:835028",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Daimyo Procession to Edo, ca. 1700",
+      "credit": "Hishikawa School",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/835028",
+      "page": "https://www.metmuseum.org/art/collection/search/835028",
+      "alt": "Japanese painting of a long procession travelling to Edo",
+      "thumb": "https://images.metmuseum.org/CRDImages/as/web-additional/DP-19027-012_crd.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/as/web-additional/DP-19027-012_crd.jpg"
+    },
+    {
+      "id": "unsplash:Gbgo6lkxID8",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "Chandni Chowk, Delhi",
+      "credit": "Ravi Sharma",
+      "creditUrl": "https://unsplash.com/@ravinepz?utm_source=daily_poster&utm_medium=referral",
       "page": "https://unsplash.com/photos/people-walking-on-street-during-daytime-Gbgo6lkxID8?utm_source=daily_poster&utm_medium=referral",
-      "photographer": "Ravi Sharma",
-      "photographerUrl": "https://unsplash.com/@ravinepz?utm_source=daily_poster&utm_medium=referral"
+      "alt": "People walking along a busy street in Chandni Chowk, Delhi",
+      "thumb": "https://images.unsplash.com/photo-1615779167895-7e815e39b79b?w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1615779167895-7e815e39b79b?w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:381633",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Torchlight Procession at the Modena Carrousel, 1652",
+      "credit": "Stefano della Bella",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/381633",
+      "page": "https://www.metmuseum.org/art/collection/search/381633",
+      "alt": "Etching of a torchlit procession",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-additional/DP818101.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/web-additional/DP818101.jpg"
+    },
+    {
+      "id": "unsplash:dU8BEQ",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "Handwritten page",
+      "credit": "Annie Spratt",
+      "creditUrl": "https://unsplash.com/@anniespratt?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-piece-of-paper-with-writing-on-it-4L_6-dU8BEQ?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A piece of paper with handwriting on it",
+      "thumb": "https://images.unsplash.com/photo-1688488496687-73e4e98dfc6b?w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1688488496687-73e4e98dfc6b?w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:288177",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Cortège d'un mariage, Cochinchine, 1866",
+      "credit": "Emile Gsell",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/288177",
+      "page": "https://www.metmuseum.org/art/collection/search/288177",
+      "alt": "Nineteenth-century photograph of a wedding procession",
+      "thumb": "https://images.metmuseum.org/CRDImages/ph/web-additional/DP151629.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/ph/web-additional/DP151629.jpg"
+    },
+    {
+      "id": "unsplash:zn9QwcrdEUo",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "Narrow street, Delhi",
+      "credit": "Ravi Sharma",
+      "creditUrl": "https://unsplash.com/@ravinepz?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-group-of-people-walking-down-a-narrow-street-zn9QwcrdEUo?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A group of people walking down a narrow street in Delhi",
+      "thumb": "https://images.unsplash.com/photo-1647413718713-5618af2e4a1a?w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1647413718713-5618af2e4a1a?w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:45235",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Boys Play-acting a Daimyo Procession, 19th century",
+      "credit": "Utagawa Kuniyoshi",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/45235",
+      "page": "https://www.metmuseum.org/art/collection/search/45235",
+      "alt": "Woodblock print of boys acting out a lord’s procession",
+      "thumb": "https://images.metmuseum.org/CRDImages/as/web-additional/DP151605.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/as/web-additional/DP151605.jpg"
     }
   ]
 }

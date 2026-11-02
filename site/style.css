@@ -175,21 +175,41 @@ main { grid-column: 1 / -1; min-width: 0; }
 .spec-type a { border-bottom: 1px solid var(--line); }
 .reason { margin-top: 40px; max-width: 52ch; }
 
-/* images: an uneven gallery */
-.gallery { display: grid; grid-template-columns: repeat(9, 1fr); column-gap: var(--gap); align-items: start; }
-.gallery figure { margin: 0; }
-.gallery .frame { display: block; overflow: hidden; background: var(--line); }
-.gallery img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .8s cubic-bezier(.2,.7,.2,1); }
-.gallery a:hover img { transform: scale(1.025); }
-.gallery figcaption { display: flex; justify-content: space-between; gap: 12px; margin-top: 10px; }
-.gallery figcaption a { color: var(--fg); }
-.gallery figcaption span:first-child { color: var(--faint); }
-.g1 { grid-column: 1 / 5; } .g1 .frame { aspect-ratio: 4 / 5; }
-.g2 { grid-column: 6 / 8; margin-top: 30vh; } .g2 .frame { aspect-ratio: 9 / 16; }
-.g3 { grid-column: 8 / 10; margin-top: 9vh; } .g3 .frame { aspect-ratio: 3 / 4; }
-.gallery .frame.missing { display: grid; place-items: center; }
-.gallery .frame.missing img { display: none; }
-.gallery .frame.missing::after { content: "Image unavailable here"; font-size: 11px; color: var(--muted); }
+/* images: a looping strip across the page */
+.img-note { margin-top: 0; }
+.strip {
+  grid-column: 1 / -1; margin: 40px calc(-1 * var(--pad)) 0; overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+.track { display: flex; align-items: flex-end; gap: var(--gap); width: max-content; padding: 24px 0 8px; animation: drift var(--drift, 80s) linear infinite; }
+.strip:hover .track, .strip:focus-within .track { animation-play-state: paused; }
+@keyframes drift { to { transform: translateX(calc(-50% - var(--gap) / 2)); } }
+.shot { display: grid; gap: 10px; flex: none; margin: 0; color: var(--fg); }
+.shot .frame { display: block; height: clamp(200px, 28vh, 320px); overflow: hidden; background: var(--line); transform-origin: 50% 100%; transition: transform .5s cubic-bezier(.3,1.6,.5,1); }
+.shot img { height: 100%; width: auto; display: block; }
+.shot:nth-child(3n + 2) .frame { height: clamp(160px, 22vh, 250px); }
+.shot:nth-child(3n) .frame { height: clamp(230px, 33vh, 380px); }
+/* hover: a small wiggle that settles into a slight tilt */
+.shot:hover .frame, .shot:focus-visible .frame { animation: wiggle .55s ease-out; transform: rotate(-1.5deg) translateY(-6px); }
+.shot:nth-child(even):hover .frame, .shot:nth-child(even):focus-visible .frame { animation-name: wiggle-r; transform: rotate(1.5deg) translateY(-6px); }
+@keyframes wiggle { 0% { transform: rotate(0); } 30% { transform: rotate(-3deg) translateY(-6px); } 55% { transform: rotate(1.2deg) translateY(-6px); } 80% { transform: rotate(-2deg) translateY(-6px); } 100% { transform: rotate(-1.5deg) translateY(-6px); } }
+@keyframes wiggle-r { 0% { transform: rotate(0); } 30% { transform: rotate(3deg) translateY(-6px); } 55% { transform: rotate(-1.2deg) translateY(-6px); } 80% { transform: rotate(2deg) translateY(-6px); } 100% { transform: rotate(1.5deg) translateY(-6px); } }
+.shot figcaption { display: flex; gap: 10px; width: 0; min-width: 100%; overflow: hidden; white-space: nowrap; }
+.shot figcaption .src { flex: none; }
+.shot figcaption .src::before { content: "· "; }
+.shot figcaption span:first-child { color: var(--faint); }
+.shot figcaption .who { overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.shot figcaption .src { color: var(--muted); }
+.shot .frame.missing { width: 200px; display: grid; place-items: center; }
+.shot .frame.missing img { display: none; }
+.shot .frame.missing::after { content: "Image unavailable here"; font-size: 11px; color: var(--muted); }
+@media (prefers-reduced-motion: reduce) {
+  .strip { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+  .track { animation: none; padding-left: var(--pad); padding-right: var(--pad); }
+  .track [aria-hidden="true"] { display: none; }
+  .shot:hover .frame, .shot:focus-visible .frame { animation: none; }
+}
 
 /* grid diagram */
 .grid-body { display: grid; grid-template-columns: minmax(0, 240px) 1fr; gap: calc(var(--gap) * 2); align-items: start; }
@@ -259,8 +279,8 @@ main { grid-column: 1 / -1; min-width: 0; }
   main { grid-column: 1 / -1; }
   .hero { min-height: 82svh; }
   .wall { grid-template-columns: repeat(2, 1fr); gap: 28px 12px; }
-  .gallery { grid-template-columns: 1fr 1fr; row-gap: 28px; }
-  .g1 { grid-column: 1 / -1; } .g2 { grid-column: 1 / 2; margin-top: 0; } .g3 { grid-column: 2 / 3; margin-top: 14vh; }
+  .shot .frame { height: 220px !important; }
+  .shot figcaption .who { max-width: 18ch; }
   .foot { flex-direction: column; }
   .sec { grid-template-columns: 1fr; }
   .sec .label { margin-bottom: 28px; }

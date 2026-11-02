@@ -174,18 +174,23 @@
       el("a", { href: t.textUrl, target: "_blank", rel: "noopener" }, t.text), " from Google Fonts.");
   }
 
-  // The day's photos on an uneven grid, like a studio index page.
+  // The day's images as a strip that loops across the page. The set is drawn twice
+  // so the loop is seamless; the copy is hidden from screen readers and keyboards.
   function renderImages() {
     const imgs = brief.images || [];
     if (!imgs.length) { $("images").replaceChildren(el("p", { class: "note" }, "No images today.")); return; }
-    $("images").replaceChildren(...imgs.slice(0, 3).map((im, i) =>
-      el("figure", { class: `g${i + 1}` },
-        el("a", { class: "frame", href: im.page, target: "_blank", rel: "noopener", "aria-label": `${im.alt}. Photo by ${im.photographer} on Unsplash` },
-          el("img", { src: i === 0 ? im.src : im.thumb, alt: im.alt, loading: "lazy",
-            onerror: (e) => e.target.parentElement.classList.add("missing") })),
-        el("figcaption", { class: "mono" },
-          el("span", {}, `[${String.fromCharCode(65 + i)}]`),
-          el("span", {}, el("a", { href: im.photographerUrl, target: "_blank", rel: "noopener" }, im.photographer))))));
+    const shot = (im, i, copy) => el("figure", { class: "shot", ...(copy ? { "aria-hidden": "true" } : {}) },
+      el("a", { class: "frame", href: im.page, target: "_blank", rel: "noopener",
+        ...(copy ? { tabindex: "-1" } : { "aria-label": `${im.alt}. ${im.credit}, ${im.source}` }) },
+        el("img", { src: im.thumb, alt: copy ? "" : im.alt, loading: copy ? "lazy" : "eager", draggable: "false",
+          onerror: (e) => e.target.parentElement.classList.add("missing") })),
+      el("figcaption", { class: "mono" },
+        el("span", {}, `[${String(i + 1).padStart(2, "0")}]`),
+        el("span", { class: "who" }, im.credit || im.photographer),
+        el("span", { class: "src" }, im.source === "Art Institute of Chicago" ? "AIC" : im.source || "Unsplash")));
+    const track = el("div", { class: "track", style: `--drift: ${imgs.length * 8}s` },
+      ...imgs.map((im, i) => shot(im, i, false)), ...imgs.map((im, i) => shot(im, i, true)));
+    $("images").replaceChildren(track);
   }
 
   // The bare grid on the artboard, with dimension marks. No suggested layout.

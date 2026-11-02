@@ -6,7 +6,7 @@ Builds the day's poster file in one click:
 - **Layout grids**: 6 columns and 12 rows, with a 43.2 px margin and a 21.6 px gutter
 - The day's **palette as colour styles**, plus black and white, with the background already applied
 - The **headline, subline, date, time and source** as separate layers in the day's typefaces, stacked top-left for you to arrange. Figma includes every Google Font, so there's nothing to install.
-- All three **Unsplash images** beside the artboard with credits, ready to drag in
+- All ten **images** (from Unsplash, the Art Institute of Chicago and The Met) beside the artboard with credits, ready to drag in
 - Everything else from the brief beside the artboard: the story, all three headlines and sublines, the swatches and the hashtags
 
 Size, leading, tracking and case are left for you to change.

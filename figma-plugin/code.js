@@ -54,14 +54,17 @@ function row(name, spacing) {
   return f;
 }
 
-async function imageRect(url, w, h, name) {
+// An image at a fixed height, keeping its own proportions.
+async function imageRect(url, h, name) {
   var r = figma.createRectangle();
   r.name = name;
-  r.resize(w, h);
   try {
     var img = await figma.createImageAsync(url);
+    var size = await img.getSizeAsync();
+    r.resize(Math.round(h * size.width / size.height), h);
     r.fills = [{ type: "IMAGE", imageHash: img.hash, scaleMode: "FILL" }];
   } catch (e) {
+    r.resize(Math.round(h * 0.75), h);
     r.fills = solid("#E5E5E5");
   }
   return r;
@@ -168,14 +171,17 @@ async function build(brief, strings) {
 
   if (hasImage) {
     var imgs = row("Images", 24);
+    imgs.counterAxisAlignItems = "MAX";
     for (var j = 0; j < brief.images.length; j++) {
       var it = brief.images[j];
+      var who = it.credit || it.photographer;
+      var where = it.source || "Unsplash";
       var c = stack("Image " + (j + 1), 10);
-      c.appendChild(await imageRect(it.src, 270, 480, "Photo by " + it.photographer + " on Unsplash"));
-      c.appendChild(text("Photo by " + it.photographer + " on Unsplash", ui, 14, grey, 270));
+      c.appendChild(await imageRect(it.src, 360, who + " · " + where));
+      c.appendChild(text(who + " · " + where + (it.licence === "CC0" ? " · public domain" : ""), ui, 14, grey));
       imgs.appendChild(c);
     }
-    group("Images · optional, credit the photographer", [imgs]);
+    group("Images · optional, credit Unsplash photographers", [imgs]);
   }
 
   group("Share", [text("Post it with #dailyposter #dailyposter" + pad(brief.issue), ui, 22, dark)]);

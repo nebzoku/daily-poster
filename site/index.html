@@ -47,7 +47,7 @@
     <h2 class="label">The rules</h2>
     <ol class="rules">
       <li><span>01</span><p>9:16, at 1080 × 1920 px.</p></li>
-      <li><span>02</span><p>Use one of the headlines, or write your own from the same story in 3 to 6 words.</p></li>
+      <li><span>02</span><p>Use one of the headlines, or write your own from the same story.</p></li>
       <li><span>03</span><p>Use the day's palette, plus black and white. No other colours.</p></li>
       <li><span>04</span><p>Use the typeface pairing. Size, leading, tracking and case are up to you.</p></li>
       <li><span>05</span><p>Build on the 6 × 12 grid.</p></li>
@@ -83,7 +83,7 @@
       <h2 class="label"><span>[01]</span>Headline</h2>
       <div class="body">
         <div class="options headlines" id="headlines"></div>
-        <p class="note">Three to six words each. Click one to copy it. Your last pick also goes into the Figma artboard and the caption.</p>
+        <p class="note">Click one to copy it.</p>
       </div>
     </section>
 
@@ -101,7 +101,7 @@
         <div class="wheel" id="wheel" aria-label="The colour wheel"></div>
         <p class="wheel-key" id="wheel-key"></p>
         <div class="swatches" id="swatches"></div>
-        <p class="note">Everyone uses the same palette. The colour moves one step round the wheel each day, and black and white are always allowed. Click a swatch to copy its hex.</p>
+        <p class="note">Plus black and white. Click a swatch to copy it.</p>
       </div>
     </section>
 
@@ -109,15 +109,14 @@
       <h2 class="label"><span>[04]</span>Type</h2>
       <div class="body">
         <div class="pair" id="pair"></div>
-        <p class="reason" id="pair-reason"></p>
-        <p class="note">This pairing is required. Size, leading, tracking and case are yours to decide. Both are free on Google Fonts and already built into Figma.</p>
+                <p class="note">Size, leading, tracking and case are up to you.</p>
       </div>
     </section>
 
     <section class="sec wide">
       <h2 class="label"><span>[05]</span>Image</h2>
       <div class="body">
-        <p class="note img-note">Optional. Ten picks from Unsplash and the open collections of the Art Institute of Chicago and The Met. Click any image to see it at its source. Unsplash photos need a credit; the museum works are public domain.</p>
+        <p class="note img-note">Optional. Click one to find it at its source, and credit the photographer if you use it.</p>
       </div>
       <div class="strip" id="images" aria-label="Today's images"></div>
     </section>
@@ -128,7 +127,7 @@
         <figure class="grid-fig" id="grid-fig" aria-label="The 6 by 12 grid on the 1080 by 1920 artboard"></figure>
         <div class="grid-side">
           <dl class="spec" id="grid-spec"></dl>
-          <p class="note">Margin and gutter are measured from the short side. Where things go on it is up to you.</p>
+          <p class="note">Where things go is up to you.</p>
         </div>
       </div>
     </section>
@@ -143,9 +142,9 @@
         </div>
         <dl class="make">
           <dt>Figma plugin</dt>
-          <dd>Builds everything for you: the 1080 × 1920 frame with real layout grids, the palette as colour styles, every headline and subline in the right typefaces, and all three images beside the artboard, ready to use.</dd>
+          <dd>Sets up the frame, grid, colours, type and images for you.</dd>
           <dt>Copy artboard</dt>
-          <dd>A quicker way in. Copies the artboard in the day's colour with the headline, subline and details you picked as separate layers. Paste it into Figma with ⌘V. A pasted artboard can't bring a layout grid with it, so add one in the Layout grid panel with these settings:
+          <dd>Paste into Figma with ⌘V, then add the layout grid:
             <span class="grid-settings" id="figma-grid"></span></dd>
           <dt>Fonts</dt>
           <dd id="font-links"></dd>
@@ -157,12 +156,12 @@
       <h2 class="label"><span>[08]</span>Share</h2>
       <div class="body">
         <p class="lede">Post it with <b>#dailyposter</b> and <b id="day-tag"></b>.</p>
-        <p class="share-copy">The day's tag puts every poster made from the same brief side by side, so you can see what everyone else did with it.</p>
+        
         <div class="caption">
           <pre id="caption"></pre>
           <button type="button" class="cta small" id="copy-caption">Copy caption</button>
         </div>
-        <p class="note">9:16 fits Stories and Reels as it is. In the grid, Instagram shows a 3:4 crop, so keep the headline inside the middle of the poster.</p>
+        <p class="note">Instagram crops posts to 3:4 in the grid, so keep the headline central.</p>
         <p class="share-links" id="share-links"></p>
       </div>
     </section>
@@ -176,7 +175,7 @@
 </section>
 
 <footer class="foot">
-  <p>Daily Poster picks a story from the day's news and writes the brief with Claude. Images from <a href="https://unsplash.com/?utm_source=daily_poster&amp;utm_medium=referral">Unsplash</a>.</p>
+  <p>Briefs written with Claude. Images from <a href="https://unsplash.com/?utm_source=daily_poster&amp;utm_medium=referral">Unsplash</a>, the <a href="https://www.artic.edu/open-access">Art Institute of Chicago</a> and <a href="https://www.metmuseum.org/hubs/open-access">The Met</a>.</p>
   <p><a href="https://github.com/nebzoku/daily-poster">Run your own on GitHub</a></p>
 </footer>
 

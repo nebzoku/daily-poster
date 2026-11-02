@@ -18,7 +18,7 @@ The page has a one-click way to set the poster up in Figma and a ready-made Inst
 ## The rules
 
 1. 9:16, at 1080 × 1920 px.
-2. Use one of the headlines, or write your own from the same story in 3 to 6 words.
+2. Use one of the headlines, or write your own from the same story.
 3. Use the day's palette, plus black and white. No other colours.
 4. Use the typeface pairing. Size, leading, tracking and case are up to you.
 5. Build on the 6 × 12 grid.

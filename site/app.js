@@ -199,11 +199,10 @@
       el("p", { class: "tname" }, el("a", { href: url, target: "_blank", rel: "noopener" }, family)),
       el("p", { class: "trole" }, role));
     $("pair").replaceChildren(block(t.display, "Headline", t.displayUrl), block(t.text, "Subline and details", t.textUrl));
-    $("pair-reason").textContent = t.reason;
     $("font-links").replaceChildren(
-      "Built into Figma. For other apps, download ",
+      "Built into Figma. For other apps, get ",
       el("a", { href: t.displayUrl, target: "_blank", rel: "noopener" }, t.display), " and ",
-      el("a", { href: t.textUrl, target: "_blank", rel: "noopener" }, t.text), " from Google Fonts.");
+      el("a", { href: t.textUrl, target: "_blank", rel: "noopener" }, t.text), ".");
   }
 
   // The day's images as a strip that loops across the page. The set is drawn twice
@@ -360,7 +359,7 @@ ${detSVG}
     document.documentElement.style.setProperty("--accent", palette.colours[0]);
 
     renderType(); setupHero(); renderTop(); renderStory();
-    renderOptions("headlines", brief.headlines, "h", (t) => `${words(t)} words`);
+    renderOptions("headlines", brief.headlines, "h", (t, i) => `0${i + 1}`);
     renderOptions("sublines", brief.sublines, "s", (t, i) => `0${i + 1}`);
     renderColour(); renderImages(); renderGrid(); renderArchive(); renderShare();
 

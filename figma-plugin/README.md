@@ -1,0 +1,27 @@
+# Daily Poster for Figma
+
+Builds the day's poster file in one click:
+
+- A new page with a **1080 × 1920 frame**
+- **Layout grids**: 6 columns and 12 rows, with a 43.2 px margin and a 21.6 px gutter
+- The day's **palette as colour styles**, plus black and white, with the background already applied
+- The **headline, subline, date, time and source** set in the day's typefaces. Figma includes every Google Font, so there's nothing to install.
+- The first **Unsplash image** placed in the top half, and all three beside the artboard with credits
+- Everything else from the brief beside the artboard: the story, all three headlines and sublines, the swatches and the hashtags
+
+Size, leading, tracking and case are left for you to change.
+
+## Install it (Figma desktop app)
+
+1. Download this repo: **Code → Download ZIP** on the repo page, then unzip it.
+2. In Figma, open any design file, then go to **Menu → Plugins → Development → Import plugin from manifest…**
+3. Pick `figma-plugin/manifest.json` from the folder you unzipped.
+4. Run it from **Plugins → Development → Daily Poster** and click **Build the poster**.
+
+Leave the day blank for today's brief, or type a date like `2026-11-02` to build an older one.
+
+If you run your own copy of Daily Poster, change the **Site** field to your GitHub Pages address, and add that address to `allowedDomains` in `manifest.json`.
+
+## Publishing it
+
+To let anyone install it with one click, publish it to the Figma Community: **Plugins → Development → Daily Poster → Publish**. Figma gives it a real ID, which replaces `daily-poster-dev` in `manifest.json`.

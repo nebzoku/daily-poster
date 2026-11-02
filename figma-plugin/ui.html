@@ -1,0 +1,59 @@
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 20px; font: 12px/1.5 Inter, system-ui, sans-serif; color: #111; }
+  h1 { font-size: 14px; font-weight: 600; margin: 0 0 4px; }
+  p { margin: 0 0 16px; color: #666; }
+  label { display: block; font-size: 11px; color: #666; margin-bottom: 4px; }
+  input { width: 100%; height: 32px; padding: 0 8px; border: 1px solid #ddd; font: inherit; margin-bottom: 14px; }
+  button { width: 100%; height: 36px; border: 0; background: #111; color: #fff; font: inherit; cursor: pointer; }
+  button:disabled { opacity: .5; cursor: default; }
+  #status { margin-top: 14px; color: #111; min-height: 18px; }
+</style>
+
+<h1>Daily Poster</h1>
+<p>Builds today's 1080 × 1920 artboard with the grid, palette, type, copy and images.</p>
+
+<label for="date">Day (leave blank for today)</label>
+<input id="date" placeholder="YYYY-MM-DD">
+
+<label for="site">Site</label>
+<input id="site" value="https://nebzoku.github.io/daily-poster">
+
+<button id="go">Build the poster</button>
+<div id="status"></div>
+
+<script>
+  const $ = (id) => document.getElementById(id);
+  const say = (t) => ($("status").textContent = t);
+  const fmt = (iso, opts) => new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/London", ...opts }).format(new Date(iso));
+
+  $("go").onclick = async () => {
+    $("go").disabled = true;
+    say("Fetching the brief…");
+    try {
+      const site = $("site").value.replace(/\/$/, "");
+      const day = $("date").value.trim();
+      const res = await fetch(`${site}/data/${day || "latest"}.json`, { cache: "no-cache" });
+      if (!res.ok) throw new Error(day ? `No brief for ${day}.` : "Couldn't find today's brief.");
+      const brief = await res.json();
+      const s = brief.story.published;
+      const strings = {
+        date: fmt(s, { day: "2-digit", month: "2-digit", year: "2-digit" }).replace(/\//g, "."),
+        time: fmt(s, { hour: "2-digit", minute: "2-digit" }),
+        longDate: fmt(s, { day: "numeric", month: "long", year: "numeric" }),
+      };
+      say("Building…");
+      parent.postMessage({ pluginMessage: { type: "build", brief, strings } }, "*");
+    } catch (e) {
+      say(e.message);
+      $("go").disabled = false;
+    }
+  };
+
+  onmessage = (e) => {
+    const m = e.data.pluginMessage;
+    if (!m) return;
+    say(m.text);
+    if (m.type === "error") $("go").disabled = false;
+  };
+</script>

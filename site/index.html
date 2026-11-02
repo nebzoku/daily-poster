@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Daily Poster Brief</title>
-<meta name="description" content="One 9:16 poster a day, briefed from the news. Three headlines, three palettes, three images, one typeface pairing and a grid.">
+<title>Daily Poster</title>
+<meta name="description" content="One poster a day, made from the day's news. A new brief every morning: headlines, colour, type and a grid. Share yours with #dailyposter.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&family=Geist+Mono:wght@400&display=swap">
@@ -13,7 +13,7 @@
 </head>
 <body>
 <header class="top">
-  <a class="brand" href="./">Daily Poster Brief</a>
+  <a class="brand" href="./">Daily Poster</a>
   <span class="issue" id="issue"></span>
   <nav class="days" aria-label="Other days">
     <a id="prev" aria-label="Previous day">←</a>
@@ -23,11 +23,40 @@
   <a class="to-archive" href="#archive">Archive</a>
 </header>
 
+<section class="intro" id="intro" aria-labelledby="intro-title">
+  <div class="intro-lead">
+    <h1 id="intro-title">One poster a day, made from the day's news.</h1>
+    <p>Every morning at 5.30 UK time a new brief lands here. It gives you a story, three headlines, the day's colour, a typeface pairing and a grid. Make a 9:16 poster from it, then share it so everyone's take on the same brief sits side by side.</p>
+    <button type="button" class="intro-toggle" id="intro-hide">Hide this</button>
+  </div>
+  <div class="intro-how">
+    <h2 class="label">How it works</h2>
+    <ol class="steps">
+      <li><span>01</span><p><b>Read the brief.</b> One story from today's news, with everything you need underneath.</p></li>
+      <li><span>02</span><p><b>Make the poster.</b> Use the copy, colour, type and grid. Set it up in Figma in one click.</p></li>
+      <li><span>03</span><p><b>Share it.</b> Post it on Instagram with <b>#dailyposter</b> and the day's number tag.</p></li>
+    </ol>
+  </div>
+  <div class="intro-rules">
+    <h2 class="label">The rules</h2>
+    <ol class="rules">
+      <li><span>01</span><p>9:16, at 1080 × 1920 px.</p></li>
+      <li><span>02</span><p>Use one of the headlines, or write your own from the same story in 3 to 6 words.</p></li>
+      <li><span>03</span><p>Use the day's palette, plus black and white. No other colours.</p></li>
+      <li><span>04</span><p>Use the typeface pairing. Size, leading, tracking and case are up to you.</p></li>
+      <li><span>05</span><p>Build on the 6 × 12 grid.</p></li>
+      <li><span>06</span><p>Include the date, time and source of the story.</p></li>
+      <li><span>07</span><p>Imagery is optional. If you use a photo, credit the photographer.</p></li>
+    </ol>
+  </div>
+</section>
+<button type="button" class="intro-show" id="intro-show" hidden>How Daily Poster works +</button>
+
 <div class="page">
   <main>
     <section class="hero">
       <p class="today"><i class="dot" aria-hidden="true"></i><span id="colour-name"></span></p>
-      <h1 id="story-title"></h1>
+      <h2 class="story-title" id="story-title"></h2>
       <div class="hero-meta">
         <p id="story-summary"></p>
         <p class="small" id="story-source"></p>
@@ -52,8 +81,8 @@
       <div class="body">
         <div class="wheel" id="wheel" aria-label="The colour wheel"></div>
         <p class="wheel-key" id="wheel-key"></p>
-        <div class="palettes" id="palettes"></div>
-        <p class="note">Black and white are always available. Click a swatch to try it behind the proof and copy its hex.</p>
+        <div class="swatches" id="swatches"></div>
+        <p class="note">Everyone uses the same palette. The colour moves one step round the wheel each day, and black and white are always allowed. Click a swatch to try it behind the proof and copy its hex.</p>
       </div>
     </section>
 
@@ -62,7 +91,7 @@
       <div class="body">
         <div class="pair" id="pair"></div>
         <p class="reason" id="pair-reason"></p>
-        <p class="note">This pairing is required. Size, leading, tracking and case are yours to decide.</p>
+        <p class="note">This pairing is required. Size, leading, tracking and case are yours to decide. Both are free on Google Fonts and already built into Figma.</p>
       </div>
     </section>
 
@@ -76,11 +105,50 @@
 
     <section class="sec">
       <h2 class="label"><span>06</span>Grid</h2>
-      <div class="body"><dl class="spec" id="grid-spec"></dl></div>
+      <div class="body grid-body">
+        <figure class="grid-fig" id="grid-fig" aria-label="The 6 by 12 grid on the 1080 by 1920 artboard"></figure>
+        <div class="grid-side">
+          <dl class="spec" id="grid-spec"></dl>
+          <p class="note">Margin and gutter are measured from the short side. The shaded areas are a suggested layout, not a rule.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <h2 class="label"><span>07</span>Make it</h2>
+      <div class="body">
+        <p class="lede">Set the poster up in Figma.</p>
+        <div class="cta-row">
+          <button type="button" class="cta" id="copy-figma">Copy artboard for Figma</button>
+          <a class="cta ghost" href="https://github.com/nebzoku/daily-poster/tree/main/figma-plugin" target="_blank" rel="noopener">Get the Figma plugin ↗</a>
+        </div>
+        <dl class="make">
+          <dt>Copy artboard</dt>
+          <dd>Copies a 1080 × 1920 artboard with the grid, the background colour and the copy you picked on the proof. Paste it into Figma with ⌘V.</dd>
+          <dt>Figma plugin</dt>
+          <dd>Builds everything for you: the frame with layout grids, the palette as colour styles, text in the right typefaces, and all three images ready to drop in.</dd>
+          <dt>Fonts</dt>
+          <dd id="font-links"></dd>
+        </dl>
+      </div>
+    </section>
+
+    <section class="sec">
+      <h2 class="label"><span>08</span>Share</h2>
+      <div class="body">
+        <p class="lede">Post it with <b>#dailyposter</b> and <b id="day-tag"></b>.</p>
+        <p class="share-copy">The day's tag puts every poster made from the same brief side by side, so you can see what everyone else did with it.</p>
+        <div class="caption">
+          <pre id="caption"></pre>
+          <button type="button" class="cta small" id="copy-caption">Copy caption</button>
+        </div>
+        <p class="note">9:16 fits Stories and Reels as it is. In the grid, Instagram shows a 3:4 crop, so keep the headline inside the middle of the poster.</p>
+        <p class="share-links" id="share-links"></p>
+      </div>
     </section>
 
     <section class="sec proof-sec" id="proof-sec">
-      <h2 class="label"><span>07</span>Proof</h2>
+      <h2 class="label"><span>—</span>Proof</h2>
       <div class="body" id="proof-slot-mobile"></div>
     </section>
 
@@ -90,8 +158,8 @@
     </section>
 
     <footer class="foot">
-      <p>A new brief every morning, picked from the day's news and written with Claude. Images from <a href="https://unsplash.com/?utm_source=daily_poster_brief&amp;utm_medium=referral">Unsplash</a>.</p>
-      <p><a href="https://github.com/nebzoku/daily-poster">Make your own brief on GitHub</a></p>
+      <p>Daily Poster picks a story from the day's news and writes the brief with Claude. Images from <a href="https://unsplash.com/?utm_source=daily_poster&amp;utm_medium=referral">Unsplash</a>.</p>
+      <p><a href="https://github.com/nebzoku/daily-poster">Run your own on GitHub</a></p>
     </footer>
   </main>
 

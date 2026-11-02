@@ -1,4 +1,4 @@
-// Generates today's poster brief and writes it to site/data/.
+// Generates today's Daily Poster brief and writes it to site/data/.
 //
 //   ANTHROPIC_API_KEY   required: writes the headlines and picks the story
 //   UNSPLASH_ACCESS_KEY optional: without it the brief has no images
@@ -11,13 +11,13 @@ import { existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { XMLParser } from "fast-xml-parser";
-import { wheelFor, palettesFor, issueNumber, ALWAYS } from "./lib/palette.mjs";
+import { wheelFor, paletteFor, issueNumber, ALWAYS } from "./lib/palette.mjs";
 import { FONT_PAIRS, fontPair, fontAssets } from "./lib/fonts.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const DATA = join(ROOT, "site", "data");
 const MODEL = process.env.CLAUDE_MODEL || "claude-sonnet-5-5";
-const UTM = "utm_source=daily_poster_brief&utm_medium=referral";
+const UTM = "utm_source=daily_poster&utm_medium=referral";
 
 const FEEDS = [
   ["BBC News", "https://feeds.bbci.co.uk/news/world/rss.xml"],
@@ -44,7 +44,7 @@ const strip = (s = "") =>
 
 async function fetchFeed([source, url]) {
   try {
-    const res = await fetch(url, { headers: { "user-agent": "daily-poster-brief/1.0" } });
+    const res = await fetch(url, { headers: { "user-agent": "daily-poster/1.0" } });
     if (!res.ok) throw new Error(res.status);
     const xml = await res.text();
     const doc = new XMLParser({ ignoreAttributes: false }).parse(xml);
@@ -264,7 +264,7 @@ async function main() {
     date,
     issue: issueNumber(date),
     generatedAt: new Date().toISOString(),
-    colour: { name: wheel.name, degrees: wheel.deg, yesterday: wheel.yesterday, tomorrow: wheel.tomorrow },
+    colour: { name: wheel.name, yesterday: wheel.yesterday, tomorrow: wheel.tomorrow },
     story: {
       title: story.title,
       summary: brief.storySummary,
@@ -274,7 +274,7 @@ async function main() {
     },
     headlines: brief.headlines.map((s) => s.trim()),
     sublines: brief.sublines.map((s) => s.trim()),
-    palettes: palettesFor(date),
+    palette: paletteFor(date),
     always: ALWAYS,
     type: { ...pair, reason: brief.fontReason, ...fontAssets(pair) },
     grid: { format: "9:16", size: [1080, 1920], columns: 6, rows: 12, margin: 0.04, gutter: 0.02, basis: "short side" },

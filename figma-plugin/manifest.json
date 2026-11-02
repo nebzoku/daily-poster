@@ -1,0 +1,13 @@
+{
+  "name": "Daily Poster",
+  "id": "daily-poster-dev",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "ui.html",
+  "editorType": ["figma"],
+  "documentAccess": "dynamic-page",
+  "networkAccess": {
+    "allowedDomains": ["https://nebzoku.github.io", "https://images.unsplash.com"],
+    "reasoning": "Reads the day's brief from the Daily Poster site and the Unsplash photos it suggests."
+  }
+}

@@ -149,7 +149,7 @@
           el("button", {
             type: "button", class: "frame", "aria-pressed": String(state.img === i), "aria-label": `Use image ${i + 1}: ${im.alt}`,
             onclick: () => { state.img = i; renderImages(); renderProof(); },
-          }, el("img", { src: im.thumb, alt: im.alt, loading: "lazy" })),
+          }, el("img", { src: im.thumb, alt: im.alt, loading: "lazy", onerror: (e) => e.target.parentElement.classList.add("missing") })),
           el("p", { class: "credit" }, "Photo by ", el("a", { href: im.photographerUrl, target: "_blank", rel: "noopener" }, im.photographer),
             " on ", el("a", { href: im.page, target: "_blank", rel: "noopener" }, "Unsplash"))
         )

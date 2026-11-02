@@ -81,8 +81,9 @@
   // ---------- hero: the day's headlines, cycling ----------
   function setupHero() {
     const day = fmt(noon(brief.date), { weekday: "short", day: "numeric", month: "short" });
+    const isLatest = !index.length || index[0].date === brief.date;
     $("kicker").replaceChildren(el("i", { class: "dot", "aria-hidden": "true" }),
-      `No. ${pad(brief.issue)} · ${day} · ${brief.colour.name} · ${brief.story.source}`);
+      `${isLatest ? "Today's headline" : "Headline"} · No. ${pad(brief.issue)} · ${day} · ${brief.story.source}`);
     const spans = brief.headlines.map((t) => el("span", {}, t));
     $("hero-hl").replaceChildren(...spans);
     const buttons = brief.headlines.map((t, i) =>

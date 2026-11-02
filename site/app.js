@@ -63,8 +63,8 @@
   function geometry() {
     const g = brief.grid;
     const [W, H] = g.size;
-    const short = Math.min(W, H);
-    const m = g.margin * short, gut = g.gutter * short;
+    const px = (v) => (v < 1 ? Math.round(v * Math.min(W, H)) : v);   // old briefs used fractions
+    const m = px(g.margin), gut = px(g.gutter);
     const col = (W - 2 * m - (g.columns - 1) * gut) / g.columns;
     const row = (H - 2 * m - (g.rows - 1) * gut) / g.rows;
     return { W, H, m, gut, col, row, cols: g.columns, rows: g.rows,
@@ -253,8 +253,8 @@
     const rows = [
       ["", "Artboard", `${g.format} · ${G.W} × ${G.H} px`],
       ["", "Grid", `${G.cols} columns × ${G.rows} rows`],
-      ["A", "Margin", `${g.margin * 100}% · ${px(G.m)}`],
-      ["B", "Gutter", `${g.gutter * 100}% · ${px(G.gut)}`],
+      ["A", "Margin", px(G.m)],
+      ["B", "Gutter", px(G.gut)],
       ["C", "Column", px(G.col)],
       ["D", "Row", px(G.row)],
     ];

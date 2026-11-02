@@ -1,7 +1,7 @@
 {
   "date": "2026-11-02",
   "issue": 31,
-  "generatedAt": "2026-11-02T20:12:55.562Z",
+  "generatedAt": "2026-11-02T20:35:35.872Z",
   "colour": {
     "name": "Orange",
     "yesterday": "Yellow",
@@ -54,9 +54,11 @@
     ],
     "columns": 6,
     "rows": 12,
-    "margin": 0.04,
-    "gutter": 0.02,
-    "basis": "short side"
+    "margin": 48,
+    "gutter": 24,
+    "column": 144,
+    "row": 130,
+    "unit": "px"
   },
   "images": [
     {

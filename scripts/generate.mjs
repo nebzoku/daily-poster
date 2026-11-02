@@ -315,7 +315,7 @@ async function main() {
     palette: paletteFor(date),
     always: ALWAYS,
     type: { ...pair, reason: brief.fontReason, ...fontAssets(pair) },
-    grid: { format: "9:16", size: [1080, 1920], columns: 6, rows: 12, margin: 0.04, gutter: 0.02, basis: "short side" },
+    grid: { format: "9:16", size: [1080, 1920], columns: 6, rows: 12, margin: 48, gutter: 24, column: 144, row: 130, unit: "px" },
     images: (await chooseImages(brief, story, wheel.name)).map(({ query, ...im }) => im),
   };
 

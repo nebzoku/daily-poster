@@ -11,7 +11,7 @@ Every morning a GitHub Action reads a handful of news feeds, asks Claude to pick
 - **The day's palette.** Everyone uses the same one. The colour moves one step round a 12-step wheel each day (Blue, Teal, Jade, Green…), and black and white are always allowed
 - **One typeface pairing** you have to use, chosen to suit the story. Size, leading, tracking and case are up to you
 - **Ten images**, if you want one: photos from Unsplash and public-domain works from the Art Institute of Chicago and The Met, picked by Claude looking at the candidates
-- **A 6 × 12 grid** at 1080 × 1920, with a 4% margin and 2% gutter measured from the short side
+- **A 6 × 12 grid** at 1080 × 1920: 48 px margin, 24 px gutter, 144 px columns, 130 px rows. Every value is a whole pixel, and all but the row height are multiples of 8
 
 The page has a one-click way to set the poster up in Figma and a ready-made Instagram caption.
 

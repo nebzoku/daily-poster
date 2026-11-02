@@ -98,7 +98,9 @@ async function build(brief, strings) {
 
   // Grid geometry
   var g = brief.grid, W = g.size[0], H = g.size[1];
-  var short = Math.min(W, H), m = g.margin * short, gut = g.gutter * short;
+  var short = Math.min(W, H);
+  function px(v) { return v < 1 ? Math.round(v * short) : v; }  // old briefs used fractions
+  var m = px(g.margin), gut = px(g.gutter);
   var col = (W - 2 * m - (g.columns - 1) * gut) / g.columns;
   var rowH = (H - 2 * m - (g.rows - 1) * gut) / g.rows;
   function y(r) { return m + (r - 1) * (rowH + gut); }

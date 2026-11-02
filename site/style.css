@@ -85,8 +85,8 @@ main { grid-column: 1 / -1; min-width: 0; }
 .kicker { color: var(--fg); margin-bottom: 22px; }
 .kicker .dot { margin-right: 8px; vertical-align: 0; width: 7px; height: 7px; }
 .hero-hl {
-  display: grid; margin: 0; font-family: var(--p-display, var(--serif)); font-weight: 400;
-  font-size: clamp(52px, 8.4vw, 150px); line-height: .95; max-width: 13ch;
+  display: grid; margin: 0; font-family: var(--serif); font-weight: 400;
+  font-size: clamp(34px, 3.9vw, 62px); line-height: 1.1; letter-spacing: -0.012em; max-width: 24ch;
 }
 .hero-hl span { grid-area: 1 / 1; align-self: center; text-wrap: balance; opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
 .hero-hl span.on { opacity: 1; transform: none; }

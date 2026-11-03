@@ -347,11 +347,13 @@
       : `<rect id="Poster goes here" x="${slot.x}" y="${slot.y}" width="${slot.w}" height="${slot.h}" fill="${m.fg}" fill-opacity="0.08"/>`;
     return `<rect id="Background" width="${W}" height="${H}" fill="${m.bg}"/>
 ${inside}
+<g id="Labels">
 <circle id="Dot" cx="${(x0 + dot / 2).toFixed(1)}" cy="${by}" r="${dot / 2}" fill="${palette.colours[0]}"/>
 <text id="Daily Poster" ${font} x="${(x0 + dot * 2).toFixed(1)}" y="${(by + +dy).toFixed(1)}">${esc(L.top)}</text>
 ${centred("Number", L.left, bx, H / 2, -90)}
 ${centred("Date", L.right, W - bx, H / 2, 90)}
-${centred("Source", L.bottom, W / 2, H - by)}`;
+${centred("Source", L.bottom, W / 2, H - by)}
+</g>`;
   }
 
   const state2 = { poster: null };
@@ -420,20 +422,13 @@ ${centred("Source", L.bottom, W / 2, H - by)}`;
   }
 
   // ---------- Figma: every piece of the brief, side by side, as SVG that pastes in as layers ----------
-  // Nothing is placed on the artboard: the blank artboard, the picked headline and subline in
-  // the day's typefaces, the palette, the images and textures, and the three mockups.
-  // (A paste can't carry a layout grid; the plugin adds a real one.)
-  function wrap(text, font, size, width) {
+  // Each piece gets its own frame (Figma turns nested <svg> elements into frames): the blank
+  // artboard, the three mockups, the type, the colours, the images and the textures. Nothing is
+  // placed on the artboard. (A paste can't carry a layout grid, so the page lists its settings.)
+  function textWidth(text, font, size) {
     const ctx = document.createElement("canvas").getContext("2d");
     ctx.font = `${size}px "${font}"`;
-    const lines = [];
-    let line = "";
-    for (const w of text.split(/\s+/)) {
-      const test = line ? line + " " + w : w;
-      if (line && ctx.measureText(test).width > width) { lines.push(line); line = w; } else line = test;
-    }
-    if (line) lines.push(line);
-    return lines;
+    return Math.ceil(ctx.measureText(text).width);
   }
 
   // Images go into the paste as data, since Figma won't fetch links inside pasted SVG.
@@ -449,51 +444,64 @@ ${centred("Source", L.bottom, W / 2, H - by)}`;
 
   async function figmaSVG() {
     const G = geometry(), t = brief.type, GAP = 160, ink = "#111111";
-    const out = [];
+    const frames = [];
+    // A frame: a nested <svg> with its own size and a transparent background.
+    const frame = (name, x, y, w, h, body) =>
+      frames.push(`<svg id="${esc(name)}" x="${x}" y="${y}" width="${Math.ceil(w)}" height="${Math.ceil(h)}" viewBox="0 0 ${Math.ceil(w)} ${Math.ceil(h)}">\n${body}\n</svg>`);
+
     // Row 1: the blank artboard, then the three mockups.
-    out.push(`<rect id="Artboard ${G.W} × ${G.H}" width="${G.W}" height="${G.H}" fill="#FFFFFF"/>`);
+    frame(`Daily Poster No. ${pad(brief.issue)}`, 0, 0, G.W, G.H, `<rect id="Background" width="${G.W}" height="${G.H}" fill="#FFFFFF"/>`);
     let x = G.W + GAP;
     for (const m of mockups()) {
-      out.push(`<g id="Mockup · ${esc(m.name)}" transform="translate(${x} 0)">${mockupSVG(m, null)}</g>`);
+      frame(`Mockup · ${m.name}`, x, 0, MOCK.W, MOCK.H, mockupSVG(m, null));
       x += MOCK.W + 80;
     }
     let width = x - 80;
     let y = Math.max(G.H, MOCK.H) + GAP;
-    // Row 2: the headline and subline in the day's typefaces.
-    const text = (id, s, family, size, wrapW, lh) => {
-      const lines = wrap(s, family, size, wrapW);
-      const spans = lines.map((l, i) => `<tspan x="0" y="${(y + size * 0.85 + i * size * lh).toFixed(1)}">${esc(l)}</tspan>`).join("");
-      out.push(`<text id="${id}" fill="${ink}" font-family="${esc(family)}" font-size="${size}">${spans}</text>`);
-      y += size * 0.85 + (lines.length - 1) * size * lh + size * 0.4;
-    };
-    text("Headline", brief.headlines[state.h], t.display, 140, 2400, 1.05);
-    y += 60;
-    text("Subline", brief.sublines[state.s], t.text, 40, 1100, 1.35);
-    y += 100;
-    // Row 3: the palette.
-    palette.colours.concat(brief.always).forEach((hex, i) =>
-      out.push(`<rect id="${hex}" x="${i * 184}" y="${y}" width="160" height="160" fill="${hex}"${hex === "#FFFFFF" ? ' stroke="#E6E6E3"' : ""}/>`));
+
+    // Row 2: the type. Each line is one text box, for you to size and set.
+    const hl = brief.headlines[state.h], sub = brief.sublines[state.s];
+    const hlSize = 140, subSize = 40;
+    const hlW = textWidth(hl, t.display, hlSize), subW = textWidth(sub, t.text, subSize);
+    const typeH = hlSize * 1.2 + 60 + subSize * 1.3;
+    frame("Type", 0, y, Math.max(hlW, subW), typeH,
+      `<text id="Headline" fill="${ink}" font-family="${esc(t.display)}" font-size="${hlSize}" x="0" y="${hlSize * 0.9}">${esc(hl)}</text>
+<text id="Subline" fill="${ink}" font-family="${esc(t.text)}" font-size="${subSize}" x="0" y="${(hlSize * 1.2 + 60 + subSize * 0.95).toFixed(1)}">${esc(sub)}</text>`);
+    width = Math.max(width, hlW, subW);
+    y += typeH + GAP;
+
+    // Row 3: the colours.
+    const colours = palette.colours.concat(brief.always);
+    frame("Colours", 0, y, colours.length * 184 - 24, 160, colours.map((hex, i) =>
+      `<rect id="${hex}" x="${i * 184}" y="0" width="160" height="160" fill="${hex}"${hex === "#FFFFFF" ? ' stroke="#E6E6E3"' : ""}/>`).join("\n"));
     y += 160 + GAP;
-    // Rows 4 and 5: images, then textures.
+
+    // Rows 4 and 5: the images at their own proportions, then the textures.
     const got = await prepAssets();
-    const items = [...(brief.images || []).map((it) => ({ it, h: 600 })), ...(brief.textures || []).map((it) => ({ it, h: 400, square: true }))];
     const nImg = (brief.images || []).length;
-    let ix = 0;
-    items.forEach(({ it, h, square }, k) => {
-      if (k === nImg) { ix = 0; y += 600 + 80; }
-      const a = got[k];
-      const w = square ? h : Math.round(a ? (h * a.w) / a.h : h * 0.75);
-      const name = esc(`${it.kind === "texture" || square ? "Texture" : "Image"} · ${it.title || it.alt || ""} · ${it.credit || it.photographer || ""} · ${it.source || "Unsplash"}`.replace(/ · (?= · )/g, ""));
-      out.push(a
-        ? `<image id="${name}" href="${a.href}" x="${ix}" y="${y}" width="${w}" height="${h}" preserveAspectRatio="xMidYMid slice"/>`
-        : `<rect id="${name}" x="${ix}" y="${y}" width="${w}" height="${h}" fill="#E5E5E5"/>`);
-      ix += w + 40;
+    const place = (list, offset, h, square, name, label) => {
+      if (!list.length) return;
+      let ix = 0;
+      const body = list.map((it, k) => {
+        const a = got[offset + k];
+        const w = square ? h : Math.round(a ? (h * a.w) / a.h : h * 0.75);
+        const id = esc([`${label} ${k + 1}`, it.title, it.credit || it.photographer, it.source || "Unsplash"].filter(Boolean).join(" · "));
+        const out = a
+          ? `<image id="${id}" href="${a.href}" x="${ix}" y="0" width="${w}" height="${h}" preserveAspectRatio="xMidYMid slice"/>`
+          : `<rect id="${id}" x="${ix}" y="0" width="${w}" height="${h}" fill="#E5E5E5"/>`;
+        ix += w + 40;
+        return out;
+      }).join("\n");
+      frame(name, 0, y, ix - 40, h, body);
       width = Math.max(width, ix - 40);
-    });
-    y += (brief.textures || []).length ? 400 : 0;
-    return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${Math.ceil(width)}" height="${Math.ceil(y)}" viewBox="0 0 ${Math.ceil(width)} ${Math.ceil(y)}">
-<title>Daily Poster No. ${pad(brief.issue)}</title>
-${out.join("\n")}
+      y += h + GAP;
+    };
+    place(brief.images || [], 0, 600, false, "Images", "Image");
+    place(brief.textures || [], nImg, 400, true, "Textures", "Texture");
+    y -= GAP;
+
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="${Math.ceil(width)}" height="${Math.ceil(y)}" viewBox="0 0 ${Math.ceil(width)} ${Math.ceil(y)}">
+${frames.join("\n")}
 </svg>`;
   }
 

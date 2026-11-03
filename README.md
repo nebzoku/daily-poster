@@ -14,7 +14,7 @@ Every morning a GitHub Action reads a handful of news feeds, asks Claude to pick
 - **Four textures** for type or backgrounds, from [Poly Haven](https://polyhaven.com) (CC0) and Unsplash, mixed in with the images
 - **An 8 × 8 grid** on a 1080 × 1528 px artboard (A-series proportions, so it prints cleanly at A4, A3 and up): 16 px margin, no gutters, 131 px columns, 187 px rows. The grid is optional
 
-The page has a one-click way to set the poster up in Figma and a ready-made Instagram caption.
+The page has a one-click copy of everything into Figma, Instagram mockups and a ready-made Instagram caption.
 
 ## The rules
 
@@ -30,8 +30,7 @@ Share it on Instagram with **#dailyposter** and the day's tag, for example **#da
 
 ## Figma
 
-- **Copy artboard for Figma** on the site copies the pieces side by side, as layers to paste into Figma: a blank artboard, your chosen headline and subline, the palette, the images, the textures and the three Instagram mockups. A paste can't carry a layout grid, so the site lists the grid settings to add.
-- The **Figma plugin** in [`figma-plugin/`](figma-plugin) lays out the same pieces, with a real layout grid on the blank artboard, colour styles, and all three headlines and sublines. See its README to install it.
+**Copy for Figma** on the site copies everything to paste into Figma with ⌘V, each piece in its own frame: a blank artboard, your chosen headline and subline in the day's typefaces, the colours, the images, the textures and the three Instagram mockups. A paste can't carry a layout grid, so the site lists the grid settings to add.
 
 ## Run your own
 

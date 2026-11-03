@@ -590,7 +590,9 @@ ${centred("Source", L.bottom, W / 2, H - by)}
       .then((b) => new Promise((ok) => { const f = new FileReader(); f.onload = () => ok(f.result); f.readAsDataURL(b); }))
       .then((href) => new Promise((ok) => { const i = new Image(); i.onload = () => ok({ href, w: i.naturalWidth, h: i.naturalHeight }); i.onerror = () => ok(null); i.src = href; }))
       .catch(() => null);
-    assets ??= Promise.all([...(brief.images || []), ...(brief.textures || [])].map((it) => load(it.thumb || it.src)));
+    // Copies kept on this site (see scripts/media.mjs) come first; they always load.
+    assets ??= Promise.all([...(brief.images || []), ...(brief.textures || [])].map((it) =>
+      (it.local ? load(it.local) : Promise.resolve(null)).then((got) => got || load(it.thumb || it.src))));
     return assets;
   }
 

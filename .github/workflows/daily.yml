@@ -44,14 +44,17 @@ jobs:
           FORCE: ${{ inputs.force && '1' || '' }}
         run: npm run generate
 
+      # Small copies of museum and texture images, so "Copy for Figma" can always use them.
+      - name: Copy images to the site
+        run: npm run media
+
       - name: Save it to the repo
-        if: github.event_name != 'push'
         run: |
           git config user.name "daily-poster-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add site/data
-          git diff --cached --quiet || git commit -m "Brief for $(TZ=Europe/London date +%F)"
-          git push
+          git add site/data site/media
+          git diff --cached --quiet || git commit -m "Brief and images for $(TZ=Europe/London date +%F)"
+          git pull --rebase -q && git push
 
       # The link preview takes the day's colour.
       - name: Preview image for today

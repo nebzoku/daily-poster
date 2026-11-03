@@ -308,7 +308,7 @@ async function writeIndex() {
       date: b.date, issue: b.issue, colour: b.colour.name, headline: b.headlines[0],
       bg: pal.colours ? pal.colours[0] : null,
       thumb: b.images && b.images[0] ? b.images[0].thumb : null,
-      display: b.type.display, css: b.type.css,
+      display: b.type.display, text: b.type.text, css: b.type.css,
     });
   }
   await writeFile(join(DATA, "index.json"), JSON.stringify(index, null, 2) + "\n");

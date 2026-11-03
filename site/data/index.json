@@ -7,6 +7,7 @@
     "bg": "#F33446",
     "thumb": "https://images.unsplash.com/photo-1758910069133-e58e7d5a98b8?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cmVkJTIwYnVveSUyMHNlYXxlbnwxfHx8fDE3OTM2OTc5MDJ8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
     "display": "Anton",
+    "text": "IBM Plex Mono",
     "css": "https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono&display=swap"
   },
   {
@@ -17,6 +18,7 @@
     "bg": "#F1592A",
     "thumb": "https://images.unsplash.com/photo-1789971649652-ae5dfeeaa7b4?w=480&q=70&fm=jpg",
     "display": "Anton",
+    "text": "IBM Plex Mono",
     "css": "https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono&display=swap"
   }
 ]

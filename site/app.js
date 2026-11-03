@@ -278,14 +278,166 @@
     $("grid-spec").replaceChildren(...rows.flatMap(([k, t, v]) => [el("dt", {}, el("b", {}, k), t), el("dd", {}, v)]));
   }
 
-  // The archive: designed posters, picked by hand (data/showcase.json), newest first.
+  // ---------- hero images: the day's pictures around the headline ----------
+  // Each sits in a slot clear of the headline, rises in once it has loaded, and drifts out
+  // sideways as the page scrolls, stopping with its centre on the edge of the screen.
+  const SLOTS = [
+    { x: 6, y: 13, w: 11 }, { x: 25, y: 3, w: 7, far: 1 }, { x: 76, y: 8, w: 10 }, { x: 88, y: 37, w: 8, far: 1 },
+    { x: 79, y: 64, w: 12 }, { x: 60, y: 83, w: 7, far: 1 }, { x: 13, y: 68, w: 12 }, { x: 2, y: 42, w: 8, far: 1 },
+  ];
+  const SLOTS_SMALL = [{ x: 5, y: 2, w: 21 }, { x: 74, y: 3, w: 22 }, { x: 72, y: 80, w: 22 }, { x: 6, y: 82, w: 20 }];
+  function setupHeroImages() {
+    const box = $("hero-imgs"), hero = box && box.closest(".hero");
+    const imgs = (brief.images || []).filter((im) => im.thumb);
+    if (!box || !imgs.length) return;
+    const small = matchMedia("(max-width: 960px)").matches;
+    const slots = small ? SLOTS_SMALL : SLOTS;
+    const figs = slots.slice(0, imgs.length).map((sl, i) => {
+      const im = imgs[i];
+      const fig = el("figure", { class: "hi", style: `left:${sl.x}%;top:${sl.y}%;width:${sl.w}vw` },
+        el("div", { class: "hi-in" }, el("img", { src: im.thumb, alt: "", decoding: "async",
+          onload: () => setTimeout(() => { fig.classList.add("in"); measure(); }, (reduced ? 0 : 500) + i * 140),
+          onerror: () => fig.remove() })));
+      fig.speed = 0.8 + ((i * 37) % 21) / 100;   // a little variety in how far each travels
+      return fig;
+    });
+    box.replaceChildren(...figs);
+    if (reduced) return;
+
+    let geo = [];
+    function measure() {
+      const W = hero.clientWidth, H = hero.clientHeight, vw = document.documentElement.clientWidth;
+      geo = figs.map((f) => {
+        const cx = f.offsetLeft + f.offsetWidth / 2, cy = f.offsetTop + f.offsetHeight / 2;
+        // Out to the nearer side, until the centre meets the edge of the screen, so half stays
+        // in view. A small vertical drift away from the middle adds a little depth.
+        const right = cx > W / 2;
+        const dx = (right ? vw - cx : -cx) * f.speed;
+        const dy = ((cy - H / 2) / (H / 2)) * 40;
+        return { f, dx, dy };
+      });
+      update();
+    }
+    function update() {
+      const H = hero.offsetHeight || 1;
+      const p = Math.min(1, Math.max(0, scrollY / (H * 0.85)));
+      for (const g of geo) g.f.style.transform = `translate3d(${(g.dx * p).toFixed(1)}px, ${(g.dy * p).toFixed(1)}px, 0)`;
+    }
+    let ticking = false;
+    addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(() => { ticking = false; update(); }); } }, { passive: true });
+    addEventListener("resize", measure);
+    measure();
+  }
+
+  // ---------- archive: designed posters, picked by hand (data/showcase.json) ----------
+  const filt = { date: "", headline: "", colour: "", type: "" };
+  let posters = [];
+  const posterTitle = (x) => x.variant ? `${x.title} (${x.variant.toLowerCase()})` : x.title;
+
+  // Each poster picks up its day's colour and typefaces from the index.
+  function preparePosters() {
+    posters = [...showcase]
+      .sort((a, b) => (b.date || "").localeCompare(a.date || "") || (b.issue || 0) - (a.issue || 0))
+      .map((x) => {
+        const day = index.find((d) => d.date === x.date) || {};
+        return { ...x, colour: day.colour || "", hex: day.bg || "",
+          type: day.display ? (day.text ? `${day.display} + ${day.text}` : day.display) : "" };
+      });
+  }
+
+  function renderFilters() {
+    const uniq = (key) => [...new Set(posters.map((x) => x[key]).filter(Boolean))];
+    const dayLabel = (d) => { const x = posters.find((p) => p.date === d); return `No. ${pad(x.issue)} · ${fmt(noon(d), { day: "numeric", month: "short" })}`; };
+    const groups = [
+      ["date", "All days", uniq("date"), dayLabel],
+      ["headline", "All headlines", uniq("title"), (t) => t],
+      ["colour", "All colours", uniq("colour"), (t) => t],
+      ["type", "All typefaces", uniq("type"), (t) => t],
+    ];
+    const selects = groups.map(([key, all, opts, label]) => {
+      const sel = el("select", { "aria-label": all.replace("All ", "Filter by "), class: filt[key] ? "on" : "",
+        onchange: (e) => { filt[key] = e.target.value; renderFilters(); renderArchive(); } },
+        el("option", { value: "" }, all), ...opts.map((o) => el("option", { value: o }, label(o))));
+      sel.value = filt[key];
+      return el("label", {}, sel);
+    });
+    const active = Object.values(filt).some(Boolean);
+    const clear = el("button", { type: "button", class: "clear", onclick: () => { for (const k in filt) filt[k] = ""; renderFilters(); renderArchive(); } }, "Clear");
+    clear.hidden = !active;
+    $("filters").replaceChildren(...selects, el("span", { class: "count", id: "archive-count" }), clear);
+  }
+
+  const shown = () => posters.filter((x) =>
+    (!filt.date || x.date === filt.date) && (!filt.headline || x.title === filt.headline) &&
+    (!filt.colour || x.colour === filt.colour) && (!filt.type || x.type === filt.type));
+
   function renderArchive() {
-    const list = [...showcase].sort((a, b) => (b.date || "").localeCompare(a.date || "") || (b.issue || 0) - (a.issue || 0));
-    $("archive").hidden = !list.length;
+    $("archive").hidden = !posters.length;
+    const list = shown();
+    $("archive-count").textContent = `${list.length} poster${list.length === 1 ? "" : "s"}`;
+    $("archive-empty").hidden = !!list.length;
     $("archive-list").replaceChildren(...list.map((x, i) =>
-      el("li", { style: `--i:${i % 4}` }, el("a", { href: `?d=${x.date}`, "aria-current": String(x.date === brief.date) },
-        el("div", { class: "poster" }, el("img", { src: x.image, alt: `${x.title}, by ${x.designer}`, loading: "lazy" })),
-        el("p", { class: "cap" }, el("span", {}, `[${pad(x.issue)}] ${x.title}`), el("span", {}, x.designer))))));
+      el("li", { style: `--i:${i % 4}` }, el("button", { type: "button", "aria-current": String(x.date === brief.date),
+        "aria-label": `View ${posterTitle(x)} by ${x.designer}`, onclick: (e) => openLightbox(list, i, e.currentTarget) },
+        el("div", { class: "poster" }, el("img", { src: x.image, alt: `${posterTitle(x)}, by ${x.designer}`, loading: "lazy" })),
+        el("p", { class: "cap" }, el("span", {}, `[${pad(x.issue)}] ${posterTitle(x)}`), el("span", {}, x.designer))))));
+  }
+
+  // ---------- lightbox: one poster at a time; arrows, swipe and Escape ----------
+  const lb = { list: [], i: 0, opener: null };
+  function openLightbox(list, i, opener) {
+    Object.assign(lb, { list, i, opener });
+    const box = $("lightbox");
+    box.inert = false;
+    box.classList.add("open");
+    document.body.style.overflow = "hidden";
+    showPoster(i);
+    setTimeout(() => $("lb-close").focus({ preventScroll: true }), 50);
+  }
+  function closeLightbox() {
+    const box = $("lightbox");
+    box.classList.remove("open");
+    box.inert = true;
+    document.body.style.overflow = "";
+    if (lb.opener) lb.opener.focus({ preventScroll: true });
+  }
+  function showPoster(i) {
+    lb.i = (i + lb.list.length) % lb.list.length;
+    const x = lb.list[lb.i], img = $("lb-img");
+    img.classList.remove("on");
+    const next = new Image();
+    next.onload = next.onerror = () => { img.src = x.image; img.alt = `${posterTitle(x)}, by ${x.designer}`; requestAnimationFrame(() => img.classList.add("on")); };
+    next.src = x.image;
+    // Fetch the neighbours too, so flicking through is instant.
+    for (const d of [1, -1]) { const n = lb.list[(lb.i + d + lb.list.length) % lb.list.length]; if (n) new Image().src = n.image; }
+    const one = lb.list.length < 2;
+    $("lb-prev").disabled = one; $("lb-next").disabled = one;
+    $("lb-cap").replaceChildren(
+      el("span", {}, `[${pad(x.issue)}] ${posterTitle(x)} · ${x.designer}`),
+      el("span", { class: "meta" },
+        x.colour ? el("span", {}, el("i", { class: "sw", style: `background:${x.hex}` }), x.colour) : null,
+        x.type ? el("span", {}, x.type) : null,
+        one ? null : el("span", {}, `${lb.i + 1} / ${lb.list.length}`),
+        el("a", { href: `?d=${x.date}` }, "Open the brief →")));
+  }
+  function setupLightbox() {
+    $("lb-close").addEventListener("click", closeLightbox);
+    $("lb-prev").addEventListener("click", () => showPoster(lb.i - 1));
+    $("lb-next").addEventListener("click", () => showPoster(lb.i + 1));
+    $("lightbox").addEventListener("click", (e) => { if (e.target.classList.contains("lb-stage") || e.target === e.currentTarget) closeLightbox(); });
+    document.addEventListener("keydown", (e) => {
+      if (!$("lightbox").classList.contains("open")) return;
+      if (e.key === "Escape") closeLightbox();
+      else if (e.key === "ArrowLeft" && lb.list.length > 1) showPoster(lb.i - 1);
+      else if (e.key === "ArrowRight" && lb.list.length > 1) showPoster(lb.i + 1);
+    });
+    let x0 = null;
+    $("lightbox").addEventListener("touchstart", (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+    $("lightbox").addEventListener("touchend", (e) => {
+      if (x0 == null || lb.list.length < 2) return;
+      const dx = e.changedTouches[0].clientX - x0; x0 = null;
+      if (Math.abs(dx) > 50) showPoster(lb.i + (dx < 0 ? 1 : -1));
+    });
   }
 
   // ---------- share ----------
@@ -537,7 +689,8 @@ ${frames.join("\n")}
     renderType(); setupHero(); renderTop(); renderStory();
     renderOptions("headlines", brief.headlines, "h", (t, i) => `0${i + 1}`);
     renderOptions("sublines", brief.sublines, "s", (t, i) => `0${i + 1}`);
-    renderColour(); renderImages(); renderGrid(); renderArchive(); renderShare();
+    renderColour(); renderImages(); renderGrid(); renderShare();
+    preparePosters(); renderFilters(); renderArchive(); setupLightbox(); setupHeroImages();
     document.fonts.load(`${MOCK.size}px "Geist Mono"`).catch(() => {}).then(renderMockups);
     setupPosterInput();
     (window.requestIdleCallback || setTimeout)(() => prepAssets());

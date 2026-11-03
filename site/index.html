@@ -70,6 +70,7 @@
 </div>
 
 <section class="hero" aria-label="Today's headlines">
+  <div class="hero-imgs" id="hero-imgs" aria-hidden="true"></div>
   <p class="kicker"><span class="kicker-title"><i class="dot" aria-hidden="true"></i><span id="kicker-title"></span></span><span class="kicker-meta" id="kicker-meta"></span></p>
   <h2 class="hero-hl" id="hero-hl"></h2>
   <div class="hero-count" id="hero-count" role="group" aria-label="Headline options"></div>
@@ -194,9 +195,23 @@
 
 
 <section class="archive" id="archive" aria-labelledby="archive-title">
-  <h2 class="label" id="archive-title"><span>[—]</span>Archive</h2>
+  <div class="archive-head">
+    <h2 class="label" id="archive-title"><span>[—]</span>Archive</h2>
+    <div class="filters" id="filters" role="group" aria-label="Filter the posters"></div>
+  </div>
   <ol class="wall" id="archive-list"></ol>
+  <p class="note" id="archive-empty" hidden>No posters match those filters.</p>
 </section>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Poster viewer" inert>
+  <button type="button" class="lb-close" id="lb-close">Close</button>
+  <button type="button" class="lb-nav lb-prev" id="lb-prev" aria-label="Previous poster">←</button>
+  <figure class="lb-fig">
+    <div class="lb-stage"><img id="lb-img" alt=""></div>
+    <figcaption class="lb-cap" id="lb-cap"></figcaption>
+  </figure>
+  <button type="button" class="lb-nav lb-next" id="lb-next" aria-label="Next poster">→</button>
+</div>
 
 <footer class="foot">
   <p>Briefs written with Claude. Images from <a href="https://unsplash.com/?utm_source=daily_poster&amp;utm_medium=referral">Unsplash</a>, the <a href="https://www.artic.edu/open-access">Art Institute of Chicago</a> and <a href="https://www.metmuseum.org/hubs/open-access">The Met</a>. Textures powered by <a href="https://polyhaven.com">Poly Haven</a>.</p>

@@ -315,8 +315,116 @@
       el("a", { href: tag("dailyposter"), target: "_blank", rel: "noopener" }, "See them all ↗"));
   }
 
-  // ---------- Figma: the artboard and its pieces, as SVG that pastes in as layers ----------
-  // (A paste can't carry a layout grid; the plugin adds real ones.)
+  // ---------- Instagram mockups: template A, the poster centred with a label on each side ----------
+  const MOCK = { W: 1080, H: 1440, slot: { x: 104, y: 104, w: 872, h: 1232 }, band: 52, size: 22 };
+  const issueDate = () => { const [y, m, d] = brief.date.split("-"); return `${d}.${m}.${y.slice(2)}`; };
+  function mockups() {
+    return [
+      { key: "colour", name: `${brief.colour.name} dark`, bg: palette.colours[3], fg: "#FFFFFF" },
+      { key: "black", name: "Black", bg: "#000000", fg: "#FFFFFF" },
+      { key: "white", name: "White", bg: "#FFFFFF", fg: "#111111" },
+    ];
+  }
+  function mockLabels() {
+    return { top: "DAILY POSTER", left: `NO. ${pad(brief.issue)}`, right: issueDate(), bottom: brief.story.source.toUpperCase() };
+  }
+  const tracking = () => MOCK.size * 0.06;
+  function monoWidth(s) {
+    const ctx = document.createElement("canvas").getContext("2d");
+    ctx.font = `${MOCK.size}px "Geist Mono"`;
+    return ctx.measureText(s).width + tracking() * (s.length - 1);
+  }
+
+  // One mockup as SVG. Used on the page and in the Figma paste.
+  function mockupSVG(m, poster, onPage) {
+    const { W, H, slot, band, size } = MOCK, L = mockLabels();
+    const dy = (size * 0.36).toFixed(1);   // drops the baseline so the capitals sit centred
+    const family = onPage ? "'Geist Mono', ui-monospace, monospace" : "Geist Mono";   // Figma wants one plain family name
+    const font = `font-family="${family}" font-size="${size}" fill="${m.fg}" letter-spacing="${tracking().toFixed(2)}"`;
+    const centred = (id, s, x, y, rot) =>
+      `<text id="${id}" ${font} text-anchor="middle" transform="translate(${x} ${y})${rot ? ` rotate(${rot})` : ""}" x="0" y="${dy}">${esc(s)}</text>`;
+    const groupW = 28 + monoWidth(L.top), x0 = W / 2 - groupW / 2;
+    const inside = poster
+      ? `<image id="Poster" href="${poster}" x="${slot.x}" y="${slot.y}" width="${slot.w}" height="${slot.h}" preserveAspectRatio="xMidYMin slice"/>`
+      : `<rect id="Poster goes here" x="${slot.x}" y="${slot.y}" width="${slot.w}" height="${slot.h}" fill="${m.fg}" fill-opacity="0.08"/>`;
+    return `<rect id="Background" width="${W}" height="${H}" fill="${m.bg}"/>
+${inside}
+<circle id="Dot" cx="${(x0 + 7).toFixed(1)}" cy="${band}" r="7" fill="${palette.colours[0]}"/>
+<text id="Daily Poster" ${font} x="${(x0 + 28).toFixed(1)}" y="${(band + +dy).toFixed(1)}">${esc(L.top)}</text>
+${centred("Number", L.left, band, H / 2, -90)}
+${centred("Date", L.right, W - band, H / 2, 90)}
+${centred("Source", L.bottom, W / 2, H - band)}`;
+  }
+
+  const state2 = { poster: null };
+  function renderMockups() {
+    $("mocks").replaceChildren(...mockups().map((m) => {
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${MOCK.W} ${MOCK.H}" role="img" aria-label="Instagram mockup on ${esc(m.name)}">${mockupSVG(m, state2.poster, true)}</svg>`;
+      const fig = el("figure", { class: "mock" });
+      fig.innerHTML = svg;
+      fig.append(el("figcaption", { class: "mono" }, el("span", {}, m.name),
+        el("button", { type: "button", onclick: () => downloadMockup(m) }, "Download ↓")));
+      return fig;
+    }));
+  }
+
+  // Draws a mockup at full size and saves it as a PNG.
+  async function downloadMockup(m) {
+    const { W, H, slot, band, size } = MOCK, L = mockLabels();
+    await document.fonts.load(`${size}px "Geist Mono"`);
+    const c = document.createElement("canvas");
+    c.width = W; c.height = H;
+    const ctx = c.getContext("2d");
+    ctx.fillStyle = m.bg; ctx.fillRect(0, 0, W, H);
+    if (state2.poster) {
+      const img = await new Promise((ok, no) => { const i = new Image(); i.onload = () => ok(i); i.onerror = no; i.src = state2.poster; });
+      const s = Math.max(slot.w / img.width, slot.h / img.height);
+      const sw = slot.w / s, sh = slot.h / s;
+      ctx.drawImage(img, (img.width - sw) / 2, 0, sw, sh, slot.x, slot.y, slot.w, slot.h);
+    } else {
+      ctx.globalAlpha = 0.08; ctx.fillStyle = m.fg; ctx.fillRect(slot.x, slot.y, slot.w, slot.h); ctx.globalAlpha = 1;
+    }
+    ctx.font = `${size}px "Geist Mono"`;
+    if ("letterSpacing" in ctx) ctx.letterSpacing = `${tracking()}px`;
+    ctx.fillStyle = m.fg; ctx.textBaseline = "alphabetic";
+    const dy = size * 0.36;
+    const put = (s, x, y, rot) => { ctx.save(); ctx.translate(x, y); ctx.rotate((rot * Math.PI) / 180); ctx.textAlign = "center"; ctx.fillText(s, 0, dy); ctx.restore(); };
+    const groupW = 28 + monoWidth(L.top), x0 = W / 2 - groupW / 2;
+    ctx.fillStyle = palette.colours[0]; ctx.beginPath(); ctx.arc(x0 + 7, band, 7, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = m.fg; ctx.textAlign = "left"; ctx.fillText(L.top, x0 + 28, band + dy);
+    put(L.left, band, H / 2, -90);
+    put(L.right, W - band, H / 2, 90);
+    put(L.bottom, W / 2, H - band, 0);
+    c.toBlob((b) => {
+      const a = el("a", { href: URL.createObjectURL(b), download: `daily-poster-${pad(brief.issue)}-${m.key}.png` });
+      document.body.append(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+    }, "image/png");
+  }
+
+  function setupPosterInput() {
+    const take = (file) => {
+      if (!file || !file.type.startsWith("image/")) return;
+      if (state2.poster) URL.revokeObjectURL(state2.poster);
+      state2.poster = URL.createObjectURL(file);
+      renderMockups();
+      $("poster-clear").hidden = false;
+    };
+    $("poster-file").addEventListener("change", (e) => take(e.target.files[0]));
+    $("poster-clear").addEventListener("click", () => {
+      if (state2.poster) URL.revokeObjectURL(state2.poster);
+      state2.poster = null; $("poster-file").value = ""; $("poster-clear").hidden = true; renderMockups();
+    });
+    const zone = $("mocks");
+    zone.addEventListener("dragover", (e) => { e.preventDefault(); zone.classList.add("drop"); });
+    zone.addEventListener("dragleave", () => zone.classList.remove("drop"));
+    zone.addEventListener("drop", (e) => { e.preventDefault(); zone.classList.remove("drop"); take(e.dataTransfer.files[0]); });
+  }
+
+  // ---------- Figma: every piece of the brief, side by side, as SVG that pastes in as layers ----------
+  // Nothing is placed on the artboard: the blank artboard, the picked headline and subline in
+  // the day's typefaces, the palette, the images and textures, and the three mockups.
+  // (A paste can't carry a layout grid; the plugin adds a real one.)
   function wrap(text, font, size, width) {
     const ctx = document.createElement("canvas").getContext("2d");
     ctx.font = `${size}px "${font}"`;
@@ -329,30 +437,80 @@
     if (line) lines.push(line);
     return lines;
   }
-  function figmaSVG() {
-    const G = geometry();
-    const bg = palette.colours[0], fg = ink(bg);
-    const t = brief.type, s = brief.story;
-    const width = G.W - 2 * G.m;
-    const hl = 140, sub = 34, det = 26;
-    const tspans = (lines, size, y0, lh) => lines.map((l, i) => `<tspan x="${G.m}" y="${(y0 + i * size * lh).toFixed(1)}">${esc(l)}</tspan>`).join("");
-    // The pieces are stacked top-left, for you to arrange.
-    const hlLines = wrap(brief.headlines[state.h], t.display, hl, width);
-    let y = G.m + hl * 0.85;
-    const hlSVG = `<text id="Headline" fill="${fg}" font-family="${esc(t.display)}" font-size="${hl}">${tspans(hlLines, hl, y, 1.05)}</text>`;
-    y += (hlLines.length - 1) * hl * 1.05 + 70;
-    const subLines = wrap(brief.sublines[state.s], t.text, sub, width * 0.65);
-    const subSVG = `<text id="Subline" fill="${fg}" font-family="${esc(t.text)}" font-size="${sub}">${tspans(subLines, sub, y, 1.35)}</text>`;
-    y += (subLines.length - 1) * sub * 1.35 + 60;
-    const details = `${dots(fmt(s.published, { day: "2-digit", month: "2-digit", year: "2-digit" }))}  ${fmt(s.published, { hour: "2-digit", minute: "2-digit" })}  ${s.source}`;
-    const detSVG = `<text id="Date, time and source" fill="${fg}" font-family="${esc(t.text)}" font-size="${det}" x="${G.m}" y="${y.toFixed(1)}">${esc(details)}</text>`;
-    return `<svg xmlns="http://www.w3.org/2000/svg" width="${G.W}" height="${G.H}" viewBox="0 0 ${G.W} ${G.H}">
+
+  // Images go into the paste as data, since Figma won't fetch links inside pasted SVG.
+  let assets = null;
+  function prepAssets() {
+    const load = (src) => fetch(src, { mode: "cors" }).then((r) => (r.ok ? r.blob() : Promise.reject()))
+      .then((b) => new Promise((ok) => { const f = new FileReader(); f.onload = () => ok(f.result); f.readAsDataURL(b); }))
+      .then((href) => new Promise((ok) => { const i = new Image(); i.onload = () => ok({ href, w: i.naturalWidth, h: i.naturalHeight }); i.onerror = () => ok(null); i.src = href; }))
+      .catch(() => null);
+    assets ??= Promise.all([...(brief.images || []), ...(brief.textures || [])].map((it) => load(it.thumb || it.src)));
+    return assets;
+  }
+
+  async function figmaSVG() {
+    const G = geometry(), t = brief.type, GAP = 160, ink = "#111111";
+    const out = [];
+    // Row 1: the blank artboard, then the three mockups.
+    out.push(`<rect id="Artboard ${G.W} × ${G.H}" width="${G.W}" height="${G.H}" fill="#FFFFFF"/>`);
+    let x = G.W + GAP;
+    for (const m of mockups()) {
+      out.push(`<g id="Mockup · ${esc(m.name)}" transform="translate(${x} 0)">${mockupSVG(m, null)}</g>`);
+      x += MOCK.W + 80;
+    }
+    let width = x - 80;
+    let y = Math.max(G.H, MOCK.H) + GAP;
+    // Row 2: the headline and subline in the day's typefaces.
+    const text = (id, s, family, size, wrapW, lh) => {
+      const lines = wrap(s, family, size, wrapW);
+      const spans = lines.map((l, i) => `<tspan x="0" y="${(y + size * 0.85 + i * size * lh).toFixed(1)}">${esc(l)}</tspan>`).join("");
+      out.push(`<text id="${id}" fill="${ink}" font-family="${esc(family)}" font-size="${size}">${spans}</text>`);
+      y += size * 0.85 + (lines.length - 1) * size * lh + size * 0.4;
+    };
+    text("Headline", brief.headlines[state.h], t.display, 140, 2400, 1.05);
+    y += 60;
+    text("Subline", brief.sublines[state.s], t.text, 40, 1100, 1.35);
+    y += 100;
+    // Row 3: the palette.
+    palette.colours.concat(brief.always).forEach((hex, i) =>
+      out.push(`<rect id="${hex}" x="${i * 184}" y="${y}" width="160" height="160" fill="${hex}"${hex === "#FFFFFF" ? ' stroke="#E6E6E3"' : ""}/>`));
+    y += 160 + GAP;
+    // Rows 4 and 5: images, then textures.
+    const got = await prepAssets();
+    const items = [...(brief.images || []).map((it) => ({ it, h: 600 })), ...(brief.textures || []).map((it) => ({ it, h: 400, square: true }))];
+    const nImg = (brief.images || []).length;
+    let ix = 0;
+    items.forEach(({ it, h, square }, k) => {
+      if (k === nImg) { ix = 0; y += 600 + 80; }
+      const a = got[k];
+      const w = square ? h : Math.round(a ? (h * a.w) / a.h : h * 0.75);
+      const name = esc(`${it.kind === "texture" || square ? "Texture" : "Image"} · ${it.title || it.alt || ""} · ${it.credit || it.photographer || ""} · ${it.source || "Unsplash"}`.replace(/ · (?= · )/g, ""));
+      out.push(a
+        ? `<image id="${name}" href="${a.href}" x="${ix}" y="${y}" width="${w}" height="${h}" preserveAspectRatio="xMidYMid slice"/>`
+        : `<rect id="${name}" x="${ix}" y="${y}" width="${w}" height="${h}" fill="#E5E5E5"/>`);
+      ix += w + 40;
+      width = Math.max(width, ix - 40);
+    });
+    y += (brief.textures || []).length ? 400 : 0;
+    return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${Math.ceil(width)}" height="${Math.ceil(y)}" viewBox="0 0 ${Math.ceil(width)} ${Math.ceil(y)}">
 <title>Daily Poster No. ${pad(brief.issue)}</title>
-<rect id="Background" width="${G.W}" height="${G.H}" fill="${bg}"/>
-${hlSVG}
-${subSVG}
-${detSVG}
+${out.join("\n")}
 </svg>`;
+  }
+
+  async function copyFigma() {
+    toast("Gathering the images…");
+    const blob = figmaSVG().then((s) => new Blob([s], { type: "text/plain" }));
+    const done = () => toast("Copied. Paste into Figma with ⌘V");
+    try {
+      // Hand the clipboard a promise, so the copy still counts as part of the click.
+      await navigator.clipboard.write([new ClipboardItem({ "text/plain": blob })]);
+      done();
+    } catch {
+      try { await navigator.clipboard.writeText(await (await blob).text()); done(); }
+      catch { toast("Couldn't copy here. Try the live site."); }
+    }
   }
 
   async function loadJSON(path, fallback) {
@@ -373,6 +531,9 @@ ${detSVG}
     renderOptions("headlines", brief.headlines, "h", (t, i) => `0${i + 1}`);
     renderOptions("sublines", brief.sublines, "s", (t, i) => `0${i + 1}`);
     renderColour(); renderImages(); renderGrid(); renderArchive(); renderShare();
+    document.fonts.load(`${MOCK.size}px "Geist Mono"`).catch(() => {}).then(renderMockups);
+    setupPosterInput();
+    (window.requestIdleCallback || setTimeout)(() => prepAssets());
 
     // Sections reveal as they scroll into view.
     const io = new IntersectionObserver((entries) => {
@@ -381,7 +542,7 @@ ${detSVG}
     document.querySelectorAll(".sec, .archive, .foot").forEach((n) => io.observe(n));
     requestAnimationFrame(() => requestAnimationFrame(() => document.documentElement.classList.add("ready")));
 
-    $("copy-figma").addEventListener("click", () => copy(figmaSVG(), "Copied. Paste into Figma with ⌘V"));
+    $("copy-figma").addEventListener("click", copyFigma);
     $("copy-caption").addEventListener("click", () => copy(caption(), "Caption copied"));
   }
 

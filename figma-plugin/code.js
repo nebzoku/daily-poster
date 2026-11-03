@@ -1,7 +1,8 @@
 // Daily Poster: Figma plugin.
-// Builds the day's A-size artboard: layout grids, the palette as colour
-// styles, the copy in the day's typefaces, and the Unsplash images alongside. Figma includes
-// every Google Font, so the typefaces load without installing anything.
+// Lays out the day's pieces side by side: a blank A-size artboard with a real layout grid,
+// the three Instagram mockups, the headlines and sublines in the day's typefaces, the palette
+// (also saved as colour styles), the images and the textures. Nothing is placed on the
+// artboard. Figma includes every Google Font, so the typefaces load without installing anything.
 
 figma.showUI(__html__, { width: 320, height: 330 });
 
@@ -70,12 +71,70 @@ async function imageRect(url, h, name) {
   return r;
 }
 
-async function build(brief, strings) {
+// Places a node at x, y on the page and returns it.
+function place(node, x, y) { node.x = x; node.y = y; return node; }
+
+// One Instagram mockup (template A): the poster slot centred with a label on each side.
+async function mockup(def, brief, mono, accentStyle) {
+  var W = 1080, H = 1440, band = 52;
+  var f = figma.createFrame();
+  f.name = "Mockup · " + def.name;
+  f.resize(W, H);
+  f.fills = solid(def.bg);
+  f.clipsContent = true;
+
+  var slot = figma.createRectangle();
+  slot.name = "Poster goes here";
+  slot.resize(872, 1232);
+  slot.fills = [{ type: "SOLID", color: hexToRgb(def.fg), opacity: 0.08 }];
+  f.appendChild(place(slot, 104, 104));
+
+  function label(chars, name) {
+    var t = figma.createText();
+    t.fontName = mono;
+    t.fontSize = 22;
+    t.characters = chars.toUpperCase();
+    t.letterSpacing = { unit: "PERCENT", value: 6 };
+    t.textAutoResize = "WIDTH_AND_HEIGHT";
+    t.fills = solid(def.fg);
+    t.name = name;
+    f.appendChild(t);
+    return t;
+  }
+
+  // Top: a dot in the day's colour, then the name, centred together.
+  var top = label("Daily Poster", "Daily Poster");
+  var dot = figma.createEllipse();
+  dot.name = "Dot";
+  dot.resize(14, 14);
+  await dot.setFillStyleIdAsync(accentStyle.id);
+  f.appendChild(dot);
+  var x0 = W / 2 - (28 + top.width) / 2;
+  place(dot, x0, band - 7);
+  place(top, x0 + 28, band - top.height / 2);
+
+  // Bottom: the source, centred.
+  var bottom = label(brief.story.source, "Source");
+  place(bottom, W / 2 - bottom.width / 2, H - band - bottom.height / 2);
+
+  // Left reads upwards, right reads downwards; both centred top to bottom.
+  var parts = brief.date.split("-");
+  var left = label("No. " + pad(brief.issue), "Number");
+  left.rotation = 90;
+  place(left, band - left.height / 2, H / 2 + left.width / 2);
+  var right = label(parts[2] + "." + parts[1] + "." + parts[0].slice(2), "Date");
+  right.rotation = -90;
+  place(right, W - band + right.height / 2, H / 2 - right.width / 2);
+  return f;
+}
+
+async function build(brief) {
   var available = await figma.listAvailableFontsAsync();
   var ui = (await resolveFont("Inter", available)) || { family: "Roboto", style: "Regular" };
   await figma.loadFontAsync(ui);
   var display = (await resolveFont(brief.type.display, available)) || ui;
   var body = (await resolveFont(brief.type.text, available)) || ui;
+  var mono = (await resolveFont("Geist Mono", available)) || (await resolveFont("Roboto Mono", available)) || ui;
 
   var palette = brief.palette || brief.palettes.filter(function (p) { return p.name === "Vivid"; })[0] || brief.palettes[0];
   var issue = "No. " + pad(brief.issue);
@@ -101,113 +160,88 @@ async function build(brief, strings) {
   var short = Math.min(W, H);
   function px(v) { return v < 1 ? Math.round(v * short) : v; }  // old briefs used fractions
   var m = px(g.margin), gut = px(g.gutter);
-  var col = (W - 2 * m - (g.columns - 1) * gut) / g.columns;
-  var rowH = (H - 2 * m - (g.rows - 1) * gut) / g.rows;
-  function y(r) { return m + (r - 1) * (rowH + gut); }
-  function span(n, size) { return n * size + (n - 1) * gut; }
 
-  // The artboard
-  var bg = palette.colours[0], fg = ink(bg);
+  // Everything sits side by side, loose, for the designer to use. Nothing is placed on the artboard.
+  var GAP = 160, dark = "#111111", made = [];
+
+  // Row 1: the blank artboard with a real layout grid, then the three mockups.
   var poster = figma.createFrame();
   poster.name = "Daily Poster " + issue;
   poster.resize(W, H);
-  await poster.setFillStyleIdAsync(styles[0].id);
+  poster.fills = solid("#FFFFFF");
   poster.layoutGrids = [
     { pattern: "COLUMNS", alignment: "STRETCH", count: g.columns, gutterSize: gut, offset: m, visible: true, color: { r: 1, g: 0.23, b: 0.19, a: 0.1 } },
     { pattern: "ROWS", alignment: "STRETCH", count: g.rows, gutterSize: gut, offset: m, visible: true, color: { r: 0.1, g: 0.45, b: 1, a: 0.08 } },
   ];
+  made.push(place(poster, 0, 0));
 
-  // The pieces go in stacked top-left, for the designer to arrange. No layout is implied.
-  var hasImage = brief.images && brief.images.length;
-  var hl = text(brief.headlines[0], display, 140, fg, W - 2 * m);
-  hl.name = "Headline"; hl.x = m; hl.y = m;
-  poster.appendChild(hl);
-
-  var sub = text(brief.sublines[0], body, 34, fg, (W - 2 * m) * 0.65);
-  sub.name = "Subline"; sub.x = m; sub.y = hl.y + hl.height + 60;
-  poster.appendChild(sub);
-
-  var det = text(strings.date + "  " + strings.time + "  " + brief.story.source, body, 26, fg);
-  det.name = "Date, time and source"; det.x = m; det.y = sub.y + sub.height + 50;
-  poster.appendChild(det);
-
-  // Everything else from the brief, beside the artboard
-  var side = stack("Brief · " + issue, 56);
-  side.x = W + 160; side.y = 0;
-  var dark = "#111111", grey = "#8A8A86";
-  function heading(t) { var h = text(t, ui, 20, grey); h.name = t; return h; }
-  function group(title, nodes, gap) {
-    var s = stack(title, gap || 16);
-    s.appendChild(heading(title));
-    nodes.forEach(function (n) { s.appendChild(n); });
-    side.appendChild(s);
+  var defs = [
+    { name: brief.colour.name + " dark", bg: palette.colours[3], fg: "#FFFFFF" },
+    { name: "Black", bg: "#000000", fg: "#FFFFFF" },
+    { name: "White", bg: "#FFFFFF", fg: "#111111" },
+  ];
+  var x = W + GAP;
+  for (var d = 0; d < defs.length; d++) {
+    made.push(place(await mockup(defs[d], brief, mono, styles[0]), x, 0));
+    x += 1080 + 80;
   }
+  var y = Math.max(H, 1440) + GAP;
 
-  group("Story", [
-    text(brief.story.title, ui, 40, dark, 900),
-    text(brief.story.summary, ui, 22, dark, 760),
-    text(brief.story.source + " · " + strings.longDate + " · " + strings.time + "\n" + brief.story.url, ui, 18, grey, 900),
-  ]);
-  group("Headlines", brief.headlines.map(function (h) { return text(h, display, 64, dark, 1000); }), 20);
-  group("Sublines", brief.sublines.map(function (s) { return text(s, body, 26, dark, 800); }));
+  // Row 2: the three headlines in the display face, then the three sublines in the text face.
+  for (var h = 0; h < brief.headlines.length; h++) {
+    var hl = text(brief.headlines[h], display, 140, dark);
+    hl.name = "Headline " + (h + 1);
+    made.push(place(hl, 0, y));
+    y += hl.height + 40;
+  }
+  y += 60;
+  for (var s = 0; s < brief.sublines.length; s++) {
+    var sub = text(brief.sublines[s], body, 40, dark, 1100);
+    sub.name = "Subline " + (s + 1);
+    made.push(place(sub, 0, y));
+    y += sub.height + 32;
+  }
+  y += 100;
 
-  var sw = row("Swatches", 16);
+  // Row 3: the palette.
   for (var k = 0; k < colours.length; k++) {
-    var cell = stack(colours[k], 10);
     var chip = figma.createRectangle();
-    chip.resize(120, 120);
+    chip.resize(160, 160);
     await chip.setFillStyleIdAsync(styles[k].id);
-    chip.strokes = solid("#E6E6E3");
+    if (colours[k] === "#FFFFFF") chip.strokes = solid("#E6E6E3");
     chip.name = colours[k];
-    cell.appendChild(chip);
-    cell.appendChild(text(colours[k], body, 16, grey));
-    sw.appendChild(cell);
+    made.push(place(chip, k * 184, y));
   }
-  group("Palette · " + brief.colour.name + " (black and white always allowed)", [sw]);
+  y += 160 + GAP;
 
-  group("Type · this pairing is required", [
-    text(brief.type.display + " for the headline", display, 48, dark),
-    text(brief.type.text + " for the subline and details", body, 24, dark),
-    text(brief.type.reason, ui, 18, grey, 800),
-  ]);
-
-  if (hasImage) {
-    var imgs = row("Images", 24);
-    imgs.counterAxisAlignItems = "MAX";
+  // Row 4: the images at their own proportions. Row 5: the textures.
+  if (brief.images && brief.images.length) {
+    var ix = 0;
     for (var j = 0; j < brief.images.length; j++) {
       var it = brief.images[j];
       var who = it.credit || it.photographer;
       var where = it.source || "Unsplash";
-      var c = stack("Image " + (j + 1), 10);
-      c.appendChild(await imageRect(it.src, 360, who + " · " + where));
-      c.appendChild(text(who + " · " + where + (it.licence === "CC0" ? " · public domain" : ""), ui, 14, grey));
-      imgs.appendChild(c);
+      var r = await imageRect(it.src, 600, "Image " + (j + 1) + " · " + who + " · " + where + (it.licence === "CC0" ? " · public domain" : ""));
+      made.push(place(r, ix, y));
+      ix += r.width + 40;
     }
-    group("Images · optional, credit Unsplash photographers", [imgs]);
+    y += 600 + 80;
   }
-
   if (brief.textures && brief.textures.length) {
-    var texRow = row("Textures", 24);
     for (var q = 0; q < brief.textures.length; q++) {
       var tx = brief.textures[q];
-      var tc = stack("Texture " + (q + 1), 10);
       var sq = figma.createRectangle();
-      sq.name = tx.title + " · " + tx.source;
-      sq.resize(300, 300);
+      sq.name = "Texture " + (q + 1) + " · " + tx.title + " · " + (tx.credit ? tx.credit + " · " : "") + tx.source;
+      sq.resize(400, 400);
       try {
         var timg = await figma.createImageAsync(tx.src || tx.thumb);
         sq.fills = [{ type: "IMAGE", imageHash: timg.hash, scaleMode: "FILL" }];
       } catch (e) { sq.fills = solid("#E5E5E5"); }
-      tc.appendChild(sq);
-      tc.appendChild(text(tx.title + " · " + tx.source, ui, 14, grey, 300));
-      texRow.appendChild(tc);
+      made.push(place(sq, q * 440, y));
     }
-    group("Textures · for type or backgrounds", [texRow]);
   }
 
-  group("Share", [text("Post it with #dailyposter #dailyposter" + pad(brief.issue), ui, 22, dark)]);
-
-  figma.viewport.scrollAndZoomIntoView([poster, side]);
+  figma.viewport.scrollAndZoomIntoView(made);
   figma.currentPage.selection = [poster];
   var missing = [];
   if (display === ui) missing.push(brief.type.display);
@@ -218,7 +252,7 @@ async function build(brief, strings) {
 figma.ui.onmessage = async function (msg) {
   if (msg.type !== "build") return;
   try {
-    await build(msg.brief, msg.strings);
+    await build(msg.brief);
     figma.closePlugin();
   } catch (e) {
     figma.ui.postMessage({ type: "error", text: "Something went wrong: " + (e && e.message ? e.message : e) });

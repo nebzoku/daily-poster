@@ -141,6 +141,7 @@ html { overflow-x: clip; }
 .hi-in { opacity: 0; transform: translateY(28px) scale(.94); transition: opacity 1.1s ease, transform 1.6s var(--ease); }
 .hi.in .hi-in { opacity: 1; transform: none; }
 .hi img { display: block; width: 100%; height: auto; }
+.hi.is-obj img { background: #f2f2f0; }
 @media (max-width: 960px) { .hi.far { display: none; } }
 
 .kicker { display: grid; justify-items: center; gap: 8px; margin: 0 0 24px; }

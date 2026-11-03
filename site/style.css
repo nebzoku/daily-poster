@@ -289,7 +289,7 @@ main { grid-column: 1 / -1; min-width: 0; }
 .spec dt b { display: inline-block; width: 18px; font-family: var(--mono); font-size: 11px; font-weight: 400; color: var(--accent); }
 
 /* mockups */
-.mocks { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap); margin-top: 8px; transition: opacity .3s ease; }
+.mocks { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap); margin-top: 40px; transition: opacity .3s ease; }
 .mocks.drop { opacity: .6; }
 .mock { margin: 0; }
 .mock svg { display: block; width: 100%; height: auto; box-shadow: 0 0 0 1px var(--line); }

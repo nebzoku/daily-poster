@@ -37,10 +37,13 @@ function londonDate(d = new Date()) {
   return new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/London" }).format(d);
 }
 
+const ENTITIES = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " ", rsquo: "’", lsquo: "‘", rdquo: "”", ldquo: "“", ndash: "–", mdash: "—", hellip: "…" };
+const decode = (s) => s
+  .replace(/&#x([0-9a-f]+);/gi, (_, h) => String.fromCodePoint(parseInt(h, 16)))
+  .replace(/&#(\d+);/g, (_, d) => String.fromCodePoint(+d))
+  .replace(/&([a-z]+);/gi, (m, n) => ENTITIES[n.toLowerCase()] ?? " ");
 const strip = (s = "") =>
-  String(s)
-    .replace(/<[^>]+>/g, " ")
-    .replace(/&[#\w]+;/g, " ")
+  decode(decode(String(s)).replace(/<[^>]+>/g, " "))
     .replace(/\s+/g, " ")
     .trim();
 
@@ -49,7 +52,7 @@ async function fetchFeed([source, url]) {
     const res = await fetch(url, { headers: { "user-agent": "daily-poster/1.0" } });
     if (!res.ok) throw new Error(res.status);
     const xml = await res.text();
-    const doc = new XMLParser({ ignoreAttributes: false }).parse(xml);
+    const doc = new XMLParser({ ignoreAttributes: false, processEntities: false, htmlEntities: false }).parse(xml);
     const items = [].concat(doc?.rss?.channel?.item || []);
     return items.map((it) => ({
       source,
@@ -166,26 +169,7 @@ ${list}`;
 }
 
 async function askClaude(prompt) {
-  const res = await fetch("https://api.anthropic.com/v1/messages", {
-    method: "POST",
-    headers: {
-      "content-type": "application/json",
-      "x-api-key": process.env.ANTHROPIC_API_KEY,
-      "anthropic-version": "2023-06-01",
-    },
-    body: JSON.stringify({
-      model: MODEL,
-      max_tokens: 2000,
-      tools: [BRIEF_TOOL],
-      tool_choice: { type: "tool", name: "write_brief" },
-      messages: [{ role: "user", content: prompt }],
-    }),
-  });
-  if (!res.ok) throw new Error(`Claude API ${res.status}: ${await res.text()}`);
-  const body = await res.json();
-  const call = body.content.find((c) => c.type === "tool_use");
-  if (!call) throw new Error("Claude did not return a brief.");
-  return call.input;
+  return callTool(BRIEF_TOOL, prompt, 4000);
 }
 
 const words = (s) => s.trim().split(/\s+/).length;
@@ -203,6 +187,32 @@ function validate(out, stories) {
   if (out.archiveQueries?.length !== 3) problems.push("need exactly 3 archive queries");
   if (out.textureQueries?.length !== 3) problems.push("need exactly 3 texture queries");
   return problems;
+}
+
+// Call Claude with one tool and ask it to use it. Some models don't accept a forced
+// tool_choice, so we ask in the prompt, and fall back to reading JSON from the text.
+async function callTool(tool, content, maxTokens) {
+  const res = await fetch("https://api.anthropic.com/v1/messages", {
+    method: "POST",
+    headers: { "content-type": "application/json", "x-api-key": process.env.ANTHROPIC_API_KEY, "anthropic-version": "2023-06-01" },
+    body: JSON.stringify({
+      model: MODEL,
+      max_tokens: maxTokens,
+      tools: [tool],
+      tool_choice: { type: "auto" },
+      messages: [{ role: "user", content: typeof content === "string"
+        ? `${content}\n\nReply only by calling the ${tool.name} tool.`
+        : [...content, { type: "text", text: `Reply only by calling the ${tool.name} tool.` }] }],
+    }),
+  });
+  if (!res.ok) throw new Error(`Claude API ${res.status}: ${await res.text()}`);
+  const body = await res.json();
+  const call = body.content.find((c) => c.type === "tool_use" && c.name === tool.name);
+  if (call) return call.input;
+  const text = body.content.filter((c) => c.type === "text").map((c) => c.text).join("\n");
+  const json = text.match(/\{[\s\S]*\}/);
+  if (json) try { return JSON.parse(json[0]); } catch {}
+  throw new Error(`Claude did not call ${tool.name}.`);
 }
 
 // Claude looks at the candidates and picks what an art director would.
@@ -230,30 +240,18 @@ Then ${texList.length} candidate TEXTURES, numbered T0, T1… Pick the ${Math.mi
 async function pickImages(story, colour, cands, texCands) {
   const list = interleave(cands, 36);        // mixed sources, so a cap never drops one entirely
   const texList = interleave(texCands, 14);
-  const res = await fetch("https://api.anthropic.com/v1/messages", {
-    method: "POST",
-    headers: { "content-type": "application/json", "x-api-key": process.env.ANTHROPIC_API_KEY, "anthropic-version": "2023-06-01" },
-    body: JSON.stringify({
-      model: MODEL,
-      max_tokens: 600,
-      tools: [{
-        name: "pick_images",
-        description: "Choose the images and textures, in order, by their numbers (without the I or T).",
-        input_schema: {
-          type: "object",
-          properties: {
-            images: { type: "array", items: { type: "integer" } },
-            textures: { type: "array", items: { type: "integer" } },
-          },
-          required: ["images", "textures"],
-        },
-      }],
-      tool_choice: { type: "tool", name: "pick_images" },
-      messages: [{ role: "user", content: pickContent(story, colour, list, texList) }],
-    }),
-  });
-  if (!res.ok) throw new Error(`Claude API ${res.status}: ${await res.text()}`);
-  const input = (await res.json()).content.find((c) => c.type === "tool_use")?.input || {};
+  const input = await callTool({
+    name: "pick_images",
+    description: "Choose the images and textures, in order, by their numbers (without the I or T).",
+    input_schema: {
+      type: "object",
+      properties: {
+        images: { type: "array", items: { type: "integer" } },
+        textures: { type: "array", items: { type: "integer" } },
+      },
+      required: ["images", "textures"],
+    },
+  }, pickContent(story, colour, list, texList), 2000);
   const fill = (picks, from, n) => {
     const out = [...new Set((picks || []).filter((i) => from[i]))];
     for (let i = 0; out.length < Math.min(n, from.length) && i < from.length; i++) if (!out.includes(i)) out.push(i);

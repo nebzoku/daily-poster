@@ -46,6 +46,7 @@ async function localise(date) {
   // Tidy away copies this brief no longer points to (an older size, say).
   if (existsSync(dir)) {
     const keep = new Set([...(brief.images || []), ...(brief.textures || [])].map((it) => it.local).filter(Boolean));
+    for (const o of brief.objects || []) { keep.add(o.image); keep.add(o.thumb); }   // the 3D renders (scripts/objects.mjs)
     for (const f of await readdir(dir)) if (!keep.has(`media/${date}/${f}`)) await rm(join(dir, f));
   }
   if (changed) {

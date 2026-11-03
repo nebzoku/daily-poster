@@ -269,6 +269,13 @@ html { overflow-x: clip; }
 .shot.t1 { --h: clamp(120px, 16vh, 180px); --ar: 1 / 1; align-self: flex-end; }
 .shot.t2 { --h: clamp(180px, 26vh, 280px); --ar: 1 / 1; align-self: center; }
 .shot.is-texture figcaption .src { color: var(--faint); }
+/* the 3D renders: transparent PNGs, sat on a soft ground */
+.shot.o0 { --h: clamp(200px, 30vh, 330px); --ar: 1 / 1; margin-top: 3vh; }
+.shot.o1 { --h: clamp(160px, 24vh, 270px); --ar: 1 / 1; align-self: flex-end; }
+.shot.o2 { --h: clamp(220px, 34vh, 380px); --ar: 1 / 1; align-self: center; }
+.shot.is-object .frame { background: #f2f2f0; }
+.shot.is-object img { object-fit: contain; }
+.shot.is-object figcaption .src { color: var(--faint); }
 /* hover, on devices with a mouse: the strip pauses and the image eases into a slight tilt */
 .shot .frame { transition: transform .7s var(--ease); }
 @media (hover: hover) and (pointer: fine) {

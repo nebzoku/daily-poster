@@ -44,6 +44,28 @@ jobs:
           FORCE: ${{ inputs.force && '1' || '' }}
         run: npm run generate
 
+      # Three 3D objects for the brief, rendered in Blender (the bpy package). Skipped when
+      # today's are already done, so it only renders once a day.
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: scripts/blender/requirements.txt
+
+      - name: Render the 3D objects
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          POLY_PIZZA_KEY: ${{ secrets.POLY_PIZZA_KEY }}
+          FORCE: ${{ inputs.force && '1' || '' }}
+        run: |
+          if node -e "process.exit(require('./site/data/latest.json').objects?.length && !process.env.FORCE ? 0 : 1)"; then
+            echo "Today's objects are already rendered."
+          else
+            sudo apt-get update -qq && sudo apt-get install -y -qq libxrender1 libxxf86vm1 libxfixes3 libxi6 libxkbcommon0 libsm6 libgl1 libegl1 >/dev/null
+            pip install -q -r scripts/blender/requirements.txt
+            BLENDER_PYTHON=python npm run objects || echo "::warning::The 3D objects didn't render today."
+          fi
+
       # Small copies of museum and texture images, so "Copy for Figma" can always use them.
       - name: Copy images to the site
         run: npm run media

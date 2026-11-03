@@ -10,7 +10,8 @@
   "scripts": {
     "generate": "node scripts/generate.mjs",
     "serve": "npx --yes serve site -l 4173",
-    "media": "node scripts/media.mjs"
+    "media": "node scripts/media.mjs",
+    "objects": "node scripts/objects.mjs"
   },
   "dependencies": {
     "fast-xml-parser": "^4.5.0",

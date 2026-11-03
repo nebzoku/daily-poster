@@ -229,25 +229,38 @@
   function stripItems() {
     const imgs = (brief.images || []).map((im, i) => ({ ...im, kind: "image", label: String(i + 1).padStart(2, "0") }));
     const tex = (brief.textures || []).map((t, i) => ({ ...t, kind: "texture", label: `T${i + 1}` }));
+    const objs = (brief.objects || []).map((o, i) => ({ ...o, kind: "object", label: `3D${i + 1}`,
+      alt: `${o.name} in ${o.material}, rendered in 3D` }));
     const out = [...imgs];
-    tex.forEach((t, k) => out.splice(Math.round(((k + 1) * (imgs.length + tex.length)) / (tex.length + 1)) - 1, 0, t));
+    // Textures, then the 3D objects, are spread evenly through the images.
+    for (const extra of [tex, objs]) {
+      const n = out.length;
+      extra.forEach((t, k) => out.splice(Math.round(((k + 1) * (n + extra.length)) / (extra.length + 1)) - 1, 0, t));
+    }
     return out;
   }
   function renderImages() {
     const items = stripItems();
     if (!items.length) { $("images").replaceChildren(el("p", { class: "note" }, "No images today.")); return; }
-    let imgN = 0, texN = 0;
-    const variant = items.map((it) => (it.kind === "texture" ? `t${texN++ % 3}` : `v${imgN++ % 7}`));
-    const shot = (it, i, copy) => el("figure", { class: `shot ${variant[i]}${it.kind === "texture" ? " is-texture" : ""}`, ...(copy ? { "aria-hidden": "true" } : {}) },
-      el("a", { class: "frame", href: safe(it.page), target: "_blank", rel: "noopener",
-        ...(copy ? { tabindex: "-1" } : { "aria-label": `${it.alt}. ${it.kind === "texture" ? "Texture" : it.credit}, ${it.source}` }) },
+    let imgN = 0, texN = 0, objN = 0;
+    const variant = items.map((it) => (it.kind === "texture" ? `t${texN++ % 3}` : it.kind === "object" ? `o${objN++ % 3}` : `v${imgN++ % 7}`));
+    // 3D objects link to their full-size PNG, which downloads.
+    const link = (it) => it.kind === "object"
+      ? { href: it.image, download: `daily-poster-${pad(brief.issue)}-${it.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}.png` }
+      : { href: safe(it.page), target: "_blank", rel: "noopener" };
+    const label = (it) => it.kind === "object" ? `${it.name}, 3D render. Download the PNG` : `${it.alt}. ${it.kind === "texture" ? "Texture" : it.credit}, ${it.source}`;
+    const shot = (it, i, copy) => el("figure", { class: `shot ${variant[i]}${it.kind === "texture" ? " is-texture" : ""}${it.kind === "object" ? " is-object" : ""}`, ...(copy ? { "aria-hidden": "true" } : {}) },
+      el("a", { class: "frame", ...link(it),
+        ...(copy ? { tabindex: "-1" } : { "aria-label": label(it) }) },
         el("img", { src: it.thumb, alt: copy ? "" : it.alt, loading: copy ? "lazy" : "eager", draggable: "false",
           onerror: (e) => e.target.parentElement.classList.add("missing") })),
       el("figcaption", { class: "mono" },
         el("span", {}, `[${it.label}]`),
         // Poly Haven textures are named; Unsplash ones carry the photographer, who needs crediting.
-        el("span", { class: "who" }, it.kind === "texture" && it.source === "Poly Haven" ? it.title : (it.credit || it.photographer)),
-        el("span", { class: "src" }, it.kind === "texture" ? "Texture" : it.source === "Art Institute of Chicago" ? "AIC" : it.source || "Unsplash")));
+        // 3D objects credit the model's maker when there is one.
+        el("span", { class: "who" }, it.kind === "object" ? (it.model?.creator ? `${it.name} by ${it.model.creator}` : it.name)
+          : it.kind === "texture" && it.source === "Poly Haven" ? it.title : (it.credit || it.photographer)),
+        el("span", { class: "src" }, it.kind === "object" ? "3D" : it.kind === "texture" ? "Texture" : it.source === "Art Institute of Chicago" ? "AIC" : it.source || "Unsplash")));
     const track = el("div", { class: "track", style: `--drift: ${items.length * 8}s` },
       ...items.map((it, i) => shot(it, i, false)), ...items.map((it, i) => shot(it, i, true)));
     $("images").replaceChildren(track);
@@ -610,7 +623,7 @@ ${centred("Source", L.bottom, W / 2, H - by)}
       .then((href) => new Promise((ok) => { const i = new Image(); i.onload = () => ok({ href, w: i.naturalWidth, h: i.naturalHeight }); i.onerror = () => ok(null); i.src = href; }))
       .catch(() => null);
     // Copies kept on this site (see scripts/media.mjs) come first; they always load.
-    assets ??= Promise.all([...(brief.images || []), ...(brief.textures || [])].map((it) =>
+    assets ??= Promise.all([...(brief.images || []), ...(brief.textures || []), ...(brief.objects || []).map((o) => ({ local: o.image }))].map((it) =>
       (it.local ? load(it.local) : Promise.resolve(null)).then((got) => got || load(figmaSrc(it)))));
     return assets;
   }
@@ -671,6 +684,8 @@ ${centred("Source", L.bottom, W / 2, H - by)}
     };
     place(brief.images || [], 0, 600, false, "Images", "Image");
     place(brief.textures || [], nImg, 400, true, "Textures", "Texture");
+    const objs = (brief.objects || []).map((o) => ({ title: o.name, credit: o.model?.creator, source: o.model ? o.model.source : "3D" }));
+    place(objs, nImg + (brief.textures || []).length, 600, true, "3D objects", "Object");
     y -= GAP;
 
     return `<svg xmlns="http://www.w3.org/2000/svg" width="${Math.ceil(width)}" height="${Math.ceil(y)}" viewBox="0 0 ${Math.ceil(width)} ${Math.ceil(y)}">

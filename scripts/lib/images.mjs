@@ -55,7 +55,8 @@ export async function artic(query, n = 6) {
 
 // The Met: public-domain works, CC0. No key needed. Search returns IDs, so each object is a second call.
 export async function met(query, n = 6) {
-  const url = `https://collectionapi.metmuseum.org/public/collection/v1/search?hasImages=true&q=${encodeURIComponent(query)}`;
+  // v1/search was retired on 1 October 2026; v1.1 is paginated.
+  const url = `https://collectionapi.metmuseum.org/public/collection/v1.1/search?hasImages=true&limit=${n * 4}&q=${encodeURIComponent(query)}`;
   const { objectIDs } = await json(url);
   const out = [];
   for (const id of (objectIDs || []).slice(0, n * 3)) {
@@ -151,6 +152,22 @@ export async function gatherCandidates(photoQueries, archiveQueries) {
     for (const c of s.value) if (!seen.has(c.id)) { seen.add(c.id); all.push(c); }
   }
   return all;
+}
+
+// Download a thumbnail and turn it into an image block Claude can look at.
+// Returns null if it won't download or isn't a usable image, so it can be skipped.
+export async function imageBlock(url) {
+  try {
+    const res = await fetch(url, { headers: UA, signal: AbortSignal.timeout(15000) });
+    if (!res.ok) return null;
+    const type = (res.headers.get("content-type") || "").split(";")[0].trim();
+    if (!/^image\/(jpeg|png|gif|webp)$/.test(type)) return null;
+    const buf = Buffer.from(await res.arrayBuffer());
+    if (!buf.length || buf.length > 4.5 * 1024 * 1024) return null;
+    return { type: "image", source: { type: "base64", media_type: type, data: buf.toString("base64") } };
+  } catch {
+    return null;
+  }
 }
 
 // Without Claude's pick, interleave the sources so the strip still mixes photos and archive.

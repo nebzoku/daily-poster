@@ -13,7 +13,7 @@ import { fileURLToPath } from "node:url";
 import { XMLParser } from "fast-xml-parser";
 import { wheelFor, paletteFor, issueNumber, ALWAYS } from "./lib/palette.mjs";
 import { FONT_PAIRS, fontPair, fontAssets } from "./lib/fonts.mjs";
-import { gatherCandidates, gatherTextures, polyhavenFile, interleave } from "./lib/images.mjs";
+import { gatherCandidates, gatherTextures, polyhavenFile, interleave, imageBlock } from "./lib/images.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const DATA = join(ROOT, "site", "data");
@@ -242,18 +242,23 @@ Then ${texList.length} candidate TEXTURES, numbered T0, T1… Pick the ${Math.mi
   }];
   list.forEach((c, i) => {
     content.push({ type: "text", text: `[I${i}] ${c.source} · ${c.title} · ${c.credit}` });
-    content.push({ type: "image", source: { type: "url", url: c.thumb } });
+    content.push(c.block);
   });
   texList.forEach((c, i) => {
     content.push({ type: "text", text: `[T${i}] ${c.source} · ${c.title}` });
-    content.push({ type: "image", source: { type: "url", url: c.thumb } });
+    content.push(c.block);
   });
   return content;
 }
 
 async function pickImages(story, colour, cands, texCands) {
-  const list = interleave(cands, 36);        // mixed sources, so a cap never drops one entirely
-  const texList = interleave(texCands, 14);
+  // Download every thumbnail here and send the image data itself, skipping any that fail,
+  // so one broken link can't sink the whole pick.
+  const withBlocks = async (cs) => (await Promise.all(cs.map(async (c) => ({ ...c, block: await imageBlock(c.thumb) })))).filter((c) => c.block);
+  const list = await withBlocks(interleave(cands, 36));   // mixed sources, so a cap never drops one entirely
+  const texList = await withBlocks(interleave(texCands, 14));
+  console.log(`Showing Claude ${list.length} images and ${texList.length} textures.`);
+  if (!list.length) throw new Error("No candidate images could be downloaded.");
   const input = await callTool({
     name: "pick_images",
     description: "Choose the images and textures, in order, by their numbers (without the I or T).",
@@ -288,7 +293,7 @@ async function chooseImages(brief, story, colour) {
     picked = { images: interleave(cands, IMAGE_COUNT), textures: interleave(texCands, TEXTURE_COUNT) };
   }
   for (const t of picked.textures) if (t.polyId) t.src = await polyhavenFile(t);
-  const clean = ({ query, polyId, ...rest }) => rest;
+  const clean = ({ query, polyId, block, ...rest }) => rest;
   return { images: picked.images.map(clean), textures: picked.textures.map(clean) };
 }
 

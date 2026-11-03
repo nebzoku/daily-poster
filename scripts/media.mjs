@@ -1,4 +1,4 @@
-// Keeps small copies of the day's museum and texture images on the site itself.
+// Keeps 1080 px copies of the day's museum and texture images on the site itself.
 // Some image hosts (The Met, for one) don't let other sites' pages fetch their files,
 // so "Copy for Figma" would paste grey boxes in their place. Copies served from this
 // site always work. Unsplash allows it and asks to be linked directly, so it's skipped.
@@ -12,7 +12,7 @@ const SITE = new URL("../site/", import.meta.url).pathname;
 const DATA = join(SITE, "data");
 const MEDIA = join(SITE, "media");
 const KEEP_DAYS = 30;
-const WIDTH = 640;
+const WIDTH = 1080;
 
 async function copy(url, file) {
   const res = await fetch(url, { headers: { "user-agent": "daily-poster (github.com/nebzoku/daily-poster)" } });
@@ -29,12 +29,12 @@ async function localise(date) {
   for (const [key, prefix] of [["images", "image"], ["textures", "texture"]]) {
     for (const [i, it] of (brief[key] || []).entries()) {
       if ((it.source || "Unsplash") === "Unsplash") continue;
-      const name = `${prefix}-${String(i + 1).padStart(2, "0")}.jpg`;
+      const name = `${prefix}-${String(i + 1).padStart(2, "0")}-${WIDTH}.jpg`;
       const rel = `media/${date}/${name}`;
       if (it.local === rel && existsSync(join(SITE, rel))) continue;
       try {
         await mkdir(dir, { recursive: true });
-        await copy(it.thumb || it.src, join(dir, name));
+        await copy(it.src || it.thumb, join(dir, name));
         it.local = rel;
         changed = true;
         console.log(`Saved ${rel} (${it.source})`);
@@ -42,6 +42,11 @@ async function localise(date) {
         console.warn(`Couldn't copy ${prefix} ${i + 1}: ${e.message}`);
       }
     }
+  }
+  // Tidy away copies this brief no longer points to (an older size, say).
+  if (existsSync(dir)) {
+    const keep = new Set([...(brief.images || []), ...(brief.textures || [])].map((it) => it.local).filter(Boolean));
+    for (const f of await readdir(dir)) if (!keep.has(`media/${date}/${f}`)) await rm(join(dir, f));
   }
   if (changed) {
     await writeFile(path, JSON.stringify(brief, null, 2) + "\n");

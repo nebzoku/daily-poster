@@ -583,6 +583,9 @@ ${centred("Source", L.bottom, W / 2, H - by)}
     return Math.ceil(ctx.measureText(text).width);
   }
 
+  // Images go into the paste at 1080 px wide. Unsplash resizes on request; the others
+  // use the 1080 px copies kept on this site.
+  const figmaSrc = (it) => ((it.source || "Unsplash") === "Unsplash" && it.src ? it.src.replace(/([?&])w=\d+/, "$1w=1080") : it.src || it.thumb);
   // Images go into the paste as data, since Figma won't fetch links inside pasted SVG.
   let assets = null;
   function prepAssets() {
@@ -592,7 +595,7 @@ ${centred("Source", L.bottom, W / 2, H - by)}
       .catch(() => null);
     // Copies kept on this site (see scripts/media.mjs) come first; they always load.
     assets ??= Promise.all([...(brief.images || []), ...(brief.textures || [])].map((it) =>
-      (it.local ? load(it.local) : Promise.resolve(null)).then((got) => got || load(it.thumb || it.src))));
+      (it.local ? load(it.local) : Promise.resolve(null)).then((got) => got || load(figmaSrc(it)))));
     return assets;
   }
 

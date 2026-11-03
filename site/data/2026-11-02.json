@@ -84,7 +84,7 @@
       "alt": "Woodcut of a long ceremonial procession through Venice",
       "thumb": "https://images.metmuseum.org/CRDImages/dp/web-additional/DP837485.jpg",
       "src": "https://images.metmuseum.org/CRDImages/dp/web-additional/DP837485.jpg",
-      "local": "media/2026-11-02/image-02.jpg"
+      "local": "media/2026-11-02/image-02-1080.jpg"
     },
     {
       "id": "unsplash:00nHr1Lpq6w",
@@ -109,7 +109,7 @@
       "alt": "Japanese painting of a long procession travelling to Edo",
       "thumb": "https://images.metmuseum.org/CRDImages/as/web-additional/DP-19027-012_crd.jpg",
       "src": "https://images.metmuseum.org/CRDImages/as/web-additional/DP-19027-012_crd.jpg",
-      "local": "media/2026-11-02/image-04.jpg"
+      "local": "media/2026-11-02/image-04-1080.jpg"
     },
     {
       "id": "unsplash:Gbgo6lkxID8",
@@ -134,7 +134,7 @@
       "alt": "Etching of a torchlit procession",
       "thumb": "https://images.metmuseum.org/CRDImages/dp/web-additional/DP818101.jpg",
       "src": "https://images.metmuseum.org/CRDImages/dp/web-additional/DP818101.jpg",
-      "local": "media/2026-11-02/image-06.jpg"
+      "local": "media/2026-11-02/image-06-1080.jpg"
     },
     {
       "id": "unsplash:dU8BEQ",
@@ -159,7 +159,7 @@
       "alt": "Nineteenth-century photograph of a wedding procession",
       "thumb": "https://images.metmuseum.org/CRDImages/ph/web-additional/DP151629.jpg",
       "src": "https://images.metmuseum.org/CRDImages/ph/web-additional/DP151629.jpg",
-      "local": "media/2026-11-02/image-08.jpg"
+      "local": "media/2026-11-02/image-08-1080.jpg"
     },
     {
       "id": "unsplash:zn9QwcrdEUo",
@@ -184,7 +184,7 @@
       "alt": "Woodblock print of boys acting out a lord’s procession",
       "thumb": "https://images.metmuseum.org/CRDImages/as/web-additional/DP151605.jpg",
       "src": "https://images.metmuseum.org/CRDImages/as/web-additional/DP151605.jpg",
-      "local": "media/2026-11-02/image-10.jpg"
+      "local": "media/2026-11-02/image-10-1080.jpg"
     }
   ],
   "textures": [
@@ -199,7 +199,7 @@
       "alt": "Cracked Concrete Wall texture",
       "thumb": "https://cdn.polyhaven.com/asset_img/thumbs/cracked_concrete_wall.png?width=480&height=480",
       "src": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/cracked_concrete_wall/cracked_concrete_wall_diff_2k.jpg",
-      "local": "media/2026-11-02/texture-01.jpg"
+      "local": "media/2026-11-02/texture-01-1080.jpg"
     },
     {
       "id": "polyhaven:blue_plaster_weathered",
@@ -212,7 +212,7 @@
       "alt": "Blue Plaster Weathered texture",
       "thumb": "https://cdn.polyhaven.com/asset_img/thumbs/blue_plaster_weathered.png?width=480&height=480",
       "src": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/blue_plaster_weathered/blue_plaster_weathered_diff_2k.jpg",
-      "local": "media/2026-11-02/texture-02.jpg"
+      "local": "media/2026-11-02/texture-02-1080.jpg"
     },
     {
       "id": "polyhaven:cotton_jersey",
@@ -225,7 +225,7 @@
       "alt": "Cotton Jersey texture",
       "thumb": "https://cdn.polyhaven.com/asset_img/thumbs/cotton_jersey.png?width=480&height=480",
       "src": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/cotton_jersey/cotton_jersey_diff_2k.jpg",
-      "local": "media/2026-11-02/texture-03.jpg"
+      "local": "media/2026-11-02/texture-03-1080.jpg"
     },
     {
       "id": "polyhaven:rough_linen",
@@ -238,7 +238,7 @@
       "alt": "Rough Linen texture",
       "thumb": "https://cdn.polyhaven.com/asset_img/thumbs/rough_linen.png?width=480&height=480",
       "src": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/rough_linen/rough_linen_diff_2k.jpg",
-      "local": "media/2026-11-02/texture-04.jpg"
+      "local": "media/2026-11-02/texture-04-1080.jpg"
     }
   ]
 }

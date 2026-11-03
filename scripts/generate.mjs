@@ -366,7 +366,7 @@ async function main() {
     palette: paletteFor(date),
     always: ALWAYS,
     type: { ...pair, reason: brief.fontReason, ...fontAssets(pair) },
-    grid: { format: "A-size", size: [1080, 1528], columns: 6, rows: 8, margin: 16, gutter: 32, column: 148, row: 159, unit: "px" },
+    grid: { format: "A-size", size: [1080, 1528], columns: 8, rows: 8, margin: 16, gutter: 0, column: 131, row: 187, unit: "px" },
     ...(await chooseImages(brief, story, wheel.name)),
   };
 

@@ -12,7 +12,7 @@ Every morning a GitHub Action reads a handful of news feeds, asks Claude to pick
 - **One typeface pairing** you have to use, chosen to suit the story. Size, leading, tracking and case are up to you
 - **Ten images**, if you want one: photos from Unsplash and public-domain works from the Art Institute of Chicago and The Met, picked by Claude looking at the candidates
 - **Four textures** for type or backgrounds, from [Poly Haven](https://polyhaven.com) (CC0) and Unsplash, mixed in with the images
-- **A 6 × 8 grid** on a 1080 × 1528 px artboard (A-series proportions, so it prints cleanly at A4, A3 and up): 64 px margin (about 4% of the long edge), 32 px gutter, 132 px columns, 147 px rows. The grid is optional
+- **An 8 × 8 grid** on a 1080 × 1528 px artboard (A-series proportions, so it prints cleanly at A4, A3 and up): 16 px margin, no gutters, 131 px columns, 187 px rows. The grid is optional
 
 The page has a one-click way to set the poster up in Figma and a ready-made Instagram caption.
 
@@ -22,7 +22,7 @@ The page has a one-click way to set the poster up in Figma and a ready-made Inst
 2. Use one of the headlines, or write your own from the same story.
 3. Use the day's palette, plus black and white. No other colours.
 4. Use the typeface pairing. Size, leading, tracking and case are up to you.
-5. The 6 × 8 grid is there if you want it. Use it, break it or ignore it.
+5. The 8 × 8 grid is there if you want it. Use it, break it or ignore it.
 6. Include the date, time and source of the story.
 7. Imagery is optional. If you use a photo, credit the photographer.
 
@@ -30,8 +30,8 @@ Share it on Instagram with **#dailyposter** and the day's tag, for example **#da
 
 ## Figma
 
-- **Copy artboard for Figma** on the site copies the artboard and your chosen copy as layers to paste into Figma. A paste can't carry a layout grid, so the site lists the grid settings to add.
-- The **Figma plugin** in [`figma-plugin/`](figma-plugin) builds the whole thing: layout grids, colour styles, the copy in the right fonts and the images alongside. See its README to install it.
+- **Copy artboard for Figma** on the site copies the pieces side by side, as layers to paste into Figma: a blank artboard, your chosen headline and subline, the palette, the images, the textures and the three Instagram mockups. A paste can't carry a layout grid, so the site lists the grid settings to add.
+- The **Figma plugin** in [`figma-plugin/`](figma-plugin) lays out the same pieces, with a real layout grid on the blank artboard, colour styles, and all three headlines and sublines. See its README to install it.
 
 ## Run your own
 

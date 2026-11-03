@@ -255,9 +255,9 @@
       svg.append(g, el("text", { x: lx, y: ly, "font-size": 44, "text-anchor": "middle", fill: accent, "font-family": "Geist Mono, monospace" }, label));
     };
     const top = -50;
-    mark(0, top, G.m, top, "A", G.m / 2, top - 34);
+    mark(0, top, G.m, top, "A", G.m < 80 ? -40 : G.m / 2, top - 34);   // a slim margin puts its letter outside, clear of C
     mark(G.m, top, G.m + G.col, top, "C", G.m + G.col / 2, top - 34);
-    mark(G.m + G.col, top, G.m + G.col + G.gut, top, "B", G.m + G.col + G.gut / 2 + 6, top - 34);
+    if (G.gut) mark(G.m + G.col, top, G.m + G.col + G.gut, top, "B", G.m + G.col + G.gut / 2 + 6, top - 34);
     mark(-50, G.m, -50, G.m + G.row, "D", -100, G.m + G.row / 2 + 15);
     $("grid-fig").replaceChildren(svg);
 
@@ -267,7 +267,7 @@
       ["", "Artboard", `${g.format} · ${G.W} × ${G.H} px`],
       ["", "Grid", `${G.cols} columns × ${G.rows} rows`],
       ["A", "Margin", px(G.m)],
-      ["B", "Gutter", px(G.gut)],
+      ...(G.gut ? [["B", "Gutter", px(G.gut)]] : [["", "Gutter", "None"]]),
       ["C", "Column", px(G.col)],
       ["D", "Row", px(G.row)],
     ];

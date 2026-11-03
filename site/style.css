@@ -288,6 +288,25 @@ main { grid-column: 1 / -1; min-width: 0; }
 .grid-side .note { margin-top: 24px; }
 .spec dt b { display: inline-block; width: 18px; font-family: var(--mono); font-size: 11px; font-weight: 400; color: var(--accent); }
 
+/* the short version of how it works, in the bottom-right corner */
+.hint {
+  position: fixed; right: var(--pad); bottom: 16px; z-index: 9; width: 300px;
+  padding: 16px 16px 14px; background: #000; color: #fff; border-radius: 3px;
+  font-size: 13px; line-height: 1.45;
+  transition: opacity .4s ease, transform .6s var(--ease);
+}
+.hint p { margin: 0; }
+.hint .hint-label { font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: .02em; text-transform: uppercase; color: #8a8a86; margin-bottom: 8px; }
+.hint-row { display: flex; justify-content: space-between; align-items: center; margin-top: 14px; }
+.hint-more { font-family: var(--mono); font-size: 10px; font-weight: 500; letter-spacing: .02em; text-transform: uppercase; height: 24px; padding: 0 10px; background: #fff; color: #000; border-radius: 3px; }
+.hint-more:hover { opacity: .85; }
+.hint-close { color: #8a8a86; font-size: 18px; line-height: 1; padding: 2px 4px; }
+.hint-close:hover { color: #fff; }
+.hint.gone { opacity: 0; transform: translateY(12px); }
+.js .hint { opacity: 0; transform: translateY(16px); }
+.js.ready .hint:not(.gone) { opacity: 1; transform: none; transition-delay: 1.2s; }
+@media (max-width: 600px) { .hint { left: var(--pad); width: auto; } }
+
 /* mockups */
 .mocks { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap); margin-top: 40px; transition: opacity .3s ease; }
 .mocks.drop { opacity: .6; }
@@ -388,7 +407,7 @@ html { scroll-behavior: smooth; }
   html { scroll-behavior: auto; }
   .w { transform: none !important; }
   .hero-hl .hl:not(.on) { visibility: hidden; }
-  .js .top, .js .kicker > *, .js .hero-count, .js .hero-actions, .js .sec > *, .js .archive, .js .foot, .js .wall li, .info .intro-lead p, .info .intro-how, .info .intro-rules { opacity: 1 !important; transform: none !important; }
+  .js .hint, .js .top, .js .kicker > *, .js .hero-count, .js .hero-actions, .js .sec > *, .js .archive, .js .foot, .js .wall li, .info .intro-lead p, .info .intro-how, .info .intro-rules { opacity: 1 !important; transform: none !important; }
   .js .sec::before { transform: none !important; }
 }
 

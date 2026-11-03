@@ -668,7 +668,7 @@ ${frames.join("\n")}
   async function copyFigma() {
     toast("Copying for Figma…", true);
     const blob = figmaSVG().then((s) => new Blob([s], { type: "text/plain" }));
-    const done = () => toast("Copied. Paste into Figma with ⌘V");
+    const done = () => toast("Copied");
     try {
       // Hand the clipboard a promise, so the copy still counts as part of the click.
       await navigator.clipboard.write([new ClipboardItem({ "text/plain": blob })]);

@@ -54,10 +54,10 @@
     ],
     "columns": 6,
     "rows": 8,
-    "margin": 72,
-    "gutter": 24,
-    "column": 136,
-    "row": 152,
+    "margin": 64,
+    "gutter": 32,
+    "column": 132,
+    "row": 147,
     "unit": "px"
   },
   "images": [

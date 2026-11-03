@@ -11,8 +11,8 @@ Every morning a GitHub Action reads a handful of news feeds, asks Claude to pick
 - **The day's palette.** Everyone uses the same one. The colour moves one step round a 12-step wheel each day (Blue, Teal, Jade, Green…), and black and white are always allowed
 - **One typeface pairing** you have to use, chosen to suit the story. Size, leading, tracking and case are up to you
 - **Ten images**, if you want one: photos from Unsplash and public-domain works from the Art Institute of Chicago and The Met, picked by Claude looking at the candidates
-- **Four textures** for type or backgrounds, from [Poly Haven](https://polyhaven.com) (CC0) and Unsplash
-- **A 6 × 8 grid** on a 1080 × 1528 px artboard (A-series proportions, so it prints cleanly at A4, A3 and up): 72 px margin, 24 px gutter, 136 px columns, 152 px rows. Every value is a multiple of 8
+- **Four textures** for type or backgrounds, from [Poly Haven](https://polyhaven.com) (CC0) and Unsplash, mixed in with the images
+- **A 6 × 8 grid** on a 1080 × 1528 px artboard (A-series proportions, so it prints cleanly at A4, A3 and up): 64 px margin (about 4% of the long edge), 32 px gutter, 132 px columns, 147 px rows. The grid is optional
 
 The page has a one-click way to set the poster up in Figma and a ready-made Instagram caption.
 
@@ -22,7 +22,7 @@ The page has a one-click way to set the poster up in Figma and a ready-made Inst
 2. Use one of the headlines, or write your own from the same story.
 3. Use the day's palette, plus black and white. No other colours.
 4. Use the typeface pairing. Size, leading, tracking and case are up to you.
-5. Build on the 6 × 8 grid.
+5. The 6 × 8 grid is there if you want it. Use it, break it or ignore it.
 6. Include the date, time and source of the story.
 7. Imagery is optional. If you use a photo, credit the photographer.
 

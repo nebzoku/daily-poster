@@ -321,9 +321,17 @@
     if (!box || !imgs.length) return;
     const small = matchMedia("(max-width: 960px)").matches;
     const slots = small ? SLOTS_SMALL : SLOTS;
+    // Always one of the day's 3D renders, top right, among the photos. It has no frame,
+    // and its PNG has room around the object, so it's drawn a little larger.
+    const objs = brief.objects || [];
+    if (objs.length) {
+      const o = objs[(brief.issue || 0) % objs.length];
+      imgs.splice(small ? 1 : 2, 0, { thumb: o.thumb, object: true });
+    }
     const figs = slots.slice(0, imgs.length).map((sl, i) => {
       const im = imgs[i];
-      const fig = el("figure", { class: "hi", style: `left:${sl.x}%;top:${sl.y}%;width:${sl.w}vw` },
+      const w = im.object ? sl.w * (small ? 1.45 : 1.7) : sl.w;
+      const fig = el("figure", { class: `hi${im.object ? " is-obj" : ""}`, style: `left:${sl.x - (w - sl.w) / 4}%;top:${sl.y}%;width:${w}vw` },
         el("div", { class: "hi-in" }, el("img", { src: im.thumb, alt: "", decoding: "async",
           onload: () => setTimeout(() => { fig.classList.add("in"); measure(); }, (reduced ? 0 : 500) + i * 140),
           onerror: () => fig.remove() })));

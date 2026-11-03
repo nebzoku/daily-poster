@@ -23,7 +23,7 @@
   ];
 
   const state = { h: 0, s: 0 };
-  let brief, index, palette;
+  let brief, index, palette, showcase = [];
 
   const pad = (n) => String(n).padStart(3, "0");
   const fmt = (iso, opts) => new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/London", ...opts }).format(new Date(iso));
@@ -276,20 +276,14 @@
     $("grid-spec").replaceChildren(...rows.flatMap(([k, t, v]) => [el("dt", {}, el("b", {}, k), t), el("dd", {}, v)]));
   }
 
-  // The archive as a wall of each day's colour, photo and headline.
+  // The archive: designed posters, picked by hand (data/showcase.json), newest first.
   function renderArchive() {
-    const css = new Set();
-    $("archive-list").replaceChildren(...index.map((x) => {
-      if (x.css) css.add(x.css);
-      const bg = x.bg || "#EEEEEC";
-      return el("li", { style: `--i:${index.indexOf(x) % 4}` }, el("a", { href: `?d=${x.date}`, "aria-current": String(x.date === brief.date) },
-        el("div", { class: "mini", style: `background:${bg};color:${ink(bg)}` },
-          el("div", { class: "mini-in" },
-            x.thumb ? el("img", { src: x.thumb, alt: "", loading: "lazy", onerror: (e) => e.target.remove() }) : el("span"),
-            el("span", { class: "mini-hl", style: x.display ? `font-family:"${x.display}"` : "" }, x.headline))),
-        el("p", { class: "cap" }, el("span", {}, `[${pad(x.issue)}]`), el("span", {}, x.headline))));
-    }));
-    for (const href of css) if (!document.querySelector(`link[href="${href}"]`)) document.head.append(el("link", { rel: "stylesheet", href }));
+    const list = [...showcase].sort((a, b) => (b.date || "").localeCompare(a.date || "") || (b.issue || 0) - (a.issue || 0));
+    $("archive").hidden = !list.length;
+    $("archive-list").replaceChildren(...list.map((x, i) =>
+      el("li", { style: `--i:${i % 4}` }, el("a", { href: `?d=${x.date}`, "aria-current": String(x.date === brief.date) },
+        el("div", { class: "poster" }, el("img", { src: x.image, alt: `${x.title}, by ${x.designer}`, loading: "lazy" })),
+        el("p", { class: "cap" }, el("span", {}, `[${pad(x.issue)}] ${x.title}`), el("span", {}, x.designer))))));
   }
 
   // ---------- share ----------
@@ -523,6 +517,7 @@ ${out.join("\n")}
     const d = new URLSearchParams(location.search).get("d");
     brief = window.__BRIEF__ || (await loadJSON(d ? `data/${d}.json` : "data/latest.json")) || (await loadJSON("data/latest.json"));
     index = window.__INDEX__ || (await loadJSON("data/index.json", [])) || [];
+    showcase = window.__SHOWCASE__ || (await loadJSON("data/showcase.json", [])) || [];
     if (!brief) { $("hero-hl").textContent = "The first brief arrives tomorrow morning."; document.documentElement.classList.add("ready"); return; }
     palette = brief.palette || brief.palettes?.find((p) => p.name === "Vivid") || brief.palettes?.[0];
     document.documentElement.style.setProperty("--accent", palette.colours[0]);

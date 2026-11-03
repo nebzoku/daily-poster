@@ -328,7 +328,10 @@ label.cta { cursor: pointer; }
 .spec dt { color: var(--muted); }
 .spec dd { font-variant-numeric: tabular-nums; }
 
-/* archive: a wall of the days, in their own colour and type */
+/* archive: a wall of designed posters, picked by hand */
+.wall .poster { aspect-ratio: 1080 / 1528; background: #f2f2f0; overflow: hidden; }
+.wall .poster img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity .3s ease; }
+.wall a:hover .poster img { opacity: .85; }
 .archive { margin: 24vh var(--pad) 0; }
 .archive .label { padding-top: 14px; border-top: 1px solid var(--line); margin-bottom: 28px; }
 .wall { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px var(--gap); }

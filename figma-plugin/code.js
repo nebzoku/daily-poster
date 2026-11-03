@@ -1,5 +1,5 @@
 // Daily Poster: Figma plugin.
-// Builds the day's 1080 × 1920 artboard: layout grids, the palette as colour
+// Builds the day's A-size artboard: layout grids, the palette as colour
 // styles, the copy in the day's typefaces, and the Unsplash images alongside. Figma includes
 // every Google Font, so the typefaces load without installing anything.
 

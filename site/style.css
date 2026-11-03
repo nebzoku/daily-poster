@@ -334,7 +334,7 @@ main { grid-column: 1 / -1; min-width: 0; }
 .wall { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px var(--gap); }
 .wall a { display: grid; gap: 10px; }
 .mini {
-  position: relative; container-type: inline-size; aspect-ratio: 9 / 16; overflow: hidden;
+  position: relative; container-type: inline-size; aspect-ratio: 1 / 1.414; overflow: hidden;
   box-shadow: 0 0 0 1px rgba(0,0,0,.05);
 }
 .mini-in { position: absolute; inset: 0; padding: 4cqw; display: grid; grid-template-rows: 1fr 1fr; gap: 4cqw; }

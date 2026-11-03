@@ -59,7 +59,7 @@
     catch { toast("Couldn't copy here. Try the live site."); }
   }
 
-  // ---------- grid geometry, in 1080 × 1920 px ----------
+  // ---------- grid geometry, in artboard pixels ----------
   function geometry() {
     const g = brief.grid;
     const [W, H] = g.size;

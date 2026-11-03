@@ -47,17 +47,17 @@
     "textUrl": "https://fonts.google.com/specimen/IBM+Plex+Mono"
   },
   "grid": {
-    "format": "9:16",
+    "format": "A-size",
     "size": [
       1080,
-      1920
+      1528
     ],
     "columns": 6,
-    "rows": 12,
-    "margin": 48,
+    "rows": 8,
+    "margin": 72,
     "gutter": 24,
-    "column": 144,
-    "row": 130,
+    "column": 136,
+    "row": 152,
     "unit": "px"
   },
   "images": [

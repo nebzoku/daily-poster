@@ -2,7 +2,7 @@
 
 Design a poster for the sake of it.
 
-Daily Poster is a free design brief that lands every morning. It takes one story from the day's news and turns it into a brief for a 9:16 poster. In a world of AI and automation, the chance to design something just because you can is getting rarer, so the brief gives you just enough guardrails to explore and nothing to overthink before you start. Make your poster, share it with #dailyposter, and see what everyone else did with the same brief.
+Daily Poster is a free design brief that lands every morning. It takes one story from the day's news and turns it into a brief for an A-size poster. In a world of AI and automation, the chance to design something just because you can is getting rarer, so the brief gives you just enough guardrails to explore and nothing to overthink before you start. Make your poster, share it with #dailyposter, and see what everyone else did with the same brief.
 
 Every morning a GitHub Action reads a handful of news feeds, asks Claude to pick a story with some weight to it, and publishes a brief:
 
@@ -12,17 +12,17 @@ Every morning a GitHub Action reads a handful of news feeds, asks Claude to pick
 - **One typeface pairing** you have to use, chosen to suit the story. Size, leading, tracking and case are up to you
 - **Ten images**, if you want one: photos from Unsplash and public-domain works from the Art Institute of Chicago and The Met, picked by Claude looking at the candidates
 - **Four textures** for type or backgrounds, from [Poly Haven](https://polyhaven.com) (CC0) and Unsplash
-- **A 6 × 12 grid** at 1080 × 1920: 48 px margin, 24 px gutter, 144 px columns, 130 px rows. Every value is a whole pixel, and all but the row height are multiples of 8
+- **A 6 × 8 grid** on a 1080 × 1528 px artboard (A-series proportions, so it prints cleanly at A4, A3 and up): 72 px margin, 24 px gutter, 136 px columns, 152 px rows. Every value is a multiple of 8
 
 The page has a one-click way to set the poster up in Figma and a ready-made Instagram caption.
 
 ## The rules
 
-1. 9:16, at 1080 × 1920 px.
+1. A-size portrait, at 1080 × 1528 px.
 2. Use one of the headlines, or write your own from the same story.
 3. Use the day's palette, plus black and white. No other colours.
 4. Use the typeface pairing. Size, leading, tracking and case are up to you.
-5. Build on the 6 × 12 grid.
+5. Build on the 6 × 8 grid.
 6. Include the date, time and source of the story.
 7. Imagery is optional. If you use a photo, credit the photographer.
 

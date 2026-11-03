@@ -11,8 +11,8 @@ import { existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { XMLParser } from "fast-xml-parser";
-import { wheelFor, paletteFor, issueNumber, ALWAYS } from "./lib/palette.mjs";
-import { FONT_PAIRS, fontPair, fontAssets } from "./lib/fonts.mjs";
+import { wheelFor, paletteFor, issueNumber, ALWAYS, daysBetween } from "./lib/palette.mjs";
+import { FONT_PAIRS, fontPair, fontAssets, availablePairs, TYPE_COOLDOWN_DAYS } from "./lib/fonts.mjs";
 import { gatherCandidates, gatherTextures, polyhavenFile, interleave, imageBlock } from "./lib/images.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -83,7 +83,7 @@ async function gatherStories(hours) {
     .slice(0, 70);
 }
 
-async function recentBriefs(days = 10) {
+async function recentBriefs(days = 20) {
   if (!existsSync(DATA)) return [];
   const files = (await readdir(DATA)).filter((f) => /^\d{4}-\d{2}-\d{2}\.json$/.test(f)).sort().slice(-days);
   return Promise.all(files.map(async (f) => JSON.parse(await readFile(join(DATA, f), "utf8"))));
@@ -135,20 +135,20 @@ const BRIEF_TOOL = {
         maxItems: 3,
         description: "Three material words for textures a designer could lay over type or a background, 1 to 2 words each, e.g. \"paper\", \"rough plaster\", \"linen\", \"rust\".",
       },
-      fontPairId: { type: "string", enum: FONT_PAIRS.map((f) => f.id) },
+      fontPairId: { type: "string", description: "The id of one pairing from the list you were given." },
       fontReason: { type: "string", description: "One sentence on why this pairing suits the story." },
     },
     required: ["storyIndex", "storySummary", "headlines", "sublines", "imageQueries", "archiveQueries", "textureQueries", "fontPairId", "fontReason"],
   },
 };
 
-function briefPrompt(stories, recent, colour) {
+function briefPrompt(stories, recent, colour, pairsOk) {
   const list = stories
     .map((s, i) => `[${i}] ${s.source} · ${s.published}\n${s.title}\n${s.summary}`)
     .join("\n\n");
   const used = recent.map((b) => `- ${b.story.title}`).join("\n") || "- none yet";
-  const pairs = FONT_PAIRS.map((f) => `${f.id}: ${f.display} + ${f.text}`).join("\n");
-  return `You write a daily brief for a designer who makes one 9:16 poster a day from the news.
+  const pairs = pairsOk.map((f) => `${f.id}: ${f.display} + ${f.text}`).join("\n");
+  return `You write a daily brief for a designer who makes one A-size poster a day from the news.
 
 Pick ONE story from the list below. Choose something with real weight or a strong image in it: a turning point, a discovery, a strange or moving moment. Avoid celebrity gossip, sport results, routine politics and stories that repeat recent briefs. Treat tragedies with care; never make them glib.
 
@@ -158,7 +158,7 @@ Then write:
 - Three Unsplash search terms for atmospheric photography. Unsplash has no news photos, so ask for textures, places, objects and light that evoke the story. Today's colour is ${colour}; lean towards imagery that would sit well with it.
 - Three search terms for museum collections (the Art Institute of Chicago and The Met), to find public-domain prints, paintings, posters and archive photographs that echo the story. Think in motifs and objects a museum would hold: "procession", "ledger", "banner", "crowd", "map".
 - Three material words for textures that suit the story and could be laid over type or a background: paper, plaster, fabric, metal, stone and so on.
-- One typeface pairing from this list, chosen to suit the story:
+- One typeface pairing from this list, chosen to suit the story. Only these are available today, because no typeface repeats within ${TYPE_COOLDOWN_DAYS} days:
 ${pairs}
 
 Recent briefs (do not repeat these stories):
@@ -188,8 +188,9 @@ function normalise(out) {
   return out;
 }
 
-function validate(out, stories) {
+function validate(out, stories, pairsOk = FONT_PAIRS) {
   const problems = [];
+  if (!pairsOk.some((f) => f.id === out.fontPairId)) problems.push(`fontPairId "${out.fontPairId}" is not one of the pairings available today`);
   if (!stories[out.storyIndex]) problems.push("storyIndex is not in the list");
   out.headlines?.forEach((h, i) => {
     const n = words(h);
@@ -333,12 +334,14 @@ async function main() {
 
   const wheel = wheelFor(date);
   const recent = await recentBriefs();
-  let prompt = briefPrompt(stories, recent, wheel.name);
+  const pairsOk = availablePairs(recent, date, daysBetween);
+  console.log(`${pairsOk.length} of ${FONT_PAIRS.length} typeface pairings available today.`);
+  let prompt = briefPrompt(stories, recent, wheel.name, pairsOk);
   let brief, problems = [];
   for (let attempt = 1; attempt <= 3; attempt++) {
     const ask = problems.length ? `${prompt}\n\nYour last attempt had these problems, fix them: ${problems.join("; ")}` : prompt;
     brief = normalise(await askClaude(ask));
-    problems = validate(brief, stories);
+    problems = validate(brief, stories, pairsOk);
     if (!problems.length) break;
     console.warn(`Attempt ${attempt} had problems: ${problems.join("; ")}`);
   }
@@ -363,7 +366,7 @@ async function main() {
     palette: paletteFor(date),
     always: ALWAYS,
     type: { ...pair, reason: brief.fontReason, ...fontAssets(pair) },
-    grid: { format: "9:16", size: [1080, 1920], columns: 6, rows: 12, margin: 48, gutter: 24, column: 144, row: 130, unit: "px" },
+    grid: { format: "A-size", size: [1080, 1528], columns: 6, rows: 8, margin: 72, gutter: 24, column: 136, row: 152, unit: "px" },
     ...(await chooseImages(brief, story, wheel.name)),
   };
 

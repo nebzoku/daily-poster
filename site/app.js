@@ -184,15 +184,28 @@
     ));
   }
 
+  // The wheel runs in day order, past to future, with today in the middle at triple width.
+  // The wheel steps backwards one place a day, so yesterday is the next colour along.
   function renderColour() {
-    const idx = WHEEL.findIndex(([n]) => n === brief.colour.name);
-    $("wheel").replaceChildren(...WHEEL.map(([n, h], i) =>
-      el("i", { class: i === idx ? "on" : "", title: n, style: `background: ${h}` })));
-    $("wheel-key").replaceChildren(`${brief.colour.yesterday} yesterday · `, el("b", {}, `${brief.colour.name} today`), ` · ${brief.colour.tomorrow} tomorrow`);
-    const chip = (hex, fixed) => el("button", {
-      type: "button", class: "sw" + (fixed ? " fixed" : ""), "aria-label": `Copy ${hex}`, onclick: () => copy(hex),
-    }, el("span", { class: "chip", style: `background:${hex}` }), el("span", { class: "hex" }, hex));
-    $("swatches").replaceChildren(...palette.colours.map((c) => chip(c, false)), ...brief.always.map((c) => chip(c, true)));
+    const t = WHEEL.findIndex(([n]) => n === brief.colour.name);
+    const at = (k) => WHEEL[((t + k) % 12 + 12) % 12];
+    const order = [5, 4, 3, 2, 1, 0, -1, -2, -3, -4, -5, -6].map((k) => ({ k, c: at(k) }));
+    $("wheel").replaceChildren(...order.map(({ k, c: [n, h] }) => el("i", { class: k === 0 ? "on" : "", title: n, style: `background: ${h}` })));
+    $("wheel").setAttribute("aria-label", `The colour wheel: ${brief.colour.yesterday} yesterday, ${brief.colour.name} today, ${brief.colour.tomorrow} tomorrow`);
+    const row = (label, [n, h], now) => el("span", { class: now ? "now" : "" }, el("i", { style: `background:${h}` }), `${label} · ${n}`);
+    $("wheel-key").replaceChildren(row("Yesterday", at(1)), row("Today", at(0), true), row("Tomorrow", at(-1)));
+
+    // Text on each band: the palette's darkest or lightest, whichever reads better.
+    const [, light, , dark] = palette.colours;
+    const contrast = (a, b) => { const [x, y] = [luminance(a), luminance(b)].sort((p, q) => q - p); return (x + 0.05) / (y + 0.05); };
+    const band = (hex, label) => {
+      const fg = hex === "#000000" ? "#FFFFFF" : hex === "#FFFFFF" ? "#000000" : contrast(hex, dark) >= contrast(hex, light) ? dark : light;
+      return el("button", { type: "button", "aria-label": `Copy ${hex}`, style: `background:${hex};color:${fg}`, onclick: () => copy(hex) },
+        el("span", {}, hex), el("span", {}, el("span", { class: "num" }, label), el("span", { class: "act" }, "Copy")));
+    };
+    $("swatches").replaceChildren(
+      ...palette.colours.map((c, i) => band(c, String(i + 1).padStart(2, "0"))),
+      ...brief.always.map((c) => band(c, "Always")));
   }
 
   function renderType() {

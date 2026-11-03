@@ -3,11 +3,11 @@
     "date": "2026-11-03",
     "issue": 32,
     "colour": "Red",
-    "headline": "Thanks Given for Failed Treason",
+    "headline": "Nine Stones Against The Trawl",
     "bg": "#F33446",
-    "thumb": "https://images.unsplash.com/photo-1470549584009-d347338fc0ff?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Ym9uZmlyZSUyMGVtYmVycyUyMG5pZ2h0fGVufDF8fHx8MTc5MzY5NzQ1NHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-    "display": "Libre Caslon Display",
-    "css": "https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Franklin&display=swap"
+    "thumb": "https://images.unsplash.com/photo-1758910069133-e58e7d5a98b8?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cmVkJTIwYnVveSUyMHNlYXxlbnwxfHx8fDE3OTM2OTc5MDJ8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+    "display": "Anton",
+    "css": "https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono&display=swap"
   },
   {
     "date": "2026-11-02",

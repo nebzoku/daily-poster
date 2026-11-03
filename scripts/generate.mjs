@@ -153,7 +153,7 @@ function briefPrompt(stories, recent, colour) {
 Pick ONE story from the list below. Choose something with real weight or a strong image in it: a turning point, a discovery, a strange or moving moment. Avoid celebrity gossip, sport results, routine politics and stories that repeat recent briefs. Treat tragedies with care; never make them glib.
 
 Then write:
-- Three headlines of 3 to 6 words. They should be evocative and feel at home set huge on a poster: compressed, rhythmic, a little poetic, with tension or a turn in them. No puns that trivialise, no clickbait, no colons. Make the three genuinely different in angle.
+- Three headlines of 3 to 6 words. Count the words before you answer; seven is too many. They should be evocative and feel at home set huge on a poster: compressed, rhythmic, a little poetic, with tension or a turn in them. No puns that trivialise, no clickbait, no colons. Make the three genuinely different in angle.
 - Three sublines that give the facts plainly, so the poster still informs.
 - Three Unsplash search terms for atmospheric photography. Unsplash has no news photos, so ask for textures, places, objects and light that evoke the story. Today's colour is ${colour}; lean towards imagery that would sit well with it.
 - Three search terms for museum collections (the Art Institute of Chicago and The Met), to find public-domain prints, paintings, posters and archive photographs that echo the story. Think in motifs and objects a museum would hold: "procession", "ledger", "banner", "crowd", "map".
@@ -173,6 +173,20 @@ async function askClaude(prompt) {
 }
 
 const words = (s) => s.trim().split(/\s+/).length;
+
+// Models occasionally return a list as a JSON string or as lines of text. Accept any of them.
+const LIST_FIELDS = ["headlines", "sublines", "imageQueries", "archiveQueries", "textureQueries"];
+function normalise(out) {
+  for (const k of LIST_FIELDS) {
+    let v = out[k];
+    if (typeof v === "string") {
+      try { v = JSON.parse(v); } catch { v = v.split(/\n|\s*;\s*/); }
+    }
+    out[k] = Array.isArray(v) ? v.map((x) => String(x).replace(/^\s*(?:[-*•]|\d+[.)])\s*/, "").replace(/^"|"$/g, "").trim()).filter(Boolean) : [];
+  }
+  out.storyIndex = Number(out.storyIndex);
+  return out;
+}
 
 function validate(out, stories) {
   const problems = [];
@@ -315,14 +329,15 @@ async function main() {
   const wheel = wheelFor(date);
   const recent = await recentBriefs();
   let prompt = briefPrompt(stories, recent, wheel.name);
-  let brief = await askClaude(prompt);
-  let problems = validate(brief, stories);
-  if (problems.length) {
-    console.warn("Retrying once:", problems.join("; "));
-    brief = await askClaude(`${prompt}\n\nYour last attempt had these problems, fix them: ${problems.join("; ")}`);
+  let brief, problems = [];
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    const ask = problems.length ? `${prompt}\n\nYour last attempt had these problems, fix them: ${problems.join("; ")}` : prompt;
+    brief = normalise(await askClaude(ask));
     problems = validate(brief, stories);
-    if (problems.length) throw new Error("Brief failed checks: " + problems.join("; "));
+    if (!problems.length) break;
+    console.warn(`Attempt ${attempt} had problems: ${problems.join("; ")}`);
   }
+  if (problems.length) throw new Error("Brief failed checks: " + problems.join("; "));
 
   const story = stories[brief.storyIndex];
   const pair = fontPair(brief.fontPairId);

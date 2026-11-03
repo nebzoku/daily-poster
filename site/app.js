@@ -97,16 +97,6 @@
     };
     $("info-open").addEventListener("click", open);
     $("info-open-2").addEventListener("click", open);
-    $("info-open-3").addEventListener("click", open);
-    // The short version, in the corner, until it's dismissed.
-    let hide = false;
-    try { hide = localStorage.getItem("dp-hint-closed") === "1"; } catch {}
-    $("hint").hidden = hide;
-    $("hint-close").addEventListener("click", () => {
-      $("hint").classList.add("gone");
-      setTimeout(() => { $("hint").hidden = true; }, 400);
-      try { localStorage.setItem("dp-hint-closed", "1"); } catch {}
-    });
     $("info-close").addEventListener("click", close);
     document.addEventListener("keydown", (e) => { if (e.key === "Escape" && info.classList.contains("open")) close(); });
   }
@@ -115,7 +105,7 @@
   function setupHero() {
     const day = fmt(noon(brief.date), { weekday: "short", day: "numeric", month: "short" });
     const isLatest = !index.length || index[0].date === brief.date;
-    $("kicker-title").textContent = isLatest ? "Today's poster headlines" : "Poster headlines";
+    $("kicker-title").textContent = isLatest ? "Today's headlines" : "Headlines";
     $("kicker-meta").textContent = `No. ${pad(brief.issue)} · ${day} · ${brief.story.source}`;
     const spans = brief.headlines.map((t) => el("span", { class: "hl" }, ...maskWords(t)));
     $("hero-hl").replaceChildren(...spans);

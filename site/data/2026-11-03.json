@@ -1,0 +1,235 @@
+{
+  "date": "2026-11-03",
+  "issue": 32,
+  "generatedAt": "2026-11-03T09:17:34.311Z",
+  "colour": {
+    "name": "Red",
+    "yesterday": "Orange",
+    "tomorrow": "Rose"
+  },
+  "story": {
+    "title": "Law behind Bonfire Night among records sent from parliament to National Archives",
+    "summary": "Parliament has sent a batch of its historic records to the National Archives. They include the 1605 Thanksgiving Act, passed after Guy Fawkes's plot failed and the origin of Bonfire Night, and the longest act in the collection.",
+    "source": "The Guardian",
+    "url": "https://www.theguardian.com/uk-news/2026/nov/03/law-behind-bonfire-night-among-records-sent-from-parliament-to-national-archives",
+    "published": "2026-11-03T08:00:41.000Z"
+  },
+  "headlines": [
+    "Thanks Given for Failed Treason",
+    "The Page That Outlived Fire",
+    "Four Centuries on a Shelf"
+  ],
+  "sublines": [
+    "The 1605 Thanksgiving Act, passed after the Gunpowder Plot failed, now sits in the National Archives.",
+    "Parliament's records go to the National Archives, among them the law behind Bonfire Night and the longest act held.",
+    "As fireworks light the UK, a flat vellum page in calligraphy still records the nation's thanks for deliverance."
+  ],
+  "palette": {
+    "name": "Vivid",
+    "colours": [
+      "#F33446",
+      "#FFDBD9",
+      "#7D6D6C",
+      "#3A0E0F"
+    ]
+  },
+  "always": [
+    "#000000",
+    "#FFFFFF"
+  ],
+  "type": {
+    "id": "caslon",
+    "display": "Libre Caslon Display",
+    "text": "Libre Franklin",
+    "reason": "A high-contrast display serif echoes the formal calligraphy of a parliamentary vellum, while the grotesque body keeps the archival facts plain.",
+    "css": "https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Franklin&display=swap",
+    "displayUrl": "https://fonts.google.com/specimen/Libre+Caslon+Display",
+    "textUrl": "https://fonts.google.com/specimen/Libre+Franklin"
+  },
+  "grid": {
+    "format": "9:16",
+    "size": [
+      1080,
+      1920
+    ],
+    "columns": 6,
+    "rows": 12,
+    "margin": 48,
+    "gutter": 24,
+    "column": 144,
+    "row": 130,
+    "unit": "px"
+  },
+  "images": [
+    {
+      "id": "unsplash:rLm4Wq96h_0",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "photography of burning camp fire",
+      "credit": "CHUTTERSNAP",
+      "creditUrl": "https://unsplash.com/@chuttersnap?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/photography-of-burning-camp-fire-rLm4Wq96h_0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "photography of burning camp fire",
+      "thumb": "https://images.unsplash.com/photo-1470549584009-d347338fc0ff?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Ym9uZmlyZSUyMGVtYmVycyUyMG5pZ2h0fGVufDF8fHx8MTc5MzY5NzQ1NHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1470549584009-d347338fc0ff?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Ym9uZmlyZSUyMGVtYmVycyUyMG5pZ2h0fGVufDF8fHx8MTc5MzY5NzQ1NHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "artic:153528",
+      "source": "Art Institute of Chicago",
+      "licence": "CC0",
+      "title": "Gunpowder Primer Flask with Composite Water Buffalo, Boar, and Antelope, 17th/18th century",
+      "credit": "Unknown artist",
+      "creditUrl": "https://www.artic.edu/artworks/153528",
+      "page": "https://www.artic.edu/artworks/153528",
+      "alt": "A work made of ivory with metal.",
+      "thumb": "https://www.artic.edu/iiif/2/89a676b0-4238-2c5a-7de6-aefcd0dbf4c0/full/400,/0/default.jpg",
+      "src": "https://www.artic.edu/iiif/2/89a676b0-4238-2c5a-7de6-aefcd0dbf4c0/full/1686,/0/default.jpg"
+    },
+    {
+      "id": "unsplash:ZqSDrFeAbCg",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "A bright campfire with rising sparks on a dark beach at night",
+      "credit": "Hans",
+      "creditUrl": "https://unsplash.com/@hansphoto?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/campfire-with-rising-sparks-at-night-ZqSDrFeAbCg?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A bright campfire with rising sparks on a dark beach at night",
+      "thumb": "https://images.unsplash.com/photo-1625119161833-57f8a7009f7b?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Ym9uZmlyZSUyMGVtYmVycyUyMG5pZ2h0fGVufDF8fHx8MTc5MzY5NzQ1NHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1625119161833-57f8a7009f7b?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Ym9uZmlyZSUyMGVtYmVycyUyMG5pZ2h0fGVufDF8fHx8MTc5MzY5NzQ1NHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "artic:49676",
+      "source": "Art Institute of Chicago",
+      "licence": "CC0",
+      "title": "The Discovery of the Plot to Kill Caesar and Cleopatra from The Story of Caesar and Cleopatra, c. 1680",
+      "credit": "Workshop of Gerard Peemans",
+      "creditUrl": "https://www.artic.edu/artworks/49676",
+      "page": "https://www.artic.edu/artworks/49676",
+      "alt": "A work made of wool and silk, slit and double interlocking tapestry weave\nwarp: count: 8 warps per cm; wool: s-ply of four z-spun elements; diameter: 0.8 mm\nweft: count: varies from 18 to 36 wefts per cm; wool: s-ply of two z-spun elements; diameters: 0.4–1.0 mm; silk: pairs and three yarns of s-ply of two z-twisted elements; diameters: 0.5–1.2 mm; wool and silk: paired yarns of s-ply of two z-spun wool elements and s-ply of two z-twisted silk elements; diameters: 0.8–1.0 mm.",
+      "thumb": "https://www.artic.edu/iiif/2/da66136c-0a79-10cf-baf1-b10f749eff0f/full/400,/0/default.jpg",
+      "src": "https://www.artic.edu/iiif/2/da66136c-0a79-10cf-baf1-b10f749eff0f/full/1686,/0/default.jpg"
+    },
+    {
+      "id": "unsplash:DUXACn8tgp4",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "bonfire",
+      "credit": "Toa Heftiba",
+      "creditUrl": "https://unsplash.com/@heftiba?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/bonfire-DUXACn8tgp4?utm_source=daily_poster&utm_medium=referral",
+      "alt": "bonfire",
+      "thumb": "https://images.unsplash.com/photo-1504470695779-75300268aa0e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8Ym9uZmlyZSUyMGVtYmVycyUyMG5pZ2h0fGVufDF8fHx8MTc5MzY5NzQ1NHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1504470695779-75300268aa0e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8Ym9uZmlyZSUyMGVtYmVycyUyMG5pZ2h0fGVufDF8fHx8MTc5MzY5NzQ1NHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "artic:278707",
+      "source": "Art Institute of Chicago",
+      "licence": "CC0",
+      "title": "Neptune Plotting the Destruction of Man, from Ovid's Metamorphoses (Book 1), 1589",
+      "credit": "Hendrick Goltzius",
+      "creditUrl": "https://www.artic.edu/artworks/278707",
+      "page": "https://www.artic.edu/artworks/278707",
+      "alt": "A work made of engraving on ivory laid paper.",
+      "thumb": "https://www.artic.edu/iiif/2/16439b24-7f9d-7421-5dee-730017b79a94/full/400,/0/default.jpg",
+      "src": "https://www.artic.edu/iiif/2/16439b24-7f9d-7421-5dee-730017b79a94/full/1686,/0/default.jpg"
+    },
+    {
+      "id": "unsplash:TRys9NU8GiQ",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "burning firewood at night",
+      "credit": "Luke Porter",
+      "creditUrl": "https://unsplash.com/@lukeporter?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/burning-firewood-at-night-TRys9NU8GiQ?utm_source=daily_poster&utm_medium=referral",
+      "alt": "burning firewood at night",
+      "thumb": "https://images.unsplash.com/photo-1464808646948-8f732deb6e4b?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8Ym9uZmlyZSUyMGVtYmVycyUyMG5pZ2h0fGVufDF8fHx8MTc5MzY5NzQ1NHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1464808646948-8f732deb6e4b?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8Ym9uZmlyZSUyMGVtYmVycyUyMG5pZ2h0fGVufDF8fHx8MTc5MzY5NzQ1NHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "artic:11",
+      "source": "Art Institute of Chicago",
+      "licence": "CC0",
+      "title": "Self-Portrait, 1878",
+      "credit": "Walter Shirlaw",
+      "creditUrl": "https://www.artic.edu/artworks/11",
+      "page": "https://www.artic.edu/artworks/11",
+      "alt": "A work made of oil on canvas.",
+      "thumb": "https://www.artic.edu/iiif/2/7b7a6f39-1cd8-ea2f-9811-18b0e23edac0/full/400,/0/default.jpg",
+      "src": "https://www.artic.edu/iiif/2/7b7a6f39-1cd8-ea2f-9811-18b0e23edac0/full/1686,/0/default.jpg"
+    },
+    {
+      "id": "unsplash:8z9pi6GgOo4",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "bonfire on brown sand during nighttime",
+      "credit": "Joshua Newton",
+      "creditUrl": "https://unsplash.com/@joshuanewton?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/bonfire-on-brown-sand-during-nighttime-8z9pi6GgOo4?utm_source=daily_poster&utm_medium=referral",
+      "alt": "bonfire on brown sand during nighttime",
+      "thumb": "https://images.unsplash.com/photo-1475738972911-5b44ce984c42?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8Ym9uZmlyZSUyMGVtYmVycyUyMG5pZ2h0fGVufDF8fHx8MTc5MzY5NzQ1NHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1475738972911-5b44ce984c42?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8Ym9uZmlyZSUyMGVtYmVycyUyMG5pZ2h0fGVufDF8fHx8MTc5MzY5NzQ1NHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "artic:111",
+      "source": "Art Institute of Chicago",
+      "licence": "CC0",
+      "title": "Martin Vanden Bogaert Desjardins, n.d.",
+      "credit": "Gérard Edelinck",
+      "creditUrl": "https://www.artic.edu/artworks/111",
+      "page": "https://www.artic.edu/artworks/111",
+      "alt": "A work made of engraving and etching on cream wove paper.",
+      "thumb": "https://www.artic.edu/iiif/2/13bb7117-5115-b409-1dbb-1d9c1d70a5c9/full/400,/0/default.jpg",
+      "src": "https://www.artic.edu/iiif/2/13bb7117-5115-b409-1dbb-1d9c1d70a5c9/full/1686,/0/default.jpg"
+    }
+  ],
+  "textures": [
+    {
+      "id": "polyhaven:burned_ground_01",
+      "source": "Poly Haven",
+      "licence": "CC0",
+      "title": "Burned Ground 01",
+      "credit": "Rob Tuytel",
+      "creditUrl": "https://polyhaven.com/a/burned_ground_01",
+      "page": "https://polyhaven.com/a/burned_ground_01",
+      "alt": "Burned Ground 01 texture",
+      "thumb": "https://cdn.polyhaven.com/asset_img/thumbs/burned_ground_01.png?width=480&height=480",
+      "src": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/burned_ground_01/burned_ground_01_diff_2k.jpg"
+    },
+    {
+      "id": "unsplash:NxbuURLQqp8",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a close up of a piece of white paper",
+      "credit": "Plufow Le Studio",
+      "creditUrl": "https://unsplash.com/@plufow?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-close-up-of-a-piece-of-white-paper-NxbuURLQqp8?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a close up of a piece of white paper",
+      "thumb": "https://images.unsplash.com/photo-1712145176570-6cb1d98a126a?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Y2hhcnJlZCUyMHBhcGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTM2OTc0NTR8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1712145176570-6cb1d98a126a?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Y2hhcnJlZCUyMHBhcGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTM2OTc0NTR8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "polyhaven:decrepit_wallpaper",
+      "source": "Poly Haven",
+      "licence": "CC0",
+      "title": "Decrepit Wallpaper",
+      "credit": "Rob Tuytel",
+      "creditUrl": "https://polyhaven.com/a/decrepit_wallpaper",
+      "page": "https://polyhaven.com/a/decrepit_wallpaper",
+      "alt": "Decrepit Wallpaper texture",
+      "thumb": "https://cdn.polyhaven.com/asset_img/thumbs/decrepit_wallpaper.png?width=480&height=480",
+      "src": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/decrepit_wallpaper/decrepit_wallpaper_diff_2k.jpg"
+    },
+    {
+      "id": "unsplash:tCm7ZKIt-yE",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a black and white photo of a snow covered ground",
+      "credit": "Pixelbuddha Studio",
+      "creditUrl": "https://unsplash.com/@pixelbuddhastudio?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-black-and-white-photo-of-a-snow-covered-ground-tCm7ZKIt-yE?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a black and white photo of a snow covered ground",
+      "thumb": "https://images.unsplash.com/photo-1706790608898-eaa96ece269c?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Y2hhcnJlZCUyMHBhcGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTM2OTc0NTR8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1706790608898-eaa96ece269c?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Y2hhcnJlZCUyMHBhcGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTM2OTc0NTR8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    }
+  ]
+}

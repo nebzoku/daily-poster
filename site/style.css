@@ -416,6 +416,9 @@ label.cta { cursor: pointer; }
   transition: opacity .2s ease, transform .2s ease; pointer-events: none; z-index: 20;
 }
 .toast.on { opacity: 1; transform: translate(-50%, 0); }
+.toast.loading { background: #E6E6E3; color: #111; animation: toast-pulse 1.2s ease-in-out infinite; }
+@keyframes toast-pulse { 0%, 100% { color: #111; } 50% { color: #A8A8A4; } }
+@media (prefers-reduced-motion: reduce) { .toast.loading { animation: none; color: #555; } }
 
 /* ---------- small screens: one column ---------- */
 @media (max-width: 960px) {

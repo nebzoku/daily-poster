@@ -49,12 +49,15 @@
   const ink = (hex) => (luminance(hex) > 0.22 ? "#000000" : "#FFFFFF");
 
   let toastTimer;
-  function toast(msg) {
+  // A short message at the bottom of the screen. A loading one stays (grey, its text
+  // pulsing) until the next message replaces it.
+  function toast(msg, loading = false) {
     const t = $("toast");
     t.textContent = msg;
+    t.classList.toggle("loading", loading);
     t.classList.add("on");
     clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => t.classList.remove("on"), 1800);
+    if (!loading) toastTimer = setTimeout(() => t.classList.remove("on"), 1800);
   }
   async function copy(text, msg) {
     try { await navigator.clipboard.writeText(text); toast(msg || `Copied ${text}`); }
@@ -663,7 +666,7 @@ ${frames.join("\n")}
   }
 
   async function copyFigma() {
-    toast("Gathering the images…");
+    toast("Copying for Figma…", true);
     const blob = figmaSVG().then((s) => new Blob([s], { type: "text/plain" }));
     const done = () => toast("Copied. Paste into Figma with ⌘V");
     try {

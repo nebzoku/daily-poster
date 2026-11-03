@@ -31,6 +31,8 @@
   const dots = (s) => s.replace(/\//g, ".");
   const words = (s) => s.trim().split(/\s+/).length;
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  // Links come from news feeds and image APIs, so only let ordinary web links through.
+  const safe = (u) => (/^https?:\/\//i.test(String(u || "")) ? u : "#");
   const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   // Split text into masked words, so each word can rise into view on its own.
@@ -165,7 +167,7 @@
     $("story-title").textContent = s.title;
     $("story-summary").textContent = s.summary;
     const when = fmt(s.published, { weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
-    $("story-source").replaceChildren(`${s.source} · ${when} · `, el("a", { href: s.url, target: "_blank", rel: "noopener" }, `Read it on ${s.source} ↗`));
+    $("story-source").replaceChildren(`${s.source} · ${when} · `, el("a", { href: safe(s.url), target: "_blank", rel: "noopener" }, `Read it on ${s.source} ↗`));
   }
 
   // Clicking a line copies it, and makes it your pick for the Figma artboard and caption.
@@ -221,7 +223,7 @@
     let imgN = 0, texN = 0;
     const variant = items.map((it) => (it.kind === "texture" ? `t${texN++ % 3}` : `v${imgN++ % 7}`));
     const shot = (it, i, copy) => el("figure", { class: `shot ${variant[i]}${it.kind === "texture" ? " is-texture" : ""}`, ...(copy ? { "aria-hidden": "true" } : {}) },
-      el("a", { class: "frame", href: it.page, target: "_blank", rel: "noopener",
+      el("a", { class: "frame", href: safe(it.page), target: "_blank", rel: "noopener",
         ...(copy ? { tabindex: "-1" } : { "aria-label": `${it.alt}. ${it.kind === "texture" ? "Texture" : it.credit}, ${it.source}` }) },
         el("img", { src: it.thumb, alt: copy ? "" : it.alt, loading: copy ? "lazy" : "eager", draggable: "false",
           onerror: (e) => e.target.parentElement.classList.add("missing") })),

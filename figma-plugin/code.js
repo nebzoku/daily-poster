@@ -76,7 +76,7 @@ function place(node, x, y) { node.x = x; node.y = y; return node; }
 
 // One Instagram mockup (template A): the poster slot centred with a label on each side.
 async function mockup(def, brief, mono, accentStyle) {
-  var W = 1080, H = 1440, band = 52;
+  var W = 1080, H = 1440, bx = 32.5, by = 24, size = 16, d = 10;   // poster fills the height: 48 px above and below, 65 px at the sides
   var f = figma.createFrame();
   f.name = "Mockup · " + def.name;
   f.resize(W, H);
@@ -85,14 +85,14 @@ async function mockup(def, brief, mono, accentStyle) {
 
   var slot = figma.createRectangle();
   slot.name = "Poster goes here";
-  slot.resize(872, 1232);
+  slot.resize(950, 1344);
   slot.fills = [{ type: "SOLID", color: hexToRgb(def.fg), opacity: 0.08 }];
-  f.appendChild(place(slot, 104, 104));
+  f.appendChild(place(slot, 65, 48));
 
   function label(chars, name) {
     var t = figma.createText();
     t.fontName = mono;
-    t.fontSize = 22;
+    t.fontSize = size;
     t.characters = chars.toUpperCase();
     t.letterSpacing = { unit: "PERCENT", value: 6 };
     t.textAutoResize = "WIDTH_AND_HEIGHT";
@@ -106,25 +106,25 @@ async function mockup(def, brief, mono, accentStyle) {
   var top = label("Daily Poster", "Daily Poster");
   var dot = figma.createEllipse();
   dot.name = "Dot";
-  dot.resize(14, 14);
+  dot.resize(d, d);
   await dot.setFillStyleIdAsync(accentStyle.id);
   f.appendChild(dot);
-  var x0 = W / 2 - (28 + top.width) / 2;
-  place(dot, x0, band - 7);
-  place(top, x0 + 28, band - top.height / 2);
+  var x0 = W / 2 - (d * 2 + top.width) / 2;
+  place(dot, x0, by - d / 2);
+  place(top, x0 + d * 2, by - top.height / 2);
 
   // Bottom: the source, centred.
   var bottom = label(brief.story.source, "Source");
-  place(bottom, W / 2 - bottom.width / 2, H - band - bottom.height / 2);
+  place(bottom, W / 2 - bottom.width / 2, H - by - bottom.height / 2);
 
   // Left reads upwards, right reads downwards; both centred top to bottom.
   var parts = brief.date.split("-");
   var left = label("No. " + pad(brief.issue), "Number");
   left.rotation = 90;
-  place(left, band - left.height / 2, H / 2 + left.width / 2);
+  place(left, bx - left.height / 2, H / 2 + left.width / 2);
   var right = label(parts[2] + "." + parts[1] + "." + parts[0].slice(2), "Date");
   right.rotation = -90;
-  place(right, W - band + right.height / 2, H / 2 - right.width / 2);
+  place(right, W - bx + right.height / 2, H / 2 - right.width / 2);
   return f;
 }
 

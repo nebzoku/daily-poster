@@ -310,7 +310,9 @@
   }
 
   // ---------- Instagram mockups: template A, the poster centred with a label on each side ----------
-  const MOCK = { W: 1080, H: 1440, slot: { x: 104, y: 104, w: 872, h: 1232 }, band: 52, size: 22 };
+  // The poster fills the height, leaving 48 px above and below and 65 px at the sides;
+  // each label sits centred in its band (bx from the side edges, by from the top and bottom).
+  const MOCK = { W: 1080, H: 1440, slot: { x: 65, y: 48, w: 950, h: 1344 }, bx: 32.5, by: 24, size: 16, dot: 10 };
   const issueDate = () => { const [y, m, d] = brief.date.split("-"); return `${d}.${m}.${y.slice(2)}`; };
   function mockups() {
     return [
@@ -331,23 +333,23 @@
 
   // One mockup as SVG. Used on the page and in the Figma paste.
   function mockupSVG(m, poster, onPage) {
-    const { W, H, slot, band, size } = MOCK, L = mockLabels();
+    const { W, H, slot, bx, by, size, dot } = MOCK, L = mockLabels();
     const dy = (size * 0.36).toFixed(1);   // drops the baseline so the capitals sit centred
     const family = onPage ? "'Geist Mono', ui-monospace, monospace" : "Geist Mono";   // Figma wants one plain family name
     const font = `font-family="${family}" font-size="${size}" fill="${m.fg}" letter-spacing="${tracking().toFixed(2)}"`;
     const centred = (id, s, x, y, rot) =>
       `<text id="${id}" ${font} text-anchor="middle" transform="translate(${x} ${y})${rot ? ` rotate(${rot})` : ""}" x="0" y="${dy}">${esc(s)}</text>`;
-    const groupW = 28 + monoWidth(L.top), x0 = W / 2 - groupW / 2;
+    const groupW = dot * 2 + monoWidth(L.top), x0 = W / 2 - groupW / 2;
     const inside = poster
       ? `<image id="Poster" href="${poster}" x="${slot.x}" y="${slot.y}" width="${slot.w}" height="${slot.h}" preserveAspectRatio="xMidYMin slice"/>`
       : `<rect id="Poster goes here" x="${slot.x}" y="${slot.y}" width="${slot.w}" height="${slot.h}" fill="${m.fg}" fill-opacity="0.08"/>`;
     return `<rect id="Background" width="${W}" height="${H}" fill="${m.bg}"/>
 ${inside}
-<circle id="Dot" cx="${(x0 + 7).toFixed(1)}" cy="${band}" r="7" fill="${palette.colours[0]}"/>
-<text id="Daily Poster" ${font} x="${(x0 + 28).toFixed(1)}" y="${(band + +dy).toFixed(1)}">${esc(L.top)}</text>
-${centred("Number", L.left, band, H / 2, -90)}
-${centred("Date", L.right, W - band, H / 2, 90)}
-${centred("Source", L.bottom, W / 2, H - band)}`;
+<circle id="Dot" cx="${(x0 + dot / 2).toFixed(1)}" cy="${by}" r="${dot / 2}" fill="${palette.colours[0]}"/>
+<text id="Daily Poster" ${font} x="${(x0 + dot * 2).toFixed(1)}" y="${(by + +dy).toFixed(1)}">${esc(L.top)}</text>
+${centred("Number", L.left, bx, H / 2, -90)}
+${centred("Date", L.right, W - bx, H / 2, 90)}
+${centred("Source", L.bottom, W / 2, H - by)}`;
   }
 
   const state2 = { poster: null };
@@ -364,7 +366,7 @@ ${centred("Source", L.bottom, W / 2, H - band)}`;
 
   // Draws a mockup at full size and saves it as a PNG.
   async function downloadMockup(m) {
-    const { W, H, slot, band, size } = MOCK, L = mockLabels();
+    const { W, H, slot, bx, by, size, dot } = MOCK, L = mockLabels();
     await document.fonts.load(`${size}px "Geist Mono"`);
     const c = document.createElement("canvas");
     c.width = W; c.height = H;
@@ -383,12 +385,12 @@ ${centred("Source", L.bottom, W / 2, H - band)}`;
     ctx.fillStyle = m.fg; ctx.textBaseline = "alphabetic";
     const dy = size * 0.36;
     const put = (s, x, y, rot) => { ctx.save(); ctx.translate(x, y); ctx.rotate((rot * Math.PI) / 180); ctx.textAlign = "center"; ctx.fillText(s, 0, dy); ctx.restore(); };
-    const groupW = 28 + monoWidth(L.top), x0 = W / 2 - groupW / 2;
-    ctx.fillStyle = palette.colours[0]; ctx.beginPath(); ctx.arc(x0 + 7, band, 7, 0, Math.PI * 2); ctx.fill();
-    ctx.fillStyle = m.fg; ctx.textAlign = "left"; ctx.fillText(L.top, x0 + 28, band + dy);
-    put(L.left, band, H / 2, -90);
-    put(L.right, W - band, H / 2, 90);
-    put(L.bottom, W / 2, H - band, 0);
+    const groupW = dot * 2 + monoWidth(L.top), x0 = W / 2 - groupW / 2;
+    ctx.fillStyle = palette.colours[0]; ctx.beginPath(); ctx.arc(x0 + dot / 2, by, dot / 2, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = m.fg; ctx.textAlign = "left"; ctx.fillText(L.top, x0 + dot * 2, by + dy);
+    put(L.left, bx, H / 2, -90);
+    put(L.right, W - bx, H / 2, 90);
+    put(L.bottom, W / 2, H - by, 0);
     c.toBlob((b) => {
       const a = el("a", { href: URL.createObjectURL(b), download: `daily-poster-${pad(brief.issue)}-${m.key}.png` });
       document.body.append(a); a.click(); a.remove();

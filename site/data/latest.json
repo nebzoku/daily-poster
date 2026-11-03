@@ -236,5 +236,54 @@
       "thumb": "https://images.unsplash.com/photo-1523447704114-37cea08ee064?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cnVzdCUyMHRleHR1cmV8ZW58MXx8fHwxNzkzNjk3OTAyfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
       "src": "https://images.unsplash.com/photo-1523447704114-37cea08ee064?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cnVzdCUyMHRleHR1cmV8ZW58MXx8fHwxNzkzNjk3OTAyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     }
+  ],
+  "objects": [
+    {
+      "name": "boulder",
+      "material": "rough weathered granite",
+      "image": "media/2026-11-03/object-1.png",
+      "thumb": "media/2026-11-03/object-1-thumb.png",
+      "model": {
+        "title": "Namaqualand Boulder 03",
+        "source": "Poly Haven",
+        "url": "https://polyhaven.com/a/namaqualand_boulder_03",
+        "licence": "CC0",
+        "creator": "",
+        "creatorUrl": ""
+      },
+      "texture": {
+        "title": "Coast Land Rocks 01",
+        "url": "https://polyhaven.com/a/coast_land_rocks_01"
+      }
+    },
+    {
+      "name": "anchor",
+      "material": "rusted iron",
+      "image": "media/2026-11-03/object-2.png",
+      "thumb": "media/2026-11-03/object-2-thumb.png",
+      "model": null,
+      "texture": {
+        "title": "Rusty Metal 04",
+        "url": "https://polyhaven.com/a/rusty_metal_04"
+      }
+    },
+    {
+      "name": "trawl net float",
+      "material": "worn painted steel",
+      "image": "media/2026-11-03/object-3.png",
+      "thumb": "media/2026-11-03/object-3-thumb.png",
+      "model": {
+        "title": "Lateral Sea Marker",
+        "source": "Poly Haven",
+        "url": "https://polyhaven.com/a/lateral_sea_marker",
+        "licence": "CC0",
+        "creator": "",
+        "creatorUrl": ""
+      },
+      "texture": {
+        "title": "Rusty Painted Metal",
+        "url": "https://polyhaven.com/a/rusty_painted_metal"
+      }
+    }
   ]
 }

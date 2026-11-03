@@ -369,7 +369,7 @@
   // ---------- archive: designed posters, picked by hand (data/showcase.json) ----------
   const filt = { date: "", headline: "", colour: "", type: "" };
   let posters = [];
-  const posterTitle = (x) => x.variant ? `${x.title} (${x.variant.toLowerCase()})` : x.title;
+  const posterTitle = (x) => x.title;   // several posters can share a headline; no need to mark which came first
 
   // Each poster picks up its day's colour and typefaces from the index.
   function preparePosters() {

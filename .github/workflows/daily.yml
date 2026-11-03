@@ -53,6 +53,12 @@ jobs:
           git diff --cached --quiet || git commit -m "Brief for $(TZ=Europe/London date +%F)"
           git push
 
+      # The link preview takes the day's colour.
+      - name: Preview image for today
+        run: |
+          colour=$(node -p "require('./site/data/latest.json').colour.name.toLowerCase()")
+          cp "site/og/$colour.png" site/og.png && echo "Preview: $colour"
+
       # Stamp the asset links with this commit, so browsers fetch the new code after a deploy.
       - name: Version the assets
         run: sed -i "s/?v=dev/?v=${GITHUB_SHA::7}/g" site/index.html

@@ -60,6 +60,7 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           POLY_PIZZA_KEY: ${{ secrets.POLY_PIZZA_KEY }}
+          SKETCHFAB_TOKEN: ${{ secrets.SKETCHFAB_TOKEN }}
           FORCE: ${{ inputs.force && '1' || '' }}
         run: |
           if node -e "process.exit(require('./site/data/latest.json').objects?.length && !process.env.FORCE ? 0 : 1)"; then

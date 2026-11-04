@@ -1,4 +1,5 @@
 // Three 3D objects for the day's brief, rendered in Blender as transparent PNGs.
+// Models: Sketchfab (CC0 and CC BY, needs SKETCHFAB_TOKEN) and Poly Haven (CC0).
 //
 // Claude picks three objects that could stand for the story (a boulder, an anchor, a tanker)
 // and a material for each (rusted metal, polished steel, worn stone). Models come from
@@ -136,6 +137,31 @@ async function polyPizza(term) {
   } catch (e) { console.warn(`Poly Pizza search "${term}": ${e.message}`); return []; }
 }
 
+// Sketchfab: a large library; we only use models its makers mark as downloadable under
+// CC0 or CC BY (credited). Searching is public; downloading needs SKETCHFAB_TOKEN.
+const SKETCHFAB_OK = (l) => /^(cc0|by)$/i.test(l?.slug || "") || /^CC0|^CC Attribution$/i.test(l?.label || "");
+async function sketchfab(term) {
+  if (!process.env.SKETCHFAB_TOKEN) return [];
+  try {
+    const r = await json(`https://api.sketchfab.com/v3/search?type=models&downloadable=true&count=24&q=${encodeURIComponent(term)}`);
+    const all = r.results || [];
+    const ok = all.filter((m) => SKETCHFAB_OK(m.license) && (m.faceCount || 0) < 400000);
+    console.log(`Sketchfab "${term}": ${all.length} found, ${ok.length} usable`);
+    return ok.slice(0, 8).map((m) => {
+      const imgs = (m.thumbnails?.images || []).slice().sort((a, b) => a.width - b.width);
+      const thumb = (imgs.find((i) => i.width >= 200) || imgs[imgs.length - 1] || {}).url;
+      return { source: "Sketchfab", id: m.uid, title: m.name, licence: m.license?.label || "",
+        creator: m.user?.displayName || m.user?.username || "", creatorUrl: m.user?.profileUrl || "",
+        url: m.viewerUrl || `https://sketchfab.com/3d-models/${m.uid}`, thumb };
+    }).filter((m) => m.thumb);
+  } catch (e) { console.warn(`Sketchfab search "${term}": ${e.message}`); return []; }
+}
+async function sketchfabFile(uid, file) {
+  const r = await json(`https://api.sketchfab.com/v3/models/${uid}/download`, { authorization: `Token ${process.env.SKETCHFAB_TOKEN}` });
+  if (!r.glb?.url) throw new Error("no GLB offered");
+  return download(r.glb.url, file);
+}
+
 const words = (s) => String(s).toLowerCase().split(/[^a-z0-9]+/).filter((w) => w.length > 2);
 function score(asset, terms) {
   const hay = [asset.name, ...(asset.tags || []), ...(asset.categories || [])].join(" ").toLowerCase();
@@ -173,7 +199,9 @@ These were used in the last few days, so pick different objects: ${[...new Set(u
   for (const idea of ideas) {
     const searches = list(idea.searches).slice(0, 3);
     const models = [];
-    for (const t of searches) for (const m of await polyPizza(t)) if (!models.some((x) => x.id === m.id)) models.push(m);
+    for (const t of searches) for (const m of await sketchfab(t)) if (!models.some((x) => x.id === m.id)) models.push(m);
+    // Poly Pizza's file host refuses downloads from GitHub's servers, so it's off unless that changes.
+    if (process.env.POLY_PIZZA_DOWNLOADS) for (const t of searches) for (const m of await polyPizza(t)) if (!models.some((x) => x.id === m.id)) models.push(m);
     const terms = searches.flatMap(words);
     Object.entries(phModels).map(([id, a]) => ({ id, a, n: score({ ...a, name: a.name || id }, terms) })).filter((x) => x.n > 0)
       .sort((p, q) => q.n - p.n).slice(0, 3)
@@ -182,7 +210,7 @@ These were used in the last few days, so pick different objects: ${[...new Set(u
     const textures = Object.entries(phTextures).map(([id, a]) => ({ id, a, n: score({ ...a, name: a.name || id }, mWords) }))
       .filter((x) => x.n > 0).sort((p, q) => q.n - p.n).slice(0, 6)
       .map(({ id, a }) => ({ id, title: a.name || id, thumb: phThumb(id), url: `https://polyhaven.com/a/${id}` }));
-    groups.push({ idea, models: models.slice(0, 8), textures });
+    groups.push({ idea, models: models.slice(0, 10), textures });
   }
 
   // 3. Claude looks and picks
@@ -215,7 +243,8 @@ These were used in the last few days, so pick different objects: ${[...new Set(u
     let modelFile = null;
     if (model) {
       try {
-        if (model.source === "Poly Pizza") modelFile = await download(model.glb, join(WORK, `m${j}.glb`));
+        if (model.source === "Sketchfab") modelFile = await sketchfabFile(model.id, join(WORK, `m${j}.glb`));
+        else if (model.source === "Poly Pizza") modelFile = await download(model.glb, join(WORK, `m${j}.glb`));
         else {
           const f = (await json(`https://api.polyhaven.com/files/${model.id}`)).gltf["1k"].gltf;
           modelFile = await download(f.url, join(WORK, `m${j}`, `${model.id}.gltf`));

@@ -57,9 +57,3 @@ export async function pendingPosters(state, today = londonDate()) {
     .sort((a, b) => a.date.localeCompare(b.date) || a.order - b.order);
 }
 
-// Mockup background for a poster: the day's darkest colour, then black, then white.
-export function variantFor(poster, showcase) {
-  const sameDay = showcase.filter((x) => x.date === poster.date);
-  const k = Math.max(0, sameDay.findIndex((x) => x.image === poster.image));
-  return ["colour", "black", "white"][k % 3];
-}

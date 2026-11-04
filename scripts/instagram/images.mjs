@@ -1,6 +1,6 @@
 // Renders the pictures the Instagram account posts, as 1080 × 1350 JPEGs in site/media/ig:
-//   brief-<date>.jpg   today's brief as a card: the first headline in the day's display face
-//   <poster>.jpg       each waiting poster in a 4:5 version of the mockup frame
+//   brief-<date>.jpg   today's brief as a card, laid out like the homepage
+//   <poster>.jpg       each waiting poster, centred on black
 // Instagram's API only takes JPEGs between 4:5 and 1.91:1, so these are 4:5 rather than 3:4.
 //
 //   node scripts/instagram/images.mjs --list   prints how many pictures are missing
@@ -8,71 +8,82 @@
 import { mkdir, readdir, rm, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { join } from "node:path";
-import { DATA, IG_DIR, readJSON, loadState, writeJSON, STATE, londonDate, pendingPosters, posterImage, briefImage, variantFor, SITE } from "./common.mjs";
+import { DATA, IG_DIR, readJSON, loadState, writeJSON, STATE, londonDate, pendingPosters, posterImage, briefImage, SITE } from "./common.mjs";
 
 const W = 1080, H = 1350;
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
 const pad = (n) => String(n).padStart(3, "0");
 const lum = (hex) => { const c = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255).map((v) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4)); return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]; };
-const MONO = "https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=block";
 
-function briefCard(brief) {
-  const main = brief.palette.colours[0], ink = lum(main) > 0.22 ? "#111111" : "#FFFFFF";
-  const [, , , dark] = brief.palette.colours;
-  return `<!doctype html><html><head><link rel="stylesheet" href="${MONO}"><link rel="stylesheet" href="${esc(brief.type.css)}">
+// Fonts: Google's by default; IG_FONTS_CSS can point at local copies (for previews offline).
+const FONTS = process.env.IG_FONTS_CSS || "https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400&family=Geist+Mono:wght@400;500&display=block";
+
+// Today's brief, laid out like the homepage: the kicker, the headline in EB Garamond, the
+// day's images and one 3D render arranged around it, on white.
+const AROUND = [
+  { x: 6, y: 5, w: 190 }, { x: 37, y: 3, w: 120 }, { x: 70, y: 4, w: 230, obj: 1 }, { x: 85, y: 33, w: 130 },
+  { x: 2, y: 31, w: 125 }, { x: 7, y: 70, w: 205 }, { x: 42, y: 82, w: 125 }, { x: 72, y: 68, w: 190 },
+];
+function briefCard(brief, pictures) {
+  const d = new Intl.DateTimeFormat("en-GB", { weekday: "short", day: "numeric", month: "short", timeZone: "UTC" }).format(new Date(brief.date + "T12:00:00Z"));
+  const imgs = AROUND.map((s, i) => {
+    const src = s.obj ? pictures.object : pictures.images.shift();
+    if (!src) return "";
+    return `<img class="${s.obj ? "obj" : ""}" src="${esc(src)}" style="left:${s.x}%;top:${s.y}%;width:${s.w}px">`;
+  }).join("\n");
+  return `<!doctype html><html><head><link rel="stylesheet" href="${esc(FONTS)}">
 <style>
-html,body{margin:0;width:${W}px;height:${H}px;background:${main};color:${ink};overflow:hidden}
-.m{font-family:'Geist Mono',monospace;font-size:24px;font-weight:500;letter-spacing:.04em;text-transform:uppercase}
-.top,.bot{position:absolute;left:56px;right:56px;display:flex;justify-content:space-between;align-items:center}
-.top{top:52px}.bot{bottom:52px}
-.dot{display:inline-block;width:16px;height:16px;border-radius:50%;background:${dark};margin-right:14px;vertical-align:1px}
-.hl{position:absolute;left:56px;right:56px;top:180px;bottom:180px;display:flex;align-items:center;margin:0;
-  font-family:"${esc(brief.type.display)}",serif;font-weight:400;line-height:.98;letter-spacing:-.01em;text-wrap:balance}
+html,body{margin:0;width:${W}px;height:${H}px;background:#fff;color:#111;overflow:hidden}
+img{position:absolute;display:block;height:auto}
+img.obj{background:#f2f2f0}
+.mid{position:absolute;left:150px;right:150px;top:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.m{font-family:'Geist Mono',monospace;font-size:20px;font-weight:500;letter-spacing:.02em;text-transform:uppercase}
+.k{display:inline-flex;align-items:center;gap:12px}
+.dot{width:12px;height:12px;border-radius:50%;background:${brief.palette.colours[0]}}
+.meta{color:#8a8a86;margin-top:12px}
+h1{font-family:'EB Garamond',serif;font-weight:400;font-size:88px;line-height:1.08;letter-spacing:-.012em;margin:40px 0 0;max-width:13ch;text-wrap:balance}
+.url{position:absolute;left:0;right:0;bottom:44px;text-align:center}
 </style></head><body>
-<div class="top m"><span><i class="dot"></i>Daily Poster</span><span>No. ${pad(brief.issue)}</span></div>
-<h1 class="hl" id="hl">${esc(brief.headlines[0])}</h1>
-<div class="bot m"><span>Today's brief</span><span>dailyposter.design</span></div>
-<script>
-// Largest size that fits the box.
-document.fonts.ready.then(() => { const h = document.getElementById('hl'); let s = 220;
-  h.style.fontSize = s + 'px';
-  while ((h.scrollHeight > h.clientHeight || h.scrollWidth > h.clientWidth) && s > 60) { s -= 4; h.style.fontSize = s + 'px'; }
-  document.body.dataset.ready = 1; });
-</script></body></html>`;
+${imgs}
+<div class="mid">
+  <div class="m k"><i class="dot"></i>Today's headlines</div>
+  <div class="m meta">No. ${pad(brief.issue)} · ${esc(d)} · ${esc(brief.story.source)}</div>
+  <h1>${esc(brief.headlines[0])}</h1>
+</div>
+<div class="m url">dailyposter.design</div>
+<script>Promise.all([document.fonts.ready, ...[...document.images].map(i => i.complete ? 1 : new Promise(r => i.onload = i.onerror = r))])
+  .then(() => { [...document.images].forEach(i => { if (!i.naturalWidth) i.remove(); }); document.body.dataset.ready = 1; });</script>
+</body></html>`;
 }
 
-function mockup(poster, brief, variant, posterUrl) {
-  const bg = variant === "colour" ? brief.palette.colours[3] : variant === "black" ? "#000000" : "#FFFFFF";
-  const fg = variant === "white" ? "#111111" : "#FFFFFF";
+// Posters on plain black, nothing else: the poster may carry its own date and number.
+function mockup(posterUrl) {
   const ph = H - 88, pw = Math.round(ph / 1.41481), px = Math.round((W - pw) / 2);   // 44 px above and below
-  const [y, m, d] = brief.date.split("-");
-  return `<!doctype html><html><head><link rel="stylesheet" href="${MONO}">
-<style>
-html,body{margin:0;width:${W}px;height:${H}px;background:${bg};color:${fg};overflow:hidden}
+  return `<!doctype html><html><head><style>
+html,body{margin:0;width:${W}px;height:${H}px;background:#000;overflow:hidden}
 img{position:absolute;left:${px}px;top:44px;width:${pw}px;height:${ph}px;object-fit:cover;object-position:50% 0}
-.l{position:absolute;font-family:'Geist Mono',monospace;font-size:16px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;line-height:1;transform:translate(-50%,-50%)}
-.dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:${brief.palette.colours[0]};margin-right:10px;vertical-align:0}
-</style></head><body>
-<img src="${esc(posterUrl)}">
-<div class="l" style="left:50%;top:22px"><i class="dot"></i>Daily Poster</div>
-<div class="l" style="left:${px / 2}px;top:50%;transform:translate(-50%,-50%) rotate(-90deg)">No. ${pad(brief.issue)}</div>
-<div class="l" style="left:${W - px / 2}px;top:50%;transform:translate(-50%,-50%) rotate(90deg)">${d}.${m}.${y.slice(2)}</div>
-<div class="l" style="left:50%;top:${H - 22}px">${esc(brief.story.source)}</div>
-<script>Promise.all([document.fonts.ready, new Promise(r => { const i = document.images[0]; i.complete ? r() : (i.onload = i.onerror = r); })]).then(() => document.body.dataset.ready = 1);</script>
+</style></head><body><img src="${esc(posterUrl)}">
+<script>const i = document.images[0]; (i.complete ? Promise.resolve() : new Promise(r => i.onload = i.onerror = r)).then(() => document.body.dataset.ready = 1);</script>
 </body></html>`;
+}
+
+// The day's pictures for the brief card: local copies where we have them, else the thumbnails.
+function picturesFor(brief) {
+  const images = (brief.images || []).map((im) => (im.local ? "file://" + join(SITE, im.local) : im.thumb)).filter(Boolean);
+  const objs = brief.objects || [];
+  const o = objs.length ? objs[(brief.issue || 0) % objs.length] : null;
+  return { images, object: o ? "file://" + join(SITE, o.thumb) : null };
 }
 
 async function todo(state) {
   const latest = await readJSON(join(DATA, "latest.json"), null);
-  const showcase = await readJSON(join(DATA, "showcase.json"), []);
   const jobs = [];
   if (latest && latest.date === londonDate() && !existsSync(briefImage(latest.date))) jobs.push({ kind: "brief", brief: latest, out: briefImage(latest.date) });
   // Posters waiting now, plus today's (they go out tomorrow).
   const waiting = [...await pendingPosters(state, "9999-12-31")];
   for (const p of waiting) {
     if (existsSync(posterImage(p))) continue;
-    const brief = await readJSON(join(DATA, `${p.date}.json`), null);
-    if (brief) jobs.push({ kind: "poster", poster: p, brief, variant: variantFor(p, showcase), out: posterImage(p) });
+    jobs.push({ kind: "poster", poster: p, out: posterImage(p) });
   }
   return jobs;
 }
@@ -92,7 +103,7 @@ async function main() {
     const browser = await chromium.launch();
     const page = await browser.newPage({ viewport: { width: W, height: H } });
     for (const j of jobs) {
-      const html = j.kind === "brief" ? briefCard(j.brief) : mockup(j.poster, j.brief, j.variant, "file://" + join(SITE, j.poster.image));
+      const html = j.kind === "brief" ? briefCard(j.brief, picturesFor(j.brief)) : mockup("file://" + join(SITE, j.poster.image));
       const file = join("/tmp", `ig-${Date.now()}.html`);
       await writeFile(file, html);
       await page.goto("file://" + file);

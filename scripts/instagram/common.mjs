@@ -1,0 +1,65 @@
+// Shared bits for the Instagram account: what's due, when, and what's been posted.
+//
+// The rhythm (UK time):
+//   08:00         today's brief, as a card
+//   13:00, 19:00  posters made from earlier briefs, oldest first
+//   10:30         a third poster, only when three or more are waiting
+// Every poster goes out from the day after its brief, so the feed runs one day behind the site.
+import { readFile, writeFile } from "node:fs/promises";
+import { existsSync } from "node:fs";
+import { join } from "node:path";
+
+export const ROOT = new URL("../../", import.meta.url).pathname;
+export const SITE = join(ROOT, "site");
+export const DATA = join(SITE, "data");
+export const IG_DIR = join(SITE, "media", "ig");
+export const STATE = join(ROOT, "instagram", "state.json");
+export const SITE_URL = (process.env.SITE_URL || "https://dailyposter.design").replace(/\/$/, "");
+
+export const SLOTS = { brief: "08:00", posters: [["13:00", 1], ["19:00", 1], ["10:30", 3]] }; // [time, posters needed waiting]
+export const WINDOW_MS = 3 * 3600e3;   // a slot can still be filled up to three hours late
+
+export const readJSON = async (p, fallback) => (existsSync(p) ? JSON.parse(await readFile(p, "utf8")) : fallback);
+export const writeJSON = (p, v) => writeFile(p, JSON.stringify(v, null, 2) + "\n");
+
+// Dates in London.
+export const londonDate = (d = new Date()) => new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/London" }).format(d);
+export function addDays(date, n) { const d = new Date(date + "T12:00:00Z"); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); }
+// The UTC instant of a London wall-clock time on a given day (handles summer time).
+export function londonToUtc(date, time) {
+  const [y, m, d] = date.split("-").map(Number), [h, mi] = time.split(":").map(Number);
+  const guess = Date.UTC(y, m - 1, d, h, mi);
+  const p = Object.fromEntries(new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/London", hourCycle: "h23",
+    year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" }).formatToParts(new Date(guess)).map((x) => [x.type, x.value]));
+  const shown = Date.UTC(+p.year, +p.month - 1, +p.day, +p.hour, +p.minute);
+  return new Date(guess - (shown - guess));
+}
+
+export const stem = (path) => path.split("/").pop().replace(/\.[a-z]+$/i, "");
+export const posterImage = (x) => join(IG_DIR, `${stem(x.image)}.jpg`);
+export const briefImage = (date) => join(IG_DIR, `brief-${date}.jpg`);
+export const url = (abs) => `${SITE_URL}/${abs.slice(SITE.length + 1)}`;
+
+export async function loadState() {
+  const s = await readJSON(STATE, {});
+  s.posted ??= {}; s.slots ??= {};
+  return s;
+}
+
+// Posters from the archive that are due to go out: made from a brief on or after the day
+// before posting began, not yet posted, oldest brief first (archive order within a day).
+export async function pendingPosters(state, today = londonDate()) {
+  const showcase = await readJSON(join(DATA, "showcase.json"), []);
+  const first = state.start ? addDays(state.start, -1) : today;
+  return showcase
+    .map((x, i) => ({ ...x, order: i }))
+    .filter((x) => x.date >= first && x.date < today && !state.posted[`poster:${x.image}`])
+    .sort((a, b) => a.date.localeCompare(b.date) || a.order - b.order);
+}
+
+// Mockup background for a poster: the day's darkest colour, then black, then white.
+export function variantFor(poster, showcase) {
+  const sameDay = showcase.filter((x) => x.date === poster.date);
+  const k = Math.max(0, sameDay.findIndex((x) => x.image === poster.image));
+  return ["colour", "black", "white"][k % 3];
+}

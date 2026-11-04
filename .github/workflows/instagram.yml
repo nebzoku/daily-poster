@@ -1,0 +1,57 @@
+name: Instagram
+
+# Posts to the Daily Poster Instagram account. Runs every hour; scripts/instagram/post.mjs
+# decides whether anything is due (the brief card at 8am, posters at 1pm and 7pm, and a
+# third at 10.30am when three or more are waiting). Does nothing until Instagram is set up.
+on:
+  schedule:
+    - cron: "7 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-brief
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Post what's due
+        env:
+          INSTAGRAM_TOKEN: ${{ secrets.INSTAGRAM_TOKEN }}
+          INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
+          GH_SECRETS_TOKEN: ${{ secrets.GH_SECRETS_TOKEN }}
+        run: node scripts/instagram/post.mjs
+
+      # A renewed token is saved back to the repo's secrets, when a token that may do that is set.
+      - name: Keep the Instagram token fresh
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GH_SECRETS_TOKEN }}
+        run: |
+          if [ -f /tmp/ig/new-token ] && [ -n "$GH_TOKEN" ]; then
+            echo "::add-mask::$(cat /tmp/ig/new-token)"
+            gh secret set INSTAGRAM_TOKEN --repo "$GITHUB_REPOSITORY" < /tmp/ig/new-token && echo "Saved the renewed token."
+          fi
+          rm -f /tmp/ig/new-token
+
+      - name: Save what was posted
+        if: always()
+        run: |
+          [ -d instagram ] || exit 0
+          git config user.name "daily-poster-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add instagram
+          git diff --cached --quiet && exit 0
+          git commit -m "Instagram: posted $(TZ=Europe/London date '+%F %H:%M')"
+          for i in 1 2 3 4; do git pull --rebase -q && git push && exit 0; sleep $((i * 15)); done
+          echo "::warning::Couldn't save the Instagram log."

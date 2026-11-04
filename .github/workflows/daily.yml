@@ -75,11 +75,24 @@ jobs:
       - name: Copy images to the site
         run: npm run media
 
+      # Pictures for the Instagram account (scripts/instagram): today's brief card and a 4:5
+      # mockup of each poster waiting to go out. Skipped until Instagram is set up.
+      - name: Instagram pictures
+        env:
+          INSTAGRAM_TOKEN: ${{ secrets.INSTAGRAM_TOKEN }}
+        run: |
+          n=$(node scripts/instagram/images.mjs --list)
+          if [ "$n" != "0" ]; then
+            npx playwright install --with-deps chromium >/dev/null
+            node scripts/instagram/images.mjs || echo "::warning::The Instagram pictures didn't render."
+          fi
+
       - name: Save it to the repo
         run: |
           git config user.name "daily-poster-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add site/data site/media
+          [ -d instagram ] && git add instagram
           git diff --cached --quiet || git commit -m "Brief and images for $(TZ=Europe/London date +%F)"
           # GitHub sometimes rejects a push with a server error; try a few times. If it still
           # fails, carry on: the site is deployed from these files either way.

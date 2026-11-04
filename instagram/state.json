@@ -1,5 +1,51 @@
 {
-  "posted": {},
+  "posted": {
+    "brief:2026-11-02": {
+      "slot": "catch-up",
+      "at": "2026-11-04T16:40:36.798Z",
+      "id": "18109531835213821"
+    },
+    "poster:showcase/031-every-name-still-counts.jpg": {
+      "slot": "catch-up",
+      "at": "2026-11-04T16:42:47.573Z",
+      "id": "18111189419224902"
+    },
+    "poster:showcase/031-a-kilometre-of-missing-names.jpg": {
+      "slot": "catch-up",
+      "at": "2026-11-04T16:44:59.340Z",
+      "id": "18644730304000685"
+    },
+    "poster:showcase/031-erased-then-carried-through-delhi.jpg": {
+      "slot": "catch-up",
+      "at": "2026-11-04T16:47:11.244Z",
+      "id": "18038802080853821"
+    },
+    "brief:2026-11-03": {
+      "slot": "catch-up",
+      "at": "2026-11-04T16:49:43.327Z",
+      "id": "18094086590282967"
+    },
+    "poster:showcase/032-nine-stones-against-the-trawl.jpg": {
+      "slot": "catch-up",
+      "at": "2026-11-04T16:51:51.250Z",
+      "id": "18109286816213654"
+    },
+    "poster:showcase/032-heavy-things-sunk-on-purpose-2.jpg": {
+      "slot": "catch-up",
+      "at": "2026-11-04T16:54:04.117Z",
+      "id": "18011895888003916"
+    },
+    "poster:showcase/032-nine-stones-against-the-trawl-alt-2.jpg": {
+      "slot": "catch-up",
+      "at": "2026-11-04T16:56:14.935Z",
+      "id": "18127640341920459"
+    },
+    "brief:2026-11-04": {
+      "slot": "catch-up",
+      "at": "2026-11-04T16:58:56.276Z",
+      "id": "18077317460755895"
+    }
+  },
   "slots": {},
   "start": "2026-11-04"
 }

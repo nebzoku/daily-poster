@@ -21,9 +21,9 @@ The page has a one-click copy of everything into Figma, Instagram mockups and a 
 1. A-size portrait, at 1080 × 1528 px.
 2. Use one of the headlines, or write your own from the same story.
 3. Use the day's palette, plus black and white. Blend modes and opacity are fair game.
-4. Use the typeface pairing. Size, leading, tracking and case are up to you.
+4. Use the typeface pairing, either way round. Size, leading, tracking and case are up to you.
 5. The 8 × 8 grid is there if you want it. Use it, break it or ignore it.
-6. Include the date, time and source of the story.
+6. The subline, issue number, date and source are optional. Add them if they help.
 7. Imagery is optional. If you use a photo, credit the photographer.
 
 Share it on Instagram with **#dailyposter** and the day's tag, for example **#dailyposter031**, so every poster from the same brief sits together.

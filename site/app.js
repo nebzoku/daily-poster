@@ -216,7 +216,7 @@
       el("span", { class: "aa", style: `font-family: "${family}"` }, "Aa"),
       el("p", { class: "tname" }, el("a", { href: url, target: "_blank", rel: "noopener" }, family)),
       el("p", { class: "trole" }, role));
-    $("pair").replaceChildren(block(t.display, "Headline", t.displayUrl), block(t.text, "Subline and details", t.textUrl));
+    $("pair").replaceChildren(block(t.display, "Typeface 01", t.displayUrl), block(t.text, "Typeface 02", t.textUrl));
     $("font-links").replaceChildren(
       "Built into Figma. For other apps, get ",
       el("a", { href: t.displayUrl, target: "_blank", rel: "noopener" }, t.display), " and ",

@@ -136,13 +136,18 @@ async function main() {
   if (brief.objects?.length && !process.env.FORCE) { console.log("Objects already rendered for", date); return; }
   if (!process.env.ANTHROPIC_API_KEY) { console.warn("No ANTHROPIC_API_KEY; skipping objects."); return; }
 
-  // 1. Ideas
+  // 1. Ideas, avoiding objects from the last few days
   const s = brief.story;
+  const { readdir } = await import("node:fs/promises");
+  const earlier = (await readdir(DATA)).filter((f) => /^\d{4}-\d{2}-\d{2}\.json$/.test(f) && f < `${date}.json`).sort().slice(-5);
+  const usedObjects = [];
+  for (const f of earlier) { try { for (const o of JSON.parse(await readFile(join(DATA, f), "utf8")).objects || []) usedObjects.push(o.name); } catch {} }
   const ideas = list((await callTool(IDEAS, `You are choosing three objects for a 3D render kit that goes with today's poster brief.
 Story: "${s.title}". ${s.summary}
 Headlines: ${brief.headlines.join(" / ")}
 
-Pick three distinct physical objects that a designer could use as bold, iconic imagery on a poster about this story: things in the story, or that stand for it. Prefer simple, recognisable objects with strong silhouettes (an anchor, a boulder, a ship, a key, a flag, a chair) over scenes, people, animals or anything abstract. Give each a material that suits the story and renders well, leaning towards metal and stone (rusted iron, brushed steel, weathered concrete, polished brass, worn marble). Don't pick anything that would trivialise or sensationalise the story.`)).objects).slice(0, 3);
+Pick three distinct physical objects that a designer could use as bold, iconic imagery on a poster about this story: things in the story, or that stand for it. Prefer simple, recognisable objects with strong silhouettes (an anchor, a boulder, a ship, a key, a flag, a chair) over scenes, people, animals or anything abstract. Give each a material that suits the story and renders well, leaning towards metal and stone (rusted iron, brushed steel, weathered concrete, polished brass, worn marble). Don't pick anything that would trivialise or sensationalise the story.${usedObjects.length ? `
+These were used in the last few days, so pick different objects: ${[...new Set(usedObjects)].join(", ")}.` : ""}`)).objects).slice(0, 3);
   if (ideas.length < 3) throw new Error("Claude gave fewer than three objects.");
   console.log("Objects:", ideas.map((o) => `${o.name} (${o.material})`).join(", "));
 

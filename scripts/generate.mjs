@@ -137,8 +137,9 @@ const BRIEF_TOOL = {
       },
       fontPairId: { type: "string", description: "The id of one pairing from the list you were given." },
       fontReason: { type: "string", description: "One sentence on why this pairing suits the story." },
+      theme: { type: "string", description: "The chosen story's broad subject and setting in two to four words, e.g. 'the sea and shipping', 'space exploration', 'elections', 'extreme weather', 'art and museums'." },
     },
-    required: ["storyIndex", "storySummary", "headlines", "sublines", "imageQueries", "archiveQueries", "textureQueries", "fontPairId", "fontReason"],
+    required: ["storyIndex", "storySummary", "headlines", "sublines", "imageQueries", "archiveQueries", "textureQueries", "fontPairId", "fontReason", "theme"],
   },
 };
 
@@ -146,7 +147,8 @@ function briefPrompt(stories, recent, colour, pairsOk) {
   const list = stories
     .map((s, i) => `[${i}] ${s.source} · ${s.published}\n${s.title}\n${s.summary}`)
     .join("\n\n");
-  const used = recent.map((b) => `- ${b.story.title}`).join("\n") || "- none yet";
+  const used = [...recent].reverse().slice(0, 7)
+    .map((b) => `- ${b.date}: ${b.story.title}${b.story.theme ? ` (theme: ${b.story.theme})` : ""}`).join("\n") || "- none yet";
   const pairs = pairsOk.map((f) => `${f.id}: ${f.display} + ${f.text}`).join("\n");
   return `You write a daily brief for a designer who makes one A-size poster a day from the news.
 
@@ -161,7 +163,7 @@ Then write:
 - One typeface pairing from this list, chosen to suit the story. Only these are available today, because no typeface repeats within ${TYPE_COOLDOWN_DAYS} days:
 ${pairs}
 
-Recent briefs (do not repeat these stories):
+Recent briefs, newest first. Don't repeat these stories. Designers make a poster every day, so variety matters: pick a story whose subject, setting and mood are clearly different from the last few briefs. If a recent brief was about the sea, ships or the coast, don't pick another sea story, however good; the same goes for any other subject.
 ${used}
 
 Stories:
@@ -188,8 +190,22 @@ function normalise(out) {
   return out;
 }
 
-function validate(out, stories, pairsOk = FONT_PAIRS) {
+// Content words of a theme, so "the sea and shipping" and "shipping lanes" are seen to overlap.
+const STOP = new Set(["the", "and", "with", "from", "into", "over", "about", "news", "story", "life", "world"]);
+const themeWords = (t) => String(t || "").toLowerCase().split(/[^a-z]+/).filter((w) => w.length > 2 && !STOP.has(w)).map((w) => w.replace(/(ing|s)$/, ""));
+function themeClash(theme, recent) {
+  const mine = new Set(themeWords(theme));
+  for (const b of [...recent].reverse().slice(0, 3)) {
+    const hit = themeWords(b.story?.theme).find((w) => mine.has(w));
+    if (hit) return `the theme "${theme}" is too close to a recent brief (${b.date}: ${b.story.theme}); pick a story on a different subject`;
+  }
+  return null;
+}
+
+function validate(out, stories, pairsOk = FONT_PAIRS, recent = []) {
   const problems = [];
+  const clash = themeClash(out.theme, recent);
+  if (clash) problems.push(clash);
   if (!pairsOk.some((f) => f.id === out.fontPairId)) problems.push(`fontPairId "${out.fontPairId}" is not one of the pairings available today`);
   if (!stories[out.storyIndex]) problems.push("storyIndex is not in the list");
   out.headlines?.forEach((h, i) => {
@@ -341,8 +357,10 @@ async function main() {
   for (let attempt = 1; attempt <= 3; attempt++) {
     const ask = problems.length ? `${prompt}\n\nYour last attempt had these problems, fix them: ${problems.join("; ")}` : prompt;
     brief = normalise(await askClaude(ask));
-    problems = validate(brief, stories, pairsOk);
+    problems = validate(brief, stories, pairsOk, recent);
     if (!problems.length) break;
+    // On a thin news day every story may overlap something recent; on the last try, accept it.
+    if (attempt === 3 && problems.every((p) => p.startsWith("the theme"))) { console.warn(problems[0]); problems = []; break; }
     console.warn(`Attempt ${attempt} had problems: ${problems.join("; ")}`);
   }
   if (problems.length) throw new Error("Brief failed checks: " + problems.join("; "));
@@ -360,6 +378,7 @@ async function main() {
       source: story.source,
       url: story.url,
       published: story.published,
+      theme: brief.theme,
     },
     headlines: brief.headlines.map((s) => s.trim()),
     sublines: brief.sublines.map((s) => s.trim()),

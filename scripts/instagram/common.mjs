@@ -1,7 +1,7 @@
 // Shared bits for the Instagram account: what's due, when, and what's been posted.
 //
 // The rhythm (UK time):
-//   08:00         today's brief, as a card
+//   08:00         today's brief, as a carousel of three cards (one per headline)
 //   13:00, 19:00  posters made from earlier briefs, oldest first
 //   10:30         a third poster, only when three or more are waiting
 // Every poster goes out from the day after its brief, so the feed runs one day behind the site.
@@ -37,7 +37,8 @@ export function londonToUtc(date, time) {
 
 export const stem = (path) => path.split("/").pop().replace(/\.[a-z]+$/i, "");
 export const posterImage = (x) => join(IG_DIR, `${stem(x.image)}.jpg`);
-export const briefImage = (date) => join(IG_DIR, `brief-${date}.jpg`);
+// Today's brief is a three-picture carousel, one headline each.
+export const briefImages = (date) => [1, 2, 3].map((n) => join(IG_DIR, `brief-${date}-${n}.jpg`));
 export const url = (abs) => `${SITE_URL}/${abs.slice(SITE.length + 1)}`;
 
 export async function loadState() {

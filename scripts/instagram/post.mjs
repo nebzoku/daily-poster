@@ -8,7 +8,7 @@ import { writeFile, mkdir } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { DATA, STATE, SLOTS, WINDOW_MS, readJSON, writeJSON, loadState, londonDate, londonToUtc, addDays,
-  pendingPosters, posterImage, briefImage, url } from "./common.mjs";
+  pendingPosters, posterImage, briefImages, url } from "./common.mjs";
 
 const API = "https://graph.instagram.com/v26.0";
 const TOKEN = process.env.INSTAGRAM_TOKEN, USER = process.env.INSTAGRAM_USER_ID;
@@ -36,7 +36,7 @@ function posterCaption(p, brief) {
 }
 function briefCaption(brief) {
   return [
-    `Today's brief, No. ${pad(brief.issue)}.`,
+    `Today's brief, No. ${pad(brief.issue)}. Swipe for all three headlines.`,
     "",
     brief.story.summary,
     "",
@@ -54,16 +54,31 @@ async function api(path, params, method = "POST") {
   return body;
 }
 
-async function publish(imageUrl, caption, alt) {
-  const head = await fetch(imageUrl, { method: "HEAD" });
-  if (!head.ok) throw new Error(`picture isn't online yet (${head.status}): ${imageUrl}`);
-  const { id } = await api(`${USER}/media`, { image_url: imageUrl, caption, alt_text: alt });
-  for (let i = 0; i < 20; i++) {                       // wait for Instagram to fetch and process it
+// Wait for Instagram to fetch and process a container.
+async function ready(id) {
+  for (let i = 0; i < 20; i++) {
     const { status_code } = await api(id, { fields: "status_code" }, "GET");
-    if (status_code === "FINISHED") break;
+    if (status_code === "FINISHED") return;
     if (status_code === "ERROR" || status_code === "EXPIRED") throw new Error(`container ${status_code}`);
     await new Promise((r) => setTimeout(r, 3000));
   }
+}
+
+// One picture, or several as a carousel.
+async function publish(images, caption, alt) {
+  for (const u of images) {
+    const head = await fetch(u, { method: "HEAD" });
+    if (!head.ok) throw new Error(`picture isn't online yet (${head.status}): ${u}`);
+  }
+  let id;
+  if (images.length === 1) {
+    ({ id } = await api(`${USER}/media`, { image_url: images[0], caption, alt_text: alt }));
+  } else {
+    const children = [];
+    for (const u of images) { const c = await api(`${USER}/media`, { image_url: u, is_carousel_item: "true" }); await ready(c.id); children.push(c.id); }
+    ({ id } = await api(`${USER}/media`, { media_type: "CAROUSEL", children: children.join(","), caption }));
+  }
+  await ready(id);
   return (await api(`${USER}/media_publish`, { creation_id: id })).id;
 }
 
@@ -96,8 +111,8 @@ async function main() {
   const briefKey = `brief:${today}`, briefSlot = `${today} ${SLOTS.brief}`;
   if (due(SLOTS.brief) && !state.slots[briefSlot] && !state.posted[briefKey]) {
     const brief = await readJSON(join(DATA, "latest.json"), null);
-    if (brief?.date === today && existsSync(briefImage(today)))
-      job = { key: briefKey, slot: briefSlot, image: url(briefImage(today)), caption: briefCaption(brief), alt: `Daily Poster No. ${pad(brief.issue)}: today's brief. ${brief.headlines[0]}.` };
+    if (brief?.date === today && briefImages(today).every((f) => existsSync(f)))
+      job = { key: briefKey, slot: briefSlot, images: briefImages(today).map(url), caption: briefCaption(brief) };
   }
   if (!job) {
     const waiting = (await pendingPosters(state, today)).filter((p) => existsSync(posterImage(p)));
@@ -106,16 +121,16 @@ async function main() {
       if (!due(time) || state.slots[slot] || waiting.length < needed) continue;
       const p = waiting[0], brief = await readJSON(join(DATA, `${p.date}.json`), null);
       if (!brief) continue;
-      job = { key: `poster:${p.image}`, slot, image: url(posterImage(p)), caption: posterCaption(p, brief), alt: `Poster: ${p.title}, by ${p.designer}, for Daily Poster No. ${pad(brief.issue)}.` };
+      job = { key: `poster:${p.image}`, slot, images: [url(posterImage(p))], caption: posterCaption(p, brief), alt: `Poster: ${p.title}, by ${p.designer}, for Daily Poster No. ${pad(brief.issue)}.` };
       break;
     }
   }
 
   if (job) {
-    console.log(`${DRY ? "Would post" : "Posting"} ${job.key} for the ${job.slot} slot:\n${job.image}\n---\n${job.caption}\n---`);
+    console.log(`${DRY ? "Would post" : "Posting"} ${job.key} for the ${job.slot} slot:\n${job.images.join("\n")}\n---\n${job.caption}\n---`);
     if (!DRY) {
       try {
-        const id = await publish(job.image, job.caption, job.alt);
+        const id = await publish(job.images, job.caption, job.alt);
         state.posted[job.key] = { slot: job.slot, at: new Date().toISOString(), id };
         state.slots[job.slot] = job.key;
         console.log(`Posted: ${id}`);

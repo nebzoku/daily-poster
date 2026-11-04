@@ -15,7 +15,16 @@ import { existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { spawnSync } from "node:child_process";
 import sharp from "sharp";
-import { imageBlock } from "./lib/images.mjs";
+// Thumbnails for Claude to look at. Some hosts serve them without an image content type
+// (or as WebP), so read the bytes with sharp and send a small PNG either way.
+async function thumbBlock(url) {
+  try {
+    const res = await fetch(url, { headers: UA, signal: AbortSignal.timeout(15000) });
+    if (!res.ok) return null;
+    const png = await sharp(Buffer.from(await res.arrayBuffer())).resize(256, 256, { fit: "inside" }).png().toBuffer();
+    return { type: "image", source: { type: "base64", media_type: "image/png", data: png.toString("base64") } };
+  } catch { return null; }
+}
 
 const MODEL = "claude-sonnet-5-5";
 const SITE = new URL("../site/", import.meta.url).pathname;
@@ -178,8 +187,8 @@ These were used in the last few days, so pick different objects: ${[...new Set(u
   const content = [{ type: "text", text: `For each of three objects you'll see candidate 3D MODELS (M) and candidate SURFACE TEXTURES (T). The model will be rendered on its own on a transparent background, with the texture wrapped over it, so judge the model by its shape and silhouette only (ignore its colours). Pick the model that best reads as the object, clean and well made; answer null if none clearly is the object. Pick the texture that best matches the material described.` }];
   for (const [j, g] of groups.entries()) {
     content.push({ type: "text", text: `\nOBJECT ${j + 1}: ${g.idea.name}, in ${g.idea.material}.` });
-    g.models = (await Promise.all(g.models.map(async (m) => ({ ...m, block: await imageBlock(m.thumb) })))).filter((m) => m.block);
-    g.textures = (await Promise.all(g.textures.map(async (t) => ({ ...t, block: await imageBlock(t.thumb) })))).filter((t) => t.block);
+    g.models = (await Promise.all(g.models.map(async (m) => ({ ...m, block: await thumbBlock(m.thumb) })))).filter((m) => m.block);
+    g.textures = (await Promise.all(g.textures.map(async (t) => ({ ...t, block: await thumbBlock(t.thumb) })))).filter((t) => t.block);
     g.models.forEach((m, k) => content.push({ type: "text", text: `[M${j + 1}-${k + 1}] ${m.title}` }, m.block));
     g.textures.forEach((t, k) => content.push({ type: "text", text: `[T${j + 1}-${k + 1}] ${t.title}` }, t.block));
   }

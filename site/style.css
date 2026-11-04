@@ -431,6 +431,7 @@ label.cta { cursor: pointer; }
 
 .foot { margin: 24vh var(--pad) 0; padding: 14px 0 var(--pad); border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: var(--gap); font-size: var(--t-s); color: var(--muted); }
 .foot p:first-child { max-width: 52ch; }
+.foot-follow { max-width: 34ch; text-align: right; }
 .foot a { color: var(--fg); border-bottom: 1px solid var(--line); }
 
 
@@ -451,6 +452,7 @@ label.cta { cursor: pointer; }
   .hero { min-height: 82svh; }
   .wall { grid-template-columns: repeat(2, 1fr); gap: 28px 12px; }
   .foot { flex-direction: column; }
+  .foot-follow { text-align: left; }
   .sec { grid-template-columns: 1fr; }
   .sec .label { margin-bottom: 28px; }
   .intro { grid-template-columns: 1fr; margin: 12vh var(--pad) 8vh; }

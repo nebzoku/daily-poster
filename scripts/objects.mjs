@@ -112,7 +112,7 @@ const PICK = {
           type: "object",
           properties: {
             model: { type: ["string", "null"], description: "A model label like M1-3, or null if none fits well." },
-            texture: { type: "string", description: "A texture label like T1-2." },
+            texture: { type: "string", description: "A texture label like T1-2, or \"own\" to keep the chosen model's own surface when its picture already shows the material described." },
           },
           required: ["model", "texture"],
         },
@@ -214,7 +214,7 @@ These were used in the last few days, so pick different objects: ${[...new Set(u
   }
 
   // 3. Claude looks and picks
-  const content = [{ type: "text", text: `For each of three objects you'll see candidate 3D MODELS (M) and candidate SURFACE TEXTURES (T). The model will be rendered on its own on a transparent background, with the texture wrapped over it, so judge the model by its shape and silhouette only (ignore its colours). Pick the model that best reads as the object, clean and well made; answer null if none clearly is the object. Some models come without a picture; judge those by their title and tags, and only pick one if it's clearly the object. Pick the texture that best matches the material described.` }];
+  const content = [{ type: "text", text: `For each of three objects you'll see candidate 3D MODELS (M) and candidate SURFACE TEXTURES (T). The model will be rendered on its own on a transparent background, with the texture wrapped over it, so judge the model by its shape and silhouette only (ignore its colours). Pick the model that best reads as the object, clean and well made; answer null if none clearly is the object. Some models come without a picture; judge those by their title and tags, and only pick one if it's clearly the object. Pick the texture that best matches the material described; if the chosen model's own surface already looks right for it (a real satellite's foil and panels, say), answer "own" to keep it. Only pick a texture that genuinely suits the material: never wood for stone or crystal, for example.` }];
   for (const [j, g] of groups.entries()) {
     content.push({ type: "text", text: `\nOBJECT ${j + 1}: ${g.idea.name}, in ${g.idea.material}.` });
     // Poly Pizza's file host refuses thumbnail requests from here, so those models go by their title and tags.
@@ -239,7 +239,8 @@ These were used in the last few days, so pick different objects: ${[...new Set(u
   for (const [j, g] of groups.entries()) {
     const p = picks[j] || {};
     const model = at(p.model, "M", j, g.models);
-    const tex = at(p.texture, "T", j, g.textures) || g.textures[0] || null;
+    const keep = p.texture === "own" && !!model;
+    const tex = keep ? null : at(p.texture, "T", j, g.textures) || g.textures[0] || null;
     let modelFile = null;
     if (model) {
       try {
@@ -262,7 +263,7 @@ These were used in the last few days, so pick different objects: ${[...new Set(u
       } catch (e) { console.warn(`Texture for ${g.idea.name}: ${e.message}`); }
     }
     const file = join(dir, `object-${j + 1}.png`);
-    jobs.push({ model: modelFile, shape: SHAPES.includes(g.idea.fallback) ? g.idea.fallback : "rock", seed: (brief.issue || 1) + j, texture, out: file, turn: 20 + j * 35 });
+    jobs.push({ keep: keep && !!modelFile, model: modelFile, shape: SHAPES.includes(g.idea.fallback) ? g.idea.fallback : "rock", seed: (brief.issue || 1) + j, texture, out: file, turn: 20 + j * 35 });
     out.push({ name: g.idea.name, material: g.idea.material, model: modelFile ? model : null, texture: texture ? tex : null, file });
   }
 

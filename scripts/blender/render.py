@@ -118,7 +118,7 @@ def material(o, tex):
     bsdf = N["Principled BSDF"]
     if tex:
         coord = N.new("ShaderNodeTexCoord")
-        mp = N.new("ShaderNodeMapping"); mp.inputs["Scale"].default_value = (tex.get("scale", 0.6),) * 3
+        mp = N.new("ShaderNodeMapping"); mp.inputs["Scale"].default_value = (tex.get("scale", 0.35),) * 3
         L.new(coord.outputs["Object"], mp.inputs["Vector"])
 
         def img(path, colour):
@@ -159,7 +159,8 @@ for i, ob in enumerate(job["objects"]):
         objs = shape("rock", i)
     o = fit(objs)
     o.rotation_euler.z += math.radians(ob.get("turn", 28))
-    material(o, ob.get("texture"))
+    if not (ob.get("keep") and ob.get("model")):   # keep a model's own surface when Claude chose it
+        material(o, ob.get("texture"))
     cam = bpy.data.objects.new("cam", bpy.data.cameras.new("cam")); sc.collection.objects.link(cam); sc.camera = cam
     cam.data.lens = 85
     loc = Vector((5.2, -6.4, 3.4)).normalized() * 7.6   # three-quarter, a little above

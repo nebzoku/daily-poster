@@ -17,7 +17,7 @@ on:
         default: false
   push:
     branches: [main]
-    paths: ["site/**"]
+    paths: ["site/**", "scripts/**", ".github/workflows/**"]
 
 permissions:
   contents: write

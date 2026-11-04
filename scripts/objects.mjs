@@ -113,8 +113,11 @@ const PICK = {
 async function polyPizza(term) {
   if (!process.env.POLY_PIZZA_KEY) return [];
   try {
-    const r = await json(`https://api.poly.pizza/v1/search/${encodeURIComponent(term)}?limit=10&format=glb`, { "X-Auth-Token": process.env.POLY_PIZZA_KEY });
-    return (r.results || []).filter((m) => m.Download && OK_LICENCE(m.Licence) && !m.Animated).map((m) => ({
+    const r = await json(`https://api.poly.pizza/v1/search/${encodeURIComponent(term)}?limit=12`, { "X-Auth-Token": process.env.POLY_PIZZA_KEY });
+    const all = r.results || [];
+    const ok = all.filter((m) => m.Download && OK_LICENCE(m.Licence) && !m.Animated);
+    console.log(`Poly Pizza "${term}": ${all.length} found, ${ok.length} usable${all[0] ? ` (e.g. ${all[0].Title}, ${all[0].Licence})` : ""}`);
+    return ok.map((m) => ({
       source: "Poly Pizza", id: m.ID, title: m.Title, licence: m.Licence,
       creator: m.Creator?.Username || "", creatorUrl: m.Creator?.PURL || "", url: `https://poly.pizza/m/${m.ID}`,
       thumb: m.Thumbnail, glb: m.Download,
@@ -182,6 +185,7 @@ These were used in the last few days, so pick different objects: ${[...new Set(u
   }
   let picks = [];
   try { picks = list((await callTool(PICK, content)).picks); } catch (e) { console.warn("Pick failed:", e.message); }
+  groups.forEach((g, j) => console.log(`${g.idea.name}: ${g.models.length} models, ${g.textures.length} textures; picked model ${picks[j]?.model ?? "none"}, texture ${picks[j]?.texture ?? "none"}`));
   const at = (label, kind, j, arr) => { const m = String(label || "").match(new RegExp(`^${kind}(\\d+)-(\\d+)$`)); return m && +m[1] === j + 1 ? arr[+m[2] - 1] : null; };
 
   // 4. Download what's needed

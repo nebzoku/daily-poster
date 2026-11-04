@@ -1,6 +1,6 @@
 // Renders the pictures the Instagram account posts, as 1080 × 1350 JPEGs in site/media/ig:
 //   brief-<date>-1..3.jpg   today's brief as a carousel, one headline per card
-//   <poster>.jpg       each waiting poster, centred on black
+//   <poster>.jpg       each waiting poster, centred on a background picked to suit it
 // Instagram's API only takes JPEGs between 4:5 and 1.91:1, so these are 4:5 rather than 3:4.
 //
 //   node scripts/instagram/images.mjs --list   prints how many pictures are missing
@@ -8,6 +8,7 @@
 import { mkdir, readdir, rm, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { join } from "node:path";
+import sharp from "sharp";
 import { DATA, IG_DIR, readJSON, loadState, writeJSON, STATE, londonDate, pendingPosters, posterImage, briefImages, SITE } from "./common.mjs";
 
 const W = 1080, H = 1350;
@@ -95,11 +96,51 @@ Promise.all([document.fonts.ready, ...[...document.images].map(i => i.complete ?
 </script></body></html>`;
 }
 
-// Posters on plain black, nothing else: the poster may carry its own date and number.
-function mockup(posterUrl) {
+// Posters sit on one of three backgrounds: the day's light tint, its dark tint, or black.
+// We look at the poster's outer edge and pick the background that stands apart from it most,
+// and lean away from whatever the last poster had, so the grid alternates and gets more colour.
+const toLab = ([r, g, b]) => {   // sRGB 0-255 → OKLab
+  const l = [r, g, b].map((v) => { v /= 255; return v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; });
+  const L = Math.cbrt(0.4122214708 * l[0] + 0.5363325363 * l[1] + 0.0514459929 * l[2]);
+  const M = Math.cbrt(0.2119034982 * l[0] + 0.6806995451 * l[1] + 0.1073969566 * l[2]);
+  const S = Math.cbrt(0.0883024619 * l[0] + 0.2817188376 * l[1] + 0.6299787005 * l[2]);
+  return [0.2104542553 * L + 0.793617785 * M - 0.0040720468 * S, 1.9779984951 * L - 2.428592205 * M + 0.4505937099 * S, 0.0259040371 * L + 0.7827717662 * M - 0.808675766 * S];
+};
+const hexRgb = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+const dist = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
+
+export async function edgeColours(file) {
+  const n = 60, band = 3;   // the poster shrunk to 60 px wide; its outer 3 px all round
+  const { data, info } = await sharp(file).resize(n, Math.round(n * 1.41481), { fit: "fill" }).removeAlpha().raw().toBuffer({ resolveWithObject: true });
+  const px = [];
+  for (let y = 0; y < info.height; y++) for (let x = 0; x < info.width; x++) {
+    if (x >= band && x < info.width - band && y >= band && y < info.height - band) continue;
+    const i = (y * info.width + x) * 3; px.push(toLab([data[i], data[i + 1], data[i + 2]]));
+  }
+  return px;
+}
+
+export function pickBackground(edge, palette, last) {
+  const c = palette?.colours || [];
+  const options = [["light", c[1]], ["dark", c[3]], ["black", "#000000"]].filter(([, hex]) => /^#[0-9a-f]{6}$/i.test(hex || ""));
+  const scored = options.map(([name, hex]) => {
+    const lab = toLab(hexRgb(hex));
+    const d = edge.map((p) => dist(p, lab)).sort((a, b) => a - b);
+    // How far the edge sits from this background: mostly the closest tenth (where it would
+    // blend in), partly the average.
+    const near = d[Math.floor(d.length * 0.1)], mean = d.reduce((a, b) => a + b, 0) / d.length;
+    let score = 0.7 * near + 0.3 * mean;
+    if (name === "black") score *= 0.65;       // the dark tint is nearly as dark, so prefer it for more colour on the grid
+    if (name === last) score *= 0.6;            // alternate where there's a reasonable choice
+    return { name, hex, score: +score.toFixed(4) };
+  }).sort((a, b) => b.score - a.score);
+  return scored[0] || { name: "black", hex: "#000000" };
+}
+
+function mockup(posterUrl, bg = "#000") {
   const ph = H - 88, pw = Math.round(ph / 1.41481), px = Math.round((W - pw) / 2);   // 44 px above and below
   return `<!doctype html><html><head><style>
-html,body{margin:0;width:${W}px;height:${H}px;background:#000;overflow:hidden}
+html,body{margin:0;width:${W}px;height:${H}px;background:${bg};overflow:hidden}
 img{position:absolute;left:${px}px;top:44px;width:${pw}px;height:${ph}px;object-fit:cover;object-position:50% 0}
 </style></head><body><img src="${esc(posterUrl)}">
 <script>const i = document.images[0]; (i.complete ? Promise.resolve() : new Promise(r => i.onload = i.onerror = r)).then(() => document.body.dataset.ready = 1);</script>
@@ -137,12 +178,21 @@ async function main() {
   if (process.argv.includes("--list")) { console.log(jobs.length); return; }
   if (fresh) { await mkdir(join(STATE, ".."), { recursive: true }); await writeJSON(STATE, state); }
   await mkdir(IG_DIR, { recursive: true });
+  let changed = false;
   if (jobs.length) {
     const { chromium } = await import("playwright");
     const browser = await chromium.launch();
     const page = await browser.newPage({ viewport: { width: W, height: H } });
     for (const j of jobs) {
-      const html = j.kind === "brief" ? briefStrip(j.brief, picturesFor(j.brief)) : mockup("file://" + join(SITE, j.poster.image));
+      let html;
+      if (j.kind === "brief") html = briefStrip(j.brief, picturesFor(j.brief));
+      else {
+        const src = join(SITE, j.poster.image), day = await readJSON(join(DATA, `${j.poster.date}.json`), {});
+        const bg = pickBackground(await edgeColours(src), day.palette, state.lastBg);
+        state.lastBg = bg.name; state.backgrounds = { ...state.backgrounds, [`poster:${j.poster.image}`]: bg.name }; changed = true;
+        html = mockup("file://" + src, bg.hex);
+        console.log(`${j.poster.image}: ${bg.name} background`);
+      }
       const file = join("/tmp", `ig-${Date.now()}.html`);
       await writeFile(file, html);
       await page.setViewportSize({ width: j.kind === "brief" ? W * 3 : W, height: H });
@@ -157,6 +207,7 @@ async function main() {
     }
     await browser.close();
   }
+  if (changed) { await mkdir(join(STATE, ".."), { recursive: true }); await writeJSON(STATE, state); }
   // Clear out pictures a week after they've gone out: briefs by date, posters once posted.
   const weekAgo = new Date(Date.now() - 7 * 864e5).toISOString();
   const done = new Set(Object.entries(state.posted).filter(([, v]) => v.at < weekAgo).map(([k]) => k));
@@ -167,4 +218,4 @@ async function main() {
   }
 }
 
-main().catch((e) => { console.error(e); process.exit(1); });
+if (import.meta.url === `file://${process.argv[1]}`) main().catch((e) => { console.error(e); process.exit(1); });

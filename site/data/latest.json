@@ -8,7 +8,7 @@
     "tomorrow": "Magenta"
   },
   "story": {
-    "title": "Why pharma firms are going to Earth\u2019s orbit in search of new cancer drugs",
+    "title": "Why pharma firms are going to Earth’s orbit in search of new cancer drugs",
     "summary": "Drug companies are sending experiments into low Earth orbit, where three small capsules circle about 300 miles up. Inside one, the weightlessness lets a potential cancer drug form tiny crystals that are hard to grow properly on the ground.",
     "source": "The Guardian",
     "url": "https://www.theguardian.com/science/2026/nov/04/us-firm-varda-space-industries-manufacturing-drugs-in-space",
@@ -90,7 +90,7 @@
       "id": "met:454019",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Crystal Flask, 9th\u201310th century",
+      "title": "Crystal Flask, 9th–10th century",
       "credit": "Unknown artist",
       "creditUrl": "https://www.metmuseum.org/art/collection/search/454019",
       "page": "https://www.metmuseum.org/art/collection/search/454019",
@@ -152,7 +152,7 @@
       "id": "met:468471",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Rock Crystal Bowl, 3rd\u20135th century",
+      "title": "Rock Crystal Bowl, 3rd–5th century",
       "credit": "North African (Carthage)",
       "creditUrl": "https://www.metmuseum.org/art/collection/search/468471",
       "page": "https://www.metmuseum.org/art/collection/search/468471",
@@ -193,7 +193,7 @@
       "source": "Unsplash",
       "licence": "Unsplash License",
       "title": "white textured paper or plaster surface",
-      "credit": "Jo\u00e3o V\u00edtor Duarte",
+      "credit": "João Vítor Duarte",
       "creditUrl": "https://unsplash.com/@joaovtrduarte?utm_source=daily_poster&utm_medium=referral",
       "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-k4Lt0CjUnb0?utm_source=daily_poster&utm_medium=referral",
       "alt": "white textured paper or plaster surface",
@@ -236,6 +236,41 @@
       "alt": "gray concrete painted wall",
       "thumb": "https://images.unsplash.com/photo-1533035353720-f1c6a75cd8ab?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Zm9pbCUyMHRleHR1cmV8ZW58MXx8fHwxNzkzNzc1MDk5fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
       "src": "https://images.unsplash.com/photo-1533035353720-f1c6a75cd8ab?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Zm9pbCUyMHRleHR1cmV8ZW58MXx8fHwxNzkzNzc1MDk5fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    }
+  ],
+  "objects": [
+    {
+      "name": "space capsule",
+      "material": "brushed aluminium with scorched heat shield",
+      "image": "media/2026-11-04/object-1.png",
+      "thumb": "media/2026-11-04/object-1-thumb.png",
+      "model": null,
+      "texture": {
+        "title": "Blue Metal Plate",
+        "url": "https://polyhaven.com/a/blue_metal_plate"
+      }
+    },
+    {
+      "name": "crystal",
+      "material": "translucent white quartz",
+      "image": "media/2026-11-04/object-2.png",
+      "thumb": "media/2026-11-04/object-2-thumb.png",
+      "model": null,
+      "texture": {
+        "title": "Flour",
+        "url": "https://polyhaven.com/a/flour"
+      }
+    },
+    {
+      "name": "satellite",
+      "material": "polished steel",
+      "image": "media/2026-11-04/object-3.png",
+      "thumb": "media/2026-11-04/object-3-thumb.png",
+      "model": null,
+      "texture": {
+        "title": "Blue Metal Plate",
+        "url": "https://polyhaven.com/a/blue_metal_plate"
+      }
     }
   ]
 }

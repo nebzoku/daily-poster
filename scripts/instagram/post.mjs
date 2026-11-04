@@ -2,8 +2,9 @@
 // rhythm. Uses Instagram's official API (Instagram Login or Meta's Unified login); needs INSTAGRAM_TOKEN and
 // INSTAGRAM_USER_ID. DRY_RUN=1 says what it would post without posting.
 //
-// Once a week it renews the token. If GH_SECRETS_TOKEN is set, the workflow saves the renewed
-// token back to the repo's secrets; otherwise it warns when the token is close to expiring.
+// Unified login (system-user) tokens never expire. Instagram Login tokens are renewed once a week;
+// if GH_SECRETS_TOKEN is set the workflow saves the renewed token back to the repo's secrets,
+// otherwise it warns when the token is close to expiring.
 import { writeFile, mkdir } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { join } from "node:path";

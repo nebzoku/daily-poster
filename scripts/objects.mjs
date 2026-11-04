@@ -20,10 +20,10 @@ import sharp from "sharp";
 async function thumbBlock(url) {
   try {
     const res = await fetch(url, { headers: UA, signal: AbortSignal.timeout(15000) });
-    if (!res.ok) { console.warn(`Thumbnail ${res.status}: ${url}`); return null; }
+    if (!res.ok) return null;
     const png = await sharp(Buffer.from(await res.arrayBuffer())).resize(256, 256, { fit: "inside" }).png().toBuffer();
     return { type: "image", source: { type: "base64", media_type: "image/png", data: png.toString("base64") } };
-  } catch (e) { console.warn(`Thumbnail failed (${e.message}): ${url}`); return null; }
+  } catch { return null; }
 }
 
 const MODEL = "claude-sonnet-5-5";
@@ -126,11 +126,10 @@ async function polyPizza(term) {
     const all = r.results || [];
     const ok = all.filter((m) => m.Download && OK_LICENCE(m.Licence) && !m.Animated);
     console.log(`Poly Pizza "${term}": ${all.length} found, ${ok.length} usable${all[0] ? ` (e.g. ${all[0].Title}, ${all[0].Licence})` : ""}`);
-    if (all[0] && !globalThis.__shown) { globalThis.__shown = 1; console.log("Poly Pizza fields:", JSON.stringify(all[0]).slice(0, 600)); }
     return ok.map((m) => ({
       source: "Poly Pizza", id: m.ID, title: m.Title, licence: m.Licence,
       creator: m.Creator?.Username || "", creatorUrl: m.Creator?.PURL || "", url: `https://poly.pizza/m/${m.ID}`,
-      thumb: m.Thumbnail, glb: m.Download,
+      thumb: m.Thumbnail, glb: m.Download, about: [m.Description, (m.Tags || []).join(" ")].filter(Boolean).join(" ").slice(0, 160),
     }));
   } catch (e) { console.warn(`Poly Pizza search "${term}": ${e.message}`); return []; }
 }
@@ -185,12 +184,13 @@ These were used in the last few days, so pick different objects: ${[...new Set(u
   }
 
   // 3. Claude looks and picks
-  const content = [{ type: "text", text: `For each of three objects you'll see candidate 3D MODELS (M) and candidate SURFACE TEXTURES (T). The model will be rendered on its own on a transparent background, with the texture wrapped over it, so judge the model by its shape and silhouette only (ignore its colours). Pick the model that best reads as the object, clean and well made; answer null if none clearly is the object. Pick the texture that best matches the material described.` }];
+  const content = [{ type: "text", text: `For each of three objects you'll see candidate 3D MODELS (M) and candidate SURFACE TEXTURES (T). The model will be rendered on its own on a transparent background, with the texture wrapped over it, so judge the model by its shape and silhouette only (ignore its colours). Pick the model that best reads as the object, clean and well made; answer null if none clearly is the object. Some models come without a picture; judge those by their title and tags, and only pick one if it's clearly the object. Pick the texture that best matches the material described.` }];
   for (const [j, g] of groups.entries()) {
     content.push({ type: "text", text: `\nOBJECT ${j + 1}: ${g.idea.name}, in ${g.idea.material}.` });
-    g.models = (await Promise.all(g.models.map(async (m) => ({ ...m, block: await thumbBlock(m.thumb) })))).filter((m) => m.block);
+    // Poly Pizza's file host refuses thumbnail requests from here, so those models go by their title and tags.
+    g.models = (await Promise.all(g.models.map(async (m) => ({ ...m, block: await thumbBlock(m.thumb) })))).filter((m) => m.block || m.source === "Poly Pizza");
     g.textures = (await Promise.all(g.textures.map(async (t) => ({ ...t, block: await thumbBlock(t.thumb) })))).filter((t) => t.block);
-    g.models.forEach((m, k) => content.push({ type: "text", text: `[M${j + 1}-${k + 1}] ${m.title}` }, m.block));
+    g.models.forEach((m, k) => content.push({ type: "text", text: `[M${j + 1}-${k + 1}] ${m.title}${m.about ? ` — ${m.about}` : ""}${m.block ? "" : " (no picture)"}` }, ...(m.block ? [m.block] : [])));
     g.textures.forEach((t, k) => content.push({ type: "text", text: `[T${j + 1}-${k + 1}] ${t.title}` }, t.block));
   }
   let picks = [];

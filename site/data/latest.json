@@ -1,28 +1,29 @@
 {
   "date": "2026-11-04",
   "issue": 33,
-  "generatedAt": "2026-11-04T06:41:06.997Z",
+  "generatedAt": "2026-11-04T06:51:39.360Z",
   "colour": {
     "name": "Rose",
     "yesterday": "Red",
     "tomorrow": "Magenta"
   },
   "story": {
-    "title": "Code cracked for shipwreck padlock solving 400-year-old mystery",
-    "summary": "A brass lock turned up in the sand near Port Talbot, Wales. It belongs to a treasure hoard from a shipwreck of 1583, and its code has now been cracked, solving a mystery about 400 years old.",
-    "source": "BBC News",
-    "url": "https://www.bbc.co.uk/news/articles/c69qz9jzq4jro?at_medium=RSS&amp;at_campaign=rss",
-    "published": "2026-11-04T06:12:52.000Z"
+    "title": "Why pharma firms are going to Earth’s orbit in search of new cancer drugs",
+    "summary": "Drug companies are sending experiments into low Earth orbit, where three small capsules circle about 300 miles up. Inside one, the weightlessness lets a potential cancer drug form tiny crystals that are hard to grow properly on the ground.",
+    "source": "The Guardian",
+    "url": "https://www.theguardian.com/science/2026/nov/04/us-firm-varda-space-industries-manufacturing-drugs-in-space",
+    "published": "2026-11-04T06:00:27.000Z",
+    "theme": "space-based medicine research"
   },
   "headlines": [
-    "Four Centuries Behind One Lock",
-    "The Sea Kept Its Secret",
-    "Brass Remembers What Sand Buried"
+    "Medicine Grown in Weightlessness",
+    "Crystals Bloom Where Gravity Fails",
+    "A Cure Drifting Above Us"
   ],
   "sublines": [
-    "A brass lock from a 1583 shipwreck hoard, found in sand near Port Talbot, has been cracked.",
-    "Its code now solved, a brass lock from a 1583 wreck ends a 400-year-old mystery.",
-    "Found in the sand near Port Talbot, the lock belongs to a shipwreck treasure hoard dating from 1583."
+    "Three washing-machine-sized capsules orbit 300 miles up, and pharma firms are using them to grow drug crystals.",
+    "In microgravity, a potential cancer drug forms tiny crystals that researchers hope will lead to better treatments.",
+    "Pharmaceutical companies are renting orbital space for experiments that gravity makes difficult or impossible on Earth."
   ],
   "palette": {
     "name": "Vivid",
@@ -38,13 +39,13 @@
     "#FFFFFF"
   ],
   "type": {
-    "id": "caslon",
-    "display": "Libre Caslon Display",
-    "text": "Libre Franklin",
-    "reason": "Libre Caslon Display has the weathered, old-world gravity of a 16th-century relic, while Libre Franklin keeps the facts plain and modern.",
-    "css": "https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Franklin&display=swap",
-    "displayUrl": "https://fonts.google.com/specimen/Libre+Caslon+Display",
-    "textUrl": "https://fonts.google.com/specimen/Libre+Franklin"
+    "id": "instrument",
+    "display": "Instrument Serif",
+    "text": "Inter Tight",
+    "reason": "Instrument Serif's delicate, crystalline strokes set huge feel precise and quietly wondrous, while Inter Tight carries the scientific facts cleanly.",
+    "css": "https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter+Tight&display=swap",
+    "displayUrl": "https://fonts.google.com/specimen/Instrument+Serif",
+    "textUrl": "https://fonts.google.com/specimen/Inter+Tight"
   },
   "grid": {
     "format": "A-size",
@@ -62,222 +63,213 @@
   },
   "images": [
     {
-      "id": "met:384340",
-      "source": "The Met",
-      "licence": "CC0",
-      "title": "The Shipwreck, ca. 1638–41",
-      "credit": "Claude Lorrain (Claude Gellée)",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/384340",
-      "page": "https://www.metmuseum.org/art/collection/search/384340",
-      "alt": "The Shipwreck",
-      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP816335.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP816335.jpg",
-      "local": "media/2026-11-04/image-01-1080.jpg"
-    },
-    {
-      "id": "unsplash:_XqbPS0b2Bw",
+      "id": "unsplash:PrQqQVPzmlw",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "sea waves",
-      "credit": "Harald Attila",
-      "creditUrl": "https://unsplash.com/@attilandscape?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/sea-waves-_XqbPS0b2Bw?utm_source=daily_poster&utm_medium=referral",
-      "alt": "sea waves",
-      "thumb": "https://images.unsplash.com/photo-1547325556-6522f323ebd9?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8d2V0JTIwc2FuZCUyMHNob3JlfGVufDF8fHx8MTc5Mzc3NDQ2N3ww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1547325556-6522f323ebd9?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8d2V0JTIwc2FuZCUyMHNob3JlfGVufDF8fHx8MTc5Mzc3NDQ2N3ww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "purple cyrstal quarts stone",
+      "credit": "Krystal Ng",
+      "creditUrl": "https://unsplash.com/@bykrystal?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/purple-cyrstal-quarts-stone-PrQqQVPzmlw?utm_source=daily_poster&utm_medium=referral",
+      "alt": "purple cyrstal quarts stone",
+      "thumb": "https://images.unsplash.com/photo-1521133573892-e44906baee46?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGluayUyMGNyeXN0YWxzfGVufDF8fHx8MTc5Mzc3NTA5OXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1521133573892-e44906baee46?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGluayUyMGNyeXN0YWxzfGVufDF8fHx8MTc5Mzc3NTA5OXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:EF9irJtpquw",
+      "id": "unsplash:GkpYlUpUOIY",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "Footprints on purple-streaked wet sand",
-      "credit": "Hansheng Zhao",
-      "creditUrl": "https://unsplash.com/@co?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/footprints-on-purple-streaked-wet-sand-EF9irJtpquw?utm_source=daily_poster&utm_medium=referral",
-      "alt": "Footprints on purple-streaked wet sand",
-      "thumb": "https://images.unsplash.com/photo-1783029346482-b5bb88cee4f7?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8d2V0JTIwc2FuZCUyMHNob3JlfGVufDF8fHx8MTc5Mzc3NDQ2N3ww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1783029346482-b5bb88cee4f7?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8d2V0JTIwc2FuZCUyMHNob3JlfGVufDF8fHx8MTc5Mzc3NDQ2N3ww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "Crescent earth seen from space against blackness",
+      "credit": "NASA",
+      "creditUrl": "https://unsplash.com/@nasa?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/crescent-earth-seen-from-space-against-blackness-GkpYlUpUOIY?utm_source=daily_poster&utm_medium=referral",
+      "alt": "Crescent earth seen from space against blackness",
+      "thumb": "https://images.unsplash.com/photo-1777047023579-5007a6d402bc?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8ZWFydGglMjBmcm9tJTIwb3JiaXR8ZW58MXx8fHwxNzkzNzc1MDk5fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1777047023579-5007a6d402bc?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8ZWFydGglMjBmcm9tJTIwb3JiaXR8ZW58MXx8fHwxNzkzNzc1MDk5fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "met:186848",
+      "id": "met:454019",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Padlock, 17th century",
+      "title": "Crystal Flask, 9th–10th century",
       "credit": "Unknown artist",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/186848",
-      "page": "https://www.metmuseum.org/art/collection/search/186848",
-      "alt": "Padlock",
-      "thumb": "https://images.metmuseum.org/CRDImages/es/web-large/SF87_11_47.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/es/original/SF87_11_47.jpg",
-      "local": "media/2026-11-04/image-04-1080.jpg"
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/454019",
+      "page": "https://www.metmuseum.org/art/collection/search/454019",
+      "alt": "Crystal Flask",
+      "thumb": "https://images.metmuseum.org/CRDImages/is/web-large/sf31-18-1a.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/is/original/sf31-18-1a.jpg",
+      "local": "media/2026-11-04/image-03-1080.jpg"
     },
     {
-      "id": "unsplash:DcpblPZ6fDA",
+      "id": "unsplash:noEHHmWGXIU",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "brass padlock on brown wooden door",
-      "credit": "Mick Haupt",
-      "creditUrl": "https://unsplash.com/@rocinante_11?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/brass-padlock-on-brown-wooden-door-DcpblPZ6fDA?utm_source=daily_poster&utm_medium=referral",
-      "alt": "brass padlock on brown wooden door",
-      "thumb": "https://images.unsplash.com/photo-1614797091730-e2a6121aaa60?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8YnJhc3MlMjBwYWRsb2NrfGVufDF8fHx8MTc5Mzc3NDQ2N3ww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1614797091730-e2a6121aaa60?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8YnJhc3MlMjBwYWRsb2NrfGVufDF8fHx8MTc5Mzc3NDQ2N3ww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "A pile of pink crystals sitting on top of a table",
+      "credit": "Bhautik Patel",
+      "creditUrl": "https://unsplash.com/@bhautik_patel3?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-pile-of-pink-crystals-sitting-on-top-of-a-table-noEHHmWGXIU?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A pile of pink crystals sitting on top of a table",
+      "thumb": "https://images.unsplash.com/photo-1728234553997-f71b87a44e13?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGluayUyMGNyeXN0YWxzfGVufDF8fHx8MTc5Mzc3NTA5OXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1728234553997-f71b87a44e13?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGluayUyMGNyeXN0YWxzfGVufDF8fHx8MTc5Mzc3NTA5OXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "met:448731",
+      "id": "met:283255",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Padlock, probably 11th century",
-      "credit": "Unknown artist",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/448731",
-      "page": "https://www.metmuseum.org/art/collection/search/448731",
-      "alt": "Padlock",
-      "thumb": "https://images.metmuseum.org/CRDImages/is/web-large/sf32-150-220a.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/is/original/sf32-150-220a.jpg",
-      "local": "media/2026-11-04/image-06-1080.jpg"
+      "title": "A Section of the Constellation Cygnus (August 13, 1885), 1885",
+      "credit": "Paul Henry",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/283255",
+      "page": "https://www.metmuseum.org/art/collection/search/283255",
+      "alt": "A Section of the Constellation Cygnus (August 13, 1885)",
+      "thumb": "https://images.metmuseum.org/CRDImages/ph/web-large/DP156450.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/ph/original/DP156450.jpg",
+      "local": "media/2026-11-04/image-05-1080.jpg"
     },
     {
-      "id": "unsplash:5VBfEVfKvmQ",
+      "id": "unsplash:m__rN6Yu93A",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "green and silver padlock on yellow surface",
-      "credit": "FlyD",
-      "creditUrl": "https://unsplash.com/@flyd2069?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/green-and-silver-padlock-on-yellow-surface-5VBfEVfKvmQ?utm_source=daily_poster&utm_medium=referral",
-      "alt": "green and silver padlock on yellow surface",
-      "thumb": "https://images.unsplash.com/photo-1614064745490-83abb17303e1?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8YnJhc3MlMjBwYWRsb2NrfGVufDF8fHx8MTc5Mzc3NDQ2N3ww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1614064745490-83abb17303e1?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8YnJhc3MlMjBwYWRsb2NrfGVufDF8fHx8MTc5Mzc3NDQ2N3ww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "a close up of a bunch of ice crystals",
+      "credit": "Kier in Sight Archives",
+      "creditUrl": "https://unsplash.com/@kierinsightarchives?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-close-up-of-a-bunch-of-ice-crystals-m__rN6Yu93A?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a close up of a bunch of ice crystals",
+      "thumb": "https://images.unsplash.com/photo-1650341791272-c47e22beb413?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8cGluayUyMGNyeXN0YWxzfGVufDF8fHx8MTc5Mzc3NTA5OXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1650341791272-c47e22beb413?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8cGluayUyMGNyeXN0YWxzfGVufDF8fHx8MTc5Mzc3NTA5OXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "met:463365",
+      "id": "unsplash:SrQSKuy8z7I",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "View of earth from space through a window",
+      "credit": "Muhammad Nishfu",
+      "creditUrl": "https://unsplash.com/@nishfu?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/view-of-earth-from-space-through-a-window-SrQSKuy8z7I?utm_source=daily_poster&utm_medium=referral",
+      "alt": "View of earth from space through a window",
+      "thumb": "https://images.unsplash.com/photo-1768283808210-41196886ebf4?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8ZWFydGglMjBmcm9tJTIwb3JiaXR8ZW58MXx8fHwxNzkzNzc1MDk5fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1768283808210-41196886ebf4?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8ZWFydGglMjBmcm9tJTIwb3JiaXR8ZW58MXx8fHwxNzkzNzc1MDk5fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:468471",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Padlock, 16th century",
-      "credit": "French (?)",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/463365",
-      "page": "https://www.metmuseum.org/art/collection/search/463365",
-      "alt": "Padlock",
-      "thumb": "https://images.metmuseum.org/CRDImages/md/web-large/sf10-100-191s1.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/md/original/sf10-100-191s1.jpg",
+      "title": "Rock Crystal Bowl, 3rd–5th century",
+      "credit": "North African (Carthage)",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/468471",
+      "page": "https://www.metmuseum.org/art/collection/search/468471",
+      "alt": "Rock Crystal Bowl",
+      "thumb": "https://images.metmuseum.org/CRDImages/md/web-large/DP-25593-001.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/md/original/DP-25593-001.jpg",
       "local": "media/2026-11-04/image-08-1080.jpg"
     },
     {
-      "id": "unsplash:q2Zk10NBnsA",
+      "id": "unsplash:JKRXPwUoFt0",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "brown padlock on blue wooden door",
-      "credit": "Jornada Produtora",
-      "creditUrl": "https://unsplash.com/@jornadaprodutora?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/brown-padlock-on-blue-wooden-door-q2Zk10NBnsA?utm_source=daily_poster&utm_medium=referral",
-      "alt": "brown padlock on blue wooden door",
-      "thumb": "https://images.unsplash.com/photo-1588689653688-9b312cd6bc2b?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8YnJhc3MlMjBwYWRsb2NrfGVufDF8fHx8MTc5Mzc3NDQ2N3ww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1588689653688-9b312cd6bc2b?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8YnJhc3MlMjBwYWRsb2NrfGVufDF8fHx8MTc5Mzc3NDQ2N3ww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "cracked red quartz",
+      "credit": "Jason D",
+      "creditUrl": "https://unsplash.com/@jasondeblooisphotography?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/cracked-red-quartz-JKRXPwUoFt0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "cracked red quartz",
+      "thumb": "https://images.unsplash.com/photo-1551122087-f99a4ade46ce?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cGluayUyMGNyeXN0YWxzfGVufDF8fHx8MTc5Mzc3NTA5OXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1551122087-f99a4ade46ce?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cGluayUyMGNyeXN0YWxzfGVufDF8fHx8MTc5Mzc3NTA5OXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:ybtUqjybcjE",
-      "source": "Unsplash",
-      "licence": "Unsplash License",
-      "title": "brown padlock on brown wooden fence",
-      "credit": "Georg Bommeli",
-      "creditUrl": "https://unsplash.com/@calina?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/brown-padlock-on-brown-wooden-fence-ybtUqjybcjE?utm_source=daily_poster&utm_medium=referral",
-      "alt": "brown padlock on brown wooden fence",
-      "thumb": "https://images.unsplash.com/photo-1586661615438-349a276d098b?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8YnJhc3MlMjBwYWRsb2NrfGVufDF8fHx8MTc5Mzc3NDQ2N3ww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1586661615438-349a276d098b?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8YnJhc3MlMjBwYWRsb2NrfGVufDF8fHx8MTc5Mzc3NDQ2N3ww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "id": "met:448558",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Crystal Flask, 10th century",
+      "credit": "Unknown artist",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/448558",
+      "page": "https://www.metmuseum.org/art/collection/search/448558",
+      "alt": "Crystal Flask",
+      "thumb": "https://images.metmuseum.org/CRDImages/is/web-large/sf31-18-2a.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/is/original/sf31-18-2a.jpg",
+      "local": "media/2026-11-04/image-10-1080.jpg"
     }
   ],
   "textures": [
     {
-      "id": "unsplash:cqhXfrRHCPo",
+      "id": "unsplash:k4Lt0CjUnb0",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "black and white abstract painting",
-      "credit": "Kiwihug",
-      "creditUrl": "https://unsplash.com/@kiwihug?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/black-and-white-abstract-painting-cqhXfrRHCPo?utm_source=daily_poster&utm_medium=referral",
-      "alt": "black and white abstract painting",
-      "thumb": "https://images.unsplash.com/photo-1629968417850-3505f5180761?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8YWdlZCUyMHBhcGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTM3NzQ0Njd8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1629968417850-3505f5180761?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8YWdlZCUyMHBhcGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTM3NzQ0Njd8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "white textured paper or plaster surface",
+      "credit": "João Vítor Duarte",
+      "creditUrl": "https://unsplash.com/@joaovtrduarte?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-k4Lt0CjUnb0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "white textured paper or plaster surface",
+      "thumb": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8ZmluZSUyMHBhcGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTM3NzUxMDB8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8ZmluZSUyMHBhcGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTM3NzUxMDB8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "polyhaven:rusty_metal_sheet",
-      "source": "Poly Haven",
-      "licence": "CC0",
-      "title": "Rusty Metal Sheet",
-      "credit": "Amal Kumar",
-      "creditUrl": "https://polyhaven.com/a/rusty_metal_sheet",
-      "page": "https://polyhaven.com/a/rusty_metal_sheet",
-      "alt": "Rusty Metal Sheet texture",
-      "thumb": "https://cdn.polyhaven.com/asset_img/thumbs/rusty_metal_sheet.png?width=480&height=480",
-      "src": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/rusty_metal_sheet/rusty_metal_sheet_diff_2k.jpg",
-      "local": "media/2026-11-04/texture-02-1080.jpg"
+      "id": "unsplash:tiros7-WV7E",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "blue and white abstract painting",
+      "credit": "Markus Spiske",
+      "creditUrl": "https://unsplash.com/@markusspiske?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/blue-and-white-abstract-painting-tiros7-WV7E?utm_source=daily_poster&utm_medium=referral",
+      "alt": "blue and white abstract painting",
+      "thumb": "https://images.unsplash.com/photo-1631435628939-467169ba6e08?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8ZnJvc3RlZCUyMGdsYXNzJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTM3NzUwOTl8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1631435628939-467169ba6e08?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8ZnJvc3RlZCUyMGdsYXNzJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTM3NzUwOTl8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "polyhaven:damp_sand",
+      "id": "polyhaven:quatrefoil_jacquard_fabric",
       "source": "Poly Haven",
       "licence": "CC0",
-      "title": "Damp Sand",
-      "credit": "eye-candy.xyz",
-      "creditUrl": "https://polyhaven.com/a/damp_sand",
-      "page": "https://polyhaven.com/a/damp_sand",
-      "alt": "Damp Sand texture",
-      "thumb": "https://cdn.polyhaven.com/asset_img/thumbs/damp_sand.png?width=480&height=480",
-      "src": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/damp_sand/damp_sand_diff_2k.jpg",
+      "title": "Quatrefoil Jacquard Fabric",
+      "credit": "colormass, Rico Cilliers",
+      "creditUrl": "https://polyhaven.com/a/quatrefoil_jacquard_fabric",
+      "page": "https://polyhaven.com/a/quatrefoil_jacquard_fabric",
+      "alt": "Quatrefoil Jacquard Fabric texture",
+      "thumb": "https://cdn.polyhaven.com/asset_img/thumbs/quatrefoil_jacquard_fabric.png?width=480&height=480",
+      "src": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/quatrefoil_jacquard_fabric/quatrefoil_jacquard_fabric_diff_2k.jpg",
       "local": "media/2026-11-04/texture-03-1080.jpg"
     },
     {
-      "id": "polyhaven:wood_table_worn",
-      "source": "Poly Haven",
-      "licence": "CC0",
-      "title": "Wood Table Worn",
-      "credit": "Dimitrios Savva, Rico Cilliers",
-      "creditUrl": "https://polyhaven.com/a/wood_table_worn",
-      "page": "https://polyhaven.com/a/wood_table_worn",
-      "alt": "Wood Table Worn texture",
-      "thumb": "https://cdn.polyhaven.com/asset_img/thumbs/wood_table_worn.png?width=480&height=480",
-      "src": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/wood_table_worn/wood_table_worn_diff_2k.jpg",
-      "local": "media/2026-11-04/texture-04-1080.jpg"
+      "id": "unsplash:yI3weKNBRTc",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "gray concrete painted wall",
+      "credit": "Annie Spratt",
+      "creditUrl": "https://unsplash.com/@anniespratt?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/gray-concrete-painted-wall-yI3weKNBRTc?utm_source=daily_poster&utm_medium=referral",
+      "alt": "gray concrete painted wall",
+      "thumb": "https://images.unsplash.com/photo-1533035353720-f1c6a75cd8ab?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Zm9pbCUyMHRleHR1cmV8ZW58MXx8fHwxNzkzNzc1MDk5fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1533035353720-f1c6a75cd8ab?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Zm9pbCUyMHRleHR1cmV8ZW58MXx8fHwxNzkzNzc1MDk5fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     }
   ],
   "objects": [
     {
-      "name": "padlock",
-      "material": "tarnished brass",
+      "name": "space capsule",
+      "material": "brushed aluminium with scorched heat shield",
       "image": "media/2026-11-04/object-1.png",
       "thumb": "media/2026-11-04/object-1-thumb.png",
       "model": null,
       "texture": {
-        "title": "Rusty Metal 03",
-        "url": "https://polyhaven.com/a/rusty_metal_03"
+        "title": "Blue Metal Plate",
+        "url": "https://polyhaven.com/a/blue_metal_plate"
       }
     },
     {
-      "name": "anchor",
-      "material": "rusted iron",
+      "name": "crystal",
+      "material": "polished translucent quartz",
       "image": "media/2026-11-04/object-2.png",
       "thumb": "media/2026-11-04/object-2-thumb.png",
       "model": null,
       "texture": {
-        "title": "Rusty Metal 04",
-        "url": "https://polyhaven.com/a/rusty_metal_04"
+        "title": "Slate Floor",
+        "url": "https://polyhaven.com/a/slate_floor"
       }
     },
     {
-      "name": "treasure chest",
-      "material": "weathered dark wood with aged iron",
+      "name": "satellite",
+      "material": "polished steel with gold foil",
       "image": "media/2026-11-04/object-3.png",
       "thumb": "media/2026-11-04/object-3-thumb.png",
-      "model": {
-        "title": "Treasure Chest",
-        "source": "Poly Haven",
-        "url": "https://polyhaven.com/a/treasure_chest",
-        "licence": "CC0",
-        "creator": "",
-        "creatorUrl": ""
-      },
+      "model": null,
       "texture": {
-        "title": "Rough Pine Door",
-        "url": "https://polyhaven.com/a/rough_pine_door"
+        "title": "Blue Metal Plate",
+        "url": "https://polyhaven.com/a/blue_metal_plate"
       }
     }
   ]

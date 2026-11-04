@@ -3,12 +3,12 @@
     "date": "2026-11-04",
     "issue": 33,
     "colour": "Rose",
-    "headline": "Four Centuries Behind One Lock",
+    "headline": "Medicine Grown in Weightlessness",
     "bg": "#F33496",
-    "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP816335.jpg",
-    "display": "Libre Caslon Display",
-    "text": "Libre Franklin",
-    "css": "https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Franklin&display=swap"
+    "thumb": "https://images.unsplash.com/photo-1521133573892-e44906baee46?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGluayUyMGNyeXN0YWxzfGVufDF8fHx8MTc5Mzc3NTA5OXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+    "display": "Instrument Serif",
+    "text": "Inter Tight",
+    "css": "https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter+Tight&display=swap"
   },
   {
     "date": "2026-11-03",

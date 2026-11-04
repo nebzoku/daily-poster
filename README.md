@@ -1,6 +1,6 @@
 # Daily Poster
 
-Design a poster, every day.
+Design a poster, every day. **[dailyposter.design](https://dailyposter.design)**
 
 Daily Poster is a free design brief that lands every morning. It takes one story from the day's news and turns it into a brief for an A-size poster. In a world of AI and automation, the chance to design something just because you can is getting rarer, so the brief gives you just enough guardrails to explore and nothing to overthink before you start. Make your poster, share it with #dailyposter, and see what everyone else did with the same brief.
 

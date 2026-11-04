@@ -1,5 +1,16 @@
 [
   {
+    "date": "2026-11-04",
+    "issue": 33,
+    "colour": "Rose",
+    "headline": "Four Centuries Behind One Lock",
+    "bg": "#F33496",
+    "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP816335.jpg",
+    "display": "Libre Caslon Display",
+    "text": "Libre Franklin",
+    "css": "https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Franklin&display=swap"
+  },
+  {
     "date": "2026-11-03",
     "issue": 32,
     "colour": "Red",

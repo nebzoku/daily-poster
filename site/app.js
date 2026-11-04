@@ -747,6 +747,7 @@ ${frames.join("\n")}
     requestAnimationFrame(() => requestAnimationFrame(() => document.documentElement.classList.add("ready")));
 
     $("copy-figma").addEventListener("click", copyFigma);
+    $("copy-figma-top").addEventListener("click", copyFigma);
     $("copy-caption").addEventListener("click", () => copy(caption(), "Caption copied"));
   }
 

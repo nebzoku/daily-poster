@@ -57,6 +57,11 @@ h1, h2, p, ol, dl, dd { margin: 0; }
 .top-links { flex: 1; display: flex; justify-content: flex-end; gap: 20px; }
 .top button { font: inherit; letter-spacing: inherit; text-transform: inherit; }
 .top button:hover { color: var(--muted); }
+.top-links { align-items: center; }
+.top .top-copy { display: inline-flex; align-items: center; gap: 6px; height: 22px; padding: 0 9px; margin: -4px 0; background: var(--fg); color: var(--bg); border-radius: 3px; }
+.top .top-copy:hover { color: var(--bg); opacity: .82; }
+.top-copy .short { display: none; }
+@media (max-width: 600px) { .top-copy .long { display: none; } .top-copy .short { display: inline; } }
 
 /* ---------- info overlay ---------- */
 .info {

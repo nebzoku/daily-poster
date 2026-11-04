@@ -19,7 +19,7 @@ import sharp from "sharp";
 // (or as WebP), so read the bytes with sharp and send a small PNG either way.
 async function thumbBlock(url) {
   try {
-    const res = await fetch(url, { headers: UA, signal: AbortSignal.timeout(15000) });
+    const res = await fetch(url, { headers: headersFor(url), signal: AbortSignal.timeout(15000) });
     if (!res.ok) return null;
     const png = await sharp(Buffer.from(await res.arrayBuffer())).resize(256, 256, { fit: "inside" }).png().toBuffer();
     return { type: "image", source: { type: "base64", media_type: "image/png", data: png.toString("base64") } };
@@ -32,6 +32,8 @@ const DATA = join(SITE, "data");
 const WORK = "/tmp/daily-poster-objects";
 const RENDER = new URL("./blender/render.py", import.meta.url).pathname;
 const UA = { "user-agent": "daily-poster (github.com/nebzoku/daily-poster)" };
+// Requests to Poly Pizza's file host carry our API key, in case downloads need it.
+const headersFor = (url) => (/poly\.pizza/.test(url) && process.env.POLY_PIZZA_KEY ? { ...UA, "X-Auth-Token": process.env.POLY_PIZZA_KEY } : UA);
 const SHAPES = ["rock", "sphere", "cube", "cylinder", "ring", "slab"];
 const HDRIS = ["brown_photostudio_02", "ferndale_studio_03", "cyclorama_hard_light", "blocky_photo_studio"];
 const OK_LICENCE = (l) => /^CC0/i.test(l || "") || /^CC[- ]BY(?![- ]?(SA|ND|NC))/i.test(l || "");
@@ -42,7 +44,7 @@ async function json(url, headers = {}) {
   return res.json();
 }
 async function download(url, file) {
-  const res = await fetch(url, { headers: UA, signal: AbortSignal.timeout(60000) });
+  const res = await fetch(url, { headers: headersFor(url), signal: AbortSignal.timeout(60000) });
   if (!res.ok) throw new Error(`${res.status} for ${url}`);
   await mkdir(dirname(file), { recursive: true });
   await writeFile(file, Buffer.from(await res.arrayBuffer()));

@@ -52,19 +52,45 @@ section{position:absolute;top:370px;bottom:370px;width:${W}px;display:flex;flex-
 .m{font-family:'Geist Mono',monospace;font-size:22px;font-weight:500;letter-spacing:.02em;text-transform:uppercase}
 .k{display:inline-flex;align-items:center;gap:12px}
 .dot{width:13px;height:13px;border-radius:50%;background:${brief.palette.colours[0]}}
-.meta{color:#8a8a86;margin-top:12px}
+.meta{color:#8a8a86;margin-top:12px;line-height:1.2}
 h1{font-family:'EB Garamond',serif;font-weight:400;font-size:132px;line-height:1.02;letter-spacing:-.015em;margin:34px 0 0;max-width:900px;text-wrap:balance}
-.count{margin-top:34px;display:flex;gap:18px;color:#c9c9c5}
+.count{line-height:1.2;display:flex;gap:18px;color:#c9c9c5}
 .count .on{color:#111}
 </style></head><body>
 ${imgs}
 ${cards}
 <script>
-// Each headline as big as fits its card.
+// One size for all three headlines, set by the longest. Two lines where possible; if any
+// needs three, all go to three. Then the counter sits as far below the headline as the
+// labels sit above it (measured on the letters, not the boxes).
 Promise.all([document.fonts.ready, ...[...document.images].map(i => i.complete ? 1 : new Promise(r => i.onload = i.onerror = r))]).then(() => {
   [...document.images].forEach(i => { if (!i.naturalWidth) i.remove(); });
-  document.querySelectorAll('h1.fit').forEach(h => { const box = h.parentElement; let s = 132;
-    while ((box.scrollHeight > box.clientHeight || h.scrollWidth > h.clientWidth) && s > 60) { s -= 4; h.style.fontSize = s + 'px'; } });
+  const hs = [...document.querySelectorAll('h1.fit')], LH = 1.02, MAXW = 900;
+  const lines = (h) => Math.round(h.getBoundingClientRect().height / (parseFloat(h.style.fontSize) * LH));
+  const fits = (h) => h.parentElement.scrollHeight <= h.parentElement.clientHeight && h.scrollWidth <= h.clientWidth;
+  const setAll = (px) => hs.forEach(h => { h.style.fontSize = px + 'px'; h.style.maxWidth = MAXW + 'px'; });
+  let size = 0, n = 2;
+  for (n of [2, 3]) {
+    for (let px = 132; px >= (n === 2 ? 84 : 56); px -= 2) { setAll(px); if (hs.every(h => lines(h) <= n && fits(h))) { size = px; break; } }
+    if (size) break;
+  }
+  if (!size) { size = 56; setAll(size); }
+  const most = Math.max(...hs.map(lines));
+  hs.forEach(h => { let w = MAXW; while (lines(h) < most && w > 360) { w -= 10; h.style.maxWidth = w + 'px'; } });
+  const m = document.createElement('canvas').getContext('2d');
+  const metric = (font) => { m.font = font; const t = m.measureText('H'); return { a: t.fontBoundingBoxAscent, d: t.fontBoundingBoxDescent, cap: t.actualBoundingBoxAscent }; };
+  const g = metric("400 " + size + "px 'EB Garamond'"), mono = metric("500 22px 'Geist Mono'");
+  const lead = (lh, f) => (lh - (f.a + f.d)) / 2;
+  const glh = size * LH, mlh = parseFloat(getComputedStyle(document.querySelector('.meta')).lineHeight) || 22 * 1.2;
+  document.querySelectorAll('section').forEach(sec => {
+    const meta = sec.querySelector('.meta').getBoundingClientRect(), h = sec.querySelector('h1').getBoundingClientRect(), c = sec.querySelector('.count');
+    const metaBase = meta.bottom - lead(mlh, mono) - mono.d;
+    const capTop = h.top + lead(glh, g) + g.a - g.cap;
+    const base = h.bottom - lead(glh, g) - g.d;
+    const gap = capTop - metaBase;
+    const countInk = lead(mlh, mono) + mono.a - mono.cap;
+    c.style.marginTop = Math.round(gap - (h.bottom - base) - countInk) + 'px';
+  });
   document.body.dataset.ready = 1; });
 </script></body></html>`;
 }

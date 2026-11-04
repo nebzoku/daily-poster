@@ -11,7 +11,7 @@ on:
   # can run late or skip. Posting only happens when something is due, so extra runs are safe.
   push:
     branches: [main]
-    paths: [instagram/backfill.json, scripts/instagram/**, .github/workflows/instagram.yml]
+    paths: [instagram/backfill.json, instagram/kick, scripts/instagram/**, .github/workflows/instagram.yml]
 
 permissions:
   contents: write

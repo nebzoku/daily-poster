@@ -17,7 +17,7 @@ on:
         default: false
   push:
     branches: [main]
-    paths: ["site/**", "scripts/**", ".github/workflows/**"]
+    paths: ["site/**", "scripts/**", ".github/workflows/**", "instagram/kick"]
 
 permissions:
   contents: write

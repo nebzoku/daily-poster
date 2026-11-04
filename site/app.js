@@ -500,55 +500,32 @@
       el("a", { href: tag("dailyposter"), target: "_blank", rel: "noopener" }, "See them all ↗"));
   }
 
-  // ---------- Instagram mockups: template A, the poster centred with a label on each side ----------
-  // The poster fills the height, leaving 48 px above and below and 65 px at the sides;
-  // each label sits centred in its band (bx from the side edges, by from the top and bottom).
-  const MOCK = { W: 1080, H: 1440, slot: { x: 65, y: 48, w: 950, h: 1344 }, bx: 32.5, by: 24, size: 16, dot: 10 };
-  const issueDate = () => { const [y, m, d] = brief.date.split("-"); return `${d}.${m}.${y.slice(2)}`; };
+  // ---------- Instagram mockups: the poster centred on a plain background, as we post them ----------
+  // 4:5, Instagram's tallest feed size. The poster fills the height with 44 px above and below.
+  const MOCK = (() => { const W = 1080, H = 1350, h = H - 88, w = Math.round(h / 1.41481); return { W, H, slot: { x: Math.round((W - w) / 2), y: 44, w, h } }; })();
   function mockups() {
     return [
-      { key: "colour", name: `${brief.colour.name} dark`, bg: palette.colours[3], fg: "#FFFFFF" },
+      { key: "tint", name: `${brief.colour.name} tint`, bg: palette.colours[1], fg: "#111111" },
+      { key: "dark", name: `${brief.colour.name} dark`, bg: palette.colours[3], fg: "#FFFFFF" },
       { key: "black", name: "Black", bg: "#000000", fg: "#FFFFFF" },
       { key: "white", name: "White", bg: "#FFFFFF", fg: "#111111" },
     ];
   }
-  function mockLabels() {
-    return { top: "DAILY POSTER", left: `NO. ${pad(brief.issue)}`, right: issueDate(), bottom: brief.story.source.toUpperCase() };
-  }
-  const tracking = () => MOCK.size * 0.06;
-  function monoWidth(s) {
-    const ctx = document.createElement("canvas").getContext("2d");
-    ctx.font = `${MOCK.size}px "Geist Mono"`;
-    return ctx.measureText(s).width + tracking() * (s.length - 1);
-  }
 
   // One mockup as SVG. Used on the page and in the Figma paste.
-  function mockupSVG(m, poster, onPage) {
-    const { W, H, slot, bx, by, size, dot } = MOCK, L = mockLabels();
-    const dy = (size * 0.36).toFixed(1);   // drops the baseline so the capitals sit centred
-    const family = onPage ? "'Geist Mono', ui-monospace, monospace" : "Geist Mono";   // Figma wants one plain family name
-    const font = `font-family="${family}" font-size="${size}" fill="${m.fg}" letter-spacing="${tracking().toFixed(2)}"`;
-    const centred = (id, s, x, y, rot) =>
-      `<text id="${id}" ${font} text-anchor="middle" transform="translate(${x} ${y})${rot ? ` rotate(${rot})` : ""}" x="0" y="${dy}">${esc(s)}</text>`;
-    const groupW = dot * 2 + monoWidth(L.top), x0 = W / 2 - groupW / 2;
+  function mockupSVG(m, poster) {
+    const { W, H, slot } = MOCK;
     const inside = poster
       ? `<image id="Poster" href="${poster}" x="${slot.x}" y="${slot.y}" width="${slot.w}" height="${slot.h}" preserveAspectRatio="xMidYMin slice"/>`
       : `<rect id="Poster goes here" x="${slot.x}" y="${slot.y}" width="${slot.w}" height="${slot.h}" fill="${m.fg}" fill-opacity="0.08"/>`;
     return `<rect id="Background" width="${W}" height="${H}" fill="${m.bg}"/>
-${inside}
-<g id="Labels">
-<circle id="Dot" cx="${(x0 + dot / 2).toFixed(1)}" cy="${by}" r="${dot / 2}" fill="${palette.colours[0]}"/>
-<text id="Daily Poster" ${font} x="${(x0 + dot * 2).toFixed(1)}" y="${(by + +dy).toFixed(1)}">${esc(L.top)}</text>
-${centred("Number", L.left, bx, H / 2, -90)}
-${centred("Date", L.right, W - bx, H / 2, 90)}
-${centred("Source", L.bottom, W / 2, H - by)}
-</g>`;
+${inside}`;
   }
 
   const state2 = { poster: null };
   function renderMockups() {
     $("mocks").replaceChildren(...mockups().map((m) => {
-      const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${MOCK.W} ${MOCK.H}" role="img" aria-label="Instagram mockup on ${esc(m.name)}">${mockupSVG(m, state2.poster, true)}</svg>`;
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${MOCK.W} ${MOCK.H}" role="img" aria-label="Instagram mockup on ${esc(m.name)}">${mockupSVG(m, state2.poster)}</svg>`;
       const fig = el("figure", { class: "mock" });
       fig.innerHTML = svg;
       fig.append(el("figcaption", { class: "mono" }, el("span", {}, m.name),
@@ -559,8 +536,7 @@ ${centred("Source", L.bottom, W / 2, H - by)}
 
   // Draws a mockup at full size and saves it as a PNG.
   async function downloadMockup(m) {
-    const { W, H, slot, bx, by, size, dot } = MOCK, L = mockLabels();
-    await document.fonts.load(`${size}px "Geist Mono"`);
+    const { W, H, slot } = MOCK;
     const c = document.createElement("canvas");
     c.width = W; c.height = H;
     const ctx = c.getContext("2d");
@@ -573,17 +549,6 @@ ${centred("Source", L.bottom, W / 2, H - by)}
     } else {
       ctx.globalAlpha = 0.08; ctx.fillStyle = m.fg; ctx.fillRect(slot.x, slot.y, slot.w, slot.h); ctx.globalAlpha = 1;
     }
-    ctx.font = `${size}px "Geist Mono"`;
-    if ("letterSpacing" in ctx) ctx.letterSpacing = `${tracking()}px`;
-    ctx.fillStyle = m.fg; ctx.textBaseline = "alphabetic";
-    const dy = size * 0.36;
-    const put = (s, x, y, rot) => { ctx.save(); ctx.translate(x, y); ctx.rotate((rot * Math.PI) / 180); ctx.textAlign = "center"; ctx.fillText(s, 0, dy); ctx.restore(); };
-    const groupW = dot * 2 + monoWidth(L.top), x0 = W / 2 - groupW / 2;
-    ctx.fillStyle = palette.colours[0]; ctx.beginPath(); ctx.arc(x0 + dot / 2, by, dot / 2, 0, Math.PI * 2); ctx.fill();
-    ctx.fillStyle = m.fg; ctx.textAlign = "left"; ctx.fillText(L.top, x0 + dot * 2, by + dy);
-    put(L.left, bx, H / 2, -90);
-    put(L.right, W - bx, H / 2, 90);
-    put(L.bottom, W / 2, H - by, 0);
     c.toBlob((b) => {
       const a = el("a", { href: URL.createObjectURL(b), download: `daily-poster-${pad(brief.issue)}-${m.key}.png` });
       document.body.append(a); a.click(); a.remove();
@@ -612,7 +577,7 @@ ${centred("Source", L.bottom, W / 2, H - by)}
 
   // ---------- Figma: every piece of the brief, side by side, as SVG that pastes in as layers ----------
   // Each piece gets its own frame (Figma turns nested <svg> elements into frames): the blank
-  // artboard, the three mockups, the type, the colours, the images and the textures. Nothing is
+  // artboard, the four mockups, the type, the colours, the images and the textures. Nothing is
   // placed on the artboard. (A paste can't carry a layout grid, so the page lists its settings.)
   function textWidth(text, font, size) {
     const ctx = document.createElement("canvas").getContext("2d");
@@ -643,7 +608,7 @@ ${centred("Source", L.bottom, W / 2, H - by)}
     const frame = (name, x, y, w, h, body) =>
       frames.push(`<svg id="${esc(name)}" x="${x}" y="${y}" width="${Math.ceil(w)}" height="${Math.ceil(h)}" viewBox="0 0 ${Math.ceil(w)} ${Math.ceil(h)}">\n${body}\n</svg>`);
 
-    // Row 1: the blank artboard, then the three mockups.
+    // Row 1: the blank artboard, then the four mockups.
     frame(`Daily Poster No. ${pad(brief.issue)}`, 0, 0, G.W, G.H, `<rect id="Background" width="${G.W}" height="${G.H}" fill="#FFFFFF"/>`);
     let x = G.W + GAP;
     for (const m of mockups()) {
@@ -735,7 +700,7 @@ ${frames.join("\n")}
     renderOptions("sublines", brief.sublines, "s", (t, i) => `0${i + 1}`);
     renderColour(); renderImages(); renderGrid(); renderShare();
     preparePosters(); renderFilters(); renderArchive(); setupLightbox(); setupHeroImages();
-    document.fonts.load(`${MOCK.size}px "Geist Mono"`).catch(() => {}).then(renderMockups);
+    renderMockups();
     setupPosterInput();
     (window.requestIdleCallback || setTimeout)(() => prepAssets());
 

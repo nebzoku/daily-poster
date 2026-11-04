@@ -80,7 +80,13 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add site/data site/media
           git diff --cached --quiet || git commit -m "Brief and images for $(TZ=Europe/London date +%F)"
-          git pull --rebase -q && git push
+          # GitHub sometimes rejects a push with a server error; try a few times. If it still
+          # fails, carry on: the site is deployed from these files either way.
+          for i in 1 2 3 4; do
+            git pull --rebase -q && git push && exit 0
+            sleep $((i * 15))
+          done
+          echo "::warning::Couldn't save today's files to the repo; the site still deploys."
 
       # The link preview takes the day's colour.
       - name: Preview image for today

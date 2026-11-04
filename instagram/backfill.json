@@ -9,6 +9,19 @@
     "poster:showcase/032-nine-stones-against-the-trawl.jpg",
     "poster:showcase/032-heavy-things-sunk-on-purpose-2.jpg",
     "poster:showcase/032-nine-stones-against-the-trawl-alt-2.jpg",
-    "brief:2026-11-04"
+    "brief:2026-11-04",
+    {
+      "key": "explainer:how-it-works",
+      "images": [
+        "media/ig/explainer-1.jpg",
+        "media/ig/explainer-2.jpg",
+        "media/ig/explainer-3.jpg",
+        "media/ig/explainer-4.jpg",
+        "media/ig/explainer-5.jpg",
+        "media/ig/explainer-6.jpg",
+        "media/ig/explainer-7.jpg"
+      ],
+      "caption": "How Daily Poster works.\n\nEvery morning there's a new poster brief at dailyposter.design, made from a story in the news: three headlines to choose from, the day's colour palette, a typeface pairing, images and 3D renders. Make an A-size poster, tag @dailyposter.design and add the day's number, like #dailyposter034. We share our favourites.\n\n#dailyposter #posterdesign #typography #graphicdesign #designchallenge"
+    }
   ]
 }

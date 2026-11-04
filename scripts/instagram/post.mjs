@@ -8,7 +8,7 @@
 import { writeFile, mkdir } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { join } from "node:path";
-import { DATA, STATE, BACKFILL, SLOTS, WINDOW_MS, readJSON, writeJSON, loadState, londonDate, londonToUtc, addDays,
+import { SITE, DATA, STATE, BACKFILL, SLOTS, WINDOW_MS, readJSON, writeJSON, loadState, londonDate, londonToUtc, addDays,
   pendingPosters, posterImage, briefImages, url } from "./common.mjs";
 
 const TOKEN = process.env.INSTAGRAM_TOKEN, USER = process.env.INSTAGRAM_USER_ID;
@@ -28,6 +28,7 @@ export function posterCaption(p, brief) {
     p.title,
     "",
     `Daily Poster No. ${pad(brief.issue)}, made from the brief for ${longDate(brief.date)}.`,
+    "",
     brief.story.summary,
     "",
     `Source: ${brief.story.source}`,
@@ -118,12 +119,19 @@ async function main() {
   // Catching up first: anything left in the one-off queue goes out now, oldest first, a couple of
   // minutes apart. Stops at the first thing whose pictures aren't ready, to keep the order.
   const { queue = [] } = await readJSON(BACKFILL, {});
-  const left = queue.filter((k) => !state.posted[k]);
+  // Items are keys ("brief:<date>", "poster:<image>") or one-off posts: { key, images, caption }
+  // with images as paths under site/ (e.g. the pinned explainer).
+  const left = queue.filter((k) => !state.posted[k.key || k]);
   if (left.length) {
     const showcase = await readJSON(join(DATA, "showcase.json"), []);
-    for (const [n, key] of left.entries()) {
+    for (const [n, item] of left.entries()) {
+      const key = item.key || item;
       let job;
-      if (key.startsWith("brief:")) {
+      if (item.key) {
+        const files = item.images.map((f) => join(SITE, f));
+        if (!files.every((f) => existsSync(f))) { console.log(`${key} isn't ready; trying again next hour.`); break; }
+        job = { images: files.map(url), caption: item.caption, alt: item.alt };
+      } else if (key.startsWith("brief:")) {
         const date = key.slice(6), brief = await readJSON(join(DATA, `${date}.json`), null);
         if (!brief || !briefImages(date).every((f) => existsSync(f))) { console.log(`${key} isn't ready; trying again next hour.`); break; }
         job = { images: briefImages(date).map(url), caption: briefCaption(brief, date !== today) };

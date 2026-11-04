@@ -17,3 +17,10 @@ Not posted or added to the archive unless Ben says so, and always credited separ
 - Colour: the obvious pairing (bright pink on the dark shade, pale tint for accents) felt
   crass and not harmonious. Be more considered: fewer colours at full strength, use the mid
   tone, think about weight and balance rather than the most contrasting pair.
+
+### No. 033 v2 (4 Nov 2026)
+- Better. Use fewer type sizes: aim for three across the headline.
+- Wrong font: the big type had fallen back to a default serif. Canvas drawing only uses a web
+  font once it's loaded, so load every face explicitly (document.fonts.load) before drawing.
+- Idea from Ben: let an object from the brief stand in for part of a letter (the satellite as
+  the dot of the i in "Weight").

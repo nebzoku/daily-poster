@@ -1,0 +1,68 @@
+<!doctype html><html><head><style>
+@font-face{font-family:IS;src:url(file:///tmp/fonts/node_modules/@fontsource/instrument-serif/files/instrument-serif-latin-400-normal.woff2)}
+@font-face{font-family:IT;src:url(file:///tmp/fonts/node_modules/@fontsource/inter-tight/files/inter-tight-latin-500-normal.woff2)}
+@font-face{font-family:GM;src:url(file:///tmp/fonts/node_modules/@fontsource/geist-mono/files/geist-mono-latin-400-normal.woff2)}
+html,body{margin:0;width:2160px;height:3056px;background:#FFD9E6;overflow:hidden;position:relative}
+.lab{position:absolute;top:48px;font:400 34px/1 GM;letter-spacing:.04em;text-transform:uppercase;color:#370E21}
+canvas,img{position:absolute;display:block}
+.sub{position:absolute;width:560px;font:500 38px/1.3 IT;color:#7C6D72}
+</style></head><body>
+<div class="lab" style="left:60px">Daily Poster</div>
+<div class="lab" style="right:60px">No. 033 · Wed 4 Nov · The Guardian</div>
+<script>
+const W = 2160, H = 3056, M = 60, DARK = "#370E21", MID = "#7C6D72";
+// Draw text into its own canvas, rotated about its centre, cropped to the actual ink.
+function draw(text, size, colour, rot, track) {
+  const pad = size * 1.2, c = document.createElement("canvas");
+  const x = c.getContext("2d"); x.font = `400 ${size}px IS`; x.letterSpacing = (track || 0) + "px";
+  const w = x.measureText(text).width; c.width = Math.ceil(w + pad * 2); c.height = Math.ceil(size * 2 + pad * 2);
+  const g = c.getContext("2d"); g.font = `400 ${size}px IS`; g.letterSpacing = (track || 0) + "px"; g.fillStyle = colour;
+  g.translate(c.width / 2, c.height / 2); g.rotate((rot || 0) * Math.PI / 180); g.textAlign = "center"; g.textBaseline = "middle"; g.fillText(text, 0, 0);
+  return c;
+}
+function bbox(c, fn = (a) => a > 40) {
+  const d = c.getContext("2d").getImageData(0, 0, c.width, c.height).data; let l = c.width, t = c.height, r = -1, b = -1;
+  for (let y = 0; y < c.height; y++) for (let x = 0; x < c.width; x++) if (fn(d[(y * c.width + x) * 4 + 3], x, y)) { if (x < l) l = x; if (x > r) r = x; if (y < t) t = y; if (y > b) b = y; }
+  return { l, t, r, b };
+}
+function crop(c, k) { const o = document.createElement("canvas"); o.width = k.r - k.l + 1; o.height = k.b - k.t + 1; o.getContext("2d").drawImage(c, -k.l, -k.t); return o; }
+function ink(text, size, colour, rot = 0, track = 0) { const c = draw(text, size, colour, rot, track); return crop(c, bbox(c)); }
+// A dotless i, cropped like the dotted one, plus where its dot would have been.
+function inkI(size, colour, rot) {
+  const a = draw("i", size, colour, rot), b = draw("ı", size, colour, rot), k = bbox(a);
+  const bd = b.getContext("2d").getImageData(0, 0, b.width, b.height).data;
+  const dot = bbox(a, (al, x, y) => al > 40 && bd[(y * b.width + x) * 4 + 3] < 20);
+  return { cv: crop(b, k), dot: { x: (dot.l + dot.r) / 2 - k.l, y: (dot.t + dot.b) / 2 - k.t, d: Math.max(dot.r - dot.l, dot.b - dot.t) } };
+}
+const put = (cv, { left, right, top, bottom }) => { if (left != null) cv.style.left = left + "px"; if (right != null) cv.style.left = (W - right - cv.width) + "px";
+  if (top != null) cv.style.top = top + "px"; if (bottom != null) cv.style.top = (H - bottom - cv.height) + "px"; document.body.append(cv); return cv; };
+const sizeFor = (text, w, track) => { const c = ink(text, 400, DARK, 0, track * 400); return 400 * w / c.width; };
+Promise.all([document.fonts.load("400 100px IS"), document.fonts.load("500 38px IT"), document.fonts.load("400 34px GM")]).then(() => {
+  // Three sizes: C for "ness", B for "Weight" and "less", A for "Medicine grown in".
+  const C = sizeFor("ness", W - 2 * M, -0.03), A = sizeFor("Medicine", 1000, -0.01);
+  // B: "Weight" spread across about four fifths of the width.
+  const wTot = (s) => "Weight".split("").reduce((t, ch) => t + ink(ch, s, MID).width, 0);
+  const B = 400 * (W - 2 * M) * 0.62 / wTot(400);
+  const ness = put(ink("ness", C, DARK, 0, -0.03 * C), { left: M, bottom: M });
+  // less: flush right, just lifting.
+  const lessBase = H - M - ness.height - 80;
+  const lift = [0, 14, 34, 60], rot = [0, 2, -3, 5];
+  let x = W - M, lessTop = H; "less".split("").map((ch, i) => [ink(ch, B, DARK, rot[i]), i]).reverse().forEach(([cv, i]) => { x -= cv.width; const t = lessBase - cv.height - lift[i]; put(cv, { left: x, top: t }); lessTop = Math.min(lessTop, t); x -= B * 0.03; });
+  const lessLeft = x;
+  // Weight: flush left at the start, drifting up and turning, the last letter reaching the right edge.
+  const wr = [-4, 8, -14, 18, -26, 34], wy = [0, 30, 80, 150, 230, 330], base = lessTop - 60;
+  const letters = "Weight".split("").map((ch, i) => ch === "i" ? inkI(B, MID, wr[i]) : { cv: ink(ch, B, MID, wr[i]) });
+  const total = letters.reduce((s, l) => s + l.cv.width, 0), gap = (W - 2 * M - total) / 5;
+  let wx = M; letters.forEach((l, i) => { put(l.cv, { left: wx, top: base - l.cv.height - wy[i] });
+    if (l.dot) { const sat = document.createElement("img"); sat.src = "file:///home/claude/daily-poster/site/media/2026-11-04/object-3.png";
+      const sw = l.dot.d * 7; Object.assign(sat.style, { width: sw + "px", left: (wx + l.dot.x - sw / 2) + "px", top: (base - l.cv.height - wy[i] + l.dot.y - sw / 2) + "px", transform: `rotate(${wr[i] + 18}deg)` });
+      document.body.append(sat); }
+    wx += l.cv.width + gap; });
+  // Medicine / grown in, one size, cascading left then right.
+  const med = put(ink("Medicine", A, DARK, 0, -0.01 * A), { left: M, top: 210 });
+  const grown = put(ink("grown in", A, DARK, 0, -0.01 * A), { right: M, top: 210 + med.height + 40 });
+  const sub = document.createElement("div"); sub.className = "sub"; sub.textContent = "Three washing-machine-sized capsules orbit 300 miles up, and pharma firms are using them to grow drug crystals.";
+  sub.style.left = M + "px"; document.body.append(sub); sub.style.top = (lessBase - sub.offsetHeight) + "px";
+  Promise.all([...document.images].map((i) => i.complete ? 1 : new Promise((r) => i.onload = r))).then(() => document.body.dataset.ready = 1);
+});
+</script></body></html>

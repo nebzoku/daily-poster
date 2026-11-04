@@ -75,7 +75,7 @@ jobs:
       - name: Copy images to the site
         run: npm run media
 
-      # Pictures for the Instagram account (scripts/instagram): today's brief card and a 4:5
+      # Pictures for the Instagram account (scripts/instagram): today's brief carousel and a 4:5
       # mockup of each poster waiting to go out. Skipped until Instagram is set up.
       - name: Instagram pictures
         env:

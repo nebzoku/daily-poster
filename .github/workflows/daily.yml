@@ -2,8 +2,13 @@ name: Daily brief
 
 on:
   schedule:
-    # 05:30 UTC: 05:30 in London in winter, 06:30 in summer.
-    - cron: "30 5 * * *"
+    # About 05:15 UTC (05:15 in London in winter, 06:15 in summer), with two later
+    # tries in case GitHub runs late or skips one, as it can at busy times. Making the
+    # brief is skipped once today's exists, so the later tries cost nothing.
+    # Odd minutes, because GitHub is busiest on the hour and half hour.
+    - cron: "13 5 * * *"
+    - cron: "47 6 * * *"
+    - cron: "21 8 * * *"
   workflow_dispatch:
     inputs:
       force:
@@ -36,8 +41,9 @@ jobs:
 
       - run: npm ci
 
+      # Runs on every trigger, pushes included: it does nothing once today's brief exists,
+      # and it means any push can catch up a missed morning.
       - name: Write today's brief
-        if: github.event_name != 'push'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
@@ -49,8 +55,6 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.13"
-          cache: pip
-          cache-dependency-path: scripts/blender/requirements.txt
 
       - name: Render the 3D objects
         env:

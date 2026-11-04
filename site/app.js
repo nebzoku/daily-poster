@@ -709,7 +709,13 @@ ${frames.join("\n")}
     const io = new IntersectionObserver((entries) => {
       for (const e of entries) if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
     }, { rootMargin: "0px 0px -12% 0px", threshold: 0.05 });
-    document.querySelectorAll(".sec, .archive, .foot").forEach((n) => io.observe(n));
+    document.querySelectorAll(".sec, .archive").forEach((n) => io.observe(n));
+    // The footer is the last thing on the page and short, so on a tall screen it never gets above
+    // the bottom 12% that the observer above ignores. It shows as soon as any of it is on screen.
+    const foot = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) { e.target.classList.add("in"); foot.unobserve(e.target); }
+    }, { threshold: 0 });
+    document.querySelectorAll(".foot").forEach((n) => foot.observe(n));
     requestAnimationFrame(() => requestAnimationFrame(() => document.documentElement.classList.add("ready")));
 
     $("copy-figma").addEventListener("click", copyFigma);

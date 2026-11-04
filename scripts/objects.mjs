@@ -20,10 +20,10 @@ import sharp from "sharp";
 async function thumbBlock(url) {
   try {
     const res = await fetch(url, { headers: UA, signal: AbortSignal.timeout(15000) });
-    if (!res.ok) return null;
+    if (!res.ok) { console.warn(`Thumbnail ${res.status}: ${url}`); return null; }
     const png = await sharp(Buffer.from(await res.arrayBuffer())).resize(256, 256, { fit: "inside" }).png().toBuffer();
     return { type: "image", source: { type: "base64", media_type: "image/png", data: png.toString("base64") } };
-  } catch { return null; }
+  } catch (e) { console.warn(`Thumbnail failed (${e.message}): ${url}`); return null; }
 }
 
 const MODEL = "claude-sonnet-5-5";
@@ -126,6 +126,7 @@ async function polyPizza(term) {
     const all = r.results || [];
     const ok = all.filter((m) => m.Download && OK_LICENCE(m.Licence) && !m.Animated);
     console.log(`Poly Pizza "${term}": ${all.length} found, ${ok.length} usable${all[0] ? ` (e.g. ${all[0].Title}, ${all[0].Licence})` : ""}`);
+    if (all[0] && !globalThis.__shown) { globalThis.__shown = 1; console.log("Poly Pizza fields:", JSON.stringify(all[0]).slice(0, 600)); }
     return ok.map((m) => ({
       source: "Poly Pizza", id: m.ID, title: m.Title, licence: m.Licence,
       creator: m.Creator?.Username || "", creatorUrl: m.Creator?.PURL || "", url: `https://poly.pizza/m/${m.ID}`,

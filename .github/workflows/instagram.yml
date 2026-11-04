@@ -16,8 +16,10 @@ on:
 permissions:
   contents: write
 
+# Its own queue, so a push that also runs the daily brief doesn't cancel a waiting post.
+# The save step pulls and retries, so the two can run side by side.
 concurrency:
-  group: daily-brief
+  group: instagram
   cancel-in-progress: false
 
 jobs:

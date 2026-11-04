@@ -14,6 +14,7 @@ export const SITE = join(ROOT, "site");
 export const DATA = join(SITE, "data");
 export const IG_DIR = join(SITE, "media", "ig");
 export const STATE = join(ROOT, "instagram", "state.json");
+export const BACKFILL = join(ROOT, "instagram", "backfill.json");   // one-off catch-up queue
 export const SITE_URL = (process.env.SITE_URL || "https://dailyposter.design").replace(/\/$/, "");
 
 export const SLOTS = { brief: "08:00", posters: [["13:00", 1], ["19:00", 1], ["10:30", 3]] }; // [time, posters needed waiting]

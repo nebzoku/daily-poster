@@ -8,7 +8,7 @@
 import { mkdir, readdir, rm, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { join } from "node:path";
-import { DATA, IG_DIR, readJSON, loadState, writeJSON, STATE, londonDate, pendingPosters, posterImage, briefImages, SITE } from "./common.mjs";
+import { DATA, IG_DIR, BACKFILL, readJSON, loadState, writeJSON, STATE, londonDate, pendingPosters, posterImage, briefImages, SITE } from "./common.mjs";
 
 const W = 1080, H = 1350;
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
@@ -118,10 +118,23 @@ async function todo(state) {
   const latest = await readJSON(join(DATA, "latest.json"), null);
   const jobs = [];
   if (latest && latest.date === londonDate() && !briefImages(latest.date).every((f) => existsSync(f))) jobs.push({ kind: "brief", brief: latest, out: briefImages(latest.date) });
+  // Earlier briefs in the catch-up queue that haven't gone out yet.
+  const { queue = [] } = await readJSON(BACKFILL, {});
+  for (const k of queue) {
+    const date = k.startsWith("brief:") && k.slice(6);
+    if (!date || state.posted[k] || date === latest?.date || briefImages(date).every((f) => existsSync(f))) continue;
+    const b = await readJSON(join(DATA, `${date}.json`), null);
+    if (b) jobs.push({ kind: "brief", brief: b, out: briefImages(date) });
+  }
+  const showcase = await readJSON(join(DATA, "showcase.json"), []);
+  for (const k of queue) {
+    const p = k.startsWith("poster:") && !state.posted[k] && showcase.find((x) => `poster:${x.image}` === k);
+    if (p && !existsSync(posterImage(p))) jobs.push({ kind: "poster", poster: p, out: posterImage(p) });
+  }
   // Posters waiting now, plus today's (they go out tomorrow).
   const waiting = [...await pendingPosters(state, "9999-12-31")];
   for (const p of waiting) {
-    if (existsSync(posterImage(p))) continue;
+    if (existsSync(posterImage(p)) || jobs.some((j) => j.out === posterImage(p))) continue;
     jobs.push({ kind: "poster", poster: p, out: posterImage(p) });
   }
   return jobs;

@@ -8,7 +8,7 @@
 import { writeFile, mkdir } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { join } from "node:path";
-import { DATA, STATE, SLOTS, WINDOW_MS, readJSON, writeJSON, loadState, londonDate, londonToUtc, addDays,
+import { DATA, STATE, BACKFILL, SLOTS, WINDOW_MS, readJSON, writeJSON, loadState, londonDate, londonToUtc, addDays,
   pendingPosters, posterImage, briefImages, url } from "./common.mjs";
 
 const TOKEN = process.env.INSTAGRAM_TOKEN, USER = process.env.INSTAGRAM_USER_ID;
@@ -23,7 +23,7 @@ const longDate = (d) => new Intl.DateTimeFormat("en-GB", { weekday: "long", day:
 
 // Captions, in plain words, no emoji.
 const TAGS = (issue) => `#dailyposter #dailyposter${pad(issue)} #posterdesign #typography #graphicdesign #designchallenge`;
-function posterCaption(p, brief) {
+export function posterCaption(p, brief) {
   return [
     p.title,
     "",
@@ -39,13 +39,16 @@ function posterCaption(p, brief) {
     TAGS(brief.issue),
   ].join("\n");
 }
-function briefCaption(brief) {
+// past: for briefs posted after their day (catching the feed up).
+export function briefCaption(brief, past = false) {
   return [
-    `Today's brief, No. ${pad(brief.issue)}. Swipe for all three headlines.`,
+    past ? `The brief for ${longDate(brief.date)}, No. ${pad(brief.issue)}. Swipe for all three headlines.`
+      : `Today's brief, No. ${pad(brief.issue)}. Swipe for all three headlines.`,
     "",
     brief.story.summary,
     "",
-    `Three headlines to choose from, today's palette, a typeface pairing, images and 3D renders, all at dailyposter.design. Make a poster and tag it #dailyposter${pad(brief.issue)}.`,
+    past ? `A new brief goes up every morning at dailyposter.design: three headlines to choose from, the day's palette, a typeface pairing, images and 3D renders. Make a poster and tag it #dailyposter.`
+      : `Three headlines to choose from, today's palette, a typeface pairing, images and 3D renders, all at dailyposter.design. Make a poster and tag it #dailyposter${pad(brief.issue)}.`,
     "",
     TAGS(brief.issue),
   ].join("\n");
@@ -112,6 +115,36 @@ async function main() {
   const today = londonDate(new Date(now));
   const due = (time) => { const t = londonToUtc(today, time).getTime(); return now >= t && now < t + WINDOW_MS; };
 
+  // Catching up first: anything left in the one-off queue goes out now, oldest first, a couple of
+  // minutes apart. Stops at the first thing whose pictures aren't ready, to keep the order.
+  const { queue = [] } = await readJSON(BACKFILL, {});
+  const left = queue.filter((k) => !state.posted[k]);
+  if (left.length) {
+    const showcase = await readJSON(join(DATA, "showcase.json"), []);
+    for (const [n, key] of left.entries()) {
+      let job;
+      if (key.startsWith("brief:")) {
+        const date = key.slice(6), brief = await readJSON(join(DATA, `${date}.json`), null);
+        if (!brief || !briefImages(date).every((f) => existsSync(f))) { console.log(`${key} isn't ready; trying again next hour.`); break; }
+        job = { images: briefImages(date).map(url), caption: briefCaption(brief, date !== today) };
+      } else {
+        const p = showcase.find((x) => `poster:${x.image}` === key), brief = p && await readJSON(join(DATA, `${p.date}.json`), null);
+        if (!brief || !existsSync(posterImage(p))) { console.log(`${key} isn't ready; trying again next hour.`); break; }
+        job = { images: [url(posterImage(p))], caption: posterCaption(p, brief), alt: `Poster: ${p.title}, by ${p.designer}, for Daily Poster No. ${pad(brief.issue)}.` };
+      }
+      console.log(`${DRY ? "Would post" : "Posting"} ${key} (catching up):\n${job.images.join("\n")}\n---\n${job.caption}\n---`);
+      if (DRY) continue;
+      try {
+        const id = await publish(job.images, job.caption, job.alt);
+        state.posted[key] = { slot: "catch-up", at: new Date().toISOString(), id };
+        await mkdir(join(STATE, ".."), { recursive: true }); await writeJSON(STATE, state);
+        console.log(`Posted: ${id}`);
+      } catch (e) { console.error(`Couldn't post ${key}: ${e.message}`); process.exitCode = 1; break; }
+      if (n < left.length - 1) await new Promise((r) => setTimeout(r, 120e3));
+    }
+    if (!DRY) { await writeJSON(STATE, state); return; }
+  }
+
   // What's due: the brief card in the morning; posters at their times.
   let job = null;
   const briefKey = `brief:${today}`, briefSlot = `${today} ${SLOTS.brief}`;
@@ -155,4 +188,4 @@ async function main() {
   if (!DRY) { await mkdir(join(STATE, ".."), { recursive: true }); await writeJSON(STATE, state); }
 }
 
-main().catch((e) => { console.error(e); process.exit(1); });
+if (import.meta.url === `file://${process.argv[1]}`) main().catch((e) => { console.error(e); process.exit(1); });

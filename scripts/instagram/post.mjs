@@ -1,5 +1,5 @@
 // Posts to Instagram, at most once a run (the workflow runs it hourly). See common.mjs for the
-// rhythm. Uses Instagram's official API with Instagram Login; needs INSTAGRAM_TOKEN and
+// rhythm. Uses Instagram's official API (Instagram Login or Meta's Unified login); needs INSTAGRAM_TOKEN and
 // INSTAGRAM_USER_ID. DRY_RUN=1 says what it would post without posting.
 //
 // Once a week it renews the token. If GH_SECRETS_TOKEN is set, the workflow saves the renewed
@@ -10,8 +10,12 @@ import { join } from "node:path";
 import { DATA, STATE, SLOTS, WINDOW_MS, readJSON, writeJSON, loadState, londonDate, londonToUtc, addDays,
   pendingPosters, posterImage, briefImages, url } from "./common.mjs";
 
-const API = "https://graph.instagram.com/v26.0";
 const TOKEN = process.env.INSTAGRAM_TOKEN, USER = process.env.INSTAGRAM_USER_ID;
+// Instagram Login tokens (IGAA…) go to graph.instagram.com and last 60 days, renewed weekly.
+// Meta's newer "Unified login" gives a system-user token (EAA…) that goes to graph.facebook.com
+// and never expires, so there's nothing to renew.
+const FB_TOKEN = /^EAA/.test(TOKEN || "");
+const API = FB_TOKEN ? "https://graph.facebook.com/v26.0" : "https://graph.instagram.com/v26.0";
 const DRY = !!process.env.DRY_RUN;
 const pad = (n) => String(n).padStart(3, "0");
 const longDate = (d) => new Intl.DateTimeFormat("en-GB", { weekday: "long", day: "numeric", month: "long", timeZone: "UTC" }).format(new Date(d + "T12:00:00Z"));
@@ -83,6 +87,7 @@ async function publish(images, caption, alt) {
 }
 
 async function renewToken(state) {
+  if (FB_TOKEN) return;
   const week = 7 * 864e5;
   if (state.renewedAt && Date.now() - Date.parse(state.renewedAt) < week) return;
   try {

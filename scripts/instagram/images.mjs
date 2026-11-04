@@ -65,7 +65,7 @@ ${cards}
 // labels sit above it (measured on the letters, not the boxes).
 Promise.all([document.fonts.ready, ...[...document.images].map(i => i.complete ? 1 : new Promise(r => i.onload = i.onerror = r))]).then(() => {
   [...document.images].forEach(i => { if (!i.naturalWidth) i.remove(); });
-  const hs = [...document.querySelectorAll('h1.fit')], LH = 1.02, MAXW = 900;
+  const hs = [...document.querySelectorAll('h1.fit')], LH = 1.02, MAXW = 900, OPTICAL = 18; // extra space below, so the gaps look equal
   const lines = (h) => Math.round(h.getBoundingClientRect().height / (parseFloat(h.style.fontSize) * LH));
   const fits = (h) => h.parentElement.scrollHeight <= h.parentElement.clientHeight && h.scrollWidth <= h.clientWidth;
   const setAll = (px) => hs.forEach(h => { h.style.fontSize = px + 'px'; h.style.maxWidth = MAXW + 'px'; });
@@ -89,7 +89,7 @@ Promise.all([document.fonts.ready, ...[...document.images].map(i => i.complete ?
     const base = h.bottom - lead(glh, g) - g.d;
     const gap = capTop - metaBase;
     const countInk = lead(mlh, mono) + mono.a - mono.cap;
-    c.style.marginTop = Math.round(gap - (h.bottom - base) - countInk) + 'px';
+    c.style.marginTop = Math.round(gap - (h.bottom - base) - countInk + OPTICAL) + 'px';
   });
   document.body.dataset.ready = 1; });
 </script></body></html>`;

@@ -95,7 +95,6 @@ jobs:
           colour=$(node -p "require('./site/data/latest.json').colour.name.toLowerCase()")
           cp "site/og/$colour.png" site/og.png && echo "Preview: $colour"
           cp "site/favicon/$colour-icon.png" site/favicon.png
-          cp "site/favicon/$colour-icon-dark.png" site/favicon-dark.png
           cp "site/favicon/$colour-apple.png" site/apple-touch-icon.png
 
       # Stamp the asset links with this commit, so browsers fetch the new code after a deploy.

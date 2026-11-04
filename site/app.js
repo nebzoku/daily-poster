@@ -488,7 +488,7 @@
       `Story: ${s.source}, ${fmt(s.published, { day: "numeric", month: "long", year: "numeric" })}`,
       `Type: ${brief.type.display} + ${brief.type.text}`,
       "",
-      `#dailyposter ${dayTag()} @dailyposter.design`,
+      `@dailyposter.design ${dayTag()}`,
     ].join("\n");
   }
   function renderShare() {
@@ -497,7 +497,6 @@
     const tag = (t) => `https://www.instagram.com/explore/tags/${t}/`;
     $("share-links").replaceChildren(
       el("a", { href: tag(`dailyposter${pad(brief.issue)}`), target: "_blank", rel: "noopener" }, "See today's posters ↗"),
-      el("a", { href: tag("dailyposter"), target: "_blank", rel: "noopener" }, "See them all ↗"),
       el("a", { href: "https://www.instagram.com/dailyposter.design/", target: "_blank", rel: "noopener" }, "Follow @dailyposter.design ↗"));
   }
 

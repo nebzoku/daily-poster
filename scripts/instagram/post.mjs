@@ -47,8 +47,8 @@ export function briefCaption(brief, past = false) {
     "",
     brief.story.summary,
     "",
-    past ? `A new brief goes up every morning at dailyposter.design: three headlines to choose from, the day's palette, a typeface pairing, images and 3D renders. Make a poster and tag it #dailyposter.`
-      : `Three headlines to choose from, today's palette, a typeface pairing, images and 3D renders, all at dailyposter.design. Make a poster and tag it #dailyposter${pad(brief.issue)}.`,
+    past ? `A new brief goes up every morning at dailyposter.design: three headlines to choose from, the day's palette, a typeface pairing, images and 3D renders. Make a poster, tag @dailyposter.design and add the day's number, like #dailyposter${pad(brief.issue)}.`
+      : `Three headlines to choose from, today's palette, a typeface pairing, images and 3D renders, all at dailyposter.design. Make a poster, tag @dailyposter.design and add #dailyposter${pad(brief.issue)}.`,
     "",
     TAGS(brief.issue),
   ].join("\n");

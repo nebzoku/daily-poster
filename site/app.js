@@ -618,15 +618,19 @@ ${inside}`;
     let width = x - 80;
     let y = Math.max(G.H, MOCK.H) + GAP;
 
-    // Row 2: the type. Each line is one text box, for you to size and set.
-    const hl = brief.headlines[state.h], sub = brief.sublines[state.s];
-    const hlSize = 140, subSize = 40;
-    const hlW = textWidth(hl, t.display, hlSize), subW = textWidth(sub, t.text, subSize);
-    const typeH = hlSize * 1.2 + 60 + subSize * 1.3;
-    frame("Type", 0, y, Math.max(hlW, subW), typeH,
-      `<text id="Headline" fill="${ink}" font-family="${esc(t.display)}" font-size="${hlSize}" x="0" y="${hlSize * 0.9}">${esc(hl)}</text>
-<text id="Subline" fill="${ink}" font-family="${esc(t.text)}" font-size="${subSize}" x="0" y="${(hlSize * 1.2 + 60 + subSize * 0.95).toFixed(1)}">${esc(sub)}</text>`);
-    width = Math.max(width, hlW, subW);
+    // Row 2: the type. All three headlines and all three sublines, each its own text box,
+    // so you can pick from the lot.
+    const hlSize = 140, subSize = 40, lineGap = 40;
+    const hls = brief.headlines, subs = brief.sublines || [];
+    const typeW = Math.max(...hls.map((h) => textWidth(h, t.display, hlSize)), ...subs.map((s) => textWidth(s, t.text, subSize)));
+    let ty = 0;
+    const lines = [];
+    hls.forEach((h, i) => { lines.push(`<text id="Headline ${i + 1}" fill="${ink}" font-family="${esc(t.display)}" font-size="${hlSize}" x="0" y="${(ty + hlSize * 0.9).toFixed(1)}">${esc(h)}</text>`); ty += hlSize * 1.2 + lineGap; });
+    ty += 40;
+    subs.forEach((s, i) => { lines.push(`<text id="Subline ${i + 1}" fill="${ink}" font-family="${esc(t.text)}" font-size="${subSize}" x="0" y="${(ty + subSize * 0.95).toFixed(1)}">${esc(s)}</text>`); ty += subSize * 1.3 + lineGap; });
+    const typeH = ty - lineGap;
+    frame("Type", 0, y, typeW, typeH, lines.join("\n"));
+    width = Math.max(width, typeW);
     y += typeH + GAP;
 
     // Row 3: the colours.

@@ -9,7 +9,7 @@ import { writeFile, mkdir } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { SITE, DATA, STATE, BACKFILL, SLOTS, WINDOW_MS, readJSON, writeJSON, loadState, londonDate, londonToUtc, addDays,
-  pendingPosters, posterImage, briefImages, url } from "./common.mjs";
+  pendingPosters, posterImage, briefImages, briefStories, url } from "./common.mjs";
 
 const TOKEN = process.env.INSTAGRAM_TOKEN, USER = process.env.INSTAGRAM_USER_ID;
 // Instagram Login tokens (IGAA…) go to graph.instagram.com and last 60 days, renewed weekly.
@@ -91,6 +91,19 @@ async function publish(images, caption, alt) {
   return (await api(`${USER}/media_publish`, { creation_id: id })).id;
 }
 
+// Stories, one after another (each is its own post; stories take no caption).
+async function publishStories(images) {
+  const ids = [];
+  for (const u of images) {
+    const head = await fetch(u, { method: "HEAD" });
+    if (!head.ok) throw new Error(`picture isn't online yet (${head.status}): ${u}`);
+    const { id } = await api(`${USER}/media`, { image_url: u, media_type: "STORIES" });
+    await ready(id);
+    ids.push((await api(`${USER}/media_publish`, { creation_id: id })).id);
+  }
+  return ids.join(",");
+}
+
 async function renewToken(state) {
   if (FB_TOKEN) return;
   const week = 7 * 864e5;
@@ -143,7 +156,7 @@ async function main() {
       console.log(`${DRY ? "Would post" : "Posting"} ${key} (catching up):\n${job.images.join("\n")}\n---\n${job.caption}\n---`);
       if (DRY) continue;
       try {
-        const id = await publish(job.images, job.caption, job.alt);
+        const id = job.story ? await publishStories(job.images) : await publish(job.images, job.caption, job.alt);
         state.posted[key] = { slot: "catch-up", at: new Date().toISOString(), id };
         await mkdir(join(STATE, ".."), { recursive: true }); await writeJSON(STATE, state);
         console.log(`Posted: ${id}`);
@@ -158,8 +171,8 @@ async function main() {
   const briefKey = `brief:${today}`, briefSlot = `${today} ${SLOTS.brief}`;
   if (due(SLOTS.brief) && !state.slots[briefSlot] && !state.posted[briefKey]) {
     const brief = await readJSON(join(DATA, "latest.json"), null);
-    if (brief?.date === today && briefImages(today).every((f) => existsSync(f)))
-      job = { key: briefKey, slot: briefSlot, images: briefImages(today).map(url), caption: briefCaption(brief) };
+    if (brief?.date === today && briefStories(today).every((f) => existsSync(f)))
+      job = { key: briefKey, slot: briefSlot, story: true, images: briefStories(today).map(url), caption: "(story)" };
   }
   if (!job) {
     const waiting = (await pendingPosters(state, today)).filter((p) => existsSync(posterImage(p)));
@@ -177,7 +190,7 @@ async function main() {
     console.log(`${DRY ? "Would post" : "Posting"} ${job.key} for the ${job.slot} slot:\n${job.images.join("\n")}\n---\n${job.caption}\n---`);
     if (!DRY) {
       try {
-        const id = await publish(job.images, job.caption, job.alt);
+        const id = job.story ? await publishStories(job.images) : await publish(job.images, job.caption, job.alt);
         state.posted[job.key] = { slot: job.slot, at: new Date().toISOString(), id };
         state.slots[job.slot] = job.key;
         console.log(`Posted: ${id}`);

@@ -8,7 +8,7 @@
 import { mkdir, readdir, rm, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { join } from "node:path";
-import { DATA, IG_DIR, BACKFILL, readJSON, loadState, writeJSON, STATE, londonDate, pendingPosters, posterImage, briefImages, SITE } from "./common.mjs";
+import { DATA, IG_DIR, BACKFILL, readJSON, loadState, writeJSON, STATE, londonDate, pendingPosters, posterImage, briefImages, briefStories, SITE } from "./common.mjs";
 
 const W = 1080, H = 1350;
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
@@ -29,12 +29,23 @@ const STRIP = [
   { x: 120, w: 260, h: 330, top: 0 }, { x: 980, w: 240, h: 200, top: 0 }, { x: 1600, w: 300, h: 300, top: 0 },
   { x: 2560, w: 230, h: 300, top: 0 },
 ];
-export function briefStrip(brief, pictures) {
+// Today's brief as stories (9:16): three frames, one headline each. Stories are tapped through
+// rather than swiped, so pictures stay inside their own frame. Instagram covers the top ~250 px
+// (profile bar) and bottom ~300 px (reply bar), so pictures sit just inside those and the text
+// in the middle.
+const STORY = { H: 1920, top: 230, bottom: 260, secTop: 640, secBottom: 640, url: true, strip: [
+  { x: 70, w: 300, h: 380, top: 1 }, { x: 680, w: 330, h: 330, top: 1, obj: 1 }, { x: 160, w: 280, h: 300, top: 0 }, { x: 640, w: 300, h: 380, top: 0 },
+  { x: 1080 + 110, w: 280, h: 340, top: 1 }, { x: 1080 + 640, w: 330, h: 260, top: 1 }, { x: 1080 + 80, w: 330, h: 330, top: 0 }, { x: 1080 + 720, w: 260, h: 360, top: 0 },
+  { x: 2160 + 60, w: 330, h: 300, top: 1 }, { x: 2160 + 700, w: 280, h: 380, top: 1 }, { x: 2160 + 120, w: 260, h: 380, top: 0 }, { x: 2160 + 620, w: 340, h: 300, top: 0 },
+] };
+const CAROUSEL = { H, top: 40, bottom: 40, secTop: 370, secBottom: 370, url: false, strip: STRIP };
+
+export function briefStrip(brief, pictures, L = CAROUSEL) {
   const d = new Intl.DateTimeFormat("en-GB", { weekday: "short", day: "numeric", month: "short", timeZone: "UTC" }).format(new Date(brief.date + "T12:00:00Z"));
-  const imgs = STRIP.map((s) => {
+  const imgs = L.strip.map((s) => {
     const src = s.obj ? pictures.object : pictures.images.shift();
     if (!src) return "";
-    return `<img class="${s.obj ? "obj" : ""}" src="${esc(src)}" style="left:${s.x}px;${s.top ? "top" : "bottom"}:40px;width:${s.w}px;height:${s.h}px">`;
+    return `<img class="${s.obj ? "obj" : ""}" src="${esc(src)}" style="left:${s.x}px;${s.top ? `top:${L.top}` : `bottom:${L.bottom}`}px;width:${s.w}px;height:${s.h}px">`;
   }).join("\n");
   const cards = brief.headlines.slice(0, 3).map((h, i) => `
 <section style="left:${i * W}px">
@@ -42,13 +53,14 @@ export function briefStrip(brief, pictures) {
   <div class="m meta">No. ${pad(brief.issue)} · ${esc(d)} · ${esc(brief.story.source)}</div>
   <h1 class="fit">${esc(h)}</h1>
   <div class="m count">${[1, 2, 3].map((n) => `<span${n === i + 1 ? ' class="on"' : ""}>0${n}</span>`).join("")}</div>
+  ${L.url ? '<div class="m url">dailyposter.design</div>' : ""}
 </section>`).join("");
   return `<!doctype html><html><head><link rel="stylesheet" href="${esc(FONTS)}">
 <style>
-html,body{margin:0;width:${W * 3}px;height:${H}px;background:#fff;color:#111;overflow:hidden}
+html,body{margin:0;width:${W * 3}px;height:${L.H}px;background:#fff;color:#111;overflow:hidden}
 img{position:absolute;display:block;object-fit:cover}
 img.obj{background:#f2f2f0;object-fit:contain}
-section{position:absolute;top:370px;bottom:370px;width:${W}px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+section{position:absolute;top:${L.secTop}px;bottom:${L.secBottom}px;width:${W}px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
 .m{font-family:'Geist Mono',monospace;font-size:22px;font-weight:500;letter-spacing:.02em;text-transform:uppercase}
 .k{display:inline-flex;align-items:center;gap:12px}
 .dot{width:13px;height:13px;border-radius:50%;background:${brief.palette.colours[0]}}
@@ -56,6 +68,7 @@ section{position:absolute;top:370px;bottom:370px;width:${W}px;display:flex;flex-
 h1{font-family:'EB Garamond',serif;font-weight:400;font-size:132px;line-height:1.02;letter-spacing:-.015em;margin:34px 0 0;max-width:900px;text-wrap:balance}
 .count{line-height:1.2;display:flex;gap:18px;color:#c9c9c5}
 .count .on{color:#111}
+.url{margin-top:22px;color:#8a8a86;text-transform:none}
 </style></head><body>
 ${imgs}
 ${cards}
@@ -117,7 +130,7 @@ export function picturesFor(brief) {
 async function todo(state) {
   const latest = await readJSON(join(DATA, "latest.json"), null);
   const jobs = [];
-  if (latest && latest.date === londonDate() && !briefImages(latest.date).every((f) => existsSync(f))) jobs.push({ kind: "brief", brief: latest, out: briefImages(latest.date) });
+  if (latest && latest.date === londonDate() && !briefStories(latest.date).every((f) => existsSync(f))) jobs.push({ kind: "story", brief: latest, out: briefStories(latest.date) });
   // Earlier briefs in the catch-up queue that haven't gone out yet.
   const { queue = [] } = await readJSON(BACKFILL, {});
   for (const k of queue.filter((q) => typeof q === "string")) {   // one-off posts bring their own pictures
@@ -155,16 +168,18 @@ async function main() {
     const browser = await chromium.launch();
     const page = await browser.newPage({ viewport: { width: W, height: H } });
     for (const j of jobs) {
-      const html = j.kind === "brief" ? briefStrip(j.brief, picturesFor(j.brief)) : mockup("file://" + join(SITE, j.poster.image));
+      const html = j.kind === "story" ? briefStrip(j.brief, picturesFor(j.brief), STORY)
+        : j.kind === "brief" ? briefStrip(j.brief, picturesFor(j.brief)) : mockup("file://" + join(SITE, j.poster.image));
+      const h = j.kind === "story" ? STORY.H : H;
       const file = join("/tmp", `ig-${Date.now()}.html`);
       await writeFile(file, html);
-      await page.setViewportSize({ width: j.kind === "brief" ? W * 3 : W, height: H });
+      await page.setViewportSize({ width: j.kind === "poster" ? W : W * 3, height: h });
       await page.goto("file://" + file);
       await page.waitForFunction(() => document.body.dataset.ready, null, { timeout: 30000 });
       // The brief strip is cut into its three cards.
       const outs = [].concat(j.out);
       for (const [n, out] of outs.entries()) {
-        await page.screenshot({ path: out, type: "jpeg", quality: 92, clip: { x: n * W, y: 0, width: W, height: H } });
+        await page.screenshot({ path: out, type: "jpeg", quality: 92, clip: { x: n * W, y: 0, width: W, height: h } });
         console.log(`Rendered ${out.slice(SITE.length + 1)}`);
       }
     }
@@ -174,7 +189,7 @@ async function main() {
   const weekAgo = new Date(Date.now() - 7 * 864e5).toISOString();
   const done = new Set(Object.entries(state.posted).filter(([, v]) => v.at < weekAgo).map(([k]) => k));
   for (const f of await readdir(IG_DIR)) {
-    const m = f.match(/^brief-(\d{4}-\d{2}-\d{2})-\d\.jpg$/);
+    const m = f.match(/^brief-(\d{4}-\d{2}-\d{2})-(story-)?\d\.jpg$/);
     const old = m ? m[1] < weekAgo.slice(0, 10) : [...done].some((k) => k.startsWith("poster:") && f === k.split("/").pop().replace(/\.[a-z]+$/i, "") + ".jpg");
     if (old) await rm(join(IG_DIR, f));
   }

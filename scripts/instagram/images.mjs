@@ -38,10 +38,11 @@ const F = 1080;   // one story frame
 // Picture frames per story frame, as [x, w, h, top?, object number], x within the frame.
 const HEAD = [[70, 300, 380, 1], [680, 330, 330, 1, 1], [160, 280, 300, 0], [640, 300, 380, 0]];
 const SUBL = [[600, 380, 300, 1], [90, 280, 340, 1], [110, 300, 360, 0], [700, 290, 300, 0]];
-const PLAIN = [[90, 300, 360, 1], [700, 300, 300, 0]];
+const PLAIN = [[90, 300, 360, 1], [660, 320, 280, 1], [120, 340, 300, 0], [700, 300, 360, 0]];
 const STORY = { H: 1920, top: 230, bottom: 260, secTop: 640, secBottom: 640, url: true, pairs: true,
-  strip: [HEAD, SUBL, HEAD, SUBL, HEAD, SUBL, PLAIN, PLAIN, PLAIN].flatMap((slots, f) => slots.map(([x, w, h, top, obj], k) => ({
-    x: f * F + (f % 2 && slots === PLAIN ? 1080 - x - w : x), w, h, top, obj: obj ? Math.floor(f / 2) + 1 : 0 }))) };
+  strip: [HEAD, SUBL, HEAD, SUBL, HEAD, SUBL, PLAIN, PLAIN, []].flatMap(   // four on every frame; none on the closing one
+    (slots, f) => slots.map(([x, w, h, top, obj], k) => ({
+    x: f * F + (f === 7 ? 1080 - x - w : x), w, h, top, obj: obj ? Math.floor(f / 2) + 1 : 0 }))) };
 const CAROUSEL = { H, top: 40, bottom: 40, secTop: 370, secBottom: 370, url: false, strip: STRIP };
 
 export function briefStrip(brief, pictures, L = CAROUSEL) {

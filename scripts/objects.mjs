@@ -269,7 +269,7 @@ These were used in the last few days, so pick different objects: ${[...new Set(u
 
   // 5. Render
   const jobFile = join(WORK, "job.json");
-  await writeFile(jobFile, JSON.stringify({ hdri, out_size: +(process.env.OBJECT_SIZE || 1080), samples: +(process.env.OBJECT_SAMPLES || 128), objects: jobs }));
+  await writeFile(jobFile, JSON.stringify({ hdri, out_size: +(process.env.OBJECT_SIZE || 2160), samples: +(process.env.OBJECT_SAMPLES || 96), objects: jobs }));
   const py = process.env.BLENDER_PYTHON || "python3";
   const r = spawnSync(py, [RENDER, jobFile], { stdio: "inherit", timeout: 25 * 60 * 1000 });
   if (r.status !== 0) throw new Error(`Blender exited with ${r.status}`);

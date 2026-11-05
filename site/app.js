@@ -585,9 +585,9 @@ ${inside}`;
     return Math.ceil(ctx.measureText(text).width);
   }
 
-  // Images go into the paste at 1080 px wide. Unsplash resizes on request; the others
-  // use the 1080 px copies kept on this site.
-  const figmaSrc = (it) => ((it.source || "Unsplash") === "Unsplash" && it.src ? it.src.replace(/([?&])w=\d+/, "$1w=1080") : it.src || it.thumb);
+  // Images go into the paste at 2160 px wide (2x). Unsplash resizes on request; the others
+  // use the 2160 px copies kept on this site.
+  const figmaSrc = (it) => ((it.source || "Unsplash") === "Unsplash" && it.src ? it.src.replace(/([?&])w=\d+/, "$1w=2160") : it.src || it.thumb);
   // Images go into the paste as data, since Figma won't fetch links inside pasted SVG.
   let assets = null;
   function prepAssets() {

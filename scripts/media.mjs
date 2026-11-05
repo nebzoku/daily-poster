@@ -1,4 +1,5 @@
-// Keeps 1080 px copies of the day's museum and texture images on the site itself.
+// Keeps 2160 px copies of the day's museum and texture images on the site itself (2x, so
+// they're sharp enough to design with in Figma).
 // Some image hosts (The Met, for one) don't let other sites' pages fetch their files,
 // so "Copy for Figma" would paste grey boxes in their place. Copies served from this
 // site always work. Unsplash allows it and asks to be linked directly, so it's skipped.
@@ -12,13 +13,13 @@ const SITE = new URL("../site/", import.meta.url).pathname;
 const DATA = join(SITE, "data");
 const MEDIA = join(SITE, "media");
 const KEEP_DAYS = 30;
-const WIDTH = 1080;
+const WIDTH = 2160;
 
 async function copy(url, file) {
   const res = await fetch(url, { headers: { "user-agent": "daily-poster (github.com/nebzoku/daily-poster)" } });
   if (!res.ok) throw new Error(`${res.status} for ${url}`);
   const buf = Buffer.from(await res.arrayBuffer());
-  await sharp(buf).rotate().resize({ width: WIDTH, withoutEnlargement: true }).jpeg({ quality: 78, mozjpeg: true }).toFile(file);
+  await sharp(buf).rotate().resize({ width: WIDTH, withoutEnlargement: true }).jpeg({ quality: 80, mozjpeg: true }).toFile(file);
 }
 
 async function localise(date) {

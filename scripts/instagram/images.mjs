@@ -33,7 +33,8 @@ const STRIP = [
 // rather than swiped, so pictures stay inside their own frame. Instagram covers the top ~250 px
 // (profile bar) and bottom ~300 px (reply bar), so pictures sit just inside those and the text
 // in the middle.
-const STORY = { H: 1920, top: 230, bottom: 260, secTop: 640, secBottom: 640, url: true, strip: [
+// Six frames: each headline, then its subline on a plain frame (the story's byline, in effect).
+const STORY = { H: 1920, top: 230, bottom: 260, secTop: 640, secBottom: 640, url: true, pairs: true, strip: [
   { x: 70, w: 300, h: 380, top: 1 }, { x: 680, w: 330, h: 330, top: 1, obj: 1 }, { x: 160, w: 280, h: 300, top: 0 }, { x: 640, w: 300, h: 380, top: 0 },
   { x: 1080 + 110, w: 280, h: 340, top: 1 }, { x: 1080 + 640, w: 330, h: 260, top: 1 }, { x: 1080 + 80, w: 330, h: 330, top: 0 }, { x: 1080 + 720, w: 260, h: 360, top: 0 },
   { x: 2160 + 60, w: 330, h: 300, top: 1 }, { x: 2160 + 700, w: 280, h: 380, top: 1 }, { x: 2160 + 120, w: 260, h: 380, top: 0 }, { x: 2160 + 620, w: 340, h: 300, top: 0 },
@@ -45,19 +46,30 @@ export function briefStrip(brief, pictures, L = CAROUSEL) {
   const imgs = L.strip.map((s) => {
     const src = s.obj ? pictures.object : pictures.images.shift();
     if (!src) return "";
-    return `<img class="${s.obj ? "obj" : ""}" src="${esc(src)}" style="left:${s.x}px;${s.top ? `top:${L.top}` : `bottom:${L.bottom}`}px;width:${s.w}px;height:${s.h}px">`;
+    const x = L.pairs ? s.x + Math.floor(s.x / W) * W : s.x;   // with pairs, pictures go on the headline frames only
+    return `<img class="${s.obj ? "obj" : ""}" src="${esc(src)}" style="left:${x}px;${s.top ? `top:${L.top}` : `bottom:${L.bottom}`}px;width:${s.w}px;height:${s.h}px">`;
   }).join("\n");
+  const count = (i) => `<div class="m count">${[1, 2, 3].map((n) => `<span${n === i + 1 ? ' class="on"' : ""}>0${n}</span>`).join("")}</div>`;
+  const subFrame = (i) => !L.pairs ? "" : `
+<section class="subf" style="left:${(2 * i + 1) * W}px">
+  <div class="m k"><i class="dot"></i>Today's headlines</div>
+  <div class="m meta">No. ${pad(brief.issue)} · ${esc(d)} · ${esc(brief.story.source)}</div>
+  <p class="subline">${esc((brief.sublines || [])[i] || brief.story.summary)}</p>
+  ${count(i)}
+  <div class="m url">dailyposter.design</div>
+</section>`;
+  const frames = L.pairs ? 6 : 3;
   const cards = brief.headlines.slice(0, 3).map((h, i) => `
-<section style="left:${i * W}px">
+<section style="left:${(L.pairs ? 2 * i : i) * W}px">
   <div class="m k"><i class="dot"></i>Today's headlines</div>
   <div class="m meta">No. ${pad(brief.issue)} · ${esc(d)} · ${esc(brief.story.source)}</div>
   <h1 class="fit">${esc(h)}</h1>
   <div class="m count">${[1, 2, 3].map((n) => `<span${n === i + 1 ? ' class="on"' : ""}>0${n}</span>`).join("")}</div>
   ${L.url ? '<div class="m url">dailyposter.design</div>' : ""}
-</section>`).join("");
+</section>${subFrame(i)}`).join("");
   return `<!doctype html><html><head><link rel="stylesheet" href="${esc(FONTS)}">
 <style>
-html,body{margin:0;width:${W * 3}px;height:${L.H}px;background:#fff;color:#111;overflow:hidden}
+html,body{margin:0;width:${W * frames}px;height:${L.H}px;background:#fff;color:#111;overflow:hidden}
 img{position:absolute;display:block;object-fit:cover}
 img.obj{background:#f2f2f0;object-fit:contain}
 section{position:absolute;top:${L.secTop}px;bottom:${L.secBottom}px;width:${W}px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
@@ -69,6 +81,8 @@ h1{font-family:'EB Garamond',serif;font-weight:400;font-size:132px;line-height:1
 .count{line-height:1.2;display:flex;gap:18px;color:#c9c9c5}
 .count .on{color:#111}
 .url{margin-top:22px;color:#8a8a86;text-transform:none}
+.subline{font-family:'EB Garamond',serif;font-size:64px;line-height:1.15;letter-spacing:-.01em;margin:40px 0 0;max-width:840px;text-wrap:balance}
+.subf .count{margin-top:48px}
 </style></head><body>
 ${imgs}
 ${cards}
@@ -95,7 +109,7 @@ Promise.all([document.fonts.ready, ...[...document.images].map(i => i.complete ?
   const g = metric("400 " + size + "px 'EB Garamond'"), mono = metric("500 22px 'Geist Mono'");
   const lead = (lh, f) => (lh - (f.a + f.d)) / 2;
   const glh = size * LH, mlh = parseFloat(getComputedStyle(document.querySelector('.meta')).lineHeight) || 22 * 1.2;
-  document.querySelectorAll('section').forEach(sec => {
+  document.querySelectorAll('section:not(.subf)').forEach(sec => {
     const meta = sec.querySelector('.meta').getBoundingClientRect(), h = sec.querySelector('h1').getBoundingClientRect(), c = sec.querySelector('.count');
     const metaBase = meta.bottom - lead(mlh, mono) - mono.d;
     const capTop = h.top + lead(glh, g) + g.a - g.cap;
@@ -130,7 +144,10 @@ export function picturesFor(brief) {
 async function todo(state) {
   const latest = await readJSON(join(DATA, "latest.json"), null);
   const jobs = [];
-  if (latest && latest.date === londonDate() && !briefStories(latest.date).every((f) => existsSync(f))) jobs.push({ kind: "story", brief: latest, out: briefStories(latest.date) });
+  if (latest && latest.date === londonDate()) {
+    if (!briefImages(latest.date).every((f) => existsSync(f))) jobs.push({ kind: "brief", brief: latest, out: briefImages(latest.date) });
+    if (!briefStories(latest.date).every((f) => existsSync(f))) jobs.push({ kind: "story", brief: latest, out: briefStories(latest.date) });
+  }
   // Earlier briefs in the catch-up queue that haven't gone out yet.
   const { queue = [] } = await readJSON(BACKFILL, {});
   for (const k of queue.filter((q) => typeof q === "string")) {   // one-off posts bring their own pictures
@@ -173,7 +190,7 @@ async function main() {
       const h = j.kind === "story" ? STORY.H : H;
       const file = join("/tmp", `ig-${Date.now()}.html`);
       await writeFile(file, html);
-      await page.setViewportSize({ width: j.kind === "poster" ? W : W * 3, height: h });
+      await page.setViewportSize({ width: W * [].concat(j.out).length, height: h });
       await page.goto("file://" + file);
       await page.waitForFunction(() => document.body.dataset.ready, null, { timeout: 30000 });
       // The brief strip is cut into its three cards.

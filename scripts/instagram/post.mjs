@@ -171,8 +171,8 @@ async function main() {
   const briefKey = `brief:${today}`, briefSlot = `${today} ${SLOTS.brief}`;
   if (due(SLOTS.brief) && !state.slots[briefSlot] && !state.posted[briefKey]) {
     const brief = await readJSON(join(DATA, "latest.json"), null);
-    if (brief?.date === today && briefStories(today).every((f) => existsSync(f)))
-      job = { key: briefKey, slot: briefSlot, story: true, images: briefStories(today).map(url), caption: "(story)" };
+    if (brief?.date === today && [...briefImages(today), ...briefStories(today)].every((f) => existsSync(f)))
+      job = { key: briefKey, slot: briefSlot, images: briefImages(today).map(url), caption: briefCaption(brief), stories: briefStories(today).map(url) };
   }
   if (!job) {
     const waiting = (await pendingPosters(state, today)).filter((p) => existsSync(posterImage(p)));
@@ -191,6 +191,9 @@ async function main() {
     if (!DRY) {
       try {
         const id = job.story ? await publishStories(job.images) : await publish(job.images, job.caption, job.alt);
+        // The brief goes on the grid as a carousel and into stories.
+        if (job.stories) { try { state.posted[`stories:${today}`] = { at: new Date().toISOString(), id: await publishStories(job.stories) }; }
+          catch (e) { console.error(`Couldn't post the stories: ${e.message}`); process.exitCode = 1; } }
         state.posted[job.key] = { slot: job.slot, at: new Date().toISOString(), id };
         state.slots[job.slot] = job.key;
         console.log(`Posted: ${id}`);

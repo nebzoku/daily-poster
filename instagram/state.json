@@ -69,12 +69,18 @@
       "slot": "2026-11-05 13:00",
       "at": "2026-11-05T13:09:50.845Z",
       "id": "18022152167730528"
+    },
+    "poster:showcase/033-crystals-bloom-where-gravity-fails-3.jpg": {
+      "slot": "2026-11-05 19:00",
+      "at": "2026-11-05T19:07:34.433Z",
+      "id": "18015466781970826"
     }
   },
   "slots": {
     "2026-11-05 08:00": "brief:2026-11-05",
     "2026-11-05 10:30": "poster:showcase/033-a-cure-drifting-above-us.jpg",
-    "2026-11-05 13:00": "poster:showcase/033-crystals-bloom-where-gravity-fails.jpg"
+    "2026-11-05 13:00": "poster:showcase/033-crystals-bloom-where-gravity-fails.jpg",
+    "2026-11-05 19:00": "poster:showcase/033-crystals-bloom-where-gravity-fails-3.jpg"
   },
   "start": "2026-11-04"
 }

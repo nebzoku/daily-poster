@@ -35,26 +35,21 @@ const STRIP = [
 // in the middle.
 // Six frames: each headline, then its subline on a plain frame (the story's byline, in effect).
 const F = 1080;   // one story frame
-const STORY = { H: 1920, top: 230, bottom: 260, secTop: 640, secBottom: 640, url: true, pairs: true, strip: [
-  // 1: headline
-  { x: 70, w: 300, h: 380, top: 1 }, { x: 680, w: 330, h: 330, top: 1, obj: 1 }, { x: 160, w: 280, h: 300, top: 0 }, { x: 640, w: 300, h: 380, top: 0 },
-  // 2: subline
-  { x: F + 600, w: 380, h: 300, top: 1 }, { x: F + 110, w: 300, h: 360, top: 0 },
-  // 3: headline
-  { x: 2 * F + 110, w: 280, h: 340, top: 1 }, { x: 2 * F + 640, w: 330, h: 260, top: 1 }, { x: 2 * F + 80, w: 330, h: 330, top: 0, obj: 2 }, { x: 2 * F + 720, w: 260, h: 360, top: 0 },
-  // 4: subline
-  { x: 3 * F + 90, w: 340, h: 300, top: 1 }, { x: 3 * F + 640, w: 300, h: 380, top: 0 },
-  // 5: headline
-  { x: 4 * F + 60, w: 330, h: 300, top: 1 }, { x: 4 * F + 700, w: 330, h: 330, top: 1, obj: 3 }, { x: 4 * F + 120, w: 260, h: 380, top: 0 }, { x: 4 * F + 620, w: 340, h: 300, top: 0 },
-  // 6: subline
-  { x: 5 * F + 640, w: 300, h: 360, top: 1 }, { x: 5 * F + 90, w: 380, h: 300, top: 0 },
-] };
+// Picture frames per story frame, as [x, w, h, top?, object number], x within the frame.
+const HEAD = [[70, 300, 380, 1], [680, 330, 330, 1, 1], [160, 280, 300, 0], [640, 300, 380, 0]];
+const SUBL = [[600, 380, 300, 1], [90, 280, 340, 1], [110, 300, 360, 0], [700, 290, 300, 0]];
+const PLAIN = [[90, 300, 360, 1], [700, 300, 300, 0]];
+const STORY = { H: 1920, top: 230, bottom: 260, secTop: 640, secBottom: 640, url: true, pairs: true,
+  strip: [HEAD, SUBL, HEAD, SUBL, HEAD, SUBL, PLAIN, PLAIN, PLAIN].flatMap((slots, f) => slots.map(([x, w, h, top, obj], k) => ({
+    x: f * F + (f % 2 && slots === PLAIN ? 1080 - x - w : x), w, h, top, obj: obj ? Math.floor(f / 2) + 1 : 0 }))) };
 const CAROUSEL = { H, top: 40, bottom: 40, secTop: 370, secBottom: 370, url: false, strip: STRIP };
 
 export function briefStrip(brief, pictures, L = CAROUSEL) {
   const d = new Intl.DateTimeFormat("en-GB", { weekday: "short", day: "numeric", month: "short", timeZone: "UTC" }).format(new Date(brief.date + "T12:00:00Z"));
   const imgs = L.strip.map((s) => {
-    const src = s.obj ? (pictures.objects?.[s.obj - 1] || (s.obj === 1 && pictures.object)) : pictures.images.shift();
+    // Stories use every picture and then start again from the first, so no frame is left bare.
+    const src = s.obj ? (pictures.objects?.[s.obj - 1] || (s.obj === 1 && pictures.object))
+      : L.pairs ? pictures.images[(pictures.n = (pictures.n ?? -1) + 1) % pictures.images.length] : pictures.images.shift();
     if (!src) return "";
     const x = s.x;
     return `<img class="${s.obj ? "obj" : ""}" src="${esc(src)}" style="left:${x}px;${s.top ? `top:${L.top}` : `bottom:${L.bottom}`}px;width:${s.w}px;height:${s.h}px">`;
@@ -84,8 +79,16 @@ export function briefStrip(brief, pictures, L = CAROUSEL) {
   <div class="m tl">Typeface 01</div><p class="t1" style="font-family:'${esc(ty.display)}'">${esc(ty.display)}</p>
   <div class="m tl">Typeface 02</div><p class="t2" style="font-family:'${esc(ty.text)}'">${esc(ty.text)}</p>
   <div class="m url">dailyposter.design</div>
+</section>
+<div class="ctabg" style="left:${8 * W}px;background:${esc(pal[3])}"></div>
+<section class="subf cta" style="left:${8 * W}px;color:${esc(pal[1])}">
+  <div class="m k"><i class="dot"></i>Make yours</div>
+  <div class="m meta" style="color:${esc(pal[1])}">No. ${pad(brief.issue)} · ${esc(d)}</div>
+  <p class="ctah" style="color:${esc(pal[0])}">Make a poster, then tag @dailyposter.design</p>
+  <p class="subline">Use today's brief, tag us on the photo and add #dailyposter${pad(brief.issue)}. We share our favourites.</p>
+  <div class="m url" style="color:${esc(pal[1])}">dailyposter.design</div>
 </section>`;
-  const frames = L.pairs ? 8 : 3;
+  const frames = L.pairs ? 9 : 3;
   const cards = brief.headlines.slice(0, 3).map((h, i) => `
 <section style="left:${(L.pairs ? 2 * i : i) * W}px">
   <div class="m k"><i class="dot"></i>Today's headlines</div>
@@ -115,9 +118,12 @@ h1{font-family:'EB Garamond',serif;font-weight:400;font-size:132px;line-height:1
 .sw figcaption{margin-top:14px;color:#8a8a86;text-transform:uppercase;font-size:20px}
 .tl{margin-top:56px;color:#8a8a86}.t1{font-size:120px;line-height:1.05;margin:14px 0 0}.t2{font-size:64px;line-height:1.1;margin:14px 0 0}
 .subf .url{margin-top:56px}
+.ctabg{position:absolute;top:0;width:${W}px;height:100%}
+.ctah{font-family:'EB Garamond',serif;font-size:118px;line-height:1.02;letter-spacing:-.015em;margin:34px 0 0;max-width:900px;text-wrap:balance}
+.cta .subline{opacity:.9}
 </style></head><body>
-${imgs}
 ${cards}
+${imgs}
 <script>
 // One size for all three headlines, set by the longest. Two lines where possible; if any
 // needs three, all go to three. Then the counter sits as far below the headline as the

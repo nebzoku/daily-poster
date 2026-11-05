@@ -78,14 +78,14 @@
       "id": "met:283220",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Sugar Loaf Islands, Farallons, 1868\u201369",
+      "title": "Sugar Loaf Islands, Farallons, 1868–69",
       "credit": "Carleton E. Watkins",
       "creditUrl": "https://www.metmuseum.org/art/collection/search/283220",
       "page": "https://www.metmuseum.org/art/collection/search/283220",
       "alt": "Sugar Loaf Islands, Farallons",
       "thumb": "https://images.metmuseum.org/CRDImages/ph/web-large/DP279885.jpg",
       "src": "https://images.metmuseum.org/CRDImages/ph/original/DP279885.jpg",
-      "local": "media/2026-11-03/image-02-1080.jpg"
+      "local": "media/2026-11-03/image-02-2160.jpg"
     },
     {
       "id": "unsplash:asn1vZEz3oQ",
@@ -110,7 +110,7 @@
       "alt": "The Fishing Boat",
       "thumb": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-14936-031.jpg",
       "src": "https://images.metmuseum.org/CRDImages/ep/original/DP-14936-031.jpg",
-      "local": "media/2026-11-03/image-04-1080.jpg"
+      "local": "media/2026-11-03/image-04-2160.jpg"
     },
     {
       "id": "unsplash:loI3tzViw-E",
@@ -135,7 +135,7 @@
       "alt": "Fishing Boat at Sea",
       "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP880170.jpg",
       "src": "https://images.metmuseum.org/CRDImages/dp/original/DP880170.jpg",
-      "local": "media/2026-11-03/image-06-1080.jpg"
+      "local": "media/2026-11-03/image-06-2160.jpg"
     },
     {
       "id": "unsplash:lFLiylnXMPM",
@@ -160,7 +160,7 @@
       "alt": "A Fisherman is Struggling amid the Rocks and Currents of an Inlet of the Sea",
       "thumb": "https://images.metmuseum.org/CRDImages/as/web-large/DP123618.jpg",
       "src": "https://images.metmuseum.org/CRDImages/as/original/DP123618.jpg",
-      "local": "media/2026-11-03/image-08-1080.jpg"
+      "local": "media/2026-11-03/image-08-2160.jpg"
     },
     {
       "id": "unsplash:iIvK3NdINAo",
@@ -185,7 +185,7 @@
       "alt": "Rocks and Sea",
       "thumb": "https://images.metmuseum.org/CRDImages/ad/web-large/ap1970.284.jpg",
       "src": "https://images.metmuseum.org/CRDImages/ad/original/ap1970.284.jpg",
-      "local": "media/2026-11-03/image-10-1080.jpg"
+      "local": "media/2026-11-03/image-10-2160.jpg"
     }
   ],
   "textures": [

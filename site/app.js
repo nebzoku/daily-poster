@@ -609,7 +609,9 @@ ${inside}`;
       frames.push(`<svg id="${esc(name)}" x="${x}" y="${y}" width="${Math.ceil(w)}" height="${Math.ceil(h)}" viewBox="0 0 ${Math.ceil(w)} ${Math.ceil(h)}">\n${body}\n</svg>`);
 
     // Row 1: the blank artboard, then the four mockups.
-    frame(`Daily Poster No. ${pad(brief.issue)}`, 0, 0, G.W, G.H, `<rect id="Background" width="${G.W}" height="${G.H}" fill="#FFFFFF"/>`);
+    // Names don't end in a number: Figma counts up a trailing number each time you paste
+    // (No. 034 becomes No. 35, 36…), so the issue goes first.
+    frame(`No. ${pad(brief.issue)} · Daily Poster`, 0, 0, G.W, G.H, `<rect id="Background" width="${G.W}" height="${G.H}" fill="#FFFFFF"/>`);
     let x = G.W + GAP;
     for (const m of mockups()) {
       frame(`Mockup · ${m.name}`, x, 0, MOCK.W, MOCK.H, mockupSVG(m, null));
@@ -625,9 +627,9 @@ ${inside}`;
     const typeW = Math.max(...hls.map((h) => textWidth(h, t.display, hlSize)), ...subs.map((s) => textWidth(s, t.text, subSize)));
     let ty = 0;
     const lines = [];
-    hls.forEach((h, i) => { lines.push(`<text id="Headline ${i + 1}" fill="${ink}" font-family="${esc(t.display)}" font-size="${hlSize}" x="0" y="${(ty + hlSize * 0.9).toFixed(1)}">${esc(h)}</text>`); ty += hlSize * 1.2 + lineGap; });
+    hls.forEach((h, i) => { lines.push(`<text id="0${i + 1} Headline" fill="${ink}" font-family="${esc(t.display)}" font-size="${hlSize}" x="0" y="${(ty + hlSize * 0.9).toFixed(1)}">${esc(h)}</text>`); ty += hlSize * 1.2 + lineGap; });
     ty += 40;
-    subs.forEach((s, i) => { lines.push(`<text id="Subline ${i + 1}" fill="${ink}" font-family="${esc(t.text)}" font-size="${subSize}" x="0" y="${(ty + subSize * 0.95).toFixed(1)}">${esc(s)}</text>`); ty += subSize * 1.3 + lineGap; });
+    subs.forEach((s, i) => { lines.push(`<text id="0${i + 1} Subline" fill="${ink}" font-family="${esc(t.text)}" font-size="${subSize}" x="0" y="${(ty + subSize * 0.95).toFixed(1)}">${esc(s)}</text>`); ty += subSize * 1.3 + lineGap; });
     const typeH = ty - lineGap;
     frame("Type", 0, y, typeW, typeH, lines.join("\n"));
     width = Math.max(width, typeW);

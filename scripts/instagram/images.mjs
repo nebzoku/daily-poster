@@ -16,7 +16,7 @@ const pad = (n) => String(n).padStart(3, "0");
 const lum = (hex) => { const c = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255).map((v) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4)); return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]; };
 
 // Fonts: Google's by default; IG_FONTS_CSS can point at local copies (for previews offline).
-const FONTS = process.env.IG_FONTS_CSS || "https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400&family=Geist+Mono:wght@400;500&display=block";
+const FONTS = process.env.IG_FONTS_CSS || "https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400&family=Geist:wght@400&family=Geist+Mono:wght@400;500&display=block";
 
 // Today's brief as a carousel: three cards, one headline each, laid out like the homepage on a
 // phone. The pictures are placed across one long strip (three cards wide) and some cross the
@@ -91,7 +91,7 @@ h1{font-family:'EB Garamond',serif;font-weight:400;font-size:132px;line-height:1
 .count{line-height:1.2;display:flex;gap:18px;color:#c9c9c5}
 .count .on{color:#111}
 .url{margin-top:22px;color:#8a8a86;text-transform:none}
-.subline{font-family:'EB Garamond',serif;font-size:64px;line-height:1.15;letter-spacing:-.01em;margin:40px 0 0;max-width:840px;text-wrap:balance}
+.subline{font-family:'Geist',sans-serif;font-size:50px;line-height:1.25;letter-spacing:-.015em;margin:40px 0 0;max-width:840px;text-wrap:balance}
 .subf .count{margin-top:48px}
 </style></head><body>
 ${imgs}

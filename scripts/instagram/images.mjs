@@ -34,19 +34,29 @@ const STRIP = [
 // (profile bar) and bottom ~300 px (reply bar), so pictures sit just inside those and the text
 // in the middle.
 // Six frames: each headline, then its subline on a plain frame (the story's byline, in effect).
+const F = 1080;   // one story frame
 const STORY = { H: 1920, top: 230, bottom: 260, secTop: 640, secBottom: 640, url: true, pairs: true, strip: [
+  // 1: headline
   { x: 70, w: 300, h: 380, top: 1 }, { x: 680, w: 330, h: 330, top: 1, obj: 1 }, { x: 160, w: 280, h: 300, top: 0 }, { x: 640, w: 300, h: 380, top: 0 },
-  { x: 1080 + 110, w: 280, h: 340, top: 1 }, { x: 1080 + 640, w: 330, h: 260, top: 1 }, { x: 1080 + 80, w: 330, h: 330, top: 0 }, { x: 1080 + 720, w: 260, h: 360, top: 0 },
-  { x: 2160 + 60, w: 330, h: 300, top: 1 }, { x: 2160 + 700, w: 280, h: 380, top: 1 }, { x: 2160 + 120, w: 260, h: 380, top: 0 }, { x: 2160 + 620, w: 340, h: 300, top: 0 },
+  // 2: subline
+  { x: F + 600, w: 380, h: 300, top: 1 }, { x: F + 110, w: 300, h: 360, top: 0 },
+  // 3: headline
+  { x: 2 * F + 110, w: 280, h: 340, top: 1 }, { x: 2 * F + 640, w: 330, h: 260, top: 1 }, { x: 2 * F + 80, w: 330, h: 330, top: 0, obj: 2 }, { x: 2 * F + 720, w: 260, h: 360, top: 0 },
+  // 4: subline
+  { x: 3 * F + 90, w: 340, h: 300, top: 1 }, { x: 3 * F + 640, w: 300, h: 380, top: 0 },
+  // 5: headline
+  { x: 4 * F + 60, w: 330, h: 300, top: 1 }, { x: 4 * F + 700, w: 330, h: 330, top: 1, obj: 3 }, { x: 4 * F + 120, w: 260, h: 380, top: 0 }, { x: 4 * F + 620, w: 340, h: 300, top: 0 },
+  // 6: subline
+  { x: 5 * F + 640, w: 300, h: 360, top: 1 }, { x: 5 * F + 90, w: 380, h: 300, top: 0 },
 ] };
 const CAROUSEL = { H, top: 40, bottom: 40, secTop: 370, secBottom: 370, url: false, strip: STRIP };
 
 export function briefStrip(brief, pictures, L = CAROUSEL) {
   const d = new Intl.DateTimeFormat("en-GB", { weekday: "short", day: "numeric", month: "short", timeZone: "UTC" }).format(new Date(brief.date + "T12:00:00Z"));
   const imgs = L.strip.map((s) => {
-    const src = s.obj ? pictures.object : pictures.images.shift();
+    const src = s.obj ? (pictures.objects?.[s.obj - 1] || (s.obj === 1 && pictures.object)) : pictures.images.shift();
     if (!src) return "";
-    const x = L.pairs ? s.x + Math.floor(s.x / W) * W : s.x;   // with pairs, pictures go on the headline frames only
+    const x = s.x;
     return `<img class="${s.obj ? "obj" : ""}" src="${esc(src)}" style="left:${x}px;${s.top ? `top:${L.top}` : `bottom:${L.bottom}`}px;width:${s.w}px;height:${s.h}px">`;
   }).join("\n");
   const count = (i) => `<div class="m count">${[1, 2, 3].map((n) => `<span${n === i + 1 ? ' class="on"' : ""}>0${n}</span>`).join("")}</div>`;
@@ -135,10 +145,10 @@ img{position:absolute;left:${px}px;top:44px;width:${pw}px;height:${ph}px;object-
 
 // The day's pictures for the brief card: local copies where we have them, else the thumbnails.
 export function picturesFor(brief) {
-  const images = (brief.images || []).map((im) => (im.local ? "file://" + join(SITE, im.local) : im.thumb)).filter(Boolean);
+  const images = [...(brief.images || []), ...(brief.textures || [])].map((im) => (im.local ? "file://" + join(SITE, im.local) : im.thumb)).filter(Boolean);
   const objs = brief.objects || [];
   const o = objs.length ? objs[(brief.issue || 0) % objs.length] : null;
-  return { images, object: o ? "file://" + join(SITE, o.thumb) : null };
+  return { images, object: o ? "file://" + join(SITE, o.thumb) : null, objects: objs.map((x) => "file://" + join(SITE, x.thumb)) };
 }
 
 async function todo(state) {

@@ -81,7 +81,8 @@ jobs:
         env:
           INSTAGRAM_TOKEN: ${{ secrets.INSTAGRAM_TOKEN }}
         run: |
-          n=$(node scripts/instagram/images.mjs --list)
+          # Never let the Instagram pictures stop the brief from being saved and deployed.
+          n=$(node scripts/instagram/images.mjs --list) || { echo "::warning::Couldn't check the Instagram pictures."; exit 0; }
           if [ "$n" != "0" ]; then
             npx playwright install --with-deps chromium >/dev/null
             node scripts/instagram/images.mjs || echo "::warning::The Instagram pictures didn't render."

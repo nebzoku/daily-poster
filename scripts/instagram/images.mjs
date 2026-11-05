@@ -120,14 +120,14 @@ async function todo(state) {
   if (latest && latest.date === londonDate() && !briefImages(latest.date).every((f) => existsSync(f))) jobs.push({ kind: "brief", brief: latest, out: briefImages(latest.date) });
   // Earlier briefs in the catch-up queue that haven't gone out yet.
   const { queue = [] } = await readJSON(BACKFILL, {});
-  for (const k of queue) {
+  for (const k of queue.filter((q) => typeof q === "string")) {   // one-off posts bring their own pictures
     const date = k.startsWith("brief:") && k.slice(6);
     if (!date || state.posted[k] || date === latest?.date || briefImages(date).every((f) => existsSync(f))) continue;
     const b = await readJSON(join(DATA, `${date}.json`), null);
     if (b) jobs.push({ kind: "brief", brief: b, out: briefImages(date) });
   }
   const showcase = await readJSON(join(DATA, "showcase.json"), []);
-  for (const k of queue) {
+  for (const k of queue.filter((q) => typeof q === "string")) {
     const p = k.startsWith("poster:") && !state.posted[k] && showcase.find((x) => `poster:${x.image}` === k);
     if (p && !existsSync(posterImage(p))) jobs.push({ kind: "poster", poster: p, out: posterImage(p) });
   }

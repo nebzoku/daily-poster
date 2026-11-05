@@ -1,5 +1,16 @@
 [
   {
+    "date": "2026-11-05",
+    "issue": 34,
+    "colour": "Magenta",
+    "headline": "The King Who Wasn't",
+    "bg": "#F43BEC",
+    "thumb": "https://images.unsplash.com/photo-1578338591395-a755a9d3170d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8bWlzdHklMjBjaGFsayUyMGhpbGxzfGVufDF8fHx8MTc5Mzg2MTM0MXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+    "display": "Libre Caslon Display",
+    "text": "Libre Franklin",
+    "css": "https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Franklin&display=swap"
+  },
+  {
     "date": "2026-11-04",
     "issue": 33,
     "colour": "Rose",

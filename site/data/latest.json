@@ -1,37 +1,37 @@
 {
-  "date": "2026-11-04",
-  "issue": 33,
-  "generatedAt": "2026-11-04T06:51:39.360Z",
+  "date": "2026-11-05",
+  "issue": 34,
+  "generatedAt": "2026-11-05T06:49:00.574Z",
   "colour": {
-    "name": "Rose",
-    "yesterday": "Red",
-    "tomorrow": "Magenta"
+    "name": "Magenta",
+    "yesterday": "Rose",
+    "tomorrow": "Violet"
   },
   "story": {
-    "title": "Why pharma firms are going to Earth’s orbit in search of new cancer drugs",
-    "summary": "Drug companies are sending experiments into low Earth orbit, where three small capsules circle about 300 miles up. Inside one, the weightlessness lets a potential cancer drug form tiny crystals that are hard to grow properly on the ground.",
+    "title": "Historians say King Verica persuaded Rome to invade Britain. But could Verica actually have been a queen?",
+    "summary": "An archaeologist has put forward a controversial theory that Verica, the British ruler traditionally said to have urged Rome to invade, may have been a woman rather than a king. If true, it would change how we tell the story of the Claudian landing in Kent in AD43.",
     "source": "The Guardian",
-    "url": "https://www.theguardian.com/science/2026/nov/04/us-firm-varda-space-industries-manufacturing-drugs-in-space",
-    "published": "2026-11-04T06:00:27.000Z",
-    "theme": "space-based medicine research"
+    "url": "https://www.theguardian.com/uk-news/2026/nov/05/verica-rome-invade-britain-queen-or-king",
+    "published": "2026-11-05T05:00:54.000Z",
+    "theme": "ancient history and archaeology"
   },
   "headlines": [
-    "Medicine Grown in Weightlessness",
-    "Crystals Bloom Where Gravity Fails",
-    "A Cure Drifting Above Us"
+    "The King Who Wasn't",
+    "She Summoned Rome to Britain",
+    "Who Really Called the Legions?"
   ],
   "sublines": [
-    "Three washing-machine-sized capsules orbit 300 miles up, and pharma firms are using them to grow drug crystals.",
-    "In microgravity, a potential cancer drug forms tiny crystals that researchers hope will lead to better treatments.",
-    "Pharmaceutical companies are renting orbital space for experiments that gravity makes difficult or impossible on Earth."
+    "An archaeologist argues Verica, who urged Claudius to invade Britain in AD43, may have been a woman.",
+    "A controversial theory could change how we tell the story of the Roman invasion of Britain.",
+    "Long cast as a king who begged Rome for help, Verica's sex is now disputed by one archaeologist."
   ],
   "palette": {
     "name": "Vivid",
     "colours": [
-      "#F33496",
-      "#FFD9E6",
-      "#7C6D72",
-      "#370E21"
+      "#F43BEC",
+      "#FCD7F8",
+      "#796E77",
+      "#31102F"
     ]
   },
   "always": [
@@ -39,13 +39,13 @@
     "#FFFFFF"
   ],
   "type": {
-    "id": "instrument",
-    "display": "Instrument Serif",
-    "text": "Inter Tight",
-    "reason": "Instrument Serif's delicate, crystalline strokes set huge feel precise and quietly wondrous, while Inter Tight carries the scientific facts cleanly.",
-    "css": "https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter+Tight&display=swap",
-    "displayUrl": "https://fonts.google.com/specimen/Instrument+Serif",
-    "textUrl": "https://fonts.google.com/specimen/Inter+Tight"
+    "id": "caslon",
+    "display": "Libre Caslon Display",
+    "text": "Libre Franklin",
+    "reason": "Libre Caslon Display has the carved, classical authority of Roman inscriptions and coinage, while its elegant contrast leaves room for the story's question mark over identity.",
+    "css": "https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Franklin&display=swap",
+    "displayUrl": "https://fonts.google.com/specimen/Libre+Caslon+Display",
+    "textUrl": "https://fonts.google.com/specimen/Libre+Franklin"
   },
   "grid": {
     "format": "A-size",
@@ -63,227 +63,223 @@
   },
   "images": [
     {
-      "id": "unsplash:PrQqQVPzmlw",
+      "id": "unsplash:nVaDvX0kmzY",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "purple cyrstal quarts stone",
-      "credit": "Krystal Ng",
-      "creditUrl": "https://unsplash.com/@bykrystal?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/purple-cyrstal-quarts-stone-PrQqQVPzmlw?utm_source=daily_poster&utm_medium=referral",
-      "alt": "purple cyrstal quarts stone",
-      "thumb": "https://images.unsplash.com/photo-1521133573892-e44906baee46?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGluayUyMGNyeXN0YWxzfGVufDF8fHx8MTc5Mzc3NTA5OXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1521133573892-e44906baee46?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGluayUyMGNyeXN0YWxzfGVufDF8fHx8MTc5Mzc3NTA5OXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "green grass field photograph",
+      "credit": "Jonathan Ridley",
+      "creditUrl": "https://unsplash.com/@jridley1?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/green-grass-field-photograph-nVaDvX0kmzY?utm_source=daily_poster&utm_medium=referral",
+      "alt": "green grass field photograph",
+      "thumb": "https://images.unsplash.com/photo-1578338591395-a755a9d3170d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8bWlzdHklMjBjaGFsayUyMGhpbGxzfGVufDF8fHx8MTc5Mzg2MTM0MXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1578338591395-a755a9d3170d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8bWlzdHklMjBjaGFsayUyMGhpbGxzfGVufDF8fHx8MTc5Mzg2MTM0MXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:GkpYlUpUOIY",
-      "source": "Unsplash",
-      "licence": "Unsplash License",
-      "title": "Crescent earth seen from space against blackness",
-      "credit": "NASA",
-      "creditUrl": "https://unsplash.com/@nasa?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/crescent-earth-seen-from-space-against-blackness-GkpYlUpUOIY?utm_source=daily_poster&utm_medium=referral",
-      "alt": "Crescent earth seen from space against blackness",
-      "thumb": "https://images.unsplash.com/photo-1777047023579-5007a6d402bc?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8ZWFydGglMjBmcm9tJTIwb3JiaXR8ZW58MXx8fHwxNzkzNzc1MDk5fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1777047023579-5007a6d402bc?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8ZWFydGglMjBmcm9tJTIwb3JiaXR8ZW58MXx8fHwxNzkzNzc1MDk5fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
-    },
-    {
-      "id": "met:454019",
+      "id": "met:468178",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Crystal Flask, 9th–10th century",
-      "credit": "Unknown artist",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/454019",
-      "page": "https://www.metmuseum.org/art/collection/search/454019",
-      "alt": "Crystal Flask",
-      "thumb": "https://images.metmuseum.org/CRDImages/is/web-large/sf31-18-1a.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/is/original/sf31-18-1a.jpg",
-      "local": "media/2026-11-04/image-03-1080.jpg"
+      "title": "Silver Neck Ring, 475–400 BCE",
+      "credit": "Celtic",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/468178",
+      "page": "https://www.metmuseum.org/art/collection/search/468178",
+      "alt": "Silver Neck Ring",
+      "thumb": "https://images.metmuseum.org/CRDImages/md/web-large/DP100655.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/md/original/DP100655.jpg",
+      "local": "media/2026-11-05/image-02-1080.jpg"
     },
     {
-      "id": "unsplash:noEHHmWGXIU",
+      "id": "unsplash:kDrTt4sCC7I",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "A pile of pink crystals sitting on top of a table",
-      "credit": "Bhautik Patel",
-      "creditUrl": "https://unsplash.com/@bhautik_patel3?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/a-pile-of-pink-crystals-sitting-on-top-of-a-table-noEHHmWGXIU?utm_source=daily_poster&utm_medium=referral",
-      "alt": "A pile of pink crystals sitting on top of a table",
-      "thumb": "https://images.unsplash.com/photo-1728234553997-f71b87a44e13?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGluayUyMGNyeXN0YWxzfGVufDF8fHx8MTc5Mzc3NTA5OXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1728234553997-f71b87a44e13?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGluayUyMGNyeXN0YWxzfGVufDF8fHx8MTc5Mzc3NTA5OXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "shore during golden hour",
+      "credit": "Zakaria Zayane",
+      "creditUrl": "https://unsplash.com/@kazizayane?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/shore-during-golden-hour-kDrTt4sCC7I?utm_source=daily_poster&utm_medium=referral",
+      "alt": "shore during golden hour",
+      "thumb": "https://images.unsplash.com/photo-1553346702-7fb90c0b8b9e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8bWFnZW50YSUyMGR1c2slMjBjb2FzdHxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1553346702-7fb90c0b8b9e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8bWFnZW50YSUyMGR1c2slMjBjb2FzdHxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "met:283255",
+      "id": "met:254990",
       "source": "The Met",
       "licence": "CC0",
-      "title": "A Section of the Constellation Cygnus (August 13, 1885), 1885",
-      "credit": "Paul Henry",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/283255",
-      "page": "https://www.metmuseum.org/art/collection/search/283255",
-      "alt": "A Section of the Constellation Cygnus (August 13, 1885)",
-      "thumb": "https://images.metmuseum.org/CRDImages/ph/web-large/DP156450.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/ph/original/DP156450.jpg",
-      "local": "media/2026-11-04/image-05-1080.jpg"
+      "title": "Terracotta coin molds, ca. 308–320 CE",
+      "credit": "Roman",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/254990",
+      "page": "https://www.metmuseum.org/art/collection/search/254990",
+      "alt": "Terracotta coin molds",
+      "thumb": "https://images.metmuseum.org/CRDImages/gr/web-large/sf581791edited.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/gr/original/sf581791edited.jpg",
+      "local": "media/2026-11-05/image-04-1080.jpg"
     },
     {
-      "id": "unsplash:m__rN6Yu93A",
+      "id": "unsplash:Dur6fTWkeVU",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "a close up of a bunch of ice crystals",
-      "credit": "Kier in Sight Archives",
-      "creditUrl": "https://unsplash.com/@kierinsightarchives?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/a-close-up-of-a-bunch-of-ice-crystals-m__rN6Yu93A?utm_source=daily_poster&utm_medium=referral",
-      "alt": "a close up of a bunch of ice crystals",
-      "thumb": "https://images.unsplash.com/photo-1650341791272-c47e22beb413?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8cGluayUyMGNyeXN0YWxzfGVufDF8fHx8MTc5Mzc3NTA5OXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1650341791272-c47e22beb413?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8cGluayUyMGNyeXN0YWxzfGVufDF8fHx8MTc5Mzc3NTA5OXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "a group of pillars in a stone building",
+      "credit": "Konstantin Dyadyun",
+      "creditUrl": "https://unsplash.com/@kostyadyadyun?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-group-of-pillars-in-a-stone-building-Dur6fTWkeVU?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a group of pillars in a stone building",
+      "thumb": "https://images.unsplash.com/photo-1660816839326-2f32daf0bd5a?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8YW5jaWVudCUyMHN0b25lJTIwcnVpbnN8ZW58MXx8fHwxNzkzODYxMzQwfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1660816839326-2f32daf0bd5a?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8YW5jaWVudCUyMHN0b25lJTIwcnVpbnN8ZW58MXx8fHwxNzkzODYxMzQwfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:SrQSKuy8z7I",
+      "id": "unsplash:35CBoCJTC6w",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "View of earth from space through a window",
-      "credit": "Muhammad Nishfu",
-      "creditUrl": "https://unsplash.com/@nishfu?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/view-of-earth-from-space-through-a-window-SrQSKuy8z7I?utm_source=daily_poster&utm_medium=referral",
-      "alt": "View of earth from space through a window",
-      "thumb": "https://images.unsplash.com/photo-1768283808210-41196886ebf4?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8ZWFydGglMjBmcm9tJTIwb3JiaXR8ZW58MXx8fHwxNzkzNzc1MDk5fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1768283808210-41196886ebf4?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8ZWFydGglMjBmcm9tJTIwb3JiaXR8ZW58MXx8fHwxNzkzNzc1MDk5fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "body of water under cloudy sky during daytime",
+      "credit": "Cole Parrant",
+      "creditUrl": "https://unsplash.com/@casually?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/body-of-water-under-cloudy-sky-during-daytime-35CBoCJTC6w?utm_source=daily_poster&utm_medium=referral",
+      "alt": "body of water under cloudy sky during daytime",
+      "thumb": "https://images.unsplash.com/photo-1606870284624-60c184c3f085?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8bWFnZW50YSUyMGR1c2slMjBjb2FzdHxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1606870284624-60c184c3f085?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8bWFnZW50YSUyMGR1c2slMjBjb2FzdHxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "met:468471",
+      "id": "met:747552",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Rock Crystal Bowl, 3rd–5th century",
-      "credit": "North African (Carthage)",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/468471",
-      "page": "https://www.metmuseum.org/art/collection/search/468471",
-      "alt": "Rock Crystal Bowl",
-      "thumb": "https://images.metmuseum.org/CRDImages/md/web-large/DP-25593-001.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/md/original/DP-25593-001.jpg",
-      "local": "media/2026-11-04/image-08-1080.jpg"
+      "title": "Studies of a Bearded Head and a Greek or Roman Coin, December 23, 1824",
+      "credit": "Eugène Delacroix",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/747552",
+      "page": "https://www.metmuseum.org/art/collection/search/747552",
+      "alt": "Studies of a Bearded Head and a Greek or Roman Coin",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP873587.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP873587.jpg",
+      "local": "media/2026-11-05/image-07-1080.jpg"
     },
     {
-      "id": "unsplash:JKRXPwUoFt0",
-      "source": "Unsplash",
-      "licence": "Unsplash License",
-      "title": "cracked red quartz",
-      "credit": "Jason D",
-      "creditUrl": "https://unsplash.com/@jasondeblooisphotography?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/cracked-red-quartz-JKRXPwUoFt0?utm_source=daily_poster&utm_medium=referral",
-      "alt": "cracked red quartz",
-      "thumb": "https://images.unsplash.com/photo-1551122087-f99a4ade46ce?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cGluayUyMGNyeXN0YWxzfGVufDF8fHx8MTc5Mzc3NTA5OXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1551122087-f99a4ade46ce?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cGluayUyMGNyeXN0YWxzfGVufDF8fHx8MTc5Mzc3NTA5OXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
-    },
-    {
-      "id": "met:448558",
+      "id": "met:465764",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Crystal Flask, 10th century",
-      "credit": "Unknown artist",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/448558",
-      "page": "https://www.metmuseum.org/art/collection/search/448558",
-      "alt": "Crystal Flask",
-      "thumb": "https://images.metmuseum.org/CRDImages/is/web-large/sf31-18-2a.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/is/original/sf31-18-2a.jpg",
-      "local": "media/2026-11-04/image-10-1080.jpg"
+      "title": "Gold Disk Brooch, 6th–7th century",
+      "credit": "Frankish",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/465764",
+      "page": "https://www.metmuseum.org/art/collection/search/465764",
+      "alt": "Gold Disk Brooch",
+      "thumb": "https://images.metmuseum.org/CRDImages/md/web-large/DP-41584-001.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/md/original/DP-41584-001.jpg",
+      "local": "media/2026-11-05/image-08-1080.jpg"
+    },
+    {
+      "id": "unsplash:-Ig_nXRiSlQ",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "grayscale photo of concrete pillar",
+      "credit": "Vladimir De Vico",
+      "creditUrl": "https://unsplash.com/@vladimirdevico?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/grayscale-photo-of-concrete-pillar--Ig_nXRiSlQ?utm_source=daily_poster&utm_medium=referral",
+      "alt": "grayscale photo of concrete pillar",
+      "thumb": "https://images.unsplash.com/photo-1594480149213-1fbd38e069a8?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8YW5jaWVudCUyMHN0b25lJTIwcnVpbnN8ZW58MXx8fHwxNzkzODYxMzQwfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1594480149213-1fbd38e069a8?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8YW5jaWVudCUyMHN0b25lJTIwcnVpbnN8ZW58MXx8fHwxNzkzODYxMzQwfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:cZgV5bTRWx0",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "Dramatic sunset over calm water and distant hills",
+      "credit": "Kiya Golara",
+      "creditUrl": "https://unsplash.com/@rorozoro?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/dramatic-sunset-over-calm-water-and-distant-hills-cZgV5bTRWx0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "Dramatic sunset over calm water and distant hills",
+      "thumb": "https://images.unsplash.com/photo-1761285908346-cbe783a0a675?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8bWFnZW50YSUyMGR1c2slMjBjb2FzdHxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1761285908346-cbe783a0a675?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8bWFnZW50YSUyMGR1c2slMjBjb2FzdHxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     }
   ],
   "textures": [
     {
-      "id": "unsplash:k4Lt0CjUnb0",
+      "id": "unsplash:XFWiZTa2Ub0",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "crumpled beige parchment paper texture",
+      "credit": "SJ Objio",
+      "creditUrl": "https://unsplash.com/@sjobjio?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/crumpled-beige-parchment-paper-texture-XFWiZTa2Ub0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "crumpled beige parchment paper texture",
+      "thumb": "https://images.unsplash.com/photo-1603484477859-abe6a73f9366?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFyY2htZW50JTIwdGV4dHVyZXxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1603484477859-abe6a73f9366?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFyY2htZW50JTIwdGV4dHVyZXxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:vS3idIiYxX0",
       "source": "Unsplash",
       "licence": "Unsplash License",
       "title": "white textured paper or plaster surface",
-      "credit": "João Vítor Duarte",
-      "creditUrl": "https://unsplash.com/@joaovtrduarte?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-k4Lt0CjUnb0?utm_source=daily_poster&utm_medium=referral",
+      "credit": "Olga Thelavart",
+      "creditUrl": "https://unsplash.com/@olga_o?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-vS3idIiYxX0?utm_source=daily_poster&utm_medium=referral",
       "alt": "white textured paper or plaster surface",
-      "thumb": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8ZmluZSUyMHBhcGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTM3NzUxMDB8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8ZmluZSUyMHBhcGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTM3NzUxMDB8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "thumb": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cGFyY2htZW50JTIwdGV4dHVyZXxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cGFyY2htZW50JTIwdGV4dHVyZXxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:tiros7-WV7E",
+      "id": "unsplash:u4ijcCaprRc",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "blue and white abstract painting",
-      "credit": "Markus Spiske",
-      "creditUrl": "https://unsplash.com/@markusspiske?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/blue-and-white-abstract-painting-tiros7-WV7E?utm_source=daily_poster&utm_medium=referral",
-      "alt": "blue and white abstract painting",
-      "thumb": "https://images.unsplash.com/photo-1631435628939-467169ba6e08?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8ZnJvc3RlZCUyMGdsYXNzJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTM3NzUwOTl8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1631435628939-467169ba6e08?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8ZnJvc3RlZCUyMGdsYXNzJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTM3NzUwOTl8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "a close up of a rock surface with small cracks",
+      "credit": "Colin Watts",
+      "creditUrl": "https://unsplash.com/@colinwatts?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-close-up-of-a-rock-surface-with-small-cracks-u4ijcCaprRc?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a close up of a rock surface with small cracks",
+      "thumb": "https://images.unsplash.com/photo-1542732056-648731297c97?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8d2VhdGhlcmVkJTIwc3RvbmUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5Mzg2MTM0MXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1542732056-648731297c97?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8d2VhdGhlcmVkJTIwc3RvbmUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5Mzg2MTM0MXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "polyhaven:quatrefoil_jacquard_fabric",
-      "source": "Poly Haven",
-      "licence": "CC0",
-      "title": "Quatrefoil Jacquard Fabric",
-      "credit": "colormass, Rico Cilliers",
-      "creditUrl": "https://polyhaven.com/a/quatrefoil_jacquard_fabric",
-      "page": "https://polyhaven.com/a/quatrefoil_jacquard_fabric",
-      "alt": "Quatrefoil Jacquard Fabric texture",
-      "thumb": "https://cdn.polyhaven.com/asset_img/thumbs/quatrefoil_jacquard_fabric.png?width=480&height=480",
-      "src": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/quatrefoil_jacquard_fabric/quatrefoil_jacquard_fabric_diff_2k.jpg",
-      "local": "media/2026-11-04/texture-03-1080.jpg"
-    },
-    {
-      "id": "unsplash:yI3weKNBRTc",
+      "id": "unsplash:CLvkkjb-i3g",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "gray concrete painted wall",
-      "credit": "Annie Spratt",
-      "creditUrl": "https://unsplash.com/@anniespratt?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/gray-concrete-painted-wall-yI3weKNBRTc?utm_source=daily_poster&utm_medium=referral",
-      "alt": "gray concrete painted wall",
-      "thumb": "https://images.unsplash.com/photo-1533035353720-f1c6a75cd8ab?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Zm9pbCUyMHRleHR1cmV8ZW58MXx8fHwxNzkzNzc1MDk5fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1533035353720-f1c6a75cd8ab?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Zm9pbCUyMHRleHR1cmV8ZW58MXx8fHwxNzkzNzc1MDk5fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "a red background with a rough texture of paper",
+      "credit": "Valentin Salja",
+      "creditUrl": "https://unsplash.com/@valentinsalja?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-red-background-with-a-rough-texture-of-paper-CLvkkjb-i3g?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a red background with a rough texture of paper",
+      "thumb": "https://images.unsplash.com/photo-1537204319452-fdbd29e2ccc7?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8YnJvbnplJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1537204319452-fdbd29e2ccc7?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8YnJvbnplJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     }
   ],
   "objects": [
     {
-      "name": "space capsule",
-      "material": "brushed aluminium with scorched heat shield",
-      "image": "media/2026-11-04/object-1.png",
-      "thumb": "media/2026-11-04/object-1-thumb.png",
+      "name": "Roman helmet",
+      "material": "corroded bronze",
+      "image": "media/2026-11-05/object-1.png",
+      "thumb": "media/2026-11-05/object-1-thumb.png",
       "model": {
-        "title": "SAT03 Space capsule",
+        "title": "An ancient Roman helmet (Древнеримский шлем)",
         "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-d0ab68ee6e5e411496b1f88f6357c716",
+        "url": "https://sketchfab.com/3d-models/none-00be37c8062c430daad5686d4f17916f",
         "licence": "CC Attribution",
-        "creator": "Hodisfut",
-        "creatorUrl": "https://sketchfab.com/Hodisfut"
-      },
-      "texture": {
-        "title": "Painted Metal Shutter",
-        "url": "https://polyhaven.com/a/painted_metal_shutter"
-      }
-    },
-    {
-      "name": "crystal",
-      "material": "translucent polished quartz",
-      "image": "media/2026-11-04/object-2.png",
-      "thumb": "media/2026-11-04/object-2-thumb.png",
-      "model": {
-        "title": "Crystal",
-        "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-d85fe6b4d16a4703879f6924c0cfd227",
-        "licence": "CC Attribution",
-        "creator": "rudolfs",
-        "creatorUrl": "https://sketchfab.com/rudolfs"
+        "creator": "stratovarius1980",
+        "creatorUrl": "https://sketchfab.com/stratovarius1980"
       },
       "texture": null
     },
     {
-      "name": "satellite",
-      "material": "gold foil and polished steel",
-      "image": "media/2026-11-04/object-3.png",
-      "thumb": "media/2026-11-04/object-3-thumb.png",
+      "name": "gold coin",
+      "material": "worn polished gold",
+      "image": "media/2026-11-05/object-2.png",
+      "thumb": "media/2026-11-05/object-2-thumb.png",
       "model": {
-        "title": "Satellite",
+        "title": "Low-Poly Gold Coin",
         "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-f8bd72434281441db77e85ce830f89c1",
+        "url": "https://sketchfab.com/3d-models/none-7a40d686492545d1a6f6bd0c487f1cb9",
         "licence": "CC Attribution",
-        "creator": "Phobos",
-        "creatorUrl": "https://sketchfab.com/1majaxed"
+        "creator": "BillieBones",
+        "creatorUrl": "https://sketchfab.com/BillieBones"
+      },
+      "texture": null
+    },
+    {
+      "name": "crown",
+      "material": "aged brass",
+      "image": "media/2026-11-05/object-3.png",
+      "thumb": "media/2026-11-05/object-3-thumb.png",
+      "model": {
+        "title": "Golden crown",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-5689a9525a2c425d93f7d483b93d8cfa",
+        "licence": "CC Attribution",
+        "creator": "Pieter Ferreira",
+        "creatorUrl": "https://sketchfab.com/Badboy17Aiden"
       },
       "texture": null
     }

@@ -1,0 +1,287 @@
+{
+  "date": "2026-11-05",
+  "issue": 34,
+  "generatedAt": "2026-11-05T06:49:00.574Z",
+  "colour": {
+    "name": "Magenta",
+    "yesterday": "Rose",
+    "tomorrow": "Violet"
+  },
+  "story": {
+    "title": "Historians say King Verica persuaded Rome to invade Britain. But could Verica actually have been a queen?",
+    "summary": "An archaeologist has put forward a controversial theory that Verica, the British ruler traditionally said to have urged Rome to invade, may have been a woman rather than a king. If true, it would change how we tell the story of the Claudian landing in Kent in AD43.",
+    "source": "The Guardian",
+    "url": "https://www.theguardian.com/uk-news/2026/nov/05/verica-rome-invade-britain-queen-or-king",
+    "published": "2026-11-05T05:00:54.000Z",
+    "theme": "ancient history and archaeology"
+  },
+  "headlines": [
+    "The King Who Wasn't",
+    "She Summoned Rome to Britain",
+    "Who Really Called the Legions?"
+  ],
+  "sublines": [
+    "An archaeologist argues Verica, who urged Claudius to invade Britain in AD43, may have been a woman.",
+    "A controversial theory could change how we tell the story of the Roman invasion of Britain.",
+    "Long cast as a king who begged Rome for help, Verica's sex is now disputed by one archaeologist."
+  ],
+  "palette": {
+    "name": "Vivid",
+    "colours": [
+      "#F43BEC",
+      "#FCD7F8",
+      "#796E77",
+      "#31102F"
+    ]
+  },
+  "always": [
+    "#000000",
+    "#FFFFFF"
+  ],
+  "type": {
+    "id": "caslon",
+    "display": "Libre Caslon Display",
+    "text": "Libre Franklin",
+    "reason": "Libre Caslon Display has the carved, classical authority of Roman inscriptions and coinage, while its elegant contrast leaves room for the story's question mark over identity.",
+    "css": "https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Franklin&display=swap",
+    "displayUrl": "https://fonts.google.com/specimen/Libre+Caslon+Display",
+    "textUrl": "https://fonts.google.com/specimen/Libre+Franklin"
+  },
+  "grid": {
+    "format": "A-size",
+    "size": [
+      1080,
+      1528
+    ],
+    "columns": 8,
+    "rows": 8,
+    "margin": 16,
+    "gutter": 0,
+    "column": 131,
+    "row": 187,
+    "unit": "px"
+  },
+  "images": [
+    {
+      "id": "unsplash:nVaDvX0kmzY",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "green grass field photograph",
+      "credit": "Jonathan Ridley",
+      "creditUrl": "https://unsplash.com/@jridley1?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/green-grass-field-photograph-nVaDvX0kmzY?utm_source=daily_poster&utm_medium=referral",
+      "alt": "green grass field photograph",
+      "thumb": "https://images.unsplash.com/photo-1578338591395-a755a9d3170d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8bWlzdHklMjBjaGFsayUyMGhpbGxzfGVufDF8fHx8MTc5Mzg2MTM0MXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1578338591395-a755a9d3170d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8bWlzdHklMjBjaGFsayUyMGhpbGxzfGVufDF8fHx8MTc5Mzg2MTM0MXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:468178",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Silver Neck Ring, 475–400 BCE",
+      "credit": "Celtic",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/468178",
+      "page": "https://www.metmuseum.org/art/collection/search/468178",
+      "alt": "Silver Neck Ring",
+      "thumb": "https://images.metmuseum.org/CRDImages/md/web-large/DP100655.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/md/original/DP100655.jpg",
+      "local": "media/2026-11-05/image-02-1080.jpg"
+    },
+    {
+      "id": "unsplash:kDrTt4sCC7I",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "shore during golden hour",
+      "credit": "Zakaria Zayane",
+      "creditUrl": "https://unsplash.com/@kazizayane?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/shore-during-golden-hour-kDrTt4sCC7I?utm_source=daily_poster&utm_medium=referral",
+      "alt": "shore during golden hour",
+      "thumb": "https://images.unsplash.com/photo-1553346702-7fb90c0b8b9e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8bWFnZW50YSUyMGR1c2slMjBjb2FzdHxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1553346702-7fb90c0b8b9e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8bWFnZW50YSUyMGR1c2slMjBjb2FzdHxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:254990",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Terracotta coin molds, ca. 308–320 CE",
+      "credit": "Roman",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/254990",
+      "page": "https://www.metmuseum.org/art/collection/search/254990",
+      "alt": "Terracotta coin molds",
+      "thumb": "https://images.metmuseum.org/CRDImages/gr/web-large/sf581791edited.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/gr/original/sf581791edited.jpg",
+      "local": "media/2026-11-05/image-04-1080.jpg"
+    },
+    {
+      "id": "unsplash:Dur6fTWkeVU",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a group of pillars in a stone building",
+      "credit": "Konstantin Dyadyun",
+      "creditUrl": "https://unsplash.com/@kostyadyadyun?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-group-of-pillars-in-a-stone-building-Dur6fTWkeVU?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a group of pillars in a stone building",
+      "thumb": "https://images.unsplash.com/photo-1660816839326-2f32daf0bd5a?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8YW5jaWVudCUyMHN0b25lJTIwcnVpbnN8ZW58MXx8fHwxNzkzODYxMzQwfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1660816839326-2f32daf0bd5a?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8YW5jaWVudCUyMHN0b25lJTIwcnVpbnN8ZW58MXx8fHwxNzkzODYxMzQwfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:35CBoCJTC6w",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "body of water under cloudy sky during daytime",
+      "credit": "Cole Parrant",
+      "creditUrl": "https://unsplash.com/@casually?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/body-of-water-under-cloudy-sky-during-daytime-35CBoCJTC6w?utm_source=daily_poster&utm_medium=referral",
+      "alt": "body of water under cloudy sky during daytime",
+      "thumb": "https://images.unsplash.com/photo-1606870284624-60c184c3f085?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8bWFnZW50YSUyMGR1c2slMjBjb2FzdHxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1606870284624-60c184c3f085?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8bWFnZW50YSUyMGR1c2slMjBjb2FzdHxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:747552",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Studies of a Bearded Head and a Greek or Roman Coin, December 23, 1824",
+      "credit": "Eugène Delacroix",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/747552",
+      "page": "https://www.metmuseum.org/art/collection/search/747552",
+      "alt": "Studies of a Bearded Head and a Greek or Roman Coin",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP873587.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP873587.jpg",
+      "local": "media/2026-11-05/image-07-1080.jpg"
+    },
+    {
+      "id": "met:465764",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Gold Disk Brooch, 6th–7th century",
+      "credit": "Frankish",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/465764",
+      "page": "https://www.metmuseum.org/art/collection/search/465764",
+      "alt": "Gold Disk Brooch",
+      "thumb": "https://images.metmuseum.org/CRDImages/md/web-large/DP-41584-001.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/md/original/DP-41584-001.jpg",
+      "local": "media/2026-11-05/image-08-1080.jpg"
+    },
+    {
+      "id": "unsplash:-Ig_nXRiSlQ",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "grayscale photo of concrete pillar",
+      "credit": "Vladimir De Vico",
+      "creditUrl": "https://unsplash.com/@vladimirdevico?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/grayscale-photo-of-concrete-pillar--Ig_nXRiSlQ?utm_source=daily_poster&utm_medium=referral",
+      "alt": "grayscale photo of concrete pillar",
+      "thumb": "https://images.unsplash.com/photo-1594480149213-1fbd38e069a8?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8YW5jaWVudCUyMHN0b25lJTIwcnVpbnN8ZW58MXx8fHwxNzkzODYxMzQwfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1594480149213-1fbd38e069a8?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8YW5jaWVudCUyMHN0b25lJTIwcnVpbnN8ZW58MXx8fHwxNzkzODYxMzQwfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:cZgV5bTRWx0",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "Dramatic sunset over calm water and distant hills",
+      "credit": "Kiya Golara",
+      "creditUrl": "https://unsplash.com/@rorozoro?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/dramatic-sunset-over-calm-water-and-distant-hills-cZgV5bTRWx0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "Dramatic sunset over calm water and distant hills",
+      "thumb": "https://images.unsplash.com/photo-1761285908346-cbe783a0a675?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8bWFnZW50YSUyMGR1c2slMjBjb2FzdHxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1761285908346-cbe783a0a675?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8bWFnZW50YSUyMGR1c2slMjBjb2FzdHxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    }
+  ],
+  "textures": [
+    {
+      "id": "unsplash:XFWiZTa2Ub0",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "crumpled beige parchment paper texture",
+      "credit": "SJ Objio",
+      "creditUrl": "https://unsplash.com/@sjobjio?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/crumpled-beige-parchment-paper-texture-XFWiZTa2Ub0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "crumpled beige parchment paper texture",
+      "thumb": "https://images.unsplash.com/photo-1603484477859-abe6a73f9366?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFyY2htZW50JTIwdGV4dHVyZXxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1603484477859-abe6a73f9366?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFyY2htZW50JTIwdGV4dHVyZXxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:vS3idIiYxX0",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "white textured paper or plaster surface",
+      "credit": "Olga Thelavart",
+      "creditUrl": "https://unsplash.com/@olga_o?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-vS3idIiYxX0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "white textured paper or plaster surface",
+      "thumb": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cGFyY2htZW50JTIwdGV4dHVyZXxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cGFyY2htZW50JTIwdGV4dHVyZXxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:u4ijcCaprRc",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a close up of a rock surface with small cracks",
+      "credit": "Colin Watts",
+      "creditUrl": "https://unsplash.com/@colinwatts?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-close-up-of-a-rock-surface-with-small-cracks-u4ijcCaprRc?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a close up of a rock surface with small cracks",
+      "thumb": "https://images.unsplash.com/photo-1542732056-648731297c97?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8d2VhdGhlcmVkJTIwc3RvbmUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5Mzg2MTM0MXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1542732056-648731297c97?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8d2VhdGhlcmVkJTIwc3RvbmUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5Mzg2MTM0MXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:CLvkkjb-i3g",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a red background with a rough texture of paper",
+      "credit": "Valentin Salja",
+      "creditUrl": "https://unsplash.com/@valentinsalja?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-red-background-with-a-rough-texture-of-paper-CLvkkjb-i3g?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a red background with a rough texture of paper",
+      "thumb": "https://images.unsplash.com/photo-1537204319452-fdbd29e2ccc7?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8YnJvbnplJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1537204319452-fdbd29e2ccc7?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8YnJvbnplJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    }
+  ],
+  "objects": [
+    {
+      "name": "Roman helmet",
+      "material": "corroded bronze",
+      "image": "media/2026-11-05/object-1.png",
+      "thumb": "media/2026-11-05/object-1-thumb.png",
+      "model": {
+        "title": "An ancient Roman helmet (Древнеримский шлем)",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-00be37c8062c430daad5686d4f17916f",
+        "licence": "CC Attribution",
+        "creator": "stratovarius1980",
+        "creatorUrl": "https://sketchfab.com/stratovarius1980"
+      },
+      "texture": null
+    },
+    {
+      "name": "gold coin",
+      "material": "worn polished gold",
+      "image": "media/2026-11-05/object-2.png",
+      "thumb": "media/2026-11-05/object-2-thumb.png",
+      "model": {
+        "title": "Low-Poly Gold Coin",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-7a40d686492545d1a6f6bd0c487f1cb9",
+        "licence": "CC Attribution",
+        "creator": "BillieBones",
+        "creatorUrl": "https://sketchfab.com/BillieBones"
+      },
+      "texture": null
+    },
+    {
+      "name": "crown",
+      "material": "aged brass",
+      "image": "media/2026-11-05/object-3.png",
+      "thumb": "media/2026-11-05/object-3-thumb.png",
+      "model": {
+        "title": "Golden crown",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-5689a9525a2c425d93f7d483b93d8cfa",
+        "licence": "CC Attribution",
+        "creator": "Pieter Ferreira",
+        "creatorUrl": "https://sketchfab.com/Badboy17Aiden"
+      },
+      "texture": null
+    }
+  ]
+}

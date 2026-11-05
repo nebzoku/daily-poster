@@ -68,7 +68,24 @@ export function briefStrip(brief, pictures, L = CAROUSEL) {
   ${count(i)}
   <div class="m url">dailyposter.design</div>
 </section>`;
-  const frames = L.pairs ? 6 : 3;
+  // Stories end with the rest of the brief: the palette, then the typefaces.
+  const pal = brief.palette.colours, ty = brief.type || {};
+  const extra = !L.pairs ? "" : `
+<section class="subf" style="left:${6 * W}px">
+  <div class="m k"><i class="dot"></i>Today's palette</div>
+  <div class="m meta">No. ${pad(brief.issue)} · ${esc(d)}</div>
+  <p class="big">${esc(brief.colour.name)}</p>
+  <div class="sw">${pal.map((c) => `<figure><i style="background:${esc(c)}"></i><figcaption class="m">${esc(c)}</figcaption></figure>`).join("")}</div>
+  <div class="m url">dailyposter.design</div>
+</section>
+<section class="subf" style="left:${7 * W}px">
+  <div class="m k"><i class="dot"></i>Today's typefaces</div>
+  <div class="m meta">No. ${pad(brief.issue)} · ${esc(d)}</div>
+  <div class="m tl">Typeface 01</div><p class="t1" style="font-family:'${esc(ty.display)}'">${esc(ty.display)}</p>
+  <div class="m tl">Typeface 02</div><p class="t2" style="font-family:'${esc(ty.text)}'">${esc(ty.text)}</p>
+  <div class="m url">dailyposter.design</div>
+</section>`;
+  const frames = L.pairs ? 8 : 3;
   const cards = brief.headlines.slice(0, 3).map((h, i) => `
 <section style="left:${(L.pairs ? 2 * i : i) * W}px">
   <div class="m k"><i class="dot"></i>Today's headlines</div>
@@ -76,8 +93,8 @@ export function briefStrip(brief, pictures, L = CAROUSEL) {
   <h1 class="fit">${esc(h)}</h1>
   <div class="m count">${[1, 2, 3].map((n) => `<span${n === i + 1 ? ' class="on"' : ""}>0${n}</span>`).join("")}</div>
   ${L.url ? '<div class="m url">dailyposter.design</div>' : ""}
-</section>${subFrame(i)}`).join("");
-  return `<!doctype html><html><head><link rel="stylesheet" href="${esc(FONTS)}">
+</section>${subFrame(i)}`).join("") + extra;
+  return `<!doctype html><html><head><link rel="stylesheet" href="${esc(FONTS)}">${L.pairs && ty.css ? `<link rel="stylesheet" href="${esc(ty.css.replace("display=swap", "display=block"))}">` : ""}
 <style>
 html,body{margin:0;width:${W * frames}px;height:${L.H}px;background:#fff;color:#111;overflow:hidden}
 img{position:absolute;display:block;object-fit:cover}
@@ -93,6 +110,11 @@ h1{font-family:'EB Garamond',serif;font-weight:400;font-size:132px;line-height:1
 .url{margin-top:22px;color:#8a8a86;text-transform:none}
 .subline{font-family:'Geist',sans-serif;font-size:50px;line-height:1.25;letter-spacing:-.015em;margin:40px 0 0;max-width:840px;text-wrap:balance}
 .subf .count{margin-top:48px}
+.big{font-family:'EB Garamond',serif;font-size:132px;line-height:1;margin:34px 0 0}
+.sw{display:flex;gap:16px;margin-top:56px}.sw figure{margin:0}.sw i{display:block;width:200px;height:200px}
+.sw figcaption{margin-top:14px;color:#8a8a86;text-transform:uppercase;font-size:20px}
+.tl{margin-top:56px;color:#8a8a86}.t1{font-size:120px;line-height:1.05;margin:14px 0 0}.t2{font-size:64px;line-height:1.1;margin:14px 0 0}
+.subf .url{margin-top:56px}
 </style></head><body>
 ${imgs}
 ${cards}
@@ -128,6 +150,8 @@ Promise.all([document.fonts.ready, ...[...document.images].map(i => i.complete ?
     const countInk = lead(mlh, mono) + mono.a - mono.cap;
     c.style.marginTop = Math.round(gap - (h.bottom - base) - countInk + OPTICAL) + 'px';
   });
+  // Typeface names: as big as fits the frame.
+  document.querySelectorAll('.t1, .t2').forEach(t => { t.style.whiteSpace = 'nowrap'; let px = parseFloat(getComputedStyle(t).fontSize); while (t.scrollWidth > 940 && px > 30) { px -= 2; t.style.fontSize = px + 'px'; } });
   document.body.dataset.ready = 1; });
 </script></body></html>`;
 }

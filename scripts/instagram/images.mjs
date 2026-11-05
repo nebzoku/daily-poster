@@ -115,8 +115,8 @@ h1{font-family:'EB Garamond',serif;font-weight:400;font-size:132px;line-height:1
 .subline{font-family:'Geist',sans-serif;font-size:50px;line-height:1.25;letter-spacing:-.015em;margin:40px 0 0;max-width:840px;text-wrap:balance}
 .subf .count{margin-top:48px}
 .big{font-family:'EB Garamond',serif;font-size:132px;line-height:1;margin:34px 0 0}
-.sw{display:flex;gap:16px;margin-top:56px}.sw figure{margin:0}.sw i{display:block;width:200px;height:200px}
-.sw figcaption{margin-top:14px;color:#8a8a86;text-transform:uppercase;font-size:20px}
+.sw{display:flex;gap:0;margin-top:56px}.sw figure{margin:0;text-align:left}.sw i{display:block;width:225px;height:300px}
+.sw figcaption{margin-top:14px;padding-left:2px;color:#8a8a86;text-transform:uppercase;font-size:20px}
 .tl{margin-top:56px;color:#8a8a86}.t1{font-size:120px;line-height:1.05;margin:14px 0 0}.t2{font-size:64px;line-height:1.1;margin:14px 0 0}
 .subf .url{margin-top:56px}
 .ctabg{position:absolute;top:0;width:${W}px;height:100%}

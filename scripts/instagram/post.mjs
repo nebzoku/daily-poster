@@ -143,7 +143,7 @@ async function main() {
       if (item.key) {
         const files = item.images.map((f) => join(SITE, f));
         if (!files.every((f) => existsSync(f))) { console.log(`${key} isn't ready; trying again next hour.`); break; }
-        job = { images: files.map(url), caption: item.caption, alt: item.alt };
+        job = { images: files.map(url), caption: item.caption, alt: item.alt, story: !!item.story };
       } else if (key.startsWith("brief:")) {
         const date = key.slice(6), brief = await readJSON(join(DATA, `${date}.json`), null);
         if (!brief || !briefImages(date).every((f) => existsSync(f))) { console.log(`${key} isn't ready; trying again next hour.`); break; }

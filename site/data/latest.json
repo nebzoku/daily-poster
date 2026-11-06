@@ -1,37 +1,37 @@
 {
-  "date": "2026-11-05",
-  "issue": 34,
-  "generatedAt": "2026-11-05T06:49:00.574Z",
+  "date": "2026-11-06",
+  "issue": 35,
+  "generatedAt": "2026-11-06T09:19:25.579Z",
   "colour": {
-    "name": "Magenta",
-    "yesterday": "Rose",
-    "tomorrow": "Violet"
+    "name": "Violet",
+    "yesterday": "Magenta",
+    "tomorrow": "Indigo"
   },
   "story": {
-    "title": "Historians say King Verica persuaded Rome to invade Britain. But could Verica actually have been a queen?",
-    "summary": "An archaeologist has put forward a controversial theory that Verica, the British ruler traditionally said to have urged Rome to invade, may have been a woman rather than a king. If true, it would change how we tell the story of the Claudian landing in Kent in AD43.",
-    "source": "The Guardian",
-    "url": "https://www.theguardian.com/uk-news/2026/nov/05/verica-rome-invade-britain-queen-or-king",
-    "published": "2026-11-05T05:00:54.000Z",
-    "theme": "ancient history and archaeology"
+    "title": "'Major milestone' as beavers released into Loch Ness area",
+    "summary": "A family of six beavers has been released into the Loch Ness area of the Scottish Highlands. They are the first recorded there in about 500 years, and conservationists are calling it a major milestone.",
+    "source": "BBC News",
+    "url": "https://www.bbc.co.uk/news/articles/ckjwe5xw0jy3o?at_medium=RSS&amp;at_campaign=rss",
+    "published": "2026-11-06T06:26:33.000Z",
+    "theme": "rewilding and Highland wildlife"
   },
   "headlines": [
-    "The King Who Wasn't",
-    "She Summoned Rome to Britain",
-    "Who Really Called the Legions?"
+    "Five Centuries Later, the Builders Return",
+    "Something New Stirs in Ness",
+    "Teeth, Timber and Deep Water"
   ],
   "sublines": [
-    "An archaeologist argues Verica, who urged Claudius to invade Britain in AD43, may have been a woman.",
-    "A controversial theory could change how we tell the story of the Roman invasion of Britain.",
-    "Long cast as a king who begged Rome for help, Verica's sex is now disputed by one archaeologist."
+    "A family of six beavers has been released near Loch Ness, the first recorded there in around 500 years.",
+    "Once hunted from the Highlands, beavers now return to shape streams, banks and wetlands around the famous loch.",
+    "The release is being called a major milestone for rewilding in Scotland, half a millennium after the species vanished."
   ],
   "palette": {
     "name": "Vivid",
     "colours": [
-      "#F43BEC",
-      "#FCD7F8",
-      "#796E77",
-      "#31102F"
+      "#8D2EEE",
+      "#E9DFFE",
+      "#736F7C",
+      "#25163B"
     ]
   },
   "always": [
@@ -39,13 +39,13 @@
     "#FFFFFF"
   ],
   "type": {
-    "id": "caslon",
-    "display": "Libre Caslon Display",
-    "text": "Libre Franklin",
-    "reason": "Libre Caslon Display has the carved, classical authority of Roman inscriptions and coinage, while its elegant contrast leaves room for the story's question mark over identity.",
-    "css": "https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Franklin&display=swap",
-    "displayUrl": "https://fonts.google.com/specimen/Libre+Caslon+Display",
-    "textUrl": "https://fonts.google.com/specimen/Libre+Franklin"
+    "id": "fraunces",
+    "display": "Fraunces",
+    "text": "Manrope",
+    "reason": "Fraunces has a soft, wonky, organic warmth that suits a quiet return of wildlife, while Manrope keeps the facts clean.",
+    "css": "https://fonts.googleapis.com/css2?family=Fraunces&family=Manrope&display=swap",
+    "displayUrl": "https://fonts.google.com/specimen/Fraunces",
+    "textUrl": "https://fonts.google.com/specimen/Manrope"
   },
   "grid": {
     "format": "A-size",
@@ -63,225 +63,233 @@
   },
   "images": [
     {
-      "id": "unsplash:nVaDvX0kmzY",
+      "id": "unsplash:k3ti0_2YL-I",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "green grass field photograph",
-      "credit": "Jonathan Ridley",
-      "creditUrl": "https://unsplash.com/@jridley1?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/green-grass-field-photograph-nVaDvX0kmzY?utm_source=daily_poster&utm_medium=referral",
-      "alt": "green grass field photograph",
-      "thumb": "https://images.unsplash.com/photo-1578338591395-a755a9d3170d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8bWlzdHklMjBjaGFsayUyMGhpbGxzfGVufDF8fHx8MTc5Mzg2MTM0MXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1578338591395-a755a9d3170d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8bWlzdHklMjBjaGFsayUyMGhpbGxzfGVufDF8fHx8MTc5Mzg2MTM0MXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "a large body of water sitting under a cloudy sky",
+      "credit": "Peter Robbins",
+      "creditUrl": "https://unsplash.com/@prphotography262?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-large-body-of-water-sitting-under-a-cloudy-sky-k3ti0_2YL-I?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a large body of water sitting under a cloudy sky",
+      "thumb": "https://images.unsplash.com/photo-1693967308919-dfe3fe89aa2a?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8bWlzdHklMjBsb2NofGVufDF8fHx8MTc5Mzk1Njc2Nnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1693967308919-dfe3fe89aa2a?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8bWlzdHklMjBsb2NofGVufDF8fHx8MTc5Mzk1Njc2Nnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "met:468178",
+      "id": "met:417459",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Silver Neck Ring, 475–400 BCE",
-      "credit": "Celtic",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/468178",
-      "page": "https://www.metmuseum.org/art/collection/search/468178",
-      "alt": "Silver Neck Ring",
-      "thumb": "https://images.metmuseum.org/CRDImages/md/web-large/DP100655.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/md/original/DP100655.jpg",
-      "local": "media/2026-11-05/image-02-2160.jpg"
+      "title": "Landscape with hills and a lake, ca. 1772",
+      "credit": "William Gilpin",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/417459",
+      "page": "https://www.metmuseum.org/art/collection/search/417459",
+      "alt": "Landscape with hills and a lake",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP833811.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP833811.jpg",
+      "local": "media/2026-11-06/image-02-2160.jpg"
     },
     {
-      "id": "unsplash:kDrTt4sCC7I",
+      "id": "unsplash:8Rwl3ya0Xg4",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "shore during golden hour",
-      "credit": "Zakaria Zayane",
-      "creditUrl": "https://unsplash.com/@kazizayane?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/shore-during-golden-hour-kDrTt4sCC7I?utm_source=daily_poster&utm_medium=referral",
-      "alt": "shore during golden hour",
-      "thumb": "https://images.unsplash.com/photo-1553346702-7fb90c0b8b9e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8bWFnZW50YSUyMGR1c2slMjBjb2FzdHxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1553346702-7fb90c0b8b9e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8bWFnZW50YSUyMGR1c2slMjBjb2FzdHxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "A body of water surrounded by mountains and trees",
+      "credit": "Jake McGowan",
+      "creditUrl": "https://unsplash.com/@dwnsdp?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-body-of-water-surrounded-by-mountains-and-trees-8Rwl3ya0Xg4?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A body of water surrounded by mountains and trees",
+      "thumb": "https://images.unsplash.com/photo-1720961257233-34a095a0fbf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8bWlzdHklMjBsb2NofGVufDF8fHx8MTc5Mzk1Njc2Nnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1720961257233-34a095a0fbf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8bWlzdHklMjBsb2NofGVufDF8fHx8MTc5Mzk1Njc2Nnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "met:254990",
+      "id": "met:371943",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Terracotta coin molds, ca. 308–320 CE",
-      "credit": "Roman",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/254990",
-      "page": "https://www.metmuseum.org/art/collection/search/254990",
-      "alt": "Terracotta coin molds",
-      "thumb": "https://images.metmuseum.org/CRDImages/gr/web-large/sf581791edited.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/gr/original/sf581791edited.jpg",
-      "local": "media/2026-11-05/image-04-2160.jpg"
+      "title": "Woodland Scene with Mountain Stream, 1790s",
+      "credit": "Johann Georg von Dillis",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/371943",
+      "page": "https://www.metmuseum.org/art/collection/search/371943",
+      "alt": "Woodland Scene with Mountain Stream",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP803725.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP803725.jpg",
+      "local": "media/2026-11-06/image-04-2160.jpg"
     },
     {
-      "id": "unsplash:Dur6fTWkeVU",
+      "id": "unsplash:ir24Z8Kxr3s",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "a group of pillars in a stone building",
-      "credit": "Konstantin Dyadyun",
-      "creditUrl": "https://unsplash.com/@kostyadyadyun?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/a-group-of-pillars-in-a-stone-building-Dur6fTWkeVU?utm_source=daily_poster&utm_medium=referral",
-      "alt": "a group of pillars in a stone building",
-      "thumb": "https://images.unsplash.com/photo-1660816839326-2f32daf0bd5a?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8YW5jaWVudCUyMHN0b25lJTIwcnVpbnN8ZW58MXx8fHwxNzkzODYxMzQwfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1660816839326-2f32daf0bd5a?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8YW5jaWVudCUyMHN0b25lJTIwcnVpbnN8ZW58MXx8fHwxNzkzODYxMzQwfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "purple sky over lake with wooden dusk at sunset",
+      "credit": "Josh Duncan",
+      "creditUrl": "https://unsplash.com/@joshbduncan?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/purple-sky-over-lake-with-wooden-dusk-at-sunset-ir24Z8Kxr3s?utm_source=daily_poster&utm_medium=referral",
+      "alt": "purple sky over lake with wooden dusk at sunset",
+      "thumb": "https://images.unsplash.com/photo-1564092112576-539896333c07?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8dmlvbGV0JTIwZHVzayUyMGxha2V8ZW58MXx8fHwxNzkzOTU2NzY2fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1564092112576-539896333c07?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8dmlvbGV0JTIwZHVzayUyMGxha2V8ZW58MXx8fHwxNzkzOTU2NzY2fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:35CBoCJTC6w",
+      "id": "unsplash:1Q578d01zas",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "body of water under cloudy sky during daytime",
-      "credit": "Cole Parrant",
-      "creditUrl": "https://unsplash.com/@casually?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/body-of-water-under-cloudy-sky-during-daytime-35CBoCJTC6w?utm_source=daily_poster&utm_medium=referral",
-      "alt": "body of water under cloudy sky during daytime",
-      "thumb": "https://images.unsplash.com/photo-1606870284624-60c184c3f085?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8bWFnZW50YSUyMGR1c2slMjBjb2FzdHxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1606870284624-60c184c3f085?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8bWFnZW50YSUyMGR1c2slMjBjb2FzdHxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "green leafed trees and body of water",
+      "credit": "Thomas Grams",
+      "creditUrl": "https://unsplash.com/@swutsh?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/green-leafed-trees-and-body-of-water-1Q578d01zas?utm_source=daily_poster&utm_medium=referral",
+      "alt": "green leafed trees and body of water",
+      "thumb": "https://images.unsplash.com/photo-1577269330970-d4f24a498e2f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8bWlzdHklMjBsb2NofGVufDF8fHx8MTc5Mzk1Njc2Nnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1577269330970-d4f24a498e2f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8bWlzdHklMjBsb2NofGVufDF8fHx8MTc5Mzk1Njc2Nnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "met:747552",
+      "id": "met:371903",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Studies of a Bearded Head and a Greek or Roman Coin, December 23, 1824",
-      "credit": "Eugène Delacroix",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/747552",
-      "page": "https://www.metmuseum.org/art/collection/search/747552",
-      "alt": "Studies of a Bearded Head and a Greek or Roman Coin",
-      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP873587.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP873587.jpg",
-      "local": "media/2026-11-05/image-07-2160.jpg"
+      "title": "Rocky Landscape with a Lake, 1749–1822",
+      "credit": "Franz Kobell",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/371903",
+      "page": "https://www.metmuseum.org/art/collection/search/371903",
+      "alt": "Rocky Landscape with a Lake",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP821572.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP821572.jpg",
+      "local": "media/2026-11-06/image-07-2160.jpg"
     },
     {
-      "id": "met:465764",
-      "source": "The Met",
-      "licence": "CC0",
-      "title": "Gold Disk Brooch, 6th–7th century",
-      "credit": "Frankish",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/465764",
-      "page": "https://www.metmuseum.org/art/collection/search/465764",
-      "alt": "Gold Disk Brooch",
-      "thumb": "https://images.metmuseum.org/CRDImages/md/web-large/DP-41584-001.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/md/original/DP-41584-001.jpg",
-      "local": "media/2026-11-05/image-08-2160.jpg"
-    },
-    {
-      "id": "unsplash:-Ig_nXRiSlQ",
+      "id": "unsplash:Nvdo48sQNrk",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "grayscale photo of concrete pillar",
-      "credit": "Vladimir De Vico",
-      "creditUrl": "https://unsplash.com/@vladimirdevico?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/grayscale-photo-of-concrete-pillar--Ig_nXRiSlQ?utm_source=daily_poster&utm_medium=referral",
-      "alt": "grayscale photo of concrete pillar",
-      "thumb": "https://images.unsplash.com/photo-1594480149213-1fbd38e069a8?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8YW5jaWVudCUyMHN0b25lJTIwcnVpbnN8ZW58MXx8fHwxNzkzODYxMzQwfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1594480149213-1fbd38e069a8?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8YW5jaWVudCUyMHN0b25lJTIwcnVpbnN8ZW58MXx8fHwxNzkzODYxMzQwfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "trees beside body of water",
+      "credit": "David Billings",
+      "creditUrl": "https://unsplash.com/@dav_billings?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/trees-beside-body-of-water-Nvdo48sQNrk?utm_source=daily_poster&utm_medium=referral",
+      "alt": "trees beside body of water",
+      "thumb": "https://images.unsplash.com/photo-1559626627-cb31b201e27f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8dmlvbGV0JTIwZHVzayUyMGxha2V8ZW58MXx8fHwxNzkzOTU2NzY2fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1559626627-cb31b201e27f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8dmlvbGV0JTIwZHVzayUyMGxha2V8ZW58MXx8fHwxNzkzOTU2NzY2fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:cZgV5bTRWx0",
+      "id": "unsplash:iNF9KBUYaxw",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "Dramatic sunset over calm water and distant hills",
-      "credit": "Kiya Golara",
-      "creditUrl": "https://unsplash.com/@rorozoro?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/dramatic-sunset-over-calm-water-and-distant-hills-cZgV5bTRWx0?utm_source=daily_poster&utm_medium=referral",
-      "alt": "Dramatic sunset over calm water and distant hills",
-      "thumb": "https://images.unsplash.com/photo-1761285908346-cbe783a0a675?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8bWFnZW50YSUyMGR1c2slMjBjb2FzdHxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1761285908346-cbe783a0a675?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8bWFnZW50YSUyMGR1c2slMjBjb2FzdHxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "Dark mountains silhouette a lake with a beautiful sunset glow",
+      "credit": "Caleb Sebastian",
+      "creditUrl": "https://unsplash.com/@csebastian123?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/dark-mountains-silhouette-a-lake-with-a-beautiful-sunset-glow-iNF9KBUYaxw?utm_source=daily_poster&utm_medium=referral",
+      "alt": "Dark mountains silhouette a lake with a beautiful sunset glow",
+      "thumb": "https://images.unsplash.com/photo-1779376854197-0398efb7d1dc?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8dmlvbGV0JTIwZHVzayUyMGxha2V8ZW58MXx8fHwxNzkzOTU2NzY2fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1779376854197-0398efb7d1dc?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8dmlvbGV0JTIwZHVzayUyMGxha2V8ZW58MXx8fHwxNzkzOTU2NzY2fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:MaBmKLCdgLA",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "boats on body of water near mountain during daytime",
+      "credit": "Zetong Li",
+      "creditUrl": "https://unsplash.com/@zetong?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/boats-on-body-of-water-near-mountain-during-daytime-MaBmKLCdgLA?utm_source=daily_poster&utm_medium=referral",
+      "alt": "boats on body of water near mountain during daytime",
+      "thumb": "https://images.unsplash.com/photo-1555816620-a167bcc7be51?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8dmlvbGV0JTIwZHVzayUyMGxha2V8ZW58MXx8fHwxNzkzOTU2NzY2fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1555816620-a167bcc7be51?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8dmlvbGV0JTIwZHVzayUyMGxha2V8ZW58MXx8fHwxNzkzOTU2NzY2fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     }
   ],
   "textures": [
     {
-      "id": "unsplash:XFWiZTa2Ub0",
+      "id": "unsplash:zGZYQQVmXw0",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "crumpled beige parchment paper texture",
-      "credit": "SJ Objio",
-      "creditUrl": "https://unsplash.com/@sjobjio?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/crumpled-beige-parchment-paper-texture-XFWiZTa2Ub0?utm_source=daily_poster&utm_medium=referral",
-      "alt": "crumpled beige parchment paper texture",
-      "thumb": "https://images.unsplash.com/photo-1603484477859-abe6a73f9366?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFyY2htZW50JTIwdGV4dHVyZXxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1603484477859-abe6a73f9366?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFyY2htZW50JTIwdGV4dHVyZXxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "white wall paint with black shadow",
+      "credit": "Kiwihug",
+      "creditUrl": "https://unsplash.com/@kiwihug?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/white-wall-paint-with-black-shadow-zGZYQQVmXw0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "white wall paint with black shadow",
+      "thumb": "https://images.unsplash.com/photo-1615800098779-1be32e60cca3?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8aGFuZG1hZGUlMjBwYXBlciUyMHRleHR1cmV8ZW58MXx8fHwxNzkzOTU2NzY2fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1615800098779-1be32e60cca3?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8aGFuZG1hZGUlMjBwYXBlciUyMHRleHR1cmV8ZW58MXx8fHwxNzkzOTU2NzY2fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:vS3idIiYxX0",
+      "id": "unsplash:XXuVXLy5gHU",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "white textured paper or plaster surface",
-      "credit": "Olga Thelavart",
-      "creditUrl": "https://unsplash.com/@olga_o?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-vS3idIiYxX0?utm_source=daily_poster&utm_medium=referral",
-      "alt": "white textured paper or plaster surface",
-      "thumb": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cGFyY2htZW50JTIwdGV4dHVyZXxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cGFyY2htZW50JTIwdGV4dHVyZXxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "gray concrete floor",
+      "credit": "František G.",
+      "creditUrl": "https://unsplash.com/@fandyus?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/gray-concrete-floor-XXuVXLy5gHU?utm_source=daily_poster&utm_medium=referral",
+      "alt": "gray concrete floor",
+      "thumb": "https://images.unsplash.com/photo-1575722290270-626b0208df99?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8c2xhdGUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5Mzk1Njc2Nnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1575722290270-626b0208df99?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8c2xhdGUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5Mzk1Njc2Nnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:u4ijcCaprRc",
+      "id": "unsplash:ZCLDVvQ9sXI",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "a close up of a rock surface with small cracks",
-      "credit": "Colin Watts",
-      "creditUrl": "https://unsplash.com/@colinwatts?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/a-close-up-of-a-rock-surface-with-small-cracks-u4ijcCaprRc?utm_source=daily_poster&utm_medium=referral",
-      "alt": "a close up of a rock surface with small cracks",
-      "thumb": "https://images.unsplash.com/photo-1542732056-648731297c97?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8d2VhdGhlcmVkJTIwc3RvbmUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5Mzg2MTM0MXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1542732056-648731297c97?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8d2VhdGhlcmVkJTIwc3RvbmUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5Mzg2MTM0MXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "brown and green tree trunk",
+      "credit": "Rowan Heuvel",
+      "creditUrl": "https://unsplash.com/@insolitus?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/brown-and-green-tree-trunk-ZCLDVvQ9sXI?utm_source=daily_poster&utm_medium=referral",
+      "alt": "brown and green tree trunk",
+      "thumb": "https://images.unsplash.com/photo-1596452712564-f2d3722a2e93?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8d2V0JTIwYmFyayUyMHRleHR1cmV8ZW58MXx8fHwxNzkzOTU2NzY2fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1596452712564-f2d3722a2e93?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8d2V0JTIwYmFyayUyMHRleHR1cmV8ZW58MXx8fHwxNzkzOTU2NzY2fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:CLvkkjb-i3g",
+      "id": "unsplash:6a3nqQ1YwBw",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "a red background with a rough texture of paper",
-      "credit": "Valentin Salja",
-      "creditUrl": "https://unsplash.com/@valentinsalja?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/a-red-background-with-a-rough-texture-of-paper-CLvkkjb-i3g?utm_source=daily_poster&utm_medium=referral",
-      "alt": "a red background with a rough texture of paper",
-      "thumb": "https://images.unsplash.com/photo-1537204319452-fdbd29e2ccc7?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8YnJvbnplJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1537204319452-fdbd29e2ccc7?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8YnJvbnplJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "dark textured plaster wall",
+      "credit": "Annie Spratt",
+      "creditUrl": "https://unsplash.com/@anniespratt?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/dark-textured-plaster-wall-6a3nqQ1YwBw?utm_source=daily_poster&utm_medium=referral",
+      "alt": "dark textured plaster wall",
+      "thumb": "https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8c2xhdGUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5Mzk1Njc2Nnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8c2xhdGUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5Mzk1Njc2Nnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     }
   ],
   "objects": [
     {
-      "name": "Roman helmet",
-      "material": "corroded bronze",
-      "image": "media/2026-11-05/object-1.png",
-      "thumb": "media/2026-11-05/object-1-thumb.png",
+      "name": "tree stump",
+      "material": "weathered grey stone",
+      "image": "media/2026-11-06/object-1.png",
+      "thumb": "media/2026-11-06/object-1-thumb.png",
       "model": {
-        "title": "An ancient Roman helmet (Древнеримский шлем)",
+        "title": "Stylized tree stump",
         "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-00be37c8062c430daad5686d4f17916f",
+        "url": "https://sketchfab.com/3d-models/none-04d51f5c2fb643aab3b93b451d1b77c9",
         "licence": "CC Attribution",
-        "creator": "stratovarius1980",
-        "creatorUrl": "https://sketchfab.com/stratovarius1980"
+        "creator": "Aartee",
+        "creatorUrl": "https://sketchfab.com/Aartee"
       },
-      "texture": null
+      "texture": {
+        "title": "Cobblestone 04",
+        "url": "https://polyhaven.com/a/cobblestone_04"
+      }
     },
     {
-      "name": "gold coin",
-      "material": "worn polished gold",
-      "image": "media/2026-11-05/object-2.png",
-      "thumb": "media/2026-11-05/object-2-thumb.png",
+      "name": "axe",
+      "material": "rusted iron",
+      "image": "media/2026-11-06/object-2.png",
+      "thumb": "media/2026-11-06/object-2-thumb.png",
       "model": {
-        "title": "Low-Poly Gold Coin",
+        "title": "Axe",
         "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-7a40d686492545d1a6f6bd0c487f1cb9",
+        "url": "https://sketchfab.com/3d-models/none-5038f07f634345f5ac9bfa74fb821c97",
         "licence": "CC Attribution",
-        "creator": "BillieBones",
-        "creatorUrl": "https://sketchfab.com/BillieBones"
+        "creator": "Yury Misiyuk",
+        "creatorUrl": "https://sketchfab.com/Tim0"
       },
-      "texture": null
+      "texture": {
+        "title": "Rusty Metal 04",
+        "url": "https://polyhaven.com/a/rusty_metal_04"
+      }
     },
     {
-      "name": "crown",
-      "material": "aged brass",
-      "image": "media/2026-11-05/object-3.png",
-      "thumb": "media/2026-11-05/object-3-thumb.png",
+      "name": "lighthouse",
+      "material": "weathered concrete",
+      "image": "media/2026-11-06/object-3.png",
+      "thumb": "media/2026-11-06/object-3-thumb.png",
       "model": {
-        "title": "Golden crown",
+        "title": "Old Lighthouse",
         "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-5689a9525a2c425d93f7d483b93d8cfa",
+        "url": "https://sketchfab.com/3d-models/none-19e1ff049db74dc8b6173976417c1048",
         "licence": "CC Attribution",
-        "creator": "Pieter Ferreira",
-        "creatorUrl": "https://sketchfab.com/Badboy17Aiden"
+        "creator": "Nirved Kamble",
+        "creatorUrl": "https://sketchfab.com/nirved"
       },
-      "texture": null
+      "texture": {
+        "title": "Concrete Wall 007",
+        "url": "https://polyhaven.com/a/concrete_wall_007"
+      }
     }
   ]
 }

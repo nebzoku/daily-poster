@@ -81,6 +81,11 @@ const SENSITIVE = new RegExp("\\b(" + [
   "elections?", "electoral", "voters?", "ballots?", "referendum", "campaign trail", "polls? show", "trump", "biden", "harris", "starmer", "farage",
   "labour party", "conservatives?", "tor(y|ies)", "republicans?", "democrats?", "partisan",
   "abortion", "immigration", "migrants?", "asylum", "deport\\w*", "arrest(s|ed)?", "sentenced", "convicted", "abuse\\w*", "suicide", "overdose",
+  // Violence, harm and anything with legal risk (allegations about real people, cases, crimes).
+  "rap(e|es|ed|ist)", "sexual", "assault\\w*", "harass\\w*", "grooming", "paedophil\\w*", "pedophil\\w*", "traffick\\w*", "kidnap\\w*",
+  "violen(ce|t)", "aggressi\\w*", "attack(s|ed|er|ers)?", "riots?", "brawl\\w*", "injur\\w*", "wounded", "fatal\\w*", "victims?", "bodies", "corpse",
+  "self-harm", "eating disorder", "allegations?", "alleged(ly)?", "accus\\w*", "lawsuits?", "sued", "su(es|ing)", "court", "judge", "jury", "prosecut\\w*",
+  "charged", "prison", "jail\\w*", "police", "investigation", "probe", "scandal", "fraud\\w*", "crimes?", "criminal\\w*",
 ].join("|") + ")\\b", "i");
 const sensitive = (...texts) => texts.some((t) => SENSITIVE.test(String(t || "")));
 
@@ -155,7 +160,7 @@ const BRIEF_TOOL = {
       },
       fontPairId: { type: "string", description: "The id of one pairing from the list you were given." },
       fontReason: { type: "string", description: "One sentence on why this pairing suits the story." },
-      sensitive: { type: "boolean", description: "True if the chosen story, or anything you wrote for it, touches war or conflict, politics, elections, crime, death, religion or another contested or upsetting subject. Be strict." },
+      sensitive: { type: "boolean", description: "True if the chosen story, or anything you wrote for it, touches war or conflict, politics, elections, crime, violence, sexual violence or abuse, injury or death, legal cases or allegations, religion, or another contested, upsetting or legally risky subject. Be strict." },
       theme: { type: "string", description: "The chosen story's broad subject and setting in two to four words, e.g. 'the sea and shipping', 'space exploration', 'elections', 'extreme weather', 'art and museums'." },
     },
     required: ["storyIndex", "storySummary", "headlines", "sublines", "imageQueries", "archiveQueries", "textureQueries", "fontPairId", "fontReason", "theme"],
@@ -173,7 +178,7 @@ function briefPrompt(stories, recent, colour, pairsOk) {
 
 Pick ONE story from the list below. Choose something with real weight or a strong image in it: a turning point, a discovery, a strange or moving moment. Avoid celebrity gossip, sport results and stories that repeat recent briefs.
 
-Stay well clear of anything politically or emotionally charged. Never pick a story about war, armed conflict or occupation (or a story set in a current conflict zone, even a hopeful one), terrorism, party politics, elections, governments and politicians, protests, violent crime, courts, deaths, disasters with casualties, immigration, religion or any contested social issue. Designers of every background should be happy to make a poster from it and share it publicly. Favour science, nature, space, history and archaeology, art, design and architecture, technology, invention, food, sport as a feat rather than a result, and quietly remarkable human stories. The headlines must never take a side, and must not mock or trivialise anyone.
+Stay well clear of anything politically, emotionally or legally sensitive. Never pick a story about war, armed conflict or occupation (or a story set in a current conflict zone, even a hopeful one), terrorism, party politics, elections, governments and politicians, protests, crime of any kind, violence or aggression, sexual violence or abuse, injury, death or dying, disasters with casualties, courts, lawsuits, police investigations, allegations or accusations against real people or companies, immigration, religion or any contested social issue. Never name or depict a real private individual in connection with wrongdoing. Designers of every background should be happy to make a poster from it and share it publicly. Favour science, nature, space, history and archaeology, art, design and architecture, technology, invention, food, sport as a feat rather than a result, and quietly remarkable human stories. The headlines must never take a side, and must not mock or trivialise anyone.
 
 Then write:
 - Three headlines of 3 to 6 words. Count the words before you answer; seven is too many. They should be evocative and feel at home set huge on a poster: compressed, rhythmic, a little poetic, with tension or a turn in them. No puns that trivialise, no clickbait, no colons. Make the three genuinely different in angle.

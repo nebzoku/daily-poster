@@ -88,6 +88,11 @@
       "slot": "2026-11-06 10:30",
       "at": "2026-11-06T10:36:40.412Z",
       "id": "18015130362003629"
+    },
+    "poster:showcase/034-she-summoned-rome-to-britain.jpg": {
+      "slot": "2026-11-06 13:00",
+      "at": "2026-11-06T13:09:50.461Z",
+      "id": "18120988456984653"
     }
   },
   "slots": {
@@ -96,7 +101,8 @@
     "2026-11-05 13:00": "poster:showcase/033-crystals-bloom-where-gravity-fails.jpg",
     "2026-11-05 19:00": "poster:showcase/033-crystals-bloom-where-gravity-fails-3.jpg",
     "2026-11-06 08:00": "brief:2026-11-06",
-    "2026-11-06 10:30": "poster:showcase/034-the-king-who-wasnt.jpg"
+    "2026-11-06 10:30": "poster:showcase/034-the-king-who-wasnt.jpg",
+    "2026-11-06 13:00": "poster:showcase/034-she-summoned-rome-to-britain.jpg"
   },
   "start": "2026-11-04"
 }

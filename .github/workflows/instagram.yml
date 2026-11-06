@@ -15,6 +15,7 @@ on:
 
 permissions:
   contents: write
+  actions: write   # to start the daily brief if GitHub's own schedule hasn't
 
 # Its own queue, so a push that also runs the daily brief doesn't cancel a waiting post.
 # The save step pulls and retries, so the two can run side by side.
@@ -31,6 +32,22 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+
+      # This workflow runs every hour (cron-job.org triggers it). GitHub's own schedule for the
+      # daily brief is unreliable, so from 5am, if today's brief isn't there yet and isn't
+      # already being made, start it from here.
+      - name: Make sure today's brief is on its way
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          today=$(TZ=Europe/London date +%F); hour=$(TZ=Europe/London date +%-H)
+          have=$(node -p "require('./site/data/latest.json').date")
+          busy=$(gh run list --workflow daily.yml --json status -q '[.[] | select(.status != "completed")] | length')
+          if [ "$have" != "$today" ] && [ "$hour" -ge 5 ] && [ "$busy" = "0" ]; then
+            gh workflow run daily.yml --ref main && echo "Started today's brief."
+          else
+            echo "Brief: have $have, busy $busy."
+          fi
 
       - name: Post what's due
         env:

@@ -1,37 +1,37 @@
 {
-  "date": "2026-11-05",
-  "issue": 34,
-  "generatedAt": "2026-11-05T06:49:00.574Z",
+  "date": "2026-11-06",
+  "issue": 35,
+  "generatedAt": "2026-11-06T07:26:26.970Z",
   "colour": {
-    "name": "Magenta",
-    "yesterday": "Rose",
-    "tomorrow": "Violet"
+    "name": "Violet",
+    "yesterday": "Magenta",
+    "tomorrow": "Indigo"
   },
   "story": {
-    "title": "Historians say King Verica persuaded Rome to invade Britain. But could Verica actually have been a queen?",
-    "summary": "An archaeologist has put forward a controversial theory that Verica, the British ruler traditionally said to have urged Rome to invade, may have been a woman rather than a king. If true, it would change how we tell the story of the Claudian landing in Kent in AD43.",
-    "source": "The Guardian",
-    "url": "https://www.theguardian.com/uk-news/2026/nov/05/verica-rome-invade-britain-queen-or-king",
-    "published": "2026-11-05T05:00:54.000Z",
-    "theme": "ancient history and archaeology"
+    "title": "Building wind turbines out of parts found in Gaza’s rubble",
+    "summary": "Palestinians in Gaza have built small wind turbines to generate electricity, using metal and other scraps salvaged from the rubble of destroyed buildings. The makeshift machines are a way to get power where the regular supply has failed.",
+    "source": "Al Jazeera",
+    "url": "https://www.aljazeera.com/video/newsfeed/2026/11/6/building-wind-turbines-out-of-parts-found-in-gazas-rubble?traffic_source=rss",
+    "published": "2026-11-06T04:20:22.000Z",
+    "theme": "improvised energy in Gaza"
   },
   "headlines": [
-    "The King Who Wasn't",
-    "She Summoned Rome to Britain",
-    "Who Really Called the Legions?"
+    "Power From the Rubble",
+    "What the Wind Gathers",
+    "Ruin Turned Toward the Wind"
   ],
   "sublines": [
-    "An archaeologist argues Verica, who urged Claudius to invade Britain in AD43, may have been a woman.",
-    "A controversial theory could change how we tell the story of the Roman invasion of Britain.",
-    "Long cast as a king who begged Rome for help, Verica's sex is now disputed by one archaeologist."
+    "Palestinians in Gaza are assembling small wind turbines from scrap pulled out of the rubble of destroyed buildings.",
+    "With normal electricity supply broken, salvaged metal and spare parts are being turned into homemade generators that catch the wind.",
+    "Each turbine is built by hand from what the ruins leave behind, giving families a little power of their own."
   ],
   "palette": {
     "name": "Vivid",
     "colours": [
-      "#F43BEC",
-      "#FCD7F8",
-      "#796E77",
-      "#31102F"
+      "#8D2EEE",
+      "#E9DFFE",
+      "#736F7C",
+      "#25163B"
     ]
   },
   "always": [
@@ -39,13 +39,13 @@
     "#FFFFFF"
   ],
   "type": {
-    "id": "caslon",
-    "display": "Libre Caslon Display",
-    "text": "Libre Franklin",
-    "reason": "Libre Caslon Display has the carved, classical authority of Roman inscriptions and coinage, while its elegant contrast leaves room for the story's question mark over identity.",
-    "css": "https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Franklin&display=swap",
-    "displayUrl": "https://fonts.google.com/specimen/Libre+Caslon+Display",
-    "textUrl": "https://fonts.google.com/specimen/Libre+Franklin"
+    "id": "big-shoulders",
+    "display": "Big Shoulders Display",
+    "text": "JetBrains Mono",
+    "reason": "Big Shoulders' tall, industrial, built-from-parts letterforms echo the improvised metalwork, while the mono subline feels like a workshop label.",
+    "css": "https://fonts.googleapis.com/css2?family=Big+Shoulders+Display&family=JetBrains+Mono&display=swap",
+    "displayUrl": "https://fonts.google.com/specimen/Big+Shoulders+Display",
+    "textUrl": "https://fonts.google.com/specimen/JetBrains+Mono"
   },
   "grid": {
     "format": "A-size",
@@ -63,225 +63,235 @@
   },
   "images": [
     {
-      "id": "unsplash:nVaDvX0kmzY",
+      "id": "unsplash:Bnbq1CjeGqU",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "green grass field photograph",
-      "credit": "Jonathan Ridley",
-      "creditUrl": "https://unsplash.com/@jridley1?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/green-grass-field-photograph-nVaDvX0kmzY?utm_source=daily_poster&utm_medium=referral",
-      "alt": "green grass field photograph",
-      "thumb": "https://images.unsplash.com/photo-1578338591395-a755a9d3170d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8bWlzdHklMjBjaGFsayUyMGhpbGxzfGVufDF8fHx8MTc5Mzg2MTM0MXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1578338591395-a755a9d3170d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8bWlzdHklMjBjaGFsayUyMGhpbGxzfGVufDF8fHx8MTc5Mzg2MTM0MXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "photography of wind will during sunset",
+      "credit": "Romero Souza",
+      "creditUrl": "https://unsplash.com/@50mmaniac?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/photography-of-wind-will-during-sunset-Bnbq1CjeGqU?utm_source=daily_poster&utm_medium=referral",
+      "alt": "photography of wind will during sunset",
+      "thumb": "https://images.unsplash.com/photo-1506887516137-6cdfc9e87acf?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8d2luZCUyMHR1cmJpbmUlMjBkdXNrfGVufDF8fHx8MTc5Mzk0OTk4N3ww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1506887516137-6cdfc9e87acf?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8d2luZCUyMHR1cmJpbmUlMjBkdXNrfGVufDF8fHx8MTc5Mzk0OTk4N3ww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "met:468178",
+      "id": "unsplash:xRvaPOFsEKo",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "white windmill during daytime",
+      "credit": "Dev Kalidhasan",
+      "creditUrl": "https://unsplash.com/@devkalidhasan?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/white-windmill-during-daytime-xRvaPOFsEKo?utm_source=daily_poster&utm_medium=referral",
+      "alt": "white windmill during daytime",
+      "thumb": "https://images.unsplash.com/photo-1507804024962-2455b6c25e19?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8d2luZCUyMHR1cmJpbmUlMjBkdXNrfGVufDF8fHx8MTc5Mzk0OTk4N3ww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1507804024962-2455b6c25e19?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8d2luZCUyMHR1cmJpbmUlMjBkdXNrfGVufDF8fHx8MTc5Mzk0OTk4N3ww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:360679",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Silver Neck Ring, 475–400 BCE",
-      "credit": "Celtic",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/468178",
-      "page": "https://www.metmuseum.org/art/collection/search/468178",
-      "alt": "Silver Neck Ring",
-      "thumb": "https://images.metmuseum.org/CRDImages/md/web-large/DP100655.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/md/original/DP100655.jpg",
-      "local": "media/2026-11-05/image-02-2160.jpg"
+      "title": "Roman Ruins, from \"Roman Ruins\", 1673",
+      "credit": "Wenceslaus Hollar",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/360679",
+      "page": "https://www.metmuseum.org/art/collection/search/360679",
+      "alt": "Roman Ruins, from \"Roman Ruins\"",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP823387.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP823387.jpg",
+      "local": "media/2026-11-06/image-03-2160.jpg"
     },
     {
-      "id": "unsplash:kDrTt4sCC7I",
+      "id": "unsplash:wRwo_uLMM6o",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "shore during golden hour",
-      "credit": "Zakaria Zayane",
-      "creditUrl": "https://unsplash.com/@kazizayane?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/shore-during-golden-hour-kDrTt4sCC7I?utm_source=daily_poster&utm_medium=referral",
-      "alt": "shore during golden hour",
-      "thumb": "https://images.unsplash.com/photo-1553346702-7fb90c0b8b9e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8bWFnZW50YSUyMGR1c2slMjBjb2FzdHxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1553346702-7fb90c0b8b9e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8bWFnZW50YSUyMGR1c2slMjBjb2FzdHxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "a wind turbine in the middle of a desert",
+      "credit": "Levan Badzgaradze",
+      "creditUrl": "https://unsplash.com/@levanbadzgaradze?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-wind-turbine-in-the-middle-of-a-desert-wRwo_uLMM6o?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a wind turbine in the middle of a desert",
+      "thumb": "https://images.unsplash.com/photo-1632103996718-4a47cf68b75e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8d2luZCUyMHR1cmJpbmUlMjBkdXNrfGVufDF8fHx8MTc5Mzk0OTk4N3ww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1632103996718-4a47cf68b75e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8d2luZCUyMHR1cmJpbmUlMjBkdXNrfGVufDF8fHx8MTc5Mzk0OTk4N3ww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "met:254990",
+      "id": "met:360633",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Terracotta coin molds, ca. 308–320 CE",
-      "credit": "Roman",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/254990",
-      "page": "https://www.metmuseum.org/art/collection/search/254990",
-      "alt": "Terracotta coin molds",
-      "thumb": "https://images.metmuseum.org/CRDImages/gr/web-large/sf581791edited.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/gr/original/sf581791edited.jpg",
-      "local": "media/2026-11-05/image-04-2160.jpg"
+      "title": "Classical Ruins, 1673",
+      "credit": "Wenceslaus Hollar",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/360633",
+      "page": "https://www.metmuseum.org/art/collection/search/360633",
+      "alt": "Classical Ruins",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP823352.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP823352.jpg",
+      "local": "media/2026-11-06/image-05-2160.jpg"
     },
     {
-      "id": "unsplash:Dur6fTWkeVU",
+      "id": "unsplash:TtHrYhUHb9o",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "a group of pillars in a stone building",
-      "credit": "Konstantin Dyadyun",
-      "creditUrl": "https://unsplash.com/@kostyadyadyun?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/a-group-of-pillars-in-a-stone-building-Dur6fTWkeVU?utm_source=daily_poster&utm_medium=referral",
-      "alt": "a group of pillars in a stone building",
-      "thumb": "https://images.unsplash.com/photo-1660816839326-2f32daf0bd5a?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8YW5jaWVudCUyMHN0b25lJTIwcnVpbnN8ZW58MXx8fHwxNzkzODYxMzQwfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1660816839326-2f32daf0bd5a?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8YW5jaWVudCUyMHN0b25lJTIwcnVpbnN8ZW58MXx8fHwxNzkzODYxMzQwfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "Twilight cityscape with deep purple sky and illuminated street",
+      "credit": "Hanna Lazar",
+      "creditUrl": "https://unsplash.com/@potokvarte?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/twilight-cityscape-with-deep-purple-sky-and-illuminated-street-TtHrYhUHb9o?utm_source=daily_poster&utm_medium=referral",
+      "alt": "Twilight cityscape with deep purple sky and illuminated street",
+      "thumb": "https://images.unsplash.com/photo-1782811559418-7b255bff8fa1?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8dmlvbGV0JTIwdHdpbGlnaHQlMjBza3l8ZW58MXx8fHwxNzkzOTQ5OTg3fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1782811559418-7b255bff8fa1?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8dmlvbGV0JTIwdHdpbGlnaHQlMjBza3l8ZW58MXx8fHwxNzkzOTQ5OTg3fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:35CBoCJTC6w",
-      "source": "Unsplash",
-      "licence": "Unsplash License",
-      "title": "body of water under cloudy sky during daytime",
-      "credit": "Cole Parrant",
-      "creditUrl": "https://unsplash.com/@casually?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/body-of-water-under-cloudy-sky-during-daytime-35CBoCJTC6w?utm_source=daily_poster&utm_medium=referral",
-      "alt": "body of water under cloudy sky during daytime",
-      "thumb": "https://images.unsplash.com/photo-1606870284624-60c184c3f085?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8bWFnZW50YSUyMGR1c2slMjBjb2FzdHxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1606870284624-60c184c3f085?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8bWFnZW50YSUyMGR1c2slMjBjb2FzdHxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
-    },
-    {
-      "id": "met:747552",
+      "id": "met:360675",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Studies of a Bearded Head and a Greek or Roman Coin, December 23, 1824",
-      "credit": "Eugène Delacroix",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/747552",
-      "page": "https://www.metmuseum.org/art/collection/search/747552",
-      "alt": "Studies of a Bearded Head and a Greek or Roman Coin",
-      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP873587.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP873587.jpg",
-      "local": "media/2026-11-05/image-07-2160.jpg"
+      "title": "Ruins of a round building, from \"Roman Ruins\", 1673",
+      "credit": "Wenceslaus Hollar",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/360675",
+      "page": "https://www.metmuseum.org/art/collection/search/360675",
+      "alt": "Ruins of a round building, from \"Roman Ruins\"",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP823391.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP823391.jpg",
+      "local": "media/2026-11-06/image-07-2160.jpg"
     },
     {
-      "id": "met:465764",
+      "id": "met:4739",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Gold Disk Brooch, 6th–7th century",
-      "credit": "Frankish",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/465764",
-      "page": "https://www.metmuseum.org/art/collection/search/465764",
-      "alt": "Gold Disk Brooch",
-      "thumb": "https://images.metmuseum.org/CRDImages/md/web-large/DP-41584-001.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/md/original/DP-41584-001.jpg",
-      "local": "media/2026-11-05/image-08-2160.jpg"
+      "title": "Lantern, ca. 1770",
+      "credit": "American",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/4739",
+      "page": "https://www.metmuseum.org/art/collection/search/4739",
+      "alt": "Lantern",
+      "thumb": "https://images.metmuseum.org/CRDImages/ad/web-large/97378.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/ad/original/97378.jpg",
+      "local": "media/2026-11-06/image-08-2160.jpg"
     },
     {
-      "id": "unsplash:-Ig_nXRiSlQ",
+      "id": "unsplash:ldjVZsJbtAk",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "grayscale photo of concrete pillar",
-      "credit": "Vladimir De Vico",
-      "creditUrl": "https://unsplash.com/@vladimirdevico?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/grayscale-photo-of-concrete-pillar--Ig_nXRiSlQ?utm_source=daily_poster&utm_medium=referral",
-      "alt": "grayscale photo of concrete pillar",
-      "thumb": "https://images.unsplash.com/photo-1594480149213-1fbd38e069a8?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8YW5jaWVudCUyMHN0b25lJTIwcnVpbnN8ZW58MXx8fHwxNzkzODYxMzQwfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1594480149213-1fbd38e069a8?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8YW5jaWVudCUyMHN0b25lJTIwcnVpbnN8ZW58MXx8fHwxNzkzODYxMzQwfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "A lone tree is silhouetted against a colorful sky",
+      "credit": "Michael Hamments",
+      "creditUrl": "https://unsplash.com/@35mmtodgt?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-lone-tree-is-silhouetted-against-a-colorful-sky-ldjVZsJbtAk?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A lone tree is silhouetted against a colorful sky",
+      "thumb": "https://images.unsplash.com/photo-1719932978860-f51693f4ff6d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8dmlvbGV0JTIwdHdpbGlnaHQlMjBza3l8ZW58MXx8fHwxNzkzOTQ5OTg3fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1719932978860-f51693f4ff6d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8dmlvbGV0JTIwdHdpbGlnaHQlMjBza3l8ZW58MXx8fHwxNzkzOTQ5OTg3fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:cZgV5bTRWx0",
-      "source": "Unsplash",
-      "licence": "Unsplash License",
-      "title": "Dramatic sunset over calm water and distant hills",
-      "credit": "Kiya Golara",
-      "creditUrl": "https://unsplash.com/@rorozoro?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/dramatic-sunset-over-calm-water-and-distant-hills-cZgV5bTRWx0?utm_source=daily_poster&utm_medium=referral",
-      "alt": "Dramatic sunset over calm water and distant hills",
-      "thumb": "https://images.unsplash.com/photo-1761285908346-cbe783a0a675?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8bWFnZW50YSUyMGR1c2slMjBjb2FzdHxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1761285908346-cbe783a0a675?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8bWFnZW50YSUyMGR1c2slMjBjb2FzdHxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "id": "met:642824",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "The Windmill, 1641",
+      "credit": "Rembrandt (Rembrandt van Rijn)",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/642824",
+      "page": "https://www.metmuseum.org/art/collection/search/642824",
+      "alt": "The Windmill",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP837314.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP837314.jpg",
+      "local": "media/2026-11-06/image-10-2160.jpg"
     }
   ],
   "textures": [
     {
-      "id": "unsplash:XFWiZTa2Ub0",
+      "id": "unsplash:FmeJ2pV6YsU",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "crumpled beige parchment paper texture",
-      "credit": "SJ Objio",
-      "creditUrl": "https://unsplash.com/@sjobjio?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/crumpled-beige-parchment-paper-texture-XFWiZTa2Ub0?utm_source=daily_poster&utm_medium=referral",
-      "alt": "crumpled beige parchment paper texture",
-      "thumb": "https://images.unsplash.com/photo-1603484477859-abe6a73f9366?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFyY2htZW50JTIwdGV4dHVyZXxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1603484477859-abe6a73f9366?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFyY2htZW50JTIwdGV4dHVyZXxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "a rusted metal surface with lots of rust on it",
+      "credit": "takis politis",
+      "creditUrl": "https://unsplash.com/@citylop?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-rusted-metal-surface-with-lots-of-rust-on-it-FmeJ2pV6YsU?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a rusted metal surface with lots of rust on it",
+      "thumb": "https://images.unsplash.com/photo-1523447704114-37cea08ee064?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cnVzdCUyMHRleHR1cmV8ZW58MXx8fHwxNzkzOTQ5OTg3fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1523447704114-37cea08ee064?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cnVzdCUyMHRleHR1cmV8ZW58MXx8fHwxNzkzOTQ5OTg3fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:vS3idIiYxX0",
+      "id": "unsplash:OL2tYVcApI4",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "white textured paper or plaster surface",
-      "credit": "Olga Thelavart",
-      "creditUrl": "https://unsplash.com/@olga_o?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-vS3idIiYxX0?utm_source=daily_poster&utm_medium=referral",
-      "alt": "white textured paper or plaster surface",
-      "thumb": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cGFyY2htZW50JTIwdGV4dHVyZXxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cGFyY2htZW50JTIwdGV4dHVyZXxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "A smooth grey concrete wall with subtle trowel marks and natural texture",
+      "credit": "Hydra 4x",
+      "creditUrl": "https://unsplash.com/@hydra4x?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/grey-concrete-wall-with-texture-OL2tYVcApI4?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A smooth grey concrete wall with subtle trowel marks and natural texture",
+      "thumb": "https://images.unsplash.com/photo-1708894462826-ba3fa93b41b7?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cm91Z2glMjBwbGFzdGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTM5NDk5ODd8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1708894462826-ba3fa93b41b7?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cm91Z2glMjBwbGFzdGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTM5NDk5ODd8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:u4ijcCaprRc",
+      "id": "unsplash:kG-ZwDuQ8ME",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "a close up of a rock surface with small cracks",
-      "credit": "Colin Watts",
-      "creditUrl": "https://unsplash.com/@colinwatts?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/a-close-up-of-a-rock-surface-with-small-cracks-u4ijcCaprRc?utm_source=daily_poster&utm_medium=referral",
-      "alt": "a close up of a rock surface with small cracks",
-      "thumb": "https://images.unsplash.com/photo-1542732056-648731297c97?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8d2VhdGhlcmVkJTIwc3RvbmUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5Mzg2MTM0MXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1542732056-648731297c97?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8d2VhdGhlcmVkJTIwc3RvbmUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5Mzg2MTM0MXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "weathered teal concrete wall texture",
+      "credit": "Annie Spratt",
+      "creditUrl": "https://unsplash.com/@anniespratt?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/weathered-teal-concrete-wall-texture-kG-ZwDuQ8ME?utm_source=daily_poster&utm_medium=referral",
+      "alt": "weathered teal concrete wall texture",
+      "thumb": "https://images.unsplash.com/photo-1578922427288-a47338083a57?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cnVzdCUyMHRleHR1cmV8ZW58MXx8fHwxNzkzOTQ5OTg3fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1578922427288-a47338083a57?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cnVzdCUyMHRleHR1cmV8ZW58MXx8fHwxNzkzOTQ5OTg3fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:CLvkkjb-i3g",
+      "id": "unsplash:DHbw4hYyiu8",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "a red background with a rough texture of paper",
-      "credit": "Valentin Salja",
-      "creditUrl": "https://unsplash.com/@valentinsalja?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/a-red-background-with-a-rough-texture-of-paper-CLvkkjb-i3g?utm_source=daily_poster&utm_medium=referral",
-      "alt": "a red background with a rough texture of paper",
-      "thumb": "https://images.unsplash.com/photo-1537204319452-fdbd29e2ccc7?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8YnJvbnplJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1537204319452-fdbd29e2ccc7?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8YnJvbnplJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTM4NjEzNDF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "A weathered metal surface with patches of orange rust and fine scratches",
+      "credit": "Alex Quezada",
+      "creditUrl": "https://unsplash.com/@alex_quezada?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/weathered-metal-surface-with-rust-DHbw4hYyiu8?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A weathered metal surface with patches of orange rust and fine scratches",
+      "thumb": "https://images.unsplash.com/photo-1614535683569-129faaa108f7?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cnVzdCUyMHRleHR1cmV8ZW58MXx8fHwxNzkzOTQ5OTg3fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1614535683569-129faaa108f7?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cnVzdCUyMHRleHR1cmV8ZW58MXx8fHwxNzkzOTQ5OTg3fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     }
   ],
   "objects": [
     {
-      "name": "Roman helmet",
-      "material": "corroded bronze",
-      "image": "media/2026-11-05/object-1.png",
-      "thumb": "media/2026-11-05/object-1-thumb.png",
+      "name": "wind turbine",
+      "material": "rusted scrap metal",
+      "image": "media/2026-11-06/object-1.png",
+      "thumb": "media/2026-11-06/object-1-thumb.png",
       "model": {
-        "title": "An ancient Roman helmet (Древнеримский шлем)",
+        "title": "Game Ready Wind Turbine (Animated)",
         "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-00be37c8062c430daad5686d4f17916f",
+        "url": "https://sketchfab.com/3d-models/none-72cf2bacbe3e4bb9901280be9ce96514",
         "licence": "CC Attribution",
-        "creator": "stratovarius1980",
-        "creatorUrl": "https://sketchfab.com/stratovarius1980"
+        "creator": "ThomasRedfern12",
+        "creatorUrl": "https://sketchfab.com/ThomasRedfern12"
       },
-      "texture": null
+      "texture": {
+        "title": "Rusty Metal 04",
+        "url": "https://polyhaven.com/a/rusty_metal_04"
+      }
     },
     {
-      "name": "gold coin",
-      "material": "worn polished gold",
-      "image": "media/2026-11-05/object-2.png",
-      "thumb": "media/2026-11-05/object-2-thumb.png",
+      "name": "concrete rubble",
+      "material": "weathered concrete",
+      "image": "media/2026-11-06/object-2.png",
+      "thumb": "media/2026-11-06/object-2-thumb.png",
       "model": {
-        "title": "Low-Poly Gold Coin",
+        "title": "Concrete Chunk Photogrammetry Model",
         "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-7a40d686492545d1a6f6bd0c487f1cb9",
+        "url": "https://sketchfab.com/3d-models/none-caac05c947314d8c89623918d134be0d",
         "licence": "CC Attribution",
-        "creator": "BillieBones",
-        "creatorUrl": "https://sketchfab.com/BillieBones"
+        "creator": "Jacob Smith",
+        "creatorUrl": "https://sketchfab.com/ChampComputings"
       },
-      "texture": null
+      "texture": {
+        "title": "Concrete Floor Damaged 01",
+        "url": "https://polyhaven.com/a/concrete_floor_damaged_01"
+      }
     },
     {
-      "name": "crown",
-      "material": "aged brass",
-      "image": "media/2026-11-05/object-3.png",
-      "thumb": "media/2026-11-05/object-3-thumb.png",
+      "name": "rebar",
+      "material": "rusted iron",
+      "image": "media/2026-11-06/object-3.png",
+      "thumb": "media/2026-11-06/object-3-thumb.png",
       "model": {
-        "title": "Golden crown",
+        "title": "REBAR reinforced concrete",
         "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-5689a9525a2c425d93f7d483b93d8cfa",
+        "url": "https://sketchfab.com/3d-models/none-465ad1e439304aa0a16e6895f7e36a51",
         "licence": "CC Attribution",
-        "creator": "Pieter Ferreira",
-        "creatorUrl": "https://sketchfab.com/Badboy17Aiden"
+        "creator": "YouniqueĪdeaStudio",
+        "creatorUrl": "https://sketchfab.com/sinnervoncrawsz"
       },
-      "texture": null
+      "texture": {
+        "title": "Rusty Metal 04",
+        "url": "https://polyhaven.com/a/rusty_metal_04"
+      }
     }
   ]
 }

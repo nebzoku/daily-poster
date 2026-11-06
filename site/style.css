@@ -61,7 +61,13 @@ h1, h2, p, ol, dl, dd { margin: 0; }
 .top .top-copy { display: inline-flex; align-items: center; gap: 6px; height: 22px; padding: 0 9px; margin: -4px 0; background: var(--fg); color: var(--bg); border-radius: 3px; }
 .top .top-copy:hover { color: var(--bg); opacity: .82; }
 .top-copy .short { display: none; }
-@media (max-width: 600px) { .top-copy .long { display: none; } .top-copy .short { display: inline; } }
+/* Copy for Figma is a desktop thing: nobody pastes into Figma from a phone, and on a phone a
+   bare "Copy" button reads like it should copy text. Phones get a note instead. */
+.phone-only { display: none; }
+@media (max-width: 760px) {
+  .top .top-copy, .figma-only { display: none; }
+  .phone-only { display: block; margin-top: 24px; }
+}
 
 /* ---------- info overlay ---------- */
 .info {

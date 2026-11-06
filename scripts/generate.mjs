@@ -67,12 +67,30 @@ async function fetchFeed([source, url]) {
   }
 }
 
+// Guardrails. The brief should be something any designer is happy to make a poster about and
+// share, so it stays away from war and conflict, party politics and elections, violent crime
+// and death. Three layers: stories whose headline or summary mention these are dropped before
+// Claude sees them; the prompt rules them out; and the chosen story and the words written for it
+// are checked again afterwards, with Claude asked to flag anything sensitive.
+const SENSITIVE = new RegExp("\\b(" + [
+  "war", "wars", "warfare", "warzone", "military", "army", "troops?", "soldiers?", "missiles?", "airstrikes?", "air strikes?", "drones? strikes?",
+  "bomb(s|ing|ed)?", "shelling", "ceasefire", "hostages?", "genocide", "annex(e|es|ed|ation)",
+  "gaza", "israel\\w*", "palestin\\w*", "hamas", "hezbollah", "west bank", "ukrain\\w*", "russia\\w*", "kremlin", "putin", "iran\\w*",
+  "syria\\w*", "sudan\\w*", "yemen\\w*", "taliban", "nato",
+  "terror\\w*", "extremis\\w*", "shootings?", "gunm(a|e)n", "murder\\w*", "kill(s|ed|ing)?", "massacre\\w*", "stabb\\w*", "dead", "deaths?", "died", "dies",
+  "elections?", "electoral", "voters?", "ballots?", "referendum", "campaign trail", "polls? show", "trump", "biden", "harris", "starmer", "farage",
+  "labour party", "conservatives?", "tor(y|ies)", "republicans?", "democrats?", "partisan",
+  "abortion", "immigration", "migrants?", "asylum", "deport\\w*", "arrest(s|ed)?", "sentenced", "convicted", "abuse\\w*", "suicide", "overdose",
+].join("|") + ")\\b", "i");
+const sensitive = (...texts) => texts.some((t) => SENSITIVE.test(String(t || "")));
+
 async function gatherStories(hours) {
   const all = (await Promise.all(FEEDS.map(fetchFeed))).flat();
   const cutoff = Date.now() - hours * 3600 * 1000;
   const seen = new Set();
   return all
     .filter((s) => s.title && s.url && s.published && Date.parse(s.published) > cutoff)
+    .filter((s) => !sensitive(s.title, s.summary, s.description))
     .filter((s) => {
       const k = s.title.toLowerCase();
       if (seen.has(k)) return false;
@@ -137,6 +155,7 @@ const BRIEF_TOOL = {
       },
       fontPairId: { type: "string", description: "The id of one pairing from the list you were given." },
       fontReason: { type: "string", description: "One sentence on why this pairing suits the story." },
+      sensitive: { type: "boolean", description: "True if the chosen story, or anything you wrote for it, touches war or conflict, politics, elections, crime, death, religion or another contested or upsetting subject. Be strict." },
       theme: { type: "string", description: "The chosen story's broad subject and setting in two to four words, e.g. 'the sea and shipping', 'space exploration', 'elections', 'extreme weather', 'art and museums'." },
     },
     required: ["storyIndex", "storySummary", "headlines", "sublines", "imageQueries", "archiveQueries", "textureQueries", "fontPairId", "fontReason", "theme"],
@@ -152,7 +171,9 @@ function briefPrompt(stories, recent, colour, pairsOk) {
   const pairs = pairsOk.map((f) => `${f.id}: ${f.display} + ${f.text}`).join("\n");
   return `You write a daily brief for a designer who makes one A-size poster a day from the news.
 
-Pick ONE story from the list below. Choose something with real weight or a strong image in it: a turning point, a discovery, a strange or moving moment. Avoid celebrity gossip, sport results, routine politics and stories that repeat recent briefs. Treat tragedies with care; never make them glib.
+Pick ONE story from the list below. Choose something with real weight or a strong image in it: a turning point, a discovery, a strange or moving moment. Avoid celebrity gossip, sport results and stories that repeat recent briefs.
+
+Stay well clear of anything politically or emotionally charged. Never pick a story about war, armed conflict or occupation (or a story set in a current conflict zone, even a hopeful one), terrorism, party politics, elections, governments and politicians, protests, violent crime, courts, deaths, disasters with casualties, immigration, religion or any contested social issue. Designers of every background should be happy to make a poster from it and share it publicly. Favour science, nature, space, history and archaeology, art, design and architecture, technology, invention, food, sport as a feat rather than a result, and quietly remarkable human stories. The headlines must never take a side, and must not mock or trivialise anyone.
 
 Then write:
 - Three headlines of 3 to 6 words. Count the words before you answer; seven is too many. They should be evocative and feel at home set huge on a poster: compressed, rhythmic, a little poetic, with tension or a turn in them. No puns that trivialise, no clickbait, no colons. Make the three genuinely different in angle.
@@ -204,6 +225,9 @@ function themeClash(theme, recent) {
 
 function validate(out, stories, pairsOk = FONT_PAIRS, recent = []) {
   const problems = [];
+  const st = stories[out.storyIndex];
+  if (out.sensitive === true || out.sensitive === "true" || sensitive(st?.title, st?.summary, out.storySummary, ...(out.headlines || []), ...(out.sublines || [])))
+    problems.push("that story or its wording is too politically or emotionally charged for the brief; pick a lighter story (science, nature, culture, history, invention)");
   const clash = themeClash(out.theme, recent);
   if (clash) problems.push(clash);
   if (!pairsOk.some((f) => f.id === out.fontPairId)) problems.push(`fontPairId "${out.fontPairId}" is not one of the pairings available today`);

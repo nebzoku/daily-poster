@@ -1,0 +1,46 @@
+name: 3D object on request
+
+# Renders one extra 3D object for today's brief, on request: put its name in requests/object.txt
+# and push. The render is saved as site/media/<date>/extra-<name>.png (not added to the brief).
+on:
+  push:
+    branches: [main]
+    paths: [requests/object.txt]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-brief
+  cancel-in-progress: false
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Render it
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SKETCHFAB_TOKEN: ${{ secrets.SKETCHFAB_TOKEN }}
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq libxrender1 libxxf86vm1 libxfixes3 libxi6 libxkbcommon0 libsm6 libgl1 libegl1 >/dev/null
+          pip install -q -r scripts/blender/requirements.txt
+          OBJECT_REQUEST="$(head -n1 requests/object.txt)" BLENDER_PYTHON=python npm run objects
+      - name: Save it
+        run: |
+          git config user.name "daily-poster-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add site/media
+          git diff --cached --quiet && exit 0
+          git commit -m "3D object on request: $(head -n1 requests/object.txt)"
+          for i in 1 2 3 4; do git pull --rebase -q && git push && exit 0; sleep $((i * 15)); done

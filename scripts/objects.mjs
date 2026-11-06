@@ -11,6 +11,8 @@
 //   POLY_PIZZA_KEY     optional: without it, only Poly Haven models and made shapes
 //   BLENDER_PYTHON     the Python that has the bpy package (default: python3)
 //   FORCE=1            render again even if today's brief already has objects
+//   OBJECT_REQUEST     one object on request (e.g. "beaver"), saved as media/<date>/extra-<name>.png
+//                      and left out of the brief
 import { readFile, writeFile, mkdir, rm } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { join, dirname } from "node:path";
@@ -173,7 +175,9 @@ async function main() {
   const date = latest.date;
   const path = join(DATA, `${date}.json`);
   const brief = JSON.parse(await readFile(path, "utf8"));
-  if (brief.objects?.length && !process.env.FORCE) { console.log("Objects already rendered for", date); return; }
+  const want = (process.env.OBJECT_REQUEST || "").trim();
+  const n = want ? 1 : 3;
+  if (brief.objects?.length && !process.env.FORCE && !want) { console.log("Objects already rendered for", date); return; }
   if (!process.env.ANTHROPIC_API_KEY) { console.warn("No ANTHROPIC_API_KEY; skipping objects."); return; }
 
   // 1. Ideas, avoiding objects from the last few days
@@ -182,13 +186,14 @@ async function main() {
   const earlier = (await readdir(DATA)).filter((f) => /^\d{4}-\d{2}-\d{2}\.json$/.test(f) && f < `${date}.json`).sort().slice(-5);
   const usedObjects = [];
   for (const f of earlier) { try { for (const o of JSON.parse(await readFile(join(DATA, f), "utf8")).objects || []) usedObjects.push(o.name); } catch {} }
-  const ideas = list((await callTool(IDEAS, `You are choosing three objects for a 3D render kit that goes with today's poster brief.
+  const ideas = list((await callTool(IDEAS, want ? `A designer working on today's poster brief has asked for one 3D object: "${want}". Return exactly that one object, with search terms for finding a model of it. If it's an animal or a natural thing, give it its natural material (fur, bark, feathers) rather than metal or stone, so its own surface is kept.
+Story: "${brief.story.title}". ${brief.story.summary}` : `You are choosing three objects for a 3D render kit that goes with today's poster brief.
 Story: "${s.title}". ${s.summary}
 Headlines: ${brief.headlines.join(" / ")}
 
 Pick three distinct physical objects that a designer could use as bold, iconic imagery on a poster about this story: things in the story, or that stand for it. Prefer simple, recognisable objects with strong silhouettes (an anchor, a boulder, a ship, a key, a flag, a chair) over scenes, people, animals or anything abstract. Give each a material that suits the story and renders well, leaning towards metal and stone (rusted iron, brushed steel, weathered concrete, polished brass, worn marble). Don't pick anything that would trivialise or sensationalise the story.${usedObjects.length ? `
-These were used in the last few days, so pick different objects: ${[...new Set(usedObjects)].join(", ")}.` : ""}`)).objects).slice(0, 3);
-  if (ideas.length < 3) throw new Error("Claude gave fewer than three objects.");
+These were used in the last few days, so pick different objects: ${[...new Set(usedObjects)].join(", ")}.` : ""}`)).objects).slice(0, n);
+  if (ideas.length < n) throw new Error(`Claude gave fewer than ${n} objects.`);
   console.log("Objects:", ideas.map((o) => `${o.name} (${o.material})`).join(", "));
 
   // 2. Candidates
@@ -262,7 +267,8 @@ These were used in the last few days, so pick different objects: ${[...new Set(u
         if (!texture.diff) texture = null;
       } catch (e) { console.warn(`Texture for ${g.idea.name}: ${e.message}`); }
     }
-    const file = join(dir, `object-${j + 1}.png`);
+    const slug = want.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    const file = join(dir, want ? `extra-${slug}.png` : `object-${j + 1}.png`);
     jobs.push({ keep: keep && !!modelFile, model: modelFile, shape: SHAPES.includes(g.idea.fallback) ? g.idea.fallback : "rock", seed: (brief.issue || 1) + j, texture, out: file, turn: 20 + j * 35 });
     out.push({ name: g.idea.name, material: g.idea.material, model: modelFile ? model : null, texture: texture ? tex : null, file });
   }
@@ -273,6 +279,8 @@ These were used in the last few days, so pick different objects: ${[...new Set(u
   const py = process.env.BLENDER_PYTHON || "python3";
   const r = spawnSync(py, [RENDER, jobFile], { stdio: "inherit", timeout: 25 * 60 * 1000 });
   if (r.status !== 0) throw new Error(`Blender exited with ${r.status}`);
+
+  if (want) { for (const o of out) console.log(existsSync(o.file) ? `Rendered ${o.file.slice(SITE.length + 1)} (${o.model ? `${o.model.title}, ${o.model.source}, ${o.model.licence}${o.model.creator ? `, by ${o.model.creator}` : ""}` : "no model found; made shape"})` : "Nothing rendered."); return; }
 
   // 6. Record them in the brief
   brief.objects = [];

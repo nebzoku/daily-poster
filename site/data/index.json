@@ -1,16 +1,5 @@
 [
   {
-    "date": "2026-11-06",
-    "issue": 35,
-    "colour": "Violet",
-    "headline": "Power From the Rubble",
-    "bg": "#8D2EEE",
-    "thumb": "https://images.unsplash.com/photo-1506887516137-6cdfc9e87acf?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8d2luZCUyMHR1cmJpbmUlMjBkdXNrfGVufDF8fHx8MTc5Mzk0OTk4N3ww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-    "display": "Big Shoulders Display",
-    "text": "JetBrains Mono",
-    "css": "https://fonts.googleapis.com/css2?family=Big+Shoulders+Display&family=JetBrains+Mono&display=swap"
-  },
-  {
     "date": "2026-11-05",
     "issue": 34,
     "colour": "Magenta",

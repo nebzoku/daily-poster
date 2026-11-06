@@ -48,7 +48,7 @@ async function localise(date) {
   if (existsSync(dir)) {
     const keep = new Set([...(brief.images || []), ...(brief.textures || [])].map((it) => it.local).filter(Boolean));
     for (const o of brief.objects || []) { keep.add(o.image); keep.add(o.thumb); }   // the 3D renders (scripts/objects.mjs)
-    for (const f of await readdir(dir)) if (!keep.has(`media/${date}/${f}`)) await rm(join(dir, f));
+    for (const f of await readdir(dir)) if (!keep.has(`media/${date}/${f}`) && !f.startsWith("extra-")) await rm(join(dir, f));   // extra-*: objects made on request
   }
   if (changed) {
     await writeFile(path, JSON.stringify(brief, null, 2) + "\n");

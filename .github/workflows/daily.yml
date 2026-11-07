@@ -78,6 +78,7 @@ jobs:
       # Three-second looping snippets of moving posters, for the archive grid.
       - name: Previews of video posters
         run: |
+          [ "$(node scripts/previews.mjs --check)" = "0" ] && { echo "No new previews."; exit 0; }
           command -v ffmpeg >/dev/null || { sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg >/dev/null; }
           node scripts/previews.mjs || echo "::warning::The video previews didn't render."
 

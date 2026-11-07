@@ -9,6 +9,8 @@ import { join } from "node:path";
 
 const SITE = new URL("../site/", import.meta.url).pathname, FILE = join(SITE, "data", "showcase.json");
 const showcase = JSON.parse(await readFile(FILE, "utf8"));
+const todo = showcase.filter((x) => x.video && !(x.preview && existsSync(join(SITE, x.preview))));
+if (process.argv.includes("--check")) { console.log(todo.length); process.exit(0); }
 let changed = false;
 for (const x of showcase) {
   if (!x.video) continue;

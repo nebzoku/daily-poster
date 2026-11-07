@@ -32,9 +32,11 @@ export function posterCaption(p, brief) {
     brief.story.summary,
     "",
     `Source: ${brief.story.source}`,
-    `Type: ${brief.type.display} and ${brief.type.text}`,
+    `Type: ${p.typeUsed || `${brief.type.display} and ${brief.type.text}`}`,   // typeUsed: when a poster sets its own
     `Poster by ${p.instagram ? "@" + p.instagram.replace(/^@/, "") : p.designer}`,
     "",
+    // A line on how it was made, when the archive entry has one (handy for moving posters).
+    ...(p.made ? [`How it was made: ${p.made}`, ""] : []),
     "Today's brief is live at dailyposter.design",
     "",
     TAGS(brief.issue),

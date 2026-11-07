@@ -117,6 +117,11 @@
       "slot": "2026-11-07 13:00",
       "at": "2026-11-07T13:07:37.107Z",
       "id": "17983296483136055"
+    },
+    "poster:showcase/035-something-new-stirs-in-ness.jpg": {
+      "slot": "2026-11-07 19:00",
+      "at": "2026-11-07T19:07:34.574Z",
+      "id": "18138411160641628"
     }
   },
   "slots": {
@@ -130,7 +135,8 @@
     "2026-11-06 19:00": "poster:showcase/034-who-really-called-the-legions.jpg",
     "2026-11-07 08:00": "brief:2026-11-07",
     "2026-11-07 10:30": "poster:showcase/035-teeth-timber-and-deep-water.jpg",
-    "2026-11-07 13:00": "poster:showcase/035-teeth-timber-and-deep-water-2.jpg"
+    "2026-11-07 13:00": "poster:showcase/035-teeth-timber-and-deep-water-2.jpg",
+    "2026-11-07 19:00": "poster:showcase/035-something-new-stirs-in-ness.jpg"
   },
   "start": "2026-11-04"
 }

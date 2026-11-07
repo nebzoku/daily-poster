@@ -1,0 +1,296 @@
+{
+  "date": "2026-11-07",
+  "issue": 36,
+  "generatedAt": "2026-11-07T05:07:53.503Z",
+  "colour": {
+    "name": "Indigo",
+    "yesterday": "Violet",
+    "tomorrow": "Blue"
+  },
+  "story": {
+    "title": "Powerhouse Parramatta opens this weekend – and it’s dazzling inside and out",
+    "summary": "Powerhouse Parramatta, a $915 million museum in western Sydney wrapped in a white lattice exoskeleton, opens to the public this Saturday. It launches with five new exhibitions and a 23-day festival, and has been nicknamed the \"Opera House of western Sydney\".",
+    "source": "The Guardian",
+    "url": "https://www.theguardian.com/culture/ng-interactive/2026/nov/06/powerhouse-parramatta-opening-festival",
+    "published": "2026-11-05T23:00:36.000Z",
+    "theme": "architecture and museums"
+  },
+  "headlines": [
+    "A White Lattice Rises",
+    "Opera House of the West",
+    "Light Through the Lattice"
+  ],
+  "sublines": [
+    "Powerhouse Parramatta, a $915 million museum in western Sydney, opens this Saturday with five new exhibitions.",
+    "Its white lattice exoskeleton gives western Sydney a new landmark, launched with a 23-day festival of events.",
+    "Dubbed the Opera House of western Sydney, the new museum opens its doors after years of building."
+  ],
+  "palette": {
+    "name": "Vivid",
+    "colours": [
+      "#473CED",
+      "#DDE3FF",
+      "#6E717E",
+      "#161B40"
+    ]
+  },
+  "always": [
+    "#000000",
+    "#FFFFFF"
+  ],
+  "type": {
+    "id": "dm",
+    "display": "DM Serif Display",
+    "text": "DM Mono",
+    "reason": "The high-contrast serif gives a civic, museum-like gravity to the headline, while the mono subline reads like a technical architectural caption.",
+    "css": "https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Mono&display=swap",
+    "displayUrl": "https://fonts.google.com/specimen/DM+Serif+Display",
+    "textUrl": "https://fonts.google.com/specimen/DM+Mono"
+  },
+  "grid": {
+    "format": "A-size",
+    "size": [
+      1080,
+      1528
+    ],
+    "columns": 8,
+    "rows": 8,
+    "margin": 16,
+    "gutter": 0,
+    "column": 131,
+    "row": 187,
+    "unit": "px"
+  },
+  "images": [
+    {
+      "id": "unsplash:ejBwi-27Hx8",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "Modern architectural interior with white lattice supports",
+      "credit": "Jason Karl",
+      "creditUrl": "https://unsplash.com/@eroberung_st?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/modern-architectural-interior-with-white-lattice-supports-ejBwi-27Hx8?utm_source=daily_poster&utm_medium=referral",
+      "alt": "Modern architectural interior with white lattice supports",
+      "thumb": "https://images.unsplash.com/photo-1777078464085-f9a00bf6d906?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8d2hpdGUlMjBsYXR0aWNlJTIwZmFjYWRlfGVufDF8fHx8MTc5NDAyODA3NHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1777078464085-f9a00bf6d906?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8d2hpdGUlMjBsYXR0aWNlJTIwZmFjYWRlfGVufDF8fHx8MTc5NDAyODA3NHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:270826",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "View in Central Hall, Art Treasures Exhibition, Manchester, 1857",
+      "credit": "Philip Henry Delamotte",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/270826",
+      "page": "https://www.metmuseum.org/art/collection/search/270826",
+      "alt": "View in Central Hall, Art Treasures Exhibition, Manchester",
+      "thumb": "https://images.metmuseum.org/CRDImages/ph/web-large/DP209234.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/ph/original/DP209234.jpg",
+      "local": "media/2026-11-07/image-02-2160.jpg"
+    },
+    {
+      "id": "unsplash:NzW5ytrqi34",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "white concrete building during daytime",
+      "credit": "Martin Woortman",
+      "creditUrl": "https://unsplash.com/@martfoto1?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/white-concrete-building-during-daytime-NzW5ytrqi34?utm_source=daily_poster&utm_medium=referral",
+      "alt": "white concrete building during daytime",
+      "thumb": "https://images.unsplash.com/photo-1617893423712-9667576ffc1e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8d2hpdGUlMjBsYXR0aWNlJTIwZmFjYWRlfGVufDF8fHx8MTc5NDAyODA3NHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1617893423712-9667576ffc1e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8d2hpdGUlMjBsYXR0aWNlJTIwZmFjYWRlfGVufDF8fHx8MTc5NDAyODA3NHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:i3T0qN4gGBs",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "A man in a green polo shirt walking past white carved lattice walls in Bogor",
+      "credit": "Alim",
+      "creditUrl": "https://unsplash.com/@apyfz?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/man-walking-past-white-lattice-walls-i3T0qN4gGBs?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A man in a green polo shirt walking past white carved lattice walls in Bogor",
+      "thumb": "https://images.unsplash.com/photo-1790596858739-647a4dd5dcaf?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8d2hpdGUlMjBsYXR0aWNlJTIwZmFjYWRlfGVufDF8fHx8MTc5NDAyODA3NHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1790596858739-647a4dd5dcaf?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8d2hpdGUlMjBsYXR0aWNlJTIwZmFjYWRlfGVufDF8fHx8MTc5NDAyODA3NHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:699774",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "The Forth Bridge, ca. 1890",
+      "credit": "A. Duprez",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/699774",
+      "page": "https://www.metmuseum.org/art/collection/search/699774",
+      "alt": "The Forth Bridge",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP861142.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP861142.jpg",
+      "local": "media/2026-11-07/image-05-2160.jpg"
+    },
+    {
+      "id": "unsplash:oa46NUS8H-o",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "brown wooden staircase with white railings",
+      "credit": "Bilal Karim",
+      "creditUrl": "https://unsplash.com/@beekay?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/brown-wooden-staircase-with-white-railings-oa46NUS8H-o?utm_source=daily_poster&utm_medium=referral",
+      "alt": "brown wooden staircase with white railings",
+      "thumb": "https://images.unsplash.com/photo-1601582424192-b2f37561e20a?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8bXVzZXVtJTIwaW50ZXJpb3IlMjBzdGFpcnN8ZW58MXx8fHwxNzk0MDI4MDc0fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1601582424192-b2f37561e20a?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8bXVzZXVtJTIwaW50ZXJpb3IlMjBzdGFpcnN8ZW58MXx8fHwxNzk0MDI4MDc0fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:342267",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Architectural Drawing, 16th century",
+      "credit": "Anonymous, Italian, 16th century",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/342267",
+      "page": "https://www.metmuseum.org/art/collection/search/342267",
+      "alt": "Architectural Drawing",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP801907.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP801907.jpg",
+      "local": "media/2026-11-07/image-07-2160.jpg"
+    },
+    {
+      "id": "unsplash:hxi_yRxODNc",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "white concrete building facade pattern",
+      "credit": "bady abbas",
+      "creditUrl": "https://unsplash.com/@bady?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/white-concrete-building-facade-pattern-hxi_yRxODNc?utm_source=daily_poster&utm_medium=referral",
+      "alt": "white concrete building facade pattern",
+      "thumb": "https://images.unsplash.com/photo-1532456745301-b2c645d8b80d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8d2hpdGUlMjBsYXR0aWNlJTIwZmFjYWRlfGVufDF8fHx8MTc5NDAyODA3NHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1532456745301-b2c645d8b80d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8d2hpdGUlMjBsYXR0aWNlJTIwZmFjYWRlfGVufDF8fHx8MTc5NDAyODA3NHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:363419",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Mr. Bullock's Exhibition of Laplanders, February 8, 1822",
+      "credit": "Thomas Rowlandson",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/363419",
+      "page": "https://www.metmuseum.org/art/collection/search/363419",
+      "alt": "Mr. Bullock's Exhibition of Laplanders",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP884169.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP884169.jpg",
+      "local": "media/2026-11-07/image-09-2160.jpg"
+    },
+    {
+      "id": "unsplash:3GX4PJ-qces",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "person climbing stairs",
+      "credit": "Joseph Akbrud",
+      "creditUrl": "https://unsplash.com/@byteforbyte?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/person-climbing-stairs-3GX4PJ-qces?utm_source=daily_poster&utm_medium=referral",
+      "alt": "person climbing stairs",
+      "thumb": "https://images.unsplash.com/photo-1530299363930-f646660f8ad6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8bXVzZXVtJTIwaW50ZXJpb3IlMjBzdGFpcnN8ZW58MXx8fHwxNzk0MDI4MDc0fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1530299363930-f646660f8ad6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8bXVzZXVtJTIwaW50ZXJpb3IlMjBzdGFpcnN8ZW58MXx8fHwxNzk0MDI4MDc0fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    }
+  ],
+  "textures": [
+    {
+      "id": "unsplash:vS3idIiYxX0",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "white textured paper or plaster surface",
+      "credit": "Olga Thelavart",
+      "creditUrl": "https://unsplash.com/@olga_o?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-vS3idIiYxX0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "white textured paper or plaster surface",
+      "thumb": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8d2hpdGUlMjBwbGFzdGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTQwMjgwNzR8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8d2hpdGUlMjBwbGFzdGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTQwMjgwNzR8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:iwBPEw_Oq5k",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "blue textile in close up photography",
+      "credit": "engin akyurt",
+      "creditUrl": "https://unsplash.com/@enginakyurt?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/blue-textile-in-close-up-photography-iwBPEw_Oq5k?utm_source=daily_poster&utm_medium=referral",
+      "alt": "blue textile in close up photography",
+      "thumb": "https://images.unsplash.com/photo-1611242319342-ed0d65b1a0f0?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Ymx1ZXByaW50JTIwcGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDAyODA3NHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1611242319342-ed0d65b1a0f0?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Ymx1ZXByaW50JTIwcGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDAyODA3NHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:UjupleczBOY",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a black and white photo of a marble surface",
+      "credit": "Scott Webb",
+      "creditUrl": "https://unsplash.com/@scottwebb?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-black-and-white-photo-of-a-marble-surface-UjupleczBOY?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a black and white photo of a marble surface",
+      "thumb": "https://images.unsplash.com/photo-1566305977571-5666677c6e98?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8Y29uY3JldGUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDAyODA3NHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1566305977571-5666677c6e98?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8Y29uY3JldGUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDAyODA3NHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:UuBR5kbvt4Y",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a black and white photo of a concrete wall",
+      "credit": "Yan Ots",
+      "creditUrl": "https://unsplash.com/@yanots?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-black-and-white-photo-of-a-concrete-wall-UuBR5kbvt4Y?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a black and white photo of a concrete wall",
+      "thumb": "https://images.unsplash.com/photo-1521459467264-802e2ef3141f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Y29uY3JldGUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDAyODA3NHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1521459467264-802e2ef3141f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Y29uY3JldGUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDAyODA3NHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    }
+  ],
+  "objects": [
+    {
+      "name": "lattice sphere",
+      "material": "white painted steel",
+      "image": "media/2026-11-07/object-1.png",
+      "thumb": "media/2026-11-07/object-1-thumb.png",
+      "model": {
+        "title": "Geodesic Dome",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-ef81e30c7b96462eba5006a94ca6c548",
+        "licence": "CC Attribution",
+        "creator": "ronian2352",
+        "creatorUrl": "https://sketchfab.com/ronian2352"
+      },
+      "texture": {
+        "title": "Metal Plate",
+        "url": "https://polyhaven.com/a/metal_plate"
+      }
+    },
+    {
+      "name": "sailing ship model",
+      "material": "polished white marble",
+      "image": "media/2026-11-07/object-2.png",
+      "thumb": "media/2026-11-07/object-2-thumb.png",
+      "model": {
+        "title": "Sailboat",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-76d0b1e24be14d2f9a524bfce3001aeb",
+        "licence": "CC Attribution",
+        "creator": "Sergei",
+        "creatorUrl": "https://sketchfab.com/sergeif"
+      },
+      "texture": {
+        "title": "Concrete Wall 001",
+        "url": "https://polyhaven.com/a/concrete_wall_001"
+      }
+    },
+    {
+      "name": "cog wheel",
+      "material": "brushed brass",
+      "image": "media/2026-11-07/object-3.png",
+      "thumb": "media/2026-11-07/object-3-thumb.png",
+      "model": {
+        "title": "My first cogwheel",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-2ca68ac9b25d44629f4ec8a9a773d86b",
+        "licence": "CC Attribution",
+        "creator": "Comeback_PR",
+        "creatorUrl": "https://sketchfab.com/Comeback_PR"
+      },
+      "texture": {
+        "title": "Blue Metal Plate",
+        "url": "https://polyhaven.com/a/blue_metal_plate"
+      }
+    }
+  ]
+}

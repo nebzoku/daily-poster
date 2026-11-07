@@ -1,37 +1,37 @@
 {
-  "date": "2026-11-06",
-  "issue": 35,
-  "generatedAt": "2026-11-06T09:19:25.579Z",
+  "date": "2026-11-07",
+  "issue": 36,
+  "generatedAt": "2026-11-07T05:07:53.503Z",
   "colour": {
-    "name": "Violet",
-    "yesterday": "Magenta",
-    "tomorrow": "Indigo"
+    "name": "Indigo",
+    "yesterday": "Violet",
+    "tomorrow": "Blue"
   },
   "story": {
-    "title": "'Major milestone' as beavers released into Loch Ness area",
-    "summary": "A family of six beavers has been released into the Loch Ness area of the Scottish Highlands. They are the first recorded there in about 500 years, and conservationists are calling it a major milestone.",
-    "source": "BBC News",
-    "url": "https://www.bbc.co.uk/news/articles/ckjwe5xw0jy3o?at_medium=RSS&amp;at_campaign=rss",
-    "published": "2026-11-06T06:26:33.000Z",
-    "theme": "rewilding and Highland wildlife"
+    "title": "Powerhouse Parramatta opens this weekend – and it’s dazzling inside and out",
+    "summary": "Powerhouse Parramatta, a $915 million museum in western Sydney wrapped in a white lattice exoskeleton, opens to the public this Saturday. It launches with five new exhibitions and a 23-day festival, and has been nicknamed the \"Opera House of western Sydney\".",
+    "source": "The Guardian",
+    "url": "https://www.theguardian.com/culture/ng-interactive/2026/nov/06/powerhouse-parramatta-opening-festival",
+    "published": "2026-11-05T23:00:36.000Z",
+    "theme": "architecture and museums"
   },
   "headlines": [
-    "Five Centuries Later, the Builders Return",
-    "Something New Stirs in Ness",
-    "Teeth, Timber and Deep Water"
+    "A White Lattice Rises",
+    "Opera House of the West",
+    "Light Through the Lattice"
   ],
   "sublines": [
-    "A family of six beavers has been released near Loch Ness, the first recorded there in around 500 years.",
-    "Once hunted from the Highlands, beavers now return to shape streams, banks and wetlands around the famous loch.",
-    "The release is being called a major milestone for rewilding in Scotland, half a millennium after the species vanished."
+    "Powerhouse Parramatta, a $915 million museum in western Sydney, opens this Saturday with five new exhibitions.",
+    "Its white lattice exoskeleton gives western Sydney a new landmark, launched with a 23-day festival of events.",
+    "Dubbed the Opera House of western Sydney, the new museum opens its doors after years of building."
   ],
   "palette": {
     "name": "Vivid",
     "colours": [
-      "#8D2EEE",
-      "#E9DFFE",
-      "#736F7C",
-      "#25163B"
+      "#473CED",
+      "#DDE3FF",
+      "#6E717E",
+      "#161B40"
     ]
   },
   "always": [
@@ -39,13 +39,13 @@
     "#FFFFFF"
   ],
   "type": {
-    "id": "fraunces",
-    "display": "Fraunces",
-    "text": "Manrope",
-    "reason": "Fraunces has a soft, wonky, organic warmth that suits a quiet return of wildlife, while Manrope keeps the facts clean.",
-    "css": "https://fonts.googleapis.com/css2?family=Fraunces&family=Manrope&display=swap",
-    "displayUrl": "https://fonts.google.com/specimen/Fraunces",
-    "textUrl": "https://fonts.google.com/specimen/Manrope"
+    "id": "dm",
+    "display": "DM Serif Display",
+    "text": "DM Mono",
+    "reason": "The high-contrast serif gives a civic, museum-like gravity to the headline, while the mono subline reads like a technical architectural caption.",
+    "css": "https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Mono&display=swap",
+    "displayUrl": "https://fonts.google.com/specimen/DM+Serif+Display",
+    "textUrl": "https://fonts.google.com/specimen/DM+Mono"
   },
   "grid": {
     "format": "A-size",
@@ -63,232 +63,233 @@
   },
   "images": [
     {
-      "id": "unsplash:k3ti0_2YL-I",
+      "id": "unsplash:ejBwi-27Hx8",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "a large body of water sitting under a cloudy sky",
-      "credit": "Peter Robbins",
-      "creditUrl": "https://unsplash.com/@prphotography262?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/a-large-body-of-water-sitting-under-a-cloudy-sky-k3ti0_2YL-I?utm_source=daily_poster&utm_medium=referral",
-      "alt": "a large body of water sitting under a cloudy sky",
-      "thumb": "https://images.unsplash.com/photo-1693967308919-dfe3fe89aa2a?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8bWlzdHklMjBsb2NofGVufDF8fHx8MTc5Mzk1Njc2Nnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1693967308919-dfe3fe89aa2a?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8bWlzdHklMjBsb2NofGVufDF8fHx8MTc5Mzk1Njc2Nnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "Modern architectural interior with white lattice supports",
+      "credit": "Jason Karl",
+      "creditUrl": "https://unsplash.com/@eroberung_st?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/modern-architectural-interior-with-white-lattice-supports-ejBwi-27Hx8?utm_source=daily_poster&utm_medium=referral",
+      "alt": "Modern architectural interior with white lattice supports",
+      "thumb": "https://images.unsplash.com/photo-1777078464085-f9a00bf6d906?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8d2hpdGUlMjBsYXR0aWNlJTIwZmFjYWRlfGVufDF8fHx8MTc5NDAyODA3NHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1777078464085-f9a00bf6d906?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8d2hpdGUlMjBsYXR0aWNlJTIwZmFjYWRlfGVufDF8fHx8MTc5NDAyODA3NHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "met:417459",
+      "id": "met:270826",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Landscape with hills and a lake, ca. 1772",
-      "credit": "William Gilpin",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/417459",
-      "page": "https://www.metmuseum.org/art/collection/search/417459",
-      "alt": "Landscape with hills and a lake",
-      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP833811.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP833811.jpg",
-      "local": "media/2026-11-06/image-02-2160.jpg"
+      "title": "View in Central Hall, Art Treasures Exhibition, Manchester, 1857",
+      "credit": "Philip Henry Delamotte",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/270826",
+      "page": "https://www.metmuseum.org/art/collection/search/270826",
+      "alt": "View in Central Hall, Art Treasures Exhibition, Manchester",
+      "thumb": "https://images.metmuseum.org/CRDImages/ph/web-large/DP209234.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/ph/original/DP209234.jpg",
+      "local": "media/2026-11-07/image-02-2160.jpg"
     },
     {
-      "id": "unsplash:8Rwl3ya0Xg4",
+      "id": "unsplash:NzW5ytrqi34",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "A body of water surrounded by mountains and trees",
-      "credit": "Jake McGowan",
-      "creditUrl": "https://unsplash.com/@dwnsdp?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/a-body-of-water-surrounded-by-mountains-and-trees-8Rwl3ya0Xg4?utm_source=daily_poster&utm_medium=referral",
-      "alt": "A body of water surrounded by mountains and trees",
-      "thumb": "https://images.unsplash.com/photo-1720961257233-34a095a0fbf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8bWlzdHklMjBsb2NofGVufDF8fHx8MTc5Mzk1Njc2Nnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1720961257233-34a095a0fbf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8bWlzdHklMjBsb2NofGVufDF8fHx8MTc5Mzk1Njc2Nnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "white concrete building during daytime",
+      "credit": "Martin Woortman",
+      "creditUrl": "https://unsplash.com/@martfoto1?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/white-concrete-building-during-daytime-NzW5ytrqi34?utm_source=daily_poster&utm_medium=referral",
+      "alt": "white concrete building during daytime",
+      "thumb": "https://images.unsplash.com/photo-1617893423712-9667576ffc1e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8d2hpdGUlMjBsYXR0aWNlJTIwZmFjYWRlfGVufDF8fHx8MTc5NDAyODA3NHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1617893423712-9667576ffc1e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8d2hpdGUlMjBsYXR0aWNlJTIwZmFjYWRlfGVufDF8fHx8MTc5NDAyODA3NHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "met:371943",
+      "id": "unsplash:i3T0qN4gGBs",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "A man in a green polo shirt walking past white carved lattice walls in Bogor",
+      "credit": "Alim",
+      "creditUrl": "https://unsplash.com/@apyfz?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/man-walking-past-white-lattice-walls-i3T0qN4gGBs?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A man in a green polo shirt walking past white carved lattice walls in Bogor",
+      "thumb": "https://images.unsplash.com/photo-1790596858739-647a4dd5dcaf?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8d2hpdGUlMjBsYXR0aWNlJTIwZmFjYWRlfGVufDF8fHx8MTc5NDAyODA3NHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1790596858739-647a4dd5dcaf?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8d2hpdGUlMjBsYXR0aWNlJTIwZmFjYWRlfGVufDF8fHx8MTc5NDAyODA3NHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:699774",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Woodland Scene with Mountain Stream, 1790s",
-      "credit": "Johann Georg von Dillis",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/371943",
-      "page": "https://www.metmuseum.org/art/collection/search/371943",
-      "alt": "Woodland Scene with Mountain Stream",
-      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP803725.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP803725.jpg",
-      "local": "media/2026-11-06/image-04-2160.jpg"
+      "title": "The Forth Bridge, ca. 1890",
+      "credit": "A. Duprez",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/699774",
+      "page": "https://www.metmuseum.org/art/collection/search/699774",
+      "alt": "The Forth Bridge",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP861142.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP861142.jpg",
+      "local": "media/2026-11-07/image-05-2160.jpg"
     },
     {
-      "id": "unsplash:ir24Z8Kxr3s",
+      "id": "unsplash:oa46NUS8H-o",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "purple sky over lake with wooden dusk at sunset",
-      "credit": "Josh Duncan",
-      "creditUrl": "https://unsplash.com/@joshbduncan?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/purple-sky-over-lake-with-wooden-dusk-at-sunset-ir24Z8Kxr3s?utm_source=daily_poster&utm_medium=referral",
-      "alt": "purple sky over lake with wooden dusk at sunset",
-      "thumb": "https://images.unsplash.com/photo-1564092112576-539896333c07?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8dmlvbGV0JTIwZHVzayUyMGxha2V8ZW58MXx8fHwxNzkzOTU2NzY2fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1564092112576-539896333c07?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8dmlvbGV0JTIwZHVzayUyMGxha2V8ZW58MXx8fHwxNzkzOTU2NzY2fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "brown wooden staircase with white railings",
+      "credit": "Bilal Karim",
+      "creditUrl": "https://unsplash.com/@beekay?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/brown-wooden-staircase-with-white-railings-oa46NUS8H-o?utm_source=daily_poster&utm_medium=referral",
+      "alt": "brown wooden staircase with white railings",
+      "thumb": "https://images.unsplash.com/photo-1601582424192-b2f37561e20a?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8bXVzZXVtJTIwaW50ZXJpb3IlMjBzdGFpcnN8ZW58MXx8fHwxNzk0MDI4MDc0fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1601582424192-b2f37561e20a?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8bXVzZXVtJTIwaW50ZXJpb3IlMjBzdGFpcnN8ZW58MXx8fHwxNzk0MDI4MDc0fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:1Q578d01zas",
-      "source": "Unsplash",
-      "licence": "Unsplash License",
-      "title": "green leafed trees and body of water",
-      "credit": "Thomas Grams",
-      "creditUrl": "https://unsplash.com/@swutsh?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/green-leafed-trees-and-body-of-water-1Q578d01zas?utm_source=daily_poster&utm_medium=referral",
-      "alt": "green leafed trees and body of water",
-      "thumb": "https://images.unsplash.com/photo-1577269330970-d4f24a498e2f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8bWlzdHklMjBsb2NofGVufDF8fHx8MTc5Mzk1Njc2Nnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1577269330970-d4f24a498e2f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8bWlzdHklMjBsb2NofGVufDF8fHx8MTc5Mzk1Njc2Nnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
-    },
-    {
-      "id": "met:371903",
+      "id": "met:342267",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Rocky Landscape with a Lake, 1749–1822",
-      "credit": "Franz Kobell",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/371903",
-      "page": "https://www.metmuseum.org/art/collection/search/371903",
-      "alt": "Rocky Landscape with a Lake",
-      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP821572.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP821572.jpg",
-      "local": "media/2026-11-06/image-07-2160.jpg"
+      "title": "Architectural Drawing, 16th century",
+      "credit": "Anonymous, Italian, 16th century",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/342267",
+      "page": "https://www.metmuseum.org/art/collection/search/342267",
+      "alt": "Architectural Drawing",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP801907.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP801907.jpg",
+      "local": "media/2026-11-07/image-07-2160.jpg"
     },
     {
-      "id": "unsplash:Nvdo48sQNrk",
+      "id": "unsplash:hxi_yRxODNc",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "trees beside body of water",
-      "credit": "David Billings",
-      "creditUrl": "https://unsplash.com/@dav_billings?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/trees-beside-body-of-water-Nvdo48sQNrk?utm_source=daily_poster&utm_medium=referral",
-      "alt": "trees beside body of water",
-      "thumb": "https://images.unsplash.com/photo-1559626627-cb31b201e27f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8dmlvbGV0JTIwZHVzayUyMGxha2V8ZW58MXx8fHwxNzkzOTU2NzY2fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1559626627-cb31b201e27f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8dmlvbGV0JTIwZHVzayUyMGxha2V8ZW58MXx8fHwxNzkzOTU2NzY2fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "white concrete building facade pattern",
+      "credit": "bady abbas",
+      "creditUrl": "https://unsplash.com/@bady?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/white-concrete-building-facade-pattern-hxi_yRxODNc?utm_source=daily_poster&utm_medium=referral",
+      "alt": "white concrete building facade pattern",
+      "thumb": "https://images.unsplash.com/photo-1532456745301-b2c645d8b80d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8d2hpdGUlMjBsYXR0aWNlJTIwZmFjYWRlfGVufDF8fHx8MTc5NDAyODA3NHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1532456745301-b2c645d8b80d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8d2hpdGUlMjBsYXR0aWNlJTIwZmFjYWRlfGVufDF8fHx8MTc5NDAyODA3NHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:iNF9KBUYaxw",
-      "source": "Unsplash",
-      "licence": "Unsplash License",
-      "title": "Dark mountains silhouette a lake with a beautiful sunset glow",
-      "credit": "Caleb Sebastian",
-      "creditUrl": "https://unsplash.com/@csebastian123?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/dark-mountains-silhouette-a-lake-with-a-beautiful-sunset-glow-iNF9KBUYaxw?utm_source=daily_poster&utm_medium=referral",
-      "alt": "Dark mountains silhouette a lake with a beautiful sunset glow",
-      "thumb": "https://images.unsplash.com/photo-1779376854197-0398efb7d1dc?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8dmlvbGV0JTIwZHVzayUyMGxha2V8ZW58MXx8fHwxNzkzOTU2NzY2fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1779376854197-0398efb7d1dc?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8dmlvbGV0JTIwZHVzayUyMGxha2V8ZW58MXx8fHwxNzkzOTU2NzY2fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "id": "met:363419",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Mr. Bullock's Exhibition of Laplanders, February 8, 1822",
+      "credit": "Thomas Rowlandson",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/363419",
+      "page": "https://www.metmuseum.org/art/collection/search/363419",
+      "alt": "Mr. Bullock's Exhibition of Laplanders",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP884169.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP884169.jpg",
+      "local": "media/2026-11-07/image-09-2160.jpg"
     },
     {
-      "id": "unsplash:MaBmKLCdgLA",
+      "id": "unsplash:3GX4PJ-qces",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "boats on body of water near mountain during daytime",
-      "credit": "Zetong Li",
-      "creditUrl": "https://unsplash.com/@zetong?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/boats-on-body-of-water-near-mountain-during-daytime-MaBmKLCdgLA?utm_source=daily_poster&utm_medium=referral",
-      "alt": "boats on body of water near mountain during daytime",
-      "thumb": "https://images.unsplash.com/photo-1555816620-a167bcc7be51?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8dmlvbGV0JTIwZHVzayUyMGxha2V8ZW58MXx8fHwxNzkzOTU2NzY2fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1555816620-a167bcc7be51?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8dmlvbGV0JTIwZHVzayUyMGxha2V8ZW58MXx8fHwxNzkzOTU2NzY2fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "person climbing stairs",
+      "credit": "Joseph Akbrud",
+      "creditUrl": "https://unsplash.com/@byteforbyte?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/person-climbing-stairs-3GX4PJ-qces?utm_source=daily_poster&utm_medium=referral",
+      "alt": "person climbing stairs",
+      "thumb": "https://images.unsplash.com/photo-1530299363930-f646660f8ad6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8bXVzZXVtJTIwaW50ZXJpb3IlMjBzdGFpcnN8ZW58MXx8fHwxNzk0MDI4MDc0fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1530299363930-f646660f8ad6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8bXVzZXVtJTIwaW50ZXJpb3IlMjBzdGFpcnN8ZW58MXx8fHwxNzk0MDI4MDc0fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     }
   ],
   "textures": [
     {
-      "id": "unsplash:zGZYQQVmXw0",
+      "id": "unsplash:vS3idIiYxX0",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "white wall paint with black shadow",
-      "credit": "Kiwihug",
-      "creditUrl": "https://unsplash.com/@kiwihug?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/white-wall-paint-with-black-shadow-zGZYQQVmXw0?utm_source=daily_poster&utm_medium=referral",
-      "alt": "white wall paint with black shadow",
-      "thumb": "https://images.unsplash.com/photo-1615800098779-1be32e60cca3?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8aGFuZG1hZGUlMjBwYXBlciUyMHRleHR1cmV8ZW58MXx8fHwxNzkzOTU2NzY2fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1615800098779-1be32e60cca3?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8aGFuZG1hZGUlMjBwYXBlciUyMHRleHR1cmV8ZW58MXx8fHwxNzkzOTU2NzY2fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "white textured paper or plaster surface",
+      "credit": "Olga Thelavart",
+      "creditUrl": "https://unsplash.com/@olga_o?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-vS3idIiYxX0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "white textured paper or plaster surface",
+      "thumb": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8d2hpdGUlMjBwbGFzdGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTQwMjgwNzR8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8d2hpdGUlMjBwbGFzdGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTQwMjgwNzR8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:XXuVXLy5gHU",
+      "id": "unsplash:iwBPEw_Oq5k",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "gray concrete floor",
-      "credit": "František G.",
-      "creditUrl": "https://unsplash.com/@fandyus?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/gray-concrete-floor-XXuVXLy5gHU?utm_source=daily_poster&utm_medium=referral",
-      "alt": "gray concrete floor",
-      "thumb": "https://images.unsplash.com/photo-1575722290270-626b0208df99?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8c2xhdGUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5Mzk1Njc2Nnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1575722290270-626b0208df99?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8c2xhdGUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5Mzk1Njc2Nnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "blue textile in close up photography",
+      "credit": "engin akyurt",
+      "creditUrl": "https://unsplash.com/@enginakyurt?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/blue-textile-in-close-up-photography-iwBPEw_Oq5k?utm_source=daily_poster&utm_medium=referral",
+      "alt": "blue textile in close up photography",
+      "thumb": "https://images.unsplash.com/photo-1611242319342-ed0d65b1a0f0?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Ymx1ZXByaW50JTIwcGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDAyODA3NHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1611242319342-ed0d65b1a0f0?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Ymx1ZXByaW50JTIwcGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDAyODA3NHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:ZCLDVvQ9sXI",
+      "id": "unsplash:UjupleczBOY",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "brown and green tree trunk",
-      "credit": "Rowan Heuvel",
-      "creditUrl": "https://unsplash.com/@insolitus?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/brown-and-green-tree-trunk-ZCLDVvQ9sXI?utm_source=daily_poster&utm_medium=referral",
-      "alt": "brown and green tree trunk",
-      "thumb": "https://images.unsplash.com/photo-1596452712564-f2d3722a2e93?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8d2V0JTIwYmFyayUyMHRleHR1cmV8ZW58MXx8fHwxNzkzOTU2NzY2fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1596452712564-f2d3722a2e93?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8d2V0JTIwYmFyayUyMHRleHR1cmV8ZW58MXx8fHwxNzkzOTU2NzY2fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "a black and white photo of a marble surface",
+      "credit": "Scott Webb",
+      "creditUrl": "https://unsplash.com/@scottwebb?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-black-and-white-photo-of-a-marble-surface-UjupleczBOY?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a black and white photo of a marble surface",
+      "thumb": "https://images.unsplash.com/photo-1566305977571-5666677c6e98?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8Y29uY3JldGUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDAyODA3NHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1566305977571-5666677c6e98?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8Y29uY3JldGUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDAyODA3NHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:6a3nqQ1YwBw",
+      "id": "unsplash:UuBR5kbvt4Y",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "dark textured plaster wall",
-      "credit": "Annie Spratt",
-      "creditUrl": "https://unsplash.com/@anniespratt?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/dark-textured-plaster-wall-6a3nqQ1YwBw?utm_source=daily_poster&utm_medium=referral",
-      "alt": "dark textured plaster wall",
-      "thumb": "https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8c2xhdGUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5Mzk1Njc2Nnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8c2xhdGUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5Mzk1Njc2Nnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "a black and white photo of a concrete wall",
+      "credit": "Yan Ots",
+      "creditUrl": "https://unsplash.com/@yanots?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-black-and-white-photo-of-a-concrete-wall-UuBR5kbvt4Y?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a black and white photo of a concrete wall",
+      "thumb": "https://images.unsplash.com/photo-1521459467264-802e2ef3141f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Y29uY3JldGUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDAyODA3NHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1521459467264-802e2ef3141f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Y29uY3JldGUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDAyODA3NHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     }
   ],
   "objects": [
     {
-      "name": "tree stump",
-      "material": "weathered grey stone",
-      "image": "media/2026-11-06/object-1.png",
-      "thumb": "media/2026-11-06/object-1-thumb.png",
+      "name": "lattice sphere",
+      "material": "white painted steel",
+      "image": "media/2026-11-07/object-1.png",
+      "thumb": "media/2026-11-07/object-1-thumb.png",
       "model": {
-        "title": "Stylized tree stump",
+        "title": "Geodesic Dome",
         "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-04d51f5c2fb643aab3b93b451d1b77c9",
+        "url": "https://sketchfab.com/3d-models/none-ef81e30c7b96462eba5006a94ca6c548",
         "licence": "CC Attribution",
-        "creator": "Aartee",
-        "creatorUrl": "https://sketchfab.com/Aartee"
+        "creator": "ronian2352",
+        "creatorUrl": "https://sketchfab.com/ronian2352"
       },
       "texture": {
-        "title": "Cobblestone 04",
-        "url": "https://polyhaven.com/a/cobblestone_04"
+        "title": "Metal Plate",
+        "url": "https://polyhaven.com/a/metal_plate"
       }
     },
     {
-      "name": "axe",
-      "material": "rusted iron",
-      "image": "media/2026-11-06/object-2.png",
-      "thumb": "media/2026-11-06/object-2-thumb.png",
+      "name": "sailing ship model",
+      "material": "polished white marble",
+      "image": "media/2026-11-07/object-2.png",
+      "thumb": "media/2026-11-07/object-2-thumb.png",
       "model": {
-        "title": "Axe",
+        "title": "Sailboat",
         "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-5038f07f634345f5ac9bfa74fb821c97",
+        "url": "https://sketchfab.com/3d-models/none-76d0b1e24be14d2f9a524bfce3001aeb",
         "licence": "CC Attribution",
-        "creator": "Yury Misiyuk",
-        "creatorUrl": "https://sketchfab.com/Tim0"
+        "creator": "Sergei",
+        "creatorUrl": "https://sketchfab.com/sergeif"
       },
       "texture": {
-        "title": "Rusty Metal 04",
-        "url": "https://polyhaven.com/a/rusty_metal_04"
+        "title": "Concrete Wall 001",
+        "url": "https://polyhaven.com/a/concrete_wall_001"
       }
     },
     {
-      "name": "lighthouse",
-      "material": "weathered concrete",
-      "image": "media/2026-11-06/object-3.png",
-      "thumb": "media/2026-11-06/object-3-thumb.png",
+      "name": "cog wheel",
+      "material": "brushed brass",
+      "image": "media/2026-11-07/object-3.png",
+      "thumb": "media/2026-11-07/object-3-thumb.png",
       "model": {
-        "title": "Old Lighthouse",
+        "title": "My first cogwheel",
         "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-19e1ff049db74dc8b6173976417c1048",
+        "url": "https://sketchfab.com/3d-models/none-2ca68ac9b25d44629f4ec8a9a773d86b",
         "licence": "CC Attribution",
-        "creator": "Nirved Kamble",
-        "creatorUrl": "https://sketchfab.com/nirved"
+        "creator": "Comeback_PR",
+        "creatorUrl": "https://sketchfab.com/Comeback_PR"
       },
       "texture": {
-        "title": "Concrete Wall 007",
-        "url": "https://polyhaven.com/a/concrete_wall_007"
+        "title": "Blue Metal Plate",
+        "url": "https://polyhaven.com/a/blue_metal_plate"
       }
     }
   ]

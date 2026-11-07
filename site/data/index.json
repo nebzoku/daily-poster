@@ -1,5 +1,16 @@
 [
   {
+    "date": "2026-11-07",
+    "issue": 36,
+    "colour": "Indigo",
+    "headline": "A White Lattice Rises",
+    "bg": "#473CED",
+    "thumb": "https://images.unsplash.com/photo-1777078464085-f9a00bf6d906?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8d2hpdGUlMjBsYXR0aWNlJTIwZmFjYWRlfGVufDF8fHx8MTc5NDAyODA3NHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+    "display": "DM Serif Display",
+    "text": "DM Mono",
+    "css": "https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Mono&display=swap"
+  },
+  {
     "date": "2026-11-06",
     "issue": 35,
     "colour": "Violet",

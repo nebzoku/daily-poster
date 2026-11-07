@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Opera Type Machine · Daily Poster</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700;900&family=DM+Mono:wght@400;500&family=DM+Serif+Display&family=Inter+Tight:wght@300;400;600;800&family=Space+Grotesk:wght@400;500;700&family=Archivo:wght@400;600;900&family=Geist:wght@300;400;500;700&family=Geist+Mono:wght@400;500;700&family=Anton&family=Instrument+Serif&display=block">
+<style>
+  :root { --bg: #f4f4f2; --fg: #111; --muted: #8a8a86; --line: #e2e2de; --mono: "Geist Mono", ui-monospace, monospace; --sans: "Geist", system-ui, sans-serif; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--fg); font: 400 13px/1.4 var(--sans); }
+  .app { display: grid; grid-template-columns: 1fr 370px; height: 100vh; }
+  .stage { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px 24px 12px; min-width: 0; min-height: 0; }
+  .frame { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; width: 100%; }
+  canvas#cv { height: 100%; max-height: 100%; max-width: 100%; aspect-ratio: 1 / 1.41421; box-shadow: 0 1px 2px rgba(0,0,0,.08), 0 12px 40px rgba(0,0,0,.12); background: #000; }
+  .meter { display: flex; gap: 14px; align-items: center; margin-top: 12px; font: 500 11px/1 var(--mono); text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+  .meter i { display: inline-block; width: 46px; height: 6px; background: var(--line); position: relative; overflow: hidden; vertical-align: middle; margin-left: 6px; }
+  .meter i b { position: absolute; inset: 0 auto 0 0; background: var(--fg); width: 0; }
+  .meter .beat { width: 8px; height: 8px; border-radius: 50%; background: var(--line); }
+  .meter .beat.on { background: #473CED; }
+  .film { display: flex; gap: 8px; margin-top: 12px; min-height: 72px; max-width: 100%; overflow-x: auto; }
+  .film button { padding: 0; border: 1px solid var(--line); background: none; cursor: pointer; flex: 0 0 auto; }
+  .film button.on { outline: 2px solid var(--fg); outline-offset: 1px; }
+  .film img { display: block; height: 70px; }
+  .film .hint { font: 500 11px/70px var(--mono); color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+  aside { border-left: 1px solid var(--line); background: #fff; overflow-y: auto; padding: 18px 18px 40px; }
+  h1 { font: 500 11px/1.2 var(--mono); text-transform: uppercase; letter-spacing: .05em; margin: 0 0 4px; }
+  h1 + p { margin: 0 0 16px; color: var(--muted); font-size: 12px; }
+  h2 { font: 500 10.5px/1 var(--mono); text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin: 22px 0 10px; padding-top: 14px; border-top: 1px solid var(--line); }
+  .tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+  .tabs button, .seg button { font: 500 11px/1 var(--mono); text-transform: uppercase; letter-spacing: .04em; padding: 10px 6px; border: 1px solid var(--line); background: #fff; cursor: pointer; }
+  .tabs button.on, .seg button.on { background: var(--fg); color: #fff; border-color: var(--fg); }
+  .seg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-bottom: 6px; }
+  .row { display: grid; grid-template-columns: 100px 1fr 38px; align-items: center; gap: 8px; margin: 7px 0; }
+  .row label { font-size: 12px; }
+  .row output { font: 400 11px/1 var(--mono); color: var(--muted); text-align: right; }
+  input[type=range] { width: 100%; accent-color: var(--fg); }
+  select, textarea, input[type=text] { width: 100%; font: 400 12px/1.4 var(--sans); padding: 6px 8px; border: 1px solid var(--line); background: #fff; border-radius: 0; }
+  textarea { height: 120px; resize: vertical; font-family: var(--mono); font-size: 11px; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .btn { font: 500 11px/1 var(--mono); text-transform: uppercase; letter-spacing: .04em; padding: 11px 10px; border: 1px solid var(--fg); background: #fff; color: var(--fg); cursor: pointer; text-align: center; }
+  .btn.solid { background: var(--fg); color: #fff; }
+  .btn.rec { border-color: #d02b2b; color: #d02b2b; }
+  .btn.rec.on { background: #d02b2b; color: #fff; }
+  .file { display: block; border: 1px dashed #bdbdb8; padding: 14px 10px; text-align: center; cursor: pointer; font-size: 12px; }
+  .file.drop { background: #f4f4f2; }
+  .file b { display: block; font: 500 11px/1.3 var(--mono); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 4px; }
+  .note { font-size: 11.5px; color: var(--muted); margin: 8px 0 0; }
+  .note a { color: var(--fg); }
+  .swatches { display: flex; gap: 4px; }
+  .swatches button { width: 22px; height: 22px; border: 1px solid var(--line); cursor: pointer; padding: 0; }
+  .colour { display: grid; grid-template-columns: 100px 34px 1fr; align-items: center; gap: 8px; margin: 8px 0; }
+  .colour input[type=color] { width: 34px; height: 26px; padding: 0; border: 1px solid var(--line); background: none; }
+  .check { display: flex; gap: 8px; align-items: center; margin: 7px 0; font-size: 12px; }
+  .labels { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 6px 0 4px; }
+  audio { width: 100%; margin-top: 8px; height: 32px; }
+  .only-stretch { display: none; } body.stretch .only-stretch { display: block; } body.stretch .only-field { display: none; }
+  .overlay { position: fixed; inset: 0; background: rgba(0,0,0,.75); display: none; align-items: center; justify-content: center; flex-direction: column; gap: 12px; z-index: 10; color: #fff; font: 500 12px/1.4 var(--mono); }
+  .overlay.on { display: flex; }
+  .overlay img, .overlay video { max-height: 80vh; max-width: 80vw; }
+  .toast { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); background: var(--fg); color: #fff; padding: 9px 14px; font: 500 11px/1 var(--mono); text-transform: uppercase; letter-spacing: .04em; opacity: 0; transition: opacity .25s; pointer-events: none; }
+  .toast.on { opacity: 1; }
+  @media (max-width: 900px) { .app { grid-template-columns: 1fr; height: auto; } .stage { height: 80vh; } aside { border-left: 0; border-top: 1px solid var(--line); } }
+</style>
+</head>
+<body>
+<div class="app">
+  <main class="stage">
+    <div class="frame"><canvas id="cv" width="1080" height="1527"></canvas></div>
+    <div class="meter">
+      <span>Level <i><b id="m-lvl"></b></i></span>
+      <span>Low <i><b id="m-low"></b></i></span>
+      <span>Mid <i><b id="m-mid"></b></i></span>
+      <span>High <i><b id="m-high"></b></i></span>
+      <span class="beat" id="m-beat"></span>
+      <span id="m-bpm">idle</span>
+    </div>
+    <div class="film" id="film"><span class="hint">Captured frames appear here</span></div>
+  </main>
+
+  <aside>
+    <h1>Opera Type Machine</h1>
+    <p><span id="briefLine">Daily Poster No. 036 · Sat 7 Nov · Indigo</span>. Thousands of small letters, moved by the music: the low, mid and high sound each swell a slow wave across the page, and the pace ebbs and flows with how loud it is.</p>
+
+    <div class="tabs" id="tabs"></div>
+
+    <h2>Sound</h2>
+    <label class="file" id="drop"><input type="file" id="file" accept="audio/*" hidden><b id="file-name">Upload an opera track</b>MP3, WAV or M4A. Drop it here or click.</label>
+    <audio id="audio" controls></audio>
+    <div class="two" style="margin-top:8px">
+      <button class="btn" id="demo">Use the demo aria</button>
+      <button class="btn" id="restart">Restart</button>
+    </div>
+    <p class="note">Public-domain opera: <a href="https://musopen.org/music/?genre=opera" target="_blank" rel="noopener">Musopen</a> or the <a href="https://archive.org/details/georgeblood" target="_blank" rel="noopener">Internet Archive 78s</a>. Each poster keeps its own track.</p>
+
+    <h2>Style</h2>
+    <div class="seg" id="modes"><button data-m="wave">Wave</button><button data-m="spectrum">Spectrum</button><button data-m="stretch">Stretch</button></div>
+    <p class="note" id="mode-note"></p>
+
+    <h2>Motion</h2>
+    <div id="motion"></div>
+
+    <h2 class="only-field">Waves</h2>
+    <div id="field" class="only-field"></div>
+
+    <h2 class="only-field">Shape (optional)</h2>
+    <div class="only-field">
+      <div class="seg" id="shapeSrc"><button data-k="none">Off</button><button data-k="dome">Spinning dome</button><button data-k="render" id="objBtn">Today's object</button></div>
+      <label class="file" id="shapeDrop"><input type="file" id="shapeFile" accept="image/*,video/*" hidden><b id="shapeName">Upload an image or video</b>Any picture or clip. It's turned black and white and the type fills it.</label>
+      <div style="display:grid;grid-template-columns:96px 1fr;gap:10px;align-items:start;margin-top:10px">
+        <canvas id="maskView" width="96" height="136" style="width:96px;height:136px;background:#000;border:1px solid var(--line)"></canvas>
+        <div>
+          <div class="row" style="grid-template-columns:60px 1fr;margin-top:0"><label>Read</label><select id="shapeRead"><option value="auto">Auto</option><option value="lum">Brightness</option><option value="alpha">Cut-out (transparency)</option></select></div>
+          <label class="check"><input type="checkbox" id="shapeInvert"> Invert (dark is the shape)</label>
+          <p class="note" style="margin-top:4px">White in the preview is where the type gathers.</p>
+        </div>
+      </div>
+      <div id="shapeBox"></div>
+    </div>
+
+    <h2 class="only-field">Legible headline</h2>
+    <div id="legibleBox" class="only-field"></div>
+    <p class="note only-field">Calm bands where the waves settle and a headline reads, in the peak colour. They drift slowly up and down the page; loud passages wash them out, quiet ones bring them back.</p>
+
+    <h2>Type</h2>
+    <div id="type"></div>
+    <div id="stretch" class="only-stretch"></div>
+    <div class="row"><label>Typeface</label><select id="font"></select><span></span></div>
+    <div class="row"><label>Weight</label><select id="weight"><option>300</option><option>400</option><option>500</option><option>700</option><option>900</option></select><span></span></div>
+    <div class="row"><label>Case</label><select id="case"><option value="upper">Uppercase</option><option value="asis">As written</option></select><span></span></div>
+    <label class="check"><input type="checkbox" id="useSubs" checked> Mix the sublines in</label>
+
+    <h2>Animate</h2>
+    <p class="note" style="margin-top:0">Move a setting back and forth between two values. Ripple makes the change roll down the page row by row, so the lines widen and tighten in a wave.</p>
+    <div id="lanes"></div>
+
+    <h2>Words</h2>
+    <textarea id="words" spellcheck="false"></textarea>
+    <p class="note">One line each: headlines first, then sublines. Each poster leads with a different headline.</p>
+
+    <h2>Colour</h2>
+    <div class="colour"><label>Background</label><input type="color" id="bg"><div class="swatches" id="sw-bg"></div></div>
+    <div class="colour"><label>Type</label><input type="color" id="fg"><div class="swatches" id="sw-fg"></div></div>
+    <div class="colour"><label>Peaks</label><input type="color" id="accent"><div class="swatches" id="sw-accent"></div></div>
+    <div id="colourSliders"></div>
+
+    <h2>Corner labels</h2>
+    <label class="check"><input type="checkbox" id="labOn" checked> Show labels</label>
+    <div class="labels"><input type="text" id="labTL"><input type="text" id="labTR"><input type="text" id="labBL"><input type="text" id="labBR"></div>
+    <div class="row"><label>Typeface</label><select id="labFont"></select><span></span></div>
+    <div class="row"><label>Weight</label><select id="labWeight"><option>300</option><option>400</option><option>500</option><option>700</option><option>900</option></select><span></span></div>
+    <div id="labelSliders"></div>
+    <div class="colour"><label>Colour</label><input type="color" id="labColour"><div class="swatches" id="sw-labColour"></div></div>
+    <label class="check"><input type="checkbox" id="labUpper" checked> Uppercase</label>
+
+    <h2>Output</h2>
+    <div class="two">
+      <button class="btn" id="freeze">Freeze</button>
+      <button class="btn" id="capture">Capture frame</button>
+    </div>
+    <div class="row" style="margin-top:12px"><label>Size</label><select id="size"><option value="2160">2160 × 3055 (archive)</option><option value="3508">3508 × 4961 (A3, 300 dpi)</option><option value="4961">4961 × 7016 (A2, 300 dpi)</option></select><span></span></div>
+    <div class="row"><label>Video</label><select id="vq"><option value="12000000">High (about 90MB a minute)</option><option value="5000000" selected>Standard (about 38MB a minute)</option><option value="2500000">Small (about 19MB a minute)</option></select><span></span></div>
+    <div class="row"><label>Preview</label><select id="quality"><option value="1">Full detail</option><option value="0.75" selected>Balanced</option><option value="0.5">Fastest</option></select><span></span></div>
+    <div class="two">
+      <button class="btn solid" id="export">Export PNG</button>
+      <button class="btn rec" id="record">Record video</button>
+    </div>
+    <p class="note">Export saves the frame on screen (live, frozen, or a captured frame you've picked) at full size, whatever the preview setting. If the motion stutters (see the fps reading under the poster), pick a faster preview; video records at the preview size. Video records the motion with the sound.</p>
+  </aside>
+</div>
+<div class="overlay" id="overlay"><span id="ov-text"></span><div id="ov-media"></div><button class="btn" id="ov-close" style="background:#fff">Close</button></div>
+<div class="toast" id="toast"></div>
+
+<script type="module">
+// ---------- Today's brief ----------
+// Built in as a fallback; on dailyposter.design the page loads the day's brief instead
+// (?d=YYYY-MM-DD for another day), so the words, colours and typefaces always match it.
+const BRIEF = {
+  issue: "036", date: "Sat 7 Nov", source: "The Guardian", colour: "Indigo", display: "DM Serif Display", text: "DM Mono", object: "dome.png", objectName: "lattice sphere",
+  headlines: ["A White Lattice Rises", "Opera House of the West", "Light Through the Lattice"],
+  sublines: [
+    "Powerhouse Parramatta, a $915 million museum in western Sydney, opens this Saturday with five new exhibitions.",
+    "Its white lattice exoskeleton gives western Sydney a new landmark, launched with a 23-day festival of events.",
+    "Dubbed the Opera House of western Sydney, the new museum opens its doors after years of building.",
+  ],
+  palette: ["#473CED", "#DDE3FF", "#6E717E", "#161B40"],
+};
+await (async () => {
+  const day = new URLSearchParams(location.search).get("d"), base = new URL("../", location.href);
+  try {
+    const r = await fetch(new URL(`data/${/^\d{4}-\d{2}-\d{2}$/.test(day || "") ? day : "latest"}.json`, base));
+    if (!r.ok) return;
+    const b = await r.json();
+    const fmt = new Intl.DateTimeFormat("en-GB", { weekday: "short", day: "numeric", month: "short", timeZone: "UTC" }).format(new Date(b.date + "T12:00:00Z")).replace(",", "");
+    Object.assign(BRIEF, { issue: String(b.issue).padStart(3, "0"), date: fmt, source: b.story.source, colour: b.colour.name,
+      headlines: b.headlines, sublines: b.sublines, palette: b.palette.colours, display: b.type.display, text: b.type.text,
+      object: b.objects?.[0] ? new URL(b.objects[0].thumb, base).href : null, objectName: b.objects?.[0]?.name || "" });
+    if (b.type.css) { const l = document.createElement("link"); l.rel = "stylesheet"; l.href = b.type.css; document.head.append(l); }
+  } catch { /* offline or inside Claude: use the built-in brief */ }
+})();
+document.getElementById("briefLine").textContent = `Daily Poster No. ${BRIEF.issue} · ${BRIEF.date} · ${BRIEF.colour}`;
+document.getElementById("objBtn").textContent = BRIEF.object ? "Today's object" : "No object today";
+const FONTS = [...new Set([BRIEF.text, BRIEF.display, "DM Sans", "Inter Tight", "Space Grotesk", "Archivo", "Geist", "Geist Mono", "DM Mono", "DM Serif Display", "Instrument Serif", "Anton"])];
+
+// ---------- Settings ----------
+const MOTION = [
+  ["speed", "Speed", 0, 3, 0.01, 0.45],
+  ["audio", "Music influence", 0, 2.5, 0.01, 1.2],
+  ["response", "Smoothing (s)", 0.1, 6, 0.05, 2.2],
+  ["beat", "Beat ripple", 0, 2, 0.01, 0],
+  ["drift", "Text drift", 0, 3, 0.01, 0.25],
+];
+const FIELD = [
+  ["amp", "Wave height", 0, 0.3, 0.001, 0.09],
+  ["flow", "Swirl", 0, 1, 0.01, 0.45],
+  ["freq", "Wave count", 0.2, 8, 0.01, 1.2],
+  ["slant", "Diagonal", -3, 3, 0.01, 0.8],
+  ["stretchY", "Letter stretch", 0, 4, 0.01, 0.6],
+  ["sizeMod", "Size swell", 0, 2, 0.01, 0.25],
+];
+const TYPE = [
+  ["size", "Type size", 4, 160, 1, 13],
+  ["leading", "Leading", 0.5, 3, 0.01, 1.05],
+  ["tracking", "Tracking", -0.1, 1.5, 0.005, 0.06],
+  ["bleed", "Bleed", -0.08, 0.2, 0.001, 0.03],
+];
+const STRETCH = [
+  ["rows", "Rows", 1, 40, 1, 14],
+  ["chunk", "Chunk length", 4, 60, 1, 18],
+  ["letterStretch", "Letter stretch", 0, 1.6, 0.01, 0.65],
+  ["rowStretch", "Row stretch", 0, 1.6, 0.01, 0.75],
+];
+const COLOURS = [["accentAmt", "Peak amount", 0, 1, 0.01, 0.12]];
+const LABELS = [["labSize", "Size", 8, 60, 1, 18], ["labTrack", "Tracking", -0.1, 1, 0.005, 0.04]];
+const LEGIBLE = [
+  ["legible", "Hold", 0, 1, 0.01, 0.85],
+  ["calmRows", "Bands", 0, 3, 1, 1],
+  ["calmSize", "Band height", 1, 30, 1, 7],
+  ["surge", "Loud washes it", 0, 1, 0.01, 0.55],
+];
+const SHAPE = [
+  ["threshold", "Threshold", 0, 1, 0.01, 0.35],
+  ["soft", "Edge softness", 0, 0.5, 0.01, 0.12],
+  ["thicken", "Thicken", 0, 8, 1, 1],
+  ["outside", "Type outside", 0, 1, 0.01, 0.06],
+  ["hold", "Shape holds still", 0, 1, 0.01, 0.55],
+  ["around", "Flow around edges", 0, 1, 0.01, 0.2],
+  ["sizeBy", "Size by shape", 0, 1.5, 0.01, 0.5],
+  ["shapeScale", "Scale", 0.2, 2.5, 0.01, 1.2],
+  ["shapeX", "Move across", -0.6, 0.6, 0.005, 0],
+  ["shapeY", "Move up/down", -0.6, 0.6, 0.005, 0],
+  ["spin", "Spin (dome)", -1, 1, 0.01, 0.18],
+  ["lineW", "Strut weight (dome)", 1, 14, 0.5, 5],
+];
+const SLIDERS = [...MOTION, ...FIELD, ...LEGIBLE, ...SHAPE, ...TYPE, ...STRETCH, ...COLOURS, ...LABELS];
+const defaults = () => {
+  const s = {}; for (const [k, , , , , v] of SLIDERS) s[k] = v;
+  return Object.assign(s, {
+    mode: "wave", case: "upper", font: BRIEF.text, weight: "400", useSubs: true,
+    bg: BRIEF.palette[3], fg: BRIEF.palette[0], accent: BRIEF.palette[1],
+    words: [...BRIEF.headlines, ...BRIEF.sublines].join("\n"),
+    labOn: true, labTL: "Daily Poster", labTR: BRIEF.date, labBL: "No. " + BRIEF.issue, labBR: BRIEF.source,
+    shapeInvert: false, shapeRead: "auto",
+    lanes: [
+      { on: true, key: "tracking", from: 0, to: 0.9, driver: "beats", len: 16, ripple: 0.45, curve: "linger" },
+      { on: false, key: "size", from: 8, to: 26, driver: "loud", len: 8, ripple: 0.6, curve: "smooth" },
+      { on: false, key: "leading", from: 0.8, to: 1.6, driver: "time", len: 12, ripple: 0.3, curve: "smooth" },
+    ],
+    labFont: BRIEF.text, labWeight: "500", labColour: BRIEF.palette[1], labUpper: true,
+  });
+};
+const slots = [0, 1, 2].map((i) => ({ s: defaults(), focus: i, track: null, trackName: "", phase: i * 3.1, scroll: 0, captures: [], hist: [], shape: { kind: "none", name: "" }, spinA: 0 }));
+let cur = 0;
+const S = () => slots[cur].s;
+
+// ---------- UI ----------
+const $ = (id) => document.getElementById(id);
+const fmt = (v) => (Math.abs(v) >= 10 || Number.isInteger(v) ? String(v) : v.toFixed(2));
+function slider(box, [key, label, min, max, step]) {
+  const row = document.createElement("div"); row.className = "row";
+  row.innerHTML = `<label for="r-${key}">${label}</label><input type="range" id="r-${key}" min="${min}" max="${max}" step="${step}"><output id="o-${key}"></output>`;
+  box.append(row);
+  const inp = row.querySelector("input"), out = row.querySelector("output");
+  inp.addEventListener("input", () => { S()[key] = +inp.value; out.textContent = fmt(+inp.value); });
+}
+MOTION.forEach((d) => slider($("motion"), d)); FIELD.forEach((d) => slider($("field"), d)); LEGIBLE.forEach((d) => slider($("legibleBox"), d)); SHAPE.forEach((d) => slider($("shapeBox"), d)); TYPE.forEach((d) => slider($("type"), d));
+STRETCH.forEach((d) => slider($("stretch"), d)); COLOURS.forEach((d) => slider($("colourSliders"), d)); LABELS.forEach((d) => slider($("labelSliders"), d));
+for (const id of ["font", "labFont"]) $(id).innerHTML = FONTS.map((f) => `<option>${f}</option>`).join("");
+const SW = [...BRIEF.palette, "#000000", "#FFFFFF"];
+for (const id of ["bg", "fg", "accent", "labColour"]) {
+  $(id).addEventListener("input", (e) => { S()[id] = e.target.value; });
+  $("sw-" + id).innerHTML = SW.map((c) => `<button style="background:${c}" data-c="${c}" title="${c}"></button>`).join("");
+  $("sw-" + id).addEventListener("click", (e) => { const c = e.target.dataset.c; if (c) { S()[id] = c; $(id).value = c.toLowerCase(); } });
+}
+for (const id of ["case", "font", "weight", "labFont", "labWeight", "shapeRead"]) $(id).addEventListener("change", (e) => { S()[id] = e.target.value; loadFonts(); });
+for (const id of ["useSubs", "labOn", "labUpper", "shapeInvert"]) $(id).addEventListener("change", (e) => { S()[id] = e.target.checked; });
+for (const id of ["words", "labTL", "labTR", "labBL", "labBR"]) $(id).addEventListener("input", (e) => { S()[id] = e.target.value; flowCache = null; });
+const NOTES = { wave: "Small type laid in rows across the whole page. Each row rides three waves, one per part of the sound, so the lines bend, bunch and swell as it plays.",
+  spectrum: "Each row is a moment of the sound, newest at the top, sliding down the page. Across each row the letters stand tall where the music is loud at that pitch: low notes on the left, high on the right.",
+  stretch: "Big type, rows that stretch to fill the page, letters squeezed and widened by the music." };
+$("modes").addEventListener("click", (e) => { const m = e.target.dataset.m; if (m) { S().mode = m; syncMode(); } });
+function syncMode() { const m = S().mode; [...$("modes").children].forEach((b) => b.classList.toggle("on", b.dataset.m === m)); document.body.classList.toggle("stretch", m === "stretch"); $("mode-note").textContent = NOTES[m]; }
+
+$("tabs").innerHTML = slots.map((_, i) => `<button data-i="${i}">Poster 0${i + 1}</button>`).join("");
+$("tabs").addEventListener("click", (e) => { const i = e.target.dataset.i; if (i != null) selectSlot(+i); });
+function syncUI() {
+  const s = S();
+  for (const [k] of SLIDERS) { $("r-" + k).value = s[k]; $("o-" + k).textContent = fmt(s[k]); }
+  for (const id of ["case", "font", "weight", "labFont", "labWeight", "words", "labTL", "labTR", "labBL", "labBR"]) $(id).value = s[id];
+  for (const id of ["useSubs", "labOn", "labUpper", "shapeInvert"]) $(id).checked = s[id];
+  $("shapeRead").value = s.shapeRead; syncShapeUI();
+  for (const id of ["bg", "fg", "accent", "labColour"]) $(id).value = s[id].toLowerCase();
+  [...$("tabs").children].forEach((b, i) => b.classList.toggle("on", i === cur));
+  $("file-name").textContent = slots[cur].trackName || "Upload an opera track";
+  syncMode(); renderFilm(); loadFonts(); renderLanes();
+}
+function selectSlot(i) {
+  if (i === cur) return;
+  audio.pause(); cur = i; viewing = null; frozen = false; $("freeze").textContent = "Freeze"; flowCache = null;
+  const t = slots[cur].track; if (t) audio.src = t; else audio.removeAttribute("src"); audio.load();
+  syncUI();
+}
+
+// ---------- Animate ----------
+const ANIMATABLE = [...TYPE, ...FIELD, ...MOTION.filter(([k]) => k !== "response"), ...LEGIBLE.filter(([k]) => k !== "calmRows"), ...SHAPE, ...LABELS, ...STRETCH.filter(([k]) => k !== "rows")];
+const DEF = Object.fromEntries(ANIMATABLE.map((d) => [d[0], d]));
+const DRIVERS = { beats: "In beats (tempo)", time: "In seconds", loud: "Loudness", low: "Low notes", mid: "Mid notes", high: "High notes" };
+function laneHTML(L, j) {
+  const d = DEF[L.key];
+  return `<div class="lane" data-j="${j}" style="border:1px solid var(--line);padding:8px 10px;margin:8px 0">
+    <div style="display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:center"><input type="checkbox" data-f="on" ${L.on ? "checked" : ""}>
+      <select data-f="key">${ANIMATABLE.map(([k, l]) => `<option value="${k}" ${k === L.key ? "selected" : ""}>${LABELS.some((x) => x[0] === k) ? "Label " + l.toLowerCase() : l}</option>`).join("")}</select></div>
+    <div class="row"><label>From</label><input type="range" data-f="from" min="${d[2]}" max="${d[3]}" step="${d[4]}" value="${L.from}"><output>${fmt(L.from)}</output></div>
+    <div class="row"><label>To</label><input type="range" data-f="to" min="${d[2]}" max="${d[3]}" step="${d[4]}" value="${L.to}"><output>${fmt(L.to)}</output></div>
+    <div class="row"><label>Driven by</label><select data-f="driver">${Object.entries(DRIVERS).map(([k, l]) => `<option value="${k}" ${k === L.driver ? "selected" : ""}>${l}</option>`).join("")}</select><span></span></div>
+    <div class="row" ${L.driver === "beats" || L.driver === "time" ? "" : 'style="display:none"'}><label>${L.driver === "beats" ? "Beats per cycle" : "Seconds per cycle"}</label><input type="range" data-f="len" min="1" max="64" step="1" value="${L.len}"><output>${L.len}</output></div>
+    <div class="row"><label>Ripple</label><input type="range" data-f="ripple" min="0" max="1" step="0.01" value="${L.ripple}"><output>${fmt(L.ripple)}</output></div>
+    <div class="row"><label>Curve</label><select data-f="curve"><option value="smooth" ${L.curve === "smooth" ? "selected" : ""}>Smooth</option><option value="linger" ${L.curve === "linger" ? "selected" : ""}>Linger at ends</option></select><span></span></div>
+  </div>`;
+}
+function renderLanes() { $("lanes").innerHTML = S().lanes.map(laneHTML).join(""); }
+function laneEvent(e) {
+  const box = e.target.closest(".lane"); if (!box) return; const L = S().lanes[+box.dataset.j], f = e.target.dataset.f; if (!f) return;
+  if (f === "on") L.on = e.target.checked;
+  else if (f === "key" || f === "driver" || f === "curve") {
+    L[f] = e.target.value;
+    if (f === "key") { const d = DEF[L.key], cur = S()[L.key]; L.from = d[2] + (d[3] - d[2]) * 0.1; L.to = d[2] + (d[3] - d[2]) * 0.6; if (cur >= d[2] && cur <= d[3]) L.from = cur; }
+    if (e.type === "change") renderLanes();
+  } else { L[f] = +e.target.value; const o = e.target.nextElementSibling; if (o) o.textContent = fmt(L[f]); }
+}
+$("lanes").addEventListener("input", laneEvent); $("lanes").addEventListener("change", laneEvent);
+// Each lane keeps a short history so a ripple can show what it was a moment ago further down the page.
+let tempo = 90;
+function stepLanes(sl, dt, playing) {
+  if (!sl.lanes) sl.lanes = [];
+  sl.clock = (sl.clock || 0) + dt;
+  const want = playing && bpm >= 50 && bpm <= 190 ? bpm : 90; tempo += (want - tempo) * (1 - Math.exp(-dt / 3));
+  sl.s.lanes.forEach((L, j) => {
+    const st = sl.lanes[j] || (sl.lanes[j] = { p: 0, hist: [] });
+    let v;
+    if (L.driver === "beats") { st.p += dt * (tempo / 60) / Math.max(1, L.len); v = 0.5 - 0.5 * Math.cos(st.p * Math.PI * 2); }
+    else if (L.driver === "time") { st.p += dt / Math.max(1, L.len); v = 0.5 - 0.5 * Math.cos(st.p * Math.PI * 2); }
+    else { const x = { loud: F.slvl, low: F.slow, mid: F.smid, high: F.shigh }[L.driver]; v = Math.max(0, Math.min(1, (x - 0.25) / 0.75)); }
+    st.hist.push([sl.clock, v]); while (st.hist.length > 2 && st.hist[0][0] < sl.clock - 9) st.hist.shift();
+  });
+}
+function laneAt(st, t) { const h = st.hist; if (!h.length) return 0; for (let i = h.length - 1; i >= 0; i--) if (h[i][0] <= t) return h[i][1]; return h[0][1]; }
+function applyLanes(sl, sCopy) {
+  const rowVals = {};
+  (sl.s.lanes || []).forEach((L, j) => {
+    const st = sl.lanes && sl.lanes[j]; if (!L.on || !st) return;
+    const ease = (v) => (L.curve === "linger" ? v * v * (3 - 2 * v) : v), val = (v) => L.from + (L.to - L.from) * ease(v);
+    sCopy[L.key] = val(laneAt(st, sl.clock));
+    if (L.ripple > 0 && (L.key === "size" || L.key === "tracking" || L.key === "leading")) {
+      const a = new Float32Array(48); for (let q = 0; q < a.length; q++) a[q] = val(laneAt(st, sl.clock - (q / (a.length - 1)) * L.ripple * 8));
+      rowVals[L.key] = a;
+    }
+  });
+  return rowVals;
+}
+
+// ---------- Fonts and glyph tiles ----------
+// Letters are drawn once into small tiles, then stamped many thousands of times a frame.
+function loadFonts() { const s = S(); for (const [f, w] of [[s.font, s.weight], [s.labFont, s.labWeight]]) document.fonts.load(`${w} 100px "${f}"`).then(clearGlyphs); }
+const metrics = new Map();
+const mctx = document.createElement("canvas").getContext("2d");
+function metric(font, weight, ch) {
+  const k = `${font}|${weight}|${ch}`; let m = metrics.get(k);
+  if (!m) { mctx.font = `${weight} 200px "${font}"`; const t = mctx.measureText(ch === " " ? " " : ch), H = mctx.measureText("H"), g = mctx.measureText("gjpqy");
+    m = { adv: Math.max(1, t.width) / 200, cap: H.actualBoundingBoxAscent / 200, desc: g.actualBoundingBoxDescent / 200 }; metrics.set(k, m); }
+  return m;
+}
+function tile(font, weight, px, colour, ch) { return atlas(font, weight, px, colour, ch).map.get(ch); }
+// One strip per font, size and colour holding every letter in the text, so the GPU draws from a single texture.
+const atlases = new Map();
+function atlas(font, weight, px, colour, chars) {
+  const set = [...new Set(chars)].sort().join(""), k = `${font}|${weight}|${px}|${colour}|${set}`;
+  let a = atlases.get(k);
+  if (!a) {
+    if (atlases.size > 120) atlases.clear();
+    const pad = Math.ceil(px * 0.25), h = Math.ceil(px * 1.3 + pad * 2), map = new Map();
+    let x = 0; const cells = [...set].map((ch) => { const m = metric(font, weight, ch), w = Math.ceil(m.adv * px + pad * 2); const cell = { sx: x, w, h, pad, base: pad + px, adv: m.adv * px }; x += w + 2; map.set(ch, cell); return [ch, cell]; });
+    const c = document.createElement("canvas"); c.width = Math.max(1, x); c.height = h;
+    const g = c.getContext("2d"); g.font = `${weight} ${px}px "${font}"`; g.fillStyle = colour; g.textBaseline = "alphabetic";
+    for (const [ch, cell] of cells) g.fillText(ch, cell.sx + pad, cell.base);
+    for (const cell of map.values()) cell.c = c;
+    a = { c, map }; atlases.set(k, a);
+  }
+  return a;
+}
+function clearGlyphs() { atlases.clear(); metrics.clear(); }
+document.fonts.addEventListener("loadingdone", clearGlyphs);
+
+// ---------- Audio ----------
+const audio = $("audio");
+let actx = null, analyser = null, recDest = null, freq = null, prevMag = null;
+function ensureAudio() {
+  if (actx) return;
+  actx = new (window.AudioContext || window.webkitAudioContext)();
+  const src = actx.createMediaElementSource(audio);
+  analyser = actx.createAnalyser(); analyser.fftSize = 2048; analyser.smoothingTimeConstant = 0.7;
+  recDest = actx.createMediaStreamDestination();
+  src.connect(analyser); analyser.connect(actx.destination); analyser.connect(recDest);
+  freq = new Uint8Array(analyser.frequencyBinCount); prevMag = new Float32Array(analyser.frequencyBinCount);
+}
+audio.addEventListener("play", () => { ensureAudio(); actx.resume(); });
+function setTrack(url, name) {
+  const sl = slots[cur];
+  if (sl.track && sl.track !== url && sl.track.startsWith("blob:") && sl.track !== demoURL) URL.revokeObjectURL(sl.track);
+  sl.track = url; sl.trackName = name; audio.src = url; audio.load(); $("file-name").textContent = name;
+  ensureAudio(); actx.resume(); audio.play().catch(() => {});
+}
+$("file").addEventListener("change", (e) => { const f = e.target.files[0]; if (f) setTrack(URL.createObjectURL(f), f.name); e.target.value = ""; });
+const drop = $("drop");
+drop.addEventListener("dragover", (e) => { e.preventDefault(); drop.classList.add("drop"); });
+drop.addEventListener("dragleave", () => drop.classList.remove("drop"));
+drop.addEventListener("drop", (e) => { e.preventDefault(); drop.classList.remove("drop"); const f = e.dataTransfer.files[0]; if (f && f.type.startsWith("audio")) setTrack(URL.createObjectURL(f), f.name); });
+$("restart").addEventListener("click", () => { audio.currentTime = 0; slots[cur].hist = []; if (audio.src) { ensureAudio(); actx.resume(); audio.play().catch(() => {}); } });
+
+// A made-up aria for trying the tool: 45 seconds, a slow waltz pulse under a singing line
+// with vibrato that swells and falls, and a quiet middle so the motion has somewhere to go.
+let demoURL = null;
+$("demo").addEventListener("click", async () => {
+  if (!demoURL) {
+    toast("Composing…");
+    const sr = 44100, dur = 45, oc = new OfflineAudioContext(2, sr * dur, sr);
+    const master = oc.createGain(); master.connect(oc.destination);
+    master.gain.setValueAtTime(0.25, 0); master.gain.linearRampToValueAtTime(0.6, 14); master.gain.linearRampToValueAtTime(0.18, 22); master.gain.linearRampToValueAtTime(0.7, 38); master.gain.linearRampToValueAtTime(0, 45);
+    const beat = 60 / 76, bass = [110, 82.41, 98, 73.42, 87.31, 65.41];
+    for (let b = 0; b * beat < dur - 0.5; b++) {
+      const t = b * beat, strong = b % 3 === 0, chord = bass[Math.floor(b / 6) % bass.length];
+      const o = oc.createOscillator(), g = oc.createGain(); o.type = "triangle"; o.frequency.value = strong ? chord : chord * 2;
+      g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(strong ? 0.5 : 0.18, t + 0.02); g.gain.exponentialRampToValueAtTime(0.001, t + beat * 0.95);
+      o.connect(g).connect(master); o.start(t); o.stop(t + beat);
+      if (!strong) for (const m of [2.5, 3, 4]) { const p = oc.createOscillator(), pg = oc.createGain(); p.frequency.value = chord * m;
+        pg.gain.setValueAtTime(0.05, t); pg.gain.exponentialRampToValueAtTime(0.001, t + 0.35); p.connect(pg).connect(master); p.start(t); p.stop(t + 0.4); }
+    }
+    const melody = [440, 494, 523, 587, 659, 587, 523, 494, 440, 392, 440, 523, 659, 784, 880, 784, 698, 659, 587, 523, 494, 440];
+    let t = 1.2;
+    melody.forEach((f, n) => {
+      const len = beat * (n % 4 === 3 ? 4.5 : 2.2);
+      for (const [h, a] of [[1, 1], [2, 0.4], [3, 0.2], [4, 0.1], [5, 0.05]]) {
+        const o = oc.createOscillator(), g = oc.createGain(), vib = oc.createOscillator(), vg = oc.createGain();
+        o.frequency.setValueAtTime(f * h * 0.985, t); o.frequency.linearRampToValueAtTime(f * h, t + 0.12);
+        vib.frequency.value = 5.4; vg.gain.setValueAtTime(0, t); vg.gain.linearRampToValueAtTime(f * h * 0.014, t + 0.5);
+        vib.connect(vg).connect(o.frequency);
+        g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(0.2 * a, t + 0.25); g.gain.setValueAtTime(0.2 * a, t + len - 0.25); g.gain.linearRampToValueAtTime(0, t + len + 0.1);
+        o.connect(g).connect(master); o.start(t); vib.start(t); o.stop(t + len + 0.15); vib.stop(t + len + 0.15);
+      }
+      t += len * 0.92;
+    });
+    demoURL = URL.createObjectURL(wav(await oc.startRendering()));
+  }
+  setTrack(demoURL, "Demo aria (made here)");
+});
+function wav(buf) {
+  const ch = buf.numberOfChannels, len = buf.length * ch * 2 + 44, ab = new ArrayBuffer(len), v = new DataView(ab);
+  const w = (o, s) => [...s].forEach((c, i) => v.setUint8(o + i, c.charCodeAt(0)));
+  w(0, "RIFF"); v.setUint32(4, len - 8, true); w(8, "WAVEfmt "); v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, ch, true);
+  v.setUint32(24, buf.sampleRate, true); v.setUint32(28, buf.sampleRate * ch * 2, true); v.setUint16(32, ch * 2, true); v.setUint16(34, 16, true); w(36, "data"); v.setUint32(40, len - 44, true);
+  const data = [...Array(ch)].map((_, c) => buf.getChannelData(c)); let o = 44;
+  for (let i = 0; i < buf.length; i++) for (let c = 0; c < ch; c++) { const x = Math.max(-1, Math.min(1, data[c][i])); v.setInt16(o, x < 0 ? x * 0x8000 : x * 0x7fff, true); o += 2; }
+  return new Blob([ab], { type: "audio/wav" });
+}
+
+// Features. Everything is eased so the motion glides: levels follow the Smoothing slider,
+// the beat swells in over a few frames rather than jumping, and the speed changes gently.
+const BINS = 64;
+const F = { lvl: 0, low: 0, mid: 0, high: 0, glvl: 0.5, glow: 0.5, gmid: 0.5, ghigh: 0.5, slvl: 0.5, slow: 0.5, smid: 0.5, shigh: 0.5, env: 0, envT: 0, bx: 0.5, by: 0.5, spec: new Float32Array(BINS) };
+const agc = { lvl: 0.2, low: 0.2, mid: 0.2, high: 0.2, flux: 1, spec: 0.3 };
+let fluxAvg = 0, lastOnset = 0, onsets = [], bpm = 0, drive = 0.5;
+function analyse(dt, now) {
+  const s = S(), playing = actx && !audio.paused && analyser;
+  const raw = { spec: new Float32Array(BINS) };
+  if (playing) {
+    analyser.getByteFrequencyData(freq);
+    const binHz = actx.sampleRate / analyser.fftSize;
+    const band = (a, b) => { let sum = 0, n = 0; for (let i = Math.floor(a / binHz); i < Math.min(freq.length, b / binHz); i++) { sum += freq[i]; n++; } return n ? sum / n / 255 : 0; };
+    raw.low = band(30, 250); raw.mid = band(250, 2000); raw.high = band(2000, 9000);
+    raw.lvl = raw.low * 0.45 + raw.mid * 0.4 + raw.high * 0.15;
+    for (let b = 0; b < BINS; b++) { const f0 = 40 * Math.pow(10000 / 40, b / BINS), f1 = 40 * Math.pow(10000 / 40, (b + 1) / BINS); raw.spec[b] = band(f0, Math.max(f1, f0 + binHz)); }
+    let flux = 0; for (let i = 0; i < freq.length; i++) { const m = freq[i] / 255, d = m - prevMag[i]; if (d > 0) flux += d; prevMag[i] = m; }
+    agc.flux = Math.max(agc.flux * 0.995, flux, 0.5);
+    const f = flux / agc.flux; fluxAvg = fluxAvg * 0.92 + f * 0.08;
+    if (f > fluxAvg * 1.6 + 0.08 && now - lastOnset > 0.18) {
+      lastOnset = now; F.envT = Math.min(1, f / (fluxAvg * 2.5 + 0.1)); F.bx = Math.random(); F.by = Math.random();
+      onsets.push(now); if (onsets.length > 24) onsets.shift();
+      if (onsets.length > 6) { const iv = onsets.slice(1).map((t, i) => t - onsets[i]).filter((x) => x > 0.25 && x < 2).sort((a, b) => a - b); if (iv.length) bpm = Math.round(60 / iv[Math.floor(iv.length / 2)]); }
+    }
+  } else {
+    const t = now * 0.5; // idle: slow breathing so the page is never still
+    raw.low = 0.55 + 0.3 * Math.sin(t); raw.mid = 0.5 + 0.3 * Math.sin(t * 1.37 + 1); raw.high = 0.45 + 0.25 * Math.sin(t * 2.1 + 2);
+    raw.lvl = (raw.low + raw.mid + raw.high) / 3;
+    for (let b = 0; b < BINS; b++) raw.spec[b] = Math.max(0, 0.35 + 0.3 * Math.sin(b * 0.23 - t * 1.8) * Math.sin(b * 0.07 + t * 0.6) + 0.2 * Math.sin(b * 0.5 + t * 3.1));
+    if (now - lastOnset > 2.2) { lastOnset = now; F.envT = 0.5; F.bx = Math.random(); F.by = Math.random(); }
+  }
+  // Meters follow quickly; the motion follows two slow stages in a row, so it glides with no corners.
+  const kq = Math.exp(-dt / 0.12), kh = Math.exp(-dt / Math.max(0.05, s.response / 2));
+  for (const n of ["lvl", "low", "mid", "high"]) {
+    agc[n] = Math.max(agc[n] * Math.exp(-dt * 0.05), raw[n], 0.05); const x = raw[n] / agc[n];
+    F[n] = F[n] * kq + x * (1 - kq);
+    F["g" + n] = F["g" + n] * kh + x * (1 - kh); F["s" + n] = F["s" + n] * kh + F["g" + n] * (1 - kh);
+  }
+  let mx = 0; for (let b = 0; b < BINS; b++) mx = Math.max(mx, raw.spec[b]); agc.spec = Math.max(agc.spec * 0.999, mx, 0.05);
+  const ks = Math.exp(-dt / Math.max(0.05, s.response / 6));
+  for (let b = 0; b < BINS; b++) F.spec[b] = F.spec[b] * ks + (raw.spec[b] / agc.spec) * (1 - ks);
+  F.env += (F.envT - F.env) * Math.min(1, dt * 3); F.envT *= Math.exp(-dt * 1.2);
+  return playing;
+}
+
+// ---------- Words ----------
+function chunks(text, max) {
+  const out = []; let line = "";
+  for (const w of text.split(/\s+/).filter(Boolean)) { if (line && (line + " " + w).length > max) { out.push(line); line = w; } else line = line ? line + " " + w : w; }
+  if (line) out.push(line); return out;
+}
+function parts(s, focus) {
+  const lines = s.words.split("\n").map((l) => l.trim()).filter(Boolean);
+  const nh = Math.min(BRIEF.headlines.length, lines.length), heads = lines.slice(0, nh), subs = lines.slice(nh);
+  const out = [];
+  heads.forEach((_, i) => { out.push({ t: heads[(i + focus) % heads.length], sub: false }); if (s.useSubs && subs.length) out.push({ t: subs[(i + focus) % subs.length], sub: true }); });
+  return out.length ? out : [{ t: "Daily Poster", sub: false }];
+}
+let flowCache = null;
+function flow(s, focus) { // one long running line of all the words
+  const key = s.words + s.useSubs + focus + s.case;
+  if (flowCache && flowCache.key === key) return flowCache.text;
+  let t = parts(s, focus).map((p) => p.t).join("   ·   ") + "   ·   ";
+  if (s.case === "upper") t = t.toUpperCase();
+  flowCache = { key, text: [...t] }; return flowCache.text;
+}
+
+// ---------- Shape ----------
+// The chosen picture, clip or spinning dome is drawn small, read as black and white,
+// and the letters gather inside it.
+const MW = 216, MH = 305;
+const mcv = document.createElement("canvas"); mcv.width = MW; mcv.height = MH;
+const mx = mcv.getContext("2d", { willReadFrequently: true });
+let mask = null; // Uint8Array, 0..255, already read, inverted and thickened
+const renderImg = new Image(); renderImg.crossOrigin = "anonymous"; if (BRIEF.object) renderImg.src = BRIEF.object; renderImg.onload = () => { renderImg.hasAlpha = true; };
+function hasAlpha(img) {
+  const c = document.createElement("canvas"); c.width = 64; c.height = 64; const g = c.getContext("2d");
+  g.drawImage(img, 0, 0, 64, 64); const d = g.getImageData(0, 0, 64, 64).data;
+  for (let i = 3; i < d.length; i += 4) if (d[i] < 245) return true; return false;
+}
+function setShape(kind, el, name) {
+  const sh = slots[cur].shape;
+  if (sh.el && sh.el.tagName === "VIDEO" && sh.el !== el) { sh.el.pause(); }
+  if (sh.url && sh.url !== (el && el.src)) URL.revokeObjectURL(sh.url);
+  Object.assign(sh, { kind, el: el || null, name: name || "", url: el && el.src && el.src.startsWith("blob:") ? el.src : null });
+  syncShapeUI();
+}
+function syncShapeUI() {
+  const sh = slots[cur].shape;
+  [...$("shapeSrc").children].forEach((b) => b.classList.toggle("on", b.dataset.k === (sh.kind === "upload" ? "" : sh.kind)));
+  $("shapeName").textContent = sh.kind === "upload" ? sh.name : "Upload an image or video";
+}
+$("shapeSrc").addEventListener("click", (e) => { const k = e.target.dataset.k; if (!k) return; if (k === "render" && !BRIEF.object) return; setShape(k, k === "render" ? renderImg : null, ""); if (k !== "none" && S().size > 16) toast("Tip: smaller type draws the shape more finely"); });
+function loadShapeFile(f) {
+  if (!f) return; const url = URL.createObjectURL(f);
+  if (f.type.startsWith("video")) {
+    const v = document.createElement("video"); v.muted = true; v.loop = true; v.playsInline = true; v.src = url;
+    v.addEventListener("loadeddata", () => { v.play().catch(() => {}); setShape("upload", v, f.name); }, { once: true });
+  } else {
+    const img = new Image(); img.onload = () => { img.hasAlpha = hasAlpha(img); setShape("upload", img, f.name); }; img.src = url;
+  }
+}
+$("shapeFile").addEventListener("change", (e) => { loadShapeFile(e.target.files[0]); e.target.value = ""; });
+const sdrop = $("shapeDrop");
+sdrop.addEventListener("dragover", (e) => { e.preventDefault(); sdrop.classList.add("drop"); });
+sdrop.addEventListener("dragleave", () => sdrop.classList.remove("drop"));
+sdrop.addEventListener("drop", (e) => { e.preventDefault(); sdrop.classList.remove("drop"); loadShapeFile(e.dataTransfer.files[0]); });
+
+// A geodesic dome, like the lattice: an icosahedron split three ways, top half kept.
+const DOME = (() => {
+  const t = (1 + Math.sqrt(5)) / 2, V = [[-1, t, 0], [1, t, 0], [-1, -t, 0], [1, -t, 0], [0, -1, t], [0, 1, t], [0, -1, -t], [0, 1, -t], [t, 0, -1], [t, 0, 1], [-t, 0, -1], [-t, 0, 1]];
+  const Fc = [[0, 11, 5], [0, 5, 1], [0, 1, 7], [0, 7, 10], [0, 10, 11], [1, 5, 9], [5, 11, 4], [11, 10, 2], [10, 7, 6], [7, 1, 8], [3, 9, 4], [3, 4, 2], [3, 2, 6], [3, 6, 8], [3, 8, 9], [4, 9, 5], [2, 4, 11], [6, 2, 10], [8, 6, 7], [9, 8, 1]];
+  const pts = [], keyOf = new Map(), edges = new Set(), nf = 3;
+  const id = (p) => { const l = Math.hypot(...p), q = p.map((x) => x / l), k = q.map((x) => x.toFixed(4)).join(); if (!keyOf.has(k)) { keyOf.set(k, pts.length); pts.push(q); } return keyOf.get(k); };
+  for (const [a, b, c] of Fc) {
+    const A = V[a], B = V[b], C = V[c], g = {};
+    for (let i = 0; i <= nf; i++) for (let j = 0; j <= nf - i; j++) { const k = nf - i - j; g[i + "," + j] = id([0, 1, 2].map((d) => (A[d] * i + B[d] * j + C[d] * k) / nf)); }
+    for (let i = 0; i <= nf; i++) for (let j = 0; j <= nf - i; j++) {
+      const p = g[i + "," + j], add = (q) => { if (q != null) edges.add(p < q ? p + "-" + q : q + "-" + p); };
+      add(g[i + 1 + "," + j]); add(g[i + "," + (j + 1)]); add(g[i + 1 + "," + (j - 1)]);
+    }
+  }
+  // tilt so a vertex points up, then keep the top half
+  const up = Math.atan2(1, t), P = pts.map(([x, y, z]) => [x, y * Math.cos(up) - z * Math.sin(up), y * Math.sin(up) + z * Math.cos(up)]);
+  const E = [...edges].map((e) => e.split("-").map(Number)).filter(([a, b]) => P[a][1] > -0.08 && P[b][1] > -0.08);
+  return { P, E };
+})();
+function drawDome(g, a, sc, ox, oy, lw) {
+  const tilt = 0.38, R = MW * 0.43 * sc, cx = MW / 2 + ox * MW, cy = MH * 0.58 + oy * MH;
+  const proj = DOME.P.map(([x, y, z]) => {
+    const x1 = x * Math.cos(a) + z * Math.sin(a), z1 = -x * Math.sin(a) + z * Math.cos(a);
+    const y2 = y * Math.cos(tilt) - z1 * Math.sin(tilt), z2 = y * Math.sin(tilt) + z1 * Math.cos(tilt), pp = 3.2 / (3.2 - z2);
+    return [cx + x1 * R * pp, cy - (y2 - 0.35) * R * pp, z2];
+  });
+  const es = DOME.E.map(([p, q]) => [p, q, (proj[p][2] + proj[q][2]) / 2]).sort((u, v) => u[2] - v[2]);
+  g.lineCap = "round";
+  for (const [p, q, z] of es) { const c = Math.round(150 + 105 * (z + 1) / 2); g.strokeStyle = `rgb(${c},${c},${c})`; g.lineWidth = lw * (0.7 + 0.3 * (z + 1) / 2); g.beginPath(); g.moveTo(proj[p][0], proj[p][1]); g.lineTo(proj[q][0], proj[q][1]); g.stroke(); }
+}
+function dilate(a, r) {
+  if (r < 1) return a; const b = new Uint8Array(a.length);
+  for (let y = 0; y < MH; y++) for (let x = 0; x < MW; x++) { let m = 0; for (let k = -r; k <= r; k++) { const xx = x + k; if (xx >= 0 && xx < MW) { const v = a[y * MW + xx]; if (v > m) m = v; } } b[y * MW + x] = m; }
+  const c = new Uint8Array(a.length);
+  for (let y = 0; y < MH; y++) for (let x = 0; x < MW; x++) { let m = 0; for (let k = -r; k <= r; k++) { const yy = y + k; if (yy >= 0 && yy < MH) { const v = b[yy * MW + x]; if (v > m) m = v; } } c[y * MW + x] = m; }
+  return c;
+}
+let maskViewT = 0;
+function updateMask(dt) {
+  const sl = slots[cur], sh = sl.shape, s = sl.s;
+  if (sh.kind === "none" || (sh.kind !== "dome" && !sh.el)) { mask = null; drawMaskView(); return; }
+  mx.setTransform(1, 0, 0, 1, 0, 0); mx.clearRect(0, 0, MW, MH);
+  let useAlpha = false;
+  if (sh.kind === "dome") { sl.spinA += dt * s.spin * 1.6; drawDome(mx, sl.spinA, s.shapeScale, s.shapeX, s.shapeY, s.lineW); }
+  else {
+    const el = sh.el, iw = el.videoWidth || el.naturalWidth, ih = el.videoHeight || el.naturalHeight; if (!iw) return;
+    const fit = Math.min(MW / iw, MH / ih) * s.shapeScale, w = iw * fit, h = ih * fit;
+    mx.drawImage(el, (MW - w) / 2 + s.shapeX * MW, (MH - h) / 2 + s.shapeY * MH, w, h);
+    useAlpha = s.shapeRead === "alpha" || (s.shapeRead === "auto" && el.hasAlpha);
+  }
+  const d = mx.getImageData(0, 0, MW, MH).data, out = new Uint8Array(MW * MH);
+  for (let i = 0, j = 0; j < out.length; i += 4, j++) {
+    const a = d[i + 3], lum = (d[i] * 0.299 + d[i + 1] * 0.587 + d[i + 2] * 0.114) * a / 255;
+    let v = useAlpha ? a : lum; if (s.shapeInvert) v = 255 - v; out[j] = v;
+  }
+  mask = dilate(out, Math.round(s.thicken));
+  if ((maskViewT += dt) > 0.1) { maskViewT = 0; drawMaskView(); }
+}
+const smooth = (e0, e1, x) => { const t = Math.max(0, Math.min(1, (x - e0) / ((e1 - e0) || 1e-6))); return t * t * (3 - 2 * t); };
+function drawMaskView() {
+  const g = $("maskView").getContext("2d"), W = 96, H = 136;
+  g.fillStyle = "#000"; g.fillRect(0, 0, W, H); if (!mask) return;
+  const s = S(), img = g.createImageData(W, H);
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) { const v = mask[Math.floor(y / H * MH) * MW + Math.floor(x / W * MW)] / 255, c = 255 * smooth(s.threshold - s.soft, s.threshold + s.soft, v), o = (y * W + x) * 4; img.data[o] = img.data[o + 1] = img.data[o + 2] = c; img.data[o + 3] = 255; }
+  g.putImageData(img, 0, 0);
+}
+
+// ---------- Drawing ----------
+function render(ctx, W, H, st) {
+  const { s } = st, u = W / 1080;
+  ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1;
+  ctx.fillStyle = s.bg; ctx.fillRect(0, 0, W, H);
+  if (s.mode === "stretch") drawStretch(ctx, W, H, st, u); else drawField(ctx, W, H, st, u);
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  if (s.labOn) {
+    const px = s.labSize * u, m = 26 * u;
+    ctx.fillStyle = s.labColour; ctx.font = `${s.labWeight} ${px}px "${s.labFont}"`; ctx.textBaseline = "alphabetic";
+    const T = (t) => (s.labUpper ? t.toUpperCase() : t);
+    const tr = s.labTrack * px;
+    const put = (t, x, y, a) => {
+      if (!t) return; const ch = [...T(t)], w = ch.map((c) => ctx.measureText(c).width), tot = w.reduce((p, q) => p + q, 0) + tr * (ch.length - 1);
+      ctx.textAlign = "left"; let cx = a === "right" ? x - tot : x; ch.forEach((c, i) => { ctx.fillText(c, cx, y); cx += w[i] + tr; });
+    };
+    put(s.labTL, m, m + px * 0.8, "left"); put(s.labTR, W - m, m + px * 0.8, "right");
+    put(s.labBL, m, H - m, "left"); put(s.labBR, W - m, H - m, "right"); ctx.textAlign = "left";
+  }
+}
+
+// Wave and Spectrum: small letters in rows over the whole page, past its edges.
+function drawField(ctx, W, H, st, u) {
+  const { s, f, phase, scroll, focus, hist } = st, M = st.mask;
+  const e0 = s.threshold - s.soft, e1 = s.threshold + s.soft;
+  const cov = (x, y) => { if (x < 0 || x >= 1 || y < 0 || y >= 1) return 0; return smooth(e0, e1, M[((y * MH) | 0) * MW + ((x * MW) | 0)] / 255); };
+  // Size, tracking and leading can change from row to row when they're animated with a ripple.
+  const RV = st.rowVals || {}, rv = (k, rf) => { const a = RV[k]; if (!a) return s[k]; const x = Math.max(0, Math.min(1, rf)) * (a.length - 1), i = Math.floor(x), t = x - i; return a[i] + (a[Math.min(a.length - 1, i + 1)] - a[i]) * t; };
+  const size0 = s.size * u, lh0 = size0 * s.leading;
+  const bleed = s.bleed * W, y0 = -bleed, y1 = H + bleed + lh0;
+  const A = s.amp * H, k = s.freq * Math.PI * 2, aud = s.audio;
+  const fontW = s.weight, capEm = metric(s.font, fontW, "H").cap;
+  const spec = s.mode === "spectrum";
+  const thr = 1.45 - s.accentAmt * 1.2, pk = k * 1.93, pk3 = k * 3.71, sw = s.flow;
+  // Slow amplitudes: each layer swells and fades with its part of the sound.
+  const aL = 0.3 + aud * f.slow, aM = 0.25 + aud * f.smid, aH = 0.2 + aud * f.shigh;
+  // Streams: the running text, plus one per headline for the calm bands.
+  const qpx = (sz) => Math.max(4, Math.round(Math.pow(2, Math.round(Math.log2(sz * 2) * 4) / 4)));
+  const mk = (chars, accentOnly) => ({ chars, em: chars.map((c) => metric(s.font, fontW, c).adv), accentOnly, tiles: new Map() });
+  const tilesFor = (str, px) => {
+    let t = str.tiles.get(px); if (t) return t;
+    const af = atlas(s.font, fontW, px, s.fg, str.chars), aa = s.accentAmt > 0 || str.accentOnly ? atlas(s.font, fontW, px, s.accent, str.chars) : af;
+    const ta = str.chars.map((c) => aa.map.get(c)); t = { tf: str.accentOnly ? ta : str.chars.map((c) => af.map.get(c)), ta }; str.tiles.set(px, t); return t;
+  };
+  const main = mk(flow(s, focus));
+  const nb = spec ? 0 : Math.round(s.calmRows), bands = [];
+  if (nb && s.legible > 0) {
+    const hs = parts(s, focus).filter((p) => !p.sub);
+    const strength = s.legible * Math.max(0, 1 - s.surge * Math.max(0, f.slvl - 0.35) * 1.4);
+    for (let j = 0; j < nb; j++) {
+      let t = hs[j % hs.length].t; if (s.case === "upper") t = t.toUpperCase();
+      const yc = (j + 0.5) / nb + (0.42 / nb) * Math.sin(phase * 0.09 + j * 2.3);
+      bands.push({ yc, w: (s.calmSize * lh0) / H / 2, strength, str: mk([...t + "     "], true) });
+    }
+  }
+  let by = y0, r = 0;
+  for (; by < y1 && r < 3000; r++) {
+    const rf = (by - y0) / (y1 - y0);
+    const size = Math.max(1, rv("size", rf) * u), lh = Math.max(1, size * rv("leading", rf)), track = rv("tracking", rf) * size;
+    const px = qpx(size), scaleT = size / px, capH = capEm * size, x0 = -bleed - size * 2, x1 = W + bleed + size * 2;
+    const v = by / H;
+    let calm = 0, band = null;
+    for (const bd of bands) { const z = (v - bd.yc) / bd.w, c = bd.strength * Math.exp(-z * z * z * z); if (c > calm) { calm = c; band = bd; } }
+    const useHead = band && calm > 0.5, S2 = useHead ? band.str : main;
+    const { chars } = S2, n = chars.length, { tf, ta } = tilesFor(S2, px);
+    const advs = S2.em.map((e) => Math.max(0.5, e * size + track)), cycle = advs.reduce((x, y) => x + y, 0) || 1;
+    const dir = r % 2 ? 1 : -1;
+    let off = useHead ? ((scroll * size * 1.5) % cycle + cycle) % cycle : ((scroll * size * 6 * dir + r * 977) % cycle + cycle) % cycle;
+    let i = 0, acc = 0; while (acc + advs[i] < off) { acc += advs[i]; i = (i + 1) % n; }
+    let x = x0 - (off - acc);
+    const row = spec ? hist[Math.min(hist.length - 1, Math.floor(rf * hist.length))] : null;
+    const free = 1 - calm, push = s.around * lh * 7;
+    let guard = 0, alpha = 1; ctx.globalAlpha = 1;
+    while (x < x1 && guard++ < 4000) {
+      const c = chars[i], adv = advs[i];
+      if (c !== " ") {
+        const ux = (x + adv / 2) / W;
+        let d, e, c0 = 1, ox = 0, oy = 0;
+        if (spec) {
+          const b = row ? row[Math.max(0, Math.min(BINS - 1, Math.floor(ux * BINS)))] : 0;
+          e = b * aud; d = -e * A * 1.2;
+        } else {
+          // Warp the page before laying the waves on it, so crests curl and swirl instead of running straight.
+          const wx = ux + sw * 0.16 * Math.sin(v * 4.1 + phase * 0.37) + sw * 0.07 * Math.sin(v * 9.3 - phase * 0.61 + ux * 3);
+          const wv = v + sw * 0.1 * Math.sin(ux * 5.2 - phase * 0.29);
+          const w1 = Math.sin(k * wx - phase + wv * s.slant * 3.1);
+          const w2 = Math.sin(pk * wx + phase * 0.73 + wv * s.slant * 5.3 + 1.7);
+          const w3 = Math.sin(pk3 * wx - phase * 1.19 + wv * s.slant * 9.1 + 0.4);
+          let ripple = 0;
+          if (s.beat > 0 && f.env > 0.01) { const dx = ux - f.bx, dy = (v - f.by) * 1.414, dist = Math.sqrt(dx * dx + dy * dy); ripple = f.env * s.beat * Math.sin(dist * 22 - phase * 3) * Math.exp(-dist * 3); }
+          d = A * free * (w1 * aL + w2 * 0.6 * aM + w3 * 0.3 * aH + ripple * 0.8);
+          e = Math.min(1.5, Math.abs(d) / (A * 0.9 || 1));
+        }
+        if (M) {
+          // The letters move freely; the shape is read where each one lands, so it stays crisp while type streams through it.
+          if (s.hold > 0) { const cp = cov(ux, v + d / H); d *= 1 - s.hold * cp; e *= 1 - s.hold * cp; }
+          const vy = v + d / H; c0 = cov(ux, vy);
+          if (push > 0 && c0 > 0.02 && c0 < 0.98) { // slide letters along the edges, so the outline ripples
+            const gx = cov(ux + 0.01, vy) - cov(ux - 0.01, vy), gy = cov(ux, vy + 0.007) - cov(ux, vy - 0.007), wob = 0.6 + 0.4 * Math.sin(phase * 0.8 + ux * 7 + v * 5);
+            ox = -gx * push * wob; oy = -gy * push * wob;
+          }
+          const vis = s.outside + (1 - s.outside) * c0;
+          if (vis < 0.03) { x += adv; i = (i + 1) % n; continue; }
+          const a = Math.round(vis * 10) / 10; if (a !== alpha) { alpha = a; ctx.globalAlpha = a; }
+        }
+        const grow = (1 + s.sizeMod * e) * (M ? Math.max(0.15, 1 - s.sizeBy * 0.5 + s.sizeBy * c0) : 1);
+        const sy = grow * (1 + s.stretchY * e * (spec ? 1.6 : 0.8)), sx = grow;
+        const t = useHead || e > thr ? ta[i] : tf[i];
+        const tw = t.w * scaleT * sx, th = t.h * scaleT * sy;
+        const dxp = x + ox - t.pad * scaleT * sx - (sx - 1) * adv / 2;
+        const dyp = by + lh - capH * 0.15 + d + oy - t.base * scaleT * sy;
+        ctx.drawImage(t.c, t.sx, 0, t.w, t.h, dxp, dyp, tw, th);
+      }
+      x += adv; i = (i + 1) % n;
+    }
+    by += lh;
+  }
+  ctx.globalAlpha = 1;
+}
+
+// Stretch: big rows that fill the page, letters squeezed and widened by the music.
+function drawStretch(ctx, W, H, st, u) {
+  const { s, f, phase, scroll, focus } = st;
+  const bleed = s.bleed * W, x0 = -bleed, y0 = -bleed, areaW = W + bleed * 2, areaH = H + bleed * 2;
+  const seq = []; parts(s, focus).forEach((p) => chunks(p.t, p.sub ? Math.round(s.chunk * 1.6) : s.chunk).forEach((c) => seq.push(c)));
+  const n = Math.max(1, Math.round(s.rows)), gap = (s.leading - 1) * areaH / n * 0.5;
+  const wts = [];
+  for (let r = 0; r < n; r++) {
+    const p = n === 1 ? 0.5 : r / (n - 1);
+    const band = p < 0.5 ? f.low * (1 - p * 2) + f.mid * p * 2 : f.mid * (2 - p * 2) + f.high * (p * 2 - 1);
+    wts.push(Math.max(0.12, 1 + s.rowStretch * (0.55 * Math.sin(phase * 0.8 + r * 1.9) + s.audio * (band - 0.55) * 1.4 + (Math.floor(f.by * n) === r ? f.env * s.beat : 0))));
+  }
+  const sum = wts.reduce((a, b) => a + b, 0), avail = areaH - gap * (n - 1);
+  const shift = Math.floor(scroll * 0.5);
+  ctx.fillStyle = s.fg; ctx.font = `${s.weight} 200px "${s.font}"`;
+  const g0 = metric(s.font, s.weight, "H"), upper = s.case === "upper", boxH = upper ? g0.cap : g0.cap + g0.desc;
+  let y = y0;
+  for (let r = 0; r < n; r++) {
+    const h = Math.max(2, avail * wts[r] / sum);
+    let text = seq[(r + shift) % seq.length]; if (upper) text = text.toUpperCase();
+    const chars = [...text], sy = h / (boxH * 200), baseY = y + (upper ? h : h * g0.cap / boxH);
+    const adv = chars.map((c) => metric(s.font, s.weight, c).adv * 200);
+    const wv = adv.map((a, i) => a * Math.max(0.12, 1 + s.letterStretch * (0.6 * Math.sin(phase * 1.25 + i * 0.8 + r * 0.9) + s.audio * (f.lvl - 0.5) * 0.6) + f.env * s.beat * 1.4 * Math.exp(-Math.pow(i / Math.max(1, chars.length - 1) - f.bx, 2) / 0.02)));
+    const track = s.tracking * h, kx = Math.max(0.0001, (areaW - track * (chars.length - 1)) / wv.reduce((a, b) => a + b, 0));
+    let cx = x0;
+    chars.forEach((c, i) => { const gw = wv[i] * kx; if (c !== " ") { ctx.setTransform(gw / adv[i], 0, 0, sy, cx, baseY); ctx.fillText(c, 0, 0); } cx += gw + track; });
+    y += h + gap;
+  }
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+}
+
+// ---------- Loop ----------
+const cv = $("cv"), ctx = cv.getContext("2d");
+let fps = 60, last = performance.now() / 1000, frozen = false, viewing = null, histT = 0;
+function frame() {
+  const now = performance.now() / 1000, dt = Math.min(0.05, now - last); fps = fps * 0.95 + (1 / Math.max(0.001, now - last)) * 0.05; last = now;
+  const sl = slots[cur], s = sl.s;
+  const playing = analyse(dt, now);
+  if (!frozen && viewing == null) updateMask(dt);
+  if (!frozen && viewing == null) {
+    // Pace ebbs and flows with the slow loudness, never the beat.
+    const target = playing ? 0.3 + s.audio * F.slvl * 0.9 : 0.55;
+    drive += (target - drive) * (1 - Math.exp(-dt / Math.max(0.3, s.response)));
+    sl.phase += dt * s.speed * drive * 2;
+    stepLanes(sl, dt, playing);
+    sl.scroll += dt * s.drift * (0.4 + drive);
+    histT += dt * s.speed * 30;
+    while (histT >= 1) { histT -= 1; sl.hist.unshift(Float32Array.from(F.spec)); if (sl.hist.length > 140) sl.hist.pop(); }
+  }
+  render(ctx, cv.width, cv.height, viewing != null ? sl.captures[viewing].st : snapshot());
+  meters(playing);
+  requestAnimationFrame(frame);
+}
+const snapshot = () => { const sl = slots[cur], sc = { ...sl.s }, rowVals = applyLanes(sl, sc); return { s: sc, rowVals, f: { ...F, spec: Float32Array.from(F.spec) }, phase: sl.phase, scroll: sl.scroll, focus: sl.focus, hist: sl.hist.slice(), mask: mask ? Uint8Array.from(mask) : null }; };
+function meters(playing) {
+  for (const k of ["lvl", "low", "mid", "high"]) $("m-" + k).style.width = Math.min(100, F[k] * 70) + "%";
+  $("m-beat").classList.toggle("on", F.env > 0.4);
+  $("m-bpm").textContent = `${playing ? "playing" : "idle"} · ${Math.round(fps)} fps`;
+}
+requestAnimationFrame(frame);
+
+// ---------- Output ----------
+$("freeze").addEventListener("click", () => {
+  if (viewing != null) { viewing = null; renderFilm(); }
+  frozen = !frozen; $("freeze").textContent = frozen ? "Unfreeze" : "Freeze";
+  if (frozen) audio.pause(); else if (audio.src) audio.play().catch(() => {});
+});
+$("capture").addEventListener("click", () => {
+  const sl = slots[cur], st = viewing != null ? sl.captures[viewing].st : snapshot();
+  const t = document.createElement("canvas"); t.width = 216; t.height = 305; render(t.getContext("2d"), 216, 305, st);
+  sl.captures.unshift({ st, thumb: t.toDataURL() }); if (sl.captures.length > 16) sl.captures.pop();
+  if (viewing != null) viewing++;
+  renderFilm(); toast("Frame captured");
+});
+function renderFilm() {
+  const sl = slots[cur], film = $("film");
+  if (!sl.captures.length) { film.innerHTML = '<span class="hint">Captured frames appear here</span>'; return; }
+  film.innerHTML = sl.captures.map((c, i) => `<button data-i="${i}" class="${viewing === i ? "on" : ""}" title="Show this frame"><img src="${c.thumb}" alt=""></button>`).join("");
+}
+$("film").addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; const i = +b.dataset.i; viewing = viewing === i ? null : i; if (viewing != null) audio.pause(); renderFilm(); });
+
+let downloads = null;
+(async () => { try { downloads = window.claude ? await window.claude.use("downloads") : null; } catch { downloads = null; } })();
+async function offer(blob, filename, kind) {
+  if (downloads) { try { await downloads.save({ filename, data: blob }); toast("Saved"); return; } catch (e) { if (e && e.code === "declined") return; } }
+  const url = URL.createObjectURL(blob);
+  if (!window.claude) { const a = document.createElement("a"); a.href = url; a.download = filename; document.body.append(a); a.click(); a.remove(); toast("Saved"); setTimeout(() => URL.revokeObjectURL(url), 60e3); return; }
+  $("ov-text").textContent = "Right-click (or long-press) to save";
+  $("ov-media").innerHTML = kind === "video" ? `<video src="${url}" controls autoplay loop></video>` : `<img src="${url}" alt="">`;
+  $("overlay").classList.add("on");
+}
+$("ov-close").addEventListener("click", () => $("overlay").classList.remove("on"));
+$("export").addEventListener("click", () => {
+  const sl = slots[cur], st = viewing != null ? sl.captures[viewing].st : snapshot();
+  const W = +$("size").value, H = Math.round(W * 1.41421);
+  const c = document.createElement("canvas"); c.width = W; c.height = H;
+  toast("Rendering…");
+  setTimeout(() => { render(c.getContext("2d"), W, H, st); c.toBlob((b) => offer(b, `daily-poster-${BRIEF.issue}-poster-0${cur + 1}-${W}.png`, "image"), "image/png"); }, 30);
+});
+let rec = null, recChunks = [];
+$("record").addEventListener("click", () => {
+  if (rec) { rec.stop(); return; }
+  const stream = cv.captureStream(30);
+  if (actx && recDest) recDest.stream.getAudioTracks().forEach((t) => stream.addTrack(t));
+  const type = ["video/mp4;codecs=avc1.640034,mp4a.40.2", "video/mp4;codecs=avc1,mp4a.40.2", "video/mp4", "video/webm;codecs=vp9,opus", "video/webm;codecs=vp8,opus", "video/webm"].find((t) => window.MediaRecorder && MediaRecorder.isTypeSupported(t));
+  if (!type) { toast("Video recording isn't supported in this browser"); return; }
+  recChunks = []; rec = new MediaRecorder(stream, { mimeType: type, videoBitsPerSecond: +$("vq").value, audioBitsPerSecond: 160000 });
+  rec.ondataavailable = (e) => e.data.size && recChunks.push(e.data);
+  const ext = type.startsWith("video/mp4") ? "mp4" : "webm";
+  rec.onstop = () => { const b = new Blob(recChunks, { type: type.split(";")[0] }); rec = null; $("record").classList.remove("on"); $("record").textContent = "Record video"; offer(b, `daily-poster-${BRIEF.issue}-poster-0${cur + 1}.${ext}`, "video"); };
+  rec.start(250); $("record").classList.add("on"); $("record").textContent = "Stop recording";
+  if (audio.src && audio.paused) { ensureAudio(); actx.resume(); audio.play().catch(() => {}); }
+});
+$("quality").addEventListener("change", (e) => { const q = +e.target.value; cv.width = Math.round(1080 * q); cv.height = Math.round(1527 * q); });
+cv.width = 810; cv.height = 1145;
+let toastT;
+function toast(t) { const el = $("toast"); el.textContent = t; el.classList.add("on"); clearTimeout(toastT); toastT = setTimeout(() => el.classList.remove("on"), 1600); }
+
+syncUI();
+</script>
+</body>
+</html>

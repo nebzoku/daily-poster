@@ -107,6 +107,11 @@
       "slot": "2026-11-07 08:00",
       "at": "2026-11-07T08:09:05.140Z",
       "id": "17927641350203589"
+    },
+    "poster:showcase/035-teeth-timber-and-deep-water.jpg": {
+      "slot": "2026-11-07 10:30",
+      "at": "2026-11-07T11:07:40.921Z",
+      "id": "18195220942397993"
     }
   },
   "slots": {
@@ -118,7 +123,8 @@
     "2026-11-06 10:30": "poster:showcase/034-the-king-who-wasnt.jpg",
     "2026-11-06 13:00": "poster:showcase/034-she-summoned-rome-to-britain.jpg",
     "2026-11-06 19:00": "poster:showcase/034-who-really-called-the-legions.jpg",
-    "2026-11-07 08:00": "brief:2026-11-07"
+    "2026-11-07 08:00": "brief:2026-11-07",
+    "2026-11-07 10:30": "poster:showcase/035-teeth-timber-and-deep-water.jpg"
   },
   "start": "2026-11-04"
 }

@@ -408,6 +408,11 @@
     (!filt.date || x.date === filt.date) && (!filt.headline || x.title === filt.headline) &&
     (!filt.colour || x.colour === filt.colour) && (!filt.type || x.type === filt.type));
 
+  // Moving posters play a short silent snippet in the grid while they're on screen.
+  const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const snips = "IntersectionObserver" in window ? new IntersectionObserver((es) => es.forEach(({ target: v, isIntersecting }) => {
+    if (isIntersecting) { if (!v.src) v.src = v.dataset.src; v.muted = true; v.play().catch(() => {}); } else v.pause();
+  }), { rootMargin: "200px" }) : null;
   function renderArchive() {
     $("archive").hidden = !posters.length;
     const list = shown();
@@ -416,9 +421,12 @@
     $("archive-list").replaceChildren(...list.map((x, i) =>
       el("li", { style: `--i:${i % 4}` }, el("button", { type: "button", "aria-current": String(x.date === brief.date),
         "aria-label": `View ${posterTitle(x)} by ${x.designer}`, onclick: (e) => openLightbox(list, i, e.currentTarget) },
-        el("div", { class: "poster" }, el("img", { src: x.image, alt: `${posterTitle(x)}, by ${x.designer}`, loading: "lazy" }),
+        el("div", { class: "poster" }, x.preview && !still
+          ? el("video", { class: "snip", "data-src": x.preview, poster: x.image, muted: "", loop: "", playsinline: "", preload: "none", "aria-label": `${posterTitle(x)}, by ${x.designer}` })
+          : el("img", { src: x.image, alt: `${posterTitle(x)}, by ${x.designer}`, loading: "lazy" }),
           x.video ? el("span", { class: "tag-video" }, "Video") : null),
         el("p", { class: "cap" }, el("span", {}, `[${pad(x.issue)}] ${posterTitle(x)}`), el("span", {}, x.designer))))));
+    $("archive-list").querySelectorAll("video.snip").forEach((v) => (snips ? snips.observe(v) : (v.src = v.dataset.src)));
   }
 
   // ---------- lightbox: one poster at a time; arrows, swipe and Escape ----------

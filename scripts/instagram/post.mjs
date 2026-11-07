@@ -9,7 +9,7 @@ import { writeFile, mkdir } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { SITE, DATA, STATE, BACKFILL, SLOTS, WINDOW_MS, readJSON, writeJSON, loadState, londonDate, londonToUtc, addDays,
-  pendingPosters, posterImage, briefImages, briefStories, url } from "./common.mjs";
+  pendingPosters, posterImage, posterReel, posterMedia, briefImages, briefStories, url } from "./common.mjs";
 
 const TOKEN = process.env.INSTAGRAM_TOKEN, USER = process.env.INSTAGRAM_USER_ID;
 // Instagram Login tokens (IGAA…) go to graph.instagram.com and last 60 days, renewed weekly.
@@ -91,6 +91,25 @@ async function publish(images, caption, alt) {
   return (await api(`${USER}/media_publish`, { creation_id: id })).id;
 }
 
+// A Reel: Instagram fetches the video and takes a while to process it.
+async function publishReel(video, caption) {
+  const head = await fetch(video, { method: "HEAD" });
+  if (!head.ok) throw new Error(`video isn't online yet (${head.status}): ${video}`);
+  const { id } = await api(`${USER}/media`, { media_type: "REELS", video_url: video, caption, share_to_feed: "true", thumb_offset: "9000" });
+  for (let i = 0; i < 60; i++) {
+    const { status_code, status } = await api(id, { fields: "status_code,status" }, "GET");
+    if (status_code === "FINISHED") return (await api(`${USER}/media_publish`, { creation_id: id })).id;
+    if (status_code === "ERROR" || status_code === "EXPIRED") throw new Error(`video ${status_code}: ${status || ""}`);
+    await new Promise((r) => setTimeout(r, 10e3));
+  }
+  throw new Error("Instagram was still processing the video after ten minutes");
+}
+const posterJob = (p, brief) => ({
+  ...(p.video ? { reel: url(posterReel(p)) } : { images: [url(posterImage(p))] }),
+  caption: posterCaption(p, brief), alt: `Poster: ${p.title}, by ${p.designer}, for Daily Poster No. ${pad(brief.issue)}.`,
+});
+const send = (job) => (job.reel ? publishReel(job.reel, job.caption) : job.story ? publishStories(job.images) : publish(job.images, job.caption, job.alt));
+
 // Stories, one after another (each is its own post; stories take no caption).
 async function publishStories(images) {
   const ids = [];
@@ -150,13 +169,13 @@ async function main() {
         job = { images: briefImages(date).map(url), caption: briefCaption(brief, date !== today) };
       } else {
         const p = showcase.find((x) => `poster:${x.image}` === key), brief = p && await readJSON(join(DATA, `${p.date}.json`), null);
-        if (!brief || !existsSync(posterImage(p))) { console.log(`${key} isn't ready; trying again next hour.`); break; }
-        job = { images: [url(posterImage(p))], caption: posterCaption(p, brief), alt: `Poster: ${p.title}, by ${p.designer}, for Daily Poster No. ${pad(brief.issue)}.` };
+        if (!brief || !existsSync(posterMedia(p))) { console.log(`${key} isn't ready; trying again next hour.`); break; }
+        job = posterJob(p, brief);
       }
-      console.log(`${DRY ? "Would post" : "Posting"} ${key} (catching up):\n${job.images.join("\n")}\n---\n${job.caption}\n---`);
+      console.log(`${DRY ? "Would post" : "Posting"} ${key} (catching up):\n${job.reel || job.images.join("\n")}\n---\n${job.caption}\n---`);
       if (DRY) continue;
       try {
-        const id = job.story ? await publishStories(job.images) : await publish(job.images, job.caption, job.alt);
+        const id = await send(job);
         state.posted[key] = { slot: "catch-up", at: new Date().toISOString(), id };
         await mkdir(join(STATE, ".."), { recursive: true }); await writeJSON(STATE, state);
         console.log(`Posted: ${id}`);
@@ -175,22 +194,22 @@ async function main() {
       job = { key: briefKey, slot: briefSlot, images: briefImages(today).map(url), caption: briefCaption(brief), stories: briefStories(today).map(url) };
   }
   if (!job) {
-    const waiting = (await pendingPosters(state, today)).filter((p) => existsSync(posterImage(p)));
+    const waiting = (await pendingPosters(state, today)).filter((p) => existsSync(posterMedia(p)));
     for (const [time, needed] of SLOTS.posters) {
       const slot = `${today} ${time}`;
       if (!due(time) || state.slots[slot] || waiting.length < needed) continue;
       const p = waiting[0], brief = await readJSON(join(DATA, `${p.date}.json`), null);
       if (!brief) continue;
-      job = { key: `poster:${p.image}`, slot, images: [url(posterImage(p))], caption: posterCaption(p, brief), alt: `Poster: ${p.title}, by ${p.designer}, for Daily Poster No. ${pad(brief.issue)}.` };
+      job = { key: `poster:${p.image}`, slot, ...posterJob(p, brief) };
       break;
     }
   }
 
   if (job) {
-    console.log(`${DRY ? "Would post" : "Posting"} ${job.key} for the ${job.slot} slot:\n${job.images.join("\n")}\n---\n${job.caption}\n---`);
+    console.log(`${DRY ? "Would post" : "Posting"} ${job.key} for the ${job.slot} slot:\n${job.reel || job.images.join("\n")}\n---\n${job.caption}\n---`);
     if (!DRY) {
       try {
-        const id = job.story ? await publishStories(job.images) : await publish(job.images, job.caption, job.alt);
+        const id = await send(job);
         // The brief goes on the grid as a carousel and into stories.
         if (job.stories) { try { state.posted[`stories:${today}`] = { at: new Date().toISOString(), id: await publishStories(job.stories) }; }
           catch (e) { console.error(`Couldn't post the stories: ${e.message}`); process.exitCode = 1; } }

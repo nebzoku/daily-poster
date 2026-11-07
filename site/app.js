@@ -416,7 +416,8 @@
     $("archive-list").replaceChildren(...list.map((x, i) =>
       el("li", { style: `--i:${i % 4}` }, el("button", { type: "button", "aria-current": String(x.date === brief.date),
         "aria-label": `View ${posterTitle(x)} by ${x.designer}`, onclick: (e) => openLightbox(list, i, e.currentTarget) },
-        el("div", { class: "poster" }, el("img", { src: x.image, alt: `${posterTitle(x)}, by ${x.designer}`, loading: "lazy" })),
+        el("div", { class: "poster" }, el("img", { src: x.image, alt: `${posterTitle(x)}, by ${x.designer}`, loading: "lazy" }),
+          x.video ? el("span", { class: "tag-video" }, "Video") : null),
         el("p", { class: "cap" }, el("span", {}, `[${pad(x.issue)}] ${posterTitle(x)}`), el("span", {}, x.designer))))));
   }
 
@@ -432,7 +433,8 @@
     setTimeout(() => $("lb-close").focus({ preventScroll: true }), 50);
   }
   function closeLightbox() {
-    const box = $("lightbox");
+    const box = $("lightbox"), vid = $("lb-vid");
+    vid.pause(); vid.removeAttribute("src"); vid.load();
     box.classList.remove("open");
     box.inert = true;
     document.body.style.overflow = "";
@@ -440,10 +442,18 @@
   }
   function showPoster(i) {
     lb.i = (i + lb.list.length) % lb.list.length;
-    const x = lb.list[lb.i], img = $("lb-img");
-    img.classList.remove("on");
+    const x = lb.list[lb.i], img = $("lb-img"), vid = $("lb-vid");
+    img.classList.remove("on"); vid.classList.remove("on");
+    vid.pause();
+    // A moving poster plays in place of the picture, with its sound.
+    if (x.video) {
+      img.hidden = true; vid.hidden = false; vid.poster = x.image; vid.src = x.video;
+      vid.setAttribute("aria-label", `${posterTitle(x)}, by ${x.designer}`);
+      vid.play().catch(() => { vid.muted = true; vid.play().catch(() => {}); });
+      requestAnimationFrame(() => vid.classList.add("on"));
+    } else { vid.hidden = true; vid.removeAttribute("src"); img.hidden = false; }
     const next = new Image();
-    next.onload = next.onerror = () => { img.src = x.image; img.alt = `${posterTitle(x)}, by ${x.designer}`; requestAnimationFrame(() => img.classList.add("on")); };
+    if (!x.video) next.onload = next.onerror = () => { img.src = x.image; img.alt = `${posterTitle(x)}, by ${x.designer}`; requestAnimationFrame(() => img.classList.add("on")); };
     next.src = x.image;
     // Fetch the neighbours too, so flicking through is instant.
     for (const d of [1, -1]) { const n = lb.list[(lb.i + d + lb.list.length) % lb.list.length]; if (n) new Image().src = n.image; }

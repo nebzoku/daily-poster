@@ -38,6 +38,10 @@ export function londonToUtc(date, time) {
 
 export const stem = (path) => path.split("/").pop().replace(/\.[a-z]+$/i, "");
 export const posterImage = (x) => join(IG_DIR, `${stem(x.image)}.jpg`);
+// A moving poster goes out as a Reel: the poster on black at 9:16, with its sound (made by hand,
+// site/media/ig/<name>.mp4). Without that file it waits.
+export const posterReel = (x) => (x.video ? join(IG_DIR, `${stem(x.image)}.mp4`) : null);
+export const posterMedia = (x) => posterReel(x) || posterImage(x);
 // Today's brief is a three-picture carousel, one headline each.
 export const briefImages = (date) => [1, 2, 3].map((n) => join(IG_DIR, `brief-${date}-${n}.jpg`));
 // The morning brief also goes out as nine stories (9:16): each headline then its subline, then the palette, the typefaces and how to take part.

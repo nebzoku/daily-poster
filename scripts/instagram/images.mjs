@@ -248,7 +248,7 @@ async function main() {
   const done = new Set(Object.entries(state.posted).filter(([, v]) => v.at < weekAgo).map(([k]) => k));
   for (const f of await readdir(IG_DIR)) {
     const m = f.match(/^brief-(\d{4}-\d{2}-\d{2})-(story-)?\d\.jpg$/);
-    const old = m ? m[1] < weekAgo.slice(0, 10) : [...done].some((k) => k.startsWith("poster:") && f === k.split("/").pop().replace(/\.[a-z]+$/i, "") + ".jpg");
+    const old = m ? m[1] < weekAgo.slice(0, 10) : [...done].some((k) => k.startsWith("poster:") && [".jpg", ".mp4"].some((e) => f === k.split("/").pop().replace(/\.[a-z]+$/i, "") + e));
     if (old) await rm(join(IG_DIR, f));
   }
 }

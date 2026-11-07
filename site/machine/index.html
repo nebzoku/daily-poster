@@ -67,7 +67,7 @@
 <body>
 <div class="app">
   <main class="stage">
-    <div class="frame"><canvas id="cv" width="1080" height="1527"></canvas></div>
+    <div class="frame"><canvas id="cv" width="1080" height="1528"></canvas></div>
     <div class="meter">
       <span>Level <i><b id="m-lvl"></b></i></span>
       <span>Low <i><b id="m-low"></b></i></span>
@@ -143,7 +143,11 @@
     <div class="colour"><label>Background</label><input type="color" id="bg"><div class="swatches" id="sw-bg"></div></div>
     <div class="colour"><label>Type</label><input type="color" id="fg"><div class="swatches" id="sw-fg"></div></div>
     <div class="colour"><label>Peaks</label><input type="color" id="accent"><div class="swatches" id="sw-accent"></div></div>
+    <div class="row"><label>Type colours</label><select id="colourMode"><option value="palette">Whole palette</option><option value="one">One colour</option></select><span></span></div>
+    <div class="row"><label>Colour by</label><select id="colourBy"><option value="wave">Wave height</option><option value="bands">Flowing bands</option><option value="page">Down the page</option><option value="scatter">Scatter</option></select><span></span></div>
     <div id="colourSliders"></div>
+    <div id="ramp" style="display:flex;height:14px;margin:6px 0 2px;border:1px solid var(--line)"></div>
+    <p class="note" style="margin-top:4px">Whole palette uses every colour in the day's palette except the background, plus mid-tones between them and a shade that fades into the background, so letters recede and come forward.</p>
 
     <h2>Corner labels</h2>
     <label class="check"><input type="checkbox" id="labOn" checked> Show labels</label>
@@ -159,7 +163,7 @@
       <button class="btn" id="freeze">Freeze</button>
       <button class="btn" id="capture">Capture frame</button>
     </div>
-    <div class="row" style="margin-top:12px"><label>Size</label><select id="size"><option value="2160">2160 × 3055 (archive)</option><option value="3508">3508 × 4961 (A3, 300 dpi)</option><option value="4961">4961 × 7016 (A2, 300 dpi)</option></select><span></span></div>
+    <div class="row" style="margin-top:12px"><label>Size</label><select id="size"><option value="2160">2160 × 3056 (archive)</option><option value="3508">3508 × 4963 (A3, 300 dpi)</option><option value="4961">4961 × 7019 (A2, 300 dpi)</option></select><span></span></div>
     <div class="row"><label>Video</label><select id="vq"><option value="12000000">High (about 90MB a minute)</option><option value="5000000" selected>Standard (about 38MB a minute)</option><option value="2500000">Small (about 19MB a minute)</option></select><span></span></div>
     <div class="row"><label>Preview</label><select id="quality"><option value="1">Full detail</option><option value="0.75" selected>Balanced</option><option value="0.5">Fastest</option></select><span></span></div>
     <div class="two">
@@ -177,7 +181,7 @@
 // Built in as a fallback; on dailyposter.design the page loads the day's brief instead
 // (?d=YYYY-MM-DD for another day), so the words, colours and typefaces always match it.
 const BRIEF = {
-  issue: "036", date: "Sat 7 Nov", source: "The Guardian", colour: "Indigo", display: "DM Serif Display", text: "DM Mono", object: "dome.png", objectName: "lattice sphere",
+  issue: "036", date: "Sat 7 Nov", source: "The Guardian", colour: "Indigo", display: "DM Serif Display", text: "DM Mono", object: "dome.png", objectName: "lattice sphere", margin: 16,
   headlines: ["A White Lattice Rises", "Opera House of the West", "Light Through the Lattice"],
   sublines: [
     "Powerhouse Parramatta, a $915 million museum in western Sydney, opens this Saturday with five new exhibitions.",
@@ -195,7 +199,7 @@ await (async () => {
     const fmt = new Intl.DateTimeFormat("en-GB", { weekday: "short", day: "numeric", month: "short", timeZone: "UTC" }).format(new Date(b.date + "T12:00:00Z")).replace(",", "");
     Object.assign(BRIEF, { issue: String(b.issue).padStart(3, "0"), date: fmt, source: b.story.source, colour: b.colour.name,
       headlines: b.headlines, sublines: b.sublines, palette: b.palette.colours, display: b.type.display, text: b.type.text,
-      object: b.objects?.[0] ? new URL(b.objects[0].thumb, base).href : null, objectName: b.objects?.[0]?.name || "" });
+      object: b.objects?.[0] ? new URL(b.objects[0].thumb, base).href : null, objectName: b.objects?.[0]?.name || "", margin: b.grid?.margin ?? 16 });
     if (b.type.css) { const l = document.createElement("link"); l.rel = "stylesheet"; l.href = b.type.css; document.head.append(l); }
   } catch { /* offline or inside Claude: use the built-in brief */ }
 })();
@@ -231,8 +235,8 @@ const STRETCH = [
   ["letterStretch", "Letter stretch", 0, 1.6, 0.01, 0.65],
   ["rowStretch", "Row stretch", 0, 1.6, 0.01, 0.75],
 ];
-const COLOURS = [["accentAmt", "Peak amount", 0, 1, 0.01, 0.12]];
-const LABELS = [["labSize", "Size", 8, 60, 1, 18], ["labTrack", "Tracking", -0.1, 1, 0.005, 0.04]];
+const COLOURS = [["shades", "Shades", 2, 16, 1, 9], ["colourShift", "Lighter / darker", -1, 1, 0.01, 0], ["depth", "Fade into background", 0, 1, 0.01, 0.55], ["accentAmt", "Peak amount", 0, 1, 0.01, 0.12]];
+const LABELS = [["labSize", "Size", 8, 60, 1, 18], ["labMargin", "Margin", 0, 80, 1, BRIEF.margin], ["labTrack", "Tracking", -0.1, 1, 0.005, 0.04]];
 const LEGIBLE = [
   ["legible", "Hold", 0, 1, 0.01, 0.85],
   ["calmRows", "Bands", 0, 3, 1, 1],
@@ -261,7 +265,7 @@ const defaults = () => {
     bg: BRIEF.palette[3], fg: BRIEF.palette[0], accent: BRIEF.palette[1],
     words: [...BRIEF.headlines, ...BRIEF.sublines].join("\n"),
     labOn: true, labTL: "Daily Poster", labTR: BRIEF.date, labBL: "No. " + BRIEF.issue, labBR: BRIEF.source,
-    shapeInvert: false, shapeRead: "auto",
+    shapeInvert: false, shapeRead: "auto", colourMode: "palette", colourBy: "wave", palette: BRIEF.palette.slice(),
     lanes: [
       { on: true, key: "tracking", from: 0, to: 0.9, driver: "beats", len: 16, ripple: 0.45, curve: "linger" },
       { on: false, key: "size", from: 8, to: 26, driver: "loud", len: 8, ripple: 0.6, curve: "smooth" },
@@ -293,7 +297,7 @@ for (const id of ["bg", "fg", "accent", "labColour"]) {
   $("sw-" + id).innerHTML = SW.map((c) => `<button style="background:${c}" data-c="${c}" title="${c}"></button>`).join("");
   $("sw-" + id).addEventListener("click", (e) => { const c = e.target.dataset.c; if (c) { S()[id] = c; $(id).value = c.toLowerCase(); } });
 }
-for (const id of ["case", "font", "weight", "labFont", "labWeight", "shapeRead"]) $(id).addEventListener("change", (e) => { S()[id] = e.target.value; loadFonts(); });
+for (const id of ["case", "font", "weight", "labFont", "labWeight", "shapeRead", "colourMode", "colourBy"]) $(id).addEventListener("change", (e) => { S()[id] = e.target.value; loadFonts(); });
 for (const id of ["useSubs", "labOn", "labUpper", "shapeInvert"]) $(id).addEventListener("change", (e) => { S()[id] = e.target.checked; });
 for (const id of ["words", "labTL", "labTR", "labBL", "labBR"]) $(id).addEventListener("input", (e) => { S()[id] = e.target.value; flowCache = null; });
 const NOTES = { wave: "Small type laid in rows across the whole page. Each row rides three waves, one per part of the sound, so the lines bend, bunch and swell as it plays.",
@@ -309,7 +313,7 @@ function syncUI() {
   for (const [k] of SLIDERS) { $("r-" + k).value = s[k]; $("o-" + k).textContent = fmt(s[k]); }
   for (const id of ["case", "font", "weight", "labFont", "labWeight", "words", "labTL", "labTR", "labBL", "labBR"]) $(id).value = s[id];
   for (const id of ["useSubs", "labOn", "labUpper", "shapeInvert"]) $(id).checked = s[id];
-  $("shapeRead").value = s.shapeRead; syncShapeUI();
+  $("shapeRead").value = s.shapeRead; $("colourMode").value = s.colourMode; $("colourBy").value = s.colourBy; syncShapeUI();
   for (const id of ["bg", "fg", "accent", "labColour"]) $(id).value = s[id].toLowerCase();
   [...$("tabs").children].forEach((b, i) => b.classList.toggle("on", i === cur));
   $("file-name").textContent = slots[cur].trackName || "Upload an opera track";
@@ -398,7 +402,7 @@ function atlas(font, weight, px, colour, chars) {
   const set = [...new Set(chars)].sort().join(""), k = `${font}|${weight}|${px}|${colour}|${set}`;
   let a = atlases.get(k);
   if (!a) {
-    if (atlases.size > 120) atlases.clear();
+    if (atlases.size > 400) atlases.clear();
     const pad = Math.ceil(px * 0.25), h = Math.ceil(px * 1.3 + pad * 2), map = new Map();
     let x = 0; const cells = [...set].map((ch) => { const m = metric(font, weight, ch), w = Math.ceil(m.adv * px + pad * 2); const cell = { sx: x, w, h, pad, base: pad + px, adv: m.adv * px }; x += w + 2; map.set(ch, cell); return [ch, cell]; });
     const c = document.createElement("canvas"); c.width = Math.max(1, x); c.height = h;
@@ -659,6 +663,34 @@ function drawMaskView() {
   g.putImageData(img, 0, 0);
 }
 
+// ---------- Colour ramp ----------
+// Every palette colour but the background, darkest to lightest, with mid-tones mixed between them
+// (in linear light, so the in-betweens don't go muddy) and a first shade part-way into the background.
+const hex2 = (h) => { h = h.replace("#", ""); return [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16) / 255); };
+const lin = (c) => (c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4)), unlin = (c) => (c <= 0.0031308 ? c * 12.92 : 1.055 * Math.pow(c, 1 / 2.4) - 0.055);
+const toHex = (c) => "#" + c.map((x) => Math.round(Math.max(0, Math.min(1, unlin(x))) * 255).toString(16).padStart(2, "0")).join("");
+let rampCache = { key: "", list: [] };
+function ramp(s) {
+  const key = [s.bg, s.fg, s.palette.join(), s.shades, s.colourShift, s.depth, s.colourMode].join("|");
+  if (rampCache.key === key) return rampCache.list;
+  let list;
+  if (s.colourMode !== "palette") list = [s.fg];
+  else {
+    const bg = hex2(s.bg).map(lin), cols = [...new Set([...s.palette, s.fg].map((c) => c.toLowerCase()))].filter((c) => c !== s.bg.toLowerCase()).map((c) => hex2(c).map(lin));
+    const L = (c) => 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2], dist = (c) => Math.abs(L(c) - L(bg));
+    cols.sort((a, b) => dist(a) - dist(b));
+    const stops = s.depth > 0 && cols.length ? [cols[0].map((x, i) => bg[i] + (x - bg[i]) * (1 - s.depth * 0.75)), ...cols] : cols;
+    const n = Math.max(2, Math.round(s.shades)); list = [];
+    for (let q = 0; q < n; q++) {
+      let t = q / (n - 1); t = Math.max(0, Math.min(1, t + s.colourShift * 0.35 * (1 - Math.abs(2 * t - 1)) + s.colourShift * 0.15));
+      const x = t * (stops.length - 1), i = Math.min(stops.length - 2, Math.floor(x)), u = x - i;
+      const a = stops[i] || stops[0], b = stops[i + 1] || a; list.push(toHex(a.map((v, j) => v + (b[j] - v) * u)));
+    }
+  }
+  rampCache = { key, list }; return list;
+}
+function drawRamp() { const r = ramp(S()); $("ramp").innerHTML = r.map((c) => `<span style="flex:1;background:${c}"></span>`).join(""); }
+
 // ---------- Drawing ----------
 function render(ctx, W, H, st) {
   const { s } = st, u = W / 1080;
@@ -667,15 +699,20 @@ function render(ctx, W, H, st) {
   if (s.mode === "stretch") drawStretch(ctx, W, H, st, u); else drawField(ctx, W, H, st, u);
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   if (s.labOn) {
-    const px = s.labSize * u, m = 26 * u;
+    // Sat exactly on the grid's margins: the ink of the first and last letters touches the side
+    // margins, cap tops touch the top margin and the baseline sits on the bottom margin.
+    const px = s.labSize * u, m = s.labMargin * u;
     ctx.fillStyle = s.labColour; ctx.font = `${s.labWeight} ${px}px "${s.labFont}"`; ctx.textBaseline = "alphabetic";
     const T = (t) => (s.labUpper ? t.toUpperCase() : t);
     const tr = s.labTrack * px;
     const put = (t, x, y, a) => {
       if (!t) return; const ch = [...T(t)], w = ch.map((c) => ctx.measureText(c).width), tot = w.reduce((p, q) => p + q, 0) + tr * (ch.length - 1);
-      ctx.textAlign = "left"; let cx = a === "right" ? x - tot : x; ch.forEach((c, i) => { ctx.fillText(c, cx, y); cx += w[i] + tr; });
+      const first = ctx.measureText(ch[0]), last = ctx.measureText(ch[ch.length - 1]);
+      const inkL = -first.actualBoundingBoxLeft, inkR = w[w.length - 1] - last.actualBoundingBoxRight; // side bearings
+      ctx.textAlign = "left"; let cx = a === "right" ? x - tot + inkR : x - inkL; ch.forEach((c, i) => { ctx.fillText(c, cx, y); cx += w[i] + tr; });
     };
-    put(s.labTL, m, m + px * 0.8, "left"); put(s.labTR, W - m, m + px * 0.8, "right");
+    const cap = ctx.measureText("H").actualBoundingBoxAscent;
+    put(s.labTL, m, m + cap, "left"); put(s.labTR, W - m, m + cap, "right");
     put(s.labBL, m, H - m, "left"); put(s.labBR, W - m, H - m, "right"); ctx.textAlign = "left";
   }
 }
@@ -697,11 +734,14 @@ function drawField(ctx, W, H, st, u) {
   const aL = 0.3 + aud * f.slow, aM = 0.25 + aud * f.smid, aH = 0.2 + aud * f.shigh;
   // Streams: the running text, plus one per headline for the calm bands.
   const qpx = (sz) => Math.max(4, Math.round(Math.pow(2, Math.round(Math.log2(sz * 2) * 4) / 4)));
+  const RAMP = ramp(s), NR = RAMP.length, cby = s.colourBy;
+  const hash = (a, b) => { const h = Math.sin(a * 127.1 + b * 311.7) * 43758.5453; return h - Math.floor(h); };
   const mk = (chars, accentOnly) => ({ chars, em: chars.map((c) => metric(s.font, fontW, c).adv), accentOnly, tiles: new Map() });
   const tilesFor = (str, px) => {
     let t = str.tiles.get(px); if (t) return t;
-    const af = atlas(s.font, fontW, px, s.fg, str.chars), aa = s.accentAmt > 0 || str.accentOnly ? atlas(s.font, fontW, px, s.accent, str.chars) : af;
-    const ta = str.chars.map((c) => aa.map.get(c)); t = { tf: str.accentOnly ? ta : str.chars.map((c) => af.map.get(c)), ta }; str.tiles.set(px, t); return t;
+    const aa = atlas(s.font, fontW, px, s.accent, str.chars), ta = str.chars.map((c) => aa.map.get(c));
+    const tr = str.accentOnly ? [ta] : RAMP.map((col) => { const a = atlas(s.font, fontW, px, col, str.chars); return str.chars.map((c) => a.map.get(c)); });
+    t = { tr, ta }; str.tiles.set(px, t); return t;
   };
   const main = mk(flow(s, focus));
   const nb = spec ? 0 : Math.round(s.calmRows), bands = [];
@@ -723,7 +763,7 @@ function drawField(ctx, W, H, st, u) {
     let calm = 0, band = null;
     for (const bd of bands) { const z = (v - bd.yc) / bd.w, c = bd.strength * Math.exp(-z * z * z * z); if (c > calm) { calm = c; band = bd; } }
     const useHead = band && calm > 0.5, S2 = useHead ? band.str : main;
-    const { chars } = S2, n = chars.length, { tf, ta } = tilesFor(S2, px);
+    const { chars } = S2, n = chars.length, { tr, ta } = tilesFor(S2, px);
     const advs = S2.em.map((e) => Math.max(0.5, e * size + track)), cycle = advs.reduce((x, y) => x + y, 0) || 1;
     const dir = r % 2 ? 1 : -1;
     let off = useHead ? ((scroll * size * 1.5) % cycle + cycle) % cycle : ((scroll * size * 6 * dir + r * 977) % cycle + cycle) % cycle;
@@ -766,7 +806,15 @@ function drawField(ctx, W, H, st, u) {
         }
         const grow = (1 + s.sizeMod * e) * (M ? Math.max(0.15, 1 - s.sizeBy * 0.5 + s.sizeBy * c0) : 1);
         const sy = grow * (1 + s.stretchY * e * (spec ? 1.6 : 0.8)), sx = grow;
-        const t = useHead || e > thr ? ta[i] : tf[i];
+        let t;
+        if (useHead || (s.accentAmt > 0 && e > thr)) t = ta[i];
+        else if (NR === 1) t = tr[0][i];
+        else {
+          let c = cby === "wave" ? Math.pow(Math.min(1, e / 1.35), 1.6) : cby === "bands" ? 0.5 + 0.5 * Math.sin(ux * 4.3 + v * 6.1 - phase * 0.35 + (d / (A || 1)) * 1.5)
+            : cby === "page" ? 1 - (v + d / H) : hash(i, r) * 0.7 + 0.3 * (0.5 + 0.5 * Math.sin(phase * 0.6 + hash(r, i) * 6.28));
+          if (M) c = c * (0.55 + 0.45 * c0);
+          t = tr[Math.max(0, Math.min(NR - 1, Math.round(c * (NR - 1))))][i];
+        }
         const tw = t.w * scaleT * sx, th = t.h * scaleT * sy;
         const dxp = x + ox - t.pad * scaleT * sx - (sx - 1) * adv / 2;
         const dyp = by + lh - capH * 0.15 + d + oy - t.base * scaleT * sy;
@@ -793,7 +841,7 @@ function drawStretch(ctx, W, H, st, u) {
   }
   const sum = wts.reduce((a, b) => a + b, 0), avail = areaH - gap * (n - 1);
   const shift = Math.floor(scroll * 0.5);
-  ctx.fillStyle = s.fg; ctx.font = `${s.weight} 200px "${s.font}"`;
+  const RAMP = ramp(s); ctx.font = `${s.weight} 200px "${s.font}"`;
   const g0 = metric(s.font, s.weight, "H"), upper = s.case === "upper", boxH = upper ? g0.cap : g0.cap + g0.desc;
   let y = y0;
   for (let r = 0; r < n; r++) {
@@ -803,7 +851,7 @@ function drawStretch(ctx, W, H, st, u) {
     const adv = chars.map((c) => metric(s.font, s.weight, c).adv * 200);
     const wv = adv.map((a, i) => a * Math.max(0.12, 1 + s.letterStretch * (0.6 * Math.sin(phase * 1.25 + i * 0.8 + r * 0.9) + s.audio * (f.lvl - 0.5) * 0.6) + f.env * s.beat * 1.4 * Math.exp(-Math.pow(i / Math.max(1, chars.length - 1) - f.bx, 2) / 0.02)));
     const track = s.tracking * h, kx = Math.max(0.0001, (areaW - track * (chars.length - 1)) / wv.reduce((a, b) => a + b, 0));
-    let cx = x0;
+    let cx = x0; ctx.fillStyle = RAMP[RAMP.length === 1 ? 0 : (r * 3 + Math.floor(phase * 0.3)) % RAMP.length] ;
     chars.forEach((c, i) => { const gw = wv[i] * kx; if (c !== " ") { ctx.setTransform(gw / adv[i], 0, 0, sy, cx, baseY); ctx.fillText(c, 0, 0); } cx += gw + track; });
     y += h + gap;
   }
@@ -833,7 +881,9 @@ function frame() {
   requestAnimationFrame(frame);
 }
 const snapshot = () => { const sl = slots[cur], sc = { ...sl.s }, rowVals = applyLanes(sl, sc); return { s: sc, rowVals, f: { ...F, spec: Float32Array.from(F.spec) }, phase: sl.phase, scroll: sl.scroll, focus: sl.focus, hist: sl.hist.slice(), mask: mask ? Uint8Array.from(mask) : null }; };
+let rampShown = "";
 function meters(playing) {
+  if (rampCache.key !== rampShown) { rampShown = rampCache.key; drawRamp(); }
   for (const k of ["lvl", "low", "mid", "high"]) $("m-" + k).style.width = Math.min(100, F[k] * 70) + "%";
   $("m-beat").classList.toggle("on", F.env > 0.4);
   $("m-bpm").textContent = `${playing ? "playing" : "idle"} · ${Math.round(fps)} fps`;
@@ -873,7 +923,7 @@ async function offer(blob, filename, kind) {
 $("ov-close").addEventListener("click", () => $("overlay").classList.remove("on"));
 $("export").addEventListener("click", () => {
   const sl = slots[cur], st = viewing != null ? sl.captures[viewing].st : snapshot();
-  const W = +$("size").value, H = Math.round(W * 1.41421);
+  const W = +$("size").value, H = Math.round(W * 1528 / 1080);
   const c = document.createElement("canvas"); c.width = W; c.height = H;
   toast("Rendering…");
   setTimeout(() => { render(c.getContext("2d"), W, H, st); c.toBlob((b) => offer(b, `daily-poster-${BRIEF.issue}-poster-0${cur + 1}-${W}.png`, "image"), "image/png"); }, 30);
@@ -892,12 +942,13 @@ $("record").addEventListener("click", () => {
   rec.start(250); $("record").classList.add("on"); $("record").textContent = "Stop recording";
   if (audio.src && audio.paused) { ensureAudio(); actx.resume(); audio.play().catch(() => {}); }
 });
-$("quality").addEventListener("change", (e) => { const q = +e.target.value; cv.width = Math.round(1080 * q); cv.height = Math.round(1527 * q); });
-cv.width = 810; cv.height = 1145;
+$("quality").addEventListener("change", (e) => { const q = +e.target.value; cv.width = Math.round(1080 * q); cv.height = Math.round(1528 * q); });
+cv.width = 810; cv.height = 1146;
 let toastT;
 function toast(t) { const el = $("toast"); el.textContent = t; el.classList.add("on"); clearTimeout(toastT); toastT = setTimeout(() => el.classList.remove("on"), 1600); }
 
 syncUI();
+window.__otm = { snapshot, render, S, ramp }; // for testing from the console
 </script>
 </body>
 </html>

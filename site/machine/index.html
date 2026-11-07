@@ -143,11 +143,11 @@
     <div class="colour"><label>Background</label><input type="color" id="bg"><div class="swatches" id="sw-bg"></div></div>
     <div class="colour"><label>Type</label><input type="color" id="fg"><div class="swatches" id="sw-fg"></div></div>
     <div class="colour"><label>Peaks</label><input type="color" id="accent"><div class="swatches" id="sw-accent"></div></div>
-    <div class="row"><label>Type colours</label><select id="colourMode"><option value="palette">Whole palette</option><option value="one">One colour</option></select><span></span></div>
+    <div class="row"><label>Type colours</label><select id="colourMode"><option value="palette">Whole palette</option><option value="one">One colour (plus peaks)</option><option value="two">Two colours only</option></select><span></span></div>
     <div class="row"><label>Colour by</label><select id="colourBy"><option value="wave">Wave height</option><option value="bands">Flowing bands</option><option value="page">Down the page</option><option value="scatter">Scatter</option></select><span></span></div>
     <div id="colourSliders"></div>
     <div id="ramp" style="display:flex;height:14px;margin:6px 0 2px;border:1px solid var(--line)"></div>
-    <p class="note" style="margin-top:4px">Whole palette uses every colour in the day's palette except the background, plus mid-tones between them and a shade that fades into the background, so letters recede and come forward.</p>
+    <p class="note" style="margin-top:4px">Two colours only uses just the background and type colours, for everything. Whole palette uses every colour in the day's palette except the background, plus mid-tones between them and a shade that fades into the background, so letters recede and come forward.</p>
 
     <h2>Corner labels</h2>
     <label class="check"><input type="checkbox" id="labOn" checked> Show labels</label>
@@ -693,6 +693,8 @@ function drawRamp() { const r = ramp(S()); $("ramp").innerHTML = r.map((c) => `<
 
 // ---------- Drawing ----------
 function render(ctx, W, H, st) {
+  // Two colours only: the background and the type colour, used for every letter, the headline bands and the labels.
+  if (st.s.colourMode === "two") st = { ...st, s: { ...st.s, accent: st.s.fg, labColour: st.s.fg } };
   const { s } = st, u = W / 1080;
   ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1;
   ctx.fillStyle = s.bg; ctx.fillRect(0, 0, W, H);

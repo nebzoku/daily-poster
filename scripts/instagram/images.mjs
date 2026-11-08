@@ -47,10 +47,13 @@ const CAROUSEL = { H, top: 40, bottom: 40, secTop: 370, secBottom: 370, url: fal
 
 export function briefStrip(brief, pictures, L = CAROUSEL) {
   const d = new Intl.DateTimeFormat("en-GB", { weekday: "short", day: "numeric", month: "short", timeZone: "UTC" }).format(new Date(brief.date + "T12:00:00Z"));
-  const imgs = L.strip.map((s) => {
-    // Stories use every picture and then start again from the first, so no frame is left bare.
+  // A picture is never used twice. Stories have more picture slots than a brief has pictures, so the
+  // pictures are spread evenly across the slots and the rest are left empty.
+  const free = L.strip.map((sl, i) => (sl.obj ? -1 : i)).filter((i) => i >= 0), n = Math.min(pictures.images.length, free.length);
+  const use = new Map(L.pairs ? [...Array(n)].map((_, k) => [free[Math.floor((k * free.length) / n)], pictures.images[k]]) : []);
+  const imgs = L.strip.map((s, i) => {
     const src = s.obj ? (pictures.objects?.[s.obj - 1] || (s.obj === 1 && pictures.object))
-      : L.pairs ? pictures.images[(pictures.n = (pictures.n ?? -1) + 1) % pictures.images.length] : pictures.images.shift();
+      : L.pairs ? use.get(i) : pictures.images.shift();
     if (!src) return "";
     const x = s.x;
     return `<img class="${s.obj ? "obj" : ""}" src="${esc(src)}" style="left:${x}px;${s.top ? `top:${L.top}` : `bottom:${L.bottom}`}px;width:${s.w}px;height:${s.h}px">`;
@@ -176,7 +179,7 @@ img{position:absolute;left:${px}px;top:44px;width:${pw}px;height:${ph}px;object-
 
 // The day's pictures for the brief card: local copies where we have them, else the thumbnails.
 export function picturesFor(brief) {
-  const images = [...(brief.images || []), ...(brief.textures || [])].map((im) => (im.local ? "file://" + join(SITE, im.local) : im.thumb)).filter(Boolean);
+  const images = [...new Set([...(brief.images || []), ...(brief.textures || [])].map((im) => (im.local ? "file://" + join(SITE, im.local) : im.thumb)).filter(Boolean))];
   const objs = brief.objects || [];
   const o = objs.length ? objs[(brief.issue || 0) % objs.length] : null;
   return { images, object: o ? "file://" + join(SITE, o.thumb) : null, objects: objs.map((x) => "file://" + join(SITE, x.thumb)) };

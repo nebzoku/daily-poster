@@ -1,0 +1,289 @@
+{
+  "date": "2026-11-08",
+  "issue": 37,
+  "generatedAt": "2026-11-08T05:07:45.939Z",
+  "colour": {
+    "name": "Blue",
+    "yesterday": "Indigo",
+    "tomorrow": "Teal"
+  },
+  "story": {
+    "title": "Thousands watch elaborate carnival cart procession",
+    "summary": "Thousands of people lined the streets of Bridgwater in Somerset to watch an elaborate procession of carnival carts. Spectators travelled from all over the country to see the spectacle.",
+    "source": "BBC News",
+    "url": "https://www.bbc.co.uk/news/articles/cm62ypz1ywk1o?at_medium=RSS&amp;at_campaign=rss",
+    "published": "2026-11-07T23:05:17.000Z",
+    "theme": "festivals and carnival traditions"
+  },
+  "headlines": [
+    "Somerset Lights Up the Dark",
+    "The Whole Street Becomes Spectacle",
+    "Slow Giants Glide Through Town"
+  ],
+  "sublines": [
+    "Thousands lined the streets of Bridgwater, Somerset, to watch an elaborate procession of carnival carts roll past.",
+    "Spectators travelled from across the country to see the handmade carts parade through the town.",
+    "A long-running community tradition drew crowds again, filling the town centre with colour, music and moving light."
+  ],
+  "palette": {
+    "name": "Vivid",
+    "colours": [
+      "#2987F1",
+      "#D4E6FE",
+      "#6A727D",
+      "#041F3F"
+    ]
+  },
+  "always": [
+    "#000000",
+    "#FFFFFF"
+  ],
+  "type": {
+    "id": "abril",
+    "display": "Abril Fatface",
+    "text": "Karla",
+    "reason": "Abril Fatface has the showy, high-contrast drama of a carnival bill, and Karla keeps the facts clear beneath it.",
+    "css": "https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Karla&display=swap",
+    "displayUrl": "https://fonts.google.com/specimen/Abril+Fatface",
+    "textUrl": "https://fonts.google.com/specimen/Karla"
+  },
+  "grid": {
+    "format": "A-size",
+    "size": [
+      1080,
+      1528
+    ],
+    "columns": 8,
+    "rows": 8,
+    "margin": 16,
+    "gutter": 0,
+    "column": 131,
+    "row": 187,
+    "unit": "px"
+  },
+  "images": [
+    {
+      "id": "met:51622",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Procession, late 19th century",
+      "credit": "Unidentified artist",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/51622",
+      "page": "https://www.metmuseum.org/art/collection/search/51622",
+      "alt": "Procession",
+      "thumb": "https://images.metmuseum.org/CRDImages/as/web-large/DP200529_CRD.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/as/original/DP200529_CRD.jpg",
+      "local": "media/2026-11-08/image-01-2160.jpg"
+    },
+    {
+      "id": "unsplash:7Qcx5wjHCX8",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "People in yellow hoodies with festive lights",
+      "credit": "Gabriel Mihalcea",
+      "creditUrl": "https://unsplash.com/@lovelyscape?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/people-in-yellow-hoodies-with-festive-lights-7Qcx5wjHCX8?utm_source=daily_poster&utm_medium=referral",
+      "alt": "People in yellow hoodies with festive lights",
+      "thumb": "https://images.unsplash.com/photo-1761155228393-99a9633e2495?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8bmlnaHQlMjBwYXJhZGUlMjBsaWdodHN8ZW58MXx8fHwxNzk0MTE0NDY2fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1761155228393-99a9633e2495?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8bmlnaHQlMjBwYXJhZGUlMjBsaWdodHN8ZW58MXx8fHwxNzk0MTE0NDY2fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:Wu6di3hzWhw",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "Colorful lanterns strung across a street at night",
+      "credit": "Jahanzeb Ahsan",
+      "creditUrl": "https://unsplash.com/@jahan_photobox?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/colorful-lanterns-strung-across-a-street-at-night-Wu6di3hzWhw?utm_source=daily_poster&utm_medium=referral",
+      "alt": "Colorful lanterns strung across a street at night",
+      "thumb": "https://images.unsplash.com/photo-1771442286463-bca47e082b3c?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8Ymx1ZSUyMGxhbnRlcm4lMjBnbG93fGVufDF8fHx8MTc5NDExNDQ2Nnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1771442286463-bca47e082b3c?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8Ymx1ZSUyMGxhbnRlcm4lMjBnbG93fGVufDF8fHx8MTc5NDExNDQ2Nnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:lXRTtNgEq6A",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "Night festival crowd surrounds a large, illuminated parade float",
+      "credit": "Pierre Goiffon",
+      "creditUrl": "https://unsplash.com/@pir?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/night-festival-crowd-surrounds-a-large-illuminated-parade-float-lXRTtNgEq6A?utm_source=daily_poster&utm_medium=referral",
+      "alt": "Night festival crowd surrounds a large, illuminated parade float",
+      "thumb": "https://images.unsplash.com/photo-1785060599366-74423c786c28?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8bmlnaHQlMjBwYXJhZGUlMjBsaWdodHN8ZW58MXx8fHwxNzk0MTE0NDY2fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1785060599366-74423c786c28?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8bmlnaHQlMjBwYXJhZGUlMjBsaWdodHN8ZW58MXx8fHwxNzk0MTE0NDY2fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:363024",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Military Procession, 16th century",
+      "credit": "Hans Mont",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/363024",
+      "page": "https://www.metmuseum.org/art/collection/search/363024",
+      "alt": "Military Procession",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP801453.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP801453.jpg",
+      "local": "media/2026-11-08/image-05-2160.jpg"
+    },
+    {
+      "id": "unsplash:TW-qtWwEZnQ",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "A colorful illuminated parade float at night",
+      "credit": "You Le",
+      "creditUrl": "https://unsplash.com/@le_y0u?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-colorful-illuminated-parade-float-at-night-TW-qtWwEZnQ?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A colorful illuminated parade float at night",
+      "thumb": "https://images.unsplash.com/photo-1769737925117-83a09d449bfa?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8bmlnaHQlMjBwYXJhZGUlMjBsaWdodHN8ZW58MXx8fHwxNzk0MTE0NDY2fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1769737925117-83a09d449bfa?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8bmlnaHQlMjBwYXJhZGUlMjBsaWdodHN8ZW58MXx8fHwxNzk0MTE0NDY2fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:VmeueAsRPRs",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "A lighted pickup truck towing a trailer with a large green inflatable figure at night",
+      "credit": "Michael Shtern",
+      "creditUrl": "https://unsplash.com/@mic222?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/lighted-pickup-truck-with-inflatable-float-VmeueAsRPRs?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A lighted pickup truck towing a trailer with a large green inflatable figure at night",
+      "thumb": "https://images.unsplash.com/photo-1791279057502-4cb60f831a92?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8bmlnaHQlMjBwYXJhZGUlMjBsaWdodHN8ZW58MXx8fHwxNzk0MTE0NDY2fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1791279057502-4cb60f831a92?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8bmlnaHQlMjBwYXJhZGUlMjBsaWdodHN8ZW58MXx8fHwxNzk0MTE0NDY2fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:334119",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Carnival, 1894",
+      "credit": "Henri de Toulouse-Lautrec",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/334119",
+      "page": "https://www.metmuseum.org/art/collection/search/334119",
+      "alt": "Carnival",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP252756.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP252756.jpg",
+      "local": "media/2026-11-08/image-08-2160.jpg"
+    },
+    {
+      "id": "unsplash:fCsLp_Ox5hI",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "A decorative lantern glows with blue light at dusk",
+      "credit": "Phước Sang",
+      "creditUrl": "https://unsplash.com/@phuocsangvn?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-decorative-lantern-glows-with-blue-light-at-dusk-fCsLp_Ox5hI?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A decorative lantern glows with blue light at dusk",
+      "thumb": "https://images.unsplash.com/photo-1773408026966-a55f3b3f6d72?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8Ymx1ZSUyMGxhbnRlcm4lMjBnbG93fGVufDF8fHx8MTc5NDExNDQ2Nnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1773408026966-a55f3b3f6d72?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8Ymx1ZSUyMGxhbnRlcm4lMjBnbG93fGVufDF8fHx8MTc5NDExNDQ2Nnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:BaMxrpCbvNY",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "Dragon made of colorful lights at night",
+      "credit": "Adhitya Sibikumar",
+      "creditUrl": "https://unsplash.com/@adhitya_2505?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/dragon-made-of-colorful-lights-at-night-BaMxrpCbvNY?utm_source=daily_poster&utm_medium=referral",
+      "alt": "Dragon made of colorful lights at night",
+      "thumb": "https://images.unsplash.com/photo-1758998427361-e6e8ccc5bbc5?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8bmlnaHQlMjBwYXJhZGUlMjBsaWdodHN8ZW58MXx8fHwxNzk0MTE0NDY2fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1758998427361-e6e8ccc5bbc5?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8bmlnaHQlMjBwYXJhZGUlMjBsaWdodHN8ZW58MXx8fHwxNzk0MTE0NDY2fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    }
+  ],
+  "textures": [
+    {
+      "id": "unsplash:A4rqd2g-eLo",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "blue textile in close up photography",
+      "credit": "Kseniya Lapteva",
+      "creditUrl": "https://unsplash.com/@ksushlapush?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/blue-textile-in-close-up-photography-A4rqd2g-eLo?utm_source=daily_poster&utm_medium=referral",
+      "alt": "blue textile in close up photography",
+      "thumb": "https://images.unsplash.com/photo-1629197521865-4946b4acd2b0?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8dmVsdmV0JTIwdGV4dHVyZXxlbnwxfHx8fDE3OTQxMTQ0NjZ8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1629197521865-4946b4acd2b0?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8dmVsdmV0JTIwdGV4dHVyZXxlbnwxfHx8fDE3OTQxMTQ0NjZ8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:k4Lt0CjUnb0",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "white textured paper or plaster surface",
+      "credit": "João Vítor Duarte",
+      "creditUrl": "https://unsplash.com/@joaovtrduarte?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-k4Lt0CjUnb0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "white textured paper or plaster surface",
+      "thumb": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDExNDQ2Nnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDExNDQ2Nnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:pdyQ3Ox-UEU",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a wall that has some paint on it",
+      "credit": "Annie Spratt",
+      "creditUrl": "https://unsplash.com/@anniespratt?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-wall-that-has-some-paint-on-it-pdyQ3Ox-UEU?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a wall that has some paint on it",
+      "thumb": "https://images.unsplash.com/photo-1578922348103-46c3a7ebdd86?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cGFpbnRlZCUyMHRpbiUyMHRleHR1cmV8ZW58MXx8fHwxNzk0MTE0NDY2fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1578922348103-46c3a7ebdd86?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cGFpbnRlZCUyMHRpbiUyMHRleHR1cmV8ZW58MXx8fHwxNzk0MTE0NDY2fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:pIFFTVW5TSs",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "black and brown abstract painting",
+      "credit": "Raphael Nogueira",
+      "creditUrl": "https://unsplash.com/@phaelnogueira?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/black-and-brown-abstract-painting-pIFFTVW5TSs?utm_source=daily_poster&utm_medium=referral",
+      "alt": "black and brown abstract painting",
+      "thumb": "https://images.unsplash.com/photo-1593562155062-1e945285eb9d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFpbnRlZCUyMHRpbiUyMHRleHR1cmV8ZW58MXx8fHwxNzk0MTE0NDY2fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1593562155062-1e945285eb9d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFpbnRlZCUyMHRpbiUyMHRleHR1cmV8ZW58MXx8fHwxNzk0MTE0NDY2fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    }
+  ],
+  "objects": [
+    {
+      "name": "lantern",
+      "material": "polished brass",
+      "image": "media/2026-11-08/object-1.png",
+      "thumb": "media/2026-11-08/object-1-thumb.png",
+      "model": {
+        "title": "Lantern",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-f5122e70efc3454cac3549c1a814d715",
+        "licence": "CC Attribution",
+        "creator": "Skrisilence",
+        "creatorUrl": "https://sketchfab.com/skrisilence"
+      },
+      "texture": null
+    },
+    {
+      "name": "cart wheel",
+      "material": "rusted iron",
+      "image": "media/2026-11-08/object-2.png",
+      "thumb": "media/2026-11-08/object-2-thumb.png",
+      "model": {
+        "title": "Wagon wheel",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-b93ec52fa72541bfbdaa73d11319f5e8",
+        "licence": "CC Attribution",
+        "creator": "Oleg Bone",
+        "creatorUrl": "https://sketchfab.com/Oleg_Bone"
+      },
+      "texture": {
+        "title": "Rust Coarse 01",
+        "url": "https://polyhaven.com/a/rust_coarse_01"
+      }
+    },
+    {
+      "name": "light bulb",
+      "material": "brushed steel",
+      "image": "media/2026-11-08/object-3.png",
+      "thumb": "media/2026-11-08/object-3-thumb.png",
+      "model": {
+        "title": "Light bulb",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-1730ab2ab65348e99aa1fa4f57efc0f8",
+        "licence": "CC Attribution",
+        "creator": "takeboncog",
+        "creatorUrl": "https://sketchfab.com/takeboncog"
+      },
+      "texture": null
+    }
+  ]
+}

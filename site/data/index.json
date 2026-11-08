@@ -1,5 +1,16 @@
 [
   {
+    "date": "2026-11-08",
+    "issue": 37,
+    "colour": "Blue",
+    "headline": "Somerset Lights Up the Dark",
+    "bg": "#2987F1",
+    "thumb": "https://images.metmuseum.org/CRDImages/as/web-large/DP200529_CRD.jpg",
+    "display": "Abril Fatface",
+    "text": "Karla",
+    "css": "https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Karla&display=swap"
+  },
+  {
     "date": "2026-11-07",
     "issue": 36,
     "colour": "Indigo",

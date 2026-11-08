@@ -1,7 +1,7 @@
 // Shared bits for the Instagram account: what's due, when, and what's been posted.
 //
 // The rhythm (UK time):
-//   08:00         today's brief, as a carousel on the grid and as nine stories
+//   08:00         today's brief, as nine stories (no grid post)
 //   13:00, 19:00  posters made from earlier briefs, oldest first
 //   10:30         a third poster, only when three or more are waiting
 // Every poster goes out from the day after its brief, so the feed runs one day behind the site.

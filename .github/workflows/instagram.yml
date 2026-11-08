@@ -1,7 +1,7 @@
 name: Instagram
 
 # Posts to the Daily Poster Instagram account. Runs every hour; scripts/instagram/post.mjs
-# decides whether anything is due (the brief card at 8am, posters at 1pm and 7pm, and a
+# decides whether anything is due (the brief as stories at 8am, posters at 1pm and 7pm, and a
 # third at 10.30am when three or more are waiting). Does nothing until Instagram is set up.
 on:
   schedule:

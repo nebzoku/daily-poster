@@ -186,7 +186,6 @@ async function todo(state) {
   const latest = await readJSON(join(DATA, "latest.json"), null);
   const jobs = [];
   if (latest && latest.date === londonDate()) {
-    if (!briefImages(latest.date).every((f) => existsSync(f))) jobs.push({ kind: "brief", brief: latest, out: briefImages(latest.date) });
     if (!briefStories(latest.date).every((f) => existsSync(f))) jobs.push({ kind: "story", brief: latest, out: briefStories(latest.date) });
   }
   // Earlier briefs in the catch-up queue that haven't gone out yet.

@@ -67,11 +67,19 @@ async function api(path, params, method = "POST") {
 
 // Wait for Instagram to fetch and process a container.
 async function ready(id) {
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 40; i++) {
     const { status_code } = await api(id, { fields: "status_code" }, "GET");
     if (status_code === "FINISHED") return;
     if (status_code === "ERROR" || status_code === "EXPIRED") throw new Error(`container ${status_code}`);
     await new Promise((r) => setTimeout(r, 3000));
+  }
+  throw new Error("Instagram was still processing a picture after two minutes");
+}
+// Publishing straight after FINISHED sometimes fails with "Media ID is not available"; try again shortly.
+async function publishContainer(id) {
+  for (let i = 0; ; i++) {
+    try { return (await api(`${USER}/media_publish`, { creation_id: id })).id; }
+    catch (e) { if (i >= 3 || !/not available|not ready/i.test(e.message)) throw e; await new Promise((r) => setTimeout(r, 10e3)); }
   }
 }
 
@@ -90,7 +98,7 @@ async function publish(images, caption, alt) {
     ({ id } = await api(`${USER}/media`, { media_type: "CAROUSEL", children: children.join(","), caption }));
   }
   await ready(id);
-  return (await api(`${USER}/media_publish`, { creation_id: id })).id;
+  return publishContainer(id);
 }
 
 // A Reel: Instagram fetches the video and takes a while to process it.
@@ -112,17 +120,19 @@ const posterJob = (p, brief) => ({
 });
 const send = (job) => (job.reel ? publishReel(job.reel, job.caption) : job.story ? publishStories(job.images) : publish(job.images, job.caption, job.alt));
 
-// Stories, one after another (each is its own post; stories take no caption).
-async function publishStories(images) {
-  const ids = [];
-  for (const u of images) {
+// Stories, one after another (each is its own post; stories take no caption). Each one is noted as
+// it goes out (in done), so if a run fails part-way the next run carries on from there.
+async function publishStories(images, done = [], save = async () => {}) {
+  for (const [i, u] of images.entries()) {
+    if (done[i]) continue;
     const head = await fetch(u, { method: "HEAD" });
     if (!head.ok) throw new Error(`picture isn't online yet (${head.status}): ${u}`);
     const { id } = await api(`${USER}/media`, { image_url: u, media_type: "STORIES" });
     await ready(id);
-    ids.push((await api(`${USER}/media_publish`, { creation_id: id })).id);
+    done[i] = await publishContainer(id);
+    await save();
   }
-  return ids.join(",");
+  return done.join(",");
 }
 
 async function renewToken(state) {
@@ -187,13 +197,13 @@ async function main() {
     if (!DRY) { await writeJSON(STATE, state); return; }
   }
 
-  // What's due: the brief card in the morning; posters at their times.
+  // What's due: the brief as stories in the morning (no grid post); posters at their times.
   let job = null;
-  const briefKey = `brief:${today}`, briefSlot = `${today} ${SLOTS.brief}`;
-  if (due(SLOTS.brief) && !state.slots[briefSlot] && !state.posted[briefKey]) {
+  const storiesKey = `stories:${today}`, briefSlot = `${today} ${SLOTS.brief}`;
+  if (due(SLOTS.brief) && !state.posted[storiesKey]) {
     const brief = await readJSON(join(DATA, "latest.json"), null);
-    if (brief?.date === today && [...briefImages(today), ...briefStories(today)].every((f) => existsSync(f)))
-      job = { key: briefKey, slot: briefSlot, images: briefImages(today).map(url), caption: briefCaption(brief), stories: briefStories(today).map(url) };
+    if (brief?.date === today && briefStories(today).every((f) => existsSync(f)))
+      job = { key: storiesKey, slot: briefSlot, stories: briefStories(today).map(url) };
   }
   if (!job) {
     const waiting = (await pendingPosters(state, today)).filter((p) => existsSync(posterMedia(p)));
@@ -208,13 +218,15 @@ async function main() {
   }
 
   if (job) {
-    console.log(`${DRY ? "Would post" : "Posting"} ${job.key} for the ${job.slot} slot:\n${job.reel || job.images.join("\n")}\n---\n${job.caption}\n---`);
+    console.log(`${DRY ? "Would post" : "Posting"} ${job.key} for the ${job.slot} slot:\n${job.reel || (job.images || job.stories).join("\n")}${job.caption ? `\n---\n${job.caption}\n---` : ""}`);
     if (!DRY) {
       try {
-        const id = await send(job);
-        // The brief goes on the grid as a carousel and into stories.
-        if (job.stories) { try { state.posted[`stories:${today}`] = { at: new Date().toISOString(), id: await publishStories(job.stories) }; }
-          catch (e) { console.error(`Couldn't post the stories: ${e.message}`); process.exitCode = 1; } }
+        let id;
+        if (job.stories) {
+          state.partial ??= {}; const done = (state.partial[job.key] ??= []);
+          id = await publishStories(job.stories, done, () => writeJSON(STATE, state));
+          delete state.partial[job.key];
+        } else id = await send(job);
         state.posted[job.key] = { slot: job.slot, at: new Date().toISOString(), id };
         state.slots[job.slot] = job.key;
         console.log(`Posted: ${id}`);

@@ -132,6 +132,11 @@
       "slot": "2026-11-08 08:00",
       "at": "2026-11-08T08:16:39.679Z",
       "id": "17934958266413171,17971218551962876,17953510599341847,17879806281635661,18081190811417963,18101873399456953,18095818103163874,18148533868601247,18110674403186335"
+    },
+    "poster:showcase/036-a-white-lattice-rises-still.jpg": {
+      "slot": "2026-11-08 10:30",
+      "at": "2026-11-08T11:07:30.581Z",
+      "id": "18577187896079558"
     }
   },
   "slots": {
@@ -147,7 +152,8 @@
     "2026-11-07 10:30": "poster:showcase/035-teeth-timber-and-deep-water.jpg",
     "2026-11-07 13:00": "poster:showcase/035-teeth-timber-and-deep-water-2.jpg",
     "2026-11-07 19:00": "poster:showcase/035-something-new-stirs-in-ness.jpg",
-    "2026-11-08 08:00": "stories:2026-11-08"
+    "2026-11-08 08:00": "stories:2026-11-08",
+    "2026-11-08 10:30": "poster:showcase/036-a-white-lattice-rises-still.jpg"
   },
   "start": "2026-11-04",
   "partial": {}

@@ -152,6 +152,19 @@ async function renewToken(state) {
   } catch (e) { console.warn(`Couldn't renew the Instagram token: ${e.message}`); }
 }
 
+// Follower count, kept per day (the last reading of each day stands) in instagram/followers.json,
+// so growth can be charted and forecast.
+async function logFollowers(today) {
+  try {
+    const { followers_count } = await api(USER, { fields: "followers_count" }, "GET");
+    if (typeof followers_count !== "number") return;
+    const file = join(STATE, "..", "followers.json"), log = await readJSON(file, {});
+    log[today] = followers_count;
+    await writeJSON(file, Object.fromEntries(Object.entries(log).sort()));
+    console.log(`Followers: ${followers_count}`);
+  } catch (e) { console.warn(`Couldn't read the follower count: ${e.message}`); }
+}
+
 async function main() {
   if (!TOKEN || !USER) { console.log("Instagram isn't set up (INSTAGRAM_TOKEN, INSTAGRAM_USER_ID); nothing to post."); return; }
   const state = await loadState();
@@ -238,6 +251,7 @@ async function main() {
   } else console.log("Nothing due this hour.");
 
   if (!DRY) await renewToken(state);
+  if (!DRY) await logFollowers(today);
   if (state.tokenExpires && !process.env.GH_SECRETS_TOKEN && state.tokenExpires < addDays(today, 10))
     console.log(`::warning::The Instagram token runs out on ${state.tokenExpires}. Make a new one and update INSTAGRAM_TOKEN.`);
   // Keep the slot log short.

@@ -1,37 +1,37 @@
 {
-  "date": "2026-11-08",
-  "issue": 37,
-  "generatedAt": "2026-11-08T05:07:45.939Z",
+  "date": "2026-11-09",
+  "issue": 38,
+  "generatedAt": "2026-11-09T05:07:52.726Z",
   "colour": {
-    "name": "Blue",
-    "yesterday": "Indigo",
-    "tomorrow": "Teal"
+    "name": "Teal",
+    "yesterday": "Blue",
+    "tomorrow": "Jade"
   },
   "story": {
-    "title": "Thousands watch elaborate carnival cart procession",
-    "summary": "Thousands of people lined the streets of Bridgwater in Somerset to watch an elaborate procession of carnival carts. Spectators travelled from all over the country to see the spectacle.",
-    "source": "BBC News",
-    "url": "https://www.bbc.co.uk/news/articles/cm62ypz1ywk1o?at_medium=RSS&amp;at_campaign=rss",
-    "published": "2026-11-07T23:05:17.000Z",
-    "theme": "festivals and carnival traditions"
+    "title": "A desert stirs to life: Chile's Atacama erupts in its biggest floral display in decades",
+    "summary": "El Niño rains have fallen on Chile's Atacama Desert, one of the driest places on Earth, and set off its biggest flower display in decades. The bloom has woken a short-lived ecosystem of plants and wildlife across the normally barren ground.",
+    "source": "NPR",
+    "url": "https://www.npr.org/2026/11/08/nx-s1-6023812/chile-desert-el-nino",
+    "published": "2026-11-08T11:00:00.000Z",
+    "theme": "desert wildflower bloom"
   },
   "headlines": [
-    "Somerset Lights Up the Dark",
-    "The Whole Street Becomes Spectacle",
-    "Slow Giants Glide Through Town"
+    "The Driest Place Blooms",
+    "Seeds Wake After Years Asleep",
+    "A Desert Remembers Colour"
   ],
   "sublines": [
-    "Thousands lined the streets of Bridgwater, Somerset, to watch an elaborate procession of carnival carts roll past.",
-    "Spectators travelled from across the country to see the handmade carts parade through the town.",
-    "A long-running community tradition drew crowds again, filling the town centre with colour, music and moving light."
+    "El Niño rains have carpeted Chile's Atacama Desert in flowers, its largest display in decades.",
+    "Seeds that lay dormant in the Atacama's parched ground have sprung up, drawing a brief wave of insects and wildlife.",
+    "In one of Earth's driest places, a fleeting ecosystem has appeared, and it will fade as quickly as it came."
   ],
   "palette": {
     "name": "Vivid",
     "colours": [
-      "#2987F1",
-      "#D4E6FE",
-      "#6A727D",
-      "#041F3F"
+      "#4CEBEB",
+      "#B6F2F1",
+      "#657575",
+      "#012525"
     ]
   },
   "always": [
@@ -39,13 +39,13 @@
     "#FFFFFF"
   ],
   "type": {
-    "id": "abril",
-    "display": "Abril Fatface",
-    "text": "Karla",
-    "reason": "Abril Fatface has the showy, high-contrast drama of a carnival bill, and Karla keeps the facts clear beneath it.",
-    "css": "https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Karla&display=swap",
-    "displayUrl": "https://fonts.google.com/specimen/Abril+Fatface",
-    "textUrl": "https://fonts.google.com/specimen/Karla"
+    "id": "gloock",
+    "display": "Gloock",
+    "text": "Schibsted Grotesk",
+    "reason": "Gloock's high-contrast, softly sculpted serif has the drama of a rare bloom against bare ground, while Schibsted Grotesk keeps the facts calm and clear.",
+    "css": "https://fonts.googleapis.com/css2?family=Gloock&family=Schibsted+Grotesk&display=swap",
+    "displayUrl": "https://fonts.google.com/specimen/Gloock",
+    "textUrl": "https://fonts.google.com/specimen/Schibsted+Grotesk"
   },
   "grid": {
     "format": "A-size",
@@ -63,227 +63,227 @@
   },
   "images": [
     {
-      "id": "met:51622",
+      "id": "unsplash:N7bHNnmTB0E",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "Silhouetted plants against a soft sunset sky",
+      "credit": "Nadine Marfurt",
+      "creditUrl": "https://unsplash.com/@nadine3?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/silhouetted-plants-against-a-soft-sunset-sky-N7bHNnmTB0E?utm_source=daily_poster&utm_medium=referral",
+      "alt": "Silhouetted plants against a soft sunset sky",
+      "thumb": "https://images.unsplash.com/photo-1761073830718-e0279de03ad4?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8cGluayUyMHdpbGRmbG93ZXJzJTIwZGVzZXJ0fGVufDF8fHx8MTc5NDIwMDg3M3ww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1761073830718-e0279de03ad4?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8cGluayUyMHdpbGRmbG93ZXJzJTIwZGVzZXJ0fGVufDF8fHx8MTc5NDIwMDg3M3ww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:61awD2kL4h0",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "A green road sign for Ruta 5 and Freirina in a field of purple flowers",
+      "credit": "Gi González Carrasco",
+      "creditUrl": "https://unsplash.com/@ladydark?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/road-sign-in-flowering-desert-landscape-61awD2kL4h0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A green road sign for Ruta 5 and Freirina in a field of purple flowers",
+      "thumb": "https://images.unsplash.com/photo-1792325308427-d45dcb69b282?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8QXRhY2FtYSUyMGRlc2VydCUyMGZsb3dlcnN8ZW58MXx8fHwxNzk0MjAwODczfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1792325308427-d45dcb69b282?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8QXRhY2FtYSUyMGRlc2VydCUyMGZsb3dlcnN8ZW58MXx8fHwxNzk0MjAwODczfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:iqv9evmZ4kQ",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a group of white flowers with yellow centers",
+      "credit": "Kelly Mella",
+      "creditUrl": "https://unsplash.com/@kelly9621?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-group-of-white-flowers-with-yellow-centers-iqv9evmZ4kQ?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a group of white flowers with yellow centers",
+      "thumb": "https://images.unsplash.com/photo-1708975835866-5ac1b92861ff?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8QXRhY2FtYSUyMGRlc2VydCUyMGZsb3dlcnN8ZW58MXx8fHwxNzk0MjAwODczfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1708975835866-5ac1b92861ff?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8QXRhY2FtYSUyMGRlc2VydCUyMGZsb3dlcnN8ZW58MXx8fHwxNzk0MjAwODczfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:855949",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Procession, late 19th century",
-      "credit": "Unidentified artist",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/51622",
-      "page": "https://www.metmuseum.org/art/collection/search/51622",
-      "alt": "Procession",
-      "thumb": "https://images.metmuseum.org/CRDImages/as/web-large/DP200529_CRD.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/as/original/DP200529_CRD.jpg",
-      "local": "media/2026-11-08/image-01-2160.jpg"
+      "title": "Bank of wildflowers, 1830–39",
+      "credit": "Andrew Nicholl",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/855949",
+      "page": "https://www.metmuseum.org/art/collection/search/855949",
+      "alt": "Bank of wildflowers",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP-23710-001.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP-23710-001.jpg",
+      "local": "media/2026-11-09/image-04-2160.jpg"
     },
     {
-      "id": "unsplash:7Qcx5wjHCX8",
+      "id": "unsplash:TD36WEeWwTg",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "People in yellow hoodies with festive lights",
-      "credit": "Gabriel Mihalcea",
-      "creditUrl": "https://unsplash.com/@lovelyscape?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/people-in-yellow-hoodies-with-festive-lights-7Qcx5wjHCX8?utm_source=daily_poster&utm_medium=referral",
-      "alt": "People in yellow hoodies with festive lights",
-      "thumb": "https://images.unsplash.com/photo-1761155228393-99a9633e2495?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8bmlnaHQlMjBwYXJhZGUlMjBsaWdodHN8ZW58MXx8fHwxNzk0MTE0NDY2fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1761155228393-99a9633e2495?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8bmlnaHQlMjBwYXJhZGUlMjBsaWdodHN8ZW58MXx8fHwxNzk0MTE0NDY2fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "A bright yellow lily blooming in sandy soil among small wildflowers and green shrubs",
+      "credit": "Gi González Carrasco",
+      "creditUrl": "https://unsplash.com/@ladydark?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/yellow-lily-in-sandy-soil-TD36WEeWwTg?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A bright yellow lily blooming in sandy soil among small wildflowers and green shrubs",
+      "thumb": "https://images.unsplash.com/photo-1792324644758-6890dd70d1df?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8QXRhY2FtYSUyMGRlc2VydCUyMGZsb3dlcnN8ZW58MXx8fHwxNzk0MjAwODczfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1792324644758-6890dd70d1df?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8QXRhY2FtYSUyMGRlc2VydCUyMGZsb3dlcnN8ZW58MXx8fHwxNzk0MjAwODczfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:Wu6di3hzWhw",
-      "source": "Unsplash",
-      "licence": "Unsplash License",
-      "title": "Colorful lanterns strung across a street at night",
-      "credit": "Jahanzeb Ahsan",
-      "creditUrl": "https://unsplash.com/@jahan_photobox?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/colorful-lanterns-strung-across-a-street-at-night-Wu6di3hzWhw?utm_source=daily_poster&utm_medium=referral",
-      "alt": "Colorful lanterns strung across a street at night",
-      "thumb": "https://images.unsplash.com/photo-1771442286463-bca47e082b3c?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8Ymx1ZSUyMGxhbnRlcm4lMjBnbG93fGVufDF8fHx8MTc5NDExNDQ2Nnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1771442286463-bca47e082b3c?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8Ymx1ZSUyMGxhbnRlcm4lMjBnbG93fGVufDF8fHx8MTc5NDExNDQ2Nnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
-    },
-    {
-      "id": "unsplash:lXRTtNgEq6A",
-      "source": "Unsplash",
-      "licence": "Unsplash License",
-      "title": "Night festival crowd surrounds a large, illuminated parade float",
-      "credit": "Pierre Goiffon",
-      "creditUrl": "https://unsplash.com/@pir?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/night-festival-crowd-surrounds-a-large-illuminated-parade-float-lXRTtNgEq6A?utm_source=daily_poster&utm_medium=referral",
-      "alt": "Night festival crowd surrounds a large, illuminated parade float",
-      "thumb": "https://images.unsplash.com/photo-1785060599366-74423c786c28?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8bmlnaHQlMjBwYXJhZGUlMjBsaWdodHN8ZW58MXx8fHwxNzk0MTE0NDY2fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1785060599366-74423c786c28?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8bmlnaHQlMjBwYXJhZGUlMjBsaWdodHN8ZW58MXx8fHwxNzk0MTE0NDY2fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
-    },
-    {
-      "id": "met:363024",
+      "id": "met:58891",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Military Procession, 16th century",
-      "credit": "Hans Mont",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/363024",
-      "page": "https://www.metmuseum.org/art/collection/search/363024",
-      "alt": "Military Procession",
-      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP801453.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP801453.jpg",
-      "local": "media/2026-11-08/image-05-2160.jpg"
+      "title": "Case (Inrō) with Design of Wildflowers, Dragonflies and Bees, 19th century",
+      "credit": "Japan",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/58891",
+      "page": "https://www.metmuseum.org/art/collection/search/58891",
+      "alt": "Case (Inrō) with Design of Wildflowers, Dragonflies and Bees",
+      "thumb": "https://images.metmuseum.org/CRDImages/as/web-large/36_100_207_O5.JPG",
+      "src": "https://images.metmuseum.org/CRDImages/as/original/36_100_207_O5.JPG",
+      "local": "media/2026-11-09/image-06-2160.jpg"
     },
     {
-      "id": "unsplash:TW-qtWwEZnQ",
+      "id": "unsplash:XGqogpXNm4Q",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "A colorful illuminated parade float at night",
-      "credit": "You Le",
-      "creditUrl": "https://unsplash.com/@le_y0u?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/a-colorful-illuminated-parade-float-at-night-TW-qtWwEZnQ?utm_source=daily_poster&utm_medium=referral",
-      "alt": "A colorful illuminated parade float at night",
-      "thumb": "https://images.unsplash.com/photo-1769737925117-83a09d449bfa?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8bmlnaHQlMjBwYXJhZGUlMjBsaWdodHN8ZW58MXx8fHwxNzk0MTE0NDY2fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1769737925117-83a09d449bfa?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8bmlnaHQlMjBwYXJhZGUlMjBsaWdodHN8ZW58MXx8fHwxNzk0MTE0NDY2fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "Succulent plants with ruffled green and red leaves growing in cracked dry desert soil",
+      "credit": "Gi González Carrasco",
+      "creditUrl": "https://unsplash.com/@ladydark?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/succulent-plants-in-cracked-desert-soil-XGqogpXNm4Q?utm_source=daily_poster&utm_medium=referral",
+      "alt": "Succulent plants with ruffled green and red leaves growing in cracked dry desert soil",
+      "thumb": "https://images.unsplash.com/photo-1792325352234-48f0cb77e1e3?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8QXRhY2FtYSUyMGRlc2VydCUyMGZsb3dlcnN8ZW58MXx8fHwxNzk0MjAwODczfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1792325352234-48f0cb77e1e3?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8QXRhY2FtYSUyMGRlc2VydCUyMGZsb3dlcnN8ZW58MXx8fHwxNzk0MjAwODczfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:VmeueAsRPRs",
-      "source": "Unsplash",
-      "licence": "Unsplash License",
-      "title": "A lighted pickup truck towing a trailer with a large green inflatable figure at night",
-      "credit": "Michael Shtern",
-      "creditUrl": "https://unsplash.com/@mic222?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/lighted-pickup-truck-with-inflatable-float-VmeueAsRPRs?utm_source=daily_poster&utm_medium=referral",
-      "alt": "A lighted pickup truck towing a trailer with a large green inflatable figure at night",
-      "thumb": "https://images.unsplash.com/photo-1791279057502-4cb60f831a92?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8bmlnaHQlMjBwYXJhZGUlMjBsaWdodHN8ZW58MXx8fHwxNzk0MTE0NDY2fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1791279057502-4cb60f831a92?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8bmlnaHQlMjBwYXJhZGUlMjBsaWdodHN8ZW58MXx8fHwxNzk0MTE0NDY2fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
-    },
-    {
-      "id": "met:334119",
+      "id": "met:360446",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Carnival, 1894",
-      "credit": "Henri de Toulouse-Lautrec",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/334119",
-      "page": "https://www.metmuseum.org/art/collection/search/334119",
-      "alt": "Carnival",
-      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP252756.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP252756.jpg",
-      "local": "media/2026-11-08/image-08-2160.jpg"
+      "title": "Botanical Study, ca. 1772–82",
+      "credit": "Mary Delany",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/360446",
+      "page": "https://www.metmuseum.org/art/collection/search/360446",
+      "alt": "Botanical Study",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP801159.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP801159.jpg",
+      "local": "media/2026-11-09/image-08-2160.jpg"
     },
     {
-      "id": "unsplash:fCsLp_Ox5hI",
+      "id": "unsplash:zMG2ftsIo8c",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "A decorative lantern glows with blue light at dusk",
-      "credit": "Phước Sang",
-      "creditUrl": "https://unsplash.com/@phuocsangvn?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/a-decorative-lantern-glows-with-blue-light-at-dusk-fCsLp_Ox5hI?utm_source=daily_poster&utm_medium=referral",
-      "alt": "A decorative lantern glows with blue light at dusk",
-      "thumb": "https://images.unsplash.com/photo-1773408026966-a55f3b3f6d72?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8Ymx1ZSUyMGxhbnRlcm4lMjBnbG93fGVufDF8fHx8MTc5NDExNDQ2Nnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1773408026966-a55f3b3f6d72?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8Ymx1ZSUyMGxhbnRlcm4lMjBnbG93fGVufDF8fHx8MTc5NDExNDQ2Nnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "Small pink flowers grow on a sandy dune",
+      "credit": "Bernd 📷 Dittrich",
+      "creditUrl": "https://unsplash.com/@hdbernd?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/small-pink-flowers-grow-on-a-sandy-dune-zMG2ftsIo8c?utm_source=daily_poster&utm_medium=referral",
+      "alt": "Small pink flowers grow on a sandy dune",
+      "thumb": "https://images.unsplash.com/photo-1779053179341-158ca90a3cbb?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8cGluayUyMHdpbGRmbG93ZXJzJTIwZGVzZXJ0fGVufDF8fHx8MTc5NDIwMDg3M3ww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1779053179341-158ca90a3cbb?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8cGluayUyMHdpbGRmbG93ZXJzJTIwZGVzZXJ0fGVufDF8fHx8MTc5NDIwMDg3M3ww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:BaMxrpCbvNY",
+      "id": "unsplash:4Rtms1cqUDo",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "Dragon made of colorful lights at night",
-      "credit": "Adhitya Sibikumar",
-      "creditUrl": "https://unsplash.com/@adhitya_2505?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/dragon-made-of-colorful-lights-at-night-BaMxrpCbvNY?utm_source=daily_poster&utm_medium=referral",
-      "alt": "Dragon made of colorful lights at night",
-      "thumb": "https://images.unsplash.com/photo-1758998427361-e6e8ccc5bbc5?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8bmlnaHQlMjBwYXJhZGUlMjBsaWdodHN8ZW58MXx8fHwxNzk0MTE0NDY2fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1758998427361-e6e8ccc5bbc5?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8bmlnaHQlMjBwYXJhZGUlMjBsaWdodHN8ZW58MXx8fHwxNzk0MTE0NDY2fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "a close up of a cactus with a yellow flower",
+      "credit": "Kelly Mella",
+      "creditUrl": "https://unsplash.com/@kelly9621?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-close-up-of-a-cactus-with-a-yellow-flower-4Rtms1cqUDo?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a close up of a cactus with a yellow flower",
+      "thumb": "https://images.unsplash.com/photo-1708975836016-9d474e5ba3a8?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8QXRhY2FtYSUyMGRlc2VydCUyMGZsb3dlcnN8ZW58MXx8fHwxNzk0MjAwODczfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1708975836016-9d474e5ba3a8?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8QXRhY2FtYSUyMGRlc2VydCUyMGZsb3dlcnN8ZW58MXx8fHwxNzk0MjAwODczfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     }
   ],
   "textures": [
     {
-      "id": "unsplash:A4rqd2g-eLo",
+      "id": "unsplash:Ibf--wj77FY",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "blue textile in close up photography",
-      "credit": "Kseniya Lapteva",
-      "creditUrl": "https://unsplash.com/@ksushlapush?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/blue-textile-in-close-up-photography-A4rqd2g-eLo?utm_source=daily_poster&utm_medium=referral",
-      "alt": "blue textile in close up photography",
-      "thumb": "https://images.unsplash.com/photo-1629197521865-4946b4acd2b0?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8dmVsdmV0JTIwdGV4dHVyZXxlbnwxfHx8fDE3OTQxMTQ0NjZ8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1629197521865-4946b4acd2b0?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8dmVsdmV0JTIwdGV4dHVyZXxlbnwxfHx8fDE3OTQxMTQ0NjZ8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "a close-up of a desert",
+      "credit": "JKalina",
+      "creditUrl": "https://unsplash.com/@jkalina?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-close-up-of-a-desert-Ibf--wj77FY?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a close-up of a desert",
+      "thumb": "https://images.unsplash.com/photo-1657722228891-92de8b43f46d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8ZHJ5JTIwZWFydGglMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDIwMDg3M3ww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1657722228891-92de8b43f46d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8ZHJ5JTIwZWFydGglMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDIwMDg3M3ww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:k4Lt0CjUnb0",
+      "id": "unsplash:OG8L9s1bYKc",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "A pattern of deep cracks across dry brown earth",
+      "credit": "Ramin Khatibi",
+      "creditUrl": "https://unsplash.com/@raminix?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/cracked-dry-earth-pattern-OG8L9s1bYKc?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A pattern of deep cracks across dry brown earth",
+      "thumb": "https://images.unsplash.com/photo-1519806390608-acf7ef9c8d1b?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8ZHJ5JTIwZWFydGglMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDIwMDg3M3ww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1519806390608-acf7ef9c8d1b?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8ZHJ5JTIwZWFydGglMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDIwMDg3M3ww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:vS3idIiYxX0",
       "source": "Unsplash",
       "licence": "Unsplash License",
       "title": "white textured paper or plaster surface",
-      "credit": "João Vítor Duarte",
-      "creditUrl": "https://unsplash.com/@joaovtrduarte?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-k4Lt0CjUnb0?utm_source=daily_poster&utm_medium=referral",
+      "credit": "Olga Thelavart",
+      "creditUrl": "https://unsplash.com/@olga_o?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-vS3idIiYxX0?utm_source=daily_poster&utm_medium=referral",
       "alt": "white textured paper or plaster surface",
-      "thumb": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDExNDQ2Nnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDExNDQ2Nnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "thumb": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDIwMDg3M3ww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDIwMDg3M3ww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:pdyQ3Ox-UEU",
+      "id": "unsplash:-4Q0Zx_po_0",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "a wall that has some paint on it",
-      "credit": "Annie Spratt",
-      "creditUrl": "https://unsplash.com/@anniespratt?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/a-wall-that-has-some-paint-on-it-pdyQ3Ox-UEU?utm_source=daily_poster&utm_medium=referral",
-      "alt": "a wall that has some paint on it",
-      "thumb": "https://images.unsplash.com/photo-1578922348103-46c3a7ebdd86?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cGFpbnRlZCUyMHRpbiUyMHRleHR1cmV8ZW58MXx8fHwxNzk0MTE0NDY2fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1578922348103-46c3a7ebdd86?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cGFpbnRlZCUyMHRpbiUyMHRleHR1cmV8ZW58MXx8fHwxNzk0MTE0NDY2fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
-    },
-    {
-      "id": "unsplash:pIFFTVW5TSs",
-      "source": "Unsplash",
-      "licence": "Unsplash License",
-      "title": "black and brown abstract painting",
-      "credit": "Raphael Nogueira",
-      "creditUrl": "https://unsplash.com/@phaelnogueira?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/black-and-brown-abstract-painting-pIFFTVW5TSs?utm_source=daily_poster&utm_medium=referral",
-      "alt": "black and brown abstract painting",
-      "thumb": "https://images.unsplash.com/photo-1593562155062-1e945285eb9d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFpbnRlZCUyMHRpbiUyMHRleHR1cmV8ZW58MXx8fHwxNzk0MTE0NDY2fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1593562155062-1e945285eb9d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFpbnRlZCUyMHRpbiUyMHRleHR1cmV8ZW58MXx8fHwxNzk0MTE0NDY2fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "close up of gray sand texture",
+      "credit": "Yan Ots",
+      "creditUrl": "https://unsplash.com/@yanots?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/close-up-of-gray-sand-texture--4Q0Zx_po_0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "close up of gray sand texture",
+      "thumb": "https://images.unsplash.com/photo-1534593963832-01c3595183bd?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8c2FuZCUyMHRleHR1cmV8ZW58MXx8fHwxNzk0MjAwODczfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1534593963832-01c3595183bd?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8c2FuZCUyMHRleHR1cmV8ZW58MXx8fHwxNzk0MjAwODczfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     }
   ],
   "objects": [
     {
-      "name": "lantern",
-      "material": "polished brass",
-      "image": "media/2026-11-08/object-1.png",
-      "thumb": "media/2026-11-08/object-1-thumb.png",
+      "name": "boulder",
+      "material": "dry cracked sandstone",
+      "image": "media/2026-11-09/object-1.png",
+      "thumb": "media/2026-11-09/object-1-thumb.png",
       "model": {
-        "title": "Lantern",
+        "title": "Boulder",
         "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-f5122e70efc3454cac3549c1a814d715",
+        "url": "https://sketchfab.com/3d-models/none-640b7dde18404a36807acacf96d59200",
         "licence": "CC Attribution",
-        "creator": "Skrisilence",
-        "creatorUrl": "https://sketchfab.com/skrisilence"
+        "creator": "Luka Petkovic",
+        "creatorUrl": "https://sketchfab.com/lukica"
       },
       "texture": null
     },
     {
-      "name": "cart wheel",
-      "material": "rusted iron",
-      "image": "media/2026-11-08/object-2.png",
-      "thumb": "media/2026-11-08/object-2-thumb.png",
+      "name": "watering can",
+      "material": "weathered galvanized steel",
+      "image": "media/2026-11-09/object-2.png",
+      "thumb": "media/2026-11-09/object-2-thumb.png",
       "model": {
-        "title": "Wagon wheel",
+        "title": "Watering Can Game Ready",
         "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-b93ec52fa72541bfbdaa73d11319f5e8",
+        "url": "https://sketchfab.com/3d-models/none-8a17f1e76b8648fd9ab82f1984fbc8c4",
         "licence": "CC Attribution",
-        "creator": "Oleg Bone",
-        "creatorUrl": "https://sketchfab.com/Oleg_Bone"
+        "creator": "KQ92",
+        "creatorUrl": "https://sketchfab.com/KQ92"
+      },
+      "texture": null
+    },
+    {
+      "name": "vase",
+      "material": "oxidised copper",
+      "image": "media/2026-11-09/object-3.png",
+      "thumb": "media/2026-11-09/object-3-thumb.png",
+      "model": {
+        "title": "Ancient Vase",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-dce37778ec964299bba5aeca736bf70e",
+        "licence": "CC Attribution",
+        "creator": "AO-INTERACTIVE",
+        "creatorUrl": "https://sketchfab.com/aointeractive"
       },
       "texture": {
-        "title": "Rust Coarse 01",
-        "url": "https://polyhaven.com/a/rust_coarse_01"
+        "title": "Rusty Metal 05",
+        "url": "https://polyhaven.com/a/rusty_metal_05"
       }
-    },
-    {
-      "name": "light bulb",
-      "material": "brushed steel",
-      "image": "media/2026-11-08/object-3.png",
-      "thumb": "media/2026-11-08/object-3-thumb.png",
-      "model": {
-        "title": "Light bulb",
-        "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-1730ab2ab65348e99aa1fa4f57efc0f8",
-        "licence": "CC Attribution",
-        "creator": "takeboncog",
-        "creatorUrl": "https://sketchfab.com/takeboncog"
-      },
-      "texture": null
     }
   ]
 }

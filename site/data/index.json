@@ -1,5 +1,16 @@
 [
   {
+    "date": "2026-11-09",
+    "issue": 38,
+    "colour": "Teal",
+    "headline": "The Driest Place Blooms",
+    "bg": "#4CEBEB",
+    "thumb": "https://images.unsplash.com/photo-1761073830718-e0279de03ad4?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8cGluayUyMHdpbGRmbG93ZXJzJTIwZGVzZXJ0fGVufDF8fHx8MTc5NDIwMDg3M3ww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+    "display": "Gloock",
+    "text": "Schibsted Grotesk",
+    "css": "https://fonts.googleapis.com/css2?family=Gloock&family=Schibsted+Grotesk&display=swap"
+  },
+  {
     "date": "2026-11-08",
     "issue": 37,
     "colour": "Blue",

@@ -1,0 +1,289 @@
+{
+  "date": "2026-11-09",
+  "issue": 38,
+  "generatedAt": "2026-11-09T05:07:52.726Z",
+  "colour": {
+    "name": "Teal",
+    "yesterday": "Blue",
+    "tomorrow": "Jade"
+  },
+  "story": {
+    "title": "A desert stirs to life: Chile's Atacama erupts in its biggest floral display in decades",
+    "summary": "El Niño rains have fallen on Chile's Atacama Desert, one of the driest places on Earth, and set off its biggest flower display in decades. The bloom has woken a short-lived ecosystem of plants and wildlife across the normally barren ground.",
+    "source": "NPR",
+    "url": "https://www.npr.org/2026/11/08/nx-s1-6023812/chile-desert-el-nino",
+    "published": "2026-11-08T11:00:00.000Z",
+    "theme": "desert wildflower bloom"
+  },
+  "headlines": [
+    "The Driest Place Blooms",
+    "Seeds Wake After Years Asleep",
+    "A Desert Remembers Colour"
+  ],
+  "sublines": [
+    "El Niño rains have carpeted Chile's Atacama Desert in flowers, its largest display in decades.",
+    "Seeds that lay dormant in the Atacama's parched ground have sprung up, drawing a brief wave of insects and wildlife.",
+    "In one of Earth's driest places, a fleeting ecosystem has appeared, and it will fade as quickly as it came."
+  ],
+  "palette": {
+    "name": "Vivid",
+    "colours": [
+      "#4CEBEB",
+      "#B6F2F1",
+      "#657575",
+      "#012525"
+    ]
+  },
+  "always": [
+    "#000000",
+    "#FFFFFF"
+  ],
+  "type": {
+    "id": "gloock",
+    "display": "Gloock",
+    "text": "Schibsted Grotesk",
+    "reason": "Gloock's high-contrast, softly sculpted serif has the drama of a rare bloom against bare ground, while Schibsted Grotesk keeps the facts calm and clear.",
+    "css": "https://fonts.googleapis.com/css2?family=Gloock&family=Schibsted+Grotesk&display=swap",
+    "displayUrl": "https://fonts.google.com/specimen/Gloock",
+    "textUrl": "https://fonts.google.com/specimen/Schibsted+Grotesk"
+  },
+  "grid": {
+    "format": "A-size",
+    "size": [
+      1080,
+      1528
+    ],
+    "columns": 8,
+    "rows": 8,
+    "margin": 16,
+    "gutter": 0,
+    "column": 131,
+    "row": 187,
+    "unit": "px"
+  },
+  "images": [
+    {
+      "id": "unsplash:N7bHNnmTB0E",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "Silhouetted plants against a soft sunset sky",
+      "credit": "Nadine Marfurt",
+      "creditUrl": "https://unsplash.com/@nadine3?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/silhouetted-plants-against-a-soft-sunset-sky-N7bHNnmTB0E?utm_source=daily_poster&utm_medium=referral",
+      "alt": "Silhouetted plants against a soft sunset sky",
+      "thumb": "https://images.unsplash.com/photo-1761073830718-e0279de03ad4?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8cGluayUyMHdpbGRmbG93ZXJzJTIwZGVzZXJ0fGVufDF8fHx8MTc5NDIwMDg3M3ww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1761073830718-e0279de03ad4?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8cGluayUyMHdpbGRmbG93ZXJzJTIwZGVzZXJ0fGVufDF8fHx8MTc5NDIwMDg3M3ww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:61awD2kL4h0",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "A green road sign for Ruta 5 and Freirina in a field of purple flowers",
+      "credit": "Gi González Carrasco",
+      "creditUrl": "https://unsplash.com/@ladydark?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/road-sign-in-flowering-desert-landscape-61awD2kL4h0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A green road sign for Ruta 5 and Freirina in a field of purple flowers",
+      "thumb": "https://images.unsplash.com/photo-1792325308427-d45dcb69b282?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8QXRhY2FtYSUyMGRlc2VydCUyMGZsb3dlcnN8ZW58MXx8fHwxNzk0MjAwODczfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1792325308427-d45dcb69b282?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8QXRhY2FtYSUyMGRlc2VydCUyMGZsb3dlcnN8ZW58MXx8fHwxNzk0MjAwODczfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:iqv9evmZ4kQ",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a group of white flowers with yellow centers",
+      "credit": "Kelly Mella",
+      "creditUrl": "https://unsplash.com/@kelly9621?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-group-of-white-flowers-with-yellow-centers-iqv9evmZ4kQ?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a group of white flowers with yellow centers",
+      "thumb": "https://images.unsplash.com/photo-1708975835866-5ac1b92861ff?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8QXRhY2FtYSUyMGRlc2VydCUyMGZsb3dlcnN8ZW58MXx8fHwxNzk0MjAwODczfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1708975835866-5ac1b92861ff?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8QXRhY2FtYSUyMGRlc2VydCUyMGZsb3dlcnN8ZW58MXx8fHwxNzk0MjAwODczfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:855949",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Bank of wildflowers, 1830–39",
+      "credit": "Andrew Nicholl",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/855949",
+      "page": "https://www.metmuseum.org/art/collection/search/855949",
+      "alt": "Bank of wildflowers",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP-23710-001.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP-23710-001.jpg",
+      "local": "media/2026-11-09/image-04-2160.jpg"
+    },
+    {
+      "id": "unsplash:TD36WEeWwTg",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "A bright yellow lily blooming in sandy soil among small wildflowers and green shrubs",
+      "credit": "Gi González Carrasco",
+      "creditUrl": "https://unsplash.com/@ladydark?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/yellow-lily-in-sandy-soil-TD36WEeWwTg?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A bright yellow lily blooming in sandy soil among small wildflowers and green shrubs",
+      "thumb": "https://images.unsplash.com/photo-1792324644758-6890dd70d1df?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8QXRhY2FtYSUyMGRlc2VydCUyMGZsb3dlcnN8ZW58MXx8fHwxNzk0MjAwODczfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1792324644758-6890dd70d1df?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8QXRhY2FtYSUyMGRlc2VydCUyMGZsb3dlcnN8ZW58MXx8fHwxNzk0MjAwODczfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:58891",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Case (Inrō) with Design of Wildflowers, Dragonflies and Bees, 19th century",
+      "credit": "Japan",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/58891",
+      "page": "https://www.metmuseum.org/art/collection/search/58891",
+      "alt": "Case (Inrō) with Design of Wildflowers, Dragonflies and Bees",
+      "thumb": "https://images.metmuseum.org/CRDImages/as/web-large/36_100_207_O5.JPG",
+      "src": "https://images.metmuseum.org/CRDImages/as/original/36_100_207_O5.JPG",
+      "local": "media/2026-11-09/image-06-2160.jpg"
+    },
+    {
+      "id": "unsplash:XGqogpXNm4Q",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "Succulent plants with ruffled green and red leaves growing in cracked dry desert soil",
+      "credit": "Gi González Carrasco",
+      "creditUrl": "https://unsplash.com/@ladydark?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/succulent-plants-in-cracked-desert-soil-XGqogpXNm4Q?utm_source=daily_poster&utm_medium=referral",
+      "alt": "Succulent plants with ruffled green and red leaves growing in cracked dry desert soil",
+      "thumb": "https://images.unsplash.com/photo-1792325352234-48f0cb77e1e3?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8QXRhY2FtYSUyMGRlc2VydCUyMGZsb3dlcnN8ZW58MXx8fHwxNzk0MjAwODczfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1792325352234-48f0cb77e1e3?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8QXRhY2FtYSUyMGRlc2VydCUyMGZsb3dlcnN8ZW58MXx8fHwxNzk0MjAwODczfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:360446",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Botanical Study, ca. 1772–82",
+      "credit": "Mary Delany",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/360446",
+      "page": "https://www.metmuseum.org/art/collection/search/360446",
+      "alt": "Botanical Study",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP801159.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP801159.jpg",
+      "local": "media/2026-11-09/image-08-2160.jpg"
+    },
+    {
+      "id": "unsplash:zMG2ftsIo8c",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "Small pink flowers grow on a sandy dune",
+      "credit": "Bernd 📷 Dittrich",
+      "creditUrl": "https://unsplash.com/@hdbernd?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/small-pink-flowers-grow-on-a-sandy-dune-zMG2ftsIo8c?utm_source=daily_poster&utm_medium=referral",
+      "alt": "Small pink flowers grow on a sandy dune",
+      "thumb": "https://images.unsplash.com/photo-1779053179341-158ca90a3cbb?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8cGluayUyMHdpbGRmbG93ZXJzJTIwZGVzZXJ0fGVufDF8fHx8MTc5NDIwMDg3M3ww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1779053179341-158ca90a3cbb?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8cGluayUyMHdpbGRmbG93ZXJzJTIwZGVzZXJ0fGVufDF8fHx8MTc5NDIwMDg3M3ww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:4Rtms1cqUDo",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a close up of a cactus with a yellow flower",
+      "credit": "Kelly Mella",
+      "creditUrl": "https://unsplash.com/@kelly9621?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-close-up-of-a-cactus-with-a-yellow-flower-4Rtms1cqUDo?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a close up of a cactus with a yellow flower",
+      "thumb": "https://images.unsplash.com/photo-1708975836016-9d474e5ba3a8?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8QXRhY2FtYSUyMGRlc2VydCUyMGZsb3dlcnN8ZW58MXx8fHwxNzk0MjAwODczfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1708975836016-9d474e5ba3a8?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8QXRhY2FtYSUyMGRlc2VydCUyMGZsb3dlcnN8ZW58MXx8fHwxNzk0MjAwODczfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    }
+  ],
+  "textures": [
+    {
+      "id": "unsplash:Ibf--wj77FY",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a close-up of a desert",
+      "credit": "JKalina",
+      "creditUrl": "https://unsplash.com/@jkalina?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-close-up-of-a-desert-Ibf--wj77FY?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a close-up of a desert",
+      "thumb": "https://images.unsplash.com/photo-1657722228891-92de8b43f46d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8ZHJ5JTIwZWFydGglMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDIwMDg3M3ww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1657722228891-92de8b43f46d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8ZHJ5JTIwZWFydGglMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDIwMDg3M3ww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:OG8L9s1bYKc",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "A pattern of deep cracks across dry brown earth",
+      "credit": "Ramin Khatibi",
+      "creditUrl": "https://unsplash.com/@raminix?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/cracked-dry-earth-pattern-OG8L9s1bYKc?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A pattern of deep cracks across dry brown earth",
+      "thumb": "https://images.unsplash.com/photo-1519806390608-acf7ef9c8d1b?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8ZHJ5JTIwZWFydGglMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDIwMDg3M3ww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1519806390608-acf7ef9c8d1b?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8ZHJ5JTIwZWFydGglMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDIwMDg3M3ww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:vS3idIiYxX0",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "white textured paper or plaster surface",
+      "credit": "Olga Thelavart",
+      "creditUrl": "https://unsplash.com/@olga_o?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-vS3idIiYxX0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "white textured paper or plaster surface",
+      "thumb": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDIwMDg3M3ww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDIwMDg3M3ww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:-4Q0Zx_po_0",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "close up of gray sand texture",
+      "credit": "Yan Ots",
+      "creditUrl": "https://unsplash.com/@yanots?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/close-up-of-gray-sand-texture--4Q0Zx_po_0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "close up of gray sand texture",
+      "thumb": "https://images.unsplash.com/photo-1534593963832-01c3595183bd?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8c2FuZCUyMHRleHR1cmV8ZW58MXx8fHwxNzk0MjAwODczfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1534593963832-01c3595183bd?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8c2FuZCUyMHRleHR1cmV8ZW58MXx8fHwxNzk0MjAwODczfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    }
+  ],
+  "objects": [
+    {
+      "name": "boulder",
+      "material": "dry cracked sandstone",
+      "image": "media/2026-11-09/object-1.png",
+      "thumb": "media/2026-11-09/object-1-thumb.png",
+      "model": {
+        "title": "Boulder",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-640b7dde18404a36807acacf96d59200",
+        "licence": "CC Attribution",
+        "creator": "Luka Petkovic",
+        "creatorUrl": "https://sketchfab.com/lukica"
+      },
+      "texture": null
+    },
+    {
+      "name": "watering can",
+      "material": "weathered galvanized steel",
+      "image": "media/2026-11-09/object-2.png",
+      "thumb": "media/2026-11-09/object-2-thumb.png",
+      "model": {
+        "title": "Watering Can Game Ready",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-8a17f1e76b8648fd9ab82f1984fbc8c4",
+        "licence": "CC Attribution",
+        "creator": "KQ92",
+        "creatorUrl": "https://sketchfab.com/KQ92"
+      },
+      "texture": null
+    },
+    {
+      "name": "vase",
+      "material": "oxidised copper",
+      "image": "media/2026-11-09/object-3.png",
+      "thumb": "media/2026-11-09/object-3-thumb.png",
+      "model": {
+        "title": "Ancient Vase",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-dce37778ec964299bba5aeca736bf70e",
+        "licence": "CC Attribution",
+        "creator": "AO-INTERACTIVE",
+        "creatorUrl": "https://sketchfab.com/aointeractive"
+      },
+      "texture": {
+        "title": "Rusty Metal 05",
+        "url": "https://polyhaven.com/a/rusty_metal_05"
+      }
+    }
+  ]
+}

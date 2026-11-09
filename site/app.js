@@ -648,6 +648,12 @@ ${inside}`;
     hls.forEach((h, i) => { lines.push(`<text id="0${i + 1} Headline" fill="${ink}" font-family="${esc(t.display)}" font-size="${hlSize}" x="0" y="${(ty + hlSize * 0.9).toFixed(1)}">${esc(h)}</text>`); ty += hlSize * 1.2 + lineGap; });
     ty += 40;
     subs.forEach((s, i) => { lines.push(`<text id="0${i + 1} Subline" fill="${ink}" font-family="${esc(t.text)}" font-size="${subSize}" x="0" y="${(ty + subSize * 0.95).toFixed(1)}">${esc(s)}</text>`); ty += subSize * 1.3 + lineGap; });
+    // The labels most posters carry, each its own text box in the subline face. Layer names don't
+    // end in a number (Figma would count it up on every paste).
+    const day = new Intl.DateTimeFormat("en-GB", { weekday: "long", day: "2-digit", month: "long", timeZone: "UTC" }).format(new Date(brief.date + "T12:00:00Z")).replace(",", "");
+    const labels = [["Daily Poster", "Daily Poster"], ["Issue", `No. ${pad(brief.issue)}`], ["Date", day], ["Source", brief.story.source]].filter(([, v]) => v);
+    ty += 40;
+    labels.forEach(([name, v]) => { lines.push(`<text id="Label · ${name}" fill="${ink}" font-family="${esc(t.text)}" font-size="${subSize}" x="0" y="${(ty + subSize * 0.95).toFixed(1)}">${esc(v)}</text>`); ty += subSize * 1.3 + lineGap; });
     const typeH = ty - lineGap;
     frame("Type", 0, y, typeW, typeH, lines.join("\n"));
     width = Math.max(width, typeW);

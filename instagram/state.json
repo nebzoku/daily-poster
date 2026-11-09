@@ -157,6 +157,11 @@
       "slot": "2026-11-09 10:30",
       "at": "2026-11-09T11:07:42.263Z",
       "id": "17994879615070191"
+    },
+    "poster:showcase/037-the-whole-street-becomes-spectacle.jpg": {
+      "slot": "2026-11-09 13:00",
+      "at": "2026-11-09T13:07:45.265Z",
+      "id": "17989174446111360"
     }
   },
   "slots": {
@@ -177,7 +182,8 @@
     "2026-11-08 13:00": "poster:showcase/036-opera-house-of-the-west.jpg",
     "2026-11-08 19:00": "poster:showcase/036-light-through-the-lattice.jpg",
     "2026-11-09 08:00": "stories:2026-11-09",
-    "2026-11-09 10:30": "poster:showcase/037-slow-giants-glide-through-town.jpg"
+    "2026-11-09 10:30": "poster:showcase/037-slow-giants-glide-through-town.jpg",
+    "2026-11-09 13:00": "poster:showcase/037-the-whole-street-becomes-spectacle.jpg"
   },
   "start": "2026-11-04",
   "partial": {}

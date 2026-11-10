@@ -1,0 +1,288 @@
+{
+  "date": "2026-11-10",
+  "issue": 39,
+  "generatedAt": "2026-11-10T05:07:55.061Z",
+  "colour": {
+    "name": "Jade",
+    "yesterday": "Teal",
+    "tomorrow": "Green"
+  },
+  "story": {
+    "title": "The Guardian view on Ordnance Survey maps: still a superior way to navigate the landscape | Editorial",
+    "summary": "Ordnance Survey is marking 225 years since it first published a map, and an editorial celebrates its detailed paper maps as a distinctive way to read and navigate the British landscape. It sets the long craft of surveying against the fantasy of a map as large as the land itself.",
+    "source": "The Guardian",
+    "url": "https://www.theguardian.com/commentisfree/2026/nov/08/the-guardian-view-on-ordnance-survey-maps-still-a-superior-way-to-navigate-the-landscape",
+    "published": "2026-11-08T17:25:45.000Z",
+    "theme": "maps and landscape"
+  },
+  "headlines": [
+    "Every Hill Has a Name",
+    "Two Centuries of Exactitude",
+    "Drawing the Land, Line by Line"
+  ],
+  "sublines": [
+    "Ordnance Survey marks 225 years since its first published map, still prized for showing how land really lies.",
+    "From the first one-inch sheet in 1801, surveyors have turned ridges, paths and fields into folded paper.",
+    "An anniversary for the maps that taught generations to read the landscape, and to find their way across it."
+  ],
+  "palette": {
+    "name": "Vivid",
+    "colours": [
+      "#4CF1B7",
+      "#C0F2DB",
+      "#67756F",
+      "#002619"
+    ]
+  },
+  "always": [
+    "#000000",
+    "#FFFFFF"
+  ],
+  "type": {
+    "id": "familjen",
+    "display": "Familjen Grotesk",
+    "text": "Newsreader",
+    "reason": "A characterful grotesk for the bold headline paired with a bookish serif evokes the precision and old-paper warmth of cartography.",
+    "css": "https://fonts.googleapis.com/css2?family=Familjen+Grotesk&family=Newsreader&display=swap",
+    "displayUrl": "https://fonts.google.com/specimen/Familjen+Grotesk",
+    "textUrl": "https://fonts.google.com/specimen/Newsreader"
+  },
+  "grid": {
+    "format": "A-size",
+    "size": [
+      1080,
+      1528
+    ],
+    "columns": 8,
+    "rows": 8,
+    "margin": 16,
+    "gutter": 0,
+    "column": 131,
+    "row": 187,
+    "unit": "px"
+  },
+  "images": [
+    {
+      "id": "unsplash:AFB6S2kibuk",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "white and green state maps",
+      "credit": "Annie Spratt",
+      "creditUrl": "https://unsplash.com/@anniespratt?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/white-and-green-state-maps-AFB6S2kibuk?utm_source=daily_poster&utm_medium=referral",
+      "alt": "white and green state maps",
+      "thumb": "https://images.unsplash.com/photo-1478860409698-8707f313ee8b?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Zm9sZGVkJTIwcGFwZXIlMjBtYXB8ZW58MXx8fHwxNzk0Mjg3Mjc1fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1478860409698-8707f313ee8b?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Zm9sZGVkJTIwcGFwZXIlMjBtYXB8ZW58MXx8fHwxNzk0Mjg3Mjc1fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:228716",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Embroidered map sampler, late 18th–early 19th century",
+      "credit": "Unknown artist",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/228716",
+      "page": "https://www.metmuseum.org/art/collection/search/228716",
+      "alt": "Embroidered map sampler",
+      "thumb": "https://images.metmuseum.org/CRDImages/es/web-large/DP7747.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/es/original/DP7747.jpg",
+      "local": "media/2026-11-10/image-02-2160.jpg"
+    },
+    {
+      "id": "unsplash:WjCVynRceo8",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a lush green hillside under a cloudy sky",
+      "credit": "Tim Mossholder",
+      "creditUrl": "https://unsplash.com/@timmossholder?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-lush-green-hillside-under-a-cloudy-sky-WjCVynRceo8?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a lush green hillside under a cloudy sky",
+      "thumb": "https://images.unsplash.com/photo-1679267207806-53137718141b?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Z3JlZW4lMjBoaWxscyUyMG1pc3R8ZW58MXx8fHwxNzk0Mjg3Mjc1fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1679267207806-53137718141b?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Z3JlZW4lMjBoaWxscyUyMG1pc3R8ZW58MXx8fHwxNzk0Mjg3Mjc1fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:ixRYvsuvazA",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "gray and white map",
+      "credit": "Annie Spratt",
+      "creditUrl": "https://unsplash.com/@anniespratt?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/gray-and-white-map-ixRYvsuvazA?utm_source=daily_poster&utm_medium=referral",
+      "alt": "gray and white map",
+      "thumb": "https://images.unsplash.com/photo-1532154078493-c1c3eef2023c?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8Zm9sZGVkJTIwcGFwZXIlMjBtYXB8ZW58MXx8fHwxNzk0Mjg3Mjc1fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1532154078493-c1c3eef2023c?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8Zm9sZGVkJTIwcGFwZXIlMjBtYXB8ZW58MXx8fHwxNzk0Mjg3Mjc1fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:716125",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Langley Park, near Beckenham in Kent, from Edward Hasted's \"The History and Topographical Survey of the County of Kent\", vols. 1-3, 1776",
+      "credit": "Richard Bernard Godfrey",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/716125",
+      "page": "https://www.metmuseum.org/art/collection/search/716125",
+      "alt": "Langley Park, near Beckenham in Kent, from Edward Hasted's \"The History and Topographical Survey of the County of Kent\", vols. 1-3",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP-12696-040.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP-12696-040.jpg",
+      "local": "media/2026-11-10/image-05-2160.jpg"
+    },
+    {
+      "id": "unsplash:CIuakYIjadc",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "person holding blue and brown map",
+      "credit": "Julentto Photography",
+      "creditUrl": "https://unsplash.com/@julensan09?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/person-holding-blue-and-brown-map-CIuakYIjadc?utm_source=daily_poster&utm_medium=referral",
+      "alt": "person holding blue and brown map",
+      "thumb": "https://images.unsplash.com/photo-1504598318550-17eba1008a68?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8Zm9sZGVkJTIwcGFwZXIlMjBtYXB8ZW58MXx8fHwxNzk0Mjg3Mjc1fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1504598318550-17eba1008a68?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8Zm9sZGVkJTIwcGFwZXIlMjBtYXB8ZW58MXx8fHwxNzk0Mjg3Mjc1fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:359362",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Landscape, 1892",
+      "credit": "Edgar Degas",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/359362",
+      "page": "https://www.metmuseum.org/art/collection/search/359362",
+      "alt": "Landscape",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP815958.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP815958.jpg",
+      "local": "media/2026-11-10/image-07-2160.jpg"
+    },
+    {
+      "id": "unsplash:4iNQdT4mDLc",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "Livermore wind turbines on misty green hills",
+      "credit": "Zetong Li",
+      "creditUrl": "https://unsplash.com/@zetong?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/livermore-wind-turbines-on-misty-green-hills-4iNQdT4mDLc?utm_source=daily_poster&utm_medium=referral",
+      "alt": "Livermore wind turbines on misty green hills",
+      "thumb": "https://images.unsplash.com/photo-1782679226951-2e916ce69988?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8Z3JlZW4lMjBoaWxscyUyMG1pc3R8ZW58MXx8fHwxNzk0Mjg3Mjc1fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1782679226951-2e916ce69988?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8Z3JlZW4lMjBoaWxscyUyMG1pc3R8ZW58MXx8fHwxNzk0Mjg3Mjc1fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:226539",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Embroidered map sampler, 1835",
+      "credit": "Unknown artist",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/226539",
+      "page": "https://www.metmuseum.org/art/collection/search/226539",
+      "alt": "Embroidered map sampler",
+      "thumb": "https://images.metmuseum.org/CRDImages/es/web-large/DP363097.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/es/original/DP363097.jpg",
+      "local": "media/2026-11-10/image-09-2160.jpg"
+    },
+    {
+      "id": "met:716235",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "The Ancient Archiepiscopal Palace at Maidstone, from Edward Hasted's \"The History and Topographical Survey of the County of Kent\", vols. 1-3, 1782",
+      "credit": "Richard Bernard Godfrey",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/716235",
+      "page": "https://www.metmuseum.org/art/collection/search/716235",
+      "alt": "The Ancient Archiepiscopal Palace at Maidstone, from Edward Hasted's \"The History and Topographical Survey of the County of Kent\", vols. 1-3",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP-12696-055.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP-12696-055.jpg",
+      "local": "media/2026-11-10/image-10-2160.jpg"
+    }
+  ],
+  "textures": [
+    {
+      "id": "unsplash:k4Lt0CjUnb0",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "white textured paper or plaster surface",
+      "credit": "João Vítor Duarte",
+      "creditUrl": "https://unsplash.com/@joaovtrduarte?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-k4Lt0CjUnb0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "white textured paper or plaster surface",
+      "thumb": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDI4NzI3NXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDI4NzI3NXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:vS3idIiYxX0",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "white textured paper or plaster surface",
+      "credit": "Olga Thelavart",
+      "creditUrl": "https://unsplash.com/@olga_o?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-vS3idIiYxX0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "white textured paper or plaster surface",
+      "thumb": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDI4NzI3NXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDI4NzI3NXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:xTaOPMa6wAE",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "beige linen fabric texture background",
+      "credit": "Annie Spratt",
+      "creditUrl": "https://unsplash.com/@anniespratt?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/beige-linen-fabric-texture-background-xTaOPMa6wAE?utm_source=daily_poster&utm_medium=referral",
+      "alt": "beige linen fabric texture background",
+      "thumb": "https://images.unsplash.com/photo-1528458909336-e7a0adfed0a5?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8bGluZW4lMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDI4NzI3NXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1528458909336-e7a0adfed0a5?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8bGluZW4lMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDI4NzI3NXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:UD5drKd4H6w",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "A textured grey wall with repeating vertical wavy lines and deep shadows",
+      "credit": "Ricardo Gomez Angel",
+      "creditUrl": "https://unsplash.com/@rgaleriacom?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/grey-wall-with-wavy-lines-UD5drKd4H6w?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A textured grey wall with repeating vertical wavy lines and deep shadows",
+      "thumb": "https://images.unsplash.com/photo-1507214617719-4a3daf41b9ac?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Y29udG91ciUyMGxpbmVzJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTQyODcyNzV8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1507214617719-4a3daf41b9ac?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Y29udG91ciUyMGxpbmVzJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTQyODcyNzV8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    }
+  ],
+  "objects": [
+    {
+      "name": "compass",
+      "material": "polished brass",
+      "image": "media/2026-11-10/object-1.png",
+      "thumb": "media/2026-11-10/object-1-thumb.png",
+      "model": {
+        "title": "Old Compass",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-49dd4dbfc330420f9520126bb8460652",
+        "licence": "CC Attribution",
+        "creator": "firaira",
+        "creatorUrl": "https://sketchfab.com/firaira"
+      },
+      "texture": null
+    },
+    {
+      "name": "theodolite",
+      "material": "brushed steel",
+      "image": "media/2026-11-10/object-2.png",
+      "thumb": "media/2026-11-10/object-2-thumb.png",
+      "model": {
+        "title": "Theodolite HW6 Details",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-70816209c1804d9e92bcf431a1fe50e9",
+        "licence": "CC Attribution",
+        "creator": "Maria",
+        "creatorUrl": "https://sketchfab.com/matamune_6"
+      },
+      "texture": null
+    },
+    {
+      "name": "trig pillar",
+      "material": "weathered concrete",
+      "image": "media/2026-11-10/object-3.png",
+      "thumb": "media/2026-11-10/object-3-thumb.png",
+      "model": {
+        "title": "Guildford, Pewley Down Trig Point",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-7a83ef6b368b4c9d93638bb8f272cc25",
+        "licence": "CC Attribution",
+        "creator": "daz71",
+        "creatorUrl": "https://sketchfab.com/daz71"
+      },
+      "texture": null
+    }
+  ]
+}

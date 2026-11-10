@@ -1,5 +1,16 @@
 [
   {
+    "date": "2026-11-10",
+    "issue": 39,
+    "colour": "Jade",
+    "headline": "Every Hill Has a Name",
+    "bg": "#4CF1B7",
+    "thumb": "https://images.unsplash.com/photo-1478860409698-8707f313ee8b?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Zm9sZGVkJTIwcGFwZXIlMjBtYXB8ZW58MXx8fHwxNzk0Mjg3Mjc1fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+    "display": "Familjen Grotesk",
+    "text": "Newsreader",
+    "css": "https://fonts.googleapis.com/css2?family=Familjen+Grotesk&family=Newsreader&display=swap"
+  },
+  {
     "date": "2026-11-09",
     "issue": 38,
     "colour": "Teal",

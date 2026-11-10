@@ -182,6 +182,11 @@
       "slot": "2026-11-10 13:00",
       "at": "2026-11-10T13:07:49.618Z",
       "id": "18118346153020179"
+    },
+    "poster:showcase/038-seeds-wake-after-years-asleep.jpg": {
+      "slot": "2026-11-10 19:00",
+      "at": "2026-11-10T19:07:40.725Z",
+      "id": "17989630673882053"
     }
   },
   "slots": {
@@ -207,7 +212,8 @@
     "2026-11-09 19:00": "poster:showcase/037-somerset-lights-up-the-dark.jpg",
     "2026-11-10 08:00": "stories:2026-11-10",
     "2026-11-10 10:30": "poster:showcase/038-the-driest-place-blooms.jpg",
-    "2026-11-10 13:00": "poster:showcase/038-the-driest-place-blooms-2.jpg"
+    "2026-11-10 13:00": "poster:showcase/038-the-driest-place-blooms-2.jpg",
+    "2026-11-10 19:00": "poster:showcase/038-seeds-wake-after-years-asleep.jpg"
   },
   "start": "2026-11-04",
   "partial": {}

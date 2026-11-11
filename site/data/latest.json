@@ -1,37 +1,37 @@
 {
-  "date": "2026-11-10",
-  "issue": 39,
-  "generatedAt": "2026-11-10T05:07:55.061Z",
+  "date": "2026-11-11",
+  "issue": 40,
+  "generatedAt": "2026-11-11T05:07:52.214Z",
   "colour": {
-    "name": "Jade",
-    "yesterday": "Teal",
-    "tomorrow": "Green"
+    "name": "Green",
+    "yesterday": "Jade",
+    "tomorrow": "Lime"
   },
   "story": {
-    "title": "The Guardian view on Ordnance Survey maps: still a superior way to navigate the landscape | Editorial",
-    "summary": "Ordnance Survey is marking 225 years since it first published a map, and an editorial celebrates its detailed paper maps as a distinctive way to read and navigate the British landscape. It sets the long craft of surveying against the fantasy of a map as large as the land itself.",
+    "title": "From Hendrix to Bowie: the trippiest music concert posters – in pictures",
+    "summary": "A gallery looks back at Günther Kieser, the German artist behind some of the 20th century's most singular music posters. Drawing on sculpture, the free-form feel of jazz and psychedelic art, he designed for Jimi Hendrix, David Bowie and Diana Ross and the Supremes.",
     "source": "The Guardian",
-    "url": "https://www.theguardian.com/commentisfree/2026/nov/08/the-guardian-view-on-ordnance-survey-maps-still-a-superior-way-to-navigate-the-landscape",
-    "published": "2026-11-08T17:25:45.000Z",
-    "theme": "maps and landscape"
+    "url": "https://www.theguardian.com/artanddesign/gallery/2026/nov/10/gunther-kieser-concert-posters",
+    "published": "2026-11-10T12:00:52.000Z",
+    "theme": "music poster design"
   },
   "headlines": [
-    "Every Hill Has a Name",
-    "Two Centuries of Exactitude",
-    "Drawing the Land, Line by Line"
+    "Jazz You Can See",
+    "Sound Bent Into Shape",
+    "The Poster That Hums"
   ],
   "sublines": [
-    "Ordnance Survey marks 225 years since its first published map, still prized for showing how land really lies.",
-    "From the first one-inch sheet in 1801, surveyors have turned ridges, paths and fields into folded paper.",
-    "An anniversary for the maps that taught generations to read the landscape, and to find their way across it."
+    "German designer Günther Kieser made concert posters inspired by sculpture, jazz improvisation and psychedelic art, now revisited in pictures.",
+    "His work for Hendrix, Bowie and Diana Ross and the Supremes turned live music into singular, mind-expanding printed images.",
+    "A look back at one of the 20th century's most distinctive poster artists and the free-form spirit of his designs."
   ],
   "palette": {
     "name": "Vivid",
     "colours": [
-      "#4CF1B7",
-      "#C0F2DB",
-      "#67756F",
-      "#002619"
+      "#4BF761",
+      "#CDF0CD",
+      "#6B756A",
+      "#032707"
     ]
   },
   "always": [
@@ -39,13 +39,13 @@
     "#FFFFFF"
   ],
   "type": {
-    "id": "familjen",
-    "display": "Familjen Grotesk",
-    "text": "Newsreader",
-    "reason": "A characterful grotesk for the bold headline paired with a bookish serif evokes the precision and old-paper warmth of cartography.",
-    "css": "https://fonts.googleapis.com/css2?family=Familjen+Grotesk&family=Newsreader&display=swap",
-    "displayUrl": "https://fonts.google.com/specimen/Familjen+Grotesk",
-    "textUrl": "https://fonts.google.com/specimen/Newsreader"
+    "id": "anybody",
+    "display": "Anybody",
+    "text": "Azeret Mono",
+    "reason": "Anybody's stretchy, variable letterforms echo the warped, free-flowing lettering of psychedelic concert posters, while Azeret Mono keeps the facts crisp.",
+    "css": "https://fonts.googleapis.com/css2?family=Anybody&family=Azeret+Mono&display=swap",
+    "displayUrl": "https://fonts.google.com/specimen/Anybody",
+    "textUrl": "https://fonts.google.com/specimen/Azeret+Mono"
   },
   "grid": {
     "format": "A-size",
@@ -63,144 +63,131 @@
   },
   "images": [
     {
-      "id": "unsplash:AFB6S2kibuk",
+      "id": "unsplash:aka-hHVgZQ8",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "white and green state maps",
-      "credit": "Annie Spratt",
-      "creditUrl": "https://unsplash.com/@anniespratt?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/white-and-green-state-maps-AFB6S2kibuk?utm_source=daily_poster&utm_medium=referral",
-      "alt": "white and green state maps",
-      "thumb": "https://images.unsplash.com/photo-1478860409698-8707f313ee8b?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Zm9sZGVkJTIwcGFwZXIlMjBtYXB8ZW58MXx8fHwxNzk0Mjg3Mjc1fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1478860409698-8707f313ee8b?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Zm9sZGVkJTIwcGFwZXIlMjBtYXB8ZW58MXx8fHwxNzk0Mjg3Mjc1fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "green light in dark room",
+      "credit": "Alex Middleton",
+      "creditUrl": "https://unsplash.com/@psychedelaholic?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/green-light-in-dark-room-aka-hHVgZQ8?utm_source=daily_poster&utm_medium=referral",
+      "alt": "green light in dark room",
+      "thumb": "https://images.unsplash.com/photo-1601068674997-00ddd7344c40?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Z3JlZW4lMjBuZW9uJTIwbGlnaHR8ZW58MXx8fHwxNzk0MzczNjcyfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1601068674997-00ddd7344c40?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Z3JlZW4lMjBuZW9uJTIwbGlnaHR8ZW58MXx8fHwxNzk0MzczNjcyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "met:228716",
+      "id": "met:334197",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Embroidered map sampler, late 18th–early 19th century",
-      "credit": "Unknown artist",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/228716",
-      "page": "https://www.metmuseum.org/art/collection/search/228716",
-      "alt": "Embroidered map sampler",
-      "thumb": "https://images.metmuseum.org/CRDImages/es/web-large/DP7747.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/es/original/DP7747.jpg",
-      "local": "media/2026-11-10/image-02-2160.jpg"
+      "title": "Divan Japonais, 1892–93",
+      "credit": "Henri de Toulouse-Lautrec",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/334197",
+      "page": "https://www.metmuseum.org/art/collection/search/334197",
+      "alt": "Divan Japonais",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DT224360.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DT224360.jpg",
+      "local": "media/2026-11-11/image-02-2160.jpg"
     },
     {
-      "id": "unsplash:WjCVynRceo8",
+      "id": "unsplash:f-umZlxutDM",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "a lush green hillside under a cloudy sky",
-      "credit": "Tim Mossholder",
-      "creditUrl": "https://unsplash.com/@timmossholder?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/a-lush-green-hillside-under-a-cloudy-sky-WjCVynRceo8?utm_source=daily_poster&utm_medium=referral",
-      "alt": "a lush green hillside under a cloudy sky",
-      "thumb": "https://images.unsplash.com/photo-1679267207806-53137718141b?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Z3JlZW4lMjBoaWxscyUyMG1pc3R8ZW58MXx8fHwxNzk0Mjg3Mjc1fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1679267207806-53137718141b?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Z3JlZW4lMjBoaWxscyUyMG1pc3R8ZW58MXx8fHwxNzk0Mjg3Mjc1fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "blurred photo of a woman",
+      "credit": "Matt Flores",
+      "creditUrl": "https://unsplash.com/@matdflo?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/blurred-photo-of-a-woman-f-umZlxutDM?utm_source=daily_poster&utm_medium=referral",
+      "alt": "blurred photo of a woman",
+      "thumb": "https://images.unsplash.com/photo-1558724040-9de64afade55?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8Z3JlZW4lMjBuZW9uJTIwbGlnaHR8ZW58MXx8fHwxNzk0MzczNjcyfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1558724040-9de64afade55?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8Z3JlZW4lMjBuZW9uJTIwbGlnaHR8ZW58MXx8fHwxNzk0MzczNjcyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:ixRYvsuvazA",
+      "id": "met:333995",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Aristide Bruant, at His Cabaret, 1893",
+      "credit": "Henri de Toulouse-Lautrec",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/333995",
+      "page": "https://www.metmuseum.org/art/collection/search/333995",
+      "alt": "Aristide Bruant, at His Cabaret",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP371473.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP371473.jpg",
+      "local": "media/2026-11-11/image-04-2160.jpg"
+    },
+    {
+      "id": "unsplash:QOajY0MNp8Y",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "gray and white map",
-      "credit": "Annie Spratt",
-      "creditUrl": "https://unsplash.com/@anniespratt?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/gray-and-white-map-ixRYvsuvazA?utm_source=daily_poster&utm_medium=referral",
-      "alt": "gray and white map",
-      "thumb": "https://images.unsplash.com/photo-1532154078493-c1c3eef2023c?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8Zm9sZGVkJTIwcGFwZXIlMjBtYXB8ZW58MXx8fHwxNzk0Mjg3Mjc1fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1532154078493-c1c3eef2023c?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8Zm9sZGVkJTIwcGFwZXIlMjBtYXB8ZW58MXx8fHwxNzk0Mjg3Mjc1fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "Bright teal and purple spotlights cutting through a dark hazy nightclub atmosphere",
+      "credit": "Scarlett Alt",
+      "creditUrl": "https://unsplash.com/@scarlettalt?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/teal-and-purple-nightclub-spotlights-QOajY0MNp8Y?utm_source=daily_poster&utm_medium=referral",
+      "alt": "Bright teal and purple spotlights cutting through a dark hazy nightclub atmosphere",
+      "thumb": "https://images.unsplash.com/photo-1657208431551-cbf415b8ef26?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8c3RhZ2UlMjBsaWdodHMlMjBoYXplfGVufDF8fHx8MTc5NDM3MzY3Mnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1657208431551-cbf415b8ef26?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8c3RhZ2UlMjBsaWdodHMlMjBoYXplfGVufDF8fHx8MTc5NDM3MzY3Mnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "met:716125",
+      "id": "met:241223",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Langley Park, near Beckenham in Kent, from Edward Hasted's \"The History and Topographical Survey of the County of Kent\", vols. 1-3, 1776",
-      "credit": "Richard Bernard Godfrey",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/716125",
-      "page": "https://www.metmuseum.org/art/collection/search/716125",
-      "alt": "Langley Park, near Beckenham in Kent, from Edward Hasted's \"The History and Topographical Survey of the County of Kent\", vols. 1-3",
-      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP-12696-040.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP-12696-040.jpg",
-      "local": "media/2026-11-10/image-05-2160.jpg"
+      "title": "Terracotta female musician, ca. 600–480 BCE",
+      "credit": "Cypriot",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/241223",
+      "page": "https://www.metmuseum.org/art/collection/search/241223",
+      "alt": "Terracotta female musician",
+      "thumb": "https://images.metmuseum.org/CRDImages/gr/web-large/DP-36445-001.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/gr/original/DP-36445-001.jpg",
+      "local": "media/2026-11-11/image-06-2160.jpg"
     },
     {
-      "id": "unsplash:CIuakYIjadc",
+      "id": "unsplash:xZSlMnbMSE0",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "person holding blue and brown map",
-      "credit": "Julentto Photography",
-      "creditUrl": "https://unsplash.com/@julensan09?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/person-holding-blue-and-brown-map-CIuakYIjadc?utm_source=daily_poster&utm_medium=referral",
-      "alt": "person holding blue and brown map",
-      "thumb": "https://images.unsplash.com/photo-1504598318550-17eba1008a68?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8Zm9sZGVkJTIwcGFwZXIlMjBtYXB8ZW58MXx8fHwxNzk0Mjg3Mjc1fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1504598318550-17eba1008a68?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8Zm9sZGVkJTIwcGFwZXIlMjBtYXB8ZW58MXx8fHwxNzk0Mjg3Mjc1fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "green and black neon light",
+      "credit": "Zieben VH",
+      "creditUrl": "https://unsplash.com/@zieben_vh?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/green-and-black-neon-light-xZSlMnbMSE0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "green and black neon light",
+      "thumb": "https://images.unsplash.com/photo-1623543965216-64e0dae5bfc0?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Z3JlZW4lMjBuZW9uJTIwbGlnaHR8ZW58MXx8fHwxNzk0MzczNjcyfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1623543965216-64e0dae5bfc0?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Z3JlZW4lMjBuZW9uJTIwbGlnaHR8ZW58MXx8fHwxNzk0MzczNjcyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "met:359362",
+      "id": "met:200768",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Landscape, 1892",
-      "credit": "Edgar Degas",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/359362",
-      "page": "https://www.metmuseum.org/art/collection/search/359362",
-      "alt": "Landscape",
-      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP815958.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP815958.jpg",
-      "local": "media/2026-11-10/image-07-2160.jpg"
+      "title": "Musician, ca. 1775",
+      "credit": "Chelsea Porcelain Manufactory",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/200768",
+      "page": "https://www.metmuseum.org/art/collection/search/200768",
+      "alt": "Musician",
+      "thumb": "https://images.metmuseum.org/CRDImages/es/web-large/DP-38701-001.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/es/original/DP-38701-001.jpg",
+      "local": "media/2026-11-11/image-08-2160.jpg"
     },
     {
-      "id": "unsplash:4iNQdT4mDLc",
+      "id": "unsplash:0BZcsD8UVmM",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "Livermore wind turbines on misty green hills",
-      "credit": "Zetong Li",
-      "creditUrl": "https://unsplash.com/@zetong?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/livermore-wind-turbines-on-misty-green-hills-4iNQdT4mDLc?utm_source=daily_poster&utm_medium=referral",
-      "alt": "Livermore wind turbines on misty green hills",
-      "thumb": "https://images.unsplash.com/photo-1782679226951-2e916ce69988?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8Z3JlZW4lMjBoaWxscyUyMG1pc3R8ZW58MXx8fHwxNzk0Mjg3Mjc1fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1782679226951-2e916ce69988?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8Z3JlZW4lMjBoaWxscyUyMG1pc3R8ZW58MXx8fHwxNzk0Mjg3Mjc1fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "purple orange and blue lights",
+      "credit": "David von Diemar",
+      "creditUrl": "https://unsplash.com/@davidvondiemar?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/purple-orange-and-blue-lights-0BZcsD8UVmM?utm_source=daily_poster&utm_medium=referral",
+      "alt": "purple orange and blue lights",
+      "thumb": "https://images.unsplash.com/photo-1599739291060-4578e77dac5d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8c3RhZ2UlMjBsaWdodHMlMjBoYXplfGVufDF8fHx8MTc5NDM3MzY3Mnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1599739291060-4578e77dac5d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8c3RhZ2UlMjBsaWdodHMlMjBoYXplfGVufDF8fHx8MTc5NDM3MzY3Mnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "met:226539",
-      "source": "The Met",
-      "licence": "CC0",
-      "title": "Embroidered map sampler, 1835",
-      "credit": "Unknown artist",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/226539",
-      "page": "https://www.metmuseum.org/art/collection/search/226539",
-      "alt": "Embroidered map sampler",
-      "thumb": "https://images.metmuseum.org/CRDImages/es/web-large/DP363097.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/es/original/DP363097.jpg",
-      "local": "media/2026-11-10/image-09-2160.jpg"
-    },
-    {
-      "id": "met:716235",
-      "source": "The Met",
-      "licence": "CC0",
-      "title": "The Ancient Archiepiscopal Palace at Maidstone, from Edward Hasted's \"The History and Topographical Survey of the County of Kent\", vols. 1-3, 1782",
-      "credit": "Richard Bernard Godfrey",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/716235",
-      "page": "https://www.metmuseum.org/art/collection/search/716235",
-      "alt": "The Ancient Archiepiscopal Palace at Maidstone, from Edward Hasted's \"The History and Topographical Survey of the County of Kent\", vols. 1-3",
-      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP-12696-055.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP-12696-055.jpg",
-      "local": "media/2026-11-10/image-10-2160.jpg"
+      "id": "unsplash:sol7vhs8Pdg",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a stage with a crowd of people",
+      "credit": "Kevin Yudhistira Alloni",
+      "creditUrl": "https://unsplash.com/@kyalloni?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-stage-with-a-crowd-of-people-sol7vhs8Pdg?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a stage with a crowd of people",
+      "thumb": "https://images.unsplash.com/photo-1670028514318-0ac718c0590d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8c3RhZ2UlMjBsaWdodHMlMjBoYXplfGVufDF8fHx8MTc5NDM3MzY3Mnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1670028514318-0ac718c0590d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8c3RhZ2UlMjBsaWdodHMlMjBoYXplfGVufDF8fHx8MTc5NDM3MzY3Mnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     }
   ],
   "textures": [
-    {
-      "id": "unsplash:k4Lt0CjUnb0",
-      "source": "Unsplash",
-      "licence": "Unsplash License",
-      "title": "white textured paper or plaster surface",
-      "credit": "João Vítor Duarte",
-      "creditUrl": "https://unsplash.com/@joaovtrduarte?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-k4Lt0CjUnb0?utm_source=daily_poster&utm_medium=referral",
-      "alt": "white textured paper or plaster surface",
-      "thumb": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDI4NzI3NXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDI4NzI3NXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
-    },
     {
       "id": "unsplash:vS3idIiYxX0",
       "source": "Unsplash",
@@ -210,79 +197,95 @@
       "creditUrl": "https://unsplash.com/@olga_o?utm_source=daily_poster&utm_medium=referral",
       "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-vS3idIiYxX0?utm_source=daily_poster&utm_medium=referral",
       "alt": "white textured paper or plaster surface",
-      "thumb": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDI4NzI3NXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDI4NzI3NXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "thumb": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDIwMDg3M3ww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDIwMDg3M3ww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:xTaOPMa6wAE",
+      "id": "unsplash:k4Lt0CjUnb0",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "beige linen fabric texture background",
-      "credit": "Annie Spratt",
-      "creditUrl": "https://unsplash.com/@anniespratt?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/beige-linen-fabric-texture-background-xTaOPMa6wAE?utm_source=daily_poster&utm_medium=referral",
-      "alt": "beige linen fabric texture background",
-      "thumb": "https://images.unsplash.com/photo-1528458909336-e7a0adfed0a5?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8bGluZW4lMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDI4NzI3NXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1528458909336-e7a0adfed0a5?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8bGluZW4lMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDI4NzI3NXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "white textured paper or plaster surface",
+      "credit": "João Vítor Duarte",
+      "creditUrl": "https://unsplash.com/@joaovtrduarte?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-k4Lt0CjUnb0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "white textured paper or plaster surface",
+      "thumb": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDIwMDg3M3ww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDIwMDg3M3ww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:UD5drKd4H6w",
+      "id": "unsplash:R53t-Tg6J4c",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "A textured grey wall with repeating vertical wavy lines and deep shadows",
-      "credit": "Ricardo Gomez Angel",
-      "creditUrl": "https://unsplash.com/@rgaleriacom?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/grey-wall-with-wavy-lines-UD5drKd4H6w?utm_source=daily_poster&utm_medium=referral",
-      "alt": "A textured grey wall with repeating vertical wavy lines and deep shadows",
-      "thumb": "https://images.unsplash.com/photo-1507214617719-4a3daf41b9ac?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Y29udG91ciUyMGxpbmVzJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTQyODcyNzV8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1507214617719-4a3daf41b9ac?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Y29udG91ciUyMGxpbmVzJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTQyODcyNzV8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "plain white textured plaster surface",
+      "credit": "NordWood Themes",
+      "creditUrl": "https://unsplash.com/@nordwood?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/plain-white-textured-plaster-surface-R53t-Tg6J4c?utm_source=daily_poster&utm_medium=referral",
+      "alt": "plain white textured plaster surface",
+      "thumb": "https://images.unsplash.com/photo-1604147706283-d7119b5b822c?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDIwMDg3M3ww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1604147706283-d7119b5b822c?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDIwMDg3M3ww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "polyhaven:fabric_leather_02",
+      "source": "Poly Haven",
+      "licence": "CC0",
+      "title": "Fabric Leather 02",
+      "credit": "Rob Tuytel",
+      "creditUrl": "https://polyhaven.com/a/fabric_leather_02",
+      "page": "https://polyhaven.com/a/fabric_leather_02",
+      "alt": "Fabric Leather 02 texture",
+      "thumb": "https://cdn.polyhaven.com/asset_img/thumbs/fabric_leather_02.png?width=480&height=480",
+      "src": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/fabric_leather_02/fabric_leather_02_diff_2k.jpg",
+      "local": "media/2026-11-11/texture-04-2160.jpg"
     }
   ],
   "objects": [
     {
-      "name": "compass",
+      "name": "saxophone",
       "material": "polished brass",
-      "image": "media/2026-11-10/object-1.png",
-      "thumb": "media/2026-11-10/object-1-thumb.png",
+      "image": "media/2026-11-11/object-1.png",
+      "thumb": "media/2026-11-11/object-1-thumb.png",
       "model": {
-        "title": "Old Compass",
+        "title": "saxophone alto",
         "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-49dd4dbfc330420f9520126bb8460652",
+        "url": "https://sketchfab.com/3d-models/none-08448f4bfbca474b80ba35a571648a27",
         "licence": "CC Attribution",
-        "creator": "firaira",
-        "creatorUrl": "https://sketchfab.com/firaira"
+        "creator": "AT design studio",
+        "creatorUrl": "https://sketchfab.com/ANDRIANIAINAToky"
       },
       "texture": null
     },
     {
-      "name": "theodolite",
+      "name": "electric guitar",
+      "material": "chrome and lacquered metal",
+      "image": "media/2026-11-11/object-2.png",
+      "thumb": "media/2026-11-11/object-2-thumb.png",
+      "model": {
+        "title": "ibanez jem guitar",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-daeadd913644438aa3096bb357a02016",
+        "licence": "CC Attribution",
+        "creator": "abazibiz",
+        "creatorUrl": "https://sketchfab.com/abazibiz"
+      },
+      "texture": null
+    },
+    {
+      "name": "vinyl record",
       "material": "brushed steel",
-      "image": "media/2026-11-10/object-2.png",
-      "thumb": "media/2026-11-10/object-2-thumb.png",
+      "image": "media/2026-11-11/object-3.png",
+      "thumb": "media/2026-11-11/object-3-thumb.png",
       "model": {
-        "title": "Theodolite HW6 Details",
+        "title": "12\" Vinyl Record",
         "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-70816209c1804d9e92bcf431a1fe50e9",
+        "url": "https://sketchfab.com/3d-models/none-dd27284e8c1a4622b3a0433c7cc8ee72",
         "licence": "CC Attribution",
-        "creator": "Maria",
-        "creatorUrl": "https://sketchfab.com/matamune_6"
+        "creator": "AleixoAlonso",
+        "creatorUrl": "https://sketchfab.com/AleixoAlonso"
       },
-      "texture": null
-    },
-    {
-      "name": "trig pillar",
-      "material": "weathered concrete",
-      "image": "media/2026-11-10/object-3.png",
-      "thumb": "media/2026-11-10/object-3-thumb.png",
-      "model": {
-        "title": "Guildford, Pewley Down Trig Point",
-        "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-7a83ef6b368b4c9d93638bb8f272cc25",
-        "licence": "CC Attribution",
-        "creator": "daz71",
-        "creatorUrl": "https://sketchfab.com/daz71"
-      },
-      "texture": null
+      "texture": {
+        "title": "Corrugated Iron 03",
+        "url": "https://polyhaven.com/a/corrugated_iron_03"
+      }
     }
   ]
 }

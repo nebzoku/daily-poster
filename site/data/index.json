@@ -1,5 +1,16 @@
 [
   {
+    "date": "2026-11-11",
+    "issue": 40,
+    "colour": "Green",
+    "headline": "Jazz You Can See",
+    "bg": "#4BF761",
+    "thumb": "https://images.unsplash.com/photo-1601068674997-00ddd7344c40?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Z3JlZW4lMjBuZW9uJTIwbGlnaHR8ZW58MXx8fHwxNzk0MzczNjcyfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+    "display": "Anybody",
+    "text": "Azeret Mono",
+    "css": "https://fonts.googleapis.com/css2?family=Anybody&family=Azeret+Mono&display=swap"
+  },
+  {
     "date": "2026-11-10",
     "issue": 39,
     "colour": "Jade",

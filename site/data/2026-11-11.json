@@ -1,0 +1,291 @@
+{
+  "date": "2026-11-11",
+  "issue": 40,
+  "generatedAt": "2026-11-11T05:07:52.214Z",
+  "colour": {
+    "name": "Green",
+    "yesterday": "Jade",
+    "tomorrow": "Lime"
+  },
+  "story": {
+    "title": "From Hendrix to Bowie: the trippiest music concert posters – in pictures",
+    "summary": "A gallery looks back at Günther Kieser, the German artist behind some of the 20th century's most singular music posters. Drawing on sculpture, the free-form feel of jazz and psychedelic art, he designed for Jimi Hendrix, David Bowie and Diana Ross and the Supremes.",
+    "source": "The Guardian",
+    "url": "https://www.theguardian.com/artanddesign/gallery/2026/nov/10/gunther-kieser-concert-posters",
+    "published": "2026-11-10T12:00:52.000Z",
+    "theme": "music poster design"
+  },
+  "headlines": [
+    "Jazz You Can See",
+    "Sound Bent Into Shape",
+    "The Poster That Hums"
+  ],
+  "sublines": [
+    "German designer Günther Kieser made concert posters inspired by sculpture, jazz improvisation and psychedelic art, now revisited in pictures.",
+    "His work for Hendrix, Bowie and Diana Ross and the Supremes turned live music into singular, mind-expanding printed images.",
+    "A look back at one of the 20th century's most distinctive poster artists and the free-form spirit of his designs."
+  ],
+  "palette": {
+    "name": "Vivid",
+    "colours": [
+      "#4BF761",
+      "#CDF0CD",
+      "#6B756A",
+      "#032707"
+    ]
+  },
+  "always": [
+    "#000000",
+    "#FFFFFF"
+  ],
+  "type": {
+    "id": "anybody",
+    "display": "Anybody",
+    "text": "Azeret Mono",
+    "reason": "Anybody's stretchy, variable letterforms echo the warped, free-flowing lettering of psychedelic concert posters, while Azeret Mono keeps the facts crisp.",
+    "css": "https://fonts.googleapis.com/css2?family=Anybody&family=Azeret+Mono&display=swap",
+    "displayUrl": "https://fonts.google.com/specimen/Anybody",
+    "textUrl": "https://fonts.google.com/specimen/Azeret+Mono"
+  },
+  "grid": {
+    "format": "A-size",
+    "size": [
+      1080,
+      1528
+    ],
+    "columns": 8,
+    "rows": 8,
+    "margin": 16,
+    "gutter": 0,
+    "column": 131,
+    "row": 187,
+    "unit": "px"
+  },
+  "images": [
+    {
+      "id": "unsplash:aka-hHVgZQ8",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "green light in dark room",
+      "credit": "Alex Middleton",
+      "creditUrl": "https://unsplash.com/@psychedelaholic?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/green-light-in-dark-room-aka-hHVgZQ8?utm_source=daily_poster&utm_medium=referral",
+      "alt": "green light in dark room",
+      "thumb": "https://images.unsplash.com/photo-1601068674997-00ddd7344c40?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Z3JlZW4lMjBuZW9uJTIwbGlnaHR8ZW58MXx8fHwxNzk0MzczNjcyfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1601068674997-00ddd7344c40?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Z3JlZW4lMjBuZW9uJTIwbGlnaHR8ZW58MXx8fHwxNzk0MzczNjcyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:334197",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Divan Japonais, 1892–93",
+      "credit": "Henri de Toulouse-Lautrec",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/334197",
+      "page": "https://www.metmuseum.org/art/collection/search/334197",
+      "alt": "Divan Japonais",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DT224360.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DT224360.jpg",
+      "local": "media/2026-11-11/image-02-2160.jpg"
+    },
+    {
+      "id": "unsplash:f-umZlxutDM",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "blurred photo of a woman",
+      "credit": "Matt Flores",
+      "creditUrl": "https://unsplash.com/@matdflo?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/blurred-photo-of-a-woman-f-umZlxutDM?utm_source=daily_poster&utm_medium=referral",
+      "alt": "blurred photo of a woman",
+      "thumb": "https://images.unsplash.com/photo-1558724040-9de64afade55?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8Z3JlZW4lMjBuZW9uJTIwbGlnaHR8ZW58MXx8fHwxNzk0MzczNjcyfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1558724040-9de64afade55?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8Z3JlZW4lMjBuZW9uJTIwbGlnaHR8ZW58MXx8fHwxNzk0MzczNjcyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:333995",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Aristide Bruant, at His Cabaret, 1893",
+      "credit": "Henri de Toulouse-Lautrec",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/333995",
+      "page": "https://www.metmuseum.org/art/collection/search/333995",
+      "alt": "Aristide Bruant, at His Cabaret",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP371473.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP371473.jpg",
+      "local": "media/2026-11-11/image-04-2160.jpg"
+    },
+    {
+      "id": "unsplash:QOajY0MNp8Y",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "Bright teal and purple spotlights cutting through a dark hazy nightclub atmosphere",
+      "credit": "Scarlett Alt",
+      "creditUrl": "https://unsplash.com/@scarlettalt?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/teal-and-purple-nightclub-spotlights-QOajY0MNp8Y?utm_source=daily_poster&utm_medium=referral",
+      "alt": "Bright teal and purple spotlights cutting through a dark hazy nightclub atmosphere",
+      "thumb": "https://images.unsplash.com/photo-1657208431551-cbf415b8ef26?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8c3RhZ2UlMjBsaWdodHMlMjBoYXplfGVufDF8fHx8MTc5NDM3MzY3Mnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1657208431551-cbf415b8ef26?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8c3RhZ2UlMjBsaWdodHMlMjBoYXplfGVufDF8fHx8MTc5NDM3MzY3Mnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:241223",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Terracotta female musician, ca. 600–480 BCE",
+      "credit": "Cypriot",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/241223",
+      "page": "https://www.metmuseum.org/art/collection/search/241223",
+      "alt": "Terracotta female musician",
+      "thumb": "https://images.metmuseum.org/CRDImages/gr/web-large/DP-36445-001.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/gr/original/DP-36445-001.jpg",
+      "local": "media/2026-11-11/image-06-2160.jpg"
+    },
+    {
+      "id": "unsplash:xZSlMnbMSE0",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "green and black neon light",
+      "credit": "Zieben VH",
+      "creditUrl": "https://unsplash.com/@zieben_vh?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/green-and-black-neon-light-xZSlMnbMSE0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "green and black neon light",
+      "thumb": "https://images.unsplash.com/photo-1623543965216-64e0dae5bfc0?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Z3JlZW4lMjBuZW9uJTIwbGlnaHR8ZW58MXx8fHwxNzk0MzczNjcyfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1623543965216-64e0dae5bfc0?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Z3JlZW4lMjBuZW9uJTIwbGlnaHR8ZW58MXx8fHwxNzk0MzczNjcyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:200768",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Musician, ca. 1775",
+      "credit": "Chelsea Porcelain Manufactory",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/200768",
+      "page": "https://www.metmuseum.org/art/collection/search/200768",
+      "alt": "Musician",
+      "thumb": "https://images.metmuseum.org/CRDImages/es/web-large/DP-38701-001.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/es/original/DP-38701-001.jpg",
+      "local": "media/2026-11-11/image-08-2160.jpg"
+    },
+    {
+      "id": "unsplash:0BZcsD8UVmM",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "purple orange and blue lights",
+      "credit": "David von Diemar",
+      "creditUrl": "https://unsplash.com/@davidvondiemar?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/purple-orange-and-blue-lights-0BZcsD8UVmM?utm_source=daily_poster&utm_medium=referral",
+      "alt": "purple orange and blue lights",
+      "thumb": "https://images.unsplash.com/photo-1599739291060-4578e77dac5d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8c3RhZ2UlMjBsaWdodHMlMjBoYXplfGVufDF8fHx8MTc5NDM3MzY3Mnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1599739291060-4578e77dac5d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8c3RhZ2UlMjBsaWdodHMlMjBoYXplfGVufDF8fHx8MTc5NDM3MzY3Mnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:sol7vhs8Pdg",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a stage with a crowd of people",
+      "credit": "Kevin Yudhistira Alloni",
+      "creditUrl": "https://unsplash.com/@kyalloni?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-stage-with-a-crowd-of-people-sol7vhs8Pdg?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a stage with a crowd of people",
+      "thumb": "https://images.unsplash.com/photo-1670028514318-0ac718c0590d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8c3RhZ2UlMjBsaWdodHMlMjBoYXplfGVufDF8fHx8MTc5NDM3MzY3Mnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1670028514318-0ac718c0590d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8c3RhZ2UlMjBsaWdodHMlMjBoYXplfGVufDF8fHx8MTc5NDM3MzY3Mnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    }
+  ],
+  "textures": [
+    {
+      "id": "unsplash:vS3idIiYxX0",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "white textured paper or plaster surface",
+      "credit": "Olga Thelavart",
+      "creditUrl": "https://unsplash.com/@olga_o?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-vS3idIiYxX0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "white textured paper or plaster surface",
+      "thumb": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDIwMDg3M3ww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDIwMDg3M3ww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:k4Lt0CjUnb0",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "white textured paper or plaster surface",
+      "credit": "João Vítor Duarte",
+      "creditUrl": "https://unsplash.com/@joaovtrduarte?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-k4Lt0CjUnb0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "white textured paper or plaster surface",
+      "thumb": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDIwMDg3M3ww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDIwMDg3M3ww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:R53t-Tg6J4c",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "plain white textured plaster surface",
+      "credit": "NordWood Themes",
+      "creditUrl": "https://unsplash.com/@nordwood?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/plain-white-textured-plaster-surface-R53t-Tg6J4c?utm_source=daily_poster&utm_medium=referral",
+      "alt": "plain white textured plaster surface",
+      "thumb": "https://images.unsplash.com/photo-1604147706283-d7119b5b822c?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDIwMDg3M3ww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1604147706283-d7119b5b822c?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDIwMDg3M3ww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "polyhaven:fabric_leather_02",
+      "source": "Poly Haven",
+      "licence": "CC0",
+      "title": "Fabric Leather 02",
+      "credit": "Rob Tuytel",
+      "creditUrl": "https://polyhaven.com/a/fabric_leather_02",
+      "page": "https://polyhaven.com/a/fabric_leather_02",
+      "alt": "Fabric Leather 02 texture",
+      "thumb": "https://cdn.polyhaven.com/asset_img/thumbs/fabric_leather_02.png?width=480&height=480",
+      "src": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/fabric_leather_02/fabric_leather_02_diff_2k.jpg",
+      "local": "media/2026-11-11/texture-04-2160.jpg"
+    }
+  ],
+  "objects": [
+    {
+      "name": "saxophone",
+      "material": "polished brass",
+      "image": "media/2026-11-11/object-1.png",
+      "thumb": "media/2026-11-11/object-1-thumb.png",
+      "model": {
+        "title": "saxophone alto",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-08448f4bfbca474b80ba35a571648a27",
+        "licence": "CC Attribution",
+        "creator": "AT design studio",
+        "creatorUrl": "https://sketchfab.com/ANDRIANIAINAToky"
+      },
+      "texture": null
+    },
+    {
+      "name": "electric guitar",
+      "material": "chrome and lacquered metal",
+      "image": "media/2026-11-11/object-2.png",
+      "thumb": "media/2026-11-11/object-2-thumb.png",
+      "model": {
+        "title": "ibanez jem guitar",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-daeadd913644438aa3096bb357a02016",
+        "licence": "CC Attribution",
+        "creator": "abazibiz",
+        "creatorUrl": "https://sketchfab.com/abazibiz"
+      },
+      "texture": null
+    },
+    {
+      "name": "vinyl record",
+      "material": "brushed steel",
+      "image": "media/2026-11-11/object-3.png",
+      "thumb": "media/2026-11-11/object-3-thumb.png",
+      "model": {
+        "title": "12\" Vinyl Record",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-dd27284e8c1a4622b3a0433c7cc8ee72",
+        "licence": "CC Attribution",
+        "creator": "AleixoAlonso",
+        "creatorUrl": "https://sketchfab.com/AleixoAlonso"
+      },
+      "texture": {
+        "title": "Corrugated Iron 03",
+        "url": "https://polyhaven.com/a/corrugated_iron_03"
+      }
+    }
+  ]
+}

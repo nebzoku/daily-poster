@@ -202,6 +202,11 @@
       "slot": "2026-11-11 13:00",
       "at": "2026-11-11T13:07:45.430Z",
       "id": "18133410337752861"
+    },
+    "poster:showcase/039-drawing-the-land-line-by-line.jpg": {
+      "slot": "2026-11-11 19:00",
+      "at": "2026-11-11T19:07:38.574Z",
+      "id": "18059827181799786"
     }
   },
   "slots": {
@@ -231,7 +236,8 @@
     "2026-11-10 19:00": "poster:showcase/038-seeds-wake-after-years-asleep.jpg",
     "2026-11-11 08:00": "stories:2026-11-11",
     "2026-11-11 10:30": "poster:showcase/039-every-hill-has-a-name.jpg",
-    "2026-11-11 13:00": "poster:showcase/039-two-centuries-of-exactitude.jpg"
+    "2026-11-11 13:00": "poster:showcase/039-two-centuries-of-exactitude.jpg",
+    "2026-11-11 19:00": "poster:showcase/039-drawing-the-land-line-by-line.jpg"
   },
   "start": "2026-11-04",
   "partial": {}

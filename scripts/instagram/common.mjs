@@ -61,7 +61,9 @@ export async function pendingPosters(state, today = londonDate()) {
   const first = state.start ? addDays(state.start, -1) : today;
   return showcase
     .map((x, i) => ({ ...x, order: i }))
-    .filter((x) => x.date >= first && x.date < today && !state.posted[`poster:${x.image}`])
+    // postManually: posted by hand from the app (e.g. to pick a song from Instagram's music library,
+    // which the publishing API can't do), so the auto-poster skips it.
+    .filter((x) => x.date >= first && x.date < today && !x.postManually && !state.posted[`poster:${x.image}`])
     .sort((a, b) => a.date.localeCompare(b.date) || a.order - b.order);
 }
 

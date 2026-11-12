@@ -163,7 +163,8 @@
       <div id="bmBeatBox">
         <div class="row"><label>Move</label><select id="bmMoveB"><option>1</option><option>2</option><option selected>4</option><option>8</option><option>16</option><option>32</option></select><span class="note" style="margin:0">beats</span></div>
         <div class="row"><label>Hold</label><select id="bmHoldB"><option>0</option><option>1</option><option>2</option><option selected>4</option><option>8</option><option>16</option><option>32</option></select><span class="note" style="margin:0">beats</span></div>
-        <p class="note" style="margin-top:0">Follows the tempo of whatever is playing, shown under the poster. With no sound it uses the idle swing at 96 bpm.</p>
+        <div class="three"><button class="btn" id="barBack">← 1 beat</button><button class="btn solid" id="barTap">Tap on the 1</button><button class="btn" id="barFwd">1 beat →</button></div>
+        <p class="note">Follows the tempo of whatever is playing and finds the start of each bar (the beat counter under the poster). If moves land a beat early or late, tap <b>Tap on the 1</b> on a downbeat or nudge a beat either way. With no sound it uses the idle swing at 96 bpm.</p>
       </div>
       <div id="bmSecBox" hidden>
       <div id="bmSliders"></div>
@@ -453,6 +454,10 @@ const EQN = 32, eq = new Float32Array(EQN), eqPk = new Float32Array(EQN).fill(0.
 // Tempo: the onset strength is kept at 50 samples a second for the last 8 seconds. Twice a second its
 // autocorrelation finds the strongest repeat between 70 and 180 bpm. A beat clock runs at that tempo
 // and is nudged towards each detected hit, so it stays locked to the music.
+// Bars: on every hit near a beat, the bass level is added to that beat's slot in the bar (1–4). The
+// slot that hits hardest is taken as the 1. Tapping "Tap on the 1" sets it by hand instead.
+let lowNow = 0, accent = [0, 0, 0, 0], accentN = 0, barOffset = 0, barManual = false;
+function resetBars() { accent = [0, 0, 0, 0]; accentN = 0; barManual = false; }
 const ENV_HZ = 50; let env = [], envAcc = 0, envMax = 0, tempoT = 0, period = 0.625, bpm = 96, beatClock = 0, lastListen = 0;
 function estimateTempo() {
   const n = env.length; if (n < 200) return;
@@ -469,6 +474,17 @@ function estimateTempo() {
   const a = ac[best - 1], b = ac[best], c = ac[best + 1], off = a - 2 * b + c ? (0.5 * (a - c)) / (a - 2 * b + c) : 0;
   const p = (best + Math.max(-0.5, Math.min(0.5, off))) / ENV_HZ;
   period = Math.abs(p - period) / period < 0.15 ? period * 0.7 + p * 0.3 : p; bpm = 60 / period;
+  // Phase: slide a comb of beats spaced one period apart back from now and find where it lines up with
+  // the most onset energy. That says how long ago the last beat was; pull the beat clock towards it.
+  const Lb = period * ENV_HZ, at = (i) => { const j = Math.floor(i), f = i - j; return j < 0 ? 0 : (env[j] || 0) * (1 - f) + (env[j + 1] || 0) * f; };
+  let bestPh = 0, bestS = -Infinity;
+  for (let ph = 0; ph < Lb; ph += 0.5) {
+    let sc = 0; for (let k = 0, w = 1; n - 1 - ph - k * Lb >= 0; k++, w *= 0.93) sc += w * at(n - 1 - ph - k * Lb);
+    if (sc > bestS) { bestS = sc; bestPh = ph; }
+  }
+  const want = bestPh / Lb, have = beatClock - Math.floor(beatClock);
+  let err = want - have; err -= Math.round(err);
+  beatClock += err * 0.6;
 }
 function listen(now) {
   const live = actx && ((audio.src && !audio.paused) || micSrc || tabSrc);
@@ -476,7 +492,7 @@ function listen(now) {
   let beat = false;
   if (live) {
     analyser.getByteFrequencyData(freq);
-    const raw = { low: band(30, 200), mid: band(200, 1800), high: band(1800, 9000) };
+    const raw = { low: band(30, 200), mid: band(200, 1800), high: band(1800, 9000) }; lowNow = raw.low;
     for (const k in raw) {
       peak[k] = Math.max(peak[k] * 0.996, raw[k]); floor[k] = Math.min(floor[k] + 0.0006, raw[k]);
       const n = Math.max(0, Math.min(1, (raw[k] - floor[k]) / Math.max(0.06, peak[k] - floor[k])));
@@ -519,8 +535,18 @@ function listen(now) {
   }
   if (!live) { period = 0.625; bpm = 96; env = []; }  // idle swing
   beatClock += ldt / period;
-  if (beat) { const fr = beatClock - Math.floor(beatClock), err = fr < 0.5 ? -fr : 1 - fr; if (Math.abs(err) < 0.3) beatClock += err * 0.25; }
-  if (live) $("m-state").textContent = `${tabSrc ? "tab" : micSrc ? "mic" : "playing"} · ${Math.round(bpm)} bpm`;
+  if (beat) {
+    const fr = beatClock - Math.floor(beatClock), err = fr < 0.5 ? -fr : 1 - fr;
+    if (Math.abs(err) < 0.3) beatClock += err * 0.25;
+    if (live && Math.abs(err) < 0.2) {
+      const slot = ((Math.round(beatClock) % 4) + 4) % 4;
+      for (let k = 0; k < 4; k++) accent[k] *= 0.97;     // recent bars count most
+      accent[slot] += lowNow; accentN++;
+      if (!barManual && accentN >= 8) barOffset = accent.indexOf(Math.max(...accent));
+    }
+  }
+  const barBeat = ((Math.floor(beatClock - barOffset) % 4) + 4) % 4 + 1;
+  if (live) $("m-state").textContent = `${tabSrc ? "tab" : micSrc ? "mic" : "playing"} · ${Math.round(bpm)} bpm · beat ${barBeat}`;
   A.beat = beat ? 1 : A.beat * 0.86;
   if (beat) punchT = 1;
   punch += (punchT - punch) * 0.3; punchT *= 0.82; // eases up into each hit rather than snapping
@@ -1089,13 +1115,13 @@ let bmT = 0;
 function stepBoomerang(dt, now) {
   const act = Object.values(SL).filter((o) => o.on); if (!act.length) return;
   let mv, hd, x;
-  if (S.bmBeat) { mv = S.bmMoveB; hd = S.bmHoldB; x = beatClock % (2 * (mv + hd)); } // counted in beats
+  if (S.bmBeat) { mv = S.bmMoveB; hd = S.bmHoldB; const c = 2 * (mv + hd); x = (((beatClock - barOffset) % c) + c) % c; } // counted in beats, from the 1 of the bar
   else {
     mv = lerp(0.3, 12, Math.pow(S.bmMove / 100, 1.5)); hd = lerp(0, 10, S.bmHold / 100);
     bmT += dt * (S.bmMusic ? 0.25 + A.loud * 1.6 : 1); x = bmT % (2 * (mv + hd));
   }
   let f = x < mv ? x / mv : x < mv + hd ? 1 : x < 2 * mv + hd ? 1 - (x - mv - hd) / mv : 0;
-  f = f * f * (3 - 2 * f); // ease in and out of each end
+  f = S.bmBeat ? 1 - Math.pow(1 - f, 3) : f * f * (3 - 2 * f); // to the beat: set off sharply on the beat and settle; in seconds: ease in and out
   for (const o of act) {
     const v = lerp(o.a, o.b, f);
     S[o.key] = v; o.out.textContent = o.fmt(v); o.live.style.left = o.pct(v) + "%";
@@ -1113,6 +1139,9 @@ $("bmMusic").onchange = () => { S.bmMusic = $("bmMusic").checked; };
   const paint = () => { bs.forEach((b) => b.classList.toggle("on", (b.dataset.b === "beats") === S.bmBeat)); $("bmBeatBox").hidden = !S.bmBeat; $("bmSecBox").hidden = S.bmBeat; };
   bs.forEach((b) => (b.onclick = () => { S.bmBeat = b.dataset.b === "beats"; paint(); })); paint();
   $("bmMoveB").onchange = () => { S.bmMoveB = +$("bmMoveB").value; };
+  $("barTap").onclick = () => { barOffset = ((Math.round(beatClock) % 4) + 4) % 4; barManual = true; }; // now = beat 1
+  $("barBack").onclick = () => { barOffset = (barOffset + 3) % 4; barManual = true; };   // moves happen a beat earlier
+  $("barFwd").onclick = () => { barOffset = (barOffset + 1) % 4; barManual = true; };    // moves happen a beat later
   $("bmHoldB").onchange = () => { S.bmHoldB = +$("bmHoldB").value; };
 }
 slider("shape", "smear", "Smear");
@@ -1271,7 +1300,7 @@ $("tracks").querySelectorAll(".t button").forEach((b) => (b.onclick = () => play
 function markTrack(i) { $("tracks").querySelectorAll(".t").forEach((el) => el.classList.toggle("on", +el.dataset.i === i)); }
 function playTrack(i) {
   const t = TRACKS[i];
-  ensureAudio(); stopMic(); stopTab(); actx.resume();
+  ensureAudio(); stopMic(); stopTab(); resetBars(); actx.resume();
   audio.crossOrigin = "anonymous"; // lets the sound be read for the motion
   audio.src = `https://archive.org/download/${t.id}/${encodeURIComponent(t.file)}`;
   $("fileName").textContent = `${t.title} · ${t.year}`; markTrack(i);
@@ -1283,7 +1312,7 @@ function playTrack(i) {
 }
 function loadTrack(f) {
   if (!f) return;
-  ensureAudio(); stopMic(); stopTab();
+  ensureAudio(); stopMic(); stopTab(); resetBars();
   audio.onerror = null; audio.removeAttribute("crossorigin"); markTrack(-1);
   audio.src = URL.createObjectURL(f); $("fileName").textContent = f.name;
   actx.resume(); audio.play();
@@ -1310,7 +1339,7 @@ $("tab").onclick = async () => {
     const st = await navigator.mediaDevices.getDisplayMedia({ video: true, audio: { echoCancellation: false, noiseSuppression: false, autoGainControl: false }, preferCurrentTab: false, selfBrowserSurface: "exclude", systemAudio: "include" });
     if (!st.getAudioTracks().length) { st.getTracks().forEach((t) => t.stop()); $("tabNote").textContent = "No sound came through. Try again, pick a tab (not a window) and turn on “Share tab audio”."; return; }
     st.getVideoTracks().forEach((t) => t.stop()); // only the sound is needed
-    tabStream = st; tabSrc = actx.createMediaStreamSource(new MediaStream(st.getAudioTracks()));
+    resetBars(); tabStream = st; tabSrc = actx.createMediaStreamSource(new MediaStream(st.getAudioTracks()));
     tabSrc.connect(analyser); tabSrc.connect(recDest);
     st.getAudioTracks()[0].onended = stopTab;
     $("tab").classList.add("solid"); $("tab").textContent = "Stop listening to the tab"; $("fileName").textContent = "Another tab";

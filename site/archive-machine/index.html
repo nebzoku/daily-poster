@@ -575,16 +575,20 @@ function stepGrid(dt, t, beat) {
   gMid += (0.3 + e * A.mid - gMid) * ease(2.5);
   if (beat) gVel += 3 * e;                                  // a hit is a push: the flow speeds up, then coasts back
   gVel *= Math.exp(-dt * 2.5); gPhase += gVel * dt;
-  const colsF = lerp(3, 44, Math.pow(D(), 1.1)), cols = Math.ceil(colsF), cw = SW / colsF, ch = cw * PR, rows = Math.ceil(SH / ch);
-  const y0 = (SH - rows * ch) / 2;
-  const amp = colsF * wv * 0.9 * gDrive; // how far the colour bands bend, in cells
-  const k = lerp(0.06, 0.9, rp);                                          // ripple: how quickly the bend changes row to row
-  for (let r = 0; r < rows; r++) {
+  // Density zooms the grid from the centre. Each cell keeps its index (and so its poster) as it
+  // grows or shrinks, so a density change reads as one smooth zoom rather than the grid re-flowing.
+  const colsF = lerp(3, 44, Math.pow(D(), 1.1)), cw = SW / colsF, ch = cw * PR;
+  const cMax = Math.ceil(colsF / 2) + 1, rMax = Math.ceil(SH / ch / 2) + 1;
+  const amp = 22 * wv * 0.9 * gDrive;   // bend, in cells; fixed so the pattern scales with the zoom
+  const k = lerp(0.06, 0.9, rp);        // ripple: how quickly the bend changes row to row
+  for (let r = -rMax; r <= rMax; r++) {
+    const y = SH / 2 + (r - 0.5) * ch, y0 = Math.floor(y), hh = Math.floor(y + ch) - y0 + 1;
     // the bend travels slowly: on a dense grid a big bend moving fast turns into flicker
     const off = amp * Math.sin(r * k - t * 0.45) + amp * 0.3 * Math.sin(r * k * 2.7 + t * 0.3) * gMid;
-    for (let c = 0; c < cols; c++) {
+    for (let c = -cMax; c <= cMax; c++) {
+      const x = SW / 2 + (c - 0.5) * cw, x0 = Math.floor(x), ww = Math.floor(x + cw) - x0 + 1;
       const p = seqAt(c + r + off - t * 2.5 - gPhase + bandSeed);
-      if (p) sc.drawImage(p.tex, Math.floor(c * cw), Math.floor(y0 + r * ch), Math.ceil(cw) + 1, Math.ceil(ch) + 1);
+      if (p) sc.drawImage(p.tex, x0, y0, ww, hh);
     }
   }
 }

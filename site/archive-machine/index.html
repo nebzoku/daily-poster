@@ -302,7 +302,7 @@ function band(lo, hi) {
 }
 // Each band is scaled between its own recent quietest and loudest, so even a thin 78 swings the full range.
 const floor = { low: 0.1, mid: 0.1, high: 0.1 };
-let prevSpec = null, fluxHist = [], punch = 0;
+let prevSpec = null, fluxHist = [], punch = 0, punchT = 0;
 const EQN = 32, eq = new Float32Array(EQN), eqPk = new Float32Array(EQN).fill(0.15), eqFl = new Float32Array(EQN).fill(0.05);
 function listen(now) {
   const live = actx && ((audio.src && !audio.paused) || micSrc);
@@ -347,7 +347,8 @@ function listen(now) {
     $("m-state").textContent = "idle";
   }
   A.beat = beat ? 1 : A.beat * 0.86;
-  punch = beat ? 1 : punch * 0.85;
+  if (beat) punchT = 1;
+  punch += (punchT - punch) * 0.3; punchT *= 0.82; // eases up into each hit rather than snapping
   $("m-low").style.width = A.low * 100 + "%"; $("m-mid").style.width = A.mid * 100 + "%"; $("m-high").style.width = A.high * 100 + "%";
   $("m-beat").classList.toggle("on", A.beat > 0.5);
   return beat;
@@ -455,17 +456,24 @@ function seqAt(m) {
   const q = Math.floor(m), pos = ((q % (2 * N)) + 2 * N) % (2 * N);
   return L[pos < N ? pos : 2 * N - 1 - pos];
 }
+// The music steers the grid through eased values, never directly, so the colour flows instead of jumping.
+let gDrive = 0.3, gMid = 0.3, gVel = 0, gPhase = 0;
 function stepGrid(dt, t, beat) {
   const e = E(), wv = S.wave / 100, rp = S.ripple / 100;
-  if (beat) bandSeed += 1 + Math.round(E() * 2); // each hit jumps every cell on through the gradient
+  const ease = (rate) => 1 - Math.exp(-dt * rate);
+  gDrive += (0.2 + e * A.low * 1.4 - gDrive) * ease(2.5);  // bass swells the bend over ~0.4 s
+  gMid += (0.3 + e * A.mid - gMid) * ease(2.5);
+  if (beat) gVel += 3 * e;                                  // a hit is a push: the flow speeds up, then coasts back
+  gVel *= Math.exp(-dt * 2.5); gPhase += gVel * dt;
   const cols = Math.round(lerp(3, 44, Math.pow(D(), 1.1))), cw = SW / cols, ch = cw * PR, rows = Math.ceil(SH / ch);
   const y0 = (SH - rows * ch) / 2;
-  const amp = cols * wv * 0.9 * (0.2 + e * (A.low * 1.4 + A.beat * 0.6)); // how far the colour bands bend, in cells
+  const amp = cols * wv * 0.9 * gDrive; // how far the colour bands bend, in cells
   const k = lerp(0.06, 0.9, rp);                                          // ripple: how quickly the bend changes row to row
   for (let r = 0; r < rows; r++) {
-    const off = amp * Math.sin(r * k - t * 1.3) + amp * 0.3 * Math.sin(r * k * 2.7 + t * 0.8) * (0.3 + e * A.mid);
+    // the bend travels slowly: on a dense grid a big bend moving fast turns into flicker
+    const off = amp * Math.sin(r * k - t * 0.45) + amp * 0.3 * Math.sin(r * k * 2.7 + t * 0.3) * gMid;
     for (let c = 0; c < cols; c++) {
-      const p = seqAt(c + r + off - t * 2.5 + bandSeed);
+      const p = seqAt(c + r + off - t * 2.5 - gPhase + bandSeed);
       if (p) sc.drawImage(p.tex, Math.floor(c * cw), Math.floor(y0 + r * ch), Math.ceil(cw) + 1, Math.ceil(ch) + 1);
     }
   }

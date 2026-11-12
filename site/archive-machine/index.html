@@ -34,6 +34,26 @@
   .two { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 6px; }
   .three { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-top: 6px; }
   .row { display: grid; grid-template-columns: 74px 1fr 30px; align-items: center; gap: 8px; margin: 8px 0; }
+  .row.sl { grid-template-columns: 74px 1fr 30px 22px; }
+  .track { position: relative; height: 20px; }
+  .track input { position: absolute; inset: 0; width: 100%; margin: 0; }
+  input[type=range] { -webkit-appearance: none; appearance: none; height: 20px; background: transparent; }
+  input[type=range]::-webkit-slider-runnable-track { height: 3px; background: var(--line); }
+  input[type=range]::-moz-range-track { height: 3px; background: var(--line); }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 14px; height: 14px; border-radius: 50%; background: var(--fg); margin-top: -5.5px; cursor: pointer; }
+  input[type=range]::-moz-range-thumb { width: 14px; height: 14px; border: 0; border-radius: 50%; background: var(--fg); cursor: pointer; }
+  .track input.b::-webkit-slider-runnable-track { background: transparent; }
+  .track input.b::-moz-range-track { background: transparent; }
+  .track input.b::-webkit-slider-thumb { background: #fff; border: 2px solid var(--fg); width: 14px; height: 14px; box-sizing: border-box; }
+  .track input.b::-moz-range-thumb { background: #fff; border: 2px solid var(--fg); box-sizing: border-box; }
+  .bm-on .track input { pointer-events: none; }
+  .bm-on .track input::-webkit-slider-thumb { pointer-events: auto; }
+  .bm-on .track input::-moz-range-thumb { pointer-events: auto; }
+  .track .span { position: absolute; top: 8.5px; height: 3px; background: var(--fg); opacity: .35; pointer-events: none; display: none; }
+  .track .live { position: absolute; top: 4px; width: 2px; height: 12px; margin-left: -1px; background: #F1592A; pointer-events: none; display: none; }
+  .bm-on .track .span, .bm-on .track .live { display: block; }
+  .row .bm { width: 22px; height: 22px; padding: 0; border: 1px solid var(--line); background: #fff; color: var(--muted); font: 500 12px/1 var(--mono); cursor: pointer; }
+  .bm-on .bm { background: #F1592A; border-color: #F1592A; color: #fff; }
   .row label { font-size: 12px; }
   .row output { font: 400 11px/1 var(--mono); color: var(--muted); text-align: right; }
   input[type=range] { width: 100%; accent-color: var(--fg); }
@@ -124,6 +144,13 @@
 
     <div class="row" id="bgRow" hidden><label>Background</label><input type="color" id="bg2" value="#000000" style="width:100%;height:24px;padding:0;border:1px solid var(--line)"><span></span></div>
 
+    <div id="bmBox" hidden>
+      <h2>Boomerang</h2>
+      <div id="bmSliders"></div>
+      <label class="check"><input type="checkbox" id="bmMusic"> Follow the music (louder moves faster)</label>
+      <p class="note" style="margin-top:0">Any slider with ↔ on moves between its two handles: the solid one and the outlined one. Hold pauses at each end before it turns back.</p>
+    </div>
+
     <h2>Colour</h2>
     <div class="seg" id="cmodes" style="grid-template-columns:1fr 1fr;margin-bottom:12px"><button data-c="original">Original</button><button data-c="recolour">Recolour</button></div>
     <div id="origBox">
@@ -193,7 +220,7 @@ const TAU = Math.PI * 2;
 const PR = 1.41421; // poster height / width
 
 const S = {
-  bleed: 0, order: "colour", mode: "swirl", format: "a", density: 35, energy: 60, smear: 45, wave: 55, ripple: 45, pixel: 0, blur: 0, paused: false,
+  bmMove: 35, bmHold: 30, bmMusic: false, bleed: 0, order: "colour", mode: "swirl", format: "a", density: 35, energy: 60, smear: 45, wave: 55, ripple: 45, pixel: 0, blur: 0, paused: false,
   text: "JAZZ\nYOU CAN\nSEE", font: "Anton",
   labOn: true, labTL: "", labTR: "", labBL: "", labBR: "", labFont: "", labWeight: "500", labSize: 18, labMargin: 16, labTrack: 4, labColour: "#FFFFFF", labUpper: true, align: "left", tsize: 32, leading: 35, tracking: 12, bg: "#000000",
   colour: "original", sel: new Set(WHEEL.map((_, i) => i)), stops: PRESETS[0].stops.slice(), stepped: false, thresh: false, cut: 50,
@@ -450,7 +477,14 @@ function field(x, y, t) {
   const a = 2 * (Math.sin((x / SW) * 3.1 + t * 0.21) + Math.cos((y / SH) * 2.7 - t * 0.17) + Math.sin(((x + y) / SW) * 1.7 + t * 0.13));
   return [vx + Math.cos(a) * 0.35, vy + Math.sin(a) * 0.35];
 }
+function fitSwirl(dt) {
+  const n = Math.round(lerp(14, 900, Math.pow(D(), 1.6)));
+  while (parts.length < n) parts.push(spawn());
+  if (parts.length > n) parts.length = n;
+  ph += (Math.sqrt((2.4 * SW * SH * PR) / n) - ph) * (1 - Math.exp(-dt * 4));
+}
 function stepSwirl(dt, t, beat) {
+  fitSwirl(dt);
   const e = E();
   if (beat) { kick = 0.9 * e; if (!isOrdered()) for (const p of parts) if (Math.random() < 0.12) p.p = pick(); }
   kick *= 0.94;
@@ -475,16 +509,18 @@ function stepSwirl(dt, t, beat) {
 
 // ---------- bands: snaking lines of whole posters, laid end to end ----------
 let rows = [], bandAngle = 0, bandSeed = 0;
+const newRow = () => ({ list: Array.from({ length: 120 }, pick) });
 function initBands() {
   const n = Math.round(lerp(4, 40, Math.pow(D(), 1.2)));
   const Dg = Math.hypot(SW, SH), L = (Dg / n) * PR, slots = Math.ceil((Dg * 2) / L) + 16;
-  rows = Array.from({ length: n }, () => ({ list: Array.from({ length: slots }, pick) }));
+  rows = Array.from({ length: n + 1 }, newRow);
   bandAngle = 0; bandSeed = rand(0, 1000);
 }
 function stepBands(dt, t, beat) {
   const e = E(), wv = S.wave / 100, rp = S.ripple / 100;
   if (beat && !isOrdered()) for (const r of rows) r.list.forEach((_, k) => { if (Math.random() < 0.06) r.list[k] = pick(); });
-  const Dg = Math.hypot(SW, SH), n = rows.length, gap = Dg / n;   // gap between lines = poster short side
+  const Dg = Math.hypot(SW, SH), nf = lerp(4, 40, Math.pow(D(), 1.2)), n = Math.ceil(nf) + 1, gap = Dg / nf; // gap = poster short side
+  while (rows.length < n) rows.push(newRow()); if (rows.length > n) rows.length = n;
   const pw = gap, L = pw * PR;                                    // posters lie on their side: long side runs along the line
   const drive = 0.2 + e * (A.low * 1.4 + A.beat * 0.6);
   const amp = gap * wv * 7 * drive;                               // how far the lines snake
@@ -531,9 +567,9 @@ function stepGrid(dt, t, beat) {
   gMid += (0.3 + e * A.mid - gMid) * ease(2.5);
   if (beat) gVel += 3 * e;                                  // a hit is a push: the flow speeds up, then coasts back
   gVel *= Math.exp(-dt * 2.5); gPhase += gVel * dt;
-  const cols = Math.round(lerp(3, 44, Math.pow(D(), 1.1))), cw = SW / cols, ch = cw * PR, rows = Math.ceil(SH / ch);
+  const colsF = lerp(3, 44, Math.pow(D(), 1.1)), cols = Math.ceil(colsF), cw = SW / colsF, ch = cw * PR, rows = Math.ceil(SH / ch);
   const y0 = (SH - rows * ch) / 2;
-  const amp = cols * wv * 0.9 * gDrive; // how far the colour bands bend, in cells
+  const amp = colsF * wv * 0.9 * gDrive; // how far the colour bands bend, in cells
   const k = lerp(0.06, 0.9, rp);                                          // ripple: how quickly the bend changes row to row
   for (let r = 0; r < rows; r++) {
     // the bend travels slowly: on a dense grid a big bend moving fast turns into flicker
@@ -689,6 +725,7 @@ let last = performance.now(), mt = 0;
 function frame(now) {
   const dt = Math.min(0.05, (now - last) / 1000); last = now;
   const beat = listen(now);
+  if (!S.paused) stepBoomerang(dt, now);
   if (!S.paused && posters.length) {
     mt += dt * (0.35 + E() * (0.4 + A.low * 1.4 + A.mid * 0.4));
     // smear: how much of the last frame survives
@@ -714,16 +751,51 @@ function reset() {
 }
 
 // ---------- UI ----------
-function slider(host, key, label, onChange) {
-  const row = document.createElement("div"); row.className = "row";
-  row.innerHTML = `<label>${label}</label><input type="range" min="0" max="100" value="${S[key]}"><output>${S[key]}</output>`;
-  const inp = row.querySelector("input"), o = row.querySelector("output");
-  inp.oninput = () => { S[key] = +inp.value; o.textContent = inp.value; onChange && onChange(); };
+// Sliders. ↔ turns on a second handle on the same track; the value then boomerangs between the two.
+const SL = {};
+function slider(host, key, label, onChange, opt = {}) {
+  const row = document.createElement("div"); row.className = "row" + (opt.noBm ? "" : " sl");
+  const fmt = opt.fmt || ((v) => Math.round(v));
+  row.innerHTML = `<label>${label}</label><div class="track"><span class="span"></span><input type="range" class="a" min="0" max="100" value="${S[key]}"><input type="range" class="b" min="0" max="100" hidden><i class="live"></i></div><output>${fmt(S[key])}</output>` + (opt.noBm ? "" : `<button class="bm" title="Boomerang between two values">↔</button>`);
+  const inp = row.querySelector("input.a"), inp2 = row.querySelector("input.b"), out = row.querySelector("output");
+  const o = { key, row, inp, inp2, out, fmt, onChange, on: false, a: 0, b: 0, last: 0, span: row.querySelector(".span"), live: row.querySelector(".live") };
+  const paintSpan = () => { const lo = Math.min(o.a, o.b), hi = Math.max(o.a, o.b); o.span.style.left = lo + "%"; o.span.style.width = hi - lo + "%"; };
+  inp.oninput = () => {
+    if (o.on) { o.a = +inp.value; paintSpan(); return; }
+    S[key] = +inp.value; out.textContent = fmt(S[key]); onChange && onChange();
+  };
+  inp2.oninput = () => { o.b = +inp2.value; paintSpan(); };
+  const btn = row.querySelector(".bm");
+  if (btn) btn.onclick = () => {
+    o.on = !o.on; row.classList.toggle("bm-on", o.on); inp2.hidden = !o.on;
+    if (o.on) { o.a = +inp.value; o.b = o.a <= 60 ? o.a + 40 : o.a - 40; inp2.value = o.b; paintSpan(); }
+    else { S[key] = o.a; out.textContent = fmt(S[key]); onChange && onChange(); }
+    $("bmBox").hidden = !Object.values(SL).some((x) => x.on);
+  };
+  SL[key] = o;
   $(host).appendChild(row);
 }
+// Boomerang timing: move A → B, hold, move B → A, hold, repeat.
+let bmT = 0;
+function stepBoomerang(dt, now) {
+  const act = Object.values(SL).filter((o) => o.on); if (!act.length) return;
+  const mv = lerp(0.3, 12, Math.pow(S.bmMove / 100, 1.5)), hd = lerp(0, 10, S.bmHold / 100);
+  bmT += dt * (S.bmMusic ? 0.25 + A.loud * 1.6 : 1);
+  const x = bmT % (2 * (mv + hd));
+  let f = x < mv ? x / mv : x < mv + hd ? 1 : x < 2 * mv + hd ? 1 - (x - mv - hd) / mv : 0;
+  f = f * f * (3 - 2 * f); // ease in and out of each end
+  for (const o of act) {
+    const v = lerp(o.a, o.b, f);
+    S[o.key] = v; o.out.textContent = o.fmt(v); o.live.style.left = v + "%";
+    if (o.onChange && now - o.last > 180) { o.last = now; o.onChange(); }
+  }
+}
 let densT;
-slider("shape", "density", "Density", () => { clearTimeout(densT); densT = setTimeout(() => (S.mode === "type" ? initType() : reset()), 120); });
+slider("shape", "density", "Density", () => { if (S.mode === "type") { clearTimeout(densT); densT = setTimeout(initType, 90); } });
 slider("shape", "energy", "Energy");
+slider("bmSliders", "bmMove", "Move", null, { noBm: true, fmt: (v) => lerp(0.3, 12, Math.pow(v / 100, 1.5)).toFixed(1) + "s" });
+slider("bmSliders", "bmHold", "Hold", null, { noBm: true, fmt: (v) => lerp(0, 10, v / 100).toFixed(1) + "s" });
+$("bmMusic").onchange = () => { S.bmMusic = $("bmMusic").checked; };
 slider("shape", "smear", "Smear");
 slider("shape", "bleed", "Bleed");
 slider("bandCtl", "wave", "Wave");
@@ -928,7 +1000,7 @@ async function start() {
   fillFonts();
   for (const id of ["labTL", "labTR", "labBL", "labBR"]) $(id).value = S[id];
   $("labColour").value = S.labColour.toLowerCase(); $("words").value = S.text;
-  document.querySelectorAll("#labelSliders input").forEach((inp, i) => { const k = ["labSize", "labMargin", "labTrack"][i]; inp.value = S[k]; inp.nextElementSibling.textContent = S[k]; });
+  for (const k of ["labSize", "labMargin", "labTrack"]) { SL[k].inp.value = S[k]; SL[k].out.textContent = S[k]; }
   $("labSw").innerHTML = [...BRIEF.palette, "#000000", "#FFFFFF"].map((c) => `<button style="background:${c}" data-c="${c}" title="${c}"></button>`).join("");
   $("labSw").querySelectorAll("button").forEach((b) => (b.onclick = () => { S.labColour = b.dataset.c; $("labColour").value = b.dataset.c.toLowerCase(); }));
   $("heads").innerHTML = BRIEF.headlines.map((h, i) => `<button data-i="${i}">${h}</button>`).join("");

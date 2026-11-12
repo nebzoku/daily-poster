@@ -136,6 +136,10 @@
     <button class="btn" id="tab" style="width:100%;margin-top:8px">Listen to another tab (YouTube, Spotify…)</button>
     <p class="note" id="tabNote" style="margin-top:6px">Play any song in another tab, tap this, pick that tab and turn on “Share tab audio”. Chrome or Edge on a computer.</p>
     <div class="two"><button class="btn" id="mic">Use mic</button><button class="btn" id="restart">Restart track</button></div>
+    <div class="note" style="margin:10px 0 4px">Tempo and bars</div>
+    <div class="two" style="grid-template-columns:1fr 80px"><button class="btn" id="tapBtn">Tap tempo (T)</button><button class="btn solid" id="tapAuto">Auto</button></div>
+        <p class="note" style="margin:4px 0 8px">Tap 4 or more times on the beat, starting on the 1. Your taps set the tempo and the bar until you press Auto.</p>
+        <div class="three"><button class="btn" id="barBack">← 1 beat</button><button class="btn solid" id="barTap">Tap on the 1</button><button class="btn" id="barFwd">1 beat →</button></div>
     <div class="tracks" id="tracks"></div>
     <p class="note" id="trackNote">Five early jazz 78s from the Internet Archive, 1921–23, so out of copyright. With no sound it idles on a slow swing.</p>
 
@@ -171,7 +175,7 @@
         <div class="row"><label>Move</label><select id="bmMoveB"><option>1</option><option>2</option><option selected>4</option><option>8</option><option>16</option><option>32</option></select><span class="note" style="margin:0">beats</span></div>
         <div class="row"><label>Hold</label><select id="bmHoldB"><option>0</option><option>1</option><option>2</option><option selected>4</option><option>8</option><option>16</option><option>32</option></select><span class="note" style="margin:0">beats</span></div>
         <div class="row"><label>Feel</label><select id="bmFeel"><option value="glide">Glide: starts on the beat, lands on the 1</option><option value="land">Land: speeds up into the 1</option><option value="snap">Snap: sets off hard, settles</option><option value="even">Even: constant speed</option></select><span></span></div>
-        <div class="three"><button class="btn" id="barBack">← 1 beat</button><button class="btn solid" id="barTap">Tap on the 1</button><button class="btn" id="barFwd">1 beat →</button></div>
+        
         <p class="note">Follows the tempo of whatever is playing and finds the start of each bar (the beat counter under the poster). Every move lands exactly on a 1: the hold stretches to fill the bar. If moves land a beat early or late, tap <b>Tap on the 1</b> on a downbeat or nudge a beat either way. With no sound it uses the idle swing at 96 bpm.</p>
       </div>
       <div id="bmSecBox" hidden>
@@ -473,7 +477,25 @@ const EQN = 32, eq = new Float32Array(EQN), eqPk = new Float32Array(EQN).fill(0.
 // Bars: on every hit near a beat, the bass level is added to that beat's slot in the bar (1–4). The
 // slot that hits hardest is taken as the 1. Tapping "Tap on the 1" sets it by hand instead.
 let lowNow = 0, accent = [0, 0, 0, 0], accentN = 0, barOffset = 0, barManual = false;
-function resetBars() { accent = [0, 0, 0, 0]; accentN = 0; barManual = false; }
+// Tap tempo: tap on the beat, starting on the 1. The taps set the tempo (average gap), where the beat
+// falls (each tap is exactly on a beat) and where the bar starts (the first tap is the 1). While a
+// tapped tempo is set, detection is paused; Auto hands it back.
+let tapLock = false, taps = [], tapFirst = 0;
+function tapTempo() {
+  const now = performance.now();
+  if (taps.length && now - taps[taps.length - 1] > 2000) taps = [];   // a pause starts a new count
+  taps.push(now); if (taps.length > 16) taps.shift();
+  if (taps.length === 1) { tapFirst = Math.ceil(beatClock); beatClock = tapFirst; barOffset = ((tapFirst % 4) + 4) % 4; }
+  else {
+    const gaps = taps.slice(1).map((t, i) => t - taps[i]).sort((a, b) => a - b), med = gaps[Math.floor(gaps.length / 2)];
+    period = med / 1000; bpm = 60 / period; beatClock = tapFirst + taps.length - 1;
+  }
+  tapLock = true; barManual = true;
+  $("tapBtn").textContent = taps.length < 2 ? "Tap… (1)" : `Tap · ${Math.round(bpm)} bpm (${taps.length})`;
+  $("tapAuto").classList.remove("solid");
+}
+function tapAuto() { tapLock = false; taps = []; resetBars(); $("tapBtn").textContent = "Tap tempo (T)"; $("tapAuto").classList.add("solid"); }
+function resetBars() { accent = [0, 0, 0, 0]; accentN = 0; barManual = tapLock; }
 const ENV_HZ = 50; let env = [], envAcc = 0, envMax = 0, tempoT = 0, period = 0.625, bpm = 96, beatClock = 0, lastListen = 0;
 function estimateTempo() {
   const n = env.length; if (n < 200) return;
@@ -526,7 +548,7 @@ function listen(now) {
     envMax = Math.max(envMax, flux); envAcc += ldt;
     if (envAcc >= 1 / ENV_HZ) { while (envAcc >= 1 / ENV_HZ) { env.push(envMax); envAcc -= 1 / ENV_HZ; } envMax = 0; } // a slow frame fills every bin it spans
     if (env.length > ENV_HZ * 8) env.splice(0, env.length - ENV_HZ * 8);
-    if ((tempoT += ldt) > 0.5) { tempoT = 0; estimateTempo(); }
+    if ((tempoT += ldt) > 0.5) { tempoT = 0; if (!tapLock) estimateTempo(); }
     // equaliser: 32 log-spaced bands, 40 Hz to 11 kHz, each scaled to its own range
     for (let b = 0; b < EQN; b++) {
       const f0 = 40 * Math.pow(11000 / 40, b / EQN), f1 = 40 * Math.pow(11000 / 40, (b + 1) / EQN);
@@ -549,12 +571,12 @@ function listen(now) {
     for (let b = 0; b < EQN; b++) eq[b] = Math.max(0, 0.15 + 0.5 * Math.pow(sw, 3) * (1 - b / EQN) + 0.3 * Math.sin(t * (2 + b * 0.37) + b) * Math.sin(t * 0.7 + b * 0.2));
     $("m-state").textContent = "idle";
   }
-  if (!live) { period = 0.625; bpm = 96; env = []; }  // idle swing
+  if (!live && !tapLock) { period = 0.625; bpm = 96; env = []; }  // idle swing (unless the tempo was tapped)
   beatClock += ldt / period;
   if (beat) {
     const fr = beatClock - Math.floor(beatClock), err = fr < 0.5 ? -fr : 1 - fr;
-    if (Math.abs(err) < 0.3) beatClock += err * 0.25;
-    if (live && Math.abs(err) < 0.2) {
+    if (!tapLock && Math.abs(err) < 0.3) beatClock += err * 0.25;
+    if (live && !tapLock && Math.abs(err) < 0.2) {
       const slot = ((Math.round(beatClock) % 4) + 4) % 4;
       for (let k = 0; k < 4; k++) accent[k] *= 0.97;     // recent bars count most
       accent[slot] += lowNow; accentN++;
@@ -1189,6 +1211,7 @@ $("bmMusic").onchange = () => { S.bmMusic = $("bmMusic").checked; };
   bs.forEach((b) => (b.onclick = () => { S.bmBeat = b.dataset.b === "beats"; paint(); })); paint();
   $("bmMoveB").onchange = () => { S.bmMoveB = +$("bmMoveB").value; };
   $("bmFeel").onchange = () => { S.bmFeel = $("bmFeel").value; };
+  $("tapBtn").onclick = tapTempo; $("tapAuto").onclick = tapAuto;
   $("barTap").onclick = () => { barOffset = ((Math.round(beatClock) % 4) + 4) % 4; barManual = true; }; // now = beat 1
   $("barBack").onclick = () => { barOffset = (barOffset + 3) % 4; barManual = true; };   // moves happen a beat earlier
   $("barFwd").onclick = () => { barOffset = (barOffset + 1) % 4; barManual = true; };    // moves happen a beat later
@@ -1465,6 +1488,7 @@ addEventListener("keydown", (e) => {
   else if (k === "s") reset();
   else if (k === "p") png();
   else if (k === "r") toggleRec();
+  else if (k === "t") tapTempo();
 });
 
 async function start() {

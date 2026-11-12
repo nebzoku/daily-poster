@@ -132,6 +132,8 @@
     <h2>Sound</h2>
     <label class="file" id="drop"><input type="file" id="file" accept="audio/*" hidden><b id="fileName">Drop a jazz track</b>MP3, WAV or M4A. Or click to choose.</label>
     <audio id="audio" controls></audio>
+    <button class="btn" id="tab" style="width:100%;margin-top:8px">Listen to another tab (YouTube, Spotify…)</button>
+    <p class="note" id="tabNote" style="margin-top:6px">Play any song in another tab, tap this, pick that tab and turn on “Share tab audio”. Chrome or Edge on a computer.</p>
     <div class="two"><button class="btn" id="mic">Use mic</button><button class="btn" id="restart">Restart track</button></div>
     <div class="tracks" id="tracks"></div>
     <p class="note" id="trackNote">Five early jazz 78s from the Internet Archive, 1921–23, so out of copyright. With no sound it idles on a slow swing.</p>
@@ -411,7 +413,7 @@ const isOrdered = () => S.order !== "random" && ordered.length > 1;
 
 // ---------- audio ----------
 const audio = $("audio");
-let actx, analyser, freq, recDest, mediaSrc, micSrc, micStream;
+let actx, analyser, freq, recDest, mediaSrc, micSrc, micStream, tabSrc, tabStream;
 const A = { low: 0.3, mid: 0.3, high: 0.2, beat: 0, loud: 0.3 };
 let tdata, loudPeak = 0.05;
 const peak = { low: 0.2, mid: 0.2, high: 0.2 };
@@ -435,7 +437,7 @@ const floor = { low: 0.1, mid: 0.1, high: 0.1 };
 let prevSpec = null, fluxHist = [], punch = 0, punchT = 0;
 const EQN = 32, eq = new Float32Array(EQN), eqPk = new Float32Array(EQN).fill(0.15), eqFl = new Float32Array(EQN).fill(0.05);
 function listen(now) {
-  const live = actx && ((audio.src && !audio.paused) || micSrc);
+  const live = actx && ((audio.src && !audio.paused) || micSrc || tabSrc);
   let beat = false;
   if (live) {
     analyser.getByteFrequencyData(freq);
@@ -465,7 +467,7 @@ function listen(now) {
     let sq = 0; for (let i = 0; i < tdata.length; i++) { const v = (tdata[i] - 128) / 128; sq += v * v; }
     const rms = Math.sqrt(sq / tdata.length); loudPeak = Math.max(loudPeak * 0.998, rms, 0.03);
     A.loud = rms / loudPeak;
-    $("m-state").textContent = micSrc ? "mic" : "playing";
+    $("m-state").textContent = tabSrc ? "tab" : micSrc ? "mic" : "playing";
   } else {
     const t = now / 1000, sw = 0.5 + 0.5 * Math.sin(t * TAU * 0.8);
     A.low += (0.3 + 0.5 * Math.pow(sw, 8) - A.low) * 0.2;
@@ -1179,7 +1181,7 @@ $("tracks").querySelectorAll(".t button").forEach((b) => (b.onclick = () => play
 function markTrack(i) { $("tracks").querySelectorAll(".t").forEach((el) => el.classList.toggle("on", +el.dataset.i === i)); }
 function playTrack(i) {
   const t = TRACKS[i];
-  ensureAudio(); stopMic(); actx.resume();
+  ensureAudio(); stopMic(); stopTab(); actx.resume();
   audio.crossOrigin = "anonymous"; // lets the sound be read for the motion
   audio.src = `https://archive.org/download/${t.id}/${encodeURIComponent(t.file)}`;
   $("fileName").textContent = `${t.title} · ${t.year}`; markTrack(i);
@@ -1191,7 +1193,7 @@ function playTrack(i) {
 }
 function loadTrack(f) {
   if (!f) return;
-  ensureAudio(); stopMic();
+  ensureAudio(); stopMic(); stopTab();
   audio.onerror = null; audio.removeAttribute("crossorigin"); markTrack(-1);
   audio.src = URL.createObjectURL(f); $("fileName").textContent = f.name;
   actx.resume(); audio.play();
@@ -1203,11 +1205,32 @@ const drop = $("drop");
 drop.addEventListener("drop", (e) => loadTrack(e.dataTransfer.files[0]));
 audio.onplay = () => { ensureAudio(); actx.resume(); };
 $("restart").onclick = () => { if (audio.src) { audio.currentTime = 0; audio.play(); } };
+// Another tab's sound, shared the way you share a tab on a call. The tab already plays it out loud,
+// so it only goes to the analyser and the recorder, not the speakers.
+function stopTab() {
+  if (!tabSrc) return;
+  tabSrc.disconnect(); tabStream.getTracks().forEach((t) => t.stop()); tabSrc = null; tabStream = null;
+  $("tab").classList.remove("solid"); $("tab").textContent = "Listen to another tab (YouTube, Spotify…)";
+}
+$("tab").onclick = async () => {
+  if (tabSrc) return stopTab();
+  if (!navigator.mediaDevices?.getDisplayMedia) { $("tabNote").textContent = "This browser can't share a tab's sound. Use Chrome or Edge on a computer."; return; }
+  try {
+    ensureAudio(); await actx.resume(); stopMic(); audio.pause();
+    const st = await navigator.mediaDevices.getDisplayMedia({ video: true, audio: { echoCancellation: false, noiseSuppression: false, autoGainControl: false }, preferCurrentTab: false, selfBrowserSurface: "exclude", systemAudio: "include" });
+    if (!st.getAudioTracks().length) { st.getTracks().forEach((t) => t.stop()); $("tabNote").textContent = "No sound came through. Try again, pick a tab (not a window) and turn on “Share tab audio”."; return; }
+    st.getVideoTracks().forEach((t) => t.stop()); // only the sound is needed
+    tabStream = st; tabSrc = actx.createMediaStreamSource(new MediaStream(st.getAudioTracks()));
+    tabSrc.connect(analyser); tabSrc.connect(recDest);
+    st.getAudioTracks()[0].onended = stopTab;
+    $("tab").classList.add("solid"); $("tab").textContent = "Stop listening to the tab"; $("fileName").textContent = "Another tab";
+  } catch (e) { $("tabNote").textContent = e && e.name === "NotAllowedError" ? "Sharing was cancelled or isn't allowed here. On dailyposter.design it works in Chrome or Edge on a computer." : "Couldn't share that tab's sound."; }
+};
 function stopMic() { if (micSrc) { micSrc.disconnect(); micStream.getTracks().forEach((t) => t.stop()); micSrc = null; $("mic").classList.remove("solid"); $("mic").textContent = "Use mic"; } }
 $("mic").onclick = async () => {
   if (micSrc) return stopMic();
   try {
-    ensureAudio(); await actx.resume(); audio.pause();
+    ensureAudio(); await actx.resume(); audio.pause(); stopTab();
     micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
     micSrc = actx.createMediaStreamSource(micStream); micSrc.connect(analyser);
     $("mic").classList.add("solid"); $("mic").textContent = "Stop mic";
@@ -1241,7 +1264,7 @@ let rec = null, chunks = [];
 function toggleRec() {
   if (rec) { rec.stop(); return; }
   const stream = cv.captureStream(30);
-  if (recDest && audio.src) recDest.stream.getAudioTracks().forEach((t) => stream.addTrack(t));
+  if (recDest && (audio.src || tabSrc)) recDest.stream.getAudioTracks().forEach((t) => stream.addTrack(t));
   const type = ["video/mp4;codecs=avc1.640034,mp4a.40.2", "video/mp4;codecs=avc1,mp4a.40.2", "video/mp4", "video/webm;codecs=vp9,opus", "video/webm"].find((t) => window.MediaRecorder && MediaRecorder.isTypeSupported(t));
   if (!type) { $("m-state").textContent = "recording not supported"; return; }
   chunks = [];

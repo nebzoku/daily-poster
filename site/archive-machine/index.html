@@ -148,11 +148,14 @@
       <div class="chips" id="heads"></div>
       <div class="two" style="grid-template-columns:1fr 96px;margin-top:6px"><select id="font"></select><div class="seg" id="aligns" style="grid-template-columns:repeat(3,1fr);gap:2px"><button data-a="left">L</button><button data-a="center">C</button><button data-a="right">R</button></div></div>
       <div id="typeSliders"></div>
-      <div class="row"><label>Background</label><input type="color" id="bg" style="width:100%;height:24px;padding:0;border:1px solid var(--line)"><span></span></div>
       <p class="note">Each line is a line of the poster. Density sets how small the posters are, so higher density means sharper letters.</p>
     </div>
 
-    <div class="row" id="bgRow" hidden><label>Background</label><input type="color" id="bg2" value="#000000" style="width:100%;height:24px;padding:0;border:1px solid var(--line)"><span></span></div>
+    <h2>Background</h2>
+    <div class="row"><label>Colour</label><input type="color" id="bg" value="#000000" style="width:100%;height:24px;padding:0;border:1px solid var(--line)"><span></span></div>
+    <div class="swatches" id="bgSw"></div>
+    <div id="bgSliders"></div>
+    <p class="note">Shows wherever the posters don't cover, and is what the Smear trails fade into. Texture is a soft, uneven mottle like printed paper; Noise is fine grain.</p>
 
     <div id="bmBox" hidden>
       <h2>Boomerang</h2>
@@ -266,7 +269,7 @@ const S = {
   // headline + subline, designed in the tool
   hlOn: false, hlFont: "", hlWeight: "400", hlSize: 170, hlLead: -8, hlTrack: -2, hlUpper: true, hlKern: "font", hlColour: "#FFFFFF", showGrid: false,
   blocks: [], subOn: false, subText: "", subFont: "", subWeight: "400", subSize: 22, subLead: 22, subTrack: 0, subCol: 5, subRow: 6, subSpan: 3,
-  typeDiff: false, fxTexR: 0, fxTexS: 30, fxNoise: 0, fxNoiseS: 20, fxShadow: 0, fxShadowOp: 30,
+  typeDiff: false, bgTex: 0, bgTexS: 50, bgNoise: 0, bgNoiseS: 20, fxTexR: 0, fxTexS: 30, fxNoise: 0, fxNoiseS: 20, fxShadow: 0, fxShadowOp: 30,
   bmMove: 35, bmHold: 30, bmMusic: false, bleed: 0, order: "colour", mode: "swirl", format: "a", density: 35, energy: 60, smear: 45, wave: 55, ripple: 45, pixel: 0, blur: 0, paused: false,
   text: "JAZZ\nYOU CAN\nSEE", font: "Anton",
   labOn: true, labTL: "", labTR: "", labBL: "", labBR: "", labFont: "", labWeight: "500", labSize: 18, labMargin: 16, labTrack: 4, labColour: "#FFFFFF", labUpper: true, align: "left", tsize: 32, leading: 35, tracking: 12, bg: "#000000",
@@ -818,6 +821,27 @@ function composite() {
   drawGridOverlay();
 }
 
+// ---------- background: the colour plus optional texture and grain, cached ----------
+const [bgl, bglc] = mk(); let bgDirty = true;
+const markBg = () => { bgDirty = true; };
+function renderBg() {
+  bgDirty = false; size(bgl, SW, SH);
+  bglc.fillStyle = S.bg; bglc.fillRect(0, 0, SW, SH);
+  if (!S.bgTex && !S.bgNoise) return;
+  const u = W / 1080, img = bglc.getImageData(0, 0, SW, SH), d = img.data, n = SW * SH;
+  const tex = S.bgTex ? noiseField(SW, SH, Math.max(4, lerp(6, 120, S.bgTexS / 100) * u), true) : null;
+  const tex2 = S.bgTex ? noiseField(SW, SH, Math.max(2, lerp(2, 30, S.bgTexS / 100) * u), true) : null;
+  const grain = S.bgNoise ? noiseField(SW, SH, Math.max(1, (S.bgNoiseS / 100) * 6 * u), false) : null;
+  const tA = (S.bgTex / 100) * 0.35, gA = (S.bgNoise / 100) * 0.5;
+  for (let i = 0; i < n; i++) {
+    let f = 0;
+    if (tex) f += ((tex[i] - 0.5) * 0.7 + (tex2[i] - 0.5) * 0.3) * 2 * tA;   // mottle: large soft blotches with smaller ones on top
+    if (grain) f += (grain[i] - 0.5) * 2 * gA;
+    for (let k = 0; k < 3; k++) { const v = d[i * 4 + k]; d[i * 4 + k] = f >= 0 ? v + (255 - v) * f * 0.6 + f * 40 : v * (1 + f); }
+  }
+  bglc.putImageData(img, 0, 0);
+}
+
 // ---------- headline + subline: drawn once into a cached layer, then laid over every frame ----------
 const [tl, tlc] = mk(), [tl2, tl2c] = mk();
 let typeDirty = true;
@@ -1003,7 +1027,8 @@ function frame(now) {
     mt += dt * (0.35 + E() * (0.4 + A.low * 1.4 + A.mid * 0.4));
     // smear: how much of the last frame survives
     sc.globalAlpha = lerp(1, 0.015, Math.pow(M(), 0.6));
-    sc.fillStyle = S.mode === "type" || S.mode === "eq" ? S.bg : "#000"; sc.fillRect(0, 0, SW, SH);
+    if (bgDirty) renderBg();
+    sc.drawImage(bgl, 0, 0);
     sc.globalAlpha = 1;
     if (S.mode === "bands") stepBands(dt, mt, beat); else if (S.mode === "grid") stepGrid(dt, mt, beat); else if (S.mode === "eq") stepEq(dt, mt, beat); else if (S.mode === "type") stepType(dt, mt, beat); else stepSwirl(dt, mt, beat);
   }
@@ -1016,11 +1041,11 @@ function reset() {
   cv.width = W; cv.height = H; cv.style.aspectRatio = `${W} / ${H}`;
   SW = S.mode === "mirror" ? W / 2 : W; SH = S.mode === "mirror" ? H / 2 : H;
   size(scene, SW, SH);
-  sc.fillStyle = S.mode === "type" || S.mode === "eq" ? S.bg : "#000"; sc.fillRect(0, 0, SW, SH);
+  renderBg(); sc.drawImage(bgl, 0, 0);
   typeDirty = true;
   parts = []; rows = [];
   if (S.mode === "bands") initBands(); else if (S.mode === "grid") initGrid(); else if (S.mode === "eq") initEq(); else if (S.mode === "type") initType(); else { cells = []; typeCw = 0; initSwirl(); }
-  $("bandCtl").hidden = !["bands", "grid", "eq"].includes(S.mode); $("typeCtl").hidden = S.mode !== "type"; $("bgRow").hidden = S.mode !== "eq";
+  $("bandCtl").hidden = !["bands", "grid", "eq"].includes(S.mode); $("typeCtl").hidden = S.mode !== "type";
   const lab = $("bandCtl").querySelectorAll("label"); lab[0].textContent = S.mode === "eq" ? "Height" : "Wave"; lab[1].textContent = S.mode === "eq" ? "Fall" : "Ripple";
 }
 
@@ -1098,8 +1123,10 @@ function fillFonts() {
 }
 fillFonts();
 $("font").onchange = () => { S.font = $("font").value; typeSoon(); };
-$("bg").value = S.bg; $("bg").oninput = () => { S.bg = $("bg").value; $("bg2").value = S.bg; };
-$("bg2").oninput = () => { S.bg = $("bg2").value; $("bg").value = S.bg; };
+$("bg").value = S.bg; $("bg").oninput = () => { S.bg = $("bg").value; markBg(); };
+{ let t; const soon = () => { clearTimeout(t); t = setTimeout(markBg, 80); };
+  slider("bgSliders", "bgTex", "Texture", soon); slider("bgSliders", "bgTexS", "Tex. size", soon);
+  slider("bgSliders", "bgNoise", "Noise", soon); slider("bgSliders", "bgNoiseS", "Noise size", soon); }
 slider("labelSliders", "labSize", "Size");
 slider("labelSliders", "labMargin", "Margin");
 slider("labelSliders", "labTrack", "Tracking");
@@ -1358,6 +1385,8 @@ async function start() {
   S.subText = BRIEF.sublines[0] || "";
   fillFonts(); buildBlocks();
   $("hlColour").value = S.hlColour.toLowerCase(); $("subText").value = S.subText;
+  $("bgSw").innerHTML = [...BRIEF.palette, "#000000", "#FFFFFF"].map((c) => `<button style="background:${c}" data-c="${c}" title="${c}"></button>`).join("");
+  $("bgSw").querySelectorAll("button").forEach((b) => (b.onclick = () => { S.bg = b.dataset.c; $("bg").value = b.dataset.c.toLowerCase(); markBg(); }));
   $("hlSw").innerHTML = [...BRIEF.palette, "#000000", "#FFFFFF"].map((c) => `<button style="background:${c}" data-c="${c}" title="${c}"></button>`).join("");
   $("hlSw").querySelectorAll("button").forEach((b) => (b.onclick = () => { S.hlColour = b.dataset.c; $("hlColour").value = b.dataset.c.toLowerCase(); markType(); }));
   document.fonts.load(fontCss(S.hlFont, 60, S.hlWeight)).then(markType); document.fonts.load(fontCss(S.subFont, 60, S.subWeight)).then(markType);

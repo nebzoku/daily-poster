@@ -701,12 +701,8 @@ function stepGrid(dt, t, beat) {
     const off = amp * Math.sin(r * k - t * 0.45) + amp * 0.3 * Math.sin(r * k * 2.7 + t * 0.3) * gMid;
     for (let c = -cMax; c <= cMax; c++) {
       const x = SW / 2 + (c - 0.5) * cw, x0 = Math.floor(x), ww = Math.floor(x + cw) - x0 + 1;
-      // Crossfade: the cell shows its poster and fades in the next one as the wave passes, so the
-      // colour flows smoothly instead of each cell jumping from one poster to the next.
-      const m = c + r + off - t * 2.5 - gPhase + bandSeed, i0 = Math.floor(m), fr = m - i0;
-      const p = seqAt(i0), q = seqAt(i0 + 1);
+      const p = seqAt(c + r + off - t * 2.5 - gPhase + bandSeed);
       if (p) sc.drawImage(p.tex, x0, y0, ww, hh);
-      if (q && q !== p && fr > 0.02) { sc.globalAlpha = fr; sc.drawImage(q.tex, x0, y0, ww, hh); sc.globalAlpha = 1; }
     }
   }
 }

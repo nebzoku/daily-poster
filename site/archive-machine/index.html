@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Archive Machine · Daily Poster</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400;500&family=Anton&family=Archivo+Black&family=Inter+Tight:wght@800&family=Space+Grotesk:wght@700&family=DM+Serif+Display&family=Instrument+Serif&display=block">
+<style>
+  :root { --bg: #f4f4f2; --fg: #111; --muted: #8a8a86; --line: #e2e2de; --mono: "Geist Mono", ui-monospace, monospace; --sans: "Geist", system-ui, sans-serif; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--fg); font: 400 13px/1.4 var(--sans); }
+  .app { display: grid; grid-template-columns: 1fr 330px; height: 100vh; }
+  .stage { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px 24px 14px; min-width: 0; min-height: 0; }
+  .frame { flex: 1; min-height: 0; width: 100%; display: flex; align-items: center; justify-content: center; position: relative; }
+  canvas#cv { max-height: 100%; max-width: 100%; width: auto; height: auto; display: block; box-shadow: 0 1px 2px rgba(0,0,0,.08), 0 12px 40px rgba(0,0,0,.12); }
+  .loading { position: absolute; font: 500 11px/1 var(--mono); text-transform: uppercase; letter-spacing: .05em; color: #fff; }
+  .meter { display: flex; gap: 14px; align-items: center; margin-top: 12px; font: 500 11px/1 var(--mono); text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+  .meter i { display: inline-block; width: 46px; height: 6px; background: var(--line); position: relative; overflow: hidden; vertical-align: middle; margin-left: 6px; }
+  .meter i b { position: absolute; inset: 0 auto 0 0; background: var(--fg); width: 0; }
+  .meter .beat { width: 8px; height: 8px; border-radius: 50%; background: var(--line); }
+  .meter .beat.on { background: #F1592A; }
+  aside { border-left: 1px solid var(--line); background: #fff; overflow-y: auto; padding: 18px 18px 40px; }
+  h1 { font: 500 11px/1.2 var(--mono); text-transform: uppercase; letter-spacing: .05em; margin: 0 0 4px; }
+  h1 + p { margin: 0 0 4px; color: var(--muted); font-size: 12px; }
+  h2 { font: 500 10.5px/1 var(--mono); text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin: 20px 0 10px; padding-top: 14px; border-top: 1px solid var(--line); }
+  .seg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+  .seg button, .btn { font: 500 11px/1 var(--mono); text-transform: uppercase; letter-spacing: .04em; padding: 10px 6px; border: 1px solid var(--line); background: #fff; color: var(--fg); cursor: pointer; }
+  .seg button.on { background: var(--fg); color: #fff; border-color: var(--fg); }
+  .btn { border-color: var(--fg); padding: 11px 8px; }
+  .btn.solid { background: var(--fg); color: #fff; }
+  .btn.rec { border-color: #d02b2b; color: #d02b2b; }
+  .btn.rec.on { background: #d02b2b; color: #fff; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 6px; }
+  .three { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-top: 6px; }
+  .row { display: grid; grid-template-columns: 74px 1fr 30px; align-items: center; gap: 8px; margin: 8px 0; }
+  .row label { font-size: 12px; }
+  .row output { font: 400 11px/1 var(--mono); color: var(--muted); text-align: right; }
+  input[type=range] { width: 100%; accent-color: var(--fg); }
+  .file { display: block; border: 1px dashed #bdbdb8; padding: 14px 10px; text-align: center; cursor: pointer; font-size: 12px; }
+  .file.drop { background: var(--bg); }
+  .file b { display: block; font: 500 11px/1.3 var(--mono); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 4px; }
+  audio { width: 100%; margin-top: 8px; height: 32px; }
+  .note { font-size: 11.5px; color: var(--muted); margin: 8px 0 0; }
+  .note a { color: var(--fg); }
+  .wheel { display: flex; justify-content: center; margin: 2px 0 6px; }
+  .wheel svg { width: 196px; height: 196px; }
+  .wheel path { cursor: pointer; stroke: #fff; stroke-width: 2; transition: opacity .15s; }
+  .wheel path.empty { cursor: default; }
+  .wheel circle { cursor: pointer; }
+  .wheel text { font: 500 10px var(--mono); text-transform: uppercase; letter-spacing: .05em; pointer-events: none; }
+  #selLine { text-align: center; font: 500 11px/1.4 var(--mono); text-transform: uppercase; letter-spacing: .04em; }
+  textarea, select { width: 100%; font: 400 13px/1.35 var(--sans); padding: 8px; border: 1px solid var(--line); background: #fff; border-radius: 0; }
+  textarea { resize: vertical; }
+  .seg#aligns button, #modes button { padding: 10px 0; }
+  .tracks { display: flex; flex-direction: column; gap: 4px; margin-top: 8px; }
+  .tracks .t { display: grid; grid-template-columns: 1fr auto; align-items: center; border: 1px solid var(--line); }
+  .tracks button { text-align: left; background: #fff; border: 0; padding: 8px 10px; cursor: pointer; font: 400 12px/1.25 var(--sans); color: var(--fg); }
+  .tracks button small { display: block; font: 400 10.5px/1.3 var(--mono); color: var(--muted); text-transform: uppercase; letter-spacing: .03em; }
+  .tracks .t.on { border-color: var(--fg); } .tracks .t.on button { background: var(--fg); color: #fff; } .tracks .t.on small { color: #bbb; }
+  .tracks a { font: 400 10.5px/1 var(--mono); color: var(--muted); padding: 0 10px; text-decoration: none; }
+  .stops { display: flex; gap: 6px; flex-wrap: wrap; }
+  .stop { position: relative; }
+  .stop input[type=color] { width: 44px; height: 44px; padding: 0; border: 1px solid var(--line); background: none; cursor: pointer; display: block; }
+  .stop button { position: absolute; top: -6px; right: -6px; width: 16px; height: 16px; border-radius: 50%; border: 0; background: var(--fg); color: #fff; font: 500 10px/16px var(--mono); padding: 0; cursor: pointer; }
+  .stop span { display: block; font: 400 9.5px/1 var(--mono); color: var(--muted); text-align: center; margin-top: 4px; text-transform: uppercase; }
+  .presets { display: flex; flex-direction: column; gap: 6px; margin-top: 10px; }
+  .presets button { display: flex; align-items: center; gap: 8px; border: 1px solid var(--line); background: #fff; padding: 6px 8px; cursor: pointer; font: 500 10.5px/1 var(--mono); text-transform: uppercase; letter-spacing: .04em; text-align: left; }
+  .presets i { display: flex; height: 14px; width: 84px; flex: none; }
+  .presets i b { flex: 1; }
+  .overlay { position: fixed; inset: 0; background: rgba(0,0,0,.8); display: none; align-items: center; justify-content: center; flex-direction: column; gap: 14px; z-index: 10; color: #fff; font: 500 12px/1.4 var(--mono); }
+  .overlay.on { display: flex; }
+  .overlay img, .overlay video { max-height: 76vh; max-width: 86vw; }
+  .overlay a, .overlay button { color: #fff; background: none; border: 1px solid #fff; padding: 10px 14px; font: inherit; text-transform: uppercase; letter-spacing: .04em; text-decoration: none; cursor: pointer; }
+  .keys { font: 400 10.5px/1.6 var(--mono); color: var(--muted); margin-top: 10px; }
+  @media (max-width: 860px) { .app { grid-template-columns: 1fr; height: auto; } .stage { height: 78vh; padding: 12px; } aside { border-left: 0; border-top: 1px solid var(--line); } }
+</style>
+</head>
+<body>
+<div class="app">
+  <main class="stage">
+    <div class="frame"><canvas id="cv" width="1240" height="1754"></canvas><span class="loading" id="loading">Loading the archive…</span></div>
+    <div class="meter">
+      <span>Low <i><b id="m-low"></b></i></span>
+      <span>Mid <i><b id="m-mid"></b></i></span>
+      <span>High <i><b id="m-high"></b></i></span>
+      <span class="beat" id="m-beat"></span>
+      <span id="m-state">idle</span>
+    </div>
+  </main>
+
+  <aside>
+    <h1>Archive Machine</h1>
+    <p>Every poster in the archive, cut into rectangles and moved by the music. A background to put your own type on.</p>
+
+    <h2>Sound</h2>
+    <label class="file" id="drop"><input type="file" id="file" accept="audio/*" hidden><b id="fileName">Drop a jazz track</b>MP3, WAV or M4A. Or click to choose.</label>
+    <audio id="audio" controls></audio>
+    <div class="two"><button class="btn" id="mic">Use mic</button><button class="btn" id="restart">Restart track</button></div>
+    <div class="tracks" id="tracks"></div>
+    <p class="note" id="trackNote">Five early jazz 78s from the Internet Archive, 1921–23, so out of copyright. With no sound it idles on a slow swing.</p>
+
+    <h2>Pattern</h2>
+    <div class="seg" id="modes" style="grid-template-columns:repeat(3,1fr)"><button data-m="swirl">Swirl</button><button data-m="mirror">Mirror</button><button data-m="bands">Bands</button><button data-m="grid">Grid</button><button data-m="wave">Wave</button><button data-m="type">Type</button></div>
+    <div class="seg" id="orders" style="margin-top:6px"><button data-o="colour">By colour</button><button data-o="light">By light</button><button data-o="random">Random</button></div>
+    <div id="shape"></div>
+    <div id="bandCtl"></div>
+    <div id="typeCtl" hidden>
+      <textarea id="words" spellcheck="false" rows="3"></textarea>
+      <div class="two" style="grid-template-columns:1fr 96px;margin-top:6px"><select id="font"></select><div class="seg" id="aligns" style="grid-template-columns:repeat(3,1fr);gap:2px"><button data-a="left">L</button><button data-a="center">C</button><button data-a="right">R</button></div></div>
+      <div id="typeSliders"></div>
+      <div class="row"><label>Background</label><input type="color" id="bg" style="width:100%;height:24px;padding:0;border:1px solid var(--line)"><span></span></div>
+      <p class="note">Each line is a line of the poster. Density sets how small the posters are, so higher density means sharper letters.</p>
+    </div>
+
+    <div class="row" id="bgRow" hidden><label>Background</label><input type="color" id="bg2" value="#000000" style="width:100%;height:24px;padding:0;border:1px solid var(--line)"><span></span></div>
+
+    <h2>Colour</h2>
+    <div class="seg" id="cmodes" style="grid-template-columns:1fr 1fr;margin-bottom:12px"><button data-c="original">Original</button><button data-c="recolour">Recolour</button></div>
+    <div id="origBox">
+      <div class="wheel" id="wheel"></div>
+      <div id="selLine"></div>
+      <p class="note" style="text-align:center">Tap one colour to isolate it, then tap its neighbours to add them. The centre brings back the full wheel.</p>
+    </div>
+    <div id="recBox" hidden>
+      <div class="stops" id="stops"></div>
+      <div class="three"><button class="btn" id="addStop">+ Colour</button><button class="btn" id="flip">Flip</button><button class="btn" id="steps">Smooth</button></div>
+      <div class="presets" id="presets"></div>
+      <p class="note">Every poster, recoloured by brightness, like a luminance mask. The first colour fills the darks, the last fills the lights. Smooth blends between them, Steps gives flat bands.</p>
+    </div>
+
+    <h2>Legibility</h2>
+    <div id="legibility"></div>
+
+    <h2>Output</h2>
+    <div class="seg" id="formats" style="grid-template-columns:1fr 1fr"><button data-f="a">A-size</button><button data-f="story">9:16</button></div>
+    <div class="three"><button class="btn" id="pause">Pause</button><button class="btn" id="shuffle">Shuffle</button><button class="btn solid" id="png">PNG</button></div>
+    <div class="two" style="grid-template-columns:1fr"><button class="btn rec" id="rec">Record video</button></div>
+    <p class="note">PNG saves the current frame, full bleed with no type. Recording includes the track, so you can line the cut up in After Effects.</p>
+    <div class="keys">Space pause · S shuffle · P png · R record</div>
+  </aside>
+</div>
+
+<div class="overlay" id="overlay"><div id="ovMedia"></div><div style="display:flex;gap:10px"><button id="ovDl">Download</button><button id="ovClose">Close</button></div></div>
+
+<script>
+// ---------- Daily Poster colour wheel (mirrors scripts/lib/palette.mjs) ----------
+const WHEEL = [
+  { name: "Red", main: "#F33446" }, { name: "Orange", main: "#F1592A" }, { name: "Yellow", main: "#F1CF43" },
+  { name: "Lime", main: "#B5E643" }, { name: "Green", main: "#4BF761" }, { name: "Jade", main: "#4CF1B7" },
+  { name: "Teal", main: "#4CEBEB" }, { name: "Blue", main: "#2987F1" }, { name: "Indigo", main: "#473CED" },
+  { name: "Violet", main: "#8D2EEE" }, { name: "Magenta", main: "#F43BEC" }, { name: "Rose", main: "#F33496" },
+];
+const EPOCH = "2026-10-03", EPOCH_INDEX = 7;
+function wheelIndex(date) {
+  const t = (s) => Date.UTC(+s.slice(0, 4), +s.slice(5, 7) - 1, +s.slice(8, 10));
+  const n = Math.round((t(date) - t(EPOCH)) / 86400000);
+  return (((EPOCH_INDEX - n) % 12) + 12) % 12;
+}
+// Recolour presets, darks first. Jazz = No. 040 (Green, Vivid) plus the always-on black and white.
+const PRESETS = [
+  { name: "Jazz · No. 040", stops: ["#032707", "#6B756A", "#4BF761", "#CDF0CD"] },
+  { name: "Jazz ink + paper", stops: ["#032707", "#4BF761"] },
+  { name: "Jazz on black", stops: ["#000000", "#4BF761", "#FFFFFF"] },
+  { name: "Black + white", stops: ["#000000", "#FFFFFF"] },
+];
+
+const $ = (id) => document.getElementById(id);
+const lerp = (a, b, t) => a + (b - a) * t;
+const rand = (a, b) => a + Math.random() * (b - a);
+const TAU = Math.PI * 2;
+const PR = 1.41421; // poster height / width
+
+const S = {
+  bleed: 0, order: "colour", mode: "swirl", format: "a", density: 35, energy: 60, smear: 45, wave: 55, ripple: 45, pixel: 0, blur: 0, paused: false,
+  text: "JAZZ\nYOU CAN\nSEE", font: "Anton", align: "left", tsize: 32, leading: 35, tracking: 12, bg: "#000000",
+  colour: "original", sel: new Set(WHEEL.map((_, i) => i)), stops: PRESETS[0].stops.slice(), stepped: false,
+};
+const FORMATS = { a: [1240, 1754], story: [1080, 1920] };
+
+// ---------- canvases ----------
+const cv = $("cv"), out = cv.getContext("2d");
+const mk = () => { const c = document.createElement("canvas"); return [c, c.getContext("2d")]; };
+const [scene, sc] = mk(), [mir, mc] = mk(), [b1, b1c] = mk(), [b2, b2c] = mk(), [px, pxc] = mk();
+let W = 1240, H = 1754, SW = W, SH = H;
+const size = (c, w, h) => { w = Math.max(1, Math.round(w)); h = Math.max(1, Math.round(h)); if (c.width !== w || c.height !== h) { c.width = w; c.height = h; } };
+
+// ---------- archive ----------
+const TW = 420, TH = 594;
+let posters = [], pool = [];
+async function loadArchive() {
+  let base = "../", list;
+  for (const b of ["../", "./"]) {
+    try { const r = await fetch(b + "data/showcase.json", { cache: "no-store" }); if (r.ok) { list = await r.json(); base = b; break; } } catch (e) {}
+  }
+  if (!list) { $("loading").textContent = "Couldn't find the archive"; return; }
+  let done = 0;
+  await Promise.all(list.map((p) => new Promise((res) => {
+    const im = new Image();
+    im.onload = () => {
+      const [c, x] = mk(); c.width = TW; c.height = TH;
+      const r = Math.max(TW / im.width, TH / im.height), w = im.width * r, h = im.height * r;
+      x.drawImage(im, (TW - w) / 2, (TH - h) / 2, w, h);
+      // luminance, auto-levelled per poster so every poster uses the whole ramp
+      const d = x.getImageData(0, 0, TW, TH).data, lum = new Uint8ClampedArray(TW * TH), hist = new Uint32Array(256);
+      for (let i = 0, j = 0; i < d.length; i += 4, j++) { const l = (0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2]) | 0; lum[j] = l; hist[l]++; }
+      let lo = 0, hi = 255, acc = 0; const cut = lum.length * 0.01;
+      for (; lo < 255 && (acc += hist[lo]) < cut; lo++); acc = 0;
+      for (; hi > 0 && (acc += hist[hi]) < cut; hi--);
+      const span = Math.max(1, hi - lo);
+      for (let j = 0; j < lum.length; j++) lum[j] = ((lum[j] - lo) * 255) / span;
+      const [rc] = mk(); rc.width = TW; rc.height = TH;
+      posters.push({ ...p, orig: c, lum, rec: rc, tex: c, wheel: wheelIndex(p.date) });
+      $("loading").textContent = `Loading the archive… ${++done}/${list.length}`;
+      res();
+    };
+    im.onerror = res;
+    im.src = base + p.image;
+  })));
+  $("loading").remove();
+  buildWheel(); buildStops(); buildPresets(); recolour(); rebuildPool(); reset();
+}
+
+// ---------- recolour (luminance mapped onto the chosen colours) ----------
+const hex = (h) => { const n = parseInt(h.slice(1), 16); return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; };
+function recolour() {
+  const cols = S.stops.map(hex), n = cols.length, lut = new Uint8ClampedArray(256 * 3);
+  for (let v = 0; v < 256; v++) {
+    let c;
+    if (S.stepped) c = cols[Math.min(n - 1, Math.floor((v / 256) * n))];
+    else { const f = (v / 255) * (n - 1), i = Math.min(n - 2, Math.floor(f)), t = f - i; c = [0, 1, 2].map((k) => lerp(cols[i][k], cols[i + 1][k], t)); }
+    lut[v * 3] = c[0]; lut[v * 3 + 1] = c[1]; lut[v * 3 + 2] = c[2];
+  }
+  for (const p of posters) {
+    const x = p.rec.getContext("2d"), img = x.createImageData(TW, TH), d = img.data;
+    for (let j = 0, i = 0; j < p.lum.length; j++, i += 4) { const k = p.lum[j] * 3; d[i] = lut[k]; d[i + 1] = lut[k + 1]; d[i + 2] = lut[k + 2]; d[i + 3] = 255; }
+    x.putImageData(img, 0, 0);
+  }
+  applyTex();
+}
+function applyTex() { for (const p of posters) p.tex = S.colour === "recolour" ? p.rec : p.orig; reorder(); }
+
+function rebuildPool() {
+  pool = S.colour === "recolour" ? posters.slice() : posters.filter((p) => S.sel.has(p.wheel));
+  const names = [...S.sel].sort((a, b) => a - b).map((i) => WHEEL[i].name);
+  $("selLine").textContent = (S.sel.size === 12 ? "Full wheel" : names.join(" + ")) + ` · ${pool.length} poster${pool.length === 1 ? "" : "s"}`;
+  reorder();
+  parts.forEach((p) => (p.p = choose(p)));
+  rows.forEach((r) => r.list.forEach((_, k) => (r.list[k] = pick())));
+  cells.forEach((c) => (c.p = pick()));
+  if (S.mode === "grid") initGrid();
+  if (S.mode === "wave") gridSeq = pool.slice().sort(() => Math.random() - 0.5);
+}
+const pick = () => (pool.length ? pool[(Math.random() * pool.length) | 0] : null);
+
+// ---------- order: sort posters by colour or lightness so they run as gradients ----------
+let ordered = [];
+const [st, stc] = mk(); st.width = 6; st.height = 8;
+function measure(p) {
+  stc.imageSmoothingQuality = "high"; stc.drawImage(p.tex, 0, 0, 6, 8);
+  const d = stc.getImageData(0, 0, 6, 8).data; let r = 0, g = 0, b = 0;
+  for (let i = 0; i < d.length; i += 4) { r += d[i]; g += d[i + 1]; b += d[i + 2]; }
+  r /= 48 * 255; g /= 48 * 255; b /= 48 * 255;
+  const mx = Math.max(r, g, b), mn = Math.min(r, g, b), l = (mx + mn) / 2, c = mx - mn;
+  let h = 0; if (c > 0) h = mx === r ? ((g - b) / c + 6) % 6 : mx === g ? (b - r) / c + 2 : (r - g) / c + 4;
+  p.light = 0.2126 * r + 0.7152 * g + 0.0722 * b; p.hue = h / 6; p.sat = c;
+}
+function reorder() {
+  pool.forEach(measure);
+  const byLight = (a, b) => a.light - b.light;
+  if (S.order === "light") ordered = pool.slice().sort(byLight);
+  else if (S.order === "colour") {
+    // greys first, dark to light, then round the colour wheel (red at the start, so it meets the greys gently)
+    const grey = pool.filter((p) => p.sat < 0.12).sort(byLight), col = pool.filter((p) => p.sat >= 0.12).sort((a, b) => ((a.hue + 0.97) % 1) - ((b.hue + 0.97) % 1));
+    ordered = grey.concat(col);
+  } else ordered = [];
+}
+// position along a gradient that runs there and back, so it never jumps
+function at(m) { const N = ordered.length; if (!N) return pick(); const q = Math.floor(m), pos = ((q % (2 * N)) + 2 * N) % (2 * N); return ordered[pos < N ? pos : 2 * N - 1 - pos]; }
+const isOrdered = () => S.order !== "random" && ordered.length > 1;
+
+// ---------- audio ----------
+const audio = $("audio");
+let actx, analyser, freq, recDest, mediaSrc, micSrc, micStream;
+const A = { low: 0.3, mid: 0.3, high: 0.2, beat: 0, loud: 0.3 };
+let tdata, loudPeak = 0.05;
+const peak = { low: 0.2, mid: 0.2, high: 0.2 };
+let lowAvg = 0, lastBeat = 0, idleBeat = 0;
+function ensureAudio() {
+  if (actx) return;
+  actx = new (window.AudioContext || window.webkitAudioContext)();
+  analyser = actx.createAnalyser(); analyser.fftSize = 2048; analyser.smoothingTimeConstant = 0.55;
+  freq = new Uint8Array(analyser.frequencyBinCount); tdata = new Uint8Array(analyser.fftSize);
+  recDest = actx.createMediaStreamDestination();
+  mediaSrc = actx.createMediaElementSource(audio);
+  mediaSrc.connect(analyser); mediaSrc.connect(actx.destination); mediaSrc.connect(recDest);
+}
+function band(lo, hi) {
+  const hz = actx.sampleRate / analyser.fftSize; let s = 0, n = 0;
+  for (let i = Math.max(1, Math.floor(lo / hz)); i <= Math.min(freq.length - 1, Math.ceil(hi / hz)); i++) { s += freq[i]; n++; }
+  return n ? s / n / 255 : 0;
+}
+function listen(now) {
+  const live = actx && ((audio.src && !audio.paused) || micSrc);
+  let beat = false;
+  if (live) {
+    analyser.getByteFrequencyData(freq);
+    const raw = { low: band(30, 180), mid: band(180, 1600), high: band(1600, 9000) };
+    for (const k in raw) {
+      peak[k] = Math.max(peak[k] * 0.997, raw[k], 0.12);
+      const n = raw[k] / peak[k];
+      A[k] += (n - A[k]) * (n > A[k] ? 0.55 : 0.14);
+    }
+    analyser.getByteTimeDomainData(tdata);
+    let sq = 0; for (let i = 0; i < tdata.length; i++) { const v = (tdata[i] - 128) / 128; sq += v * v; }
+    const rms = Math.sqrt(sq / tdata.length); loudPeak = Math.max(loudPeak * 0.998, rms, 0.03);
+    A.loud = rms / loudPeak;
+    if (raw.low - lowAvg > 0.06 && now - lastBeat > 230 && A.low > 0.55) { beat = true; lastBeat = now; }
+    lowAvg += (raw.low - lowAvg) * 0.08;
+    $("m-state").textContent = micSrc ? "mic" : "playing";
+  } else {
+    const t = now / 1000, sw = 0.5 + 0.5 * Math.sin(t * TAU * 0.8);
+    A.low += (0.3 + 0.35 * Math.pow(sw, 8) - A.low) * 0.1;
+    A.mid += (0.35 + 0.15 * Math.sin(t * 0.9) - A.mid) * 0.05;
+    A.high += (0.25 + 0.15 * Math.sin(t * 2.3) - A.high) * 0.05;
+    if (now - idleBeat > 1250) { beat = true; idleBeat = now; }
+    A.loud = 0.25 + 0.45 * Math.pow(sw, 3) * (0.6 + 0.4 * Math.sin(t * 0.37)) + 0.12 * Math.sin(t * 7.3) * Math.sin(t * 1.1);
+    $("m-state").textContent = "idle";
+  }
+  A.beat = beat ? 1 : A.beat * 0.9;
+  $("m-low").style.width = A.low * 100 + "%"; $("m-mid").style.width = A.mid * 100 + "%"; $("m-high").style.width = A.high * 100 + "%";
+  $("m-beat").classList.toggle("on", A.beat > 0.5);
+  return beat;
+}
+
+// ---------- swirl / mirror: whole posters, never cropped or stretched ----------
+let parts = [], vort = [], kick = 0, ph = 400;
+const D = () => S.density / 100, E = () => S.energy / 100, M = () => S.smear / 100;
+function choose(p) {
+  if (!isOrdered()) return pick();
+  const u = Math.atan2(p.y - SH / 2, p.x - SW / 2) / TAU + Math.hypot(p.x - SW / 2, p.y - SH / 2) / SW * 0.9 + mt * 0.04;
+  return at(u * ordered.length * 2);
+}
+function spawn(p = {}) {
+  p.x = rand(-0.12, 1.12) * SW; p.y = rand(-0.12, 1.12) * SH;
+  p.a = rand(0, TAU); p.age = 0; p.life = rand(3, 9); p.k = rand(0.8, 1.2); p.p = choose(p);
+  return p;
+}
+function initSwirl() {
+  const n = Math.round(lerp(14, 900, Math.pow(D(), 1.6)));
+  ph = Math.sqrt((2.4 * SW * SH * PR) / n); // poster height so the posters cover the page about 2.4 times over
+  parts = Array.from({ length: n }, () => { const p = spawn(); p.age = rand(0, p.life); return p; });
+  vort = [0, 1, 2].map(() => ({ ax: rand(0.08, 0.22), ay: rand(0.08, 0.22), px: rand(0, TAU), py: rand(0, TAU), s: (Math.random() < 0.5 ? -1 : 1) * rand(0.7, 1.3) }));
+}
+function field(x, y, t) {
+  let vx = 0, vy = 0; const R = SW * 0.25;
+  for (const v of vort) {
+    const cx = SW * (0.5 + 0.4 * Math.sin(t * v.ax + v.px)), cy = SH * (0.5 + 0.4 * Math.sin(t * v.ay + v.py));
+    const dx = x - cx, dy = y - cy, r = Math.sqrt(dx * dx + dy * dy) + 1, f = (v.s * (1 + kick)) / (1 + r / R);
+    vx += (-dy / r) * f - (dx / r) * Math.abs(f) * 0.08;
+    vy += (dx / r) * f - (dy / r) * Math.abs(f) * 0.08;
+  }
+  const a = 2 * (Math.sin((x / SW) * 3.1 + t * 0.21) + Math.cos((y / SH) * 2.7 - t * 0.17) + Math.sin(((x + y) / SW) * 1.7 + t * 0.13));
+  return [vx + Math.cos(a) * 0.35, vy + Math.sin(a) * 0.35];
+}
+function stepSwirl(dt, t, beat) {
+  const e = E();
+  if (beat) { kick = 0.9 * e; if (!isOrdered()) for (const p of parts) if (Math.random() < 0.12) p.p = pick(); }
+  kick *= 0.94;
+  const spd = W * 0.0034 * (0.2 + 1.7 * e * (0.25 + A.low * 0.9 + A.mid * 0.3)) * dt * 60;
+  const pulse = 1 + e * (A.mid * 0.12 + A.beat * 0.06);
+  const pad = ph * 0.8;
+  for (const p of parts) {
+    const [fx, fy] = field(p.x, p.y, t), mag = Math.min(1.6, Math.hypot(fx, fy));
+    let da = Math.atan2(fy, fx) - p.a; da = ((da + Math.PI) % TAU + TAU) % TAU - Math.PI;
+    p.a += da * 0.12;
+    const c = Math.cos(p.a), s = Math.sin(p.a);
+    p.x += c * spd * (0.35 + mag); p.y += s * spd * (0.35 + mag);
+    p.age += dt;
+    if (p.age > p.life || p.x < -pad || p.y < -pad || p.x > SW + pad || p.y > SH + pad) spawn(p);
+    if (!p.p) continue;
+    const h = ph * p.k * pulse, w = h / PR;
+    sc.setTransform(c, s, -s, c, p.x, p.y);
+    sc.drawImage(p.p.tex, -w / 2, -h / 2, w, h);
+  }
+  sc.setTransform(1, 0, 0, 1, 0, 0);
+}
+
+// ---------- bands: snaking lines of whole posters, laid end to end ----------
+let rows = [], bandAngle = 0, bandSeed = 0;
+function initBands() {
+  const n = Math.round(lerp(4, 40, Math.pow(D(), 1.2)));
+  const Dg = Math.hypot(SW, SH), L = (Dg / n) * PR, slots = Math.ceil((Dg * 2) / L) + 16;
+  rows = Array.from({ length: n }, () => ({ list: Array.from({ length: slots }, pick) }));
+  bandAngle = 0; bandSeed = rand(0, 1000);
+}
+function stepBands(dt, t, beat) {
+  const e = E(), wv = S.wave / 100, rp = S.ripple / 100;
+  if (beat && !isOrdered()) for (const r of rows) r.list.forEach((_, k) => { if (Math.random() < 0.06) r.list[k] = pick(); });
+  const Dg = Math.hypot(SW, SH), n = rows.length, gap = Dg / n;   // gap between lines = poster short side
+  const pw = gap, L = pw * PR;                                    // posters lie on their side: long side runs along the line
+  const drive = 0.35 + e * (A.low * 1.1 + A.beat * 0.4);
+  const amp = gap * wv * 7 * drive;                               // how far the lines snake
+  const k = TAU / (Dg * lerp(1.3, 0.28, rp));                     // ripple: tighter curves
+  const rowPh = rp * 0.55, rowStep = 1;  // each line starts one poster further on: diagonal bands of colour                                        // ripple: lines drift out of step and weave
+  const travel = t * L * (0.6 + e * 0.8);                         // posters flow along their line
+  const c0 = Math.cos(bandAngle), s0 = Math.sin(bandAngle), cx = SW / 2, cy = SH / 2;
+  const yAt = (x, i) => amp * Math.sin(x * k - t * 1.1 + i * rowPh + bandSeed) + amp * 0.3 * Math.sin(x * k * 2.3 + t * 0.7 + i * rowPh * 1.7) * (0.3 + e * A.mid);
+  for (let i = 0; i < n; i++) {
+    const r = rows[i], K = r.list.length, base = Math.floor(travel / L);
+    const y0 = -Dg / 2 + (i + 0.5) * gap - amp * 0;
+    let x = -Dg - (travel - base * L), j = 0;
+    while (x < Dg) {
+      const ya = yAt(x, i), yb = yAt(x + L * 0.5, i);
+      const a = Math.atan2(yb - ya, L * 0.5), ca = Math.cos(a);
+      const mx = x + (L / 2) * ca, my = y0 + yAt(mx, i);
+      const p = isOrdered() ? at(j - base + i * rowStep + bandSeed) : r.list[(((j - base) % K) + K) % K];
+      if (p) {
+        // local frame: rotate the poster 90° so it lies end to end, then follow the curve, then the whole field's angle
+        const A2 = a + Math.PI / 2 + bandAngle, cc = Math.cos(A2), ss = Math.sin(A2);
+        sc.setTransform(cc, ss, -ss, cc, cx + mx * c0 - my * s0, cy + mx * s0 + my * c0);
+        sc.drawImage(p.tex, -pw / 2, -L / 2, pw, L);
+      }
+      x += L * ca; j++;
+    }
+  }
+  sc.setTransform(1, 0, 0, 1, 0, 0);
+}
+
+// ---------- grid: a fixed grid of posters, edge to edge. Nothing moves; the posters change, in waves of colour ----------
+let gridSeq = [];
+function initGrid() { gridSeq = pool.slice().sort(() => Math.random() - 0.5); bandSeed = rand(0, 1000); }
+function seqAt(m) {
+  const L = isOrdered() ? ordered : gridSeq, N = L.length; if (!N) return null;
+  const q = Math.floor(m), pos = ((q % (2 * N)) + 2 * N) % (2 * N);
+  return L[pos < N ? pos : 2 * N - 1 - pos];
+}
+function stepGrid(dt, t, beat) {
+  const e = E(), wv = S.wave / 100, rp = S.ripple / 100;
+  if (beat) bandSeed += 1; // each beat nudges every cell on by one poster
+  const cols = Math.round(lerp(3, 44, Math.pow(D(), 1.1))), cw = SW / cols, ch = cw * PR, rows = Math.ceil(SH / ch);
+  const y0 = (SH - rows * ch) / 2;
+  const amp = cols * wv * 0.9 * (0.35 + e * (A.low * 1.1 + A.beat * 0.4)); // how far the colour bands bend, in cells
+  const k = lerp(0.06, 0.9, rp);                                          // ripple: how quickly the bend changes row to row
+  for (let r = 0; r < rows; r++) {
+    const off = amp * Math.sin(r * k - t * 1.3) + amp * 0.3 * Math.sin(r * k * 2.7 + t * 0.8) * (0.3 + e * A.mid);
+    for (let c = 0; c < cols; c++) {
+      const p = seqAt(c + r + off - t * 2.5 + bandSeed);
+      if (p) sc.drawImage(p.tex, Math.floor(c * cw), Math.floor(y0 + r * ch), Math.ceil(cw) + 1, Math.ceil(ch) + 1);
+    }
+  }
+}
+
+// ---------- wave: the track's waveform scrolling across the page, built from posters on a no-gap grid ----------
+let hist = [], colId = 0, waveAcc = 0;
+function initWave() { hist = []; colId = 0; waveAcc = 0; gridSeq = pool.slice().sort(() => Math.random() - 0.5); }
+function stepWave(dt, t, beat) {
+  const e = E(), wv = S.wave / 100, rp = S.ripple / 100;
+  const cols = Math.round(lerp(6, 56, Math.pow(D(), 1.1))), cw = SW / cols, ch = cw * PR;
+  const rows = Math.ceil(SH / ch / 2) * 2 + 1, mid = (rows - 1) / 2, y0 = SH / 2 - (mid + 0.5) * ch;
+  // a new column of sound every so often; Energy sets how fast it scrolls
+  const stepT = lerp(0.22, 0.035, e);
+  waveAcc += dt;
+  while (waveAcc >= stepT) {
+    waveAcc -= stepT; colId++;
+    const prev = hist.length ? hist[hist.length - 1] : A.loud;
+    hist.push(lerp(A.loud, prev, rp * 0.85)); // ripple smooths the line
+    if (hist.length > cols + 2) hist.shift();
+  }
+  const frac = waveAcc / stepT, gain = lerp(0.3, 1.25, wv);
+  for (let k = 0; k < hist.length; k++) {
+    const c = cols - (hist.length - 1 - k) - frac;        // newest column enters on the right
+    const x = Math.floor(c * cw); if (x < -cw || x > SW) continue;
+    const half = Math.round(Math.min(1, hist[k] * gain) * mid), id = colId - (hist.length - 1 - k);
+    for (let r = mid - half; r <= mid + half; r++) {
+      const p = isOrdered() ? seqAt(Math.abs(r - mid) + id * 0.15) : seqAt(id * 7 + r * 3);
+      if (p) sc.drawImage(p.tex, x, Math.floor(y0 + r * ch), Math.ceil(cw) + 1, Math.ceil(ch) + 1);
+    }
+  }
+}
+
+// ---------- type: whole posters set on a grid wherever the headline's letters are ----------
+const FONTS = [
+  { name: "Anton", css: '400 {s}px "Anton"' }, { name: "Archivo Black", css: '400 {s}px "Archivo Black"' },
+  { name: "Inter Tight", css: '800 {s}px "Inter Tight"' }, { name: "Space Grotesk", css: '700 {s}px "Space Grotesk"' },
+  { name: "DM Serif Display", css: '400 {s}px "DM Serif Display"' }, { name: "Instrument Serif", css: '400 {s}px "Instrument Serif"' },
+];
+let cells = [], cellW = 40, typeBusy = 0;
+const [mask, mk2] = mk();
+async function initType() {
+  const my = ++typeBusy, f = FONTS.find((x) => x.name === S.font) || FONTS[0];
+  const fs = Math.round(W * lerp(0.08, 0.5, S.tsize / 100) * (SW / W));
+  const font = f.css.replace("{s}", fs);
+  try { await document.fonts.load(font, S.text || "A"); } catch (e) {}
+  if (my !== typeBusy) return;
+  size(mask, SW, SH);
+  mk2.fillStyle = "#000"; mk2.fillRect(0, 0, SW, SH);
+  mk2.fillStyle = "#fff"; mk2.font = font; mk2.textBaseline = "alphabetic";
+  const track = fs * lerp(-0.1, 0.4, S.tracking / 100), lead = fs * lerp(0.62, 1.5, S.leading / 100);
+  const lines = (S.text || "").split("\n");
+  const widthOf = (t) => [...t].reduce((a, ch) => a + mk2.measureText(ch).width + track, 0) - (t.length ? track : 0);
+  const asc = fs * 0.72, blockH = asc + lead * (lines.length - 1), margin = SW * 0.05;
+  let y = (SH - blockH) / 2 + asc;
+  for (const line of lines) {
+    const w = widthOf(line);
+    let x = S.align === "left" ? margin : S.align === "right" ? SW - margin - w : (SW - w) / 2;
+    for (const ch of line) { mk2.fillText(ch, x, y); x += mk2.measureText(ch).width + track; }
+    y += lead;
+  }
+  // sample the letters on a poster-shaped grid
+  const d = mk2.getImageData(0, 0, SW, SH).data;
+  cellW = SW * lerp(0.085, 0.012, Math.pow(D(), 0.8));
+  const cw = cellW, ch = cw * PR, targets = [];
+  const hit = (x, y) => { x = x | 0; y = y | 0; return x >= 0 && y >= 0 && x < SW && y < SH && d[(y * SW + x) * 4] > 127; };
+  for (let gy = 0; gy < SH; gy += ch) for (let gx = 0; gx < SW; gx += cw) {
+    let n = 0; for (const [u, v] of [[0.5, 0.5], [0.25, 0.25], [0.75, 0.25], [0.25, 0.75], [0.75, 0.75]]) n += hit(gx + cw * u, gy + ch * v);
+    if (n >= 2) targets.push([gx, gy]);
+  }
+  // reuse the posters already on screen so they fly to their new places
+  const old = cells; cells = targets.map(([tx, ty], i) => {
+    const c = old[i] || { x: rand(-0.2, 1.2) * SW, y: SH + rand(0.1, 0.5) * SH, p: pick(), ph: rand(0, TAU) };
+    c.tx = tx; c.ty = ty; return c;
+  });
+}
+function stepType(dt, t, beat) {
+  const e = E(), cw = cellW, ch = cw * PR;
+  if (beat && !isOrdered()) for (const c of cells) if (Math.random() < 0.1) c.p = pick();
+  const N = ordered.length;
+  const wob = cw * 1.2 * e * (0.1 + A.mid * 0.7), pulse = 1 + e * (A.low * 0.18 + A.beat * 0.1);
+  const k = 1 - Math.pow(0.002, dt);
+  for (const c of cells) {
+    c.x += (c.tx - c.x) * k; c.y += (c.ty - c.y) * k;
+    if (isOrdered()) c.p = at((c.tx / SW) * N * 0.9 + (c.ty / SH) * N * 0.5 - t * 1.5);
+    if (!c.p) continue;
+    // one coherent wave through the letters, so neighbours move together and the words stay whole
+    const ox = wob * Math.sin(t * 2.1 + (c.ty / SH) * 9), oy = wob * 0.6 * Math.cos(t * 1.7 + (c.tx / SW) * 9);
+    const w = cw * pulse * 1.03, h = ch * pulse * 1.03;
+    sc.drawImage(c.p.tex, c.x + ox - (w - cw) / 2, c.y + oy - (h - ch) / 2, w, h);
+  }
+}
+
+// ---------- composite + legibility ----------
+function composite() {
+  let src = scene;
+  const z = 1 + (S.bleed / 100) * 0.8; // bleed: scale everything up from the centre so it runs off the edges
+  if (S.mode === "mirror") {
+    size(mir, W, H);
+    mc.drawImage(scene, 0, 0);
+    mc.setTransform(-1, 0, 0, 1, W, 0); mc.drawImage(scene, 0, 0);
+    mc.setTransform(1, 0, 0, -1, 0, H); mc.drawImage(scene, 0, 0);
+    mc.setTransform(-1, 0, 0, -1, W, H); mc.drawImage(scene, 0, 0);
+    mc.setTransform(1, 0, 0, 1, 0, 0);
+    src = mir;
+  }
+  // crop window for the bleed zoom, in source pixels
+  const cw0 = src.width / z, ch0 = src.height / z, cx0 = (src.width - cw0) / 2, cy0 = (src.height - ch0) / 2;
+  const crop = (ctx, c, w, h) => (c === src0 ? ctx.drawImage(c, cx0, cy0, cw0, ch0, 0, 0, w, h) : ctx.drawImage(c, 0, 0, w, h));
+  const src0 = src;
+  const bl = S.blur / 100, pv = S.pixel / 100;
+  if (bl > 0) {
+    const f = 1 + Math.pow(bl, 1.3) * 48;
+    size(b1, W / f, H / f); size(b2, (W / f) * 3, (H / f) * 3);
+    b1c.imageSmoothingQuality = "high"; crop(b1c, src, b1.width, b1.height);
+    b2c.drawImage(b1, 0, 0, b2.width, b2.height);
+    src = b2;
+  }
+  if (pv > 0) {
+    const blk = 1 + Math.pow(pv, 1.6) * 90;
+    size(px, W / blk, H / blk);
+    pxc.imageSmoothingQuality = "high"; crop(pxc, src, px.width, px.height);
+    out.imageSmoothingEnabled = false; out.drawImage(px, 0, 0, W, H);
+  } else {
+    out.imageSmoothingEnabled = true; crop(out, src, W, H);
+  }
+}
+
+// ---------- loop ----------
+let last = performance.now(), mt = 0;
+function frame(now) {
+  const dt = Math.min(0.05, (now - last) / 1000); last = now;
+  const beat = listen(now);
+  if (!S.paused && posters.length) {
+    mt += dt * (0.35 + E() * (0.4 + A.low * 1.4 + A.mid * 0.4));
+    // smear: how much of the last frame survives
+    sc.globalAlpha = lerp(1, 0.015, Math.pow(M(), 0.6));
+    sc.fillStyle = S.mode === "type" || S.mode === "wave" ? S.bg : "#000"; sc.fillRect(0, 0, SW, SH);
+    sc.globalAlpha = 1;
+    if (S.mode === "bands") stepBands(dt, mt, beat); else if (S.mode === "grid") stepGrid(dt, mt, beat); else if (S.mode === "wave") stepWave(dt, mt, beat); else if (S.mode === "type") stepType(dt, mt, beat); else stepSwirl(dt, mt, beat);
+  }
+  if (posters.length) composite();
+  requestAnimationFrame(frame);
+}
+
+function reset() {
+  [W, H] = FORMATS[S.format];
+  cv.width = W; cv.height = H; cv.style.aspectRatio = `${W} / ${H}`;
+  SW = S.mode === "mirror" ? W / 2 : W; SH = S.mode === "mirror" ? H / 2 : H;
+  size(scene, SW, SH);
+  sc.fillStyle = S.mode === "type" || S.mode === "wave" ? S.bg : "#000"; sc.fillRect(0, 0, SW, SH);
+  parts = []; rows = [];
+  if (S.mode === "bands") initBands(); else if (S.mode === "grid") initGrid(); else if (S.mode === "wave") initWave(); else if (S.mode === "type") initType(); else { cells = []; initSwirl(); }
+  $("bandCtl").hidden = !["bands", "grid", "wave"].includes(S.mode); $("typeCtl").hidden = S.mode !== "type"; $("bgRow").hidden = S.mode !== "wave";
+}
+
+// ---------- UI ----------
+function slider(host, key, label, onChange) {
+  const row = document.createElement("div"); row.className = "row";
+  row.innerHTML = `<label>${label}</label><input type="range" min="0" max="100" value="${S[key]}"><output>${S[key]}</output>`;
+  const inp = row.querySelector("input"), o = row.querySelector("output");
+  inp.oninput = () => { S[key] = +inp.value; o.textContent = inp.value; onChange && onChange(); };
+  $(host).appendChild(row);
+}
+let densT;
+slider("shape", "density", "Density", () => { clearTimeout(densT); densT = setTimeout(() => (S.mode === "type" ? initType() : reset()), 120); });
+slider("shape", "energy", "Energy");
+slider("shape", "smear", "Smear");
+slider("shape", "bleed", "Bleed");
+slider("bandCtl", "wave", "Wave");
+slider("bandCtl", "ripple", "Ripple");
+let typeT;
+const typeSoon = () => { clearTimeout(typeT); typeT = setTimeout(() => S.mode === "type" && initType(), 90); };
+slider("typeSliders", "tsize", "Size", typeSoon);
+slider("typeSliders", "leading", "Leading", typeSoon);
+slider("typeSliders", "tracking", "Tracking", typeSoon);
+$("words").value = S.text; $("words").oninput = () => { S.text = $("words").value; typeSoon(); };
+$("font").innerHTML = FONTS.map((f) => `<option>${f.name}</option>`).join(""); $("font").value = S.font;
+$("font").onchange = () => { S.font = $("font").value; typeSoon(); };
+$("bg").value = S.bg; $("bg").oninput = () => { S.bg = $("bg").value; $("bg2").value = S.bg; };
+$("bg2").oninput = () => { S.bg = $("bg2").value; $("bg").value = S.bg; };
+slider("legibility", "pixel", "Pixelate");
+slider("legibility", "blur", "Blur");
+
+function segs(host, attr, key, after) {
+  const bs = [...$(host).querySelectorAll("button")];
+  const paint = () => bs.forEach((b) => b.classList.toggle("on", b.dataset[attr] === S[key]));
+  bs.forEach((b) => (b.onclick = () => { S[key] = b.dataset[attr]; paint(); after(); }));
+  paint();
+}
+segs("modes", "m", "mode", reset);
+segs("orders", "o", "order", () => { reorder(); parts.forEach((p) => (p.p = choose(p))); });
+segs("formats", "f", "format", reset);
+segs("aligns", "a", "align", typeSoon);
+segs("cmodes", "c", "colour", () => {
+  $("origBox").hidden = S.colour !== "original"; $("recBox").hidden = S.colour !== "recolour";
+  applyTex(); rebuildPool();
+});
+
+function buildWheel() {
+  const counts = WHEEL.map((_, i) => posters.filter((p) => p.wheel === i).length);
+  const R1 = 96, R0 = 54, cx = 98, cy = 98;
+  const pt = (r, a) => `${(cx + r * Math.cos(a)).toFixed(2)},${(cy + r * Math.sin(a)).toFixed(2)}`;
+  let svg = `<svg viewBox="0 0 196 196">`;
+  WHEEL.forEach((w, i) => {
+    const a0 = (i / 12) * TAU - Math.PI / 2 - TAU / 24 + 0.012, a1 = ((i + 1) / 12) * TAU - Math.PI / 2 - TAU / 24 - 0.012;
+    svg += `<path data-i="${i}" class="${counts[i] ? "" : "empty"}" d="M${pt(R0, a0)} L${pt(R1, a0)} A${R1},${R1} 0 0 1 ${pt(R1, a1)} L${pt(R0, a1)} A${R0},${R0} 0 0 0 ${pt(R0, a0)} Z" fill="${w.main}"><title>${w.name} · ${counts[i]} poster${counts[i] === 1 ? "" : "s"}</title></path>`;
+  });
+  svg += `<circle cx="${cx}" cy="${cy}" r="${R0 - 8}" fill="#111"></circle><text x="${cx}" y="${cy + 3.5}" text-anchor="middle" fill="#fff">All</text></svg>`;
+  $("wheel").innerHTML = svg;
+  const paint = () => $("wheel").querySelectorAll("path").forEach((p) => {
+    const i = +p.dataset.i; p.style.opacity = !counts[i] ? 0.12 : S.sel.has(i) ? 1 : 0.22;
+  });
+  $("wheel").querySelectorAll("path").forEach((p) => (p.onclick = () => {
+    const i = +p.dataset.i; if (!counts[i]) return;
+    if (S.sel.size === 12) S.sel = new Set([i]);
+    else if (S.sel.has(i)) { S.sel.delete(i); if (!S.sel.size) S.sel = new Set(WHEEL.map((_, k) => k)); }
+    else S.sel.add(i);
+    paint(); rebuildPool();
+  }));
+  $("wheel").querySelector("circle").onclick = () => { S.sel = new Set(WHEEL.map((_, k) => k)); paint(); rebuildPool(); };
+  paint();
+}
+
+// recolour controls
+let recT;
+const recolourSoon = () => { clearTimeout(recT); recT = setTimeout(recolour, 60); };
+function buildStops() {
+  const n = S.stops.length;
+  $("stops").innerHTML = S.stops.map((c, i) =>
+    `<div class="stop"><input type="color" value="${c}" data-i="${i}">${n > 2 ? `<button data-x="${i}" title="Remove">×</button>` : ""}<span>${i === 0 ? "Darks" : i === n - 1 ? "Lights" : ""}&nbsp;</span></div>`).join("");
+  $("stops").querySelectorAll("input").forEach((inp) => (inp.oninput = () => { S.stops[+inp.dataset.i] = inp.value; recolourSoon(); }));
+  $("stops").querySelectorAll("button").forEach((b) => (b.onclick = () => { S.stops.splice(+b.dataset.x, 1); buildStops(); recolour(); }));
+  $("addStop").disabled = n >= 6;
+}
+function buildPresets() {
+  $("presets").innerHTML = PRESETS.map((p, i) => `<button data-p="${i}"><i>${p.stops.map((c) => `<b style="background:${c}"></b>`).join("")}</i>${p.name}</button>`).join("");
+  $("presets").querySelectorAll("button").forEach((b) => (b.onclick = () => { S.stops = PRESETS[+b.dataset.p].stops.slice(); buildStops(); recolour(); }));
+}
+$("addStop").onclick = () => { if (S.stops.length < 6) { S.stops.push(S.stops[S.stops.length - 1]); buildStops(); recolour(); } };
+$("flip").onclick = () => { S.stops.reverse(); buildStops(); recolour(); };
+$("steps").onclick = () => { S.stepped = !S.stepped; $("steps").textContent = S.stepped ? "Steps" : "Smooth"; $("steps").classList.toggle("solid", S.stepped); recolour(); };
+
+// sound: five public-domain 78s from the Internet Archive's Great 78 Project
+const TRACKS = [
+  { title: "Tears", by: "King Oliver's Jazz Band, with Louis Armstrong", year: 1923, id: "78_tears_king-olivers-jazz-band-hardin-armstrong-joe-oliver-louis-armstrong-johnny-do_gbia0001053a", file: "Tears - King Oliver's Jazz Band - Hardin.mp3" },
+  { title: "Ory's Creole Trombone", by: "Kid Ory's Sunshine Orchestra", year: 1922, id: "78_orys-creole-trombone_kid-orys-sunshine-orchestra-papa-mutt-carey-kid-ory-dink-joh_gbia0215087a", file: "ORY'S CREOLE TROMBONE - KID ORY'S SUNSHINE ORCHESTRA.mp3" },
+  { title: "Society Blues", by: "Kid Ory's Sunshine Orchestra", year: 1922, id: "78_society-blues_kid-orys-sunshine-orchestra-papa-mutt-carey-kid-ory-dink-johnson-fre_gbia0215087b", file: "SOCIETY BLUES - KID ORY'S SUNSHINE ORCHESTRA.mp3" },
+  { title: "Unknown Blues", by: "Fletcher Henderson", year: 1921, id: "78_unknown-blues_fletcher-henderson-henderson_gbia0001307b", file: "Unknown Blues - Fletcher Henderson - Henderson-restored.mp3" },
+  { title: "Jazz De Luxe", by: "Earl Fuller's Famous Jazz Band", year: 1919, id: "78_jazz-de-luxe_earl-fullers-famous-jazz-band-earl-fuller_gbia0088741b", file: "Jazz De Luxe - Earl Fuller's Famous Jazz Band.mp3" },
+];
+$("tracks").innerHTML = TRACKS.map((t, i) => `<div class="t" data-i="${i}"><button>${t.title}<small>${t.by} · ${t.year}</small></button><a href="https://archive.org/details/${t.id}" target="_blank" rel="noopener" title="Open on the Internet Archive">↗</a></div>`).join("");
+$("tracks").querySelectorAll(".t button").forEach((b) => (b.onclick = () => playTrack(+b.parentNode.dataset.i)));
+function markTrack(i) { $("tracks").querySelectorAll(".t").forEach((el) => el.classList.toggle("on", +el.dataset.i === i)); }
+function playTrack(i) {
+  const t = TRACKS[i];
+  ensureAudio(); stopMic(); actx.resume();
+  audio.crossOrigin = "anonymous"; // lets the sound be read for the motion
+  audio.src = `https://archive.org/download/${t.id}/${encodeURIComponent(t.file)}`;
+  $("fileName").textContent = `${t.title} · ${t.year}`; markTrack(i);
+  audio.onerror = () => {
+    markTrack(-1);
+    $("trackNote").innerHTML = `This page can't stream from the Internet Archive here. Tap ↗ to open “${t.title}”, download the MP3 and drop it in above.`;
+  };
+  audio.play().catch(() => {});
+}
+function loadTrack(f) {
+  if (!f) return;
+  ensureAudio(); stopMic();
+  audio.onerror = null; audio.removeAttribute("crossorigin"); markTrack(-1);
+  audio.src = URL.createObjectURL(f); $("fileName").textContent = f.name;
+  actx.resume(); audio.play();
+}
+$("file").onchange = (e) => loadTrack(e.target.files[0]);
+const drop = $("drop");
+["dragenter", "dragover"].forEach((ev) => drop.addEventListener(ev, (e) => { e.preventDefault(); drop.classList.add("drop"); }));
+["dragleave", "drop"].forEach((ev) => drop.addEventListener(ev, (e) => { e.preventDefault(); drop.classList.remove("drop"); }));
+drop.addEventListener("drop", (e) => loadTrack(e.dataTransfer.files[0]));
+audio.onplay = () => { ensureAudio(); actx.resume(); };
+$("restart").onclick = () => { if (audio.src) { audio.currentTime = 0; audio.play(); } };
+function stopMic() { if (micSrc) { micSrc.disconnect(); micStream.getTracks().forEach((t) => t.stop()); micSrc = null; $("mic").classList.remove("solid"); $("mic").textContent = "Use mic"; } }
+$("mic").onclick = async () => {
+  if (micSrc) return stopMic();
+  try {
+    ensureAudio(); await actx.resume(); audio.pause();
+    micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    micSrc = actx.createMediaStreamSource(micStream); micSrc.connect(analyser);
+    $("mic").classList.add("solid"); $("mic").textContent = "Stop mic";
+  } catch (e) { $("m-state").textContent = "mic blocked"; }
+};
+
+// output
+const stamp = () => `daily-poster-archive-${S.mode}-${W}x${H}`;
+let dl = null;
+if (window.claude && window.claude.use) window.claude.use("downloads").then((d) => (dl = d)).catch(() => {});
+function offer(blob, name, kind) {
+  const url = URL.createObjectURL(blob);
+  $("ovMedia").innerHTML = kind === "image" ? `<img src="${url}">` : `<video src="${url}" controls autoplay loop muted playsinline></video>`;
+  $("ovDl").textContent = "Download";
+  $("ovDl").onclick = async () => {
+    if (dl) {
+      try { await dl.save({ filename: name, data: blob }); $("ovDl").textContent = "Saved"; }
+      catch (e) { $("ovDl").textContent = e && e.code === "declined" ? "Download" : "Couldn't save"; }
+    } else { const a = document.createElement("a"); a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove(); }
+  };
+  $("overlay").classList.add("on");
+}
+$("ovClose").onclick = () => { $("overlay").classList.remove("on"); $("ovMedia").innerHTML = ""; };
+function png() { cv.toBlob((b) => offer(b, stamp() + ".png", "image"), "image/png"); }
+function togglePause() { S.paused = !S.paused; $("pause").textContent = S.paused ? "Play" : "Pause"; $("pause").classList.toggle("solid", S.paused); }
+$("png").onclick = png;
+$("pause").onclick = togglePause;
+$("shuffle").onclick = reset;
+
+let rec = null, chunks = [];
+function toggleRec() {
+  if (rec) { rec.stop(); return; }
+  const stream = cv.captureStream(30);
+  if (recDest && audio.src) recDest.stream.getAudioTracks().forEach((t) => stream.addTrack(t));
+  const type = ["video/mp4;codecs=avc1.640034,mp4a.40.2", "video/mp4;codecs=avc1,mp4a.40.2", "video/mp4", "video/webm;codecs=vp9,opus", "video/webm"].find((t) => window.MediaRecorder && MediaRecorder.isTypeSupported(t));
+  if (!type) { $("m-state").textContent = "recording not supported"; return; }
+  chunks = [];
+  rec = new MediaRecorder(stream, { mimeType: type, videoBitsPerSecond: 24e6 });
+  rec.ondataavailable = (e) => e.data.size && chunks.push(e.data);
+  rec.onstop = () => {
+    offer(new Blob(chunks, { type }), stamp() + (type.includes("mp4") ? ".mp4" : ".webm"), "video");
+    rec = null; $("rec").classList.remove("on"); $("rec").textContent = "Record video";
+  };
+  rec.start(250);
+  $("rec").classList.add("on"); $("rec").textContent = "Stop recording";
+}
+$("rec").onclick = toggleRec;
+
+addEventListener("keydown", (e) => {
+  if (e.target.tagName === "INPUT" || e.metaKey || e.ctrlKey) return;
+  const k = e.key.toLowerCase();
+  if (k === " ") { e.preventDefault(); togglePause(); }
+  else if (k === "s") reset();
+  else if (k === "p") png();
+  else if (k === "r") toggleRec();
+});
+
+reset();
+loadArchive();
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>

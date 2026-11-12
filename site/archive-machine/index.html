@@ -133,6 +133,8 @@
     <div id="recBox" hidden>
       <div class="stops" id="stops"></div>
       <div class="three"><button class="btn" id="addStop">+ Colour</button><button class="btn" id="flip">Flip</button><button class="btn" id="steps">Smooth</button></div>
+      <label class="check" style="margin-top:10px"><input type="checkbox" id="thresh"> Threshold first (black and white, then the mask)</label>
+      <div id="threshBox" hidden></div>
       <div class="presets" id="presets"></div>
       <p class="note">Every poster, recoloured by brightness, like a luminance mask. The first colour fills the darks, the last fills the lights. Smooth blends between them, Steps gives flat bands.</p>
     </div>
@@ -193,7 +195,7 @@ const S = {
   bleed: 0, order: "colour", mode: "swirl", format: "a", density: 35, energy: 60, smear: 45, wave: 55, ripple: 45, pixel: 0, blur: 0, paused: false,
   text: "JAZZ\nYOU CAN\nSEE", font: "Anton",
   labOn: true, labTL: "", labTR: "", labBL: "", labBR: "", labFont: "", labWeight: "500", labSize: 18, labMargin: 16, labTrack: 4, labColour: "#FFFFFF", labUpper: true, align: "left", tsize: 32, leading: 35, tracking: 12, bg: "#000000",
-  colour: "original", sel: new Set(WHEEL.map((_, i) => i)), stops: PRESETS[0].stops.slice(), stepped: false,
+  colour: "original", sel: new Set(WHEEL.map((_, i) => i)), stops: PRESETS[0].stops.slice(), stepped: false, thresh: false, cut: 50,
 };
 const FORMATS = { a: [1240, 1754], story: [1080, 1920] };
 
@@ -272,9 +274,10 @@ function recolour() {
     else { const f = (v / 255) * (n - 1), i = Math.min(n - 2, Math.floor(f)), t = f - i; c = [0, 1, 2].map((k) => lerp(cols[i][k], cols[i + 1][k], t)); }
     lut[v * 3] = c[0]; lut[v * 3 + 1] = c[1]; lut[v * 3 + 2] = c[2];
   }
+  const cut = (S.cut / 100) * 255; // threshold: everything is first made pure black or white
   for (const p of posters) {
     const x = p.rec.getContext("2d"), img = x.createImageData(TW, TH), d = img.data;
-    for (let j = 0, i = 0; j < p.lum.length; j++, i += 4) { const k = p.lum[j] * 3; d[i] = lut[k]; d[i + 1] = lut[k + 1]; d[i + 2] = lut[k + 2]; d[i + 3] = 255; }
+    for (let j = 0, i = 0; j < p.lum.length; j++, i += 4) { const k = (S.thresh ? (p.lum[j] >= cut ? 255 : 0) : p.lum[j]) * 3; d[i] = lut[k]; d[i + 1] = lut[k + 1]; d[i + 2] = lut[k + 2]; d[i + 3] = 255; }
     x.putImageData(img, 0, 0);
   }
   applyTex();
@@ -784,6 +787,8 @@ function buildPresets() {
   $("presets").innerHTML = PRESETS.map((p, i) => `<button data-p="${i}"><i>${p.stops.map((c) => `<b style="background:${c}"></b>`).join("")}</i>${p.name}</button>`).join("");
   $("presets").querySelectorAll("button").forEach((b) => (b.onclick = () => { S.stops = PRESETS[+b.dataset.p].stops.slice(); buildStops(); recolour(); }));
 }
+slider("threshBox", "cut", "Level", recolourSoon);
+$("thresh").onchange = () => { S.thresh = $("thresh").checked; $("threshBox").hidden = !S.thresh; recolour(); };
 $("addStop").onclick = () => { if (S.stops.length < 6) { S.stops.push(S.stops[S.stops.length - 1]); buildStops(); recolour(); } };
 $("flip").onclick = () => { S.stops.reverse(); buildStops(); recolour(); };
 $("steps").onclick = () => { S.stepped = !S.stepped; $("steps").textContent = S.stepped ? "Steps" : "Smooth"; $("steps").classList.toggle("solid", S.stepped); recolour(); };

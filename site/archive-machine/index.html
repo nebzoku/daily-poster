@@ -208,7 +208,8 @@
     <p class="note">The paragraph sits in the top-left corner of a grid square, in the headline colour, and wraps to the width you choose in columns.</p>
 
     <h2>Type effects</h2>
-    <label class="check"><input type="checkbox" id="typeDiff"> Difference: all type inverts what's behind it</label>
+    <div class="note" style="margin:0 0 4px">Difference: the type inverts whatever is behind it</div>
+    <div class="three" style="margin:0 0 8px"><label class="check" style="margin:0"><input type="checkbox" id="diffHl"> Headline</label><label class="check" style="margin:0"><input type="checkbox" id="diffSub"> Subline</label><label class="check" style="margin:0"><input type="checkbox" id="diffLab"> Labels</label></div>
     <div id="fxSliders"></div>
     <p class="note">Texture roughens the edges like ink soaking into paper (Radius is how far, Size is how coarse). Noise is grain inside the letters. Shadow is a soft glow in the type's own colour. They apply to the headline and subline.</p>
 
@@ -269,7 +270,7 @@ const S = {
   // headline + subline, designed in the tool
   hlOn: false, hlFont: "", hlWeight: "400", hlSize: 170, hlLead: -8, hlTrack: -2, hlUpper: true, hlKern: "font", hlColour: "#FFFFFF", showGrid: false,
   blocks: [], subOn: false, subText: "", subFont: "", subWeight: "400", subSize: 22, subLead: 22, subTrack: 0, subCol: 5, subRow: 6, subSpan: 3,
-  typeDiff: false, bgTex: 0, bgTexS: 50, bgNoise: 0, bgNoiseS: 20, fxTexR: 0, fxTexS: 30, fxNoise: 0, fxNoiseS: 20, fxShadow: 0, fxShadowOp: 30,
+  diffHl: false, diffSub: false, diffLab: false, bgTex: 0, bgTexS: 50, bgNoise: 0, bgNoiseS: 20, fxTexR: 0, fxTexS: 30, fxNoise: 0, fxNoiseS: 20, fxShadow: 0, fxShadowOp: 30,
   bmMove: 35, bmHold: 30, bmMusic: false, bleed: 0, order: "colour", mode: "swirl", format: "a", density: 35, energy: 60, smear: 45, wave: 55, ripple: 45, pixel: 0, blur: 0, paused: false,
   text: "JAZZ\nYOU CAN\nSEE", font: "Anton",
   labOn: true, labTL: "", labTR: "", labBL: "", labBR: "", labFont: "", labWeight: "500", labSize: 18, labMargin: 16, labTrack: 4, labColour: "#FFFFFF", labUpper: true, align: "left", tsize: 32, leading: 35, tracking: 12, bg: "#000000",
@@ -814,8 +815,10 @@ function composite() {
   if (typeDirty) renderType();
   // Difference blend: each part of the type takes the opposite of whatever is behind it, so it reads on
   // light and dark alike. Applies to the headline, subline and corner labels together.
-  out.globalCompositeOperation = S.typeDiff ? "difference" : "source-over";
-  if (S.hlOn || S.subOn) out.drawImage(tl2, 0, 0);
+  const blend = (on) => (out.globalCompositeOperation = on ? "difference" : "source-over");
+  if (S.hlOn) { blend(S.diffHl); out.drawImage(tl2, 0, 0); }
+  if (S.subOn) { blend(S.diffSub); out.drawImage(ts2, 0, 0); }
+  blend(S.diffLab);
   drawLabels(out);
   out.globalCompositeOperation = "source-over";
   drawGridOverlay();
@@ -897,14 +900,20 @@ function setLine(ctx, text, x, y, align, px, track, optical) {
   ch.forEach((c, i) => { ctx.fillText(c, cx, y); cx += w[i] + tr; });
 }
 function lineWidth(ctx, text, px, track) { const ch = [...text]; return advances(ctx, ch).reduce((a, b) => a + b, 0) + (track / 100) * px * Math.max(0, ch.length - 1); }
+// Headline and subline are kept as separate layers so each can have its own blend.
+const [ts, tsc] = mk(), [ts2, ts2c] = mk();
 function renderType() {
   typeDirty = false;
+  renderLayer("hl", tl, tlc, tl2, tl2c);
+  renderLayer("sub", ts, tsc, ts2, ts2c);
+}
+function renderLayer(part, tl, tlc, tl2, tl2c) {
   size(tl, W, H); size(tl2, W, H);
   tlc.clearRect(0, 0, W, H); tl2c.clearRect(0, 0, W, H);
-  if (!S.hlOn && !S.subOn) return;
+  if (!(part === "hl" ? S.hlOn : S.subOn)) return;
   const g = gridGeom(), { u, m } = g;
   tlc.fillStyle = S.hlColour; tlc.textBaseline = "alphabetic"; tlc.textAlign = "left"; tlc.fontKerning = "normal";
-  if (S.hlOn) {
+  if (part === "hl") {
     const px = S.hlSize * u, adv = px * (1 + S.hlLead / 100);
     tlc.font = fontCss(S.hlFont, px, S.hlWeight);
     const cap = tlc.measureText("H").actualBoundingBoxAscent;
@@ -919,7 +928,7 @@ function renderType() {
       lines.forEach((l, i) => setLine(tlc, l, x, ys[i], b.align, px, S.hlTrack, S.hlKern === "optical"));
     }
   }
-  if (S.subOn && S.subText.trim()) {
+  if (part === "sub" && S.subText.trim()) {
     const px = S.subSize * u, adv = px * (1 + S.subLead / 100);
     tlc.font = fontCss(S.subFont, px, S.subWeight);
     const cap = tlc.measureText("H").actualBoundingBoxAscent;
@@ -1171,7 +1180,7 @@ $("hlOn").onchange = () => { S.hlOn = $("hlOn").checked; markType(); };
 $("subOn").onchange = () => { S.subOn = $("subOn").checked; markType(); };
 $("showGrid").onchange = () => { S.showGrid = $("showGrid").checked; };
 $("hlUpper").onchange = () => { S.hlUpper = $("hlUpper").checked; markType(); };
-$("typeDiff").onchange = () => { S.typeDiff = $("typeDiff").checked; };
+for (const id of ["diffHl", "diffSub", "diffLab"]) $(id).onchange = () => { S[id] = $(id).checked; };
 $("hlKern").onchange = () => { S.hlKern = $("hlKern").value; markType(); };
 $("hlColour").oninput = () => { S.hlColour = $("hlColour").value; markType(); };
 $("subText").oninput = () => { S.subText = $("subText").value; markType(); };
@@ -1345,7 +1354,9 @@ let rec = null, chunks = [];
 function toggleRec() {
   if (rec) { rec.stop(); return; }
   const stream = cv.captureStream(30);
-  if (recDest && (audio.src || tabSrc)) recDest.stream.getAudioTracks().forEach((t) => stream.addTrack(t));
+  // Always record the sound bus, even if nothing is playing yet: a track, tab or file started after
+  // pressing record is then still captured. (It used to be left out if nothing was playing at the start.)
+  ensureAudio(); recDest.stream.getAudioTracks().forEach((t) => stream.addTrack(t));
   const type = ["video/mp4;codecs=avc1.640034,mp4a.40.2", "video/mp4;codecs=avc1,mp4a.40.2", "video/mp4", "video/webm;codecs=vp9,opus", "video/webm"].find((t) => window.MediaRecorder && MediaRecorder.isTypeSupported(t));
   if (!type) { $("m-state").textContent = "recording not supported"; return; }
   chunks = [];

@@ -456,6 +456,7 @@ function choose(p) {
   return at(u * ordered.length * 2);
 }
 function spawn(p = {}) {
+  p.g = 1; p.dying = false;
   p.x = rand(-0.12, 1.12) * SW; p.y = rand(-0.12, 1.12) * SH;
   p.a = rand(0, TAU); p.age = 0; p.life = rand(3, 9); p.k = rand(0.8, 1.2); p.p = choose(p);
   return p;
@@ -479,8 +480,13 @@ function field(x, y, t) {
 }
 function fitSwirl(dt) {
   const n = Math.round(lerp(14, 900, Math.pow(D(), 1.6)));
-  while (parts.length < n) parts.push(spawn());
-  if (parts.length > n) parts.length = n;
+  const alive = parts.filter((p) => !p.dying);
+  for (let i = alive.length; i < n; i++) {           // more: bud off a poster already on the page
+    const src = alive.length ? alive[(Math.random() * alive.length) | 0] : null, p = spawn();
+    if (src) { p.x = src.x; p.y = src.y; p.a = src.a; }
+    p.g = 0; parts.push(p);
+  }
+  for (let i = alive.length - 1; i >= n; i--) alive[i].dying = true; // fewer: shrink away in place
   ph += (Math.sqrt((2.4 * SW * SH * PR) / n) - ph) * (1 - Math.exp(-dt * 4));
 }
 function stepSwirl(dt, t, beat) {
@@ -498,13 +504,15 @@ function stepSwirl(dt, t, beat) {
     const c = Math.cos(p.a), s = Math.sin(p.a);
     p.x += c * spd * (0.35 + mag); p.y += s * spd * (0.35 + mag);
     p.age += dt;
-    if (p.age > p.life || p.x < -pad || p.y < -pad || p.x > SW + pad || p.y > SH + pad) spawn(p);
-    if (!p.p) continue;
-    const h = ph * p.k * pulse, w = h / PR;
+    if (!p.dying && (p.age > p.life || p.x < -pad || p.y < -pad || p.x > SW + pad || p.y > SH + pad)) { const g = p.g; spawn(p); p.g = g < 1 ? g : 1; }
+    p.g += ((p.dying ? 0 : 1) - p.g) * (1 - Math.exp(-dt * 3));
+    if (!p.p || p.g < 0.01) continue;
+    const h = ph * p.k * pulse * p.g, w = h / PR;
     sc.setTransform(c, s, -s, c, p.x, p.y);
     sc.drawImage(p.p.tex, -w / 2, -h / 2, w, h);
   }
   sc.setTransform(1, 0, 0, 1, 0, 0);
+  if (parts.some((p) => p.dying && p.g < 0.01)) parts = parts.filter((p) => !(p.dying && p.g < 0.01));
 }
 
 // ---------- bands: snaking lines of whole posters, laid end to end ----------
@@ -639,29 +647,50 @@ async function initType() {
   const hit = (x, y) => { x = x | 0; y = y | 0; return x >= 0 && y >= 0 && x < SW && y < SH && d[(y * SW + x) * 4] > 127; };
   for (let gy = 0; gy < SH; gy += ch) for (let gx = 0; gx < SW; gx += cw) {
     let n = 0; for (const [u, v] of [[0.5, 0.5], [0.25, 0.25], [0.75, 0.25], [0.25, 0.75], [0.75, 0.75]]) n += hit(gx + cw * u, gy + ch * v);
-    if (n >= 2) targets.push([gx, gy]);
+    if (n >= 2) targets.push([gx + cw / 2, gy + ch / 2]); // centres
   }
-  // reuse the posters already on screen so they fly to their new places
-  const old = cells; cells = targets.map(([tx, ty], i) => {
-    const c = old[i] || { x: rand(-0.2, 1.2) * SW, y: SH + rand(0.1, 0.5) * SH, p: pick(), ph: rand(0, TAU) };
-    c.tx = tx; c.ty = ty; return c;
-  });
+  // Grow, don't fly in: each new place takes the nearest poster already on the page. The first claim
+  // moves that poster over; any further claims are new posters that grow out of it, so letters
+  // subdivide in place as density rises. Posters with no place left shrink away where they stand.
+  const ocw = typeCw || cw, och = ocw * PR, grid = new Map(), key = (i, j) => i * 100003 + j;
+  for (const c of cells) if (!c.dying) grid.set(key(Math.floor(c.tx / ocw), Math.floor(c.ty / och)), c);
+  const nearest = (x, y) => {
+    const i0 = Math.floor(x / ocw), j0 = Math.floor(y / och);
+    for (let r = 0; r <= 4; r++) for (let i = i0 - r; i <= i0 + r; i++) for (let j = j0 - r; j <= j0 + r; j++) {
+      if (Math.max(Math.abs(i - i0), Math.abs(j - j0)) !== r) continue;
+      const c = grid.get(key(i, j)); if (c) return c;
+    }
+    return null;
+  };
+  const claimed = new Set(), next = [];
+  for (const [tx, ty] of targets) {
+    const o = nearest(tx, ty);
+    if (o && !claimed.has(o)) { claimed.add(o); o.tx = tx; o.ty = ty; next.push(o); }
+    else next.push({ x: o ? o.x : tx, y: o ? o.y : ty, s: 0, p: o && !isOrdered() ? (Math.random() < 0.5 ? o.p : pick()) : pick(), tx, ty });
+  }
+  for (const c of cells) if (!claimed.has(c)) { c.dying = true; next.push(c); }
+  cells = next; typeCw = cw;
 }
+let typeCw = 0;
 function stepType(dt, t, beat) {
   const e = E(), cw = cellW, ch = cw * PR;
   if (beat && !isOrdered()) for (const c of cells) if (Math.random() < 0.1) c.p = pick();
   const N = ordered.length;
   const wob = cw * 1.2 * e * (0.1 + A.mid * 0.9), pulse = 1 + e * (A.low * 0.3 + A.beat * 0.25);
-  const k = 1 - Math.pow(0.002, dt);
+  const k = 1 - Math.pow(0.02, dt), kg = 1 - Math.pow(0.05, dt); // glide into place; grow a touch slower
+  let gone = false;
   for (const c of cells) {
     c.x += (c.tx - c.x) * k; c.y += (c.ty - c.y) * k;
+    c.s = (c.s ?? cw) + ((c.dying ? 0 : cw) - (c.s ?? cw)) * kg;  // each poster eases to the new size on its own
+    if (c.dying && c.s < 0.5) { gone = true; continue; }
     if (isOrdered()) c.p = at((c.tx / SW) * N * 0.9 + (c.ty / SH) * N * 0.5 - t * 1.5);
     if (!c.p) continue;
     // one coherent wave through the letters, so neighbours move together and the words stay whole
     const ox = wob * Math.sin(t * 2.1 + (c.ty / SH) * 9), oy = wob * 0.6 * Math.cos(t * 1.7 + (c.tx / SW) * 9);
-    const w = cw * pulse * 1.03, h = ch * pulse * 1.03;
-    sc.drawImage(c.p.tex, c.x + ox - (w - cw) / 2, c.y + oy - (h - ch) / 2, w, h);
+    const w = c.s * pulse * 1.03, h = w * PR;
+    sc.drawImage(c.p.tex, c.x + ox - w / 2, c.y + oy - h / 2, w, h);
   }
+  if (gone) cells = cells.filter((c) => !(c.dying && c.s < 0.5));
 }
 
 // ---------- composite + legibility ----------
@@ -745,7 +774,7 @@ function reset() {
   size(scene, SW, SH);
   sc.fillStyle = S.mode === "type" || S.mode === "eq" ? S.bg : "#000"; sc.fillRect(0, 0, SW, SH);
   parts = []; rows = [];
-  if (S.mode === "bands") initBands(); else if (S.mode === "grid") initGrid(); else if (S.mode === "eq") initEq(); else if (S.mode === "type") initType(); else { cells = []; initSwirl(); }
+  if (S.mode === "bands") initBands(); else if (S.mode === "grid") initGrid(); else if (S.mode === "eq") initEq(); else if (S.mode === "type") initType(); else { cells = []; typeCw = 0; initSwirl(); }
   $("bandCtl").hidden = !["bands", "grid", "eq"].includes(S.mode); $("typeCtl").hidden = S.mode !== "type"; $("bgRow").hidden = S.mode !== "eq";
   const lab = $("bandCtl").querySelectorAll("label"); lab[0].textContent = S.mode === "eq" ? "Height" : "Wave"; lab[1].textContent = S.mode === "eq" ? "Fall" : "Ripple";
 }

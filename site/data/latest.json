@@ -1,37 +1,37 @@
 {
-  "date": "2026-11-11",
-  "issue": 40,
-  "generatedAt": "2026-11-11T05:07:52.214Z",
+  "date": "2026-11-12",
+  "issue": 41,
+  "generatedAt": "2026-11-12T05:07:55.420Z",
   "colour": {
-    "name": "Green",
-    "yesterday": "Jade",
-    "tomorrow": "Lime"
+    "name": "Lime",
+    "yesterday": "Green",
+    "tomorrow": "Yellow"
   },
   "story": {
-    "title": "From Hendrix to Bowie: the trippiest music concert posters – in pictures",
-    "summary": "A gallery looks back at Günther Kieser, the German artist behind some of the 20th century's most singular music posters. Drawing on sculpture, the free-form feel of jazz and psychedelic art, he designed for Jimi Hendrix, David Bowie and Diana Ross and the Supremes.",
+    "title": "Historic US ocean liner sinks near Florida to become world’s largest artificial reef",
+    "summary": "The SS United States, an ocean liner that set a transatlantic speed record on its maiden voyage in 1952, was deliberately sunk off Destin, Florida. It will now serve as the world's largest artificial reef and a diving site, after efforts to turn it into a museum failed.",
     "source": "The Guardian",
-    "url": "https://www.theguardian.com/artanddesign/gallery/2026/nov/10/gunther-kieser-concert-posters",
-    "published": "2026-11-10T12:00:52.000Z",
-    "theme": "music poster design"
+    "url": "https://www.theguardian.com/us-news/2026/nov/11/ss-united-states-sinks-florida-reef",
+    "published": "2026-11-12T03:07:16.000Z",
+    "theme": "ocean liner becomes reef"
   },
   "headlines": [
-    "Jazz You Can See",
-    "Sound Bent Into Shape",
-    "The Poster That Hums"
+    "The Fastest Ship Goes Down",
+    "A Liner Becomes a Reef",
+    "Built for Speed, Made for Stillness"
   ],
   "sublines": [
-    "German designer Günther Kieser made concert posters inspired by sculpture, jazz improvisation and psychedelic art, now revisited in pictures.",
-    "His work for Hendrix, Bowie and Diana Ross and the Supremes turned live music into singular, mind-expanding printed images.",
-    "A look back at one of the 20th century's most distinctive poster artists and the free-form spirit of his designs."
+    "The SS United States, which set a transatlantic speed record in 1952, was sunk off Destin, Florida.",
+    "After decades out of service, the historic ocean liner becomes the world's largest artificial reef.",
+    "Campaigners failed to save the 1952 liner as a museum; it now becomes a diving destination and habitat."
   ],
   "palette": {
     "name": "Vivid",
     "colours": [
-      "#4BF761",
-      "#CDF0CD",
-      "#6B756A",
-      "#032707"
+      "#B5E643",
+      "#DBECC1",
+      "#6F7467",
+      "#192400"
     ]
   },
   "always": [
@@ -39,13 +39,13 @@
     "#FFFFFF"
   ],
   "type": {
-    "id": "anybody",
-    "display": "Anybody",
-    "text": "Azeret Mono",
-    "reason": "Anybody's stretchy, variable letterforms echo the warped, free-flowing lettering of psychedelic concert posters, while Azeret Mono keeps the facts crisp.",
-    "css": "https://fonts.googleapis.com/css2?family=Anybody&family=Azeret+Mono&display=swap",
-    "displayUrl": "https://fonts.google.com/specimen/Anybody",
-    "textUrl": "https://fonts.google.com/specimen/Azeret+Mono"
+    "id": "oswald",
+    "display": "Oswald",
+    "text": "Source Serif 4",
+    "reason": "Oswald's tall, narrow capitals echo the sleek hull and funnel of a streamlined liner, while Source Serif 4 adds a calm, archival voice for the facts.",
+    "css": "https://fonts.googleapis.com/css2?family=Oswald&family=Source+Serif+4&display=swap",
+    "displayUrl": "https://fonts.google.com/specimen/Oswald",
+    "textUrl": "https://fonts.google.com/specimen/Source+Serif+4"
   },
   "grid": {
     "format": "A-size",
@@ -63,228 +63,232 @@
   },
   "images": [
     {
-      "id": "unsplash:aka-hHVgZQ8",
+      "id": "unsplash:V77SvymwWtg",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "green light in dark room",
-      "credit": "Alex Middleton",
-      "creditUrl": "https://unsplash.com/@psychedelaholic?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/green-light-in-dark-room-aka-hHVgZQ8?utm_source=daily_poster&utm_medium=referral",
-      "alt": "green light in dark room",
-      "thumb": "https://images.unsplash.com/photo-1601068674997-00ddd7344c40?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Z3JlZW4lMjBuZW9uJTIwbGlnaHR8ZW58MXx8fHwxNzk0MzczNjcyfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1601068674997-00ddd7344c40?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Z3JlZW4lMjBuZW9uJTIwbGlnaHR8ZW58MXx8fHwxNzk0MzczNjcyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "green grass under blue sky",
+      "credit": "Benjamin L. Jones",
+      "creditUrl": "https://unsplash.com/@boardshortsben?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/green-grass-under-blue-sky-V77SvymwWtg?utm_source=daily_poster&utm_medium=referral",
+      "alt": "green grass under blue sky",
+      "thumb": "https://images.unsplash.com/photo-1629215833558-018c7dc84032?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Z3JlZW4lMjB1bmRlcndhdGVyJTIwbGlnaHR8ZW58MXx8fHwxNzk0NDYwMDc1fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1629215833558-018c7dc84032?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Z3JlZW4lMjB1bmRlcndhdGVyJTIwbGlnaHR8ZW58MXx8fHwxNzk0NDYwMDc1fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "met:334197",
+      "id": "met:424974",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Divan Japonais, 1892–93",
-      "credit": "Henri de Toulouse-Lautrec",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/334197",
-      "page": "https://www.metmuseum.org/art/collection/search/334197",
-      "alt": "Divan Japonais",
-      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DT224360.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/dp/original/DT224360.jpg",
-      "local": "media/2026-11-11/image-02-2160.jpg"
+      "title": "Steamship Muriel, Quebec Steamship Company, from the Ocean and River Steamers series (N83) for Duke brand cigarettes, 1887",
+      "credit": "W. Duke, Sons & Co.",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/424974",
+      "page": "https://www.metmuseum.org/art/collection/search/424974",
+      "alt": "Steamship Muriel, Quebec Steamship Company, from the Ocean and River Steamers series (N83) for Duke brand cigarettes",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DPB883251.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DPB883251.jpg",
+      "local": "media/2026-11-12/image-02-2160.jpg"
     },
     {
-      "id": "unsplash:f-umZlxutDM",
+      "id": "unsplash:48ZfuOFTXQ0",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "blurred photo of a woman",
-      "credit": "Matt Flores",
-      "creditUrl": "https://unsplash.com/@matdflo?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/blurred-photo-of-a-woman-f-umZlxutDM?utm_source=daily_poster&utm_medium=referral",
-      "alt": "blurred photo of a woman",
-      "thumb": "https://images.unsplash.com/photo-1558724040-9de64afade55?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8Z3JlZW4lMjBuZW9uJTIwbGlnaHR8ZW58MXx8fHwxNzk0MzczNjcyfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1558724040-9de64afade55?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8Z3JlZW4lMjBuZW9uJTIwbGlnaHR8ZW58MXx8fHwxNzk0MzczNjcyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "an old rusted ship in the middle of the ocean",
+      "credit": "Marko Kelecevic",
+      "creditUrl": "https://unsplash.com/@markokelecevic?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/an-old-rusted-ship-in-the-middle-of-the-ocean-48ZfuOFTXQ0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "an old rusted ship in the middle of the ocean",
+      "thumb": "https://images.unsplash.com/photo-1675945013347-015129cca174?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8c2hpcCUyMGh1bGwlMjBydXN0fGVufDF8fHx8MTc5NDQ2MDA3NXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1675945013347-015129cca174?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8c2hpcCUyMGh1bGwlMjBydXN0fGVufDF8fHx8MTc5NDQ2MDA3NXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "met:333995",
+      "id": "unsplash:HYHYGLs-Rp8",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "an underwater view of a colorful coral reef",
+      "credit": "NEOM",
+      "creditUrl": "https://unsplash.com/@neom?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/an-underwater-view-of-a-colorful-coral-reef-HYHYGLs-Rp8?utm_source=daily_poster&utm_medium=referral",
+      "alt": "an underwater view of a colorful coral reef",
+      "thumb": "https://images.unsplash.com/photo-1708649290066-5f617003b93f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Y29yYWwlMjByZWVmfGVufDF8fHx8MTc5NDQ2MDA3NXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1708649290066-5f617003b93f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Y29yYWwlMjByZWVmfGVufDF8fHx8MTc5NDQ2MDA3NXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:424971",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Aristide Bruant, at His Cabaret, 1893",
-      "credit": "Henri de Toulouse-Lautrec",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/333995",
-      "page": "https://www.metmuseum.org/art/collection/search/333995",
-      "alt": "Aristide Bruant, at His Cabaret",
-      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP371473.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP371473.jpg",
-      "local": "media/2026-11-11/image-04-2160.jpg"
+      "title": "Steamship Atlas, Atlas Steamship Company, from the Ocean and River Steamers series (N83) for Duke brand cigarettes, 1887",
+      "credit": "W. Duke, Sons & Co.",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/424971",
+      "page": "https://www.metmuseum.org/art/collection/search/424971",
+      "alt": "Steamship Atlas, Atlas Steamship Company, from the Ocean and River Steamers series (N83) for Duke brand cigarettes",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DPB883248.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DPB883248.jpg",
+      "local": "media/2026-11-12/image-05-2160.jpg"
     },
     {
-      "id": "unsplash:QOajY0MNp8Y",
+      "id": "unsplash:hMwl23e44_Q",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "Bright teal and purple spotlights cutting through a dark hazy nightclub atmosphere",
-      "credit": "Scarlett Alt",
-      "creditUrl": "https://unsplash.com/@scarlettalt?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/teal-and-purple-nightclub-spotlights-QOajY0MNp8Y?utm_source=daily_poster&utm_medium=referral",
-      "alt": "Bright teal and purple spotlights cutting through a dark hazy nightclub atmosphere",
-      "thumb": "https://images.unsplash.com/photo-1657208431551-cbf415b8ef26?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8c3RhZ2UlMjBsaWdodHMlMjBoYXplfGVufDF8fHx8MTc5NDM3MzY3Mnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1657208431551-cbf415b8ef26?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8c3RhZ2UlMjBsaWdodHMlMjBoYXplfGVufDF8fHx8MTc5NDM3MzY3Mnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "underwater photography of titanic",
+      "credit": "NOAA",
+      "creditUrl": "https://unsplash.com/@noaa?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/underwater-photography-of-titanic-hMwl23e44_Q?utm_source=daily_poster&utm_medium=referral",
+      "alt": "underwater photography of titanic",
+      "thumb": "https://images.unsplash.com/photo-1561554250-0086e85c2042?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8c2hpcCUyMGh1bGwlMjBydXN0fGVufDF8fHx8MTc5NDQ2MDA3NXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1561554250-0086e85c2042?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8c2hpcCUyMGh1bGwlMjBydXN0fGVufDF8fHx8MTc5NDQ2MDA3NXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "met:241223",
+      "id": "unsplash:KuX4YYy-4Ck",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "A bright light shines through a dark cave",
+      "credit": "Victor Oonk",
+      "creditUrl": "https://unsplash.com/@victoroonk?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-bright-light-shines-through-a-dark-cave-KuX4YYy-4Ck?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A bright light shines through a dark cave",
+      "thumb": "https://images.unsplash.com/photo-1738103042407-ff2d78c2ee95?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Z3JlZW4lMjB1bmRlcndhdGVyJTIwbGlnaHR8ZW58MXx8fHwxNzk0NDYwMDc1fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1738103042407-ff2d78c2ee95?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Z3JlZW4lMjB1bmRlcndhdGVyJTIwbGlnaHR8ZW58MXx8fHwxNzk0NDYwMDc1fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:-LymsoxDbic",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "ruined ship on shore",
+      "credit": "Aneta Hartmannová",
+      "creditUrl": "https://unsplash.com/@anetek?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/ruined-ship-on-shore--LymsoxDbic?utm_source=daily_poster&utm_medium=referral",
+      "alt": "ruined ship on shore",
+      "thumb": "https://images.unsplash.com/photo-1558256708-bc39e034b935?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8c2hpcCUyMGh1bGwlMjBydXN0fGVufDF8fHx8MTc5NDQ2MDA3NXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1558256708-bc39e034b935?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8c2hpcCUyMGh1bGwlMjBydXN0fGVufDF8fHx8MTc5NDQ2MDA3NXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:425036",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Terracotta female musician, ca. 600–480 BCE",
-      "credit": "Cypriot",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/241223",
-      "page": "https://www.metmuseum.org/art/collection/search/241223",
-      "alt": "Terracotta female musician",
-      "thumb": "https://images.metmuseum.org/CRDImages/gr/web-large/DP-36445-001.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/gr/original/DP-36445-001.jpg",
-      "local": "media/2026-11-11/image-06-2160.jpg"
+      "title": "Steamship Trave, North German Lloyd Steamship Company, from the Ocean and River Steamers series (N83) for Duke brand cigarettes, 1887",
+      "credit": "W. Duke, Sons & Co.",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/425036",
+      "page": "https://www.metmuseum.org/art/collection/search/425036",
+      "alt": "Steamship Trave, North German Lloyd Steamship Company, from the Ocean and River Steamers series (N83) for Duke brand cigarettes",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DPB883262.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DPB883262.jpg",
+      "local": "media/2026-11-12/image-09-2160.jpg"
     },
     {
-      "id": "unsplash:xZSlMnbMSE0",
+      "id": "unsplash:9y7y26C-l4Y",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "green and black neon light",
-      "credit": "Zieben VH",
-      "creditUrl": "https://unsplash.com/@zieben_vh?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/green-and-black-neon-light-xZSlMnbMSE0?utm_source=daily_poster&utm_medium=referral",
-      "alt": "green and black neon light",
-      "thumb": "https://images.unsplash.com/photo-1623543965216-64e0dae5bfc0?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Z3JlZW4lMjBuZW9uJTIwbGlnaHR8ZW58MXx8fHwxNzk0MzczNjcyfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1623543965216-64e0dae5bfc0?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Z3JlZW4lMjBuZW9uJTIwbGlnaHR8ZW58MXx8fHwxNzk0MzczNjcyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
-    },
-    {
-      "id": "met:200768",
-      "source": "The Met",
-      "licence": "CC0",
-      "title": "Musician, ca. 1775",
-      "credit": "Chelsea Porcelain Manufactory",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/200768",
-      "page": "https://www.metmuseum.org/art/collection/search/200768",
-      "alt": "Musician",
-      "thumb": "https://images.metmuseum.org/CRDImages/es/web-large/DP-38701-001.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/es/original/DP-38701-001.jpg",
-      "local": "media/2026-11-11/image-08-2160.jpg"
-    },
-    {
-      "id": "unsplash:0BZcsD8UVmM",
-      "source": "Unsplash",
-      "licence": "Unsplash License",
-      "title": "purple orange and blue lights",
-      "credit": "David von Diemar",
-      "creditUrl": "https://unsplash.com/@davidvondiemar?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/purple-orange-and-blue-lights-0BZcsD8UVmM?utm_source=daily_poster&utm_medium=referral",
-      "alt": "purple orange and blue lights",
-      "thumb": "https://images.unsplash.com/photo-1599739291060-4578e77dac5d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8c3RhZ2UlMjBsaWdodHMlMjBoYXplfGVufDF8fHx8MTc5NDM3MzY3Mnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1599739291060-4578e77dac5d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8c3RhZ2UlMjBsaWdodHMlMjBoYXplfGVufDF8fHx8MTc5NDM3MzY3Mnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
-    },
-    {
-      "id": "unsplash:sol7vhs8Pdg",
-      "source": "Unsplash",
-      "licence": "Unsplash License",
-      "title": "a stage with a crowd of people",
-      "credit": "Kevin Yudhistira Alloni",
-      "creditUrl": "https://unsplash.com/@kyalloni?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/a-stage-with-a-crowd-of-people-sol7vhs8Pdg?utm_source=daily_poster&utm_medium=referral",
-      "alt": "a stage with a crowd of people",
-      "thumb": "https://images.unsplash.com/photo-1670028514318-0ac718c0590d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8c3RhZ2UlMjBsaWdodHMlMjBoYXplfGVufDF8fHx8MTc5NDM3MzY3Mnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1670028514318-0ac718c0590d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8c3RhZ2UlMjBsaWdodHMlMjBoYXplfGVufDF8fHx8MTc5NDM3MzY3Mnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "school of fish in body of water",
+      "credit": "Hiroko Yoshii",
+      "creditUrl": "https://unsplash.com/@hiro0718?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/school-of-fish-in-body-of-water-9y7y26C-l4Y?utm_source=daily_poster&utm_medium=referral",
+      "alt": "school of fish in body of water",
+      "thumb": "https://images.unsplash.com/photo-1583212292454-1fe6229603b7?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8Y29yYWwlMjByZWVmfGVufDF8fHx8MTc5NDQ2MDA3NXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1583212292454-1fe6229603b7?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8Y29yYWwlMjByZWVmfGVufDF8fHx8MTc5NDQ2MDA3NXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     }
   ],
   "textures": [
     {
-      "id": "unsplash:vS3idIiYxX0",
+      "id": "unsplash:kG-ZwDuQ8ME",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "white textured paper or plaster surface",
-      "credit": "Olga Thelavart",
-      "creditUrl": "https://unsplash.com/@olga_o?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-vS3idIiYxX0?utm_source=daily_poster&utm_medium=referral",
-      "alt": "white textured paper or plaster surface",
-      "thumb": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDIwMDg3M3ww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDIwMDg3M3ww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "weathered teal concrete wall texture",
+      "credit": "Annie Spratt",
+      "creditUrl": "https://unsplash.com/@anniespratt?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/weathered-teal-concrete-wall-texture-kG-ZwDuQ8ME?utm_source=daily_poster&utm_medium=referral",
+      "alt": "weathered teal concrete wall texture",
+      "thumb": "https://images.unsplash.com/photo-1578922427288-a47338083a57?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cnVzdCUyMHRleHR1cmV8ZW58MXx8fHwxNzk0NDYwMDc1fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1578922427288-a47338083a57?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cnVzdCUyMHRleHR1cmV8ZW58MXx8fHwxNzk0NDYwMDc1fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:k4Lt0CjUnb0",
+      "id": "unsplash:DHbw4hYyiu8",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "white textured paper or plaster surface",
-      "credit": "João Vítor Duarte",
-      "creditUrl": "https://unsplash.com/@joaovtrduarte?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-k4Lt0CjUnb0?utm_source=daily_poster&utm_medium=referral",
-      "alt": "white textured paper or plaster surface",
-      "thumb": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDIwMDg3M3ww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDIwMDg3M3ww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "A weathered metal surface with patches of orange rust and fine scratches",
+      "credit": "Alex Quezada",
+      "creditUrl": "https://unsplash.com/@alex_quezada?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/weathered-metal-surface-with-rust-DHbw4hYyiu8?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A weathered metal surface with patches of orange rust and fine scratches",
+      "thumb": "https://images.unsplash.com/photo-1614535683569-129faaa108f7?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cnVzdCUyMHRleHR1cmV8ZW58MXx8fHwxNzk0NDYwMDc1fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1614535683569-129faaa108f7?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cnVzdCUyMHRleHR1cmV8ZW58MXx8fHwxNzk0NDYwMDc1fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:R53t-Tg6J4c",
+      "id": "unsplash:OIKBzKrTdxA",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "plain white textured plaster surface",
-      "credit": "NordWood Themes",
-      "creditUrl": "https://unsplash.com/@nordwood?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/plain-white-textured-plaster-surface-R53t-Tg6J4c?utm_source=daily_poster&utm_medium=referral",
-      "alt": "plain white textured plaster surface",
-      "thumb": "https://images.unsplash.com/photo-1604147706283-d7119b5b822c?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDIwMDg3M3ww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1604147706283-d7119b5b822c?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDIwMDg3M3ww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "A light grey paper texture with subtle vertical creases and a soft fold",
+      "credit": "Heather Green",
+      "creditUrl": "https://unsplash.com/@heathergreengreen?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/light-grey-paper-texture-OIKBzKrTdxA?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A light grey paper texture with subtle vertical creases and a soft fold",
+      "thumb": "https://images.unsplash.com/photo-1707134657472-51902d2854a4?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8c2VhLXdvcm4lMjBwYXBlciUyMHRleHR1cmV8ZW58MXx8fHwxNzk0NDYwMDc1fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1707134657472-51902d2854a4?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8c2VhLXdvcm4lMjBwYXBlciUyMHRleHR1cmV8ZW58MXx8fHwxNzk0NDYwMDc1fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "polyhaven:fabric_leather_02",
-      "source": "Poly Haven",
-      "licence": "CC0",
-      "title": "Fabric Leather 02",
-      "credit": "Rob Tuytel",
-      "creditUrl": "https://polyhaven.com/a/fabric_leather_02",
-      "page": "https://polyhaven.com/a/fabric_leather_02",
-      "alt": "Fabric Leather 02 texture",
-      "thumb": "https://cdn.polyhaven.com/asset_img/thumbs/fabric_leather_02.png?width=480&height=480",
-      "src": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/fabric_leather_02/fabric_leather_02_diff_2k.jpg",
-      "local": "media/2026-11-11/texture-04-2160.jpg"
+      "id": "unsplash:FmeJ2pV6YsU",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a rusted metal surface with lots of rust on it",
+      "credit": "takis politis",
+      "creditUrl": "https://unsplash.com/@citylop?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-rusted-metal-surface-with-lots-of-rust-on-it-FmeJ2pV6YsU?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a rusted metal surface with lots of rust on it",
+      "thumb": "https://images.unsplash.com/photo-1523447704114-37cea08ee064?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cnVzdCUyMHRleHR1cmV8ZW58MXx8fHwxNzk0NDYwMDc1fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1523447704114-37cea08ee064?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cnVzdCUyMHRleHR1cmV8ZW58MXx8fHwxNzk0NDYwMDc1fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     }
   ],
   "objects": [
     {
-      "name": "saxophone",
-      "material": "polished brass",
-      "image": "media/2026-11-11/object-1.png",
-      "thumb": "media/2026-11-11/object-1-thumb.png",
+      "name": "ocean liner",
+      "material": "weathered painted steel",
+      "image": "media/2026-11-12/object-1.png",
+      "thumb": "media/2026-11-12/object-1-thumb.png",
       "model": {
-        "title": "saxophone alto",
+        "title": "Queen Mary 2",
         "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-08448f4bfbca474b80ba35a571648a27",
+        "url": "https://sketchfab.com/3d-models/none-1db09dabf53c4290981e1ed21fef4b3b",
         "licence": "CC Attribution",
-        "creator": "AT design studio",
-        "creatorUrl": "https://sketchfab.com/ANDRIANIAINAToky"
-      },
-      "texture": null
-    },
-    {
-      "name": "electric guitar",
-      "material": "chrome and lacquered metal",
-      "image": "media/2026-11-11/object-2.png",
-      "thumb": "media/2026-11-11/object-2-thumb.png",
-      "model": {
-        "title": "ibanez jem guitar",
-        "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-daeadd913644438aa3096bb357a02016",
-        "licence": "CC Attribution",
-        "creator": "abazibiz",
-        "creatorUrl": "https://sketchfab.com/abazibiz"
-      },
-      "texture": null
-    },
-    {
-      "name": "vinyl record",
-      "material": "brushed steel",
-      "image": "media/2026-11-11/object-3.png",
-      "thumb": "media/2026-11-11/object-3-thumb.png",
-      "model": {
-        "title": "12\" Vinyl Record",
-        "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-dd27284e8c1a4622b3a0433c7cc8ee72",
-        "licence": "CC Attribution",
-        "creator": "AleixoAlonso",
-        "creatorUrl": "https://sketchfab.com/AleixoAlonso"
+        "creator": "Gman The Cruise Dude",
+        "creatorUrl": "https://sketchfab.com/gmanisdabossatbeastmode"
       },
       "texture": {
-        "title": "Corrugated Iron 03",
-        "url": "https://polyhaven.com/a/corrugated_iron_03"
+        "title": "Blue Metal Plate",
+        "url": "https://polyhaven.com/a/blue_metal_plate"
+      }
+    },
+    {
+      "name": "anchor",
+      "material": "rusted iron",
+      "image": "media/2026-11-12/object-2.png",
+      "thumb": "media/2026-11-12/object-2-thumb.png",
+      "model": {
+        "title": "Heavy Rusty Anchor",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-3f95a9814ab14cf78e4999e990ac82ff",
+        "licence": "CC Attribution",
+        "creator": "Incg5764",
+        "creatorUrl": "https://sketchfab.com/incg5764"
+      },
+      "texture": {
+        "title": "Rusty Metal 04",
+        "url": "https://polyhaven.com/a/rusty_metal_04"
+      }
+    },
+    {
+      "name": "ship funnel",
+      "material": "corroded brushed steel",
+      "image": "media/2026-11-12/object-3.png",
+      "thumb": "media/2026-11-12/object-3-thumb.png",
+      "model": {
+        "title": "Smokestack",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-b6a66cb685404a9a8ed9225c8cbd8301",
+        "licence": "CC Attribution",
+        "creator": "laura-han",
+        "creatorUrl": "https://sketchfab.com/laura-han"
+      },
+      "texture": {
+        "title": "Rusty Metal 04",
+        "url": "https://polyhaven.com/a/rusty_metal_04"
       }
     }
   ]

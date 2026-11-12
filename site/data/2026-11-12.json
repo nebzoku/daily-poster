@@ -1,0 +1,295 @@
+{
+  "date": "2026-11-12",
+  "issue": 41,
+  "generatedAt": "2026-11-12T05:07:55.420Z",
+  "colour": {
+    "name": "Lime",
+    "yesterday": "Green",
+    "tomorrow": "Yellow"
+  },
+  "story": {
+    "title": "Historic US ocean liner sinks near Florida to become world’s largest artificial reef",
+    "summary": "The SS United States, an ocean liner that set a transatlantic speed record on its maiden voyage in 1952, was deliberately sunk off Destin, Florida. It will now serve as the world's largest artificial reef and a diving site, after efforts to turn it into a museum failed.",
+    "source": "The Guardian",
+    "url": "https://www.theguardian.com/us-news/2026/nov/11/ss-united-states-sinks-florida-reef",
+    "published": "2026-11-12T03:07:16.000Z",
+    "theme": "ocean liner becomes reef"
+  },
+  "headlines": [
+    "The Fastest Ship Goes Down",
+    "A Liner Becomes a Reef",
+    "Built for Speed, Made for Stillness"
+  ],
+  "sublines": [
+    "The SS United States, which set a transatlantic speed record in 1952, was sunk off Destin, Florida.",
+    "After decades out of service, the historic ocean liner becomes the world's largest artificial reef.",
+    "Campaigners failed to save the 1952 liner as a museum; it now becomes a diving destination and habitat."
+  ],
+  "palette": {
+    "name": "Vivid",
+    "colours": [
+      "#B5E643",
+      "#DBECC1",
+      "#6F7467",
+      "#192400"
+    ]
+  },
+  "always": [
+    "#000000",
+    "#FFFFFF"
+  ],
+  "type": {
+    "id": "oswald",
+    "display": "Oswald",
+    "text": "Source Serif 4",
+    "reason": "Oswald's tall, narrow capitals echo the sleek hull and funnel of a streamlined liner, while Source Serif 4 adds a calm, archival voice for the facts.",
+    "css": "https://fonts.googleapis.com/css2?family=Oswald&family=Source+Serif+4&display=swap",
+    "displayUrl": "https://fonts.google.com/specimen/Oswald",
+    "textUrl": "https://fonts.google.com/specimen/Source+Serif+4"
+  },
+  "grid": {
+    "format": "A-size",
+    "size": [
+      1080,
+      1528
+    ],
+    "columns": 8,
+    "rows": 8,
+    "margin": 16,
+    "gutter": 0,
+    "column": 131,
+    "row": 187,
+    "unit": "px"
+  },
+  "images": [
+    {
+      "id": "unsplash:V77SvymwWtg",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "green grass under blue sky",
+      "credit": "Benjamin L. Jones",
+      "creditUrl": "https://unsplash.com/@boardshortsben?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/green-grass-under-blue-sky-V77SvymwWtg?utm_source=daily_poster&utm_medium=referral",
+      "alt": "green grass under blue sky",
+      "thumb": "https://images.unsplash.com/photo-1629215833558-018c7dc84032?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Z3JlZW4lMjB1bmRlcndhdGVyJTIwbGlnaHR8ZW58MXx8fHwxNzk0NDYwMDc1fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1629215833558-018c7dc84032?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Z3JlZW4lMjB1bmRlcndhdGVyJTIwbGlnaHR8ZW58MXx8fHwxNzk0NDYwMDc1fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:424974",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Steamship Muriel, Quebec Steamship Company, from the Ocean and River Steamers series (N83) for Duke brand cigarettes, 1887",
+      "credit": "W. Duke, Sons & Co.",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/424974",
+      "page": "https://www.metmuseum.org/art/collection/search/424974",
+      "alt": "Steamship Muriel, Quebec Steamship Company, from the Ocean and River Steamers series (N83) for Duke brand cigarettes",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DPB883251.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DPB883251.jpg",
+      "local": "media/2026-11-12/image-02-2160.jpg"
+    },
+    {
+      "id": "unsplash:48ZfuOFTXQ0",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "an old rusted ship in the middle of the ocean",
+      "credit": "Marko Kelecevic",
+      "creditUrl": "https://unsplash.com/@markokelecevic?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/an-old-rusted-ship-in-the-middle-of-the-ocean-48ZfuOFTXQ0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "an old rusted ship in the middle of the ocean",
+      "thumb": "https://images.unsplash.com/photo-1675945013347-015129cca174?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8c2hpcCUyMGh1bGwlMjBydXN0fGVufDF8fHx8MTc5NDQ2MDA3NXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1675945013347-015129cca174?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8c2hpcCUyMGh1bGwlMjBydXN0fGVufDF8fHx8MTc5NDQ2MDA3NXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:HYHYGLs-Rp8",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "an underwater view of a colorful coral reef",
+      "credit": "NEOM",
+      "creditUrl": "https://unsplash.com/@neom?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/an-underwater-view-of-a-colorful-coral-reef-HYHYGLs-Rp8?utm_source=daily_poster&utm_medium=referral",
+      "alt": "an underwater view of a colorful coral reef",
+      "thumb": "https://images.unsplash.com/photo-1708649290066-5f617003b93f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Y29yYWwlMjByZWVmfGVufDF8fHx8MTc5NDQ2MDA3NXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1708649290066-5f617003b93f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Y29yYWwlMjByZWVmfGVufDF8fHx8MTc5NDQ2MDA3NXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:424971",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Steamship Atlas, Atlas Steamship Company, from the Ocean and River Steamers series (N83) for Duke brand cigarettes, 1887",
+      "credit": "W. Duke, Sons & Co.",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/424971",
+      "page": "https://www.metmuseum.org/art/collection/search/424971",
+      "alt": "Steamship Atlas, Atlas Steamship Company, from the Ocean and River Steamers series (N83) for Duke brand cigarettes",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DPB883248.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DPB883248.jpg",
+      "local": "media/2026-11-12/image-05-2160.jpg"
+    },
+    {
+      "id": "unsplash:hMwl23e44_Q",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "underwater photography of titanic",
+      "credit": "NOAA",
+      "creditUrl": "https://unsplash.com/@noaa?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/underwater-photography-of-titanic-hMwl23e44_Q?utm_source=daily_poster&utm_medium=referral",
+      "alt": "underwater photography of titanic",
+      "thumb": "https://images.unsplash.com/photo-1561554250-0086e85c2042?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8c2hpcCUyMGh1bGwlMjBydXN0fGVufDF8fHx8MTc5NDQ2MDA3NXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1561554250-0086e85c2042?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8c2hpcCUyMGh1bGwlMjBydXN0fGVufDF8fHx8MTc5NDQ2MDA3NXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:KuX4YYy-4Ck",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "A bright light shines through a dark cave",
+      "credit": "Victor Oonk",
+      "creditUrl": "https://unsplash.com/@victoroonk?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-bright-light-shines-through-a-dark-cave-KuX4YYy-4Ck?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A bright light shines through a dark cave",
+      "thumb": "https://images.unsplash.com/photo-1738103042407-ff2d78c2ee95?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Z3JlZW4lMjB1bmRlcndhdGVyJTIwbGlnaHR8ZW58MXx8fHwxNzk0NDYwMDc1fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1738103042407-ff2d78c2ee95?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Z3JlZW4lMjB1bmRlcndhdGVyJTIwbGlnaHR8ZW58MXx8fHwxNzk0NDYwMDc1fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:-LymsoxDbic",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "ruined ship on shore",
+      "credit": "Aneta Hartmannová",
+      "creditUrl": "https://unsplash.com/@anetek?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/ruined-ship-on-shore--LymsoxDbic?utm_source=daily_poster&utm_medium=referral",
+      "alt": "ruined ship on shore",
+      "thumb": "https://images.unsplash.com/photo-1558256708-bc39e034b935?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8c2hpcCUyMGh1bGwlMjBydXN0fGVufDF8fHx8MTc5NDQ2MDA3NXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1558256708-bc39e034b935?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8c2hpcCUyMGh1bGwlMjBydXN0fGVufDF8fHx8MTc5NDQ2MDA3NXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:425036",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Steamship Trave, North German Lloyd Steamship Company, from the Ocean and River Steamers series (N83) for Duke brand cigarettes, 1887",
+      "credit": "W. Duke, Sons & Co.",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/425036",
+      "page": "https://www.metmuseum.org/art/collection/search/425036",
+      "alt": "Steamship Trave, North German Lloyd Steamship Company, from the Ocean and River Steamers series (N83) for Duke brand cigarettes",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DPB883262.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DPB883262.jpg",
+      "local": "media/2026-11-12/image-09-2160.jpg"
+    },
+    {
+      "id": "unsplash:9y7y26C-l4Y",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "school of fish in body of water",
+      "credit": "Hiroko Yoshii",
+      "creditUrl": "https://unsplash.com/@hiro0718?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/school-of-fish-in-body-of-water-9y7y26C-l4Y?utm_source=daily_poster&utm_medium=referral",
+      "alt": "school of fish in body of water",
+      "thumb": "https://images.unsplash.com/photo-1583212292454-1fe6229603b7?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8Y29yYWwlMjByZWVmfGVufDF8fHx8MTc5NDQ2MDA3NXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1583212292454-1fe6229603b7?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8Y29yYWwlMjByZWVmfGVufDF8fHx8MTc5NDQ2MDA3NXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    }
+  ],
+  "textures": [
+    {
+      "id": "unsplash:kG-ZwDuQ8ME",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "weathered teal concrete wall texture",
+      "credit": "Annie Spratt",
+      "creditUrl": "https://unsplash.com/@anniespratt?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/weathered-teal-concrete-wall-texture-kG-ZwDuQ8ME?utm_source=daily_poster&utm_medium=referral",
+      "alt": "weathered teal concrete wall texture",
+      "thumb": "https://images.unsplash.com/photo-1578922427288-a47338083a57?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cnVzdCUyMHRleHR1cmV8ZW58MXx8fHwxNzk0NDYwMDc1fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1578922427288-a47338083a57?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cnVzdCUyMHRleHR1cmV8ZW58MXx8fHwxNzk0NDYwMDc1fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:DHbw4hYyiu8",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "A weathered metal surface with patches of orange rust and fine scratches",
+      "credit": "Alex Quezada",
+      "creditUrl": "https://unsplash.com/@alex_quezada?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/weathered-metal-surface-with-rust-DHbw4hYyiu8?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A weathered metal surface with patches of orange rust and fine scratches",
+      "thumb": "https://images.unsplash.com/photo-1614535683569-129faaa108f7?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cnVzdCUyMHRleHR1cmV8ZW58MXx8fHwxNzk0NDYwMDc1fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1614535683569-129faaa108f7?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cnVzdCUyMHRleHR1cmV8ZW58MXx8fHwxNzk0NDYwMDc1fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:OIKBzKrTdxA",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "A light grey paper texture with subtle vertical creases and a soft fold",
+      "credit": "Heather Green",
+      "creditUrl": "https://unsplash.com/@heathergreengreen?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/light-grey-paper-texture-OIKBzKrTdxA?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A light grey paper texture with subtle vertical creases and a soft fold",
+      "thumb": "https://images.unsplash.com/photo-1707134657472-51902d2854a4?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8c2VhLXdvcm4lMjBwYXBlciUyMHRleHR1cmV8ZW58MXx8fHwxNzk0NDYwMDc1fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1707134657472-51902d2854a4?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8c2VhLXdvcm4lMjBwYXBlciUyMHRleHR1cmV8ZW58MXx8fHwxNzk0NDYwMDc1fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:FmeJ2pV6YsU",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a rusted metal surface with lots of rust on it",
+      "credit": "takis politis",
+      "creditUrl": "https://unsplash.com/@citylop?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-rusted-metal-surface-with-lots-of-rust-on-it-FmeJ2pV6YsU?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a rusted metal surface with lots of rust on it",
+      "thumb": "https://images.unsplash.com/photo-1523447704114-37cea08ee064?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cnVzdCUyMHRleHR1cmV8ZW58MXx8fHwxNzk0NDYwMDc1fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1523447704114-37cea08ee064?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cnVzdCUyMHRleHR1cmV8ZW58MXx8fHwxNzk0NDYwMDc1fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    }
+  ],
+  "objects": [
+    {
+      "name": "ocean liner",
+      "material": "weathered painted steel",
+      "image": "media/2026-11-12/object-1.png",
+      "thumb": "media/2026-11-12/object-1-thumb.png",
+      "model": {
+        "title": "Queen Mary 2",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-1db09dabf53c4290981e1ed21fef4b3b",
+        "licence": "CC Attribution",
+        "creator": "Gman The Cruise Dude",
+        "creatorUrl": "https://sketchfab.com/gmanisdabossatbeastmode"
+      },
+      "texture": {
+        "title": "Blue Metal Plate",
+        "url": "https://polyhaven.com/a/blue_metal_plate"
+      }
+    },
+    {
+      "name": "anchor",
+      "material": "rusted iron",
+      "image": "media/2026-11-12/object-2.png",
+      "thumb": "media/2026-11-12/object-2-thumb.png",
+      "model": {
+        "title": "Heavy Rusty Anchor",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-3f95a9814ab14cf78e4999e990ac82ff",
+        "licence": "CC Attribution",
+        "creator": "Incg5764",
+        "creatorUrl": "https://sketchfab.com/incg5764"
+      },
+      "texture": {
+        "title": "Rusty Metal 04",
+        "url": "https://polyhaven.com/a/rusty_metal_04"
+      }
+    },
+    {
+      "name": "ship funnel",
+      "material": "corroded brushed steel",
+      "image": "media/2026-11-12/object-3.png",
+      "thumb": "media/2026-11-12/object-3-thumb.png",
+      "model": {
+        "title": "Smokestack",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-b6a66cb685404a9a8ed9225c8cbd8301",
+        "licence": "CC Attribution",
+        "creator": "laura-han",
+        "creatorUrl": "https://sketchfab.com/laura-han"
+      },
+      "texture": {
+        "title": "Rusty Metal 04",
+        "url": "https://polyhaven.com/a/rusty_metal_04"
+      }
+    }
+  ]
+}

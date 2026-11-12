@@ -88,6 +88,7 @@
   .chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
   .chips button { font: 400 11px/1.2 var(--sans); padding: 5px 7px; border: 1px solid var(--line); background: #fff; cursor: pointer; text-align: left; }
   .block { border: 1px solid var(--line); padding: 8px; margin-bottom: 6px; position: relative; }
+  .block.sel { border-color: var(--fg); }
   .block textarea { height: auto; min-height: 44px; margin-bottom: 6px; }
   .block .bx { position: absolute; top: -7px; right: -7px; width: 18px; height: 18px; border-radius: 50%; border: 0; background: var(--fg); color: #fff; font: 500 11px/18px var(--mono); padding: 0; cursor: pointer; }
   .block .opts { display: grid; grid-template-columns: 96px 1fr; gap: 6px; }
@@ -192,6 +193,8 @@
 
     <h2>Headline</h2>
     <label class="check"><input type="checkbox" id="hlOn"> Show headline</label>
+    <div class="note" style="margin:0 0 4px">Today's headlines: tap to put one in the selected box</div>
+    <div class="chips" id="hlChips" style="margin:0 0 8px"></div>
     <div id="blocks"></div>
     <div class="two"><button class="btn" id="addBlock">+ Text box</button><label class="check" style="margin:0;justify-content:center"><input type="checkbox" id="showGrid"> Show grid</label></div>
     <div class="two" style="grid-template-columns:1fr 70px"><select id="hlFont"></select><select id="hlWeight"><option>300</option><option selected>400</option><option>500</option><option>700</option><option>900</option></select></div>
@@ -203,6 +206,8 @@
 
     <h2>Subline</h2>
     <label class="check"><input type="checkbox" id="subOn"> Show subline</label>
+    <div class="note" style="margin:0 0 4px">Today's sublines: tap to use one, or write your own below</div>
+    <div class="chips" id="subChips" style="margin:0 0 8px"></div>
     <textarea id="subText" spellcheck="false" rows="3"></textarea>
     <div class="two" style="grid-template-columns:1fr 70px"><select id="subFont"></select><select id="subWeight"><option>300</option><option selected>400</option><option>500</option><option>700</option><option>900</option></select></div>
     <div class="three"><label class="mini">Column<select id="subCol"></select></label><label class="mini">Row<select id="subRow"></select></label><label class="mini">Width<select id="subSpan"></select></label></div>
@@ -696,8 +701,12 @@ function stepGrid(dt, t, beat) {
     const off = amp * Math.sin(r * k - t * 0.45) + amp * 0.3 * Math.sin(r * k * 2.7 + t * 0.3) * gMid;
     for (let c = -cMax; c <= cMax; c++) {
       const x = SW / 2 + (c - 0.5) * cw, x0 = Math.floor(x), ww = Math.floor(x + cw) - x0 + 1;
-      const p = seqAt(c + r + off - t * 2.5 - gPhase + bandSeed);
+      // Crossfade: the cell shows its poster and fades in the next one as the wave passes, so the
+      // colour flows smoothly instead of each cell jumping from one poster to the next.
+      const m = c + r + off - t * 2.5 - gPhase + bandSeed, i0 = Math.floor(m), fr = m - i0;
+      const p = seqAt(i0), q = seqAt(i0 + 1);
       if (p) sc.drawImage(p.tex, x0, y0, ww, hh);
+      if (q && q !== p && fr > 0.02) { sc.globalAlpha = fr; sc.drawImage(q.tex, x0, y0, ww, hh); sc.globalAlpha = 1; }
     }
   }
 }
@@ -1210,20 +1219,23 @@ fx("fxShadowOp", "Shadow %", { host: "fxSliders", fmt: (v) => Math.round(v) + "%
 let fxT; const fxSoon = () => { clearTimeout(fxT); fxT = setTimeout(markType, 80); };
 for (const k of ["fxTexR", "fxTexS", "fxNoise", "fxNoiseS"]) SL[k].onChange = fxSoon; // heavier: wait for the slider to settle
 const POS = [["top", "Top"], ...Array.from({ length: 7 }, (_, i) => [String(i + 1), `Grid line ${i + 1}`]), ["bottom", "Bottom"], ["spread", "Spread"]];
+let selBlock = 0;
 function buildBlocks() {
-  $("blocks").innerHTML = S.blocks.map((b, i) => `<div class="block" data-i="${i}">${S.blocks.length > 1 ? '<button class="bx" title="Remove">×</button>' : ""}
+  selBlock = Math.min(selBlock, S.blocks.length - 1);
+  $("blocks").innerHTML = S.blocks.map((b, i) => `<div class="block${i === selBlock ? " sel" : ""}" data-i="${i}">${S.blocks.length > 1 ? '<button class="bx" title="Remove">×</button>' : ""}
     <textarea spellcheck="false" rows="${Math.max(1, b.text.split("\n").length)}">${b.text.replace(/</g, "&lt;")}</textarea>
     <div class="opts"><div class="seg">${["left", "center", "right"].map((a) => `<button data-a="${a}" class="${b.align === a ? "on" : ""}">${a[0].toUpperCase()}</button>`).join("")}</div>
     <select>${POS.map(([v, l]) => `<option value="${v}" ${b.pos === v ? "selected" : ""}>${l}</option>`).join("")}</select></div></div>`).join("");
   $("blocks").querySelectorAll(".block").forEach((el) => {
     const b = S.blocks[+el.dataset.i];
     el.querySelector("textarea").oninput = (e) => { b.text = e.target.value; markType(); };
+    el.onfocusin = el.onclick = () => { if (selBlock === +el.dataset.i) return; selBlock = +el.dataset.i; $("blocks").querySelectorAll(".block").forEach((x) => x.classList.toggle("sel", x === el)); };
     el.querySelectorAll(".seg button").forEach((btn) => (btn.onclick = () => { b.align = btn.dataset.a; buildBlocks(); markType(); }));
     el.querySelector("select").onchange = (e) => { b.pos = e.target.value; markType(); };
     const x = el.querySelector(".bx"); if (x) x.onclick = () => { S.blocks.splice(+el.dataset.i, 1); buildBlocks(); markType(); };
   });
 }
-$("addBlock").onclick = () => { const last = S.blocks[S.blocks.length - 1]; S.blocks.push({ text: "", align: last && last.align === "left" ? "right" : "left", pos: "4" }); buildBlocks(); };
+$("addBlock").onclick = () => { const last = S.blocks[S.blocks.length - 1]; S.blocks.push({ text: "", align: last && last.align === "left" ? "right" : "left", pos: "4" }); selBlock = S.blocks.length - 1; buildBlocks(); };
 $("hlOn").onchange = () => { S.hlOn = $("hlOn").checked; markType(); };
 $("subOn").onchange = () => { S.subOn = $("subOn").checked; markType(); };
 $("showGrid").onchange = () => { S.showGrid = $("showGrid").checked; };
@@ -1420,7 +1432,8 @@ function toggleRec() {
 $("rec").onclick = toggleRec;
 
 addEventListener("keydown", (e) => {
-  if (e.target.tagName === "INPUT" || e.metaKey || e.ctrlKey) return;
+  // never while typing: headline words like "SHAPE" were triggering Shuffle (S) and PNG (P)
+  if (["INPUT", "TEXTAREA", "SELECT"].includes(e.target.tagName) || e.target.isContentEditable || e.metaKey || e.ctrlKey || e.altKey) return;
   const k = e.key.toLowerCase();
   if (k === " ") { e.preventDefault(); togglePause(); }
   else if (k === "s") reset();
@@ -1443,6 +1456,15 @@ async function start() {
   S.blocks = [{ text: S.text, align: "left", pos: "top" }];
   S.subText = BRIEF.sublines[0] || "";
   fillFonts(); buildBlocks();
+  const chip = (t, i) => `<button data-i="${i}">${t.replace(/</g, "&lt;")}</button>`;
+  $("hlChips").innerHTML = BRIEF.headlines.map(chip).join("");
+  $("hlChips").querySelectorAll("button").forEach((b) => (b.onclick = () => {
+    S.blocks[selBlock].text = BRIEF.headlines[+b.dataset.i]; S.hlOn = true; $("hlOn").checked = true; buildBlocks(); markType();
+  }));
+  $("subChips").innerHTML = BRIEF.sublines.map(chip).join("");
+  $("subChips").querySelectorAll("button").forEach((b) => (b.onclick = () => {
+    S.subText = BRIEF.sublines[+b.dataset.i]; $("subText").value = S.subText; S.subOn = true; $("subOn").checked = true; markType();
+  }));
   $("hlColour").value = S.hlColour.toLowerCase(); $("subText").value = S.subText;
   $("bgSw").innerHTML = [...BRIEF.palette, "#000000", "#FFFFFF"].map((c) => `<button style="background:${c}" data-c="${c}" title="${c}"></button>`).join("");
   $("bgSw").querySelectorAll("button").forEach((b) => (b.onclick = () => { S.bg = b.dataset.c; $("bg").value = b.dataset.c.toLowerCase(); markBg(); }));

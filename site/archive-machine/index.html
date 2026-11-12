@@ -183,7 +183,7 @@
     <div id="hlSliders"></div>
     <div class="row"><label>Colour</label><input type="color" id="hlColour" style="width:100%;height:24px;padding:0;border:1px solid var(--line)"><span></span></div>
     <div class="swatches" id="hlSw"></div>
-    <label class="check"><input type="checkbox" id="hlUpper" checked> Uppercase</label>
+    <div class="two"><label class="check" style="margin:0"><input type="checkbox" id="hlUpper" checked> Uppercase</label><select id="hlKern"><option value="font">Font kerning</option><option value="optical">Optical kerning</option></select></div>
     <p class="note">Every box snaps like the corner labels: the ink touches the side margins, cap tops sit on the top margin or a grid line, and the bottom baseline sits on the bottom margin. Spread fills a box from the top margin to the bottom margin with its lines evenly spaced. Use several boxes to stagger lines left and right.</p>
 
     <h2>Subline</h2>
@@ -252,7 +252,7 @@ const PR = 1.41421; // poster height / width
 
 const S = {
   // headline + subline, designed in the tool
-  hlOn: false, hlFont: "", hlWeight: "400", hlSize: 170, hlLead: -8, hlTrack: -2, hlUpper: true, hlColour: "#FFFFFF", showGrid: false,
+  hlOn: false, hlFont: "", hlWeight: "400", hlSize: 170, hlLead: -8, hlTrack: -2, hlUpper: true, hlKern: "font", hlColour: "#FFFFFF", showGrid: false,
   blocks: [], subOn: false, subText: "", subFont: "", subWeight: "400", subSize: 22, subLead: 22, subTrack: 0, subCol: 5, subRow: 6, subSpan: 3,
   fxTexR: 0, fxTexS: 30, fxNoise: 0, fxNoiseS: 20, fxShadow: 0, fxShadowOp: 30,
   bmMove: 35, bmHold: 30, bmMusic: false, bleed: 0, order: "colour", mode: "swirl", format: "a", density: 35, energy: 60, smear: 45, wave: 55, ripple: 45, pixel: 0, blur: 0, paused: false,
@@ -782,23 +782,59 @@ function gridGeom() {
   const u = W / 1080, m = BRIEF.margin * u, C = BRIEF.grid.columns, R = BRIEF.grid.rows;
   return { u, m, C, R, cw: (W - 2 * m) / C, rh: (H - 2 * m) / R };
 }
+// Each letter's advance measured as a pair with the next letter, so the typeface's own kerning
+// (JA, AV, YO, To...) is kept when the letters are placed one by one for tracking.
+function advances(ctx, ch) {
+  const m = (t) => ctx.measureText(t).width;
+  return ch.map((c, i) => (i < ch.length - 1 ? m(c + ch[i + 1]) - m(ch[i + 1]) : m(c)));
+}
+// Optical kerning: read each letter's left and right edge row by row, then space every pair so the
+// closest parts of the two shapes sit the same distance apart: the gap two H's have, plus tracking.
+const profCache = new Map();
+function profile(ctx, c) {
+  const key = ctx.font + "|" + c; if (profCache.has(key)) return profCache.get(key);
+  const px = parseFloat(ctx.font.match(/([\d.]+)px/)[1]), adv = ctx.measureText(c).width;
+  const cw = Math.ceil(adv + px * 1.2), chh = Math.ceil(px * 1.4), x0 = Math.round(px * 0.6), base = Math.round(px * 1.05);
+  const [cv2, x] = mk(); cv2.width = cw; cv2.height = chh; x.font = ctx.font; x.fillStyle = "#000"; x.fillText(c, x0, base);
+  const capH = x.measureText("H").actualBoundingBoxAscent, d = x.getImageData(0, 0, cw, chh).data, N = 48, L = [], R = [];
+  for (let k = 0; k < N; k++) {
+    const y = Math.round(base - capH + (capH * (k + 0.5)) / N); let l = NaN, r = NaN;
+    for (let xx = 0; xx < cw; xx++) if (d[(y * cw + xx) * 4 + 3] > 100) { if (isNaN(l)) l = xx - x0; r = xx - x0; }
+    L.push(l); R.push(r);
+  }
+  const pr = { L, R }; profCache.set(key, pr); return pr;
+}
+function opticalGap(a, b) { // mean of the closest quarter of row gaps, with b's origin placed on a's
+  const g = []; for (let k = 0; k < a.R.length; k++) if (!isNaN(a.R[k]) && !isNaN(b.L[k])) g.push(b.L[k] - a.R[k]);
+  if (!g.length) return null; g.sort((p, q) => p - q); const n = Math.max(1, Math.round(g.length / 4));
+  return g.slice(0, n).reduce((p, q) => p + q, 0) / n;
+}
+function opticalSteps(ctx, ch, px, track) {
+  const base = advances(ctx, ch), H = profile(ctx, "H"), hh = opticalGap(H, H), G = advances(ctx, ["H", "H"])[0] + (hh ?? 0) + (track / 100) * px;
+  return ch.map((c, i) => {
+    if (i === ch.length - 1) return base[i];
+    if (c === " " || ch[i + 1] === " ") return base[i] + (track / 100) * px;
+    const gap = opticalGap(profile(ctx, c), profile(ctx, ch[i + 1]));
+    return gap === null ? base[i] + (track / 100) * px : G - gap;
+  });
+}
 // Set one line with tracking, snapped by its ink (not its side bearings), like the corner labels.
-function setLine(ctx, text, x, y, align, px, track) {
+function setLine(ctx, text, x, y, align, px, track, optical) {
   const ch = [...text]; if (!ch.length) return;
-  const w = ch.map((c) => ctx.measureText(c).width), tr = (track / 100) * px, tot = w.reduce((p, q) => p + q, 0) + tr * (ch.length - 1);
+  const w = optical ? opticalSteps(ctx, ch, px, track) : advances(ctx, ch), tr = optical ? 0 : (track / 100) * px, tot = w.reduce((p, q) => p + q, 0) + tr * (ch.length - 1);
   const inkL = -ctx.measureText(ch[0]).actualBoundingBoxLeft, inkR = w[w.length - 1] - ctx.measureText(ch[ch.length - 1]).actualBoundingBoxRight;
   const inkW = tot - inkL - inkR;
   let cx = align === "right" ? x - tot + inkR : align === "center" ? x - inkW / 2 - inkL : x - inkL;
   ch.forEach((c, i) => { ctx.fillText(c, cx, y); cx += w[i] + tr; });
 }
-function lineWidth(ctx, text, px, track) { const ch = [...text]; return ch.reduce((a, c) => a + ctx.measureText(c).width, 0) + (track / 100) * px * Math.max(0, ch.length - 1); }
+function lineWidth(ctx, text, px, track) { const ch = [...text]; return advances(ctx, ch).reduce((a, b) => a + b, 0) + (track / 100) * px * Math.max(0, ch.length - 1); }
 function renderType() {
   typeDirty = false;
   size(tl, W, H); size(tl2, W, H);
   tlc.clearRect(0, 0, W, H); tl2c.clearRect(0, 0, W, H);
   if (!S.hlOn && !S.subOn) return;
   const g = gridGeom(), { u, m } = g;
-  tlc.fillStyle = S.hlColour; tlc.textBaseline = "alphabetic"; tlc.textAlign = "left";
+  tlc.fillStyle = S.hlColour; tlc.textBaseline = "alphabetic"; tlc.textAlign = "left"; tlc.fontKerning = "normal";
   if (S.hlOn) {
     const px = S.hlSize * u, adv = px * (1 + S.hlLead / 100);
     tlc.font = fontCss(S.hlFont, px, S.hlWeight);
@@ -811,7 +847,7 @@ function renderType() {
       if (b.pos === "spread" && lines.length > 1) { const y0 = m + cap, y1 = H - m; ys = lines.map((_, i) => y0 + ((y1 - y0) * i) / (lines.length - 1)); }
       else if (b.pos === "bottom") ys = lines.map((_, i) => H - m - (lines.length - 1 - i) * adv);
       else { const top = b.pos === "top" || b.pos === "spread" ? m : m + (+b.pos) * g.rh; ys = lines.map((_, i) => top + cap + i * adv); }
-      lines.forEach((l, i) => setLine(tlc, l, x, ys[i], b.align, px, S.hlTrack));
+      lines.forEach((l, i) => setLine(tlc, l, x, ys[i], b.align, px, S.hlTrack, S.hlKern === "optical"));
     }
   }
   if (S.subOn && S.subText.trim()) {
@@ -898,10 +934,10 @@ function drawLabels(ctx) {
   if (!S.labOn) return;
   const u = W / 1080, px = S.labSize * u, m = S.labMargin * u, tr = (S.labTrack / 100) * px;
   ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0);
-  ctx.fillStyle = S.labColour; ctx.font = fontCss(S.labFont, px, S.labWeight); ctx.textBaseline = "alphabetic"; ctx.textAlign = "left";
+  ctx.fillStyle = S.labColour; ctx.font = fontCss(S.labFont, px, S.labWeight); ctx.fontKerning = "normal"; ctx.textBaseline = "alphabetic"; ctx.textAlign = "left";
   const T = (t) => (S.labUpper ? t.toUpperCase() : t);
   const put = (t, x, y, a) => {
-    if (!t) return; const ch = [...T(t)], w = ch.map((c) => ctx.measureText(c).width), tot = w.reduce((p, q) => p + q, 0) + tr * (ch.length - 1);
+    if (!t) return; const ch = [...T(t)], w = advances(ctx, ch), tot = w.reduce((p, q) => p + q, 0) + tr * (ch.length - 1);
     const first = ctx.measureText(ch[0]), last = ctx.measureText(ch[ch.length - 1]);
     const inkL = -first.actualBoundingBoxLeft, inkR = w[w.length - 1] - last.actualBoundingBoxRight;
     let cx = a === "right" ? x - tot + inkR : x - inkL; ch.forEach((c, i) => { ctx.fillText(c, cx, y); cx += w[i] + tr; });
@@ -1053,6 +1089,7 @@ $("hlOn").onchange = () => { S.hlOn = $("hlOn").checked; markType(); };
 $("subOn").onchange = () => { S.subOn = $("subOn").checked; markType(); };
 $("showGrid").onchange = () => { S.showGrid = $("showGrid").checked; };
 $("hlUpper").onchange = () => { S.hlUpper = $("hlUpper").checked; markType(); };
+$("hlKern").onchange = () => { S.hlKern = $("hlKern").value; markType(); };
 $("hlColour").oninput = () => { S.hlColour = $("hlColour").value; markType(); };
 $("subText").oninput = () => { S.subText = $("subText").value; markType(); };
 for (const id of ["hlFont", "hlWeight", "subFont", "subWeight"]) $(id).onchange = () => {
@@ -1064,7 +1101,7 @@ for (const [id, n] of [["subCol", 8], ["subRow", 8], ["subSpan", 8]]) {
   $(id).innerHTML = Array.from({ length: n }, (_, i) => `<option>${i + 1}</option>`).join(""); $(id).value = S[id];
   $(id).onchange = () => { S[id] = +$(id).value; markType(); };
 }
-document.fonts.addEventListener && document.fonts.addEventListener("loadingdone", markType);
+document.fonts.addEventListener && document.fonts.addEventListener("loadingdone", () => { profCache.clear(); markType(); });
 slider("legibility", "pixel", "Pixelate");
 slider("legibility", "blur", "Blur");
 

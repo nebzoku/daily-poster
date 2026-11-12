@@ -155,7 +155,7 @@
       <div id="gRunBox"></div>
       <label class="check"><input type="checkbox" id="gStep"> One step at a time (a cell moves one poster per step)</label>
       <div class="two" style="grid-template-columns:1fr 120px;margin:0"><label class="check" style="margin:0"><input type="checkbox" id="gBeat"> Step on the beat</label>
-        <select id="gSub"><option value="4">Every bar</option><option value="1" selected>Every beat</option><option value="0.5">Every ½ beat</option></select></div>
+        <select id="gSub"><option value="4">Every bar</option><option value="2">Every 2 beats</option><option value="1" selected>Every beat</option><option value="0.5">Every ½ beat</option><option value="0.25">Every ¼ beat</option><option value="0.125">Every ⅛ beat</option><option value="0.0625">Every 1/16 beat</option></select></div>
     </div>
     <div id="typeCtl" hidden>
       <textarea id="words" spellcheck="false" rows="3"></textarea>
@@ -175,8 +175,8 @@
       <h2>Boomerang</h2>
       <div class="seg" id="bmModes" style="grid-template-columns:1fr 1fr;margin-bottom:8px"><button data-b="beats">To the beat</button><button data-b="secs">In seconds</button></div>
       <div id="bmBeatBox">
-        <div class="row"><label>Move</label><select id="bmMoveB"><option>1</option><option>2</option><option selected>4</option><option>8</option><option>16</option><option>32</option></select><span class="note" style="margin:0">beats</span></div>
-        <div class="row"><label>Hold</label><select id="bmHoldB"><option>0</option><option>1</option><option>2</option><option selected>4</option><option>8</option><option>16</option><option>32</option></select><span class="note" style="margin:0">beats</span></div>
+        <div class="row"><label>Move</label><select id="bmMoveB"><option value="0.0625">1/16</option><option value="0.125">⅛</option><option value="0.25">¼</option><option value="0.5">½</option><option value="1">1</option><option value="2">2</option><option value="4" selected>4</option><option value="8">8</option><option value="16">16</option><option value="32">32</option></select><span class="note" style="margin:0">beats</span></div>
+        <div class="row"><label>Hold</label><select id="bmHoldB"><option value="0">0</option><option value="0.25">¼</option><option value="0.5">½</option><option value="1">1</option><option value="2">2</option><option value="4" selected>4</option><option value="8">8</option><option value="16">16</option><option value="32">32</option></select><span class="note" style="margin:0">beats</span></div>
         <div class="row"><label>Feel</label><select id="bmFeel"><option value="glide">Glide: starts on the beat, lands on the 1</option><option value="land">Land: speeds up into the 1</option><option value="snap">Snap: sets off hard, settles</option><option value="even">Even: constant speed</option></select><span></span></div>
         
         <p class="note">Follows the tempo of whatever is playing and finds the start of each bar (the beat counter under the poster). Every move lands exactly on a 1: the hold stretches to fill the bar. If moves land a beat early or late, tap <b>Tap on the 1</b> on a downbeat or nudge a beat either way. With no sound it uses the idle swing at 96 bpm.</p>
@@ -1229,7 +1229,7 @@ function stepBoomerang(dt, now) {
     // Every move lands exactly on a 1. Each half of the cycle is a whole number of bars: hold first,
     // then move for the last N beats so it arrives on the next downbeat.
     mv = S.bmMoveB; hd = S.bmHoldB;
-    const B = Math.max(4, Math.ceil((mv + hd) / 4) * 4), y0 = (((beatClock - barOffset) % (2 * B)) + 2 * B) % (2 * B);
+    const unit = [0.0625, 0.125, 0.25, 0.5, 1, 2, 4].find((u) => u >= mv + hd) || 4, B = mv + hd > 4 ? Math.ceil((mv + hd) / 4) * 4 : unit, y0 = (((beatClock - barOffset) % (2 * B)) + 2 * B) % (2 * B);
     const back = y0 >= B, y = y0 - (back ? B : 0), t = y < B - mv ? 0 : (y - (B - mv)) / mv;
     const e = FEEL[S.bmFeel](Math.min(1, t)), f = back ? 1 - e : e;
     for (const o of act) { const v = lerp(o.a, o.b, f); S[o.key] = v; o.out.textContent = o.fmt(v); o.live.style.left = o.pct(v) + "%"; if (o.onChange && (o.live0 || now - o.last > 180)) { o.last = now; o.onChange(); } }

@@ -145,6 +145,7 @@
     <div id="shape"></div>
     <div id="bandCtl"></div>
     <div id="gridCtl" hidden>
+      <div id="gRunBox"></div>
       <label class="check"><input type="checkbox" id="gStep"> One step at a time (a cell moves one poster per step)</label>
       <div class="two" style="grid-template-columns:1fr 120px;margin:0"><label class="check" style="margin:0"><input type="checkbox" id="gBeat"> Step on the beat</label>
         <select id="gSub"><option value="4">Every bar</option><option value="1" selected>Every beat</option><option value="0.5">Every ½ beat</option></select></div>
@@ -278,7 +279,7 @@ const TAU = Math.PI * 2;
 const PR = 1.41421; // poster height / width
 
 const S = {
-  gStep: false, gBeat: false, gSub: 1, bmBeat: true, bmMoveB: 4, bmHoldB: 4, bmFeel: "glide",
+  gRun: 4, gStep: false, gBeat: false, gSub: 1, bmBeat: true, bmMoveB: 4, bmHoldB: 4, bmFeel: "glide",
   // headline + subline, designed in the tool
   hlOn: false, hlFont: "", hlWeight: "400", hlSize: 170, hlLead: -8, hlTrack: -2, hlUpper: true, hlKern: "font", hlColour: "#FFFFFF", showGrid: false,
   blocks: [], subOn: false, subText: "", subFont: "", subWeight: "400", subSize: 22, subLead: 22, subTrack: 0, subCol: 5, subRow: 6, subSpan: 3,
@@ -421,16 +422,20 @@ function measure(p) {
   r /= 48 * 255; g /= 48 * 255; b /= 48 * 255;
   const mx = Math.max(r, g, b), mn = Math.min(r, g, b), l = (mx + mn) / 2, c = mx - mn;
   let h = 0; if (c > 0) h = mx === r ? ((g - b) / c + 6) % 6 : mx === g ? (b - r) / c + 2 : (r - g) / c + 4;
-  p.light = 0.2126 * r + 0.7152 * g + 0.0722 * b; p.hue = h / 6; p.sat = c;
+  p.light = 0.2126 * r + 0.7152 * g + 0.0722 * b; p.hue = h / 6; p.sat = c; p.rgb = [r, g, b];
 }
 function reorder() {
   pool.forEach(measure);
   const byLight = (a, b) => a.light - b.light;
   if (S.order === "light") ordered = pool.slice().sort(byLight);
   else if (S.order === "colour") {
-    // greys first, dark to light, then round the colour wheel (red at the start, so it meets the greys gently)
-    const grey = pool.filter((p) => p.sat < 0.12).sort(byLight), col = pool.filter((p) => p.sat >= 0.12).sort((a, b) => ((a.hue + 0.97) % 1) - ((b.hue + 0.97) % 1));
-    ordered = grey.concat(col);
+    // A chain from the darkest poster where each next poster is the closest-looking one left (colour and
+    // lightness together). Sorting by hue alone put a bright pink poster next to a dark grey one with pink
+    // type, which made a checkerboard that flickered across the whole grid as the wave moved.
+    const left = pool.slice().sort(byLight), out = [left.shift()];
+    const dist = (a, b) => { const dr = a.rgb[0] - b.rgb[0], dg = a.rgb[1] - b.rgb[1], db = a.rgb[2] - b.rgb[2]; return 2 * dr * dr + 4 * dg * dg + 3 * db * db; };
+    while (left.length) { const last = out[out.length - 1]; let bi = 0, bd = Infinity; left.forEach((p, i) => { const d = dist(last, p); if (d < bd) { bd = d; bi = i; } }); out.push(left.splice(bi, 1)[0]); }
+    ordered = out;
   } else ordered = [];
 }
 // position along a gradient that runs there and back, so it never jumps
@@ -714,7 +719,7 @@ function stepGrid(dt, t, beat) {
     const off = amp * Math.sin(r * k - t * 0.45) + amp * 0.3 * Math.sin(r * k * 2.7 + t * 0.3) * gMid;
     for (let c = -cMax; c <= cMax; c++) {
       const x = SW / 2 + (c - 0.5) * cw, x0 = Math.floor(x), ww = Math.floor(x + cw) - x0 + 1;
-      const T = Math.floor(c + r + off - t * 2.5 - gPhase + bandSeed), key = (c + 500) * 1000 + r + 500;
+      const T = Math.floor((c + r + off - t * 2.5 - gPhase + bandSeed) / S.gRun), key = (c + 500) * 1000 + r + 500;
       let cur = gCells.get(key) ?? T;
       if (!S.gStep && !S.gBeat) cur = T;
       else if (tick) {
@@ -1257,6 +1262,7 @@ $("hlOn").onchange = () => { S.hlOn = $("hlOn").checked; markType(); };
 $("subOn").onchange = () => { S.subOn = $("subOn").checked; markType(); };
 $("showGrid").onchange = () => { S.showGrid = $("showGrid").checked; };
 $("hlUpper").onchange = () => { S.hlUpper = $("hlUpper").checked; markType(); };
+slider("gRunBox", "gRun", "Band width", () => gCells.clear(), { min: 1, max: 12, fmt: (v) => Math.round(v) + " cells" });
 $("gStep").onchange = () => { S.gStep = $("gStep").checked; };
 $("gBeat").onchange = () => { S.gBeat = $("gBeat").checked; gLastTick = null; };
 $("gSub").onchange = () => { S.gSub = +$("gSub").value; gLastTick = null; };

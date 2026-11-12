@@ -138,6 +138,7 @@
     <div class="two"><button class="btn" id="mic">Use mic</button><button class="btn" id="restart">Restart track</button></div>
     <div class="note" style="margin:10px 0 4px">Tempo and bars</div>
     <div class="two" style="grid-template-columns:1fr 80px"><button class="btn" id="tapBtn">Tap tempo (T)</button><button class="btn solid" id="tapAuto">Auto</button></div>
+        <div id="latBox"></div>
         <p class="note" style="margin:4px 0 8px">Tap 4 or more times on the beat, starting on the 1. Your taps set the tempo and the bar until you press Auto.</p>
         <div class="three"><button class="btn" id="barBack">← 1 beat</button><button class="btn solid" id="barTap">Tap on the 1</button><button class="btn" id="barFwd">1 beat →</button></div>
     <div class="tracks" id="tracks"></div>
@@ -283,7 +284,7 @@ const TAU = Math.PI * 2;
 const PR = 1.41421; // poster height / width
 
 const S = {
-  gRun: 4, gStep: false, gBeat: false, gSub: 1, bmBeat: true, bmMoveB: 4, bmHoldB: 4, bmFeel: "glide",
+  latMs: 0, gRun: 4, gStep: false, gBeat: false, gSub: 1, bmBeat: true, bmMoveB: 4, bmHoldB: 4, bmFeel: "glide",
   // headline + subline, designed in the tool
   hlOn: false, hlFont: "", hlWeight: "400", hlSize: 170, hlLead: -8, hlTrack: -2, hlUpper: true, hlKern: "font", hlColour: "#FFFFFF", showGrid: false,
   blocks: [], subOn: false, subText: "", subFont: "", subWeight: "400", subSize: 22, subLead: 22, subTrack: 0, subCol: 5, subRow: 6, subSpan: 3,
@@ -455,6 +456,8 @@ const peak = { low: 0.2, mid: 0.2, high: 0.2 };
 let lowAvg = 0, lastBeat = 0, idleBeat = 0;
 function ensureAudio() {
   if (actx) return;
+  setTimeout(() => { const ms = Math.round(((actx.outputLatency || 0) + (actx.baseLatency || 0)) * 1000);
+    if (ms > 20 && !S.latMs && SL.latMs) { S.latMs = Math.min(400, Math.round(ms / 10) * 10); SL.latMs.inp.value = S.latMs; SL.latMs.out.textContent = S.latMs + " ms"; } }, 1500);
   actx = new (window.AudioContext || window.webkitAudioContext)();
   analyser = actx.createAnalyser(); analyser.fftSize = 2048; analyser.smoothingTimeConstant = 0.55;
   freq = new Uint8Array(analyser.frequencyBinCount); tdata = new Uint8Array(analyser.fftSize);
@@ -480,15 +483,19 @@ let lowNow = 0, accent = [0, 0, 0, 0], accentN = 0, barOffset = 0, barManual = f
 // Tap tempo: tap on the beat, starting on the 1. The taps set the tempo (average gap), where the beat
 // falls (each tap is exactly on a beat) and where the bar starts (the first tap is the 1). While a
 // tapped tempo is set, detection is paused; Auto hands it back.
-let tapLock = false, taps = [], tapFirst = 0;
+let tapLock = false, taps = [], tapFirst = 0, tapPeriod = 0;
 function tapTempo() {
-  const now = performance.now();
+  // You tap to what you hear. Bluetooth headphones play it late, so take that delay off each tap.
+  const now = performance.now() - S.latMs;
   if (taps.length && now - taps[taps.length - 1] > 2000) taps = [];   // a pause starts a new count
   taps.push(now); if (taps.length > 16) taps.shift();
   if (taps.length === 1) { tapFirst = Math.ceil(beatClock); beatClock = tapFirst; barOffset = ((tapFirst % 4) + 4) % 4; }
   else {
-    const gaps = taps.slice(1).map((t, i) => t - taps[i]).sort((a, b) => a - b), med = gaps[Math.floor(gaps.length / 2)];
-    period = med / 1000; bpm = 60 / period; beatClock = tapFirst + taps.length - 1;
+    // least-squares line through the tap times: steadier than averaging the gaps
+    const n = taps.length, xm = (n - 1) / 2, ym = taps.reduce((a, b) => a + b, 0) / n;
+    let sxy = 0, sxx = 0; taps.forEach((t, i) => { sxy += (i - xm) * (t - ym); sxx += (i - xm) * (i - xm); });
+    period = tapPeriod = sxy / sxx / 1000; bpm = 60 / period;
+    beatClock = tapFirst + (n - 1) + (now - (ym + (n - 1 - xm) * period * 1000)) / 1000 / period;
   }
   tapLock = true; barManual = true;
   $("tapBtn").textContent = taps.length < 2 ? "Tap… (1)" : `Tap · ${Math.round(bpm)} bpm (${taps.length})`;
@@ -500,13 +507,15 @@ const ENV_HZ = 50; let env = [], envAcc = 0, envMax = 0, tempoT = 0, period = 0.
 function estimateTempo() {
   const n = env.length; if (n < 200) return;
   const mean = env.reduce((a, b) => a + b, 0) / n, x = env.map((v) => v - mean);
-  const lo = Math.floor((ENV_HZ * 60) / 180), hi = Math.ceil((ENV_HZ * 60) / 70), ac = [];
+  // tapped: only look within 5% of the tapped tempo, so the music can fine-tune it but never change it
+  const lo = tapLock && tapPeriod ? Math.floor(tapPeriod * ENV_HZ * 0.95) : Math.floor((ENV_HZ * 60) / 180);
+  const hi = tapLock && tapPeriod ? Math.ceil(tapPeriod * ENV_HZ * 1.05) : Math.ceil((ENV_HZ * 60) / 70), ac = [];
   for (let L = Math.floor(lo / 2) - 1; L <= Math.min(n - 50, 2 * hi + 1); L++) { let s = 0; for (let i = L; i < n; i++) s += x[i] * x[i - L]; ac[L] = s / (n - L); }
   let best = -1, bestV = -Infinity;
   for (let L = lo; L <= hi; L++) {
     const b = (60 * ENV_HZ) / L, prior = Math.exp(-0.5 * Math.pow(Math.log2(b / 115) / 0.6, 2)); // lean towards 80–160
     // a true beat also repeats at half (the off-beats) and double (the bar); a wrong 2/3 or 3/2 guess doesn't
-    const v = (ac[L] + 0.35 * (ac[Math.round(L / 2)] || 0) + 0.35 * (ac[2 * L] || 0)) * (0.5 + 0.5 * prior); if (v > bestV) { bestV = v; best = L; }
+    const v = (ac[L] + 0.35 * (ac[Math.round(L / 2)] || 0) + 0.35 * (ac[2 * L] || 0)) * (tapLock ? 1 : 0.5 + 0.5 * prior); if (v > bestV) { bestV = v; best = L; }
   }
   if (best < 0 || ac[best] <= 0) return;
   const a = ac[best - 1], b = ac[best], c = ac[best + 1], off = a - 2 * b + c ? (0.5 * (a - c)) / (a - 2 * b + c) : 0;
@@ -548,7 +557,7 @@ function listen(now) {
     envMax = Math.max(envMax, flux); envAcc += ldt;
     if (envAcc >= 1 / ENV_HZ) { while (envAcc >= 1 / ENV_HZ) { env.push(envMax); envAcc -= 1 / ENV_HZ; } envMax = 0; } // a slow frame fills every bin it spans
     if (env.length > ENV_HZ * 8) env.splice(0, env.length - ENV_HZ * 8);
-    if ((tempoT += ldt) > 0.5) { tempoT = 0; if (!tapLock) estimateTempo(); }
+    if ((tempoT += ldt) > 0.5) { tempoT = 0; estimateTempo(); }
     // equaliser: 32 log-spaced bands, 40 Hz to 11 kHz, each scaled to its own range
     for (let b = 0; b < EQN; b++) {
       const f0 = 40 * Math.pow(11000 / 40, b / EQN), f1 = 40 * Math.pow(11000 / 40, (b + 1) / EQN);
@@ -575,7 +584,7 @@ function listen(now) {
   beatClock += ldt / period;
   if (beat) {
     const fr = beatClock - Math.floor(beatClock), err = fr < 0.5 ? -fr : 1 - fr;
-    if (!tapLock && Math.abs(err) < 0.3) beatClock += err * 0.25;
+    if (Math.abs(err) < 0.3) beatClock += err * 0.25; // keep the beat on the hits (tapped or not)
     if (live && !tapLock && Math.abs(err) < 0.2) {
       const slot = ((Math.round(beatClock) % 4) + 4) % 4;
       for (let k = 0; k < 4; k++) accent[k] *= 0.97;     // recent bars count most
@@ -1211,6 +1220,7 @@ $("bmMusic").onchange = () => { S.bmMusic = $("bmMusic").checked; };
   bs.forEach((b) => (b.onclick = () => { S.bmBeat = b.dataset.b === "beats"; paint(); })); paint();
   $("bmMoveB").onchange = () => { S.bmMoveB = +$("bmMoveB").value; };
   $("bmFeel").onchange = () => { S.bmFeel = $("bmFeel").value; };
+  slider("latBox", "latMs", "Headphones", null, { noBm: true, min: 0, max: 400, step: 10, fmt: (v) => Math.round(v) + " ms" });
   $("tapBtn").onclick = tapTempo; $("tapAuto").onclick = tapAuto;
   $("barTap").onclick = () => { barOffset = ((Math.round(beatClock) % 4) + 4) % 4; barManual = true; }; // now = beat 1
   $("barBack").onclick = () => { barOffset = (barOffset + 3) % 4; barManual = true; };   // moves happen a beat earlier

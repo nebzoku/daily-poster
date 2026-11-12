@@ -101,7 +101,7 @@
     <p class="note" id="trackNote">Five early jazz 78s from the Internet Archive, 1921–23, so out of copyright. With no sound it idles on a slow swing.</p>
 
     <h2>Pattern</h2>
-    <div class="seg" id="modes" style="grid-template-columns:repeat(3,1fr)"><button data-m="swirl">Swirl</button><button data-m="mirror">Mirror</button><button data-m="bands">Bands</button><button data-m="grid">Grid</button><button data-m="wave">Wave</button><button data-m="type">Type</button></div>
+    <div class="seg" id="modes" style="grid-template-columns:repeat(3,1fr)"><button data-m="swirl">Swirl</button><button data-m="mirror">Mirror</button><button data-m="bands">Bands</button><button data-m="grid">Grid</button><button data-m="eq">EQ</button><button data-m="type">Type</button></div>
     <div class="seg" id="orders" style="margin-top:6px"><button data-o="colour">By colour</button><button data-o="light">By light</button><button data-o="random">Random</button></div>
     <div id="shape"></div>
     <div id="bandCtl"></div>
@@ -249,7 +249,7 @@ function rebuildPool() {
   rows.forEach((r) => r.list.forEach((_, k) => (r.list[k] = pick())));
   cells.forEach((c) => (c.p = pick()));
   if (S.mode === "grid") initGrid();
-  if (S.mode === "wave") gridSeq = pool.slice().sort(() => Math.random() - 0.5);
+  if (S.mode === "eq") gridSeq = pool.slice().sort(() => Math.random() - 0.5);
 }
 const pick = () => (pool.length ? pool[(Math.random() * pool.length) | 0] : null);
 
@@ -300,34 +300,54 @@ function band(lo, hi) {
   for (let i = Math.max(1, Math.floor(lo / hz)); i <= Math.min(freq.length - 1, Math.ceil(hi / hz)); i++) { s += freq[i]; n++; }
   return n ? s / n / 255 : 0;
 }
+// Each band is scaled between its own recent quietest and loudest, so even a thin 78 swings the full range.
+const floor = { low: 0.1, mid: 0.1, high: 0.1 };
+let prevSpec = null, fluxHist = [], punch = 0;
+const EQN = 32, eq = new Float32Array(EQN), eqPk = new Float32Array(EQN).fill(0.15), eqFl = new Float32Array(EQN).fill(0.05);
 function listen(now) {
   const live = actx && ((audio.src && !audio.paused) || micSrc);
   let beat = false;
   if (live) {
     analyser.getByteFrequencyData(freq);
-    const raw = { low: band(30, 180), mid: band(180, 1600), high: band(1600, 9000) };
+    const raw = { low: band(30, 200), mid: band(200, 1800), high: band(1800, 9000) };
     for (const k in raw) {
-      peak[k] = Math.max(peak[k] * 0.997, raw[k], 0.12);
-      const n = raw[k] / peak[k];
-      A[k] += (n - A[k]) * (n > A[k] ? 0.55 : 0.14);
+      peak[k] = Math.max(peak[k] * 0.996, raw[k]); floor[k] = Math.min(floor[k] + 0.0006, raw[k]);
+      const n = Math.max(0, Math.min(1, (raw[k] - floor[k]) / Math.max(0.06, peak[k] - floor[k])));
+      A[k] += (n - A[k]) * (n > A[k] ? 0.8 : 0.25);
+    }
+    // onsets: spectral flux, so drum hits, piano stabs and horn attacks all count, not just bass
+    const hz = actx.sampleRate / analyser.fftSize, top = Math.min(freq.length, Math.ceil(9000 / hz));
+    if (!prevSpec) prevSpec = new Float32Array(freq.length);
+    let flux = 0; for (let i = 1; i < top; i++) { const d = freq[i] - prevSpec[i]; if (d > 0) flux += d; prevSpec[i] = freq[i]; }
+    flux /= top * 255;
+    fluxHist.push(flux); if (fluxHist.length > 45) fluxHist.shift();
+    const mean = fluxHist.reduce((a, b) => a + b, 0) / fluxHist.length;
+    const sd = Math.sqrt(fluxHist.reduce((a, b) => a + (b - mean) * (b - mean), 0) / fluxHist.length);
+    if (flux > mean + sd * 1.4 + 0.003 && now - lastBeat > 170) { beat = true; lastBeat = now; }
+    // equaliser: 32 log-spaced bands, 40 Hz to 11 kHz, each scaled to its own range
+    for (let b = 0; b < EQN; b++) {
+      const f0 = 40 * Math.pow(11000 / 40, b / EQN), f1 = 40 * Math.pow(11000 / 40, (b + 1) / EQN);
+      const v = band(f0, Math.max(f1, f0 + hz));
+      eqPk[b] = Math.max(eqPk[b] * 0.997, v); eqFl[b] = Math.min(eqFl[b] + 0.0005, v);
+      eq[b] = Math.max(0, Math.min(1, (v - eqFl[b]) / Math.max(0.05, eqPk[b] - eqFl[b])));
     }
     analyser.getByteTimeDomainData(tdata);
     let sq = 0; for (let i = 0; i < tdata.length; i++) { const v = (tdata[i] - 128) / 128; sq += v * v; }
     const rms = Math.sqrt(sq / tdata.length); loudPeak = Math.max(loudPeak * 0.998, rms, 0.03);
     A.loud = rms / loudPeak;
-    if (raw.low - lowAvg > 0.06 && now - lastBeat > 230 && A.low > 0.55) { beat = true; lastBeat = now; }
-    lowAvg += (raw.low - lowAvg) * 0.08;
     $("m-state").textContent = micSrc ? "mic" : "playing";
   } else {
     const t = now / 1000, sw = 0.5 + 0.5 * Math.sin(t * TAU * 0.8);
-    A.low += (0.3 + 0.35 * Math.pow(sw, 8) - A.low) * 0.1;
-    A.mid += (0.35 + 0.15 * Math.sin(t * 0.9) - A.mid) * 0.05;
-    A.high += (0.25 + 0.15 * Math.sin(t * 2.3) - A.high) * 0.05;
-    if (now - idleBeat > 1250) { beat = true; idleBeat = now; }
-    A.loud = 0.25 + 0.45 * Math.pow(sw, 3) * (0.6 + 0.4 * Math.sin(t * 0.37)) + 0.12 * Math.sin(t * 7.3) * Math.sin(t * 1.1);
+    A.low += (0.3 + 0.5 * Math.pow(sw, 8) - A.low) * 0.2;
+    A.mid += (0.35 + 0.25 * Math.sin(t * 1.9) - A.mid) * 0.1;
+    A.high += (0.25 + 0.25 * Math.sin(t * 4.3) - A.high) * 0.1;
+    if (now - idleBeat > 625) { beat = true; idleBeat = now; }
+    A.loud = 0.25 + 0.45 * Math.pow(sw, 3);
+    for (let b = 0; b < EQN; b++) eq[b] = Math.max(0, 0.15 + 0.5 * Math.pow(sw, 3) * (1 - b / EQN) + 0.3 * Math.sin(t * (2 + b * 0.37) + b) * Math.sin(t * 0.7 + b * 0.2));
     $("m-state").textContent = "idle";
   }
-  A.beat = beat ? 1 : A.beat * 0.9;
+  A.beat = beat ? 1 : A.beat * 0.86;
+  punch = beat ? 1 : punch * 0.85;
   $("m-low").style.width = A.low * 100 + "%"; $("m-mid").style.width = A.mid * 100 + "%"; $("m-high").style.width = A.high * 100 + "%";
   $("m-beat").classList.toggle("on", A.beat > 0.5);
   return beat;
@@ -367,8 +387,8 @@ function stepSwirl(dt, t, beat) {
   const e = E();
   if (beat) { kick = 0.9 * e; if (!isOrdered()) for (const p of parts) if (Math.random() < 0.12) p.p = pick(); }
   kick *= 0.94;
-  const spd = W * 0.0034 * (0.2 + 1.7 * e * (0.25 + A.low * 0.9 + A.mid * 0.3)) * dt * 60;
-  const pulse = 1 + e * (A.mid * 0.12 + A.beat * 0.06);
+  const spd = W * 0.0034 * (0.15 + 2.2 * e * (0.15 + A.low * 1.0 + A.mid * 0.4 + A.beat * 0.8)) * dt * 60;
+  const pulse = 1 + e * (A.low * 0.25 + A.beat * 0.2);
   const pad = ph * 0.8;
   for (const p of parts) {
     const [fx, fy] = field(p.x, p.y, t), mag = Math.min(1.6, Math.hypot(fx, fy));
@@ -399,7 +419,7 @@ function stepBands(dt, t, beat) {
   if (beat && !isOrdered()) for (const r of rows) r.list.forEach((_, k) => { if (Math.random() < 0.06) r.list[k] = pick(); });
   const Dg = Math.hypot(SW, SH), n = rows.length, gap = Dg / n;   // gap between lines = poster short side
   const pw = gap, L = pw * PR;                                    // posters lie on their side: long side runs along the line
-  const drive = 0.35 + e * (A.low * 1.1 + A.beat * 0.4);
+  const drive = 0.2 + e * (A.low * 1.4 + A.beat * 0.6);
   const amp = gap * wv * 7 * drive;                               // how far the lines snake
   const k = TAU / (Dg * lerp(1.3, 0.28, rp));                     // ripple: tighter curves
   const rowPh = rp * 0.55, rowStep = 1;  // each line starts one poster further on: diagonal bands of colour                                        // ripple: lines drift out of step and weave
@@ -437,10 +457,10 @@ function seqAt(m) {
 }
 function stepGrid(dt, t, beat) {
   const e = E(), wv = S.wave / 100, rp = S.ripple / 100;
-  if (beat) bandSeed += 1; // each beat nudges every cell on by one poster
+  if (beat) bandSeed += 1 + Math.round(E() * 2); // each hit jumps every cell on through the gradient
   const cols = Math.round(lerp(3, 44, Math.pow(D(), 1.1))), cw = SW / cols, ch = cw * PR, rows = Math.ceil(SH / ch);
   const y0 = (SH - rows * ch) / 2;
-  const amp = cols * wv * 0.9 * (0.35 + e * (A.low * 1.1 + A.beat * 0.4)); // how far the colour bands bend, in cells
+  const amp = cols * wv * 0.9 * (0.2 + e * (A.low * 1.4 + A.beat * 0.6)); // how far the colour bands bend, in cells
   const k = lerp(0.06, 0.9, rp);                                          // ripple: how quickly the bend changes row to row
   for (let r = 0; r < rows; r++) {
     const off = amp * Math.sin(r * k - t * 1.3) + amp * 0.3 * Math.sin(r * k * 2.7 + t * 0.8) * (0.3 + e * A.mid);
@@ -451,31 +471,26 @@ function stepGrid(dt, t, beat) {
   }
 }
 
-// ---------- wave: the track's waveform scrolling across the page, built from posters on a no-gap grid ----------
-let hist = [], colId = 0, waveAcc = 0;
-function initWave() { hist = []; colId = 0; waveAcc = 0; gridSeq = pool.slice().sort(() => Math.random() - 0.5); }
-function stepWave(dt, t, beat) {
+// ---------- eq: an equaliser built from posters. Each bar is a band of the music, stacked from the floor ----------
+let eqH = [], eqCap = [];
+function initEq() { eqH = []; eqCap = []; gridSeq = pool.slice().sort(() => Math.random() - 0.5); }
+function stepEq(dt, t, beat) {
   const e = E(), wv = S.wave / 100, rp = S.ripple / 100;
-  const cols = Math.round(lerp(6, 56, Math.pow(D(), 1.1))), cw = SW / cols, ch = cw * PR;
-  const rows = Math.ceil(SH / ch / 2) * 2 + 1, mid = (rows - 1) / 2, y0 = SH / 2 - (mid + 0.5) * ch;
-  // a new column of sound every so often; Energy sets how fast it scrolls
-  const stepT = lerp(0.22, 0.035, e);
-  waveAcc += dt;
-  while (waveAcc >= stepT) {
-    waveAcc -= stepT; colId++;
-    const prev = hist.length ? hist[hist.length - 1] : A.loud;
-    hist.push(lerp(A.loud, prev, rp * 0.85)); // ripple smooths the line
-    if (hist.length > cols + 2) hist.shift();
-  }
-  const frac = waveAcc / stepT, gain = lerp(0.3, 1.25, wv);
-  for (let k = 0; k < hist.length; k++) {
-    const c = cols - (hist.length - 1 - k) - frac;        // newest column enters on the right
-    const x = Math.floor(c * cw); if (x < -cw || x > SW) continue;
-    const half = Math.round(Math.min(1, hist[k] * gain) * mid), id = colId - (hist.length - 1 - k);
-    for (let r = mid - half; r <= mid + half; r++) {
-      const p = isOrdered() ? seqAt(Math.abs(r - mid) + id * 0.15) : seqAt(id * 7 + r * 3);
-      if (p) sc.drawImage(p.tex, x, Math.floor(y0 + r * ch), Math.ceil(cw) + 1, Math.ceil(ch) + 1);
-    }
+  const cols = Math.round(lerp(4, 32, Math.pow(D(), 1.1))), cw = SW / cols, ch = cw * PR, rows = Math.ceil(SH / ch);
+  const gain = lerp(0.3, 1.1, wv) * (0.6 + e * 0.5);
+  const fall = lerp(3.5, 0.6, rp) * dt;        // Fall: how quickly bars drop back
+  const step = Math.max(1, (ordered.length * 2) / rows) * 0.5; // colour climbs the bars like LED meters
+  const cell = (c, r) => (isOrdered() ? seqAt(r * step) : seqAt(c * 7 + r * 3));
+  const g = cw * 0.08, w = cw - g, h = w * PR; // a thin gap so each bar and step reads, like a meter
+  for (let c = 0; c < cols; c++) {
+    const b0 = Math.floor((c / cols) * EQN), b1 = Math.max(b0 + 1, Math.floor(((c + 1) / cols) * EQN));
+    let v = 0; for (let b = b0; b < b1; b++) v = Math.max(v, eq[b]);
+    eqH[c] = Math.max(Math.min(1, v * gain), (eqH[c] || 0) - fall);   // jump up instantly, drop back gently
+    eqCap[c] = Math.max(eqH[c], (eqCap[c] || 0) - fall * 0.35);      // a peak poster that floats down slower
+    const n = Math.max(1, Math.round(eqH[c] * rows)), x = c * cw + g / 2;
+    for (let r = 0; r < n; r++) { const p = cell(c, r); if (p) sc.drawImage(p.tex, x, SH - (r + 1) * ch + g / 2, w, h); }
+    const capRow = Math.round(eqCap[c] * rows);
+    if (capRow > n) { const p = cell(c, capRow - 1); if (p) sc.drawImage(p.tex, x, SH - capRow * ch + g / 2, w, h); }
   }
 }
 
@@ -526,7 +541,7 @@ function stepType(dt, t, beat) {
   const e = E(), cw = cellW, ch = cw * PR;
   if (beat && !isOrdered()) for (const c of cells) if (Math.random() < 0.1) c.p = pick();
   const N = ordered.length;
-  const wob = cw * 1.2 * e * (0.1 + A.mid * 0.7), pulse = 1 + e * (A.low * 0.18 + A.beat * 0.1);
+  const wob = cw * 1.2 * e * (0.1 + A.mid * 0.9), pulse = 1 + e * (A.low * 0.3 + A.beat * 0.25);
   const k = 1 - Math.pow(0.002, dt);
   for (const c of cells) {
     c.x += (c.tx - c.x) * k; c.y += (c.ty - c.y) * k;
@@ -542,7 +557,7 @@ function stepType(dt, t, beat) {
 // ---------- composite + legibility ----------
 function composite() {
   let src = scene;
-  const z = 1 + (S.bleed / 100) * 0.8; // bleed: scale everything up from the centre so it runs off the edges
+  const z = (1 + (S.bleed / 100) * 0.8) * (1 + punch * 0.05 * E()); // bleed: scale everything up from the centre so it runs off the edges
   if (S.mode === "mirror") {
     size(mir, W, H);
     mc.drawImage(scene, 0, 0);
@@ -583,9 +598,9 @@ function frame(now) {
     mt += dt * (0.35 + E() * (0.4 + A.low * 1.4 + A.mid * 0.4));
     // smear: how much of the last frame survives
     sc.globalAlpha = lerp(1, 0.015, Math.pow(M(), 0.6));
-    sc.fillStyle = S.mode === "type" || S.mode === "wave" ? S.bg : "#000"; sc.fillRect(0, 0, SW, SH);
+    sc.fillStyle = S.mode === "type" || S.mode === "eq" ? S.bg : "#000"; sc.fillRect(0, 0, SW, SH);
     sc.globalAlpha = 1;
-    if (S.mode === "bands") stepBands(dt, mt, beat); else if (S.mode === "grid") stepGrid(dt, mt, beat); else if (S.mode === "wave") stepWave(dt, mt, beat); else if (S.mode === "type") stepType(dt, mt, beat); else stepSwirl(dt, mt, beat);
+    if (S.mode === "bands") stepBands(dt, mt, beat); else if (S.mode === "grid") stepGrid(dt, mt, beat); else if (S.mode === "eq") stepEq(dt, mt, beat); else if (S.mode === "type") stepType(dt, mt, beat); else stepSwirl(dt, mt, beat);
   }
   if (posters.length) composite();
   requestAnimationFrame(frame);
@@ -596,10 +611,11 @@ function reset() {
   cv.width = W; cv.height = H; cv.style.aspectRatio = `${W} / ${H}`;
   SW = S.mode === "mirror" ? W / 2 : W; SH = S.mode === "mirror" ? H / 2 : H;
   size(scene, SW, SH);
-  sc.fillStyle = S.mode === "type" || S.mode === "wave" ? S.bg : "#000"; sc.fillRect(0, 0, SW, SH);
+  sc.fillStyle = S.mode === "type" || S.mode === "eq" ? S.bg : "#000"; sc.fillRect(0, 0, SW, SH);
   parts = []; rows = [];
-  if (S.mode === "bands") initBands(); else if (S.mode === "grid") initGrid(); else if (S.mode === "wave") initWave(); else if (S.mode === "type") initType(); else { cells = []; initSwirl(); }
-  $("bandCtl").hidden = !["bands", "grid", "wave"].includes(S.mode); $("typeCtl").hidden = S.mode !== "type"; $("bgRow").hidden = S.mode !== "wave";
+  if (S.mode === "bands") initBands(); else if (S.mode === "grid") initGrid(); else if (S.mode === "eq") initEq(); else if (S.mode === "type") initType(); else { cells = []; initSwirl(); }
+  $("bandCtl").hidden = !["bands", "grid", "eq"].includes(S.mode); $("typeCtl").hidden = S.mode !== "type"; $("bgRow").hidden = S.mode !== "eq";
+  const lab = $("bandCtl").querySelectorAll("label"); lab[0].textContent = S.mode === "eq" ? "Height" : "Wave"; lab[1].textContent = S.mode === "eq" ? "Fall" : "Ripple";
 }
 
 // ---------- UI ----------

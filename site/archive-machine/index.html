@@ -144,6 +144,11 @@
     <div class="seg" id="orders" style="margin-top:6px"><button data-o="colour">By colour</button><button data-o="light">By light</button><button data-o="random">Random</button></div>
     <div id="shape"></div>
     <div id="bandCtl"></div>
+    <div id="gridCtl" hidden>
+      <label class="check"><input type="checkbox" id="gStep"> One step at a time (a cell moves one poster per step)</label>
+      <div class="two" style="grid-template-columns:1fr 120px;margin:0"><label class="check" style="margin:0"><input type="checkbox" id="gBeat"> Step on the beat</label>
+        <select id="gSub"><option value="4">Every bar</option><option value="1" selected>Every beat</option><option value="0.5">Every ½ beat</option></select></div>
+    </div>
     <div id="typeCtl" hidden>
       <textarea id="words" spellcheck="false" rows="3"></textarea>
       <div class="chips" id="heads"></div>
@@ -273,7 +278,7 @@ const TAU = Math.PI * 2;
 const PR = 1.41421; // poster height / width
 
 const S = {
-  bmBeat: true, bmMoveB: 4, bmHoldB: 4, bmFeel: "glide",
+  gStep: false, gBeat: false, gSub: 1, bmBeat: true, bmMoveB: 4, bmHoldB: 4, bmFeel: "glide",
   // headline + subline, designed in the tool
   hlOn: false, hlFont: "", hlWeight: "400", hlSize: 170, hlLead: -8, hlTrack: -2, hlUpper: true, hlKern: "font", hlColour: "#FFFFFF", showGrid: false,
   blocks: [], subOn: false, subText: "", subFont: "", subWeight: "400", subSize: 22, subLead: 22, subTrack: 0, subCol: 5, subRow: 6, subSpan: 3,
@@ -674,7 +679,8 @@ function stepBands(dt, t, beat) {
 
 // ---------- grid: a fixed grid of posters, edge to edge. Nothing moves; the posters change, in waves of colour ----------
 let gridSeq = [];
-function initGrid() { gridSeq = pool.slice().sort(() => Math.random() - 0.5); bandSeed = rand(0, 1000); }
+function initGrid() {
+  gCells.clear(); gLastTick = null; gridSeq = pool.slice().sort(() => Math.random() - 0.5); bandSeed = rand(0, 1000); }
 function seqAt(m) {
   const L = isOrdered() ? ordered : gridSeq, N = L.length; if (!N) return null;
   const q = Math.floor(m), pos = ((q % (2 * N)) + 2 * N) % (2 * N);
@@ -682,6 +688,8 @@ function seqAt(m) {
 }
 // The music steers the grid through eased values, never directly, so the colour flows instead of jumping.
 let gDrive = 0.3, gMid = 0.3, gVel = 0, gPhase = 0;
+// What each cell is showing, so stepping can hold or move it one poster at a time.
+const gCells = new Map(); let gLastTick = null, gAcc = 0;
 function stepGrid(dt, t, beat) {
   const e = E(), wv = S.wave / 100, rp = S.ripple / 100;
   const ease = (rate) => 1 - Math.exp(-dt * rate);
@@ -695,13 +703,26 @@ function stepGrid(dt, t, beat) {
   const cMax = Math.ceil(colsF / 2) + 1, rMax = Math.ceil(SH / ch / 2) + 1;
   const amp = 22 * wv * 0.9 * gDrive;   // bend, in cells; fixed so the pattern scales with the zoom
   const k = lerp(0.06, 0.9, rp);        // ripple: how quickly the bend changes row to row
+  // A tick is when cells may change: on the beat (every bar, beat or half beat), or 12 times a second
+  // when only One step is on. With neither ticked, cells follow the wave exactly, as before.
+  let tick = false;
+  if (S.gBeat) { const n = Math.floor((beatClock - barOffset) / S.gSub); tick = n !== gLastTick; gLastTick = n; }
+  else if (S.gStep) { gAcc += dt; if (gAcc >= 1 / 12) { gAcc %= 1 / 12; tick = true; } }
   for (let r = -rMax; r <= rMax; r++) {
     const y = SH / 2 + (r - 0.5) * ch, y0 = Math.floor(y), hh = Math.floor(y + ch) - y0 + 1;
     // the bend travels slowly: on a dense grid a big bend moving fast turns into flicker
     const off = amp * Math.sin(r * k - t * 0.45) + amp * 0.3 * Math.sin(r * k * 2.7 + t * 0.3) * gMid;
     for (let c = -cMax; c <= cMax; c++) {
       const x = SW / 2 + (c - 0.5) * cw, x0 = Math.floor(x), ww = Math.floor(x + cw) - x0 + 1;
-      const p = seqAt(c + r + off - t * 2.5 - gPhase + bandSeed);
+      const T = Math.floor(c + r + off - t * 2.5 - gPhase + bandSeed), key = (c + 500) * 1000 + r + 500;
+      let cur = gCells.get(key) ?? T;
+      if (!S.gStep && !S.gBeat) cur = T;
+      else if (tick) {
+        if (S.gStep) { const d = T - cur; if (Math.abs(d) > 3) cur = T - 3 * Math.sign(d); cur += Math.sign(T - cur); } // never more than 3 behind
+        else cur = T;
+      }
+      gCells.set(key, cur);
+      const p = seqAt(cur);
       if (p) sc.drawImage(p.tex, x0, y0, ww, hh);
     }
   }
@@ -1086,7 +1107,7 @@ function reset() {
   typeDirty = true;
   parts = []; rows = [];
   if (S.mode === "bands") initBands(); else if (S.mode === "grid") initGrid(); else if (S.mode === "eq") initEq(); else if (S.mode === "type") initType(); else { cells = []; typeCw = 0; initSwirl(); }
-  $("bandCtl").hidden = !["bands", "grid", "eq"].includes(S.mode); $("typeCtl").hidden = S.mode !== "type";
+  $("bandCtl").hidden = !["bands", "grid", "eq"].includes(S.mode); $("typeCtl").hidden = S.mode !== "type"; $("gridCtl").hidden = S.mode !== "grid";
   const lab = $("bandCtl").querySelectorAll("label"); lab[0].textContent = S.mode === "eq" ? "Height" : "Wave"; lab[1].textContent = S.mode === "eq" ? "Fall" : "Ripple";
 }
 
@@ -1236,6 +1257,9 @@ $("hlOn").onchange = () => { S.hlOn = $("hlOn").checked; markType(); };
 $("subOn").onchange = () => { S.subOn = $("subOn").checked; markType(); };
 $("showGrid").onchange = () => { S.showGrid = $("showGrid").checked; };
 $("hlUpper").onchange = () => { S.hlUpper = $("hlUpper").checked; markType(); };
+$("gStep").onchange = () => { S.gStep = $("gStep").checked; };
+$("gBeat").onchange = () => { S.gBeat = $("gBeat").checked; gLastTick = null; };
+$("gSub").onchange = () => { S.gSub = +$("gSub").value; gLastTick = null; };
 for (const id of ["diffHl", "diffSub", "diffLab"]) $(id).onchange = () => { S[id] = $(id).checked; };
 $("hlKern").onchange = () => { S.hlKern = $("hlKern").value; markType(); };
 $("hlColour").oninput = () => { S.hlColour = $("hlColour").value; markType(); };

@@ -163,8 +163,9 @@
       <div id="bmBeatBox">
         <div class="row"><label>Move</label><select id="bmMoveB"><option>1</option><option>2</option><option selected>4</option><option>8</option><option>16</option><option>32</option></select><span class="note" style="margin:0">beats</span></div>
         <div class="row"><label>Hold</label><select id="bmHoldB"><option>0</option><option>1</option><option>2</option><option selected>4</option><option>8</option><option>16</option><option>32</option></select><span class="note" style="margin:0">beats</span></div>
+        <div class="row"><label>Feel</label><select id="bmFeel"><option value="glide">Glide: starts on the beat, lands on the 1</option><option value="land">Land: speeds up into the 1</option><option value="snap">Snap: sets off hard, settles</option><option value="even">Even: constant speed</option></select><span></span></div>
         <div class="three"><button class="btn" id="barBack">← 1 beat</button><button class="btn solid" id="barTap">Tap on the 1</button><button class="btn" id="barFwd">1 beat →</button></div>
-        <p class="note">Follows the tempo of whatever is playing and finds the start of each bar (the beat counter under the poster). If moves land a beat early or late, tap <b>Tap on the 1</b> on a downbeat or nudge a beat either way. With no sound it uses the idle swing at 96 bpm.</p>
+        <p class="note">Follows the tempo of whatever is playing and finds the start of each bar (the beat counter under the poster). Every move lands exactly on a 1: the hold stretches to fill the bar. If moves land a beat early or late, tap <b>Tap on the 1</b> on a downbeat or nudge a beat either way. With no sound it uses the idle swing at 96 bpm.</p>
       </div>
       <div id="bmSecBox" hidden>
       <div id="bmSliders"></div>
@@ -267,7 +268,7 @@ const TAU = Math.PI * 2;
 const PR = 1.41421; // poster height / width
 
 const S = {
-  bmBeat: true, bmMoveB: 4, bmHoldB: 4,
+  bmBeat: true, bmMoveB: 4, bmHoldB: 4, bmFeel: "glide",
   // headline + subline, designed in the tool
   hlOn: false, hlFont: "", hlWeight: "400", hlSize: 170, hlLead: -8, hlTrack: -2, hlUpper: true, hlKern: "font", hlColour: "#FFFFFF", showGrid: false,
   blocks: [], subOn: false, subText: "", subFont: "", subWeight: "400", subSize: 22, subLead: 22, subTrack: 0, subCol: 5, subRow: 6, subSpan: 3,
@@ -1112,16 +1113,33 @@ function slider(host, key, label, onChange, opt = {}) {
 }
 // Boomerang timing: move A → B, hold, move B → A, hold, repeat.
 let bmT = 0;
+// How a move travels between beats: Glide starts on the beat and arrives on the 1 with no early finish;
+// Land speeds up into the 1; Snap sets off hard on the beat and settles; Even is constant speed.
+const FEEL = {
+  glide: (t) => 0.5 - 0.5 * Math.cos(Math.PI * t),
+  land: (t) => t * t * t,
+  snap: (t) => 1 - Math.pow(1 - t, 3),
+  even: (t) => t,
+};
 function stepBoomerang(dt, now) {
   const act = Object.values(SL).filter((o) => o.on); if (!act.length) return;
   let mv, hd, x;
-  if (S.bmBeat) { mv = S.bmMoveB; hd = S.bmHoldB; const c = 2 * (mv + hd); x = (((beatClock - barOffset) % c) + c) % c; } // counted in beats, from the 1 of the bar
+  if (S.bmBeat) {
+    // Every move lands exactly on a 1. Each half of the cycle is a whole number of bars: hold first,
+    // then move for the last N beats so it arrives on the next downbeat.
+    mv = S.bmMoveB; hd = S.bmHoldB;
+    const B = Math.max(4, Math.ceil((mv + hd) / 4) * 4), y0 = (((beatClock - barOffset) % (2 * B)) + 2 * B) % (2 * B);
+    const back = y0 >= B, y = y0 - (back ? B : 0), t = y < B - mv ? 0 : (y - (B - mv)) / mv;
+    const e = FEEL[S.bmFeel](Math.min(1, t)), f = back ? 1 - e : e;
+    for (const o of act) { const v = lerp(o.a, o.b, f); S[o.key] = v; o.out.textContent = o.fmt(v); o.live.style.left = o.pct(v) + "%"; if (o.onChange && (o.live0 || now - o.last > 180)) { o.last = now; o.onChange(); } }
+    return;
+  }
   else {
     mv = lerp(0.3, 12, Math.pow(S.bmMove / 100, 1.5)); hd = lerp(0, 10, S.bmHold / 100);
     bmT += dt * (S.bmMusic ? 0.25 + A.loud * 1.6 : 1); x = bmT % (2 * (mv + hd));
   }
   let f = x < mv ? x / mv : x < mv + hd ? 1 : x < 2 * mv + hd ? 1 - (x - mv - hd) / mv : 0;
-  f = S.bmBeat ? 1 - Math.pow(1 - f, 3) : f * f * (3 - 2 * f); // to the beat: set off sharply on the beat and settle; in seconds: ease in and out
+  f = f * f * (3 - 2 * f); // ease in and out of each end
   for (const o of act) {
     const v = lerp(o.a, o.b, f);
     S[o.key] = v; o.out.textContent = o.fmt(v); o.live.style.left = o.pct(v) + "%";
@@ -1139,6 +1157,7 @@ $("bmMusic").onchange = () => { S.bmMusic = $("bmMusic").checked; };
   const paint = () => { bs.forEach((b) => b.classList.toggle("on", (b.dataset.b === "beats") === S.bmBeat)); $("bmBeatBox").hidden = !S.bmBeat; $("bmSecBox").hidden = S.bmBeat; };
   bs.forEach((b) => (b.onclick = () => { S.bmBeat = b.dataset.b === "beats"; paint(); })); paint();
   $("bmMoveB").onchange = () => { S.bmMoveB = +$("bmMoveB").value; };
+  $("bmFeel").onchange = () => { S.bmFeel = $("bmFeel").value; };
   $("barTap").onclick = () => { barOffset = ((Math.round(beatClock) % 4) + 4) % 4; barManual = true; }; // now = beat 1
   $("barBack").onclick = () => { barOffset = (barOffset + 3) % 4; barManual = true; };   // moves happen a beat earlier
   $("barFwd").onclick = () => { barOffset = (barOffset + 1) % 4; barManual = true; };    // moves happen a beat later

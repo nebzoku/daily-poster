@@ -137,7 +137,8 @@
     <p class="note" id="tabNote" style="margin-top:6px">Play any song in another tab, tap this, pick that tab and turn on “Share tab audio”. Chrome or Edge on a computer.</p>
     <div class="two"><button class="btn" id="mic">Use mic</button><button class="btn" id="restart">Restart track</button></div>
     <div class="note" style="margin:10px 0 4px">Tempo and bars</div>
-    <div class="two" style="grid-template-columns:1fr 80px"><button class="btn" id="tapBtn">Tap tempo (T)</button><button class="btn solid" id="tapAuto">Auto</button></div>
+    <div class="three" style="grid-template-columns:1fr 74px 64px"><button class="btn" id="tapBtn">Tap tempo (T)</button><input type="number" id="bpmIn" min="40" max="240" step="0.5" title="Type a tempo" style="width:100%;font:500 12px var(--mono);padding:8px 6px;border:1px solid var(--fg)"><button class="btn solid" id="tapAuto">Auto</button></div>
+    <div class="two" style="grid-template-columns:1fr 100px;align-items:center;margin-top:4px"><p class="note" id="tempoState" style="margin:0"></p><button class="btn" id="redetect">Re-detect</button></div>
         <div class="two" style="grid-template-columns:1fr 92px;align-items:center"><div id="latBox"></div><button class="btn" id="calBtn">Measure</button></div>
         <p class="note" id="calNote" style="margin:0 0 6px">Tap delay is the gap between the music the tool hears and what reaches your ears (Bluetooth, tab sharing). Press Measure with music playing, then tap the beat 8 times.</p>
         <p class="note" style="margin:4px 0 8px">Tap 4 or more times on the beat, starting on the 1. Your taps set the tempo and the bar until you press Auto.</p>
@@ -496,7 +497,7 @@ function tapTempo() {
     // least-squares line through the tap times: steadier than averaging the gaps
     const n = taps.length, xm = (n - 1) / 2, ym = taps.reduce((a, b) => a + b, 0) / n;
     let sxy = 0, sxx = 0; taps.forEach((t, i) => { sxy += (i - xm) * (t - ym); sxx += (i - xm) * (i - xm); });
-    period = tapPeriod = sxy / sxx / 1000; bpm = 60 / period;
+    period = tapPeriod = sxy / sxx / 1000; bpm = 60 / period; showTempo();
     beatClock = tapFirst + (n - 1) + (now - (ym + (n - 1 - xm) * period * 1000)) / 1000 / period;
   }
   tapLock = true; barManual = true;
@@ -523,26 +524,42 @@ function calibrateTap() {
   calTaps = null; $("calBtn").classList.remove("solid"); $("calBtn").textContent = "Measure";
   $("calNote").textContent = `Measured: your taps land ${S.latMs} ms after the beats the tool hears. Taps are now corrected by that.`;
 }
-function tapAuto() { tapLock = false; taps = []; resetBars(); $("tapBtn").textContent = "Tap tempo (T)"; $("tapAuto").classList.add("solid"); }
-function resetBars() { accent = [0, 0, 0, 0]; accentN = 0; barManual = tapLock; }
+function tapAuto() { tapLock = false; taps = []; autoLocked = false; tempoHist = []; resetBars(); $("tapBtn").textContent = "Tap tempo (T)"; $("tapAuto").classList.add("solid"); showTempo(); }
+// Type a tempo: manual, keeps where the beat currently is.
+function setBpm(v) { if (!(v >= 40 && v <= 240)) return; tapLock = true; barManual = true; period = tapPeriod = 60 / v; bpm = v; $("tapAuto").classList.remove("solid"); showTempo(); }
+function showTempo() {
+  const el = $("bpmIn"); if (el && document.activeElement !== el) el.value = bpm.toFixed(1);
+  const st = $("tempoState"); if (!st) return;
+  st.textContent = tapLock ? `Manual · ${bpm.toFixed(1)} bpm. Nothing changes it until you tap, type or press Auto.`
+    : autoLocked ? `Auto · locked at ${bpm.toFixed(1)} bpm. Press Re-detect if the song changes tempo.` : "Auto · listening for the tempo…";
+}
+function resetBars() { accent = [0, 0, 0, 0]; accentN = 0; barManual = tapLock; if (!tapLock) { autoLocked = false; tempoHist = []; env = []; } } // a new track is measured from scratch
+let autoLocked = false, tempoHist = [];
 const ENV_HZ = 50; let env = [], envAcc = 0, envMax = 0, tempoT = 0, period = 0.625, bpm = 96, beatClock = 0, lastListen = 0;
 function estimateTempo() {
   const n = env.length; if (n < 200) return;
   const mean = env.reduce((a, b) => a + b, 0) / n, x = env.map((v) => v - mean);
   // tapped: only look within 5% of the tapped tempo, so the music can fine-tune it but never change it
-  const lo = tapLock && tapPeriod ? Math.floor(tapPeriod * ENV_HZ * 0.95) : Math.floor((ENV_HZ * 60) / 180);
-  const hi = tapLock && tapPeriod ? Math.ceil(tapPeriod * ENV_HZ * 1.05) : Math.ceil((ENV_HZ * 60) / 70), ac = [];
+  if (tapLock) return;                                  // manual: nothing automatic touches tempo or beat
+  if (autoLocked) return lockPhase(n);                  // auto, locked: keep the bpm, keep the beat on the music
+  const lo = Math.floor((ENV_HZ * 60) / 180), hi = Math.ceil((ENV_HZ * 60) / 70), ac = [];
   for (let L = Math.floor(lo / 2) - 1; L <= Math.min(n - 50, 2 * hi + 1); L++) { let s = 0; for (let i = L; i < n; i++) s += x[i] * x[i - L]; ac[L] = s / (n - L); }
   let best = -1, bestV = -Infinity;
   for (let L = lo; L <= hi; L++) {
     const b = (60 * ENV_HZ) / L, prior = Math.exp(-0.5 * Math.pow(Math.log2(b / 115) / 0.6, 2)); // lean towards 80–160
     // a true beat also repeats at half (the off-beats) and double (the bar); a wrong 2/3 or 3/2 guess doesn't
-    const v = (ac[L] + 0.35 * (ac[Math.round(L / 2)] || 0) + 0.35 * (ac[2 * L] || 0)) * (tapLock ? 1 : 0.5 + 0.5 * prior); if (v > bestV) { bestV = v; best = L; }
+    const v = (ac[L] + 0.35 * (ac[Math.round(L / 2)] || 0) + 0.35 * (ac[2 * L] || 0)) * (0.5 + 0.5 * prior); if (v > bestV) { bestV = v; best = L; }
   }
   if (best < 0 || ac[best] <= 0) return;
   const a = ac[best - 1], b = ac[best], c = ac[best + 1], off = a - 2 * b + c ? (0.5 * (a - c)) / (a - 2 * b + c) : 0;
   const p = (best + Math.max(-0.5, Math.min(0.5, off))) / ENV_HZ;
   period = Math.abs(p - period) / period < 0.15 ? period * 0.7 + p * 0.3 : p; bpm = 60 / period;
+  // Lock once the estimate has held steady (within 2%) for 3 seconds with a full window of music behind it.
+  tempoHist.push(period); if (tempoHist.length > 6) tempoHist.shift();
+  if (n >= ENV_HZ * 8 && tempoHist.length === 6 && Math.max(...tempoHist) / Math.min(...tempoHist) < 1.02) { autoLocked = true; showTempo(); }
+  lockPhase(n);
+}
+function lockPhase(n) {
   // Phase: slide a comb of beats spaced one period apart back from now and find where it lines up with
   // the most onset energy. That says how long ago the last beat was; pull the beat clock towards it.
   const Lb = period * ENV_HZ, at = (i) => { const j = Math.floor(i), f = i - j; return j < 0 ? 0 : (env[j] || 0) * (1 - f) + (env[j + 1] || 0) * f; };
@@ -606,7 +623,7 @@ function listen(now) {
   beatClock += ldt / period;
   if (beat) {
     const fr = beatClock - Math.floor(beatClock), err = fr < 0.5 ? -fr : 1 - fr;
-    if (Math.abs(err) < 0.3) beatClock += err * 0.25; // keep the beat on the hits (tapped or not)
+    if (!tapLock && Math.abs(err) < 0.3) beatClock += err * 0.25; // keep the beat on the hits (not when manual)
     if (live && !tapLock && Math.abs(err) < 0.2) {
       const slot = ((Math.round(beatClock) % 4) + 4) % 4;
       for (let k = 0; k < 4; k++) accent[k] *= 0.97;     // recent bars count most
@@ -1244,7 +1261,9 @@ $("bmMusic").onchange = () => { S.bmMusic = $("bmMusic").checked; };
   $("bmFeel").onchange = () => { S.bmFeel = $("bmFeel").value; };
   slider("latBox", "latMs", "Tap delay", null, { noBm: true, min: -200, max: 400, step: 10, fmt: (v) => Math.round(v) + " ms" });
   $("calBtn").onclick = startCalibrate;
-  $("tapBtn").onclick = tapTempo; $("tapAuto").onclick = tapAuto;
+  $("tapBtn").onclick = tapTempo; $("tapAuto").onclick = tapAuto; $("redetect").onclick = tapAuto;
+  $("bpmIn").onchange = () => setBpm(+$("bpmIn").value);
+  showTempo();
   $("barTap").onclick = () => { barOffset = ((Math.round(beatClock) % 4) + 4) % 4; barManual = true; }; // now = beat 1
   $("barBack").onclick = () => { barOffset = (barOffset + 3) % 4; barManual = true; };   // moves happen a beat earlier
   $("barFwd").onclick = () => { barOffset = (barOffset + 1) % 4; barManual = true; };    // moves happen a beat later

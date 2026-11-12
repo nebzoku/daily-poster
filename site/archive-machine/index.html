@@ -138,7 +138,8 @@
     <div class="two"><button class="btn" id="mic">Use mic</button><button class="btn" id="restart">Restart track</button></div>
     <div class="note" style="margin:10px 0 4px">Tempo and bars</div>
     <div class="two" style="grid-template-columns:1fr 80px"><button class="btn" id="tapBtn">Tap tempo (T)</button><button class="btn solid" id="tapAuto">Auto</button></div>
-        <div id="latBox"></div>
+        <div class="two" style="grid-template-columns:1fr 92px;align-items:center"><div id="latBox"></div><button class="btn" id="calBtn">Measure</button></div>
+        <p class="note" id="calNote" style="margin:0 0 6px">Tap delay is the gap between the music the tool hears and what reaches your ears (Bluetooth, tab sharing). Press Measure with music playing, then tap the beat 8 times.</p>
         <p class="note" style="margin:4px 0 8px">Tap 4 or more times on the beat, starting on the 1. Your taps set the tempo and the bar until you press Auto.</p>
         <div class="three"><button class="btn" id="barBack">← 1 beat</button><button class="btn solid" id="barTap">Tap on the 1</button><button class="btn" id="barFwd">1 beat →</button></div>
     <div class="tracks" id="tracks"></div>
@@ -485,6 +486,7 @@ let lowNow = 0, accent = [0, 0, 0, 0], accentN = 0, barOffset = 0, barManual = f
 // tapped tempo is set, detection is paused; Auto hands it back.
 let tapLock = false, taps = [], tapFirst = 0, tapPeriod = 0;
 function tapTempo() {
+  if (calTaps) return calibrateTap();
   // You tap to what you hear. Bluetooth headphones play it late, so take that delay off each tap.
   const now = performance.now() - S.latMs;
   if (taps.length && now - taps[taps.length - 1] > 2000) taps = [];   // a pause starts a new count
@@ -500,6 +502,26 @@ function tapTempo() {
   tapLock = true; barManual = true;
   $("tapBtn").textContent = taps.length < 2 ? "Tap… (1)" : `Tap · ${Math.round(bpm)} bpm (${taps.length})`;
   $("tapAuto").classList.remove("solid");
+}
+// Measure the tap delay: with the beat detected automatically, compare 8 taps with the nearest detected
+// beats. The median gap is everything between the sound the tool hears and when you hear it.
+let calTaps = null;
+function startCalibrate() {
+  const live = actx && ((audio.src && !audio.paused) || micSrc || tabSrc);
+  if (!live) { $("calNote").textContent = "Play some music first, then press Measure and tap the beat 8 times."; return; }
+  tapAuto(); calTaps = [];
+  $("calBtn").classList.add("solid"); $("calBtn").textContent = "Tap 0/8";
+  $("calNote").textContent = "Tap the beat 8 times (button or T key). Let the beat settle for a few bars first.";
+}
+function calibrateTap() {
+  const fr = beatClock - Math.round(beatClock);          // how far past the nearest detected beat (in beats)
+  calTaps.push(fr * period * 1000);
+  $("calBtn").textContent = `Tap ${calTaps.length}/8`;
+  if (calTaps.length < 8) return;
+  const sorted = calTaps.slice().sort((a, b) => a - b), ms = sorted[4];
+  S.latMs = Math.max(-200, Math.min(400, Math.round(ms / 10) * 10)); SL.latMs.inp.value = S.latMs; SL.latMs.out.textContent = S.latMs + " ms";
+  calTaps = null; $("calBtn").classList.remove("solid"); $("calBtn").textContent = "Measure";
+  $("calNote").textContent = `Measured: your taps land ${S.latMs} ms after the beats the tool hears. Taps are now corrected by that.`;
 }
 function tapAuto() { tapLock = false; taps = []; resetBars(); $("tapBtn").textContent = "Tap tempo (T)"; $("tapAuto").classList.add("solid"); }
 function resetBars() { accent = [0, 0, 0, 0]; accentN = 0; barManual = tapLock; }
@@ -1220,7 +1242,8 @@ $("bmMusic").onchange = () => { S.bmMusic = $("bmMusic").checked; };
   bs.forEach((b) => (b.onclick = () => { S.bmBeat = b.dataset.b === "beats"; paint(); })); paint();
   $("bmMoveB").onchange = () => { S.bmMoveB = +$("bmMoveB").value; };
   $("bmFeel").onchange = () => { S.bmFeel = $("bmFeel").value; };
-  slider("latBox", "latMs", "Headphones", null, { noBm: true, min: 0, max: 400, step: 10, fmt: (v) => Math.round(v) + " ms" });
+  slider("latBox", "latMs", "Tap delay", null, { noBm: true, min: -200, max: 400, step: 10, fmt: (v) => Math.round(v) + " ms" });
+  $("calBtn").onclick = startCalibrate;
   $("tapBtn").onclick = tapTempo; $("tapAuto").onclick = tapAuto;
   $("barTap").onclick = () => { barOffset = ((Math.round(beatClock) % 4) + 4) % 4; barManual = true; }; // now = beat 1
   $("barBack").onclick = () => { barOffset = (barOffset + 3) % 4; barManual = true; };   // moves happen a beat earlier

@@ -59,6 +59,13 @@
   .tracks button small { display: block; font: 400 10.5px/1.3 var(--mono); color: var(--muted); text-transform: uppercase; letter-spacing: .03em; }
   .tracks .t.on { border-color: var(--fg); } .tracks .t.on button { background: var(--fg); color: #fff; } .tracks .t.on small { color: #bbb; }
   .tracks a { font: 400 10.5px/1 var(--mono); color: var(--muted); padding: 0 10px; text-decoration: none; }
+  .check { display: flex; gap: 8px; align-items: center; margin: 4px 0 8px; font-size: 12px; }
+  .labels { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 6px; }
+  .labels input { width: 100%; font: 400 12px/1.3 var(--sans); padding: 7px 8px; border: 1px solid var(--line); border-radius: 0; }
+  .swatches { display: flex; gap: 4px; margin: 2px 0 6px 82px; }
+  .swatches button { width: 22px; height: 22px; border: 1px solid var(--line); padding: 0; cursor: pointer; }
+  .chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+  .chips button { font: 400 11px/1.2 var(--sans); padding: 5px 7px; border: 1px solid var(--line); background: #fff; cursor: pointer; text-align: left; }
   .stops { display: flex; gap: 6px; flex-wrap: wrap; }
   .stop { position: relative; }
   .stop input[type=color] { width: 44px; height: 44px; padding: 0; border: 1px solid var(--line); background: none; cursor: pointer; display: block; }
@@ -107,6 +114,7 @@
     <div id="bandCtl"></div>
     <div id="typeCtl" hidden>
       <textarea id="words" spellcheck="false" rows="3"></textarea>
+      <div class="chips" id="heads"></div>
       <div class="two" style="grid-template-columns:1fr 96px;margin-top:6px"><select id="font"></select><div class="seg" id="aligns" style="grid-template-columns:repeat(3,1fr);gap:2px"><button data-a="left">L</button><button data-a="center">C</button><button data-a="right">R</button></div></div>
       <div id="typeSliders"></div>
       <div class="row"><label>Background</label><input type="color" id="bg" style="width:100%;height:24px;padding:0;border:1px solid var(--line)"><span></span></div>
@@ -128,6 +136,16 @@
       <div class="presets" id="presets"></div>
       <p class="note">Every poster, recoloured by brightness, like a luminance mask. The first colour fills the darks, the last fills the lights. Smooth blends between them, Steps gives flat bands.</p>
     </div>
+
+    <h2>Corner labels</h2>
+    <label class="check"><input type="checkbox" id="labOn" checked> Show labels</label>
+    <div class="labels"><input type="text" id="labTL"><input type="text" id="labTR"><input type="text" id="labBL"><input type="text" id="labBR"></div>
+    <div class="two" style="grid-template-columns:1fr 70px"><select id="labFont"></select><select id="labWeight"><option>300</option><option>400</option><option selected>500</option><option>700</option><option>900</option></select></div>
+    <div id="labelSliders"></div>
+    <div class="row"><label>Colour</label><input type="color" id="labColour" style="width:100%;height:24px;padding:0;border:1px solid var(--line)"><span></span></div>
+    <div class="swatches" id="labSw"></div>
+    <label class="check"><input type="checkbox" id="labUpper" checked> Uppercase</label>
+    <p class="note">Labels sit on top, crisp, untouched by Pixelate and Blur, and are in the PNG and video.</p>
 
     <h2>Legibility</h2>
     <div id="legibility"></div>
@@ -173,10 +191,33 @@ const PR = 1.41421; // poster height / width
 
 const S = {
   bleed: 0, order: "colour", mode: "swirl", format: "a", density: 35, energy: 60, smear: 45, wave: 55, ripple: 45, pixel: 0, blur: 0, paused: false,
-  text: "JAZZ\nYOU CAN\nSEE", font: "Anton", align: "left", tsize: 32, leading: 35, tracking: 12, bg: "#000000",
+  text: "JAZZ\nYOU CAN\nSEE", font: "Anton",
+  labOn: true, labTL: "", labTR: "", labBL: "", labBR: "", labFont: "", labWeight: "500", labSize: 18, labMargin: 16, labTrack: 4, labColour: "#FFFFFF", labUpper: true, align: "left", tsize: 32, leading: 35, tracking: 12, bg: "#000000",
   colour: "original", sel: new Set(WHEEL.map((_, i) => i)), stops: PRESETS[0].stops.slice(), stepped: false,
 };
 const FORMATS = { a: [1240, 1754], story: [1080, 1920] };
+
+// ---------- today's brief ----------
+const BRIEF = {
+  issue: "041", date: "Thu 12 Nov", source: "The Guardian", colour: "Lime", display: "Oswald", text: "Source Serif 4", margin: 16,
+  headlines: ["The Fastest Ship Goes Down", "A Liner Becomes a Reef", "Built for Speed, Made for Stillness"],
+  palette: ["#B5E643", "#DBECC1", "#6F7467", "#192400"],
+  css: "https://fonts.googleapis.com/css2?family=Oswald&family=Source+Serif+4&display=swap",
+};
+async function loadBrief() {
+  const day = new URLSearchParams(location.search).get("d"), file = /^\d{4}-\d{2}-\d{2}$/.test(day || "") ? day : "latest";
+  for (const base of ["../", "./"]) {
+    try {
+      const r = await fetch(`${base}data/${file}.json`, { cache: "no-store" }); if (!r.ok) continue;
+      const b = await r.json();
+      const fmt = new Intl.DateTimeFormat("en-GB", { weekday: "short", day: "numeric", month: "short", timeZone: "UTC" }).format(new Date(b.date + "T12:00:00Z")).replace(",", "");
+      Object.assign(BRIEF, { issue: String(b.issue).padStart(3, "0"), date: fmt, source: b.story.source, colour: b.colour.name, display: b.type.display, text: b.type.text,
+        margin: b.grid?.margin ?? 16, headlines: b.headlines, palette: b.palette.colours, css: b.type.css });
+      return;
+    } catch (e) {}
+  }
+}
+function fontCss(family, px, weight) { return `${weight} ${px}px "${family}"`; }
 
 // ---------- canvases ----------
 const cv = $("cv"), out = cv.getContext("2d");
@@ -503,7 +544,7 @@ function stepEq(dt, t, beat) {
 }
 
 // ---------- type: whole posters set on a grid wherever the headline's letters are ----------
-const FONTS = [
+let FONTS = [
   { name: "Anton", css: '400 {s}px "Anton"' }, { name: "Archivo Black", css: '400 {s}px "Archivo Black"' },
   { name: "Inter Tight", css: '800 {s}px "Inter Tight"' }, { name: "Space Grotesk", css: '700 {s}px "Space Grotesk"' },
   { name: "DM Serif Display", css: '400 {s}px "DM Serif Display"' }, { name: "Instrument Serif", css: '400 {s}px "Instrument Serif"' },
@@ -595,6 +636,27 @@ function composite() {
   } else {
     out.imageSmoothingEnabled = true; crop(out, src, W, H);
   }
+  drawLabels(out);
+}
+
+// Corner labels, as in the Opera Type Machine: sat on the grid's margins. Ink of the first and last
+// letters touches the side margins, cap tops touch the top margin, the baseline sits on the bottom one.
+function drawLabels(ctx) {
+  if (!S.labOn) return;
+  const u = W / 1080, px = S.labSize * u, m = S.labMargin * u, tr = (S.labTrack / 100) * px;
+  ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.fillStyle = S.labColour; ctx.font = fontCss(S.labFont, px, S.labWeight); ctx.textBaseline = "alphabetic"; ctx.textAlign = "left";
+  const T = (t) => (S.labUpper ? t.toUpperCase() : t);
+  const put = (t, x, y, a) => {
+    if (!t) return; const ch = [...T(t)], w = ch.map((c) => ctx.measureText(c).width), tot = w.reduce((p, q) => p + q, 0) + tr * (ch.length - 1);
+    const first = ctx.measureText(ch[0]), last = ctx.measureText(ch[ch.length - 1]);
+    const inkL = -first.actualBoundingBoxLeft, inkR = w[w.length - 1] - last.actualBoundingBoxRight;
+    let cx = a === "right" ? x - tot + inkR : x - inkL; ch.forEach((c, i) => { ctx.fillText(c, cx, y); cx += w[i] + tr; });
+  };
+  const cap = ctx.measureText("H").actualBoundingBoxAscent;
+  put(S.labTL, m, m + cap, "left"); put(S.labTR, W - m, m + cap, "right");
+  put(S.labBL, m, H - m, "left"); put(S.labBR, W - m, H - m, "right");
+  ctx.restore();
 }
 
 // ---------- loop ----------
@@ -647,10 +709,23 @@ slider("typeSliders", "tsize", "Size", typeSoon);
 slider("typeSliders", "leading", "Leading", typeSoon);
 slider("typeSliders", "tracking", "Tracking", typeSoon);
 $("words").value = S.text; $("words").oninput = () => { S.text = $("words").value; typeSoon(); };
-$("font").innerHTML = FONTS.map((f) => `<option>${f.name}</option>`).join(""); $("font").value = S.font;
+function fillFonts() {
+  $("font").innerHTML = FONTS.map((f) => `<option>${f.name}</option>`).join(""); $("font").value = S.font;
+  $("labFont").innerHTML = FONTS.map((f) => `<option>${f.name}</option>`).join(""); $("labFont").value = S.labFont;
+}
+fillFonts();
 $("font").onchange = () => { S.font = $("font").value; typeSoon(); };
 $("bg").value = S.bg; $("bg").oninput = () => { S.bg = $("bg").value; $("bg2").value = S.bg; };
 $("bg2").oninput = () => { S.bg = $("bg2").value; $("bg").value = S.bg; };
+slider("labelSliders", "labSize", "Size");
+slider("labelSliders", "labMargin", "Margin");
+slider("labelSliders", "labTrack", "Tracking");
+for (const id of ["labTL", "labTR", "labBL", "labBR"]) $(id).oninput = () => { S[id] = $(id).value; };
+$("labOn").onchange = () => { S.labOn = $("labOn").checked; };
+$("labUpper").onchange = () => { S.labUpper = $("labUpper").checked; };
+$("labFont").onchange = () => { S.labFont = $("labFont").value; document.fonts.load(fontCss(S.labFont, 40, S.labWeight)); };
+$("labWeight").onchange = () => { S.labWeight = $("labWeight").value; document.fonts.load(fontCss(S.labFont, 40, S.labWeight)); };
+$("labColour").oninput = () => { S.labColour = $("labColour").value; };
 slider("legibility", "pixel", "Pixelate");
 slider("legibility", "blur", "Blur");
 
@@ -812,8 +887,32 @@ addEventListener("keydown", (e) => {
   else if (k === "r") toggleRec();
 });
 
-reset();
-loadArchive();
+async function start() {
+  await loadBrief();
+  if (BRIEF.css) { const l = document.createElement("link"); l.rel = "stylesheet"; l.href = BRIEF.css; document.head.append(l); }
+  // today's two typefaces lead both lists
+  const today = [BRIEF.display, BRIEF.text].filter((f, i, a) => f && a.indexOf(f) === i);
+  FONTS = [...today.map((n) => ({ name: n, css: `400 {s}px "${n}"`, today: true })), ...FONTS.filter((f) => !today.includes(f.name))];
+  S.font = BRIEF.display; S.labFont = BRIEF.text; S.labMargin = BRIEF.margin;
+  S.labTL = "Daily Poster"; S.labTR = BRIEF.date; S.labBL = "No. " + BRIEF.issue; S.labBR = BRIEF.source;
+  S.labColour = BRIEF.palette[1] || "#FFFFFF";
+  S.text = (BRIEF.headlines[0] || "").toUpperCase().split(" ").reduce((ls, w) => { const l = ls[ls.length - 1]; if (l && (l + " " + w).length <= 10) ls[ls.length - 1] = l + " " + w; else ls.push(w); return ls; }, []).join("\n");
+  fillFonts();
+  for (const id of ["labTL", "labTR", "labBL", "labBR"]) $(id).value = S[id];
+  $("labColour").value = S.labColour.toLowerCase(); $("words").value = S.text;
+  document.querySelectorAll("#labelSliders input").forEach((inp, i) => { const k = ["labSize", "labMargin", "labTrack"][i]; inp.value = S[k]; inp.nextElementSibling.textContent = S[k]; });
+  $("labSw").innerHTML = [...BRIEF.palette, "#000000", "#FFFFFF"].map((c) => `<button style="background:${c}" data-c="${c}" title="${c}"></button>`).join("");
+  $("labSw").querySelectorAll("button").forEach((b) => (b.onclick = () => { S.labColour = b.dataset.c; $("labColour").value = b.dataset.c.toLowerCase(); }));
+  $("heads").innerHTML = BRIEF.headlines.map((h, i) => `<button data-i="${i}">${h}</button>`).join("");
+  $("heads").querySelectorAll("button").forEach((b) => (b.onclick = () => {
+    S.text = BRIEF.headlines[+b.dataset.i].toUpperCase().split(" ").reduce((ls, w) => { const l = ls[ls.length - 1]; if (l && (l + " " + w).length <= 10) ls[ls.length - 1] = l + " " + w; else ls.push(w); return ls; }, []).join("\n");
+    $("words").value = S.text; typeSoon();
+  }));
+  document.fonts.load(fontCss(S.labFont, 40, S.labWeight)); document.fonts.load(`400 40px "${S.font}"`);
+  reset();
+  loadArchive();
+}
+start();
 requestAnimationFrame(frame);
 </script>
 </body>

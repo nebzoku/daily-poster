@@ -156,8 +156,16 @@
 
     <div id="bmBox" hidden>
       <h2>Boomerang</h2>
+      <div class="seg" id="bmModes" style="grid-template-columns:1fr 1fr;margin-bottom:8px"><button data-b="beats">To the beat</button><button data-b="secs">In seconds</button></div>
+      <div id="bmBeatBox">
+        <div class="row"><label>Move</label><select id="bmMoveB"><option>1</option><option>2</option><option selected>4</option><option>8</option><option>16</option><option>32</option></select><span class="note" style="margin:0">beats</span></div>
+        <div class="row"><label>Hold</label><select id="bmHoldB"><option>0</option><option>1</option><option>2</option><option selected>4</option><option>8</option><option>16</option><option>32</option></select><span class="note" style="margin:0">beats</span></div>
+        <p class="note" style="margin-top:0">Follows the tempo of whatever is playing, shown under the poster. With no sound it uses the idle swing at 96 bpm.</p>
+      </div>
+      <div id="bmSecBox" hidden>
       <div id="bmSliders"></div>
       <label class="check"><input type="checkbox" id="bmMusic"> Follow the music (louder moves faster)</label>
+      </div>
       <p class="note" style="margin-top:0">Any slider with ↔ on moves between its two handles: the solid one and the outlined one. Hold pauses at each end before it turns back.</p>
     </div>
 
@@ -253,6 +261,7 @@ const TAU = Math.PI * 2;
 const PR = 1.41421; // poster height / width
 
 const S = {
+  bmBeat: true, bmMoveB: 4, bmHoldB: 4,
   // headline + subline, designed in the tool
   hlOn: false, hlFont: "", hlWeight: "400", hlSize: 170, hlLead: -8, hlTrack: -2, hlUpper: true, hlKern: "font", hlColour: "#FFFFFF", showGrid: false,
   blocks: [], subOn: false, subText: "", subFont: "", subWeight: "400", subSize: 22, subLead: 22, subTrack: 0, subCol: 5, subRow: 6, subSpan: 3,
@@ -436,8 +445,29 @@ function band(lo, hi) {
 const floor = { low: 0.1, mid: 0.1, high: 0.1 };
 let prevSpec = null, fluxHist = [], punch = 0, punchT = 0;
 const EQN = 32, eq = new Float32Array(EQN), eqPk = new Float32Array(EQN).fill(0.15), eqFl = new Float32Array(EQN).fill(0.05);
+// Tempo: the onset strength is kept at 50 samples a second for the last 8 seconds. Twice a second its
+// autocorrelation finds the strongest repeat between 70 and 180 bpm. A beat clock runs at that tempo
+// and is nudged towards each detected hit, so it stays locked to the music.
+const ENV_HZ = 50; let env = [], envAcc = 0, envMax = 0, tempoT = 0, period = 0.625, bpm = 96, beatClock = 0, lastListen = 0;
+function estimateTempo() {
+  const n = env.length; if (n < 200) return;
+  const mean = env.reduce((a, b) => a + b, 0) / n, x = env.map((v) => v - mean);
+  const lo = Math.floor((ENV_HZ * 60) / 180), hi = Math.ceil((ENV_HZ * 60) / 70), ac = [];
+  for (let L = Math.floor(lo / 2) - 1; L <= Math.min(n - 50, 2 * hi + 1); L++) { let s = 0; for (let i = L; i < n; i++) s += x[i] * x[i - L]; ac[L] = s / (n - L); }
+  let best = -1, bestV = -Infinity;
+  for (let L = lo; L <= hi; L++) {
+    const b = (60 * ENV_HZ) / L, prior = Math.exp(-0.5 * Math.pow(Math.log2(b / 115) / 0.6, 2)); // lean towards 80–160
+    // a true beat also repeats at half (the off-beats) and double (the bar); a wrong 2/3 or 3/2 guess doesn't
+    const v = (ac[L] + 0.35 * (ac[Math.round(L / 2)] || 0) + 0.35 * (ac[2 * L] || 0)) * (0.5 + 0.5 * prior); if (v > bestV) { bestV = v; best = L; }
+  }
+  if (best < 0 || ac[best] <= 0) return;
+  const a = ac[best - 1], b = ac[best], c = ac[best + 1], off = a - 2 * b + c ? (0.5 * (a - c)) / (a - 2 * b + c) : 0;
+  const p = (best + Math.max(-0.5, Math.min(0.5, off))) / ENV_HZ;
+  period = Math.abs(p - period) / period < 0.15 ? period * 0.7 + p * 0.3 : p; bpm = 60 / period;
+}
 function listen(now) {
   const live = actx && ((audio.src && !audio.paused) || micSrc || tabSrc);
+  const ldt = Math.min(0.1, (now - (lastListen || now)) / 1000); lastListen = now;
   let beat = false;
   if (live) {
     analyser.getByteFrequencyData(freq);
@@ -456,6 +486,10 @@ function listen(now) {
     const mean = fluxHist.reduce((a, b) => a + b, 0) / fluxHist.length;
     const sd = Math.sqrt(fluxHist.reduce((a, b) => a + (b - mean) * (b - mean), 0) / fluxHist.length);
     if (flux > mean + sd * 1.4 + 0.003 && now - lastBeat > 170) { beat = true; lastBeat = now; }
+    envMax = Math.max(envMax, flux); envAcc += ldt;
+    if (envAcc >= 1 / ENV_HZ) { while (envAcc >= 1 / ENV_HZ) { env.push(envMax); envAcc -= 1 / ENV_HZ; } envMax = 0; } // a slow frame fills every bin it spans
+    if (env.length > ENV_HZ * 8) env.splice(0, env.length - ENV_HZ * 8);
+    if ((tempoT += ldt) > 0.5) { tempoT = 0; estimateTempo(); }
     // equaliser: 32 log-spaced bands, 40 Hz to 11 kHz, each scaled to its own range
     for (let b = 0; b < EQN; b++) {
       const f0 = 40 * Math.pow(11000 / 40, b / EQN), f1 = 40 * Math.pow(11000 / 40, (b + 1) / EQN);
@@ -478,6 +512,10 @@ function listen(now) {
     for (let b = 0; b < EQN; b++) eq[b] = Math.max(0, 0.15 + 0.5 * Math.pow(sw, 3) * (1 - b / EQN) + 0.3 * Math.sin(t * (2 + b * 0.37) + b) * Math.sin(t * 0.7 + b * 0.2));
     $("m-state").textContent = "idle";
   }
+  if (!live) { period = 0.625; bpm = 96; env = []; }  // idle swing
+  beatClock += ldt / period;
+  if (beat) { const fr = beatClock - Math.floor(beatClock), err = fr < 0.5 ? -fr : 1 - fr; if (Math.abs(err) < 0.3) beatClock += err * 0.25; }
+  if (live) $("m-state").textContent = `${tabSrc ? "tab" : micSrc ? "mic" : "playing"} · ${Math.round(bpm)} bpm`;
   A.beat = beat ? 1 : A.beat * 0.86;
   if (beat) punchT = 1;
   punch += (punchT - punch) * 0.3; punchT *= 0.82; // eases up into each hit rather than snapping
@@ -1011,9 +1049,12 @@ function slider(host, key, label, onChange, opt = {}) {
 let bmT = 0;
 function stepBoomerang(dt, now) {
   const act = Object.values(SL).filter((o) => o.on); if (!act.length) return;
-  const mv = lerp(0.3, 12, Math.pow(S.bmMove / 100, 1.5)), hd = lerp(0, 10, S.bmHold / 100);
-  bmT += dt * (S.bmMusic ? 0.25 + A.loud * 1.6 : 1);
-  const x = bmT % (2 * (mv + hd));
+  let mv, hd, x;
+  if (S.bmBeat) { mv = S.bmMoveB; hd = S.bmHoldB; x = beatClock % (2 * (mv + hd)); } // counted in beats
+  else {
+    mv = lerp(0.3, 12, Math.pow(S.bmMove / 100, 1.5)); hd = lerp(0, 10, S.bmHold / 100);
+    bmT += dt * (S.bmMusic ? 0.25 + A.loud * 1.6 : 1); x = bmT % (2 * (mv + hd));
+  }
   let f = x < mv ? x / mv : x < mv + hd ? 1 : x < 2 * mv + hd ? 1 - (x - mv - hd) / mv : 0;
   f = f * f * (3 - 2 * f); // ease in and out of each end
   for (const o of act) {
@@ -1028,6 +1069,13 @@ slider("shape", "energy", "Energy");
 slider("bmSliders", "bmMove", "Move", null, { noBm: true, fmt: (v) => lerp(0.3, 12, Math.pow(v / 100, 1.5)).toFixed(1) + "s" });
 slider("bmSliders", "bmHold", "Hold", null, { noBm: true, fmt: (v) => lerp(0, 10, v / 100).toFixed(1) + "s" });
 $("bmMusic").onchange = () => { S.bmMusic = $("bmMusic").checked; };
+{
+  const bs = [...$("bmModes").querySelectorAll("button")];
+  const paint = () => { bs.forEach((b) => b.classList.toggle("on", (b.dataset.b === "beats") === S.bmBeat)); $("bmBeatBox").hidden = !S.bmBeat; $("bmSecBox").hidden = S.bmBeat; };
+  bs.forEach((b) => (b.onclick = () => { S.bmBeat = b.dataset.b === "beats"; paint(); })); paint();
+  $("bmMoveB").onchange = () => { S.bmMoveB = +$("bmMoveB").value; };
+  $("bmHoldB").onchange = () => { S.bmHoldB = +$("bmHoldB").value; };
+}
 slider("shape", "smear", "Smear");
 slider("shape", "bleed", "Bleed");
 slider("bandCtl", "wave", "Wave");

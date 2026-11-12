@@ -99,6 +99,7 @@
   <aside>
     <h1>Archive Machine</h1>
     <p>Every poster in the archive, cut into rectangles and moved by the music. A background to put your own type on.</p>
+    <p class="note" id="briefLine" style="margin:0 0 4px"></p>
 
     <h2>Sound</h2>
     <label class="file" id="drop"><input type="file" id="file" accept="audio/*" hidden><b id="fileName">Drop a jazz track</b>MP3, WAV or M4A. Or click to choose.</label>
@@ -178,7 +179,7 @@ function wheelIndex(date) {
   return (((EPOCH_INDEX - n) % 12) + 12) % 12;
 }
 // Recolour presets, darks first. Jazz = No. 040 (Green, Vivid) plus the always-on black and white.
-const PRESETS = [
+let PRESETS = [
   { name: "Jazz · No. 040", stops: ["#032707", "#6B756A", "#4BF761", "#CDF0CD"] },
   { name: "Jazz ink + paper", stops: ["#032707", "#4BF761"] },
   { name: "Jazz on black", stops: ["#000000", "#4BF761", "#FFFFFF"] },
@@ -197,27 +198,48 @@ const S = {
   labOn: true, labTL: "", labTR: "", labBL: "", labBR: "", labFont: "", labWeight: "500", labSize: 18, labMargin: 16, labTrack: 4, labColour: "#FFFFFF", labUpper: true, align: "left", tsize: 32, leading: 35, tracking: 12, bg: "#000000",
   colour: "original", sel: new Set(WHEEL.map((_, i) => i)), stops: PRESETS[0].stops.slice(), stepped: false, thresh: false, cut: 50,
 };
+const lumOf = (h) => { const n = parseInt(h.slice(1), 16); return 0.2126 * ((n >> 16) & 255) + 0.7152 * ((n >> 8) & 255) + 0.0722 * (n & 255); };
+function briefPresets() {
+  const pal = BRIEF.palette.slice().sort((a, b) => lumOf(a) - lumOf(b)), dark = pal[0], main = BRIEF.palette[0];
+  PRESETS = [
+    { name: `No. ${BRIEF.issue} · ${BRIEF.colour}`, stops: pal },
+    { name: `${BRIEF.colour} ink + paper`, stops: [dark, main] },
+    { name: `${BRIEF.colour} on black`, stops: ["#000000", main, "#FFFFFF"] },
+    { name: "Black + white", stops: ["#000000", "#FFFFFF"] },
+  ];
+  S.stops = PRESETS[0].stops.slice();
+}
 const FORMATS = { a: [1240, 1754], story: [1080, 1920] };
 
 // ---------- today's brief ----------
 const BRIEF = {
-  issue: "041", date: "Thu 12 Nov", source: "The Guardian", colour: "Lime", display: "Oswald", text: "Source Serif 4", margin: 16,
-  headlines: ["The Fastest Ship Goes Down", "A Liner Becomes a Reef", "Built for Speed, Made for Stillness"],
-  palette: ["#B5E643", "#DBECC1", "#6F7467", "#192400"],
-  css: "https://fonts.googleapis.com/css2?family=Oswald&family=Source+Serif+4&display=swap",
+  issue: "040", date: "Wed 11 Nov", source: "The Guardian", colour: "Green", display: "Anybody", text: "Azeret Mono", margin: 16,
+  headlines: ["Jazz You Can See", "Sound Bent Into Shape", "The Poster That Hums"],
+  palette: ["#4BF761", "#CDF0CD", "#6B756A", "#032707"],
+  css: "https://fonts.googleapis.com/css2?family=Anybody&family=Azeret+Mono&display=swap", note: "",
 };
+// Which brief to use: yesterday's until its three posters are in the archive, then today's.
+// ?d=YYYY-MM-DD forces a day.
 async function loadBrief() {
-  const day = new URLSearchParams(location.search).get("d"), file = /^\d{4}-\d{2}-\d{2}$/.test(day || "") ? day : "latest";
-  for (const base of ["../", "./"]) {
-    try {
-      const r = await fetch(`${base}data/${file}.json`, { cache: "no-store" }); if (!r.ok) continue;
-      const b = await r.json();
-      const fmt = new Intl.DateTimeFormat("en-GB", { weekday: "short", day: "numeric", month: "short", timeZone: "UTC" }).format(new Date(b.date + "T12:00:00Z")).replace(",", "");
-      Object.assign(BRIEF, { issue: String(b.issue).padStart(3, "0"), date: fmt, source: b.story.source, colour: b.colour.name, display: b.type.display, text: b.type.text,
-        margin: b.grid?.margin ?? 16, headlines: b.headlines, palette: b.palette.colours, css: b.type.css });
-      return;
-    } catch (e) {}
+  const forced = new URLSearchParams(location.search).get("d");
+  const get = async (path) => { for (const base of ["../", "./"]) { try { const r = await fetch(base + path, { cache: "no-store" }); if (r.ok) return await r.json(); } catch (e) {} } return null; };
+  let b = null, why = "";
+  if (/^\d{4}-\d{2}-\d{2}$/.test(forced || "")) { b = await get(`data/${forced}.json`); why = "picked by date"; }
+  if (!b) {
+    const today = await get("data/latest.json");
+    if (today) {
+      const y = new Date(today.date + "T12:00:00Z"); y.setUTCDate(y.getUTCDate() - 1);
+      const yd = y.toISOString().slice(0, 10), [yesterday, show] = await Promise.all([get(`data/${yd}.json`), get("data/showcase.json")]);
+      const done = (show || []).filter((p) => p.date === yd).length;
+      if (yesterday && done < 3) { b = yesterday; why = `today's No. ${String(today.issue).padStart(3, "0")} takes over once this one's three posters are in the archive (${done} of 3 so far)`; }
+      else { b = today; why = "today's brief"; }
+    }
   }
+  if (!b) { BRIEF.note = `No. ${BRIEF.issue} · built in`; return; }
+  const fmt = new Intl.DateTimeFormat("en-GB", { weekday: "short", day: "numeric", month: "short", timeZone: "UTC" }).format(new Date(b.date + "T12:00:00Z")).replace(",", "");
+  Object.assign(BRIEF, { issue: String(b.issue).padStart(3, "0"), date: fmt, source: b.story.source, colour: b.colour.name, display: b.type.display, text: b.type.text,
+    margin: b.grid?.margin ?? 16, headlines: b.headlines, palette: b.palette.colours, css: b.type.css });
+  BRIEF.note = `No. ${BRIEF.issue} · ${BRIEF.date} · ${BRIEF.colour} · ${BRIEF.display} + ${BRIEF.text}. ${why[0].toUpperCase() + why.slice(1)}.`;
 }
 function fontCss(family, px, weight) { return `${weight} ${px}px "${family}"`; }
 
@@ -894,6 +916,7 @@ addEventListener("keydown", (e) => {
 
 async function start() {
   await loadBrief();
+  $("briefLine").textContent = BRIEF.note; briefPresets();
   if (BRIEF.css) { const l = document.createElement("link"); l.rel = "stylesheet"; l.href = BRIEF.css; document.head.append(l); }
   // today's two typefaces lead both lists
   const today = [BRIEF.display, BRIEF.text].filter((f, i, a) => f && a.indexOf(f) === i);

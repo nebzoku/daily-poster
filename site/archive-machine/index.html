@@ -696,7 +696,7 @@ function stepType(dt, t, beat) {
 // ---------- composite + legibility ----------
 function composite() {
   let src = scene;
-  const z = (1 + (S.bleed / 100) * 0.8) * (1 + punch * 0.05 * E()); // bleed: scale everything up from the centre so it runs off the edges
+  const z = (1 + (S.bleed / 100) * 0.8) * (S.mode === "grid" ? 1 : 1 + punch * 0.05 * E()); // Grid stays still: the colour carries the music // bleed: scale everything up from the centre so it runs off the edges
   if (S.mode === "mirror") {
     size(mir, W, H);
     mc.drawImage(scene, 0, 0);

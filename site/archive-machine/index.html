@@ -9,6 +9,7 @@
 <style>
   :root { --bg: #f4f4f2; --fg: #111; --muted: #8a8a86; --line: #e2e2de; --mono: "Geist Mono", ui-monospace, monospace; --sans: "Geist", system-ui, sans-serif; }
   * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
   html, body { margin: 0; height: 100%; background: var(--bg); color: var(--fg); font: 400 13px/1.4 var(--sans); }
   .app { display: grid; grid-template-columns: 1fr 330px; height: 100vh; }
   .stage { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px 24px 14px; min-width: 0; min-height: 0; }
@@ -86,6 +87,13 @@
   .swatches button { width: 22px; height: 22px; border: 1px solid var(--line); padding: 0; cursor: pointer; }
   .chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
   .chips button { font: 400 11px/1.2 var(--sans); padding: 5px 7px; border: 1px solid var(--line); background: #fff; cursor: pointer; text-align: left; }
+  .block { border: 1px solid var(--line); padding: 8px; margin-bottom: 6px; position: relative; }
+  .block textarea { height: auto; min-height: 44px; margin-bottom: 6px; }
+  .block .bx { position: absolute; top: -7px; right: -7px; width: 18px; height: 18px; border-radius: 50%; border: 0; background: var(--fg); color: #fff; font: 500 11px/18px var(--mono); padding: 0; cursor: pointer; }
+  .block .opts { display: grid; grid-template-columns: 96px 1fr; gap: 6px; }
+  .block .seg { grid-template-columns: repeat(3, 1fr); gap: 2px; } .block .seg button { padding: 8px 0; }
+  label.mini { display: flex; flex-direction: column; gap: 3px; font: 400 10.5px/1 var(--mono); color: var(--muted); text-transform: uppercase; }
+  #gridOverlay { position: absolute; pointer-events: none; }
   .stops { display: flex; gap: 6px; flex-wrap: wrap; }
   .stop { position: relative; }
   .stop input[type=color] { width: 44px; height: 44px; padding: 0; border: 1px solid var(--line); background: none; cursor: pointer; display: block; }
@@ -106,7 +114,7 @@
 <body>
 <div class="app">
   <main class="stage">
-    <div class="frame"><canvas id="cv" width="1240" height="1754"></canvas><span class="loading" id="loading">Loading the archive…</span></div>
+    <div class="frame"><canvas id="cv" width="1240" height="1754"></canvas><canvas id="gridOverlay"></canvas><span class="loading" id="loading">Loading the archive…</span></div>
     <div class="meter">
       <span>Low <i><b id="m-low"></b></i></span>
       <span>Mid <i><b id="m-mid"></b></i></span>
@@ -167,6 +175,29 @@
       <p class="note">Every poster, recoloured by brightness, like a luminance mask. The first colour fills the darks, the last fills the lights. Smooth blends between them, Steps gives flat bands.</p>
     </div>
 
+    <h2>Headline</h2>
+    <label class="check"><input type="checkbox" id="hlOn"> Show headline</label>
+    <div id="blocks"></div>
+    <div class="two"><button class="btn" id="addBlock">+ Text box</button><label class="check" style="margin:0;justify-content:center"><input type="checkbox" id="showGrid"> Show grid</label></div>
+    <div class="two" style="grid-template-columns:1fr 70px"><select id="hlFont"></select><select id="hlWeight"><option>300</option><option selected>400</option><option>500</option><option>700</option><option>900</option></select></div>
+    <div id="hlSliders"></div>
+    <div class="row"><label>Colour</label><input type="color" id="hlColour" style="width:100%;height:24px;padding:0;border:1px solid var(--line)"><span></span></div>
+    <div class="swatches" id="hlSw"></div>
+    <label class="check"><input type="checkbox" id="hlUpper" checked> Uppercase</label>
+    <p class="note">Every box snaps like the corner labels: the ink touches the side margins, cap tops sit on the top margin or a grid line, and the bottom baseline sits on the bottom margin. Spread fills a box from the top margin to the bottom margin with its lines evenly spaced. Use several boxes to stagger lines left and right.</p>
+
+    <h2>Subline</h2>
+    <label class="check"><input type="checkbox" id="subOn"> Show subline</label>
+    <textarea id="subText" spellcheck="false" rows="3"></textarea>
+    <div class="two" style="grid-template-columns:1fr 70px"><select id="subFont"></select><select id="subWeight"><option>300</option><option selected>400</option><option>500</option><option>700</option><option>900</option></select></div>
+    <div class="three"><label class="mini">Column<select id="subCol"></select></label><label class="mini">Row<select id="subRow"></select></label><label class="mini">Width<select id="subSpan"></select></label></div>
+    <div id="subSliders"></div>
+    <p class="note">The paragraph sits in the top-left corner of a grid square, in the headline colour, and wraps to the width you choose in columns.</p>
+
+    <h2>Type effects</h2>
+    <div id="fxSliders"></div>
+    <p class="note">Texture roughens the edges like ink soaking into paper (Radius is how far, Size is how coarse). Noise is grain inside the letters. Shadow is a soft glow in the type's own colour. They apply to the headline and subline.</p>
+
     <h2>Corner labels</h2>
     <label class="check"><input type="checkbox" id="labOn" checked> Show labels</label>
     <div class="labels"><input type="text" id="labTL"><input type="text" id="labTR"><input type="text" id="labBL"><input type="text" id="labBR"></div>
@@ -220,6 +251,10 @@ const TAU = Math.PI * 2;
 const PR = 1.41421; // poster height / width
 
 const S = {
+  // headline + subline, designed in the tool
+  hlOn: false, hlFont: "", hlWeight: "400", hlSize: 170, hlLead: -8, hlTrack: -2, hlUpper: true, hlColour: "#FFFFFF", showGrid: false,
+  blocks: [], subOn: false, subText: "", subFont: "", subWeight: "400", subSize: 22, subLead: 22, subTrack: 0, subCol: 5, subRow: 6, subSpan: 3,
+  fxTexR: 0, fxTexS: 30, fxNoise: 0, fxNoiseS: 20, fxShadow: 0, fxShadowOp: 30,
   bmMove: 35, bmHold: 30, bmMusic: false, bleed: 0, order: "colour", mode: "swirl", format: "a", density: 35, energy: 60, smear: 45, wave: 55, ripple: 45, pixel: 0, blur: 0, paused: false,
   text: "JAZZ\nYOU CAN\nSEE", font: "Anton",
   labOn: true, labTL: "", labTR: "", labBL: "", labBR: "", labFont: "", labWeight: "500", labSize: 18, labMargin: 16, labTrack: 4, labColour: "#FFFFFF", labUpper: true, align: "left", tsize: 32, leading: 35, tracking: 12, bg: "#000000",
@@ -243,6 +278,8 @@ const BRIEF = {
   issue: "040", date: "Wed 11 Nov", source: "The Guardian", colour: "Green", display: "Anybody", text: "Azeret Mono", margin: 16,
   headlines: ["Jazz You Can See", "Sound Bent Into Shape", "The Poster That Hums"],
   palette: ["#4BF761", "#CDF0CD", "#6B756A", "#032707"],
+  sublines: ["German designer Günther Kieser made concert posters inspired by sculpture, jazz improvisation and psychedelic art, now revisited in pictures."],
+  grid: { columns: 8, rows: 8 },
   css: "https://fonts.googleapis.com/css2?family=Anybody&family=Azeret+Mono&display=swap", note: "",
 };
 // Which brief to use: yesterday's until its three posters are in the archive, then today's.
@@ -265,7 +302,7 @@ async function loadBrief() {
   if (!b) { BRIEF.note = `No. ${BRIEF.issue} · built in`; return; }
   const fmt = new Intl.DateTimeFormat("en-GB", { weekday: "short", day: "numeric", month: "short", timeZone: "UTC" }).format(new Date(b.date + "T12:00:00Z")).replace(",", "");
   Object.assign(BRIEF, { issue: String(b.issue).padStart(3, "0"), date: fmt, source: b.story.source, colour: b.colour.name, display: b.type.display, text: b.type.text,
-    margin: b.grid?.margin ?? 16, headlines: b.headlines, palette: b.palette.colours, css: b.type.css });
+    margin: b.grid?.margin ?? 16, grid: { columns: b.grid?.columns || 8, rows: b.grid?.rows || 8 }, sublines: b.sublines || [], headlines: b.headlines, palette: b.palette.colours, css: b.type.css });
   BRIEF.note = `No. ${BRIEF.issue} · ${BRIEF.date} · ${BRIEF.colour} · ${BRIEF.display} + ${BRIEF.text}. ${why[0].toUpperCase() + why.slice(1)}.`;
 }
 function fontCss(family, px, weight) { return `${weight} ${px}px "${family}"`; }
@@ -730,7 +767,129 @@ function composite() {
   } else {
     out.imageSmoothingEnabled = true; crop(out, src, W, H);
   }
+  if (typeDirty) renderType();
+  if (S.hlOn || S.subOn) out.drawImage(tl2, 0, 0);
   drawLabels(out);
+  drawGridOverlay();
+}
+
+// ---------- headline + subline: drawn once into a cached layer, then laid over every frame ----------
+const [tl, tlc] = mk(), [tl2, tl2c] = mk();
+let typeDirty = true;
+const markType = () => { typeDirty = true; };
+// The approved grid: margins and an 8 × 8 grid of equal squares (in 1080-wide units, scaled to the page).
+function gridGeom() {
+  const u = W / 1080, m = BRIEF.margin * u, C = BRIEF.grid.columns, R = BRIEF.grid.rows;
+  return { u, m, C, R, cw: (W - 2 * m) / C, rh: (H - 2 * m) / R };
+}
+// Set one line with tracking, snapped by its ink (not its side bearings), like the corner labels.
+function setLine(ctx, text, x, y, align, px, track) {
+  const ch = [...text]; if (!ch.length) return;
+  const w = ch.map((c) => ctx.measureText(c).width), tr = (track / 100) * px, tot = w.reduce((p, q) => p + q, 0) + tr * (ch.length - 1);
+  const inkL = -ctx.measureText(ch[0]).actualBoundingBoxLeft, inkR = w[w.length - 1] - ctx.measureText(ch[ch.length - 1]).actualBoundingBoxRight;
+  const inkW = tot - inkL - inkR;
+  let cx = align === "right" ? x - tot + inkR : align === "center" ? x - inkW / 2 - inkL : x - inkL;
+  ch.forEach((c, i) => { ctx.fillText(c, cx, y); cx += w[i] + tr; });
+}
+function lineWidth(ctx, text, px, track) { const ch = [...text]; return ch.reduce((a, c) => a + ctx.measureText(c).width, 0) + (track / 100) * px * Math.max(0, ch.length - 1); }
+function renderType() {
+  typeDirty = false;
+  size(tl, W, H); size(tl2, W, H);
+  tlc.clearRect(0, 0, W, H); tl2c.clearRect(0, 0, W, H);
+  if (!S.hlOn && !S.subOn) return;
+  const g = gridGeom(), { u, m } = g;
+  tlc.fillStyle = S.hlColour; tlc.textBaseline = "alphabetic"; tlc.textAlign = "left";
+  if (S.hlOn) {
+    const px = S.hlSize * u, adv = px * (1 + S.hlLead / 100);
+    tlc.font = fontCss(S.hlFont, px, S.hlWeight);
+    const cap = tlc.measureText("H").actualBoundingBoxAscent;
+    for (const b of S.blocks) {
+      const lines = (S.hlUpper ? b.text.toUpperCase() : b.text).split("\n").filter((l, i, a) => l.length || i < a.length - 1);
+      if (!lines.length) continue;
+      const x = b.align === "left" ? m : b.align === "right" ? W - m : W / 2;
+      let ys;
+      if (b.pos === "spread" && lines.length > 1) { const y0 = m + cap, y1 = H - m; ys = lines.map((_, i) => y0 + ((y1 - y0) * i) / (lines.length - 1)); }
+      else if (b.pos === "bottom") ys = lines.map((_, i) => H - m - (lines.length - 1 - i) * adv);
+      else { const top = b.pos === "top" || b.pos === "spread" ? m : m + (+b.pos) * g.rh; ys = lines.map((_, i) => top + cap + i * adv); }
+      lines.forEach((l, i) => setLine(tlc, l, x, ys[i], b.align, px, S.hlTrack));
+    }
+  }
+  if (S.subOn && S.subText.trim()) {
+    const px = S.subSize * u, adv = px * (1 + S.subLead / 100);
+    tlc.font = fontCss(S.subFont, px, S.subWeight);
+    const cap = tlc.measureText("H").actualBoundingBoxAscent;
+    const x = m + (S.subCol - 1) * g.cw, top = m + (S.subRow - 1) * g.rh, maxW = Math.min(S.subSpan, g.C - S.subCol + 1) * g.cw;
+    const lines = [];
+    for (const para of S.subText.split("\n")) {
+      let line = "";
+      for (const word of para.split(/\s+/).filter(Boolean)) {
+        const t = line ? line + " " + word : word;
+        if (line && lineWidth(tlc, t, px, S.subTrack) > maxW) { lines.push(line); line = word; } else line = t;
+      }
+      lines.push(line);
+    }
+    lines.forEach((l, i) => setLine(tlc, l, x, top + cap + i * adv, "left", px, S.subTrack));
+  }
+  // Texture: blur the edges, then cut them back with soft noise, so they go furry like ink in paper.
+  if (S.fxTexR > 0) {
+    const R = Math.max(1, Math.round(S.fxTexR * u)), img = tlc.getImageData(0, 0, W, H), d = img.data, n = W * H;
+    const a = new Float32Array(n); for (let i = 0; i < n; i++) a[i] = d[i * 4 + 3] / 255;
+    boxBlur(a, W, H, R); boxBlur(a, W, H, R);
+    const gs = Math.max(1, S.fxTexS * u * 0.2), nz = noiseField(W, H, gs, true);
+    const sharp = 7;
+    for (let i = 0; i < n; i++) {
+      const v = Math.max(0, Math.min(1, (a[i] + (nz[i] - 0.5) * 0.6 - 0.5) * sharp + 0.5));
+      d[i * 4 + 3] = v * 255;
+    }
+    const c = hex(S.hlColour); for (let i = 0; i < n; i++) { d[i * 4] = c[0]; d[i * 4 + 1] = c[1]; d[i * 4 + 2] = c[2]; }
+    tlc.putImageData(img, 0, 0);
+  }
+  // Noise: fine grain inside the letters, lighter and darker specks around the type colour.
+  if (S.fxNoise > 0) {
+    const img = tlc.getImageData(0, 0, W, H), d = img.data, n = W * H, amt = (S.fxNoise / 100) * 0.9;
+    const nz = noiseField(W, H, Math.max(1, (S.fxNoiseS / 100) * 8 * u), false);
+    for (let i = 0; i < n; i++) {
+      if (!d[i * 4 + 3]) continue;
+      const f = 1 + (nz[i] - 0.5) * 2 * amt;
+      d[i * 4] = Math.min(255, d[i * 4] * f + (f > 1 ? (f - 1) * 90 : 0)); d[i * 4 + 1] = Math.min(255, d[i * 4 + 1] * f + (f > 1 ? (f - 1) * 90 : 0)); d[i * 4 + 2] = Math.min(255, d[i * 4 + 2] * f + (f > 1 ? (f - 1) * 90 : 0));
+    }
+    tlc.putImageData(img, 0, 0);
+  }
+  // Shadow: a soft glow at 0, 0 in the type's own colour, baked in with the type.
+  if (S.fxShadow > 0 && S.fxShadowOp > 0) {
+    const c = hex(S.hlColour);
+    tl2c.shadowColor = `rgba(${c[0]},${c[1]},${c[2]},${S.fxShadowOp / 100})`; tl2c.shadowBlur = S.fxShadow * u;
+  } else { tl2c.shadowColor = "transparent"; tl2c.shadowBlur = 0; }
+  tl2c.drawImage(tl, 0, 0);
+  tl2c.shadowColor = "transparent"; tl2c.shadowBlur = 0;
+}
+function boxBlur(a, w, h, r) {
+  const t = new Float32Array(a.length);
+  for (let y = 0; y < h; y++) { let s = 0; const o = y * w; for (let x = -r; x <= r; x++) s += a[o + Math.max(0, Math.min(w - 1, x))];
+    for (let x = 0; x < w; x++) { t[o + x] = s / (2 * r + 1); s += a[o + Math.min(w - 1, x + r + 1)] - a[o + Math.max(0, x - r)]; } }
+  for (let x = 0; x < w; x++) { let s = 0; for (let y = -r; y <= r; y++) s += t[Math.max(0, Math.min(h - 1, y)) * w + x];
+    for (let y = 0; y < h; y++) { a[y * w + x] = s / (2 * r + 1); s += t[Math.min(h - 1, y + r + 1) * w + x] - t[Math.max(0, y - r) * w + x]; } }
+}
+// Random values at a given grain size; smooth (for edges) or blocky (for grain).
+function noiseField(w, h, grain, smooth) {
+  const nw = Math.max(2, Math.ceil(w / grain)), nh = Math.max(2, Math.ceil(h / grain));
+  const [c, x] = mk(); c.width = nw; c.height = nh;
+  const im = x.createImageData(nw, nh); for (let i = 0; i < nw * nh; i++) { const v = Math.random() * 255; im.data[i * 4] = im.data[i * 4 + 1] = im.data[i * 4 + 2] = v; im.data[i * 4 + 3] = 255; }
+  x.putImageData(im, 0, 0);
+  const [c2, x2] = mk(); c2.width = w; c2.height = h; x2.imageSmoothingEnabled = smooth; x2.drawImage(c, 0, 0, w, h);
+  const d = x2.getImageData(0, 0, w, h).data, out = new Float32Array(w * h); for (let i = 0; i < out.length; i++) out[i] = d[i * 4] / 255;
+  return out;
+}
+// The grid guide is drawn on its own layer over the preview, never into exports.
+function drawGridOverlay() {
+  const ov = $("gridOverlay"), r = cv.getBoundingClientRect(), fr = cv.parentNode.getBoundingClientRect();
+  ov.style.left = r.left - fr.left + "px"; ov.style.top = r.top - fr.top + "px"; ov.style.width = r.width + "px"; ov.style.height = r.height + "px";
+  ov.hidden = !S.showGrid; if (!S.showGrid) return;
+  size(ov, r.width * devicePixelRatio, r.height * devicePixelRatio);
+  const x = ov.getContext("2d"), k = ov.width / W, g = gridGeom();
+  x.clearRect(0, 0, ov.width, ov.height); x.strokeStyle = "rgba(255,80,160,.75)"; x.lineWidth = 1;
+  for (let i = 0; i <= g.C; i++) { const X = Math.round((g.m + i * g.cw) * k) + 0.5; x.beginPath(); x.moveTo(X, g.m * k); x.lineTo(X, (H - g.m) * k); x.stroke(); }
+  for (let j = 0; j <= g.R; j++) { const Y = Math.round((g.m + j * g.rh) * k) + 0.5; x.beginPath(); x.moveTo(g.m * k, Y); x.lineTo((W - g.m) * k, Y); x.stroke(); }
 }
 
 // Corner labels, as in the Opera Type Machine: sat on the grid's margins. Ink of the first and last
@@ -777,6 +936,7 @@ function reset() {
   SW = S.mode === "mirror" ? W / 2 : W; SH = S.mode === "mirror" ? H / 2 : H;
   size(scene, SW, SH);
   sc.fillStyle = S.mode === "type" || S.mode === "eq" ? S.bg : "#000"; sc.fillRect(0, 0, SW, SH);
+  typeDirty = true;
   parts = []; rows = [];
   if (S.mode === "bands") initBands(); else if (S.mode === "grid") initGrid(); else if (S.mode === "eq") initEq(); else if (S.mode === "type") initType(); else { cells = []; typeCw = 0; initSwirl(); }
   $("bandCtl").hidden = !["bands", "grid", "eq"].includes(S.mode); $("typeCtl").hidden = S.mode !== "type"; $("bgRow").hidden = S.mode !== "eq";
@@ -789,10 +949,11 @@ const SL = {};
 function slider(host, key, label, onChange, opt = {}) {
   const row = document.createElement("div"); row.className = "row" + (opt.noBm ? "" : " sl");
   const fmt = opt.fmt || ((v) => Math.round(v));
-  row.innerHTML = `<label>${label}</label><div class="track"><span class="span"></span><input type="range" class="a" min="0" max="100" value="${S[key]}"><input type="range" class="b" min="0" max="100" hidden><i class="live"></i></div><output>${fmt(S[key])}</output>` + (opt.noBm ? "" : `<button class="bm" title="Boomerang between two values">↔</button>`);
+  const mn = opt.min ?? 0, mx = opt.max ?? 100, st = opt.step ?? 1, pct = (v) => ((v - mn) / (mx - mn)) * 100;
+  row.innerHTML = `<label>${label}</label><div class="track"><span class="span"></span><input type="range" class="a" min="${mn}" max="${mx}" step="${st}" value="${S[key]}"><input type="range" class="b" min="${mn}" max="${mx}" step="${st}" hidden><i class="live"></i></div><output>${fmt(S[key])}</output>` + (opt.noBm ? "" : `<button class="bm" title="Boomerang between two values">↔</button>`);
   const inp = row.querySelector("input.a"), inp2 = row.querySelector("input.b"), out = row.querySelector("output");
-  const o = { key, row, inp, inp2, out, fmt, onChange, on: false, a: 0, b: 0, last: 0, span: row.querySelector(".span"), live: row.querySelector(".live") };
-  const paintSpan = () => { const lo = Math.min(o.a, o.b), hi = Math.max(o.a, o.b); o.span.style.left = lo + "%"; o.span.style.width = hi - lo + "%"; };
+  const o = { key, row, inp, inp2, out, fmt, onChange, on: false, a: 0, b: 0, last: 0, pct, live0: opt.live, span: row.querySelector(".span"), live: row.querySelector(".live") };
+  const paintSpan = () => { const lo = Math.min(pct(o.a), pct(o.b)), hi = Math.max(pct(o.a), pct(o.b)); o.span.style.left = lo + "%"; o.span.style.width = hi - lo + "%"; };
   inp.oninput = () => {
     if (o.on) { o.a = +inp.value; paintSpan(); return; }
     S[key] = +inp.value; out.textContent = fmt(S[key]); onChange && onChange();
@@ -801,7 +962,7 @@ function slider(host, key, label, onChange, opt = {}) {
   const btn = row.querySelector(".bm");
   if (btn) btn.onclick = () => {
     o.on = !o.on; row.classList.toggle("bm-on", o.on); inp2.hidden = !o.on;
-    if (o.on) { o.a = +inp.value; o.b = o.a <= 60 ? o.a + 40 : o.a - 40; inp2.value = o.b; paintSpan(); }
+    if (o.on) { const r = (mx - mn) * 0.4; o.a = +inp.value; o.b = o.a <= mx - r ? o.a + r : o.a - r; inp2.value = o.b; paintSpan(); }
     else { S[key] = o.a; out.textContent = fmt(S[key]); onChange && onChange(); }
     $("bmBox").hidden = !Object.values(SL).some((x) => x.on);
   };
@@ -819,8 +980,8 @@ function stepBoomerang(dt, now) {
   f = f * f * (3 - 2 * f); // ease in and out of each end
   for (const o of act) {
     const v = lerp(o.a, o.b, f);
-    S[o.key] = v; o.out.textContent = o.fmt(v); o.live.style.left = v + "%";
-    if (o.onChange && now - o.last > 180) { o.last = now; o.onChange(); }
+    S[o.key] = v; o.out.textContent = o.fmt(v); o.live.style.left = o.pct(v) + "%";
+    if (o.onChange && (o.live0 || now - o.last > 180)) { o.last = now; o.onChange(); }
   }
 }
 let densT;
@@ -840,6 +1001,7 @@ slider("typeSliders", "leading", "Leading", typeSoon);
 slider("typeSliders", "tracking", "Tracking", typeSoon);
 $("words").value = S.text; $("words").oninput = () => { S.text = $("words").value; typeSoon(); };
 function fillFonts() {
+  for (const id of ["hlFont", "subFont"]) { $(id).innerHTML = FONTS.map((f) => `<option>${f.name}</option>`).join(""); $(id).value = S[id]; }
   $("font").innerHTML = FONTS.map((f) => `<option>${f.name}</option>`).join(""); $("font").value = S.font;
   $("labFont").innerHTML = FONTS.map((f) => `<option>${f.name}</option>`).join(""); $("labFont").value = S.labFont;
 }
@@ -856,6 +1018,53 @@ $("labUpper").onchange = () => { S.labUpper = $("labUpper").checked; };
 $("labFont").onchange = () => { S.labFont = $("labFont").value; document.fonts.load(fontCss(S.labFont, 40, S.labWeight)); };
 $("labWeight").onchange = () => { S.labWeight = $("labWeight").value; document.fonts.load(fontCss(S.labFont, 40, S.labWeight)); };
 $("labColour").oninput = () => { S.labColour = $("labColour").value; };
+// headline + subline + effects controls
+const fx = (k, label, opt) => slider(opt.host, k, label, markType, { live: true, ...opt });
+fx("hlSize", "Size", { host: "hlSliders", min: 20, max: 500 });
+fx("hlLead", "Leading", { host: "hlSliders", min: -60, max: 100, fmt: (v) => Math.round(v) + "%" });
+fx("hlTrack", "Tracking", { host: "hlSliders", min: -30, max: 60, fmt: (v) => Math.round(v) + "%" });
+fx("subSize", "Size", { host: "subSliders", min: 8, max: 80 });
+fx("subLead", "Leading", { host: "subSliders", min: -40, max: 120, fmt: (v) => Math.round(v) + "%" });
+fx("subTrack", "Tracking", { host: "subSliders", min: -20, max: 60, fmt: (v) => Math.round(v) + "%" });
+fx("fxTexR", "Texture", { host: "fxSliders", live: false });
+fx("fxTexS", "Tex. size", { host: "fxSliders", live: false });
+fx("fxNoise", "Noise", { host: "fxSliders", live: false });
+fx("fxNoiseS", "Noise size", { host: "fxSliders", live: false });
+fx("fxShadow", "Shadow", { host: "fxSliders" });
+fx("fxShadowOp", "Shadow %", { host: "fxSliders", fmt: (v) => Math.round(v) + "%" });
+let fxT; const fxSoon = () => { clearTimeout(fxT); fxT = setTimeout(markType, 80); };
+for (const k of ["fxTexR", "fxTexS", "fxNoise", "fxNoiseS"]) SL[k].onChange = fxSoon; // heavier: wait for the slider to settle
+const POS = [["top", "Top"], ...Array.from({ length: 7 }, (_, i) => [String(i + 1), `Grid line ${i + 1}`]), ["bottom", "Bottom"], ["spread", "Spread"]];
+function buildBlocks() {
+  $("blocks").innerHTML = S.blocks.map((b, i) => `<div class="block" data-i="${i}">${S.blocks.length > 1 ? '<button class="bx" title="Remove">×</button>' : ""}
+    <textarea spellcheck="false" rows="${Math.max(1, b.text.split("\n").length)}">${b.text.replace(/</g, "&lt;")}</textarea>
+    <div class="opts"><div class="seg">${["left", "center", "right"].map((a) => `<button data-a="${a}" class="${b.align === a ? "on" : ""}">${a[0].toUpperCase()}</button>`).join("")}</div>
+    <select>${POS.map(([v, l]) => `<option value="${v}" ${b.pos === v ? "selected" : ""}>${l}</option>`).join("")}</select></div></div>`).join("");
+  $("blocks").querySelectorAll(".block").forEach((el) => {
+    const b = S.blocks[+el.dataset.i];
+    el.querySelector("textarea").oninput = (e) => { b.text = e.target.value; markType(); };
+    el.querySelectorAll(".seg button").forEach((btn) => (btn.onclick = () => { b.align = btn.dataset.a; buildBlocks(); markType(); }));
+    el.querySelector("select").onchange = (e) => { b.pos = e.target.value; markType(); };
+    const x = el.querySelector(".bx"); if (x) x.onclick = () => { S.blocks.splice(+el.dataset.i, 1); buildBlocks(); markType(); };
+  });
+}
+$("addBlock").onclick = () => { const last = S.blocks[S.blocks.length - 1]; S.blocks.push({ text: "", align: last && last.align === "left" ? "right" : "left", pos: "4" }); buildBlocks(); };
+$("hlOn").onchange = () => { S.hlOn = $("hlOn").checked; markType(); };
+$("subOn").onchange = () => { S.subOn = $("subOn").checked; markType(); };
+$("showGrid").onchange = () => { S.showGrid = $("showGrid").checked; };
+$("hlUpper").onchange = () => { S.hlUpper = $("hlUpper").checked; markType(); };
+$("hlColour").oninput = () => { S.hlColour = $("hlColour").value; markType(); };
+$("subText").oninput = () => { S.subText = $("subText").value; markType(); };
+for (const id of ["hlFont", "hlWeight", "subFont", "subWeight"]) $(id).onchange = () => {
+  S[id] = $(id).value; markType();
+  const f = id.startsWith("hl") ? [S.hlFont, S.hlWeight] : [S.subFont, S.subWeight];
+  document.fonts.load(fontCss(f[0], 60, f[1])).then(markType);
+};
+for (const [id, n] of [["subCol", 8], ["subRow", 8], ["subSpan", 8]]) {
+  $(id).innerHTML = Array.from({ length: n }, (_, i) => `<option>${i + 1}</option>`).join(""); $(id).value = S[id];
+  $(id).onchange = () => { S[id] = +$(id).value; markType(); };
+}
+document.fonts.addEventListener && document.fonts.addEventListener("loadingdone", markType);
 slider("legibility", "pixel", "Pixelate");
 slider("legibility", "blur", "Blur");
 
@@ -1030,7 +1239,14 @@ async function start() {
   S.labTL = "Daily Poster"; S.labTR = BRIEF.date; S.labBL = "No. " + BRIEF.issue; S.labBR = BRIEF.source;
   S.labColour = BRIEF.palette[1] || "#FFFFFF";
   S.text = (BRIEF.headlines[0] || "").toUpperCase().split(" ").reduce((ls, w) => { const l = ls[ls.length - 1]; if (l && (l + " " + w).length <= 10) ls[ls.length - 1] = l + " " + w; else ls.push(w); return ls; }, []).join("\n");
-  fillFonts();
+  S.hlFont = BRIEF.display; S.subFont = BRIEF.text; S.hlColour = BRIEF.palette[0];
+  S.blocks = [{ text: S.text, align: "left", pos: "top" }];
+  S.subText = BRIEF.sublines[0] || "";
+  fillFonts(); buildBlocks();
+  $("hlColour").value = S.hlColour.toLowerCase(); $("subText").value = S.subText;
+  $("hlSw").innerHTML = [...BRIEF.palette, "#000000", "#FFFFFF"].map((c) => `<button style="background:${c}" data-c="${c}" title="${c}"></button>`).join("");
+  $("hlSw").querySelectorAll("button").forEach((b) => (b.onclick = () => { S.hlColour = b.dataset.c; $("hlColour").value = b.dataset.c.toLowerCase(); markType(); }));
+  document.fonts.load(fontCss(S.hlFont, 60, S.hlWeight)).then(markType); document.fonts.load(fontCss(S.subFont, 60, S.subWeight)).then(markType);
   for (const id of ["labTL", "labTR", "labBL", "labBR"]) $(id).value = S[id];
   $("labColour").value = S.labColour.toLowerCase(); $("words").value = S.text;
   for (const k of ["labSize", "labMargin", "labTrack"]) { SL[k].inp.value = S[k]; SL[k].out.textContent = S[k]; }

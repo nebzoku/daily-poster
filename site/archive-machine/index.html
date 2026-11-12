@@ -534,7 +534,7 @@ function stepSwirl(dt, t, beat) {
   if (beat) { kick = 0.9 * e; if (!isOrdered()) for (const p of parts) if (Math.random() < 0.12) p.p = pick(); }
   kick *= 0.94;
   const spd = W * 0.0034 * (0.15 + 2.2 * e * (0.15 + A.low * 1.0 + A.mid * 0.4 + A.beat * 0.8)) * dt * 60;
-  const pulse = 1 + e * (A.low * 0.25 + A.beat * 0.2);
+  const pulse = 1; // no scale pulse: the music moves the posters, it doesn't resize them
   const pad = ph * 0.8;
   for (const p of parts) {
     const [fx, fy] = field(p.x, p.y, t), mag = Math.min(1.6, Math.hypot(fx, fy));
@@ -719,7 +719,7 @@ function stepType(dt, t, beat) {
   const e = E(), cw = cellW, ch = cw * PR;
   if (beat && !isOrdered()) for (const c of cells) if (Math.random() < 0.1) c.p = pick();
   const N = ordered.length;
-  const wob = cw * 1.2 * e * (0.1 + A.mid * 0.9), pulse = 1 + e * (A.low * 0.3 + A.beat * 0.25);
+  const wob = cw * 1.2 * e * (0.1 + A.mid * 0.9), pulse = 1;
   const k = 1 - Math.pow(0.02, dt), kg = 1 - Math.pow(0.05, dt); // glide into place; grow a touch slower
   let gone = false;
   for (const c of cells) {
@@ -739,7 +739,7 @@ function stepType(dt, t, beat) {
 // ---------- composite + legibility ----------
 function composite() {
   let src = scene;
-  const z = (1 + (S.bleed / 100) * 0.8) * (S.mode === "grid" ? 1 : 1 + punch * 0.05 * E()); // Grid stays still: the colour carries the music // bleed: scale everything up from the centre so it runs off the edges
+  const z = 1 + (S.bleed / 100) * 0.8; // bleed: scale everything up from the centre so it runs off the edges (no beat pulse)
   if (S.mode === "mirror") {
     size(mir, W, H);
     mc.drawImage(scene, 0, 0);

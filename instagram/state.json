@@ -227,6 +227,11 @@
       "slot": "catch-up",
       "at": "2026-11-13T11:40:09.408Z",
       "id": "18040967171652376"
+    },
+    "poster:showcase/041-the-fastest-ship-goes-down.jpg": {
+      "slot": "2026-11-13 13:00",
+      "at": "2026-11-13T13:07:55.518Z",
+      "id": "18013429565987394"
     }
   },
   "slots": {
@@ -260,7 +265,8 @@
     "2026-11-11 19:00": "poster:showcase/039-drawing-the-land-line-by-line.jpg",
     "2026-11-12 08:00": "stories:2026-11-12",
     "2026-11-12 13:00": "poster:showcase/040-jazz-you-can-see.jpg",
-    "2026-11-13 08:00": "stories:2026-11-13"
+    "2026-11-13 08:00": "stories:2026-11-13",
+    "2026-11-13 13:00": "poster:showcase/041-the-fastest-ship-goes-down.jpg"
   },
   "start": "2026-11-04",
   "partial": {}

@@ -232,6 +232,11 @@
       "slot": "2026-11-13 13:00",
       "at": "2026-11-13T13:07:55.518Z",
       "id": "18013429565987394"
+    },
+    "poster:showcase/041-built-for-speed-made-for-stillness.jpg": {
+      "slot": "2026-11-13 19:00",
+      "at": "2026-11-13T19:07:56.196Z",
+      "id": "18190236928410080"
     }
   },
   "slots": {
@@ -266,7 +271,8 @@
     "2026-11-12 08:00": "stories:2026-11-12",
     "2026-11-12 13:00": "poster:showcase/040-jazz-you-can-see.jpg",
     "2026-11-13 08:00": "stories:2026-11-13",
-    "2026-11-13 13:00": "poster:showcase/041-the-fastest-ship-goes-down.jpg"
+    "2026-11-13 13:00": "poster:showcase/041-the-fastest-ship-goes-down.jpg",
+    "2026-11-13 19:00": "poster:showcase/041-built-for-speed-made-for-stillness.jpg"
   },
   "start": "2026-11-04",
   "partial": {}

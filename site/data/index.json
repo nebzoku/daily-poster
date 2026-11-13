@@ -1,5 +1,16 @@
 [
   {
+    "date": "2026-11-13",
+    "issue": 42,
+    "colour": "Yellow",
+    "headline": "Nine Hundred Million Galaxies",
+    "bg": "#F1CF43",
+    "thumb": "https://images.metmuseum.org/CRDImages/ph/web-large/DP156450.jpg",
+    "display": "Unbounded",
+    "text": "Geist Mono",
+    "css": "https://fonts.googleapis.com/css2?family=Unbounded&family=Geist+Mono&display=swap"
+  },
+  {
     "date": "2026-11-12",
     "issue": 41,
     "colour": "Lime",

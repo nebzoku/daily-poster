@@ -1,0 +1,291 @@
+{
+  "date": "2026-11-13",
+  "issue": 42,
+  "generatedAt": "2026-11-13T05:08:39.489Z",
+  "colour": {
+    "name": "Yellow",
+    "yesterday": "Lime",
+    "tomorrow": "Orange"
+  },
+  "story": {
+    "title": "European survey reveals 900m galaxies – and possibly secrets of ‘dark universe’",
+    "summary": "Europe's Euclid space telescope mission has released its first major batch of data, revealing more than 900 million galaxies as part of the largest 3D map of the universe ever attempted. The survey also turned up about 15,000 possible cases of gravitational lensing, which could help scientists study the dark universe.",
+    "source": "The Guardian",
+    "url": "https://www.theguardian.com/science/2026/nov/12/european-euclid-mission-reveals-900m-galaxies-secrets-dark-universe",
+    "published": "2026-11-12T11:08:54.000Z",
+    "theme": "space and astronomy"
+  },
+  "headlines": [
+    "Nine Hundred Million Galaxies",
+    "Mapping the Dark Between",
+    "The Universe, Bent by Gravity"
+  ],
+  "sublines": [
+    "Europe's Euclid mission releases its first major data set, charting the largest 3D map of the cosmos yet.",
+    "About 15,000 possible cases of gravitational lensing could help reveal the secrets of the dark universe.",
+    "A European space telescope has catalogued more than 900 million galaxies in its first big survey release."
+  ],
+  "palette": {
+    "name": "Vivid",
+    "colours": [
+      "#F1CF43",
+      "#F1E5B8",
+      "#757265",
+      "#261F01"
+    ]
+  },
+  "always": [
+    "#000000",
+    "#FFFFFF"
+  ],
+  "type": {
+    "id": "unbounded",
+    "display": "Unbounded",
+    "text": "Geist Mono",
+    "reason": "Wide, rounded Unbounded feels like an expanding cosmos, while Geist Mono adds the precision of survey data.",
+    "css": "https://fonts.googleapis.com/css2?family=Unbounded&family=Geist+Mono&display=swap",
+    "displayUrl": "https://fonts.google.com/specimen/Unbounded",
+    "textUrl": "https://fonts.google.com/specimen/Geist+Mono"
+  },
+  "grid": {
+    "format": "A-size",
+    "size": [
+      1080,
+      1528
+    ],
+    "columns": 8,
+    "rows": 8,
+    "margin": 16,
+    "gutter": 0,
+    "column": 131,
+    "row": 187,
+    "unit": "px"
+  },
+  "images": [
+    {
+      "id": "met:283255",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "A Section of the Constellation Cygnus (August 13, 1885), 1885",
+      "credit": "Paul Henry",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/283255",
+      "page": "https://www.metmuseum.org/art/collection/search/283255",
+      "alt": "A Section of the Constellation Cygnus (August 13, 1885)",
+      "thumb": "https://images.metmuseum.org/CRDImages/ph/web-large/DP156450.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/ph/original/DP156450.jpg",
+      "local": "media/2026-11-13/image-01-2160.jpg"
+    },
+    {
+      "id": "unsplash:KCEwOduK8ck",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "mountain photography",
+      "credit": "David Billings",
+      "creditUrl": "https://unsplash.com/@dav_billings?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/mountain-photography-KCEwOduK8ck?utm_source=daily_poster&utm_medium=referral",
+      "alt": "mountain photography",
+      "thumb": "https://images.unsplash.com/photo-1568405336404-1fefdca58699?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8bWlsa3klMjB3YXklMjBkZXNlcnR8ZW58MXx8fHwxNzk0NTQ2NTE5fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1568405336404-1fefdca58699?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8bWlsa3klMjB3YXklMjBkZXNlcnR8ZW58MXx8fHwxNzk0NTQ2NTE5fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:3Jb30-KZ1m8",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "A crescent moon and bright stars above a dark mountain silhouette at twilight",
+      "credit": "Rafael Peier",
+      "creditUrl": "https://unsplash.com/@rafaelpeier?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/crescent-moon-over-dark-mountain-silhouette-3Jb30-KZ1m8?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A crescent moon and bright stars above a dark mountain silhouette at twilight",
+      "thumb": "https://images.unsplash.com/photo-1789677802281-0baef8d9db4b?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8Z29sZGVuJTIwc3RhcnJ5JTIwc2t5fGVufDF8fHx8MTc5NDU0NjUxOXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1789677802281-0baef8d9db4b?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8Z29sZGVuJTIwc3RhcnJ5JTIwc2t5fGVufDF8fHx8MTc5NDU0NjUxOXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:358366",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "The Celestial Map- Northern Hemisphere, 1515",
+      "credit": "Albrecht Dürer",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/358366",
+      "page": "https://www.metmuseum.org/art/collection/search/358366",
+      "alt": "The Celestial Map- Northern Hemisphere",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP102235.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP102235.jpg",
+      "local": "media/2026-11-13/image-04-2160.jpg"
+    },
+    {
+      "id": "unsplash:WYkl8rqaVUQ",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "telescope pointed at helicopter on mid air",
+      "credit": "Jaredd Craig",
+      "creditUrl": "https://unsplash.com/@jaredd?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/telescope-pointed-at-helicopter-on-mid-air-WYkl8rqaVUQ?utm_source=daily_poster&utm_medium=referral",
+      "alt": "telescope pointed at helicopter on mid air",
+      "thumb": "https://images.unsplash.com/photo-1532417768914-d26087f20e75?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8eWVsbG93JTIwbGlnaHQlMjB0ZWxlc2NvcGV8ZW58MXx8fHwxNzk0NTQ2NTE5fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1532417768914-d26087f20e75?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8eWVsbG93JTIwbGlnaHQlMjB0ZWxlc2NvcGV8ZW58MXx8fHwxNzk0NTQ2NTE5fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:923639",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Astrolabe, 1462",
+      "credit": "Regiomontanus",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/923639",
+      "page": "https://www.metmuseum.org/art/collection/search/923639",
+      "alt": "Astrolabe",
+      "thumb": "https://images.metmuseum.org/CRDImages/cl/web-large/DP-41678-001.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/cl/original/DP-41678-001.jpg",
+      "local": "media/2026-11-13/image-06-2160.jpg"
+    },
+    {
+      "id": "unsplash:DHgn8v93MnE",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a blurry image of a yellow object in the dark",
+      "credit": "Veronica Karoli",
+      "creditUrl": "https://unsplash.com/@12131e?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-blurry-image-of-a-yellow-object-in-the-dark-DHgn8v93MnE?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a blurry image of a yellow object in the dark",
+      "thumb": "https://images.unsplash.com/photo-1707568774879-49bcd6421a00?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8eWVsbG93JTIwbGlnaHQlMjB0ZWxlc2NvcGV8ZW58MXx8fHwxNzk0NTQ2NTE5fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1707568774879-49bcd6421a00?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8eWVsbG93JTIwbGlnaHQlMjB0ZWxlc2NvcGV8ZW58MXx8fHwxNzk0NTQ2NTE5fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:941604",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Le telescope de la place de la Bastille, ca. 1900",
+      "credit": "Louis Vert",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/941604",
+      "page": "https://www.metmuseum.org/art/collection/search/941604",
+      "alt": "Le telescope de la place de la Bastille",
+      "thumb": "https://images.metmuseum.org/CRDImages/ph/web-large/DP-45617-020.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/ph/original/DP-45617-020.jpg",
+      "local": "media/2026-11-13/image-08-2160.jpg"
+    },
+    {
+      "id": "unsplash:srRewZ2m4vE",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a telescope sitting on top of a metal stand",
+      "credit": "Michael Surazhsky",
+      "creditUrl": "https://unsplash.com/@michael_surazhsky?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-telescope-sitting-on-top-of-a-metal-stand-srRewZ2m4vE?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a telescope sitting on top of a metal stand",
+      "thumb": "https://images.unsplash.com/photo-1639731458504-2a37ec687965?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8eWVsbG93JTIwbGlnaHQlMjB0ZWxlc2NvcGV8ZW58MXx8fHwxNzk0NTQ2NTE5fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1639731458504-2a37ec687965?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8eWVsbG93JTIwbGlnaHQlMjB0ZWxlc2NvcGV8ZW58MXx8fHwxNzk0NTQ2NTE5fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:358367",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "The Celestial Globe-Southern Hemisphere, 1515",
+      "credit": "Albrecht Dürer",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/358367",
+      "page": "https://www.metmuseum.org/art/collection/search/358367",
+      "alt": "The Celestial Globe-Southern Hemisphere",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP820482.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP820482.jpg",
+      "local": "media/2026-11-13/image-10-2160.jpg"
+    }
+  ],
+  "textures": [
+    {
+      "id": "unsplash:Em96eDRJPD8",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "gold metallic foil texture background",
+      "credit": "Katie Harp",
+      "creditUrl": "https://unsplash.com/@kharp?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/gold-metallic-foil-texture-background-Em96eDRJPD8?utm_source=daily_poster&utm_medium=referral",
+      "alt": "gold metallic foil texture background",
+      "thumb": "https://images.unsplash.com/photo-1545873509-33e944ca7655?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8YnJhc3MlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDU0NjUyMHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1545873509-33e944ca7655?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8YnJhc3MlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDU0NjUyMHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:NWZRr1mrn1g",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "brown leafless tree on brown rocky mountain",
+      "credit": "Gabriella Clare Marino",
+      "creditUrl": "https://unsplash.com/@gabiontheroad?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/brown-leafless-tree-on-brown-rocky-mountain-NWZRr1mrn1g?utm_source=daily_poster&utm_medium=referral",
+      "alt": "brown leafless tree on brown rocky mountain",
+      "thumb": "https://images.unsplash.com/photo-1601151528581-ec9a1c024ff5?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8c3BlY2tsZWQlMjBzdG9uZSUyMHRleHR1cmV8ZW58MXx8fHwxNzk0NTQ2NTIwfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1601151528581-ec9a1c024ff5?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8c3BlY2tsZWQlMjBzdG9uZSUyMHRleHR1cmV8ZW58MXx8fHwxNzk0NTQ2NTIwfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:vS3idIiYxX0",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "white textured paper or plaster surface",
+      "credit": "Olga Thelavart",
+      "creditUrl": "https://unsplash.com/@olga_o?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-vS3idIiYxX0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "white textured paper or plaster surface",
+      "thumb": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDU0NjUxOXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDU0NjUxOXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:V6KKk5LCfI0",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "brown wooden floor with white textile",
+      "credit": "Tim Mossholder",
+      "creditUrl": "https://unsplash.com/@timmossholder?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/brown-wooden-floor-with-white-textile-V6KKk5LCfI0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "brown wooden floor with white textile",
+      "thumb": "https://images.unsplash.com/photo-1589874497556-65019ae69438?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8YnJhc3MlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDU0NjUyMHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1589874497556-65019ae69438?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8YnJhc3MlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDU0NjUyMHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    }
+  ],
+  "objects": [
+    {
+      "name": "telescope",
+      "material": "brushed aluminium",
+      "image": "media/2026-11-13/object-1.png",
+      "thumb": "media/2026-11-13/object-1-thumb.png",
+      "model": {
+        "title": "Telescope",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-fd6863dd22874707b99b00af620fdfcc",
+        "licence": "CC Attribution",
+        "creator": "sieminskaola",
+        "creatorUrl": "https://sketchfab.com/sieminskaola"
+      },
+      "texture": {
+        "title": "Blue Metal Plate",
+        "url": "https://polyhaven.com/a/blue_metal_plate"
+      }
+    },
+    {
+      "name": "magnifying glass",
+      "material": "polished brass",
+      "image": "media/2026-11-13/object-2.png",
+      "thumb": "media/2026-11-13/object-2-thumb.png",
+      "model": {
+        "title": "Styled Magnifying Glass",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-2d456cf49dd248739f3fb9616036c239",
+        "licence": "CC Attribution",
+        "creator": "Incg5764",
+        "creatorUrl": "https://sketchfab.com/incg5764"
+      },
+      "texture": null
+    },
+    {
+      "name": "satellite",
+      "material": "gold foil and steel",
+      "image": "media/2026-11-13/object-3.png",
+      "thumb": "media/2026-11-13/object-3-thumb.png",
+      "model": {
+        "title": "Satellite",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-f8bd72434281441db77e85ce830f89c1",
+        "licence": "CC Attribution",
+        "creator": "Phobos",
+        "creatorUrl": "https://sketchfab.com/1majaxed"
+      },
+      "texture": null
+    }
+  ]
+}

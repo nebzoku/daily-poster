@@ -1,0 +1,283 @@
+{
+  "date": "2026-11-14",
+  "issue": 43,
+  "generatedAt": "2026-11-14T05:08:18.824Z",
+  "colour": {
+    "name": "Orange",
+    "yesterday": "Yellow",
+    "tomorrow": "Red"
+  },
+  "story": {
+    "title": "What science can tell us about the art of conversation - video",
+    "summary": "Scientists at Dartmouth College in New Hampshire say they have found a telltale sign of an enjoyable conversation: a healthy dose of pink noise. The concept is usually associated with natural sounds, and the finding suggests a hidden rhythm beneath a satisfying chat.",
+    "source": "The Guardian",
+    "url": "https://www.theguardian.com/science/video/2026/nov/13/what-science-can-tell-us-about-the-art-of-conversation-video",
+    "published": "2026-11-13T13:08:49.000Z",
+    "theme": "science of conversation"
+  },
+  "headlines": [
+    "The Secret Rhythm of Talk",
+    "Pink Noise Hides in Conversation",
+    "Between Two Voices, a Hum"
+  ],
+  "sublines": [
+    "Dartmouth College scientists say a healthy dose of pink noise is the telltale sign of an enjoyable conversation.",
+    "Pink noise, a balance of fast and slow fluctuation, is usually linked with natural sounds and rhythms.",
+    "A new study from New Hampshire asks what makes a chat mutually satisfying, and finds a pattern."
+  ],
+  "palette": {
+    "name": "Vivid",
+    "colours": [
+      "#F1592A",
+      "#FFDCD1",
+      "#7D6E69",
+      "#3A1004"
+    ]
+  },
+  "always": [
+    "#000000",
+    "#FFFFFF"
+  ],
+  "type": {
+    "id": "bricolage",
+    "display": "Bricolage Grotesque",
+    "text": "Geist",
+    "reason": "Bricolage Grotesque has quirky, uneven, human letterforms that feel like voices overlapping, while Geist keeps the science clear.",
+    "css": "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque&family=Geist&display=swap",
+    "displayUrl": "https://fonts.google.com/specimen/Bricolage+Grotesque",
+    "textUrl": "https://fonts.google.com/specimen/Geist"
+  },
+  "grid": {
+    "format": "A-size",
+    "size": [
+      1080,
+      1528
+    ],
+    "columns": 8,
+    "rows": 8,
+    "margin": 16,
+    "gutter": 0,
+    "column": 131,
+    "row": 187,
+    "unit": "px"
+  },
+  "images": [
+    {
+      "id": "met:416826",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Gallant Conversation (Conversation Galante), 1743",
+      "credit": "Jacques Philippe Le Bas",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/416826",
+      "page": "https://www.metmuseum.org/art/collection/search/416826",
+      "alt": "Gallant Conversation (Conversation Galante)",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP831908.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP831908.jpg",
+      "local": "media/2026-11-14/image-01-2160.jpg"
+    },
+    {
+      "id": "unsplash:-TfwQjOWEp8",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "A colorful sound wave on a black background",
+      "credit": "Jumping Jax",
+      "creditUrl": "https://unsplash.com/@jumpingjax?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-colorful-sound-wave-on-a-black-background--TfwQjOWEp8?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A colorful sound wave on a black background",
+      "thumb": "https://images.unsplash.com/photo-1724185773486-0b39642e607e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8b3JhbmdlJTIwc291bmQlMjB3YXZlc3xlbnwxfHx8fDE3OTQ2MzI4OTl8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1724185773486-0b39642e607e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8b3JhbmdlJTIwc291bmQlMjB3YXZlc3xlbnwxfHx8fDE3OTQ2MzI4OTl8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:436529",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "L'Arlésienne: Madame Joseph-Michel Ginoux (Marie Julien, 1848–1911), 1888–89",
+      "credit": "Vincent van Gogh",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/436529",
+      "page": "https://www.metmuseum.org/art/collection/search/436529",
+      "alt": "L'Arlésienne: Madame Joseph-Michel Ginoux (Marie Julien, 1848–1911)",
+      "thumb": "https://images.metmuseum.org/CRDImages/ep/web-large/DT1396.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/ep/original/DT1396.jpg",
+      "local": "media/2026-11-14/image-03-2160.jpg"
+    },
+    {
+      "id": "unsplash:g0XhOu5-zGw",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "an orange and purple background with lines",
+      "credit": "Ruido 98",
+      "creditUrl": "https://unsplash.com/@ruido98?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/an-orange-and-purple-background-with-lines-g0XhOu5-zGw?utm_source=daily_poster&utm_medium=referral",
+      "alt": "an orange and purple background with lines",
+      "thumb": "https://images.unsplash.com/photo-1687618084591-8523977ae737?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8b3JhbmdlJTIwc291bmQlMjB3YXZlc3xlbnwxfHx8fDE3OTQ2MzI4OTl8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1687618084591-8523977ae737?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8b3JhbmdlJTIwc291bmQlMjB3YXZlc3xlbnwxfHx8fDE3OTQ2MzI4OTl8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:12275",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Two Women in a Café, late 1880s",
+      "credit": "John Singer Sargent",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/12275",
+      "page": "https://www.metmuseum.org/art/collection/search/12275",
+      "alt": "Two Women in a Café",
+      "thumb": "https://images.metmuseum.org/CRDImages/ad/web-large/ap50.130.118.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/ad/original/ap50.130.118.jpg",
+      "local": "media/2026-11-14/image-05-2160.jpg"
+    },
+    {
+      "id": "unsplash:AVnqBjUdteo",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a red and white wave on a black background",
+      "credit": "Milad Fakurian",
+      "creditUrl": "https://unsplash.com/@fakurian?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-red-and-white-wave-on-a-black-background-AVnqBjUdteo?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a red and white wave on a black background",
+      "thumb": "https://images.unsplash.com/photo-1698430484131-efc9f5ccba1a?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8b3JhbmdlJTIwc291bmQlMjB3YXZlc3xlbnwxfHx8fDE3OTQ2MzI4OTl8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1698430484131-efc9f5ccba1a?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8b3JhbmdlJTIwc291bmQlMjB3YXZlc3xlbnwxfHx8fDE3OTQ2MzI4OTl8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:N0-ApHgkM60",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "silhouette of wooden chair on beach during sunset",
+      "credit": "Frames For Your Heart",
+      "creditUrl": "https://unsplash.com/@framesforyourheart?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/silhouette-of-wooden-chair-on-beach-during-sunset-N0-ApHgkM60?utm_source=daily_poster&utm_medium=referral",
+      "alt": "silhouette of wooden chair on beach during sunset",
+      "thumb": "https://images.unsplash.com/photo-1596213606263-7f1abf52c6fb?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8dHdvJTIwY2hhaXJzJTIwc3Vuc2V0fGVufDF8fHx8MTc5NDYzMjg5OXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1596213606263-7f1abf52c6fb?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8dHdvJTIwY2hhaXJzJTIwc3Vuc2V0fGVufDF8fHx8MTc5NDYzMjg5OXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:365955",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Soupe à trois sous, 1859",
+      "credit": "James McNeill Whistler",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/365955",
+      "page": "https://www.metmuseum.org/art/collection/search/365955",
+      "alt": "Soupe à trois sous",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP813317.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP813317.jpg",
+      "local": "media/2026-11-14/image-08-2160.jpg"
+    },
+    {
+      "id": "unsplash:1HcK5xQoUKQ",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "black laptop computer on brown wooden table",
+      "credit": "Emilio Garcia",
+      "creditUrl": "https://unsplash.com/@piensaenpixel?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/black-laptop-computer-on-brown-wooden-table-1HcK5xQoUKQ?utm_source=daily_poster&utm_medium=referral",
+      "alt": "black laptop computer on brown wooden table",
+      "thumb": "https://images.unsplash.com/photo-1621177555452-bedbe4c28879?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8YW1iZXIlMjBsYW1wJTIwZ2xvd3xlbnwxfHx8fDE3OTQ2MzI4OTl8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1621177555452-bedbe4c28879?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8YW1iZXIlMjBsYW1wJTIwZ2xvd3xlbnwxfHx8fDE3OTQ2MzI4OTl8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:GsZLXA4JPcM",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "orange digital wallpaper",
+      "credit": "Ricardo Gomez Angel",
+      "creditUrl": "https://unsplash.com/@rgaleriacom?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/orange-digital-wallpaper-GsZLXA4JPcM?utm_source=daily_poster&utm_medium=referral",
+      "alt": "orange digital wallpaper",
+      "thumb": "https://images.unsplash.com/photo-1489648022186-8f49310909a0?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8b3JhbmdlJTIwc291bmQlMjB3YXZlc3xlbnwxfHx8fDE3OTQ2MzI4OTl8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1489648022186-8f49310909a0?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8b3JhbmdlJTIwc291bmQlMjB3YXZlc3xlbnwxfHx8fDE3OTQ2MzI4OTl8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    }
+  ],
+  "textures": [
+    {
+      "id": "unsplash:vS3idIiYxX0",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "white textured paper or plaster surface",
+      "credit": "Olga Thelavart",
+      "creditUrl": "https://unsplash.com/@olga_o?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-vS3idIiYxX0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "white textured paper or plaster surface",
+      "thumb": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDYzMjg5OXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDYzMjg5OXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:MS9Tnh3if1o",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "plain white woven textile texture",
+      "credit": "Kiwihug",
+      "creditUrl": "https://unsplash.com/@kiwihug?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/plain-white-woven-textile-texture-MS9Tnh3if1o?utm_source=daily_poster&utm_medium=referral",
+      "alt": "plain white woven textile texture",
+      "thumb": "https://images.unsplash.com/photo-1615799998603-7c6270a45196?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8bGluZW4lMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDYzMjg5OXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1615799998603-7c6270a45196?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8bGluZW4lMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDYzMjg5OXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:xTaOPMa6wAE",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "beige linen fabric texture background",
+      "credit": "Annie Spratt",
+      "creditUrl": "https://unsplash.com/@anniespratt?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/beige-linen-fabric-texture-background-xTaOPMa6wAE?utm_source=daily_poster&utm_medium=referral",
+      "alt": "beige linen fabric texture background",
+      "thumb": "https://images.unsplash.com/photo-1528458909336-e7a0adfed0a5?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8bGluZW4lMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDYzMjg5OXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1528458909336-e7a0adfed0a5?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8bGluZW4lMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDYzMjg5OXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:k4Lt0CjUnb0",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "white textured paper or plaster surface",
+      "credit": "João Vítor Duarte",
+      "creditUrl": "https://unsplash.com/@joaovtrduarte?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-k4Lt0CjUnb0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "white textured paper or plaster surface",
+      "thumb": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDYzMjg5OXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDYzMjg5OXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    }
+  ],
+  "objects": [
+    {
+      "name": "microphone",
+      "material": "brushed steel",
+      "image": "media/2026-11-14/object-1.png",
+      "thumb": "media/2026-11-14/object-1-thumb.png",
+      "model": {
+        "title": "Vintage Microphone",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-a5986b39102f47c5b32b212365dd7276",
+        "licence": "CC Attribution",
+        "creator": "Klasy",
+        "creatorUrl": "https://sketchfab.com/Klasy"
+      },
+      "texture": null
+    },
+    {
+      "name": "tuning fork",
+      "material": "polished steel",
+      "image": "media/2026-11-14/object-2.png",
+      "thumb": "media/2026-11-14/object-2-thumb.png",
+      "model": null,
+      "texture": {
+        "title": "Blue Metal Plate",
+        "url": "https://polyhaven.com/a/blue_metal_plate"
+      }
+    },
+    {
+      "name": "bell",
+      "material": "polished brass",
+      "image": "media/2026-11-14/object-3.png",
+      "thumb": "media/2026-11-14/object-3-thumb.png",
+      "model": {
+        "title": "Bell",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-897bc8230df54a1cad474492771880d8",
+        "licence": "CC Attribution",
+        "creator": "jQueary",
+        "creatorUrl": "https://sketchfab.com/jqueary1991"
+      },
+      "texture": null
+    }
+  ]
+}

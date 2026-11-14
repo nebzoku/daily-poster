@@ -1,5 +1,16 @@
 [
   {
+    "date": "2026-11-14",
+    "issue": 43,
+    "colour": "Orange",
+    "headline": "The Secret Rhythm of Talk",
+    "bg": "#F1592A",
+    "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP831908.jpg",
+    "display": "Bricolage Grotesque",
+    "text": "Geist",
+    "css": "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque&family=Geist&display=swap"
+  },
+  {
     "date": "2026-11-13",
     "issue": 42,
     "colour": "Yellow",

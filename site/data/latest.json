@@ -1,37 +1,37 @@
 {
-  "date": "2026-11-14",
-  "issue": 43,
-  "generatedAt": "2026-11-14T05:08:18.824Z",
+  "date": "2026-11-15",
+  "issue": 44,
+  "generatedAt": "2026-11-15T05:07:52.276Z",
   "colour": {
-    "name": "Orange",
-    "yesterday": "Yellow",
-    "tomorrow": "Red"
+    "name": "Red",
+    "yesterday": "Orange",
+    "tomorrow": "Rose"
   },
   "story": {
-    "title": "What science can tell us about the art of conversation - video",
-    "summary": "Scientists at Dartmouth College in New Hampshire say they have found a telltale sign of an enjoyable conversation: a healthy dose of pink noise. The concept is usually associated with natural sounds, and the finding suggests a hidden rhythm beneath a satisfying chat.",
+    "title": "Bristol aims to become UK’s first ‘wetland city’ and reduce flood risk",
+    "summary": "A charity plans a five-year project to turn Bristol into the UK's first \"wetland city\". It will build wetlands that form wildlife corridors, lower flood risk and give residents more access to green and blue space.",
     "source": "The Guardian",
-    "url": "https://www.theguardian.com/science/video/2026/nov/13/what-science-can-tell-us-about-the-art-of-conversation-video",
-    "published": "2026-11-13T13:08:49.000Z",
-    "theme": "science of conversation"
+    "url": "https://www.theguardian.com/environment/2026/nov/14/bristol-first-uk-wetland-city-flood",
+    "published": "2026-11-14T07:00:37.000Z",
+    "theme": "urban wetlands and nature"
   },
   "headlines": [
-    "The Secret Rhythm of Talk",
-    "Pink Noise Hides in Conversation",
-    "Between Two Voices, a Hum"
+    "Let the Water Back In",
+    "Wild Corridors Through the Concrete",
+    "A City Learns to Hold Water"
   ],
   "sublines": [
-    "Dartmouth College scientists say a healthy dose of pink noise is the telltale sign of an enjoyable conversation.",
-    "Pink noise, a balance of fast and slow fluctuation, is usually linked with natural sounds and rhythms.",
-    "A new study from New Hampshire asks what makes a chat mutually satisfying, and finds a pattern."
+    "Bristol could become the UK's first wetland city under a five-year charity project to reshape its edges.",
+    "New wetlands will link into wildlife corridors, soaking up water to reduce flood risk across the city.",
+    "The plan builds ponds, marsh and reedbeds so people and wildlife gain more access to green and blue space."
   ],
   "palette": {
     "name": "Vivid",
     "colours": [
-      "#F1592A",
-      "#FFDCD1",
-      "#7D6E69",
-      "#3A1004"
+      "#F33446",
+      "#FFDBD9",
+      "#7D6D6C",
+      "#3A0E0F"
     ]
   },
   "always": [
@@ -39,13 +39,13 @@
     "#FFFFFF"
   ],
   "type": {
-    "id": "bricolage",
-    "display": "Bricolage Grotesque",
-    "text": "Geist",
-    "reason": "Bricolage Grotesque has quirky, uneven, human letterforms that feel like voices overlapping, while Geist keeps the science clear.",
-    "css": "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque&family=Geist&display=swap",
-    "displayUrl": "https://fonts.google.com/specimen/Bricolage+Grotesque",
-    "textUrl": "https://fonts.google.com/specimen/Geist"
+    "id": "young-serif",
+    "display": "Young Serif",
+    "text": "Instrument Sans",
+    "reason": "Young Serif's soft, rounded warmth suits a hopeful story about nature returning to a city, while Instrument Sans keeps the facts clear.",
+    "css": "https://fonts.googleapis.com/css2?family=Young+Serif&family=Instrument+Sans&display=swap",
+    "displayUrl": "https://fonts.google.com/specimen/Young+Serif",
+    "textUrl": "https://fonts.google.com/specimen/Instrument+Sans"
   },
   "grid": {
     "format": "A-size",
@@ -63,128 +63,128 @@
   },
   "images": [
     {
-      "id": "met:416826",
+      "id": "unsplash:KhM38swQCMs",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a large body of water surrounded by tall grass",
+      "credit": "Axel Josefsson",
+      "creditUrl": "https://unsplash.com/@aejosefsson?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-large-body-of-water-surrounded-by-tall-grass-KhM38swQCMs?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a large body of water surrounded by tall grass",
+      "thumb": "https://images.unsplash.com/photo-1631378726254-f30188042bdc?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8YXV0dW1uJTIwd2V0bGFuZHxlbnwxfHx8fDE3OTQ3MTkyNzJ8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1631378726254-f30188042bdc?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8YXV0dW1uJTIwd2V0bGFuZHxlbnwxfHx8fDE3OTQ3MTkyNzJ8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:287967",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Gallant Conversation (Conversation Galante), 1743",
-      "credit": "Jacques Philippe Le Bas",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/416826",
-      "page": "https://www.metmuseum.org/art/collection/search/416826",
-      "alt": "Gallant Conversation (Conversation Galante)",
-      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP831908.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP831908.jpg",
-      "local": "media/2026-11-14/image-01-2160.jpg"
+      "title": "The Heron, 1853–56",
+      "credit": "John Dillwyn Llewelyn",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/287967",
+      "page": "https://www.metmuseum.org/art/collection/search/287967",
+      "alt": "The Heron",
+      "thumb": "https://images.metmuseum.org/CRDImages/ph/web-large/DP143546.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/ph/original/DP143546.jpg",
+      "local": "media/2026-11-15/image-02-2160.jpg"
     },
     {
-      "id": "unsplash:-TfwQjOWEp8",
+      "id": "unsplash:NZfCj5OnoKE",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "A colorful sound wave on a black background",
-      "credit": "Jumping Jax",
-      "creditUrl": "https://unsplash.com/@jumpingjax?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/a-colorful-sound-wave-on-a-black-background--TfwQjOWEp8?utm_source=daily_poster&utm_medium=referral",
-      "alt": "A colorful sound wave on a black background",
-      "thumb": "https://images.unsplash.com/photo-1724185773486-0b39642e607e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8b3JhbmdlJTIwc291bmQlMjB3YXZlc3xlbnwxfHx8fDE3OTQ2MzI4OTl8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1724185773486-0b39642e607e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8b3JhbmdlJTIwc291bmQlMjB3YXZlc3xlbnwxfHx8fDE3OTQ2MzI4OTl8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "silhouette photo of body of water under orange clouds",
+      "credit": "joe ting",
+      "creditUrl": "https://unsplash.com/@joeting?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/silhouette-photo-of-body-of-water-under-orange-clouds-NZfCj5OnoKE?utm_source=daily_poster&utm_medium=referral",
+      "alt": "silhouette photo of body of water under orange clouds",
+      "thumb": "https://images.unsplash.com/photo-1501898047706-55903296cd09?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8cmVlZHMlMjBzdW5zZXR8ZW58MXx8fHwxNzk0NzE5MjcyfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1501898047706-55903296cd09?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8cmVlZHMlMjBzdW5zZXR8ZW58MXx8fHwxNzk0NzE5MjcyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "met:436529",
+      "id": "met:453397",
       "source": "The Met",
       "licence": "CC0",
-      "title": "L'Arlésienne: Madame Joseph-Michel Ginoux (Marie Julien, 1848–1911), 1888–89",
-      "credit": "Vincent van Gogh",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/436529",
-      "page": "https://www.metmuseum.org/art/collection/search/436529",
-      "alt": "L'Arlésienne: Madame Joseph-Michel Ginoux (Marie Julien, 1848–1911)",
-      "thumb": "https://images.metmuseum.org/CRDImages/ep/web-large/DT1396.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/ep/original/DT1396.jpg",
-      "local": "media/2026-11-14/image-03-2160.jpg"
+      "title": "A Heron, late 18th century",
+      "credit": "Unknown artist",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/453397",
+      "page": "https://www.metmuseum.org/art/collection/search/453397",
+      "alt": "A Heron",
+      "thumb": "https://images.metmuseum.org/CRDImages/is/web-large/sf1997-303.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/is/original/sf1997-303.jpg",
+      "local": "media/2026-11-15/image-04-2160.jpg"
     },
     {
-      "id": "unsplash:g0XhOu5-zGw",
+      "id": "unsplash:dSHUhJ-ksMg",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "an orange and purple background with lines",
-      "credit": "Ruido 98",
-      "creditUrl": "https://unsplash.com/@ruido98?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/an-orange-and-purple-background-with-lines-g0XhOu5-zGw?utm_source=daily_poster&utm_medium=referral",
-      "alt": "an orange and purple background with lines",
-      "thumb": "https://images.unsplash.com/photo-1687618084591-8523977ae737?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8b3JhbmdlJTIwc291bmQlMjB3YXZlc3xlbnwxfHx8fDE3OTQ2MzI4OTl8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1687618084591-8523977ae737?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8b3JhbmdlJTIwc291bmQlMjB3YXZlc3xlbnwxfHx8fDE3OTQ2MzI4OTl8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "body of water during golden hour",
+      "credit": "Sam 🐷",
+      "creditUrl": "https://unsplash.com/@shambam?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/body-of-water-during-golden-hour-dSHUhJ-ksMg?utm_source=daily_poster&utm_medium=referral",
+      "alt": "body of water during golden hour",
+      "thumb": "https://images.unsplash.com/photo-1569879925512-85ee9bf5c538?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8cmVlZHMlMjBzdW5zZXR8ZW58MXx8fHwxNzk0NzE5MjcyfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1569879925512-85ee9bf5c538?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8cmVlZHMlMjBzdW5zZXR8ZW58MXx8fHwxNzk0NzE5MjcyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "met:12275",
+      "id": "met:11975",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Two Women in a Café, late 1880s",
-      "credit": "John Singer Sargent",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/12275",
-      "page": "https://www.metmuseum.org/art/collection/search/12275",
-      "alt": "Two Women in a Café",
-      "thumb": "https://images.metmuseum.org/CRDImages/ad/web-large/ap50.130.118.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/ad/original/ap50.130.118.jpg",
-      "local": "media/2026-11-14/image-05-2160.jpg"
+      "title": "The Bridge, ca. 1880",
+      "credit": "Albert Pinkham Ryder",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/11975",
+      "page": "https://www.metmuseum.org/art/collection/search/11975",
+      "alt": "The Bridge",
+      "thumb": "https://images.metmuseum.org/CRDImages/ad/web-large/DP-23325-001.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/ad/original/DP-23325-001.jpg",
+      "local": "media/2026-11-15/image-06-2160.jpg"
     },
     {
-      "id": "unsplash:AVnqBjUdteo",
+      "id": "unsplash:jmJ62_Zq1bo",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "a red and white wave on a black background",
-      "credit": "Milad Fakurian",
-      "creditUrl": "https://unsplash.com/@fakurian?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/a-red-and-white-wave-on-a-black-background-AVnqBjUdteo?utm_source=daily_poster&utm_medium=referral",
-      "alt": "a red and white wave on a black background",
-      "thumb": "https://images.unsplash.com/photo-1698430484131-efc9f5ccba1a?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8b3JhbmdlJTIwc291bmQlMjB3YXZlc3xlbnwxfHx8fDE3OTQ2MzI4OTl8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1698430484131-efc9f5ccba1a?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8b3JhbmdlJTIwc291bmQlMjB3YXZlc3xlbnwxfHx8fDE3OTQ2MzI4OTl8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "aerial view of city during night time",
+      "credit": "Martin Fu",
+      "creditUrl": "https://unsplash.com/@fuchlomond?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/aerial-view-of-city-during-night-time-jmJ62_Zq1bo?utm_source=daily_poster&utm_medium=referral",
+      "alt": "aerial view of city during night time",
+      "thumb": "https://images.unsplash.com/photo-1458869612855-bb6009d50368?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cmVlZHMlMjBzdW5zZXR8ZW58MXx8fHwxNzk0NzE5MjcyfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1458869612855-bb6009d50368?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cmVlZHMlMjBzdW5zZXR8ZW58MXx8fHwxNzk0NzE5MjcyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:N0-ApHgkM60",
-      "source": "Unsplash",
-      "licence": "Unsplash License",
-      "title": "silhouette of wooden chair on beach during sunset",
-      "credit": "Frames For Your Heart",
-      "creditUrl": "https://unsplash.com/@framesforyourheart?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/silhouette-of-wooden-chair-on-beach-during-sunset-N0-ApHgkM60?utm_source=daily_poster&utm_medium=referral",
-      "alt": "silhouette of wooden chair on beach during sunset",
-      "thumb": "https://images.unsplash.com/photo-1596213606263-7f1abf52c6fb?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8dHdvJTIwY2hhaXJzJTIwc3Vuc2V0fGVufDF8fHx8MTc5NDYzMjg5OXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1596213606263-7f1abf52c6fb?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8dHdvJTIwY2hhaXJzJTIwc3Vuc2V0fGVufDF8fHx8MTc5NDYzMjg5OXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
-    },
-    {
-      "id": "met:365955",
+      "id": "met:47498",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Soupe à trois sous, 1859",
-      "credit": "James McNeill Whistler",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/365955",
-      "page": "https://www.metmuseum.org/art/collection/search/365955",
-      "alt": "Soupe à trois sous",
-      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP813317.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP813317.jpg",
-      "local": "media/2026-11-14/image-08-2160.jpg"
+      "title": "Heron on Rock, 1650",
+      "credit": "Japan",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/47498",
+      "page": "https://www.metmuseum.org/art/collection/search/47498",
+      "alt": "Heron on Rock",
+      "thumb": "https://images.metmuseum.org/CRDImages/as/web-large/55493.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/as/original/55493.jpg",
+      "local": "media/2026-11-15/image-08-2160.jpg"
     },
     {
-      "id": "unsplash:1HcK5xQoUKQ",
+      "id": "unsplash:rhaS97NhnHg",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "black laptop computer on brown wooden table",
-      "credit": "Emilio Garcia",
-      "creditUrl": "https://unsplash.com/@piensaenpixel?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/black-laptop-computer-on-brown-wooden-table-1HcK5xQoUKQ?utm_source=daily_poster&utm_medium=referral",
-      "alt": "black laptop computer on brown wooden table",
-      "thumb": "https://images.unsplash.com/photo-1621177555452-bedbe4c28879?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8YW1iZXIlMjBsYW1wJTIwZ2xvd3xlbnwxfHx8fDE3OTQ2MzI4OTl8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1621177555452-bedbe4c28879?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8YW1iZXIlMjBsYW1wJTIwZ2xvd3xlbnwxfHx8fDE3OTQ2MzI4OTl8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "brown brick wall",
+      "credit": "Waldemar Brandt",
+      "creditUrl": "https://unsplash.com/@waldemarbrandt67w?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/brown-brick-wall-rhaS97NhnHg?utm_source=daily_poster&utm_medium=referral",
+      "alt": "brown brick wall",
+      "thumb": "https://images.unsplash.com/photo-1547056961-3c25e9140b05?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cmVkJTIwYnJpY2slMjB3YWxsfGVufDF8fHx8MTc5NDcxOTI3Mnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1547056961-3c25e9140b05?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cmVkJTIwYnJpY2slMjB3YWxsfGVufDF8fHx8MTc5NDcxOTI3Mnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:GsZLXA4JPcM",
+      "id": "unsplash:AksmkMQTdik",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "orange digital wallpaper",
-      "credit": "Ricardo Gomez Angel",
-      "creditUrl": "https://unsplash.com/@rgaleriacom?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/orange-digital-wallpaper-GsZLXA4JPcM?utm_source=daily_poster&utm_medium=referral",
-      "alt": "orange digital wallpaper",
-      "thumb": "https://images.unsplash.com/photo-1489648022186-8f49310909a0?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8b3JhbmdlJTIwc291bmQlMjB3YXZlc3xlbnwxfHx8fDE3OTQ2MzI4OTl8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1489648022186-8f49310909a0?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8b3JhbmdlJTIwc291bmQlMjB3YXZlc3xlbnwxfHx8fDE3OTQ2MzI4OTl8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "Low sun over a calm ocean with orange clouds in the sky",
+      "credit": "Martin Franco",
+      "creditUrl": "https://unsplash.com/@martinfranco?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/low-sun-over-calm-ocean-AksmkMQTdik?utm_source=daily_poster&utm_medium=referral",
+      "alt": "Low sun over a calm ocean with orange clouds in the sky",
+      "thumb": "https://images.unsplash.com/photo-1536890274788-51861e124205?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8cmVlZHMlMjBzdW5zZXR8ZW58MXx8fHwxNzk0NzE5MjcyfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1536890274788-51861e124205?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8cmVlZHMlMjBzdW5zZXR8ZW58MXx8fHwxNzk0NzE5MjcyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     }
   ],
   "textures": [
@@ -197,8 +197,8 @@
       "creditUrl": "https://unsplash.com/@olga_o?utm_source=daily_poster&utm_medium=referral",
       "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-vS3idIiYxX0?utm_source=daily_poster&utm_medium=referral",
       "alt": "white textured paper or plaster surface",
-      "thumb": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDYzMjg5OXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDYzMjg5OXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "thumb": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDcxOTI3Mnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDcxOTI3Mnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
       "id": "unsplash:MS9Tnh3if1o",
@@ -209,73 +209,81 @@
       "creditUrl": "https://unsplash.com/@kiwihug?utm_source=daily_poster&utm_medium=referral",
       "page": "https://unsplash.com/photos/plain-white-woven-textile-texture-MS9Tnh3if1o?utm_source=daily_poster&utm_medium=referral",
       "alt": "plain white woven textile texture",
-      "thumb": "https://images.unsplash.com/photo-1615799998603-7c6270a45196?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8bGluZW4lMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDYzMjg5OXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1615799998603-7c6270a45196?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8bGluZW4lMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDYzMjg5OXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "thumb": "https://images.unsplash.com/photo-1615799998603-7c6270a45196?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8bGluZW4lMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDcxOTI3Mnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1615799998603-7c6270a45196?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8bGluZW4lMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDcxOTI3Mnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:xTaOPMa6wAE",
+      "id": "unsplash:KNzY5Zg7iAI",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "beige linen fabric texture background",
-      "credit": "Annie Spratt",
-      "creditUrl": "https://unsplash.com/@anniespratt?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/beige-linen-fabric-texture-background-xTaOPMa6wAE?utm_source=daily_poster&utm_medium=referral",
-      "alt": "beige linen fabric texture background",
-      "thumb": "https://images.unsplash.com/photo-1528458909336-e7a0adfed0a5?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8bGluZW4lMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDYzMjg5OXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1528458909336-e7a0adfed0a5?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8bGluZW4lMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDYzMjg5OXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "white and gray fur textile",
+      "credit": "petr sidorov",
+      "creditUrl": "https://unsplash.com/@m_malkovich?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/white-and-gray-fur-textile-KNzY5Zg7iAI?utm_source=daily_poster&utm_medium=referral",
+      "alt": "white and gray fur textile",
+      "thumb": "https://images.unsplash.com/photo-1628772689123-4d0fa27b0dd6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8d2V0JTIwc3RvbmUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDcxOTI3Mnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1628772689123-4d0fa27b0dd6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8d2V0JTIwc3RvbmUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDcxOTI3Mnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:k4Lt0CjUnb0",
-      "source": "Unsplash",
-      "licence": "Unsplash License",
-      "title": "white textured paper or plaster surface",
-      "credit": "João Vítor Duarte",
-      "creditUrl": "https://unsplash.com/@joaovtrduarte?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-k4Lt0CjUnb0?utm_source=daily_poster&utm_medium=referral",
-      "alt": "white textured paper or plaster surface",
-      "thumb": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDYzMjg5OXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDYzMjg5OXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "id": "polyhaven:brown_mud_02",
+      "source": "Poly Haven",
+      "licence": "CC0",
+      "title": "Brown Mud 02",
+      "credit": "Rob Tuytel",
+      "creditUrl": "https://polyhaven.com/a/brown_mud_02",
+      "page": "https://polyhaven.com/a/brown_mud_02",
+      "alt": "Brown Mud 02 texture",
+      "thumb": "https://cdn.polyhaven.com/asset_img/thumbs/brown_mud_02.png?width=480&height=480",
+      "src": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/brown_mud_02/brown_mud_02_diff_2k.jpg",
+      "local": "media/2026-11-15/texture-04-2160.jpg"
     }
   ],
   "objects": [
     {
-      "name": "microphone",
-      "material": "brushed steel",
-      "image": "media/2026-11-14/object-1.png",
-      "thumb": "media/2026-11-14/object-1-thumb.png",
+      "name": "storm drain grate",
+      "material": "cast iron, weathered",
+      "image": "media/2026-11-15/object-1.png",
+      "thumb": "media/2026-11-15/object-1-thumb.png",
       "model": {
-        "title": "Vintage Microphone",
+        "title": "Old Drain Grate",
         "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-a5986b39102f47c5b32b212365dd7276",
+        "url": "https://sketchfab.com/3d-models/none-6c95d5646f4e4e5a8114c0b38841d6fd",
         "licence": "CC Attribution",
-        "creator": "Klasy",
-        "creatorUrl": "https://sketchfab.com/Klasy"
+        "creator": "Zhuier",
+        "creatorUrl": "https://sketchfab.com/Zhuier"
       },
       "texture": null
     },
     {
-      "name": "tuning fork",
-      "material": "polished steel",
-      "image": "media/2026-11-14/object-2.png",
-      "thumb": "media/2026-11-14/object-2-thumb.png",
-      "model": null,
+      "name": "boulder",
+      "material": "mossy weathered stone",
+      "image": "media/2026-11-15/object-2.png",
+      "thumb": "media/2026-11-15/object-2-thumb.png",
+      "model": {
+        "title": "Rock boulder (game ready asset)",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-0079cb0e717c4aeebe6bca21ec21b0d9",
+        "licence": "CC Attribution",
+        "creator": "Aparicio Silva 3D",
+        "creatorUrl": "https://sketchfab.com/apariciosilva3D"
+      },
       "texture": {
-        "title": "Blue Metal Plate",
-        "url": "https://polyhaven.com/a/blue_metal_plate"
+        "title": "Lichen Rock",
+        "url": "https://polyhaven.com/a/lichen_rock"
       }
     },
     {
-      "name": "bell",
-      "material": "polished brass",
-      "image": "media/2026-11-14/object-3.png",
-      "thumb": "media/2026-11-14/object-3-thumb.png",
+      "name": "water tap",
+      "material": "aged brass",
+      "image": "media/2026-11-15/object-3.png",
+      "thumb": "media/2026-11-15/object-3-thumb.png",
       "model": {
-        "title": "Bell",
+        "title": "TAP LP",
         "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-897bc8230df54a1cad474492771880d8",
+        "url": "https://sketchfab.com/3d-models/none-1f69ab976a884866850c8449abb6636b",
         "licence": "CC Attribution",
-        "creator": "jQueary",
-        "creatorUrl": "https://sketchfab.com/jqueary1991"
+        "creator": "TahirNilin",
+        "creatorUrl": "https://sketchfab.com/TahirNilin"
       },
       "texture": null
     }

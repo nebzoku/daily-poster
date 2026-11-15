@@ -1,0 +1,291 @@
+{
+  "date": "2026-11-15",
+  "issue": 44,
+  "generatedAt": "2026-11-15T05:07:52.276Z",
+  "colour": {
+    "name": "Red",
+    "yesterday": "Orange",
+    "tomorrow": "Rose"
+  },
+  "story": {
+    "title": "Bristol aims to become UK’s first ‘wetland city’ and reduce flood risk",
+    "summary": "A charity plans a five-year project to turn Bristol into the UK's first \"wetland city\". It will build wetlands that form wildlife corridors, lower flood risk and give residents more access to green and blue space.",
+    "source": "The Guardian",
+    "url": "https://www.theguardian.com/environment/2026/nov/14/bristol-first-uk-wetland-city-flood",
+    "published": "2026-11-14T07:00:37.000Z",
+    "theme": "urban wetlands and nature"
+  },
+  "headlines": [
+    "Let the Water Back In",
+    "Wild Corridors Through the Concrete",
+    "A City Learns to Hold Water"
+  ],
+  "sublines": [
+    "Bristol could become the UK's first wetland city under a five-year charity project to reshape its edges.",
+    "New wetlands will link into wildlife corridors, soaking up water to reduce flood risk across the city.",
+    "The plan builds ponds, marsh and reedbeds so people and wildlife gain more access to green and blue space."
+  ],
+  "palette": {
+    "name": "Vivid",
+    "colours": [
+      "#F33446",
+      "#FFDBD9",
+      "#7D6D6C",
+      "#3A0E0F"
+    ]
+  },
+  "always": [
+    "#000000",
+    "#FFFFFF"
+  ],
+  "type": {
+    "id": "young-serif",
+    "display": "Young Serif",
+    "text": "Instrument Sans",
+    "reason": "Young Serif's soft, rounded warmth suits a hopeful story about nature returning to a city, while Instrument Sans keeps the facts clear.",
+    "css": "https://fonts.googleapis.com/css2?family=Young+Serif&family=Instrument+Sans&display=swap",
+    "displayUrl": "https://fonts.google.com/specimen/Young+Serif",
+    "textUrl": "https://fonts.google.com/specimen/Instrument+Sans"
+  },
+  "grid": {
+    "format": "A-size",
+    "size": [
+      1080,
+      1528
+    ],
+    "columns": 8,
+    "rows": 8,
+    "margin": 16,
+    "gutter": 0,
+    "column": 131,
+    "row": 187,
+    "unit": "px"
+  },
+  "images": [
+    {
+      "id": "unsplash:KhM38swQCMs",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a large body of water surrounded by tall grass",
+      "credit": "Axel Josefsson",
+      "creditUrl": "https://unsplash.com/@aejosefsson?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-large-body-of-water-surrounded-by-tall-grass-KhM38swQCMs?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a large body of water surrounded by tall grass",
+      "thumb": "https://images.unsplash.com/photo-1631378726254-f30188042bdc?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8YXV0dW1uJTIwd2V0bGFuZHxlbnwxfHx8fDE3OTQ3MTkyNzJ8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1631378726254-f30188042bdc?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8YXV0dW1uJTIwd2V0bGFuZHxlbnwxfHx8fDE3OTQ3MTkyNzJ8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:287967",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "The Heron, 1853–56",
+      "credit": "John Dillwyn Llewelyn",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/287967",
+      "page": "https://www.metmuseum.org/art/collection/search/287967",
+      "alt": "The Heron",
+      "thumb": "https://images.metmuseum.org/CRDImages/ph/web-large/DP143546.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/ph/original/DP143546.jpg",
+      "local": "media/2026-11-15/image-02-2160.jpg"
+    },
+    {
+      "id": "unsplash:NZfCj5OnoKE",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "silhouette photo of body of water under orange clouds",
+      "credit": "joe ting",
+      "creditUrl": "https://unsplash.com/@joeting?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/silhouette-photo-of-body-of-water-under-orange-clouds-NZfCj5OnoKE?utm_source=daily_poster&utm_medium=referral",
+      "alt": "silhouette photo of body of water under orange clouds",
+      "thumb": "https://images.unsplash.com/photo-1501898047706-55903296cd09?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8cmVlZHMlMjBzdW5zZXR8ZW58MXx8fHwxNzk0NzE5MjcyfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1501898047706-55903296cd09?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8cmVlZHMlMjBzdW5zZXR8ZW58MXx8fHwxNzk0NzE5MjcyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:453397",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "A Heron, late 18th century",
+      "credit": "Unknown artist",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/453397",
+      "page": "https://www.metmuseum.org/art/collection/search/453397",
+      "alt": "A Heron",
+      "thumb": "https://images.metmuseum.org/CRDImages/is/web-large/sf1997-303.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/is/original/sf1997-303.jpg",
+      "local": "media/2026-11-15/image-04-2160.jpg"
+    },
+    {
+      "id": "unsplash:dSHUhJ-ksMg",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "body of water during golden hour",
+      "credit": "Sam 🐷",
+      "creditUrl": "https://unsplash.com/@shambam?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/body-of-water-during-golden-hour-dSHUhJ-ksMg?utm_source=daily_poster&utm_medium=referral",
+      "alt": "body of water during golden hour",
+      "thumb": "https://images.unsplash.com/photo-1569879925512-85ee9bf5c538?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8cmVlZHMlMjBzdW5zZXR8ZW58MXx8fHwxNzk0NzE5MjcyfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1569879925512-85ee9bf5c538?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8cmVlZHMlMjBzdW5zZXR8ZW58MXx8fHwxNzk0NzE5MjcyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:11975",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "The Bridge, ca. 1880",
+      "credit": "Albert Pinkham Ryder",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/11975",
+      "page": "https://www.metmuseum.org/art/collection/search/11975",
+      "alt": "The Bridge",
+      "thumb": "https://images.metmuseum.org/CRDImages/ad/web-large/DP-23325-001.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/ad/original/DP-23325-001.jpg",
+      "local": "media/2026-11-15/image-06-2160.jpg"
+    },
+    {
+      "id": "unsplash:jmJ62_Zq1bo",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "aerial view of city during night time",
+      "credit": "Martin Fu",
+      "creditUrl": "https://unsplash.com/@fuchlomond?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/aerial-view-of-city-during-night-time-jmJ62_Zq1bo?utm_source=daily_poster&utm_medium=referral",
+      "alt": "aerial view of city during night time",
+      "thumb": "https://images.unsplash.com/photo-1458869612855-bb6009d50368?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cmVlZHMlMjBzdW5zZXR8ZW58MXx8fHwxNzk0NzE5MjcyfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1458869612855-bb6009d50368?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cmVlZHMlMjBzdW5zZXR8ZW58MXx8fHwxNzk0NzE5MjcyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:47498",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Heron on Rock, 1650",
+      "credit": "Japan",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/47498",
+      "page": "https://www.metmuseum.org/art/collection/search/47498",
+      "alt": "Heron on Rock",
+      "thumb": "https://images.metmuseum.org/CRDImages/as/web-large/55493.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/as/original/55493.jpg",
+      "local": "media/2026-11-15/image-08-2160.jpg"
+    },
+    {
+      "id": "unsplash:rhaS97NhnHg",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "brown brick wall",
+      "credit": "Waldemar Brandt",
+      "creditUrl": "https://unsplash.com/@waldemarbrandt67w?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/brown-brick-wall-rhaS97NhnHg?utm_source=daily_poster&utm_medium=referral",
+      "alt": "brown brick wall",
+      "thumb": "https://images.unsplash.com/photo-1547056961-3c25e9140b05?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cmVkJTIwYnJpY2slMjB3YWxsfGVufDF8fHx8MTc5NDcxOTI3Mnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1547056961-3c25e9140b05?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cmVkJTIwYnJpY2slMjB3YWxsfGVufDF8fHx8MTc5NDcxOTI3Mnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:AksmkMQTdik",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "Low sun over a calm ocean with orange clouds in the sky",
+      "credit": "Martin Franco",
+      "creditUrl": "https://unsplash.com/@martinfranco?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/low-sun-over-calm-ocean-AksmkMQTdik?utm_source=daily_poster&utm_medium=referral",
+      "alt": "Low sun over a calm ocean with orange clouds in the sky",
+      "thumb": "https://images.unsplash.com/photo-1536890274788-51861e124205?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8cmVlZHMlMjBzdW5zZXR8ZW58MXx8fHwxNzk0NzE5MjcyfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1536890274788-51861e124205?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8cmVlZHMlMjBzdW5zZXR8ZW58MXx8fHwxNzk0NzE5MjcyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    }
+  ],
+  "textures": [
+    {
+      "id": "unsplash:vS3idIiYxX0",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "white textured paper or plaster surface",
+      "credit": "Olga Thelavart",
+      "creditUrl": "https://unsplash.com/@olga_o?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-vS3idIiYxX0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "white textured paper or plaster surface",
+      "thumb": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDcxOTI3Mnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDcxOTI3Mnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:MS9Tnh3if1o",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "plain white woven textile texture",
+      "credit": "Kiwihug",
+      "creditUrl": "https://unsplash.com/@kiwihug?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/plain-white-woven-textile-texture-MS9Tnh3if1o?utm_source=daily_poster&utm_medium=referral",
+      "alt": "plain white woven textile texture",
+      "thumb": "https://images.unsplash.com/photo-1615799998603-7c6270a45196?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8bGluZW4lMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDcxOTI3Mnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1615799998603-7c6270a45196?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8bGluZW4lMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDcxOTI3Mnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:KNzY5Zg7iAI",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "white and gray fur textile",
+      "credit": "petr sidorov",
+      "creditUrl": "https://unsplash.com/@m_malkovich?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/white-and-gray-fur-textile-KNzY5Zg7iAI?utm_source=daily_poster&utm_medium=referral",
+      "alt": "white and gray fur textile",
+      "thumb": "https://images.unsplash.com/photo-1628772689123-4d0fa27b0dd6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8d2V0JTIwc3RvbmUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDcxOTI3Mnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1628772689123-4d0fa27b0dd6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8d2V0JTIwc3RvbmUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDcxOTI3Mnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "polyhaven:brown_mud_02",
+      "source": "Poly Haven",
+      "licence": "CC0",
+      "title": "Brown Mud 02",
+      "credit": "Rob Tuytel",
+      "creditUrl": "https://polyhaven.com/a/brown_mud_02",
+      "page": "https://polyhaven.com/a/brown_mud_02",
+      "alt": "Brown Mud 02 texture",
+      "thumb": "https://cdn.polyhaven.com/asset_img/thumbs/brown_mud_02.png?width=480&height=480",
+      "src": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/brown_mud_02/brown_mud_02_diff_2k.jpg",
+      "local": "media/2026-11-15/texture-04-2160.jpg"
+    }
+  ],
+  "objects": [
+    {
+      "name": "storm drain grate",
+      "material": "cast iron, weathered",
+      "image": "media/2026-11-15/object-1.png",
+      "thumb": "media/2026-11-15/object-1-thumb.png",
+      "model": {
+        "title": "Old Drain Grate",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-6c95d5646f4e4e5a8114c0b38841d6fd",
+        "licence": "CC Attribution",
+        "creator": "Zhuier",
+        "creatorUrl": "https://sketchfab.com/Zhuier"
+      },
+      "texture": null
+    },
+    {
+      "name": "boulder",
+      "material": "mossy weathered stone",
+      "image": "media/2026-11-15/object-2.png",
+      "thumb": "media/2026-11-15/object-2-thumb.png",
+      "model": {
+        "title": "Rock boulder (game ready asset)",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-0079cb0e717c4aeebe6bca21ec21b0d9",
+        "licence": "CC Attribution",
+        "creator": "Aparicio Silva 3D",
+        "creatorUrl": "https://sketchfab.com/apariciosilva3D"
+      },
+      "texture": {
+        "title": "Lichen Rock",
+        "url": "https://polyhaven.com/a/lichen_rock"
+      }
+    },
+    {
+      "name": "water tap",
+      "material": "aged brass",
+      "image": "media/2026-11-15/object-3.png",
+      "thumb": "media/2026-11-15/object-3-thumb.png",
+      "model": {
+        "title": "TAP LP",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-1f69ab976a884866850c8449abb6636b",
+        "licence": "CC Attribution",
+        "creator": "TahirNilin",
+        "creatorUrl": "https://sketchfab.com/TahirNilin"
+      },
+      "texture": null
+    }
+  ]
+}

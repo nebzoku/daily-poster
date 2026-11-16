@@ -468,7 +468,8 @@
     const one = lb.list.length < 2;
     $("lb-prev").disabled = one; $("lb-next").disabled = one;
     $("lb-cap").replaceChildren(
-      el("span", {}, `[${pad(x.issue)}] ${posterTitle(x)} · ${x.designer}`),
+      el("span", {}, `[${pad(x.issue)}] ${posterTitle(x)} · `,
+        x.url ? el("a", { href: x.url, target: "_blank", rel: "noopener" }, x.designer) : x.designer),
       el("span", { class: "meta" },
         x.colour ? el("span", {}, el("i", { class: "sw", style: `background:${x.hex}` }), x.colour) : null,
         x.type ? el("span", {}, x.type) : null,

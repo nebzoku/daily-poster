@@ -1,5 +1,16 @@
 [
   {
+    "date": "2026-11-16",
+    "issue": 45,
+    "colour": "Rose",
+    "headline": "Four Worlds Before Sunrise",
+    "bg": "#F33496",
+    "thumb": "https://images.unsplash.com/photo-1730727421694-a52937bd703c?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8c3RhcnJ5JTIwbW9ybmluZ3xlbnwxfHx8fDE3OTQ4MDU2OTF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+    "display": "Cormorant Garamond",
+    "text": "Hanken Grotesk",
+    "css": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=Hanken+Grotesk&display=swap"
+  },
+  {
     "date": "2026-11-15",
     "issue": 44,
     "colour": "Red",

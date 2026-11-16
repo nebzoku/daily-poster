@@ -1,0 +1,290 @@
+{
+  "date": "2026-11-16",
+  "issue": 45,
+  "generatedAt": "2026-11-16T05:08:10.976Z",
+  "colour": {
+    "name": "Rose",
+    "yesterday": "Red",
+    "tomorrow": "Magenta"
+  },
+  "story": {
+    "title": "How to spot November's planetary parade in the pre-dawn sky",
+    "summary": "Four planets, Mercury, Venus, Mars and Jupiter, are lined up in the sky before sunrise through November. Early risers can look for them together along the same stretch of sky.",
+    "source": "BBC News",
+    "url": "https://www.bbc.co.uk/weather/articles/cke8rr37lrryo?at_medium=RSS&amp;at_campaign=rss",
+    "published": "2026-11-15T10:49:57.000Z",
+    "theme": "planets in the dawn sky"
+  },
+  "headlines": [
+    "Four Worlds Before Sunrise",
+    "The Sky Lines Up",
+    "Wake Early, Meet the Planets"
+  ],
+  "sublines": [
+    "Mercury, Venus, Mars and Jupiter share the pre-dawn sky throughout November, a rare gathering for early risers.",
+    "Four planets strung along one path in the dark before sunrise, there for anyone who looks up this month.",
+    "All month, early risers can find Mercury, Venus, Mars and Jupiter ranged across the sky before the sun comes up."
+  ],
+  "palette": {
+    "name": "Vivid",
+    "colours": [
+      "#F33496",
+      "#FFD9E6",
+      "#7C6D72",
+      "#370E21"
+    ]
+  },
+  "always": [
+    "#000000",
+    "#FFFFFF"
+  ],
+  "type": {
+    "id": "cormorant",
+    "display": "Cormorant Garamond",
+    "text": "Hanken Grotesk",
+    "reason": "Cormorant's delicate, high-contrast serif gives the quiet pre-dawn mood an old star-chart elegance, while Hanken Grotesk keeps the facts clear.",
+    "css": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=Hanken+Grotesk&display=swap",
+    "displayUrl": "https://fonts.google.com/specimen/Cormorant+Garamond",
+    "textUrl": "https://fonts.google.com/specimen/Hanken+Grotesk"
+  },
+  "grid": {
+    "format": "A-size",
+    "size": [
+      1080,
+      1528
+    ],
+    "columns": 8,
+    "rows": 8,
+    "margin": 16,
+    "gutter": 0,
+    "column": 131,
+    "row": 187,
+    "unit": "px"
+  },
+  "images": [
+    {
+      "id": "unsplash:8EM-7NeT1GQ",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "A night sky with stars and the moon in the distance",
+      "credit": "Anthony Cantin",
+      "creditUrl": "https://unsplash.com/@arizonanthony?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-night-sky-with-stars-and-the-moon-in-the-distance-8EM-7NeT1GQ?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A night sky with stars and the moon in the distance",
+      "thumb": "https://images.unsplash.com/photo-1730727421694-a52937bd703c?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8c3RhcnJ5JTIwbW9ybmluZ3xlbnwxfHx8fDE3OTQ4MDU2OTF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1730727421694-a52937bd703c?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8c3RhcnJ5JTIwbW9ybmluZ3xlbnwxfHx8fDE3OTQ4MDU2OTF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:358366",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "The Celestial Map- Northern Hemisphere, 1515",
+      "credit": "Albrecht Dürer",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/358366",
+      "page": "https://www.metmuseum.org/art/collection/search/358366",
+      "alt": "The Celestial Map- Northern Hemisphere",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP102235.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP102235.jpg",
+      "local": "media/2026-11-16/image-02-2160.jpg"
+    },
+    {
+      "id": "unsplash:TQr6XyHwCSI",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "clouds during golden hour",
+      "credit": "damien dufour",
+      "creditUrl": "https://unsplash.com/@damiendufourphotographie?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/clouds-during-golden-hour-TQr6XyHwCSI?utm_source=daily_poster&utm_medium=referral",
+      "alt": "clouds during golden hour",
+      "thumb": "https://images.unsplash.com/photo-1575050312925-f0d7757591eb?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGluayUyMGRhd24lMjBza3l8ZW58MXx8fHwxNzk0ODA1NjkxfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1575050312925-f0d7757591eb?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGluayUyMGRhd24lMjBza3l8ZW58MXx8fHwxNzk0ODA1NjkxfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:785846",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Orrery clock, 1790",
+      "credit": "Louis Thouverez",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/785846",
+      "page": "https://www.metmuseum.org/art/collection/search/785846",
+      "alt": "Orrery clock",
+      "thumb": "https://images.metmuseum.org/CRDImages/es/web-large/DP-17434-001.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/es/original/DP-17434-001.jpg",
+      "local": "media/2026-11-16/image-04-2160.jpg"
+    },
+    {
+      "id": "unsplash:5wFcCUT9THY",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "people on dock during golden hour",
+      "credit": "Roberto Nickson",
+      "creditUrl": "https://unsplash.com/@rpnickson?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/people-on-dock-during-golden-hour-5wFcCUT9THY?utm_source=daily_poster&utm_medium=referral",
+      "alt": "people on dock during golden hour",
+      "thumb": "https://images.unsplash.com/photo-1561324555-88df4bfae809?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8c3RhcnJ5JTIwbW9ybmluZ3xlbnwxfHx8fDE3OTQ4MDU2OTF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1561324555-88df4bfae809?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8c3RhcnJ5JTIwbW9ybmluZ3xlbnwxfHx8fDE3OTQ4MDU2OTF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:941604",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Le telescope de la place de la Bastille, ca. 1900",
+      "credit": "Louis Vert",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/941604",
+      "page": "https://www.metmuseum.org/art/collection/search/941604",
+      "alt": "Le telescope de la place de la Bastille",
+      "thumb": "https://images.metmuseum.org/CRDImages/ph/web-large/DP-45617-020.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/ph/original/DP-45617-020.jpg",
+      "local": "media/2026-11-16/image-06-2160.jpg"
+    },
+    {
+      "id": "unsplash:WBqaBbrL-P8",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "blue and pink clouds during daytime",
+      "credit": "Zoe",
+      "creditUrl": "https://unsplash.com/@_imd?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/blue-and-pink-clouds-during-daytime-WBqaBbrL-P8?utm_source=daily_poster&utm_medium=referral",
+      "alt": "blue and pink clouds during daytime",
+      "thumb": "https://images.unsplash.com/photo-1612195745262-89163d541059?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8cGluayUyMGRhd24lMjBza3l8ZW58MXx8fHwxNzk0ODA1NjkxfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1612195745262-89163d541059?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8cGluayUyMGRhd24lMjBza3l8ZW58MXx8fHwxNzk0ODA1NjkxfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:IzuMfvXB5CM",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "silhouette of person standing on seashore under starry night",
+      "credit": "Matt Chambers",
+      "creditUrl": "https://unsplash.com/@mattchambersphotography?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/silhouette-of-person-standing-on-seashore-under-starry-night-IzuMfvXB5CM?utm_source=daily_poster&utm_medium=referral",
+      "alt": "silhouette of person standing on seashore under starry night",
+      "thumb": "https://images.unsplash.com/photo-1580652134563-781a4bf28cfc?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8c3RhcnJ5JTIwbW9ybmluZ3xlbnwxfHx8fDE3OTQ4MDU2OTF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1580652134563-781a4bf28cfc?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8c3RhcnJ5JTIwbW9ybmluZ3xlbnwxfHx8fDE3OTQ4MDU2OTF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:kjIM_O4BIy0",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "Pastel colored sky over calm ocean water",
+      "credit": "ameenfahmy",
+      "creditUrl": "https://unsplash.com/@ameenfahmy?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/pastel-colored-sky-over-calm-ocean-water-kjIM_O4BIy0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "Pastel colored sky over calm ocean water",
+      "thumb": "https://images.unsplash.com/photo-1764143458473-ffffec0bad84?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8cGluayUyMGRhd24lMjBza3l8ZW58MXx8fHwxNzk0ODA1NjkxfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1764143458473-ffffec0bad84?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8cGluayUyMGRhd24lMjBza3l8ZW58MXx8fHwxNzk0ODA1NjkxfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:849803",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "The Oracle, 1774",
+      "credit": "John Dixon",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/849803",
+      "page": "https://www.metmuseum.org/art/collection/search/849803",
+      "alt": "The Oracle",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP-20579-001.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP-20579-001.jpg",
+      "local": "media/2026-11-16/image-10-2160.jpg"
+    }
+  ],
+  "textures": [
+    {
+      "id": "unsplash:k4Lt0CjUnb0",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "white textured paper or plaster surface",
+      "credit": "João Vítor Duarte",
+      "creditUrl": "https://unsplash.com/@joaovtrduarte?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-k4Lt0CjUnb0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "white textured paper or plaster surface",
+      "thumb": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDgwNTY5MXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDgwNTY5MXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:MS9Tnh3if1o",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "plain white woven textile texture",
+      "credit": "Kiwihug",
+      "creditUrl": "https://unsplash.com/@kiwihug?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/plain-white-woven-textile-texture-MS9Tnh3if1o?utm_source=daily_poster&utm_medium=referral",
+      "alt": "plain white woven textile texture",
+      "thumb": "https://images.unsplash.com/photo-1615799998603-7c6270a45196?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8bGluZW4lMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDgwNTY5MXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1615799998603-7c6270a45196?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8bGluZW4lMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDgwNTY5MXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:i0fCUofGjV8",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "close up of dark blue ice surface with cracks",
+      "credit": "Nick Iliasov",
+      "creditUrl": "https://unsplash.com/@nikwes?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/close-up-of-dark-blue-ice-surface-with-cracks-i0fCUofGjV8?utm_source=daily_poster&utm_medium=referral",
+      "alt": "close up of dark blue ice surface with cracks",
+      "thumb": "https://images.unsplash.com/photo-1546453667-8a8d2d07bc20?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Y2hhbGslMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDgwNTY5MXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1546453667-8a8d2d07bc20?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Y2hhbGslMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDgwNTY5MXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:vS3idIiYxX0",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "white textured paper or plaster surface",
+      "credit": "Olga Thelavart",
+      "creditUrl": "https://unsplash.com/@olga_o?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-vS3idIiYxX0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "white textured paper or plaster surface",
+      "thumb": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDgwNTY5MXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDgwNTY5MXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    }
+  ],
+  "objects": [
+    {
+      "name": "alarm clock",
+      "material": "brushed brass",
+      "image": "media/2026-11-16/object-1.png",
+      "thumb": "media/2026-11-16/object-1-thumb.png",
+      "model": {
+        "title": "Alarm Clock",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-c42ed1677f614ea1aea316e6d10de856",
+        "licence": "CC Attribution",
+        "creator": "Brout",
+        "creatorUrl": "https://sketchfab.com/davidbroutian"
+      },
+      "texture": {
+        "title": "Blue Metal Plate",
+        "url": "https://polyhaven.com/a/blue_metal_plate"
+      }
+    },
+    {
+      "name": "armillary sphere",
+      "material": "polished brass",
+      "image": "media/2026-11-16/object-2.png",
+      "thumb": "media/2026-11-16/object-2-thumb.png",
+      "model": {
+        "title": "Armillary Sphere",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-22e92fc349eb4f8f9091d9d081d57177",
+        "licence": "CC Attribution",
+        "creator": "ChloeRobynSmith",
+        "creatorUrl": "https://sketchfab.com/chloerobyn"
+      },
+      "texture": null
+    },
+    {
+      "name": "binoculars",
+      "material": "dark brushed steel",
+      "image": "media/2026-11-16/object-3.png",
+      "thumb": "media/2026-11-16/object-3-thumb.png",
+      "model": {
+        "title": "Binoculars",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-761f5ee691004a63b7dd285abea5917c",
+        "licence": "CC Attribution",
+        "creator": "Dari",
+        "creatorUrl": "https://sketchfab.com/dariiiii"
+      },
+      "texture": null
+    }
+  ]
+}

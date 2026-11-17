@@ -1,0 +1,292 @@
+{
+  "date": "2026-11-17",
+  "issue": 46,
+  "generatedAt": "2026-11-17T05:08:04.310Z",
+  "colour": {
+    "name": "Magenta",
+    "yesterday": "Rose",
+    "tomorrow": "Violet"
+  },
+  "story": {
+    "title": "‘It’s like the 16th-century version of doomscrolling’: the Book of Miracles may fetch £1m at auction",
+    "summary": "A rare 16th-century illustrated manuscript, the Book of Miracles, is expected to fetch around £1m at auction, with public institutions given first chance to bid. Its paintings show extraordinary skies and weather, such as five suns over Leipzig in 1551, blood rain on Rome in 1456 and giant hailstones battering a Dutch city.",
+    "source": "The Guardian",
+    "url": "https://www.theguardian.com/books/2026/nov/16/book-of-miracles-apocalyptic-weather-visions-auction",
+    "published": "2026-11-16T07:00:38.000Z",
+    "theme": "historic book of skies"
+  },
+  "headlines": [
+    "Five Suns Over Leipzig",
+    "Blood Rain Falls on Rome",
+    "The Sky Kept Its Own Ledger"
+  ],
+  "sublines": [
+    "A rare 16th-century book of painted skies, comets and storms may fetch £1m at auction.",
+    "Public institutions get first chance to bid on the illustrated wonderbook of extreme weather and strange celestial sightings.",
+    "Its pages record hailstorms, rains of red and multiple suns, each dated and set above a real European city."
+  ],
+  "palette": {
+    "name": "Vivid",
+    "colours": [
+      "#F43BEC",
+      "#FCD7F8",
+      "#796E77",
+      "#31102F"
+    ]
+  },
+  "always": [
+    "#000000",
+    "#FFFFFF"
+  ],
+  "type": {
+    "id": "bodoni",
+    "display": "Bodoni Moda",
+    "text": "Jost",
+    "reason": "Bodoni's sharp high-contrast strokes feel like old printed wonder-books, while Jost keeps the facts clean and modern beneath them.",
+    "css": "https://fonts.googleapis.com/css2?family=Bodoni+Moda&family=Jost&display=swap",
+    "displayUrl": "https://fonts.google.com/specimen/Bodoni+Moda",
+    "textUrl": "https://fonts.google.com/specimen/Jost"
+  },
+  "grid": {
+    "format": "A-size",
+    "size": [
+      1080,
+      1528
+    ],
+    "columns": 8,
+    "rows": 8,
+    "margin": 16,
+    "gutter": 0,
+    "column": 131,
+    "row": 187,
+    "unit": "px"
+  },
+  "images": [
+    {
+      "id": "unsplash:3WgPZbsDSkE",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "Dense pink and white clouds filling the sky with a small bird silhouette",
+      "credit": "Andrea Ferrario",
+      "creditUrl": "https://unsplash.com/@andreaferrario?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/pink-and-white-clouds-with-bird-3WgPZbsDSkE?utm_source=daily_poster&utm_medium=referral",
+      "alt": "Dense pink and white clouds filling the sky with a small bird silhouette",
+      "thumb": "https://images.unsplash.com/photo-1560803262-95a9de00a057?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8c3Rvcm0lMjBza3klMjBwaW5rfGVufDF8fHx8MTc5NDg5MjA4NHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1560803262-95a9de00a057?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8c3Rvcm0lMjBza3klMjBwaW5rfGVufDF8fHx8MTc5NDg5MjA4NHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:371126",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "A Comet Above Strasbourg at Night, n.d.",
+      "credit": "Johann Adam Seupel",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/371126",
+      "page": "https://www.metmuseum.org/art/collection/search/371126",
+      "alt": "A Comet Above Strasbourg at Night",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP-46363-001.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP-46363-001.jpg",
+      "local": "media/2026-11-17/image-02-2160.jpg"
+    },
+    {
+      "id": "unsplash:p0Yupww_SNM",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "black high trees under white and black sky at golden hour",
+      "credit": "Spencer  Watson",
+      "creditUrl": "https://unsplash.com/@thebrownspy?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/black-high-trees-under-white-and-black-sky-at-golden-hour-p0Yupww_SNM?utm_source=daily_poster&utm_medium=referral",
+      "alt": "black high trees under white and black sky at golden hour",
+      "thumb": "https://images.unsplash.com/photo-1501619757722-90657a99803b?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8bWFnZW50YSUyMHN1bnNldCUyMGNsb3Vkc3xlbnwxfHx8fDE3OTQ4OTIwODR8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1501619757722-90657a99803b?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8bWFnZW50YSUyMHN1bnNldCUyMGNsb3Vkc3xlbnwxfHx8fDE3OTQ4OTIwODR8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:811320",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "John Bull Making Observations on the Comet, November 10, 1807",
+      "credit": "Thomas Rowlandson",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/811320",
+      "page": "https://www.metmuseum.org/art/collection/search/811320",
+      "alt": "John Bull Making Observations on the Comet",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP884701.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP884701.jpg",
+      "local": "media/2026-11-17/image-04-2160.jpg"
+    },
+    {
+      "id": "unsplash:AUrK7wuV8fE",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "cloudy sky during golden hour",
+      "credit": "Andres Perez",
+      "creditUrl": "https://unsplash.com/@eduukpo12?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/cloudy-sky-during-golden-hour-AUrK7wuV8fE?utm_source=daily_poster&utm_medium=referral",
+      "alt": "cloudy sky during golden hour",
+      "thumb": "https://images.unsplash.com/photo-1578943195665-f23d690b92d3?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8bWFnZW50YSUyMHN1bnNldCUyMGNsb3Vkc3xlbnwxfHx8fDE3OTQ4OTIwODR8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1578943195665-f23d690b92d3?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8bWFnZW50YSUyMHN1bnNldCUyMGNsb3Vkc3xlbnwxfHx8fDE3OTQ4OTIwODR8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:339802",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Storm, n.d.",
+      "credit": "Joseph Vernet",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/339802",
+      "page": "https://www.metmuseum.org/art/collection/search/339802",
+      "alt": "Storm",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP226779.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP226779.jpg",
+      "local": "media/2026-11-17/image-06-2160.jpg"
+    },
+    {
+      "id": "unsplash:LG8Mt7f7lXQ",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a purple sky filled with lots of lightning",
+      "credit": "chutipon Pattanatitinon",
+      "creditUrl": "https://unsplash.com/@gyvahn?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-purple-sky-filled-with-lots-of-lightning-LG8Mt7f7lXQ?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a purple sky filled with lots of lightning",
+      "thumb": "https://images.unsplash.com/photo-1621483092616-780665772d83?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8c3Rvcm0lMjBza3klMjBwaW5rfGVufDF8fHx8MTc5NDg5MjA4NHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1621483092616-780665772d83?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8c3Rvcm0lMjBza3klMjBwaW5rfGVufDF8fHx8MTc5NDg5MjA4NHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:384535",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Storm, 1891",
+      "credit": "Anders Zorn",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/384535",
+      "page": "https://www.metmuseum.org/art/collection/search/384535",
+      "alt": "Storm",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP878290.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP878290.jpg",
+      "local": "media/2026-11-17/image-08-2160.jpg"
+    },
+    {
+      "id": "unsplash:BCuxVP5WEsU",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "red clouds in the sky",
+      "credit": "Diego PH",
+      "creditUrl": "https://unsplash.com/@jdiegoph?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/red-clouds-in-the-sky-BCuxVP5WEsU?utm_source=daily_poster&utm_medium=referral",
+      "alt": "red clouds in the sky",
+      "thumb": "https://images.unsplash.com/photo-1508020963102-c6c723be5764?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8bWFnZW50YSUyMHN1bnNldCUyMGNsb3Vkc3xlbnwxfHx8fDE3OTQ4OTIwODR8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1508020963102-c6c723be5764?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8bWFnZW50YSUyMHN1bnNldCUyMGNsb3Vkc3xlbnwxfHx8fDE3OTQ4OTIwODR8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:765093",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Storm, ca. 1745–58",
+      "credit": "Jean-Baptiste-Claude Chatelain",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/765093",
+      "page": "https://www.metmuseum.org/art/collection/search/765093",
+      "alt": "Storm",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP877017.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP877017.jpg",
+      "local": "media/2026-11-17/image-10-2160.jpg"
+    }
+  ],
+  "textures": [
+    {
+      "id": "unsplash:3ch06Zm4bV0",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "old creased blank paper texture",
+      "credit": "Heather Green",
+      "creditUrl": "https://unsplash.com/@heathergreengreen?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/old-creased-blank-paper-texture-3ch06Zm4bV0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "old creased blank paper texture",
+      "thumb": "https://images.unsplash.com/photo-1705837863332-7162639852d8?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8YWdlZCUyMHBhcGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTQ4OTIwODV8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1705837863332-7162639852d8?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8YWdlZCUyMHBhcGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTQ4OTIwODV8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:QNFJRjo279k",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "A beige rug with a white border on top of it",
+      "credit": "Anna Savina",
+      "creditUrl": "https://unsplash.com/@ceanneceline?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-beige-rug-with-a-white-border-on-top-of-it-QNFJRjo279k?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A beige rug with a white border on top of it",
+      "thumb": "https://images.unsplash.com/photo-1719563015025-83946fb49e49?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8YWdlZCUyMHBhcGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTQ4OTIwODV8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1719563015025-83946fb49e49?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8YWdlZCUyMHBhcGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTQ4OTIwODV8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "polyhaven:painted_plaster_wall",
+      "source": "Poly Haven",
+      "licence": "CC0",
+      "title": "Painted Plaster Wall",
+      "credit": "Amal Kumar",
+      "creditUrl": "https://polyhaven.com/a/painted_plaster_wall",
+      "page": "https://polyhaven.com/a/painted_plaster_wall",
+      "alt": "Painted Plaster Wall texture",
+      "thumb": "https://cdn.polyhaven.com/asset_img/thumbs/painted_plaster_wall.png?width=480&height=480",
+      "src": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/painted_plaster_wall/painted_plaster_wall_diff_2k.jpg",
+      "local": "media/2026-11-17/texture-03-2160.jpg"
+    },
+    {
+      "id": "unsplash:vS3idIiYxX0",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "white textured paper or plaster surface",
+      "credit": "Olga Thelavart",
+      "creditUrl": "https://unsplash.com/@olga_o?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-vS3idIiYxX0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "white textured paper or plaster surface",
+      "thumb": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cGFyY2htZW50JTIwdGV4dHVyZXxlbnwxfHx8fDE3OTQ4OTIwODR8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cGFyY2htZW50JTIwdGV4dHVyZXxlbnwxfHx8fDE3OTQ4OTIwODR8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    }
+  ],
+  "objects": [
+    {
+      "name": "hourglass",
+      "material": "aged brass and glass",
+      "image": "media/2026-11-17/object-1.png",
+      "thumb": "media/2026-11-17/object-1-thumb.png",
+      "model": {
+        "title": "Hourglass",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-59538eb3cf054896b3aa97249746a53c",
+        "licence": "CC Attribution",
+        "creator": "Natalie Crabtree",
+        "creatorUrl": "https://sketchfab.com/natcrab"
+      },
+      "texture": null
+    },
+    {
+      "name": "antique book",
+      "material": "worn leather with brass clasps",
+      "image": "media/2026-11-17/object-2.png",
+      "thumb": "media/2026-11-17/object-2-thumb.png",
+      "model": {
+        "title": "Old book",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-73db31780eef4940af7ad8af8868d684",
+        "licence": "CC Attribution",
+        "creator": "KIFIR",
+        "creatorUrl": "https://sketchfab.com/kifir"
+      },
+      "texture": null
+    },
+    {
+      "name": "sundial",
+      "material": "weathered bronze",
+      "image": "media/2026-11-17/object-3.png",
+      "thumb": "media/2026-11-17/object-3-thumb.png",
+      "model": {
+        "title": "CT4012 - Clock: Sundial",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-629cd7e55be145cf8fad5735af63ea33",
+        "licence": "CC Attribution",
+        "creator": "J. Pennell",
+        "creatorUrl": "https://sketchfab.com/jaminthecloud"
+      },
+      "texture": {
+        "title": "Blue Plaster Weathered",
+        "url": "https://polyhaven.com/a/blue_plaster_weathered"
+      }
+    }
+  ]
+}

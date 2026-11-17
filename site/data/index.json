@@ -1,5 +1,16 @@
 [
   {
+    "date": "2026-11-17",
+    "issue": 46,
+    "colour": "Magenta",
+    "headline": "Five Suns Over Leipzig",
+    "bg": "#F43BEC",
+    "thumb": "https://images.unsplash.com/photo-1560803262-95a9de00a057?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8c3Rvcm0lMjBza3klMjBwaW5rfGVufDF8fHx8MTc5NDg5MjA4NHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+    "display": "Bodoni Moda",
+    "text": "Jost",
+    "css": "https://fonts.googleapis.com/css2?family=Bodoni+Moda&family=Jost&display=swap"
+  },
+  {
     "date": "2026-11-16",
     "issue": 45,
     "colour": "Rose",

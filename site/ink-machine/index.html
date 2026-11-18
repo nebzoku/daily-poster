@@ -533,6 +533,13 @@ function foil(src, W, H, s, seed) {
   const m = blur(src, W, H, Math.max(1, 0.5 * s)), D = Math.max(W, H);
   const ang = P.f_angle * Math.PI / 180, ca = Math.cos(ang), sa = Math.sin(ang);
   const warp = noise(W, H, D * 0.45, D * 0.45, seed + 11, 3);
+  // Mirror finish: the foil reflects a real room, so add hard-edged reflections (softboxes, window bars,
+  // a horizon) that bend with the paper. Matte blurs them away into the smooth gradient.
+  const mir = Math.pow(P.m_shine, 1.3), edgeW = 0.003 + (1 - P.m_shine) * 0.06;
+  const ripple = mir > 0 ? noise(W, H, D * 0.07, D * 0.07, seed + 16, 3) : null;
+  const RB = rng(seed + 17), bands = [];
+  for (let k = 0; k < 6; k++) bands.push({ c: RB() * 1.2 - 0.1, w: 0.005 + RB() * 0.05, v: k < 2 ? 0.95 : 0.35 + RB() * 0.4 });
+  const horizon = 0.25 + RB() * 0.5;
   const scuff = P.f_scuff > 0 ? noiseRot(W, H, 160 * s, Math.max(0.7, 0.9 * s), ang + 1.2, seed + 12, 2) : null;
   const tooth = P.f_tooth > 0 ? noise(W, H, Math.max(1, 2.2 * s), Math.max(1, 2.2 * s), seed + 13, 2) : null;
   const brk = P.f_breaks > 0 ? noise(W, H, Math.max(1, 3 * s), Math.max(1, 3 * s), seed + 14, 2) : null;
@@ -570,8 +577,14 @@ function foil(src, W, H, s, seed) {
     }
     const d1 = (t - pos) / wd, d2 = (t - pos - 0.55) / (wd * 1.6), d3 = (t - pos + 0.5) / (wd * 2.2);
     const main = Math.exp(-d1 * d1 * 2);
-    let e = 0.16 + 0.8 * Math.min(1, main * 0.95 + 0.28 * Math.exp(-d2 * d2 * 2) + 0.16 * Math.exp(-d3 * d3 * 2));
-    if (gloss) e = 0.1 + (e - 0.16) * 0.55;
+    let e = 0.12 + 0.74 * Math.min(1, main * 0.95 + 0.25 * Math.exp(-d2 * d2 * 2) + 0.14 * Math.exp(-d3 * d3 * 2));
+    if (mir > 0) {
+      const tm = t + (ripple[i] - 0.5) * 0.05 * mir - (pos - 0.45);
+      let sharp = sstep(horizon - edgeW, horizon + edgeW, tm) * 0.22;
+      for (const bd of bands) { const dd = Math.abs(tm - bd.c); if (dd < bd.w + edgeW) sharp = Math.max(sharp, bd.v * (1 - sstep(bd.w - edgeW, bd.w + edgeW, dd))); }
+      e = e * (1 - 0.75 * mir) + Math.max(sharp, main * 0.45) * mir;
+    }
+    if (gloss) e = 0.08 + (e - 0.12) * 0.55;
     if (Hp) e = Math.min(1, e + win * (gloss ? 0.95 : 0.6) + rim * (0.3 + 0.4 * main));
     if (scuff) e += (scuff[i] - 0.5) * P.f_scuff * 0.22 * (0.35 + main) * (gloss ? 0.3 : 1);
     if (tooth) e += (tooth[i] - 0.5) * P.f_tooth * 0.16;

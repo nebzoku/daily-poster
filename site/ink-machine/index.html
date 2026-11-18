@@ -126,7 +126,7 @@ ROOF</textarea>
 
     <div id="tab-foil" hidden>
       <section><h2>Metal</h2>
-        <div class="seg four" id="metal"><button data-k="gold">Gold</button><button data-k="silver">Silver</button><button data-k="copper" class="on">Copper</button><button data-k="rose">Rose</button><button data-k="black">Gloss black</button><button data-k="white">Gloss white</button><button data-k="holo">Holo</button><button data-k="custom">Custom</button></div>
+        <div class="seg three" id="metal"><button data-k="gold">Gold</button><button data-k="silver">Silver</button><button data-k="copper" class="on">Copper</button><button data-k="rose">Rose</button><button data-k="black">Gloss black</button><button data-k="white">Gloss white</button><button data-k="tone">Tone on tone</button><button data-k="holo">Holo</button><button data-k="custom">Custom</button></div>
         <div class="row" id="foilColourRow" style="grid-template-columns:92px 1fr" hidden><label>Foil colour</label><input type="color" id="foilColour" value="#8b2ff0"></div>
         <div id="g-foilm" style="margin-top:6px"></div>
       </section>
@@ -545,7 +545,11 @@ function foil(src, W, H, s, seed) {
   const brk = P.f_breaks > 0 ? noise(W, H, Math.max(1, 3 * s), Math.max(1, 3 * s), seed + 14, 2) : null;
   const holo = metal === 'holo';
   let st;
-  if (metal === 'custom') { const c = rgbOf($('#foilColour').value); st = [mixc(c, [0, 0, 0], 0.65), mixc(c, [0, 0, 0], 0.25), mixc(c, [255, 255, 255], 0.3), mixc(c, [255, 255, 255], 0.82)]; }
+  if (metal === 'tone') {
+    // a satin foil a shade off the paper: nearly invisible until it catches the light
+    const c = rgbOf($('#paper').value), warm = mixc(c, [120, 60, 30], 0.18);
+    st = [mixc(warm, [0, 0, 0], 0.65), mixc(mixc(warm, [110, 45, 25], 0.25), [0, 0, 0], 0.3), mixc(warm, [200, 140, 105], 0.3), mixc(c, [255, 225, 200], 0.5)];
+  } else if (metal === 'custom') { const c = rgbOf($('#foilColour').value); st = [mixc(c, [0, 0, 0], 0.65), mixc(c, [0, 0, 0], 0.25), mixc(c, [255, 255, 255], 0.3), mixc(c, [255, 255, 255], 0.82)]; }
   else if (!holo) st = METALS[metal].map(rgbOf);
   let pmin = Infinity, pmax = -Infinity;
   for (const [cx, cy] of [[0, 0], [W, 0], [0, H], [W, H]]) { const p = cx * ca + cy * sa; pmin = Math.min(pmin, p); pmax = Math.max(pmax, p); }
@@ -616,7 +620,7 @@ function press(src, W, H, s, seed, deboss, sheet = true) {
     const base = sstep(0.3, 0.7, wall[i]); face[i] = base;
     let h = Math.max(base, pull ? sstep(0, 0.5, pull[i]) * P.p_pull * 0.35 : 0) * Hs * sg;
     if (t1) {
-      const tex = (t1[i] - 0.5) * 0.6 + (t2[i] - 0.5) * 0.35 + Math.max(t3[i] - 0.62, 0) * 1.1 + Math.max(t4[i] - 0.64, 0) * 0.9;
+      const tex = (t1[i] - 0.5) * 0.7 + (t2[i] - 0.5) * 0.2 + Math.max(t3[i] - 0.62, 0) * 1.1 + Math.max(t4[i] - 0.64, 0) * 0.9;
       h += tex * P.p_grain * 1.6 * s * (1 - 0.65 * base) * (near ? sstep(0, 0.06, near[i]) : 1);
     }
     Hp[i] = h;

@@ -95,6 +95,7 @@ ROOF</textarea>
         <option value="match">Match file</option>
       </select></div>
       <div id="padSlider"></div>
+      <button class="btn" id="setPerfect" style="width:100%;margin-top:2px">Set perfectly · no kerning, bounce or tilt</button>
     </section>
 
     <section><h2>Paper</h2>
@@ -166,8 +167,9 @@ const SL = {
   ],
   padSlider: [
     ['pad', 'Margin', 0, 300, 1, 40, 'px'],
-    ['m_tilt', 'Letter tilt', 0, 5, 0.05, 0.3, '°'],
-    ['m_bounce', 'Letter bounce', 0, 14, 0.1, 1.5, 'px'],
+    ['m_kern', 'Kerning', 0, 1, 0.01, 0.1, '', 'Perfect', 'Funky'],
+    ['m_bounce', 'Bounce', 0, 14, 0.1, 1.5, 'px'],
+    ['m_tilt', 'Tilt', 0, 5, 0.05, 0.3, '°'],
   ],
   'g-inkm': [
     ['m_wear', 'Wear', 0, 1, 0.01, 0.5, '', 'Clean', 'Worn'],
@@ -282,6 +284,9 @@ $('#fontFile').addEventListener('change', async e => {
     await face.load(); document.fonts.add(face);
     fontSel.add(new Option(name, name), 0); fontSel.value = name; schedule();
   } catch (err) { alert('Could not read that font file.'); }
+});
+$('#setPerfect').addEventListener('click', () => {
+  for (const k of ['m_kern', 'm_bounce', 'm_tilt']) { const el = document.getElementById('s-' + k); el.value = 0; el.dispatchEvent(new Event('input')); }
 });
 $('#reroll').addEventListener('click', () => { $('#seed').value = Math.floor(Math.random() * 99999); schedule(); });
 
@@ -406,7 +411,7 @@ function drawSource(W, H, s, seed) {
     let cx = align === 'left' ? pad : align === 'right' ? W - pad - total : (W - total) / 2;
     chars.forEach((ch, i) => {
       const w = x.measureText(ch).width, rot = (R() * 2 - 1) * P.rot * Math.PI / 180;
-      const bx = (R() * 2 - 1) * P.m_bounce * s * 0.6, by = (R() * 2 - 1) * P.m_bounce * s;
+      const r1 = R(), r2 = R(), bx = (r1 * 2 - 1) * P.m_kern * 14 * s, by = (r2 * 2 - 1) * P.m_bounce * s;
       x.save(); x.translate(cx + w / 2 + bx, y - capH / 2 + by); x.rotate(rot); x.fillText(ch, -w / 2, capH / 2); x.restore();
       cx += adv[i];
     });
@@ -619,7 +624,7 @@ function press(src, W, H, s, seed, deboss, sheet = true) {
 
 function bounceShapes(src, W, H, s, seed) {
   const R = rng(seed * 7 + 3), { lab, n } = labels(src, W, H, 0.15), dx = new Int32Array(n + 1), dy = new Int32Array(n + 1);
-  for (let c = 1; c <= n; c++) { dx[c] = Math.round((R() * 2 - 1) * P.m_bounce * s * 0.6); dy[c] = Math.round((R() * 2 - 1) * P.m_bounce * s); }
+  for (let c = 1; c <= n; c++) { dx[c] = Math.round((R() * 2 - 1) * P.m_kern * 14 * s); dy[c] = Math.round((R() * 2 - 1) * P.m_bounce * s); }
   const m = new Float32Array(W * H);
   for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
     const i = y * W + x, v = src[i]; if (!v) continue; const c = lab[i];
@@ -642,7 +647,7 @@ async function render(s, clean, exporting = false) {
   const [FW, FH] = canvasDims(), W = Math.round(FW * s), H = Math.round(FH * s), seed = +$('#seed').value || 0;
   if (srcMode === 'text') await ensureFont(fontSel.value, weightSel.value);
   let src = drawSource(W, H, s, seed); if (!src) return null;
-  if (srcMode === 'file' && P.m_bounce > 0) src = bounceShapes(src, W, H, s, seed);
+  if (srcMode === 'file' && (P.m_bounce > 0 || P.m_kern > 0)) src = bounceShapes(src, W, H, s, seed);
   const out = document.createElement('canvas'); out.width = W; out.height = H;
   const x = out.getContext('2d');
   if (clean) { x.drawImage(paint(src, W, H, $('#ink').value, 1), 0, 0); return out; }

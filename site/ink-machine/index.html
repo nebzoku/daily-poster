@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ink Machine · Daily Poster</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+  :root { --bg: #f4f4f2; --fg: #111; --muted: #8a8a86; --line: #e2e2de; --mono: "Geist Mono", ui-monospace, monospace; --sans: "Geist", system-ui, sans-serif; }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--fg); font: 400 13px/1.4 var(--sans); }
+  .app { display: grid; grid-template-columns: 1fr 330px; height: 100vh; }
+  .stage { display: flex; flex-direction: column; padding: 24px 24px 14px; min-width: 0; min-height: 0; }
+  .frame { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; position: relative; }
+  canvas#cv { max-height: 100%; max-width: 100%; display: block; box-shadow: 0 1px 2px rgba(0,0,0,.08), 0 12px 40px rgba(0,0,0,.12); }
+  .busy { position: absolute; top: 10px; left: 10px; font: 500 10.5px/1 var(--mono); text-transform: uppercase; letter-spacing: .04em; background: var(--fg); color: #fff; padding: 6px 8px; }
+  .dropzone { position: absolute; inset: 0; border: 2px dashed var(--fg); display: flex; align-items: center; justify-content: center; font: 500 12px var(--mono); text-transform: uppercase; background: rgba(244,244,242,.85); }
+  .bar { display: flex; gap: 8px; align-items: center; justify-content: center; padding-top: 12px; font: 400 11px var(--mono); color: var(--muted); }
+  aside { border-left: 1px solid var(--line); background: #fff; overflow-y: auto; padding: 18px 18px 40px; }
+  h1 { font: 500 15px/1.2 var(--sans); margin: 0; }
+  .sub { font: 400 10.5px/1.4 var(--mono); color: var(--muted); text-transform: uppercase; letter-spacing: .04em; margin: 2px 0 14px; }
+  section { border-top: 1px solid var(--line); padding: 12px 0 6px; }
+  section > h2 { font: 500 10.5px/1 var(--mono); text-transform: uppercase; letter-spacing: .05em; color: var(--muted); margin: 0 0 8px; }
+  .seg { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+  .seg.three { grid-template-columns: repeat(3, 1fr); }
+  .seg button, .btn { font: 500 11px/1 var(--mono); text-transform: uppercase; letter-spacing: .04em; padding: 9px 6px; border: 1px solid var(--line); background: #fff; color: var(--fg); cursor: pointer; }
+  .seg button.on, .btn.solid { background: var(--fg); color: #fff; border-color: var(--fg); }
+  .btn:hover { border-color: var(--fg); }
+  .row { display: grid; grid-template-columns: 92px 1fr 34px; align-items: center; gap: 8px; margin: 7px 0; }
+  .row label { font-size: 12px; }
+  .row output { font: 400 11px/1 var(--mono); color: var(--muted); text-align: right; }
+  input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 20px; background: transparent; }
+  input[type=range]::-webkit-slider-runnable-track { height: 3px; background: var(--line); }
+  input[type=range]::-moz-range-track { height: 3px; background: var(--line); }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 14px; height: 14px; border-radius: 50%; background: var(--fg); margin-top: -5.5px; cursor: pointer; }
+  input[type=range]::-moz-range-thumb { width: 14px; height: 14px; border: 0; border-radius: 50%; background: var(--fg); cursor: pointer; }
+  textarea, select, input[type=text], input[type=number] { width: 100%; font: 400 12px/1.3 var(--sans); padding: 7px 8px; border: 1px solid var(--line); border-radius: 0; background: #fff; color: var(--fg); }
+  textarea { font: 500 13px/1.25 var(--mono); resize: vertical; min-height: 64px; text-transform: none; }
+  input[type=color] { width: 100%; height: 26px; padding: 0; border: 1px solid var(--line); background: #fff; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 6px 0; }
+  .note { font: 400 11px/1.45 var(--sans); color: var(--muted); margin: 6px 0; }
+  .check { display: flex; gap: 8px; align-items: center; font-size: 12px; margin: 6px 0; }
+  .file { display: block; border: 1px dashed var(--line); padding: 14px 10px; text-align: center; font: 400 11px/1.4 var(--sans); color: var(--muted); cursor: pointer; }
+  .file b { display: block; font: 500 12px var(--sans); color: var(--fg); margin-bottom: 2px; }
+  .file:hover { border-color: var(--fg); }
+  @media (max-width: 760px) { .app { grid-template-columns: 1fr; height: auto; } .stage { height: 70vh; } aside { border-left: 0; } }
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="stage" id="stage">
+    <div class="frame">
+      <canvas id="cv"></canvas>
+      <div class="busy" id="busy" hidden>Inking…</div>
+      <div class="dropzone" id="dropzone" hidden>Drop an SVG or PNG</div>
+    </div>
+    <div class="bar">
+      <button class="btn" id="compare">Hold to compare</button>
+      <button class="btn" id="reroll">Reroll ink</button>
+      <span id="info"></span>
+    </div>
+  </div>
+
+  <aside>
+    <h1>Ink Machine</h1>
+    <div class="sub">Daily Poster · hand-printed type</div>
+
+    <section>
+      <h2>Source</h2>
+      <div class="seg" id="srcMode"><button data-m="text" class="on">Type</button><button data-m="file">SVG / PNG</button></div>
+      <div id="textSrc">
+        <textarea id="text" spellcheck="false" style="margin-top:8px">A PANEL
+ON EVERY
+ROOF</textarea>
+        <div class="two" style="grid-template-columns:1fr 74px"><select id="font"></select><select id="weight"></select></div>
+        <div class="two"><input type="text" id="gfont" placeholder="Any Google font…"><label class="btn" style="text-align:center">Font file<input type="file" id="fontFile" accept=".otf,.ttf,.woff,.woff2" hidden></label></div>
+        <div class="seg three" id="align" style="margin:6px 0"><button data-a="left" class="on">Left</button><button data-a="center">Centre</button><button data-a="right">Right</button></div>
+        <div id="textSliders"></div>
+      </div>
+      <div id="fileSrc" hidden>
+        <label class="file" style="margin-top:8px"><input type="file" id="file" accept=".svg,image/svg+xml,image/png,image/jpeg,image/webp" hidden><b id="fileName">Drop your type here</b>Outlined SVG from Figma, or a PNG. Or click to choose.</label>
+        <div class="row" style="grid-template-columns:92px 1fr"><label>Ink is</label><div class="seg three" id="inkIs"><button data-k="auto" class="on">Auto</button><button data-k="alpha">Alpha</button><button data-k="dark">Dark</button></div></div>
+      </div>
+      <div class="row" style="grid-template-columns:92px 1fr"><label>Canvas</label><select id="canvasSize">
+        <option value="2160x3056">A-size · 2160 × 3056</option>
+        <option value="3240x4584">A-size · 3240 × 4584</option>
+        <option value="3000x3000">Square · 3000</option>
+        <option value="match">Match file</option>
+      </select></div>
+      <div id="padSlider"></div>
+    </section>
+
+    <section><h2>Ink</h2>
+      <div class="two"><label class="mini">Ink<input type="color" id="ink" value="#f3f0fb"></label><label class="mini">Paper (preview only)<input type="color" id="paper" value="#2a2236"></label></div>
+      <div id="g-edges"></div>
+    </section>
+    <section><h2>Coverage</h2><div id="g-cover"></div></section>
+    <section><h2>Letters</h2><div id="g-letters"></div></section>
+    <section><h2>Second pass</h2>
+      <label class="check"><input type="checkbox" id="pass2"> Print a second colour, slightly off</label>
+      <div id="pass2Box" hidden>
+        <div class="two"><label class="mini">Colour<input type="color" id="ink2" value="#8b2ff0"></label><label class="mini">Blend<select id="blend2"><option value="under">Under</option><option value="multiply">Multiply</option><option value="over">Over</option></select></label></div>
+        <div id="g-pass2"></div>
+      </div>
+    </section>
+    <section><h2>Export</h2>
+      <div class="row" style="grid-template-columns:92px 1fr"><label>Seed</label><input type="number" id="seed" value="47"></div>
+      <div class="two"><button class="btn solid" id="dl">Download PNG</button><button class="btn" id="copy">Copy for Figma</button></div>
+      <p class="note">Exports at full size on a transparent background, ink only. Paste or place it over your poster in Figma, or use it as a luminance mask. Same seed, same print.</p>
+    </section>
+  </aside>
+</div>
+
+<script>
+(() => {
+'use strict';
+const $ = s => document.querySelector(s);
+
+/* ---------- controls ---------- */
+const P = {};
+const SL = {
+  textSliders: [
+    ['size', 'Size', 40, 1400, 1, 560, 'px'],
+    ['leading', 'Leading', 0.6, 1.4, 0.01, 0.86, ''],
+    ['tracking', 'Tracking', -60, 120, 1, 0, ''],
+    ['rot', 'Letter tilt', 0, 4, 0.05, 0.6, '°'],
+  ],
+  padSlider: [['pad', 'Margin', 0, 300, 1, 40, 'px']],
+  'g-edges': [
+    ['bleed', 'Ink spread', 0, 1, 0.01, 0.3, ''],
+    ['rough', 'Edge breakup', 0, 1, 0.01, 0.55, ''],
+    ['grain', 'Edge grain', 1, 16, 0.1, 4, 'px'],
+  ],
+  'g-cover': [
+    ['load', 'Ink load', 0.3, 1.3, 0.01, 0.92, ''],
+    ['patchy', 'Patchiness', 0, 1, 0.01, 0.45, ''],
+    ['patchSize', 'Patch size', 40, 800, 1, 240, 'px'],
+    ['squeeze', 'Edge squeeze', 0, 1, 0.01, 0.45, ''],
+    ['speckle', 'Speckle', 0, 1, 0.01, 0.55, ''],
+    ['streaks', 'Roller streaks', 0, 1, 0.01, 0.22, ''],
+  ],
+  'g-letters': [
+    ['letterVar', 'Ink per letter', 0, 1, 0.01, 0.5, ''],
+    ['wobble', 'Wobble', 0, 10, 0.1, 3, 'px'],
+  ],
+  'g-pass2': [
+    ['ox', 'Offset x', -40, 40, 1, 9, 'px'],
+    ['oy', 'Offset y', -40, 40, 1, 6, 'px'],
+    ['op2', 'Opacity', 0, 1, 0.01, 1, ''],
+  ],
+};
+for (const [box, list] of Object.entries(SL)) {
+  const el = document.getElementById(box);
+  for (const [id, label, min, max, step, v, unit] of list) {
+    P[id] = v;
+    const row = document.createElement('div'); row.className = 'row';
+    row.innerHTML = `<label for="s-${id}">${label}</label><input type="range" id="s-${id}" min="${min}" max="${max}" step="${step}" value="${v}"><output></output>`;
+    const inp = row.querySelector('input'), out = row.querySelector('output');
+    const show = () => out.textContent = (step < 1 ? (+inp.value).toFixed(step < 0.1 ? 2 : 1) : inp.value) + unit;
+    show();
+    inp.addEventListener('input', () => { P[id] = +inp.value; show(); schedule(); });
+    inp.addEventListener('dblclick', () => { inp.value = v; P[id] = v; show(); schedule(); });
+    el.appendChild(row);
+  }
+}
+
+const FONTS = ['Big Shoulders Display', 'Anton', 'Archivo Black', 'Bebas Neue', 'Oswald', 'Inter Tight', 'Space Grotesk', 'Jost', 'Bodoni Moda', 'DM Serif Display', 'Instrument Serif', 'Abril Fatface', 'Fraunces', 'JetBrains Mono', 'Space Mono'];
+const fontSel = $('#font'), weightSel = $('#weight');
+FONTS.forEach(f => fontSel.add(new Option(f, f)));
+[100,200,300,400,500,600,700,800,900].forEach(w => weightSel.add(new Option(w, w)));
+weightSel.value = '800';
+let srcMode = 'text', align = 'left', inkIs = 'auto', srcImage = null;
+
+const loaded = new Set();
+async function ensureFont(name, weight) {
+  if (name.startsWith('File: ')) return;
+  const key = name + weight;
+  if (!loaded.has(key)) {
+    loaded.add(key);
+    const l = document.createElement('link'); l.rel = 'stylesheet';
+    l.href = `https://fonts.googleapis.com/css2?family=${encodeURIComponent(name).replace(/%20/g, '+')}:wght@${weight}&display=block`;
+    document.head.appendChild(l);
+    await new Promise(r => { l.onload = r; l.onerror = r; setTimeout(r, 4000); });
+  }
+  try { await document.fonts.load(`${weight} 100px "${name}"`); } catch (e) {}
+}
+
+function seg(sel, attr, fn) {
+  const root = $(sel);
+  root.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    root.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
+    fn(b.dataset[attr]);
+  });
+}
+seg('#srcMode', 'm', m => { srcMode = m; $('#textSrc').hidden = m !== 'text'; $('#fileSrc').hidden = m !== 'file'; schedule(); });
+seg('#align', 'a', a => { align = a; schedule(); });
+seg('#inkIs', 'k', k => { inkIs = k; schedule(); });
+['#text', '#ink', '#paper', '#ink2', '#blend2', '#seed', '#canvasSize'].forEach(s => $(s).addEventListener('input', schedule));
+fontSel.addEventListener('change', schedule); weightSel.addEventListener('change', schedule);
+$('#pass2').addEventListener('change', e => { $('#pass2Box').hidden = !e.target.checked; schedule(); });
+$('#gfont').addEventListener('change', e => {
+  const n = e.target.value.trim(); if (!n) return;
+  if (![...fontSel.options].some(o => o.value === n)) fontSel.add(new Option(n, n), 0);
+  fontSel.value = n; schedule();
+});
+$('#fontFile').addEventListener('change', async e => {
+  const f = e.target.files[0]; if (!f) return;
+  const name = 'File: ' + f.name.replace(/\.[^.]+$/, '');
+  try {
+    const face = new FontFace(name, await f.arrayBuffer());
+    await face.load(); document.fonts.add(face);
+    fontSel.add(new Option(name, name), 0); fontSel.value = name; schedule();
+  } catch (err) { alert('Could not read that font file.'); }
+});
+$('#reroll').addEventListener('click', () => { $('#seed').value = Math.floor(Math.random() * 99999); schedule(); });
+
+/* ---------- files ---------- */
+function loadFile(f) {
+  if (!f) return;
+  const url = URL.createObjectURL(f);
+  const img = new Image();
+  img.onload = () => {
+    srcImage = img; $('#fileName').textContent = f.name;
+    srcMode = 'file';
+    document.querySelectorAll('#srcMode button').forEach(b => b.classList.toggle('on', b.dataset.m === 'file'));
+    $('#textSrc').hidden = true; $('#fileSrc').hidden = false;
+    schedule();
+  };
+  img.onerror = () => alert('Could not read that file. Try an SVG or PNG.');
+  img.src = url;
+}
+$('#file').addEventListener('change', e => loadFile(e.target.files[0]));
+const stage = $('#stage'), dz = $('#dropzone');
+stage.addEventListener('dragover', e => { e.preventDefault(); dz.hidden = false; });
+stage.addEventListener('dragleave', e => { if (!stage.contains(e.relatedTarget)) dz.hidden = true; });
+stage.addEventListener('drop', e => { e.preventDefault(); dz.hidden = true; loadFile(e.dataTransfer.files[0]); });
+
+/* ---------- maths ---------- */
+function rng(seed) { let a = seed >>> 0; return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+const clamp = (x, a, b) => x < a ? a : x > b ? b : x;
+const sstep = (a, b, x) => { const t = clamp((x - a) / (b - a), 0, 1); return t * t * (3 - 2 * t); };
+
+function blur1(src, dst, W, H, r, horiz) {
+  const n = horiz ? W : H, m = horiz ? H : W, s1 = horiz ? 1 : W, s2 = horiz ? W : 1, inv = 1 / (2 * r + 1);
+  for (let j = 0; j < m; j++) {
+    const base = j * s2;
+    let acc = 0;
+    for (let k = -r; k <= r; k++) acc += src[base + clamp(k, 0, n - 1) * s1];
+    for (let i = 0; i < n; i++) {
+      dst[base + i * s1] = acc * inv;
+      acc += src[base + Math.min(i + r + 1, n - 1) * s1] - src[base + Math.max(i - r, 0) * s1];
+    }
+  }
+}
+function blur(src, W, H, r) {
+  r = Math.max(1, Math.round(r));
+  const a = Float32Array.from(src), b = new Float32Array(W * H);
+  for (let p = 0; p < 3; p++) { blur1(a, b, W, H, r, true); blur1(b, a, W, H, r, false); }
+  return a;
+}
+function noise(W, H, sx, sy, seed, oct) {
+  const out = new Float32Array(W * H); let amp = 1, tot = 0;
+  for (let o = 0; o < oct; o++) {
+    const cx = Math.max(1, sx / (1 << o)), cy = Math.max(1, sy / (1 << o));
+    const gw = Math.ceil(W / cx) + 2, gh = Math.ceil(H / cy) + 2, R = rng(seed * 131 + o * 977 + 7);
+    const g = new Float32Array(gw * gh); for (let i = 0; i < g.length; i++) g[i] = R();
+    const ix = new Int32Array(W), tx = new Float32Array(W);
+    for (let x = 0; x < W; x++) { const f = x / cx; ix[x] = f | 0; const t = f - ix[x]; tx[x] = t * t * (3 - 2 * t); }
+    for (let y = 0; y < H; y++) {
+      const f = y / cy, iy = f | 0, t0 = f - iy, ty = t0 * t0 * (3 - 2 * t0), r0 = iy * gw, r1 = r0 + gw, row = y * W;
+      for (let x = 0; x < W; x++) {
+        const i = ix[x], t = tx[x];
+        const a = g[r0 + i] + (g[r0 + i + 1] - g[r0 + i]) * t, b = g[r1 + i] + (g[r1 + i + 1] - g[r1 + i]) * t;
+        out[row + x] += amp * (a + (b - a) * ty);
+      }
+    }
+    tot += amp; amp *= 0.5;
+  }
+  for (let i = 0; i < out.length; i++) out[i] /= tot;
+  return out;
+}
+function labels(mask, W, H, t) {
+  const lab = new Int32Array(W * H), parent = [0];
+  const find = x => { while (parent[x] !== x) { parent[x] = parent[parent[x]]; x = parent[x]; } return x; };
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const i = y * W + x; if (mask[i] < t) continue;
+    const l = x ? lab[i - 1] : 0, u = y ? lab[i - W] : 0;
+    if (!l && !u) { lab[i] = parent.length; parent.push(parent.length); }
+    else if (l && u) { const a = find(l), b = find(u); const m = Math.min(a, b); parent[a] = m; parent[b] = m; lab[i] = m; }
+    else lab[i] = l || u;
+  }
+  const map = new Int32Array(parent.length); let n = 0;
+  for (let i = 1; i < parent.length; i++) { const r = find(i); if (!map[r]) map[r] = ++n; map[i] = map[r]; }
+  for (let i = 0; i < lab.length; i++) if (lab[i]) lab[i] = map[lab[i]];
+  return { lab, n };
+}
+
+/* ---------- source mask ---------- */
+function canvasDims() {
+  const v = $('#canvasSize').value;
+  if (v === 'match' && srcMode === 'file' && srcImage) {
+    const w = srcImage.naturalWidth || 2000, h = srcImage.naturalHeight || 2000, k = 3000 / Math.max(w, h);
+    return [Math.round(w * k), Math.round(h * k)];
+  }
+  const [w, h] = (v === 'match' ? '2160x3056' : v).split('x').map(Number); return [w, h];
+}
+function drawSource(W, H, s, seed) {
+  const c = document.createElement('canvas'); c.width = W; c.height = H;
+  const x = c.getContext('2d'), pad = P.pad * s;
+  if (srcMode === 'file') {
+    if (!srcImage) return null;
+    const iw = srcImage.naturalWidth || 1000, ih = srcImage.naturalHeight || 1000;
+    const k = Math.min((W - 2 * pad) / iw, (H - 2 * pad) / ih);
+    x.drawImage(srcImage, (W - iw * k) / 2, (H - ih * k) / 2, iw * k, ih * k);
+    const d = x.getImageData(0, 0, W, H).data, m = new Float32Array(W * H);
+    let mode = inkIs;
+    if (mode === 'auto') { mode = 'dark'; for (let i = 3; i < d.length; i += 4 * 7) if (d[i] < 250) { mode = 'alpha'; break; } }
+    for (let i = 0, j = 0; j < m.length; i += 4, j++) {
+      const a = d[i + 3] / 255;
+      m[j] = mode === 'alpha' ? a : a * (1 - (0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2]) / 255);
+    }
+    return m;
+  }
+  const fam = fontSel.value, wt = weightSel.value, size = P.size * s, track = P.tracking / 1000 * P.size * s;
+  x.font = `${wt} ${size}px "${fam}"`; x.textBaseline = 'alphabetic'; x.fillStyle = '#000';
+  const lines = $('#text').value.split('\n');
+  const capH = x.measureText('H').actualBoundingBoxAscent || size * 0.7, lh = size * P.leading;
+  const R = rng(seed * 7 + 3);
+  let y = (H - ((lines.length - 1) * lh + capH)) / 2 + capH;
+  for (const line of lines) {
+    const chars = [...line], adv = [];
+    let prev = 0;
+    for (let i = 0; i < chars.length; i++) { const w = x.measureText(chars.slice(0, i + 1).join('')).width; adv.push(w - prev + track); prev = w; }
+    const total = adv.reduce((a, b) => a + b, 0) - (chars.length ? track : 0);
+    let cx = align === 'left' ? pad : align === 'right' ? W - pad - total : (W - total) / 2;
+    chars.forEach((ch, i) => {
+      const w = x.measureText(ch).width, rot = (R() * 2 - 1) * P.rot * Math.PI / 180;
+      x.save(); x.translate(cx + w / 2, y - capH / 2); x.rotate(rot); x.fillText(ch, -w / 2, capH / 2); x.restore();
+      cx += adv[i];
+    });
+    y += lh;
+  }
+  const d = x.getImageData(0, 0, W, H).data, m = new Float32Array(W * H);
+  for (let i = 3, j = 0; j < m.length; i += 4, j++) m[j] = d[i] / 255;
+  return m;
+}
+function shift(m, W, H, dx, dy) {
+  if (!dx && !dy) return m;
+  const o = new Float32Array(W * H);
+  for (let y = 0; y < H; y++) { const sy = y - dy; if (sy < 0 || sy >= H) continue;
+    for (let x = 0; x < W; x++) { const sx = x - dx; if (sx >= 0 && sx < W) o[y * W + x] = m[sy * W + sx]; } }
+  return o;
+}
+
+/* ---------- the press ---------- */
+function ink(src, W, H, s, seed) {
+  const R = rng(seed);
+  // per-letter wobble and ink bias
+  const { lab, n } = labels(src, W, H, 0.15);
+  const dx = new Int32Array(n + 1), dy = new Int32Array(n + 1), bias = new Float32Array(n + 1);
+  for (let c = 1; c <= n; c++) { dx[c] = Math.round((R() * 2 - 1) * P.wobble * s); dy[c] = Math.round((R() * 2 - 1) * P.wobble * s); bias[c] = (R() * 2 - 1) * P.letterVar * 0.35; }
+  let m = src, bm = new Float32Array(W * H);
+  if (P.wobble > 0) {
+    m = new Float32Array(W * H);
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      const i = y * W + x, v = src[i]; if (!v) continue; const c = lab[i];
+      const nx = x + (c ? dx[c] : 0), ny = y + (c ? dy[c] : 0); if (nx < 0 || ny < 0 || nx >= W || ny >= H) continue;
+      const j = ny * W + nx; if (v > m[j]) { m[j] = v; bm[j] = v * bias[c]; }
+    }
+  } else for (let i = 0; i < m.length; i++) bm[i] = m[i] * bias[lab[i]];
+
+  const r = (1 + P.grain * 0.7 + P.bleed * 6) * s;
+  const b = blur(m, W, H, r), bb = blur(bm, W, H, r);
+  const en = noise(W, H, P.grain * s * 1.6, P.grain * s * 1.6, seed + 1, 3);
+  const patch = noise(W, H, P.patchSize * s, P.patchSize * s, seed + 2, 3);
+  const streak = P.streaks > 0 ? noise(W, H, P.patchSize * 2.5 * s, Math.max(1, 2.5 * s), seed + 3, 2) : null;
+  const fine = noise(W, H, Math.max(1, 1.3 * s), Math.max(1, 1.3 * s), seed + 4, 2);
+  const W2 = new Float32Array(W * H), R2 = rng(seed + 5);
+  const thr = 0.5 - P.bleed * 0.3, out = new Float32Array(W * H);
+  for (let i = 0; i < out.length; i++) {
+    const bi = b[i]; if (bi < 0.02) continue;
+    const e = bi + (en[i] - 0.5) * P.rough * 0.9;
+    const inside = sstep(thr - 0.04, thr + 0.04, e); if (!inside) continue;
+    const core = clamp((bi - thr) / 0.45, 0, 1);
+    const lb = bb[i] / Math.max(bi, 1e-3);
+    let d = P.load + lb - P.patchy * (patch[i] - 0.5) * 1.8 + P.squeeze * (1 - core) * 0.55 - P.squeeze * 0.12 * core;
+    if (streak) d -= P.streaks * (streak[i] - 0.5) * 1.4;
+    const a = clamp(d, 0, 1);
+    const g = clamp(fine[i] * 0.7 + R2() * 0.3, 0, 1);
+    const holes = sstep(g - 0.05, g + 0.05, a);
+    out[i] = inside * (a + (holes - a) * P.speckle);
+  }
+  return out;
+}
+function paint(alpha, W, H, hex, opacity) {
+  const c = document.createElement('canvas'); c.width = W; c.height = H;
+  const x = c.getContext('2d'), im = x.createImageData(W, H), d = im.data;
+  const r = parseInt(hex.slice(1, 3), 16), g = parseInt(hex.slice(3, 5), 16), bl = parseInt(hex.slice(5, 7), 16);
+  for (let i = 0, j = 0; j < alpha.length; i += 4, j++) { d[i] = r; d[i + 1] = g; d[i + 2] = bl; d[i + 3] = alpha[j] * opacity * 255; }
+  x.putImageData(im, 0, 0); return c;
+}
+async function render(s, clean) {
+  const [FW, FH] = canvasDims(), W = Math.round(FW * s), H = Math.round(FH * s), seed = +$('#seed').value || 0;
+  if (srcMode === 'text') await ensureFont(fontSel.value, weightSel.value);
+  const src = drawSource(W, H, s, seed); if (!src) return null;
+  const out = document.createElement('canvas'); out.width = W; out.height = H;
+  const x = out.getContext('2d');
+  if (clean) { x.drawImage(paint(src, W, H, $('#ink').value, 1), 0, 0); return out; }
+  const main = paint(ink(src, W, H, s, seed), W, H, $('#ink').value, 1);
+  if ($('#pass2').checked) {
+    const src2 = shift(src, W, H, Math.round(P.ox * s), Math.round(P.oy * s));
+    const second = paint(ink(src2, W, H, s, seed + 1000), W, H, $('#ink2').value, P.op2), mode = $('#blend2').value;
+    if (mode === 'under') { x.drawImage(second, 0, 0); x.drawImage(main, 0, 0); }
+    else { x.drawImage(main, 0, 0); x.globalCompositeOperation = mode === 'multiply' ? 'multiply' : 'source-over'; x.drawImage(second, 0, 0); x.globalCompositeOperation = 'source-over'; }
+  } else x.drawImage(main, 0, 0);
+  return out;
+}
+
+/* ---------- preview ---------- */
+const cv = $('#cv'), ctx = cv.getContext('2d');
+let timer = 0, running = false, again = false, lastPreview = null, cleanPreview = null, holding = false;
+function previewScale() { const [W, H] = canvasDims(); return Math.min(1, 1500 / Math.max(W, H)); }
+function show(c) {
+  if (!c) { cv.width = 600; cv.height = 848; ctx.fillStyle = $('#paper').value; ctx.fillRect(0, 0, 600, 848); return; }
+  cv.width = c.width; cv.height = c.height; ctx.fillStyle = $('#paper').value; ctx.fillRect(0, 0, c.width, c.height); ctx.drawImage(c, 0, 0);
+}
+function schedule() { clearTimeout(timer); timer = setTimeout(run, 70); }
+async function run() {
+  if (running) { again = true; return; }
+  running = true; $('#busy').hidden = false;
+  await new Promise(r => requestAnimationFrame(() => setTimeout(r)));
+  const t = performance.now();
+  try { lastPreview = await render(previewScale()); cleanPreview = null; show(holding ? await cleanC() : lastPreview); }
+  catch (e) { console.error(e); }
+  const [W, H] = canvasDims();
+  $('#info').textContent = `${W} × ${H} · seed ${$('#seed').value} · ${Math.round(performance.now() - t)}ms`;
+  $('#busy').hidden = true; running = false;
+  if (again) { again = false; run(); }
+}
+async function cleanC() { if (!cleanPreview) cleanPreview = await render(previewScale(), true); return cleanPreview; }
+const cmp = $('#compare');
+const down = async () => { holding = true; show(await cleanC()); }, up = () => { holding = false; show(lastPreview); };
+cmp.addEventListener('pointerdown', down); cmp.addEventListener('pointerup', up); cmp.addEventListener('pointerleave', () => holding && up());
+
+/* ---------- export ---------- */
+async function full() {
+  $('#busy').hidden = false; $('#busy').textContent = 'Printing full size…';
+  await new Promise(r => requestAnimationFrame(() => setTimeout(r)));
+  try { return await render(1); } finally { $('#busy').hidden = true; $('#busy').textContent = 'Inking…'; }
+}
+const toBlob = c => new Promise(r => c.toBlob(r, 'image/png'));
+$('#dl').addEventListener('click', async () => {
+  const c = await full(); if (!c) return;
+  const a = document.createElement('a'); a.href = URL.createObjectURL(await toBlob(c));
+  a.download = `ink-machine-${$('#seed').value}.png`; a.click();
+});
+$('#copy').addEventListener('click', async () => {
+  const btn = $('#copy');
+  try {
+    await navigator.clipboard.write([new ClipboardItem({ 'image/png': full().then(toBlob) })]);
+    btn.textContent = 'Copied'; setTimeout(() => btn.textContent = 'Copy for Figma', 1500);
+  } catch (e) { btn.textContent = 'Copy blocked · download'; setTimeout(() => btn.textContent = 'Copy for Figma', 2200); }
+});
+
+document.fonts.ready.then(run);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,290 @@
+{
+  "date": "2026-11-18",
+  "issue": 47,
+  "generatedAt": "2026-11-18T05:08:11.621Z",
+  "colour": {
+    "name": "Violet",
+    "yesterday": "Magenta",
+    "tomorrow": "Indigo"
+  },
+  "story": {
+    "title": "Pakistan's solar revolution is so successful the national grid is lagging behind",
+    "summary": "Ordinary households in Pakistan have installed their own solar panels in such numbers that solar's share of the country's electricity has risen from 1% to 28%. The national grid is now struggling to keep up with the speed of the change.",
+    "source": "BBC News",
+    "url": "https://www.bbc.co.uk/news/articles/ckvg2n2q3103o?at_medium=RSS&amp;at_campaign=rss",
+    "published": "2026-11-17T23:34:56.000Z",
+    "theme": "rooftop solar power"
+  },
+  "headlines": [
+    "The Sun Outran the Grid",
+    "A Panel on Every Roof",
+    "Power Rising Faster Than Wires"
+  ],
+  "sublines": [
+    "Rooftop panels bought by ordinary households lifted solar from 1% to 28% of Pakistan's electricity.",
+    "Homeowners went solar one roof at a time, and the national grid is now struggling to keep pace.",
+    "Pakistan's solar share jumped from 1% to 28%, a shift driven by people rather than power stations."
+  ],
+  "palette": {
+    "name": "Vivid",
+    "colours": [
+      "#8D2EEE",
+      "#E9DFFE",
+      "#736F7C",
+      "#25163B"
+    ]
+  },
+  "always": [
+    "#000000",
+    "#FFFFFF"
+  ],
+  "type": {
+    "id": "big-shoulders",
+    "display": "Big Shoulders Display",
+    "text": "JetBrains Mono",
+    "reason": "Big Shoulders' tall, industrial condensed capitals suit a story of infrastructure and surging power, while the mono face adds a technical, data-minded note.",
+    "css": "https://fonts.googleapis.com/css2?family=Big+Shoulders+Display&family=JetBrains+Mono&display=swap",
+    "displayUrl": "https://fonts.google.com/specimen/Big+Shoulders+Display",
+    "textUrl": "https://fonts.google.com/specimen/JetBrains+Mono"
+  },
+  "grid": {
+    "format": "A-size",
+    "size": [
+      1080,
+      1528
+    ],
+    "columns": 8,
+    "rows": 8,
+    "margin": 16,
+    "gutter": 0,
+    "column": 131,
+    "row": 187,
+    "unit": "px"
+  },
+  "images": [
+    {
+      "id": "met:286254",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "[Paris Rooftops], 1841",
+      "credit": "Armand-Hippolyte-Louis Fizeau",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/286254",
+      "page": "https://www.metmuseum.org/art/collection/search/286254",
+      "alt": "[Paris Rooftops]",
+      "thumb": "https://images.metmuseum.org/CRDImages/ph/web-large/DP-18663-047.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/ph/original/DP-18663-047.jpg",
+      "local": "media/2026-11-18/image-01-2160.jpg"
+    },
+    {
+      "id": "unsplash:2SfssudtyIA",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "A close up of a solar panel on a building",
+      "credit": "Benjamin Jopen",
+      "creditUrl": "https://unsplash.com/@benjopen?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-close-up-of-a-solar-panel-on-a-building-2SfssudtyIA?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A close up of a solar panel on a building",
+      "thumb": "https://images.unsplash.com/photo-1724041875334-0a6397111c7e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cm9vZnRvcCUyMHNvbGFyJTIwcGFuZWxzfGVufDF8fHx8MTc5NDk3ODQ5Mnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1724041875334-0a6397111c7e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cm9vZnRvcCUyMHNvbGFyJTIwcGFuZWxzfGVufDF8fHx8MTc5NDk3ODQ5Mnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:0GbrjL3vZF4",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "black and white solar panels",
+      "credit": "Nuno Marques",
+      "creditUrl": "https://unsplash.com/@logvisuals?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/black-and-white-solar-panels-0GbrjL3vZF4?utm_source=daily_poster&utm_medium=referral",
+      "alt": "black and white solar panels",
+      "thumb": "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cm9vZnRvcCUyMHNvbGFyJTIwcGFuZWxzfGVufDF8fHx8MTc5NDk3ODQ5Mnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cm9vZnRvcCUyMHNvbGFyJTIwcGFuZWxzfGVufDF8fHx8MTc5NDk3ODQ5Mnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:265151",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "[View of Rooftops], 1917",
+      "credit": "Morton Schamberg",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/265151",
+      "page": "https://www.metmuseum.org/art/collection/search/265151",
+      "alt": "[View of Rooftops]",
+      "thumb": "https://images.metmuseum.org/CRDImages/ph/web-large/DP105550.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/ph/original/DP105550.jpg",
+      "local": "media/2026-11-18/image-04-2160.jpg"
+    },
+    {
+      "id": "unsplash:r0wgHisWr4o",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "silhouette of transmission tower",
+      "credit": "kiwi thompson",
+      "creditUrl": "https://unsplash.com/@kiwithompson?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/silhouette-of-transmission-tower-r0wgHisWr4o?utm_source=daily_poster&utm_medium=referral",
+      "alt": "silhouette of transmission tower",
+      "thumb": "https://images.unsplash.com/photo-1556341984-69c93f636618?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8cG93ZXIlMjBsaW5lcyUyMGR1c2t8ZW58MXx8fHwxNzk0OTc4NDkyfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1556341984-69c93f636618?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8cG93ZXIlMjBsaW5lcyUyMGR1c2t8ZW58MXx8fHwxNzk0OTc4NDkyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:qpAOxji4dAo",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "silhouette of electric post during sunset",
+      "credit": "Andrey Metelev",
+      "creditUrl": "https://unsplash.com/@metelevan?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/silhouette-of-electric-post-during-sunset-qpAOxji4dAo?utm_source=daily_poster&utm_medium=referral",
+      "alt": "silhouette of electric post during sunset",
+      "thumb": "https://images.unsplash.com/photo-1610028290816-5d937a395a49?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cG93ZXIlMjBsaW5lcyUyMGR1c2t8ZW58MXx8fHwxNzk0OTc4NDkyfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1610028290816-5d937a395a49?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cG93ZXIlMjBsaW5lcyUyMGR1c2t8ZW58MXx8fHwxNzk0OTc4NDkyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:773518",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "[Rooftops, Paris], August 22,1843",
+      "credit": "Armand-Hippolyte-Louis Fizeau",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/773518",
+      "page": "https://www.metmuseum.org/art/collection/search/773518",
+      "alt": "[Rooftops, Paris]",
+      "thumb": "https://images.metmuseum.org/CRDImages/ph/web-large/DP-18191-043.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/ph/original/DP-18191-043.jpg",
+      "local": "media/2026-11-18/image-07-2160.jpg"
+    },
+    {
+      "id": "unsplash:2Q7Af91a4Hk",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "silhouette of person sitting on bench near body of water during sunset",
+      "credit": "he zhu",
+      "creditUrl": "https://unsplash.com/@zhugher?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/silhouette-of-person-sitting-on-bench-near-body-of-water-during-sunset-2Q7Af91a4Hk?utm_source=daily_poster&utm_medium=referral",
+      "alt": "silhouette of person sitting on bench near body of water during sunset",
+      "thumb": "https://images.unsplash.com/photo-1599014588887-d96cc374ed11?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8dmlvbGV0JTIwc3Vuc2V0JTIwY2l0eXxlbnwxfHx8fDE3OTQ5Nzg0OTJ8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1599014588887-d96cc374ed11?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8dmlvbGV0JTIwc3Vuc2V0JTIwY2l0eXxlbnwxfHx8fDE3OTQ5Nzg0OTJ8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:LgCj9qcrfhI",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "Xinghai Bridge spanning the water in Dalian, China, under a vibrant orange sky",
+      "credit": "Wade Meng",
+      "creditUrl": "https://unsplash.com/@wademm3?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/xinghai-bridge-in-dalian-at-dusk-LgCj9qcrfhI?utm_source=daily_poster&utm_medium=referral",
+      "alt": "Xinghai Bridge spanning the water in Dalian, China, under a vibrant orange sky",
+      "thumb": "https://images.unsplash.com/photo-1505699261378-c372af38134c?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8dmlvbGV0JTIwc3Vuc2V0JTIwY2l0eXxlbnwxfHx8fDE3OTQ5Nzg0OTJ8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1505699261378-c372af38134c?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8dmlvbGV0JTIwc3Vuc2V0JTIwY2l0eXxlbnwxfHx8fDE3OTQ5Nzg0OTJ8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:853645",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Rooftops, Brooklyn, ca. 1867",
+      "credit": "Fidelia Bridges",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/853645",
+      "page": "https://www.metmuseum.org/art/collection/search/853645",
+      "alt": "Rooftops, Brooklyn",
+      "thumb": "https://images.metmuseum.org/CRDImages/ad/web-large/DP-25621-001.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/ad/original/DP-25621-001.jpg",
+      "local": "media/2026-11-18/image-10-2160.jpg"
+    }
+  ],
+  "textures": [
+    {
+      "id": "unsplash:UuBR5kbvt4Y",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a black and white photo of a concrete wall",
+      "credit": "Yan Ots",
+      "creditUrl": "https://unsplash.com/@yanots?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-black-and-white-photo-of-a-concrete-wall-UuBR5kbvt4Y?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a black and white photo of a concrete wall",
+      "thumb": "https://images.unsplash.com/photo-1521459467264-802e2ef3141f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Z2xhc3MlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDk3ODQ5Mnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1521459467264-802e2ef3141f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Z2xhc3MlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDk3ODQ5Mnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:TnQE5X48FMA",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "A fine-grained silver metallic texture with a subtle shimmering surface",
+      "credit": "Katie Harp",
+      "creditUrl": "https://unsplash.com/@kharp?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/silver-metallic-texture-with-shimmer-TnQE5X48FMA?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A fine-grained silver metallic texture with a subtle shimmering surface",
+      "thumb": "https://images.unsplash.com/photo-1656055448548-e26753307fc7?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8YnJ1c2hlZCUyMG1ldGFsJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTQ5Nzg0OTJ8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1656055448548-e26753307fc7?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8YnJ1c2hlZCUyMG1ldGFsJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTQ5Nzg0OTJ8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:R53t-Tg6J4c",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "plain white textured plaster surface",
+      "credit": "NordWood Themes",
+      "creditUrl": "https://unsplash.com/@nordwood?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/plain-white-textured-plaster-surface-R53t-Tg6J4c?utm_source=daily_poster&utm_medium=referral",
+      "alt": "plain white textured plaster surface",
+      "thumb": "https://images.unsplash.com/photo-1604147706283-d7119b5b822c?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Y29uY3JldGUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDk3ODQ5Mnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1604147706283-d7119b5b822c?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Y29uY3JldGUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDk3ODQ5Mnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:kG-ZwDuQ8ME",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "weathered teal concrete wall texture",
+      "credit": "Annie Spratt",
+      "creditUrl": "https://unsplash.com/@anniespratt?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/weathered-teal-concrete-wall-texture-kG-ZwDuQ8ME?utm_source=daily_poster&utm_medium=referral",
+      "alt": "weathered teal concrete wall texture",
+      "thumb": "https://images.unsplash.com/photo-1578922427288-a47338083a57?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8YnJ1c2hlZCUyMG1ldGFsJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTQ5Nzg0OTJ8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1578922427288-a47338083a57?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8YnJ1c2hlZCUyMG1ldGFsJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTQ5Nzg0OTJ8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    }
+  ],
+  "objects": [
+    {
+      "name": "solar panel",
+      "material": "brushed aluminium and dark glass",
+      "image": "media/2026-11-18/object-1.png",
+      "thumb": "media/2026-11-18/object-1-thumb.png",
+      "model": {
+        "title": "Simple 72 Cell Solar Panel",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-a969548b7e3643f59bad10c7dd18199c",
+        "licence": "CC Attribution",
+        "creator": "MechanicalOnion",
+        "creatorUrl": "https://sketchfab.com/kambu_ch"
+      },
+      "texture": null
+    },
+    {
+      "name": "transmission pylon",
+      "material": "galvanized steel",
+      "image": "media/2026-11-18/object-2.png",
+      "thumb": "media/2026-11-18/object-2-thumb.png",
+      "model": {
+        "title": "Power Transmission Tower",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-e471b57b273449d88a1c83dcad48869f",
+        "licence": "CC Attribution",
+        "creator": "gisexpert",
+        "creatorUrl": "https://sketchfab.com/gisexpert"
+      },
+      "texture": null
+    },
+    {
+      "name": "insulator",
+      "material": "weathered concrete",
+      "image": "media/2026-11-18/object-3.png",
+      "thumb": "media/2026-11-18/object-3-thumb.png",
+      "model": {
+        "title": "Czech insulator (white type)",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-4c2b60c7ca3c4f84b24935a649b4d2a3",
+        "licence": "CC Attribution",
+        "creator": "matyprokopiswinner",
+        "creatorUrl": "https://sketchfab.com/matyprokopiswinner"
+      },
+      "texture": {
+        "title": "Brushed Concrete 2",
+        "url": "https://polyhaven.com/a/brushed_concrete_2"
+      }
+    }
+  ]
+}

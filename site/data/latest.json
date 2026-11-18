@@ -1,37 +1,37 @@
 {
-  "date": "2026-11-17",
-  "issue": 46,
-  "generatedAt": "2026-11-17T05:08:04.310Z",
+  "date": "2026-11-18",
+  "issue": 47,
+  "generatedAt": "2026-11-18T05:08:11.621Z",
   "colour": {
-    "name": "Magenta",
-    "yesterday": "Rose",
-    "tomorrow": "Violet"
+    "name": "Violet",
+    "yesterday": "Magenta",
+    "tomorrow": "Indigo"
   },
   "story": {
-    "title": "‘It’s like the 16th-century version of doomscrolling’: the Book of Miracles may fetch £1m at auction",
-    "summary": "A rare 16th-century illustrated manuscript, the Book of Miracles, is expected to fetch around £1m at auction, with public institutions given first chance to bid. Its paintings show extraordinary skies and weather, such as five suns over Leipzig in 1551, blood rain on Rome in 1456 and giant hailstones battering a Dutch city.",
-    "source": "The Guardian",
-    "url": "https://www.theguardian.com/books/2026/nov/16/book-of-miracles-apocalyptic-weather-visions-auction",
-    "published": "2026-11-16T07:00:38.000Z",
-    "theme": "historic book of skies"
+    "title": "Pakistan's solar revolution is so successful the national grid is lagging behind",
+    "summary": "Ordinary households in Pakistan have installed their own solar panels in such numbers that solar's share of the country's electricity has risen from 1% to 28%. The national grid is now struggling to keep up with the speed of the change.",
+    "source": "BBC News",
+    "url": "https://www.bbc.co.uk/news/articles/ckvg2n2q3103o?at_medium=RSS&amp;at_campaign=rss",
+    "published": "2026-11-17T23:34:56.000Z",
+    "theme": "rooftop solar power"
   },
   "headlines": [
-    "Five Suns Over Leipzig",
-    "Blood Rain Falls on Rome",
-    "The Sky Kept Its Own Ledger"
+    "The Sun Outran the Grid",
+    "A Panel on Every Roof",
+    "Power Rising Faster Than Wires"
   ],
   "sublines": [
-    "A rare 16th-century book of painted skies, comets and storms may fetch £1m at auction.",
-    "Public institutions get first chance to bid on the illustrated wonderbook of extreme weather and strange celestial sightings.",
-    "Its pages record hailstorms, rains of red and multiple suns, each dated and set above a real European city."
+    "Rooftop panels bought by ordinary households lifted solar from 1% to 28% of Pakistan's electricity.",
+    "Homeowners went solar one roof at a time, and the national grid is now struggling to keep pace.",
+    "Pakistan's solar share jumped from 1% to 28%, a shift driven by people rather than power stations."
   ],
   "palette": {
     "name": "Vivid",
     "colours": [
-      "#F43BEC",
-      "#FCD7F8",
-      "#796E77",
-      "#31102F"
+      "#8D2EEE",
+      "#E9DFFE",
+      "#736F7C",
+      "#25163B"
     ]
   },
   "always": [
@@ -39,13 +39,13 @@
     "#FFFFFF"
   ],
   "type": {
-    "id": "bodoni",
-    "display": "Bodoni Moda",
-    "text": "Jost",
-    "reason": "Bodoni's sharp high-contrast strokes feel like old printed wonder-books, while Jost keeps the facts clean and modern beneath them.",
-    "css": "https://fonts.googleapis.com/css2?family=Bodoni+Moda&family=Jost&display=swap",
-    "displayUrl": "https://fonts.google.com/specimen/Bodoni+Moda",
-    "textUrl": "https://fonts.google.com/specimen/Jost"
+    "id": "big-shoulders",
+    "display": "Big Shoulders Display",
+    "text": "JetBrains Mono",
+    "reason": "Big Shoulders' tall, industrial condensed capitals suit a story of infrastructure and surging power, while the mono face adds a technical, data-minded note.",
+    "css": "https://fonts.googleapis.com/css2?family=Big+Shoulders+Display&family=JetBrains+Mono&display=swap",
+    "displayUrl": "https://fonts.google.com/specimen/Big+Shoulders+Display",
+    "textUrl": "https://fonts.google.com/specimen/JetBrains+Mono"
   },
   "grid": {
     "format": "A-size",
@@ -63,229 +63,227 @@
   },
   "images": [
     {
-      "id": "unsplash:3WgPZbsDSkE",
-      "source": "Unsplash",
-      "licence": "Unsplash License",
-      "title": "Dense pink and white clouds filling the sky with a small bird silhouette",
-      "credit": "Andrea Ferrario",
-      "creditUrl": "https://unsplash.com/@andreaferrario?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/pink-and-white-clouds-with-bird-3WgPZbsDSkE?utm_source=daily_poster&utm_medium=referral",
-      "alt": "Dense pink and white clouds filling the sky with a small bird silhouette",
-      "thumb": "https://images.unsplash.com/photo-1560803262-95a9de00a057?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8c3Rvcm0lMjBza3klMjBwaW5rfGVufDF8fHx8MTc5NDg5MjA4NHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1560803262-95a9de00a057?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8c3Rvcm0lMjBza3klMjBwaW5rfGVufDF8fHx8MTc5NDg5MjA4NHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
-    },
-    {
-      "id": "met:371126",
+      "id": "met:286254",
       "source": "The Met",
       "licence": "CC0",
-      "title": "A Comet Above Strasbourg at Night, n.d.",
-      "credit": "Johann Adam Seupel",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/371126",
-      "page": "https://www.metmuseum.org/art/collection/search/371126",
-      "alt": "A Comet Above Strasbourg at Night",
-      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP-46363-001.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP-46363-001.jpg",
-      "local": "media/2026-11-17/image-02-2160.jpg"
+      "title": "[Paris Rooftops], 1841",
+      "credit": "Armand-Hippolyte-Louis Fizeau",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/286254",
+      "page": "https://www.metmuseum.org/art/collection/search/286254",
+      "alt": "[Paris Rooftops]",
+      "thumb": "https://images.metmuseum.org/CRDImages/ph/web-large/DP-18663-047.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/ph/original/DP-18663-047.jpg",
+      "local": "media/2026-11-18/image-01-2160.jpg"
     },
     {
-      "id": "unsplash:p0Yupww_SNM",
+      "id": "unsplash:2SfssudtyIA",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "black high trees under white and black sky at golden hour",
-      "credit": "Spencer  Watson",
-      "creditUrl": "https://unsplash.com/@thebrownspy?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/black-high-trees-under-white-and-black-sky-at-golden-hour-p0Yupww_SNM?utm_source=daily_poster&utm_medium=referral",
-      "alt": "black high trees under white and black sky at golden hour",
-      "thumb": "https://images.unsplash.com/photo-1501619757722-90657a99803b?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8bWFnZW50YSUyMHN1bnNldCUyMGNsb3Vkc3xlbnwxfHx8fDE3OTQ4OTIwODR8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1501619757722-90657a99803b?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8bWFnZW50YSUyMHN1bnNldCUyMGNsb3Vkc3xlbnwxfHx8fDE3OTQ4OTIwODR8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "A close up of a solar panel on a building",
+      "credit": "Benjamin Jopen",
+      "creditUrl": "https://unsplash.com/@benjopen?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-close-up-of-a-solar-panel-on-a-building-2SfssudtyIA?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A close up of a solar panel on a building",
+      "thumb": "https://images.unsplash.com/photo-1724041875334-0a6397111c7e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cm9vZnRvcCUyMHNvbGFyJTIwcGFuZWxzfGVufDF8fHx8MTc5NDk3ODQ5Mnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1724041875334-0a6397111c7e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cm9vZnRvcCUyMHNvbGFyJTIwcGFuZWxzfGVufDF8fHx8MTc5NDk3ODQ5Mnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "met:811320",
-      "source": "The Met",
-      "licence": "CC0",
-      "title": "John Bull Making Observations on the Comet, November 10, 1807",
-      "credit": "Thomas Rowlandson",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/811320",
-      "page": "https://www.metmuseum.org/art/collection/search/811320",
-      "alt": "John Bull Making Observations on the Comet",
-      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP884701.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP884701.jpg",
-      "local": "media/2026-11-17/image-04-2160.jpg"
-    },
-    {
-      "id": "unsplash:AUrK7wuV8fE",
+      "id": "unsplash:0GbrjL3vZF4",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "cloudy sky during golden hour",
-      "credit": "Andres Perez",
-      "creditUrl": "https://unsplash.com/@eduukpo12?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/cloudy-sky-during-golden-hour-AUrK7wuV8fE?utm_source=daily_poster&utm_medium=referral",
-      "alt": "cloudy sky during golden hour",
-      "thumb": "https://images.unsplash.com/photo-1578943195665-f23d690b92d3?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8bWFnZW50YSUyMHN1bnNldCUyMGNsb3Vkc3xlbnwxfHx8fDE3OTQ4OTIwODR8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1578943195665-f23d690b92d3?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8bWFnZW50YSUyMHN1bnNldCUyMGNsb3Vkc3xlbnwxfHx8fDE3OTQ4OTIwODR8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "black and white solar panels",
+      "credit": "Nuno Marques",
+      "creditUrl": "https://unsplash.com/@logvisuals?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/black-and-white-solar-panels-0GbrjL3vZF4?utm_source=daily_poster&utm_medium=referral",
+      "alt": "black and white solar panels",
+      "thumb": "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cm9vZnRvcCUyMHNvbGFyJTIwcGFuZWxzfGVufDF8fHx8MTc5NDk3ODQ5Mnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cm9vZnRvcCUyMHNvbGFyJTIwcGFuZWxzfGVufDF8fHx8MTc5NDk3ODQ5Mnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "met:339802",
+      "id": "met:265151",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Storm, n.d.",
-      "credit": "Joseph Vernet",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/339802",
-      "page": "https://www.metmuseum.org/art/collection/search/339802",
-      "alt": "Storm",
-      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP226779.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP226779.jpg",
-      "local": "media/2026-11-17/image-06-2160.jpg"
+      "title": "[View of Rooftops], 1917",
+      "credit": "Morton Schamberg",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/265151",
+      "page": "https://www.metmuseum.org/art/collection/search/265151",
+      "alt": "[View of Rooftops]",
+      "thumb": "https://images.metmuseum.org/CRDImages/ph/web-large/DP105550.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/ph/original/DP105550.jpg",
+      "local": "media/2026-11-18/image-04-2160.jpg"
     },
     {
-      "id": "unsplash:LG8Mt7f7lXQ",
+      "id": "unsplash:r0wgHisWr4o",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "a purple sky filled with lots of lightning",
-      "credit": "chutipon Pattanatitinon",
-      "creditUrl": "https://unsplash.com/@gyvahn?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/a-purple-sky-filled-with-lots-of-lightning-LG8Mt7f7lXQ?utm_source=daily_poster&utm_medium=referral",
-      "alt": "a purple sky filled with lots of lightning",
-      "thumb": "https://images.unsplash.com/photo-1621483092616-780665772d83?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8c3Rvcm0lMjBza3klMjBwaW5rfGVufDF8fHx8MTc5NDg5MjA4NHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1621483092616-780665772d83?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8c3Rvcm0lMjBza3klMjBwaW5rfGVufDF8fHx8MTc5NDg5MjA4NHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "silhouette of transmission tower",
+      "credit": "kiwi thompson",
+      "creditUrl": "https://unsplash.com/@kiwithompson?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/silhouette-of-transmission-tower-r0wgHisWr4o?utm_source=daily_poster&utm_medium=referral",
+      "alt": "silhouette of transmission tower",
+      "thumb": "https://images.unsplash.com/photo-1556341984-69c93f636618?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8cG93ZXIlMjBsaW5lcyUyMGR1c2t8ZW58MXx8fHwxNzk0OTc4NDkyfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1556341984-69c93f636618?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8cG93ZXIlMjBsaW5lcyUyMGR1c2t8ZW58MXx8fHwxNzk0OTc4NDkyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "met:384535",
-      "source": "The Met",
-      "licence": "CC0",
-      "title": "Storm, 1891",
-      "credit": "Anders Zorn",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/384535",
-      "page": "https://www.metmuseum.org/art/collection/search/384535",
-      "alt": "Storm",
-      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP878290.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP878290.jpg",
-      "local": "media/2026-11-17/image-08-2160.jpg"
-    },
-    {
-      "id": "unsplash:BCuxVP5WEsU",
+      "id": "unsplash:qpAOxji4dAo",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "red clouds in the sky",
-      "credit": "Diego PH",
-      "creditUrl": "https://unsplash.com/@jdiegoph?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/red-clouds-in-the-sky-BCuxVP5WEsU?utm_source=daily_poster&utm_medium=referral",
-      "alt": "red clouds in the sky",
-      "thumb": "https://images.unsplash.com/photo-1508020963102-c6c723be5764?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8bWFnZW50YSUyMHN1bnNldCUyMGNsb3Vkc3xlbnwxfHx8fDE3OTQ4OTIwODR8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1508020963102-c6c723be5764?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8bWFnZW50YSUyMHN1bnNldCUyMGNsb3Vkc3xlbnwxfHx8fDE3OTQ4OTIwODR8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "silhouette of electric post during sunset",
+      "credit": "Andrey Metelev",
+      "creditUrl": "https://unsplash.com/@metelevan?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/silhouette-of-electric-post-during-sunset-qpAOxji4dAo?utm_source=daily_poster&utm_medium=referral",
+      "alt": "silhouette of electric post during sunset",
+      "thumb": "https://images.unsplash.com/photo-1610028290816-5d937a395a49?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cG93ZXIlMjBsaW5lcyUyMGR1c2t8ZW58MXx8fHwxNzk0OTc4NDkyfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1610028290816-5d937a395a49?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cG93ZXIlMjBsaW5lcyUyMGR1c2t8ZW58MXx8fHwxNzk0OTc4NDkyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "met:765093",
+      "id": "met:773518",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Storm, ca. 1745–58",
-      "credit": "Jean-Baptiste-Claude Chatelain",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/765093",
-      "page": "https://www.metmuseum.org/art/collection/search/765093",
-      "alt": "Storm",
-      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP877017.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP877017.jpg",
-      "local": "media/2026-11-17/image-10-2160.jpg"
+      "title": "[Rooftops, Paris], August 22,1843",
+      "credit": "Armand-Hippolyte-Louis Fizeau",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/773518",
+      "page": "https://www.metmuseum.org/art/collection/search/773518",
+      "alt": "[Rooftops, Paris]",
+      "thumb": "https://images.metmuseum.org/CRDImages/ph/web-large/DP-18191-043.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/ph/original/DP-18191-043.jpg",
+      "local": "media/2026-11-18/image-07-2160.jpg"
+    },
+    {
+      "id": "unsplash:2Q7Af91a4Hk",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "silhouette of person sitting on bench near body of water during sunset",
+      "credit": "he zhu",
+      "creditUrl": "https://unsplash.com/@zhugher?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/silhouette-of-person-sitting-on-bench-near-body-of-water-during-sunset-2Q7Af91a4Hk?utm_source=daily_poster&utm_medium=referral",
+      "alt": "silhouette of person sitting on bench near body of water during sunset",
+      "thumb": "https://images.unsplash.com/photo-1599014588887-d96cc374ed11?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8dmlvbGV0JTIwc3Vuc2V0JTIwY2l0eXxlbnwxfHx8fDE3OTQ5Nzg0OTJ8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1599014588887-d96cc374ed11?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8dmlvbGV0JTIwc3Vuc2V0JTIwY2l0eXxlbnwxfHx8fDE3OTQ5Nzg0OTJ8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:LgCj9qcrfhI",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "Xinghai Bridge spanning the water in Dalian, China, under a vibrant orange sky",
+      "credit": "Wade Meng",
+      "creditUrl": "https://unsplash.com/@wademm3?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/xinghai-bridge-in-dalian-at-dusk-LgCj9qcrfhI?utm_source=daily_poster&utm_medium=referral",
+      "alt": "Xinghai Bridge spanning the water in Dalian, China, under a vibrant orange sky",
+      "thumb": "https://images.unsplash.com/photo-1505699261378-c372af38134c?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8dmlvbGV0JTIwc3Vuc2V0JTIwY2l0eXxlbnwxfHx8fDE3OTQ5Nzg0OTJ8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1505699261378-c372af38134c?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8dmlvbGV0JTIwc3Vuc2V0JTIwY2l0eXxlbnwxfHx8fDE3OTQ5Nzg0OTJ8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:853645",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Rooftops, Brooklyn, ca. 1867",
+      "credit": "Fidelia Bridges",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/853645",
+      "page": "https://www.metmuseum.org/art/collection/search/853645",
+      "alt": "Rooftops, Brooklyn",
+      "thumb": "https://images.metmuseum.org/CRDImages/ad/web-large/DP-25621-001.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/ad/original/DP-25621-001.jpg",
+      "local": "media/2026-11-18/image-10-2160.jpg"
     }
   ],
   "textures": [
     {
-      "id": "unsplash:3ch06Zm4bV0",
+      "id": "unsplash:UuBR5kbvt4Y",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "old creased blank paper texture",
-      "credit": "Heather Green",
-      "creditUrl": "https://unsplash.com/@heathergreengreen?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/old-creased-blank-paper-texture-3ch06Zm4bV0?utm_source=daily_poster&utm_medium=referral",
-      "alt": "old creased blank paper texture",
-      "thumb": "https://images.unsplash.com/photo-1705837863332-7162639852d8?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8YWdlZCUyMHBhcGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTQ4OTIwODV8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1705837863332-7162639852d8?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8YWdlZCUyMHBhcGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTQ4OTIwODV8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "a black and white photo of a concrete wall",
+      "credit": "Yan Ots",
+      "creditUrl": "https://unsplash.com/@yanots?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-black-and-white-photo-of-a-concrete-wall-UuBR5kbvt4Y?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a black and white photo of a concrete wall",
+      "thumb": "https://images.unsplash.com/photo-1521459467264-802e2ef3141f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Z2xhc3MlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDk3ODQ5Mnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1521459467264-802e2ef3141f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Z2xhc3MlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDk3ODQ5Mnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:QNFJRjo279k",
+      "id": "unsplash:TnQE5X48FMA",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "A beige rug with a white border on top of it",
-      "credit": "Anna Savina",
-      "creditUrl": "https://unsplash.com/@ceanneceline?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/a-beige-rug-with-a-white-border-on-top-of-it-QNFJRjo279k?utm_source=daily_poster&utm_medium=referral",
-      "alt": "A beige rug with a white border on top of it",
-      "thumb": "https://images.unsplash.com/photo-1719563015025-83946fb49e49?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8YWdlZCUyMHBhcGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTQ4OTIwODV8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1719563015025-83946fb49e49?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8YWdlZCUyMHBhcGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTQ4OTIwODV8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "A fine-grained silver metallic texture with a subtle shimmering surface",
+      "credit": "Katie Harp",
+      "creditUrl": "https://unsplash.com/@kharp?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/silver-metallic-texture-with-shimmer-TnQE5X48FMA?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A fine-grained silver metallic texture with a subtle shimmering surface",
+      "thumb": "https://images.unsplash.com/photo-1656055448548-e26753307fc7?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8YnJ1c2hlZCUyMG1ldGFsJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTQ5Nzg0OTJ8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1656055448548-e26753307fc7?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8YnJ1c2hlZCUyMG1ldGFsJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTQ5Nzg0OTJ8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "polyhaven:painted_plaster_wall",
-      "source": "Poly Haven",
-      "licence": "CC0",
-      "title": "Painted Plaster Wall",
-      "credit": "Amal Kumar",
-      "creditUrl": "https://polyhaven.com/a/painted_plaster_wall",
-      "page": "https://polyhaven.com/a/painted_plaster_wall",
-      "alt": "Painted Plaster Wall texture",
-      "thumb": "https://cdn.polyhaven.com/asset_img/thumbs/painted_plaster_wall.png?width=480&height=480",
-      "src": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/painted_plaster_wall/painted_plaster_wall_diff_2k.jpg",
-      "local": "media/2026-11-17/texture-03-2160.jpg"
-    },
-    {
-      "id": "unsplash:vS3idIiYxX0",
+      "id": "unsplash:R53t-Tg6J4c",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "white textured paper or plaster surface",
-      "credit": "Olga Thelavart",
-      "creditUrl": "https://unsplash.com/@olga_o?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-vS3idIiYxX0?utm_source=daily_poster&utm_medium=referral",
-      "alt": "white textured paper or plaster surface",
-      "thumb": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cGFyY2htZW50JTIwdGV4dHVyZXxlbnwxfHx8fDE3OTQ4OTIwODR8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cGFyY2htZW50JTIwdGV4dHVyZXxlbnwxfHx8fDE3OTQ4OTIwODR8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "plain white textured plaster surface",
+      "credit": "NordWood Themes",
+      "creditUrl": "https://unsplash.com/@nordwood?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/plain-white-textured-plaster-surface-R53t-Tg6J4c?utm_source=daily_poster&utm_medium=referral",
+      "alt": "plain white textured plaster surface",
+      "thumb": "https://images.unsplash.com/photo-1604147706283-d7119b5b822c?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Y29uY3JldGUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDk3ODQ5Mnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1604147706283-d7119b5b822c?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Y29uY3JldGUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NDk3ODQ5Mnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:kG-ZwDuQ8ME",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "weathered teal concrete wall texture",
+      "credit": "Annie Spratt",
+      "creditUrl": "https://unsplash.com/@anniespratt?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/weathered-teal-concrete-wall-texture-kG-ZwDuQ8ME?utm_source=daily_poster&utm_medium=referral",
+      "alt": "weathered teal concrete wall texture",
+      "thumb": "https://images.unsplash.com/photo-1578922427288-a47338083a57?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8YnJ1c2hlZCUyMG1ldGFsJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTQ5Nzg0OTJ8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1578922427288-a47338083a57?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8YnJ1c2hlZCUyMG1ldGFsJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTQ5Nzg0OTJ8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     }
   ],
   "objects": [
     {
-      "name": "hourglass",
-      "material": "aged brass and glass",
-      "image": "media/2026-11-17/object-1.png",
-      "thumb": "media/2026-11-17/object-1-thumb.png",
+      "name": "solar panel",
+      "material": "brushed aluminium and dark glass",
+      "image": "media/2026-11-18/object-1.png",
+      "thumb": "media/2026-11-18/object-1-thumb.png",
       "model": {
-        "title": "Hourglass",
+        "title": "Simple 72 Cell Solar Panel",
         "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-59538eb3cf054896b3aa97249746a53c",
+        "url": "https://sketchfab.com/3d-models/none-a969548b7e3643f59bad10c7dd18199c",
         "licence": "CC Attribution",
-        "creator": "Natalie Crabtree",
-        "creatorUrl": "https://sketchfab.com/natcrab"
+        "creator": "MechanicalOnion",
+        "creatorUrl": "https://sketchfab.com/kambu_ch"
       },
       "texture": null
     },
     {
-      "name": "antique book",
-      "material": "worn leather with brass clasps",
-      "image": "media/2026-11-17/object-2.png",
-      "thumb": "media/2026-11-17/object-2-thumb.png",
+      "name": "transmission pylon",
+      "material": "galvanized steel",
+      "image": "media/2026-11-18/object-2.png",
+      "thumb": "media/2026-11-18/object-2-thumb.png",
       "model": {
-        "title": "Old book",
+        "title": "Power Transmission Tower",
         "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-73db31780eef4940af7ad8af8868d684",
+        "url": "https://sketchfab.com/3d-models/none-e471b57b273449d88a1c83dcad48869f",
         "licence": "CC Attribution",
-        "creator": "KIFIR",
-        "creatorUrl": "https://sketchfab.com/kifir"
+        "creator": "gisexpert",
+        "creatorUrl": "https://sketchfab.com/gisexpert"
       },
       "texture": null
     },
     {
-      "name": "sundial",
-      "material": "weathered bronze",
-      "image": "media/2026-11-17/object-3.png",
-      "thumb": "media/2026-11-17/object-3-thumb.png",
+      "name": "insulator",
+      "material": "weathered concrete",
+      "image": "media/2026-11-18/object-3.png",
+      "thumb": "media/2026-11-18/object-3-thumb.png",
       "model": {
-        "title": "CT4012 - Clock: Sundial",
+        "title": "Czech insulator (white type)",
         "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-629cd7e55be145cf8fad5735af63ea33",
+        "url": "https://sketchfab.com/3d-models/none-4c2b60c7ca3c4f84b24935a649b4d2a3",
         "licence": "CC Attribution",
-        "creator": "J. Pennell",
-        "creatorUrl": "https://sketchfab.com/jaminthecloud"
+        "creator": "matyprokopiswinner",
+        "creatorUrl": "https://sketchfab.com/matyprokopiswinner"
       },
       "texture": {
-        "title": "Blue Plaster Weathered",
-        "url": "https://polyhaven.com/a/blue_plaster_weathered"
+        "title": "Brushed Concrete 2",
+        "url": "https://polyhaven.com/a/brushed_concrete_2"
       }
     }
   ]

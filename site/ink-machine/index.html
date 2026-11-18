@@ -103,16 +103,15 @@ ROOF</textarea>
     </section>
 
     <div id="tab-ink">
-      <section><h2>Ink</h2>
+      <section><h2>Print style</h2>
+        <div class="seg six" id="inkPreset"><button data-k="letterpress" class="on">Letterpress</button><button data-k="riso">Riso</button><button data-k="screen">Screenprint</button><button data-k="stamp">Rubber stamp</button><button data-k="copy">Photocopy</button><button data-k="clean">Barely there</button></div>
+        <div id="g-inkm" style="margin-top:6px"></div>
         <div class="row" style="grid-template-columns:92px 1fr"><label>Ink colour</label><input type="color" id="ink" value="#f3f0fb"></div>
-        <div id="g-edges"></div>
       </section>
-      <section><h2>Coverage</h2><div id="g-cover"></div></section>
-      <section><h2>Letters</h2><div id="g-letters"></div></section>
-      <section><h2>Second pass</h2>
-        <label class="check"><input type="checkbox" id="pass2"> Print a second colour, slightly off</label>
+      <section><h2>Second colour</h2>
+        <label class="check"><input type="checkbox" id="pass2"> Print a second colour underneath, slightly off</label>
         <div id="pass2Box" hidden>
-          <div class="two"><label class="mini">Colour<input type="color" id="ink2" value="#8b2ff0"></label><label class="mini">Blend<select id="blend2"><option value="under">Under</option><option value="multiply">Multiply</option><option value="over">Over</option></select></label></div>
+          <div class="row" style="grid-template-columns:92px 1fr"><label>Colour</label><input type="color" id="ink2" value="#8b2ff0"></div>
           <div id="g-pass2"></div>
         </div>
       </section>
@@ -122,20 +121,20 @@ ROOF</textarea>
       <section><h2>Metal</h2>
         <div class="seg six" id="metal"><button data-k="gold">Gold</button><button data-k="silver">Silver</button><button data-k="copper" class="on">Copper</button><button data-k="rose">Rose</button><button data-k="holo">Holo</button><button data-k="custom">Custom</button></div>
         <div class="row" id="foilColourRow" style="grid-template-columns:92px 1fr" hidden><label>Foil colour</label><input type="color" id="foilColour" value="#8b2ff0"></div>
+        <div id="g-foilm" style="margin-top:6px"></div>
       </section>
-      <section><h2>Shine</h2><div id="g-foil-shine"></div></section>
-      <section><h2>Surface</h2><div id="g-foil-surface"></div></section>
     </div>
 
     <div id="tab-press" hidden>
-      <section><h2>Press</h2><div id="g-press"></div>
+      <section><h2>Press</h2>
+        <div id="g-pressm"></div>
+        <div class="row" style="grid-template-columns:92px 1fr"><label>Light from</label><div class="seg three" id="plight"><button data-k="135" class="on">Top left</button><button data-k="90">Top</button><button data-k="45">Top right</button></div></div>
         <div class="row" style="grid-template-columns:92px 1fr"><label>Texture on</label><div class="seg" id="ptex"><button data-k="sheet" class="on">Whole sheet</button><button data-k="type">Around type</button></div></div>
       </section>
-      <section><h2>Light</h2><div id="g-light"></div></section>
       <section><h2>Fill</h2>
         <div class="seg three" id="pfill"><button data-k="blind" class="on">Blind</button><button data-k="colour">Colour</button><button data-k="foil">Foil</button></div>
-        <div class="row" id="pressColourRow" style="grid-template-columns:92px 1fr" hidden><label>Fill colour</label><input type="color" id="pressColour" value="#8b2ff0"></div>
-        <p class="note">Blind exports only light and shadow, so whatever paper is under it in Figma shows through. Foil uses the Foil tab's settings.</p>
+        <div class="row" id="pressColourRow" style="grid-template-columns:92px 1fr" hidden><label>Fill colour</label><input type="color" id="pressColour" value="#ece6e2"></div>
+        <p class="note">Blind exports only light and shadow, so your paper in Figma shows through. Foil uses the Foil tab's metal.</p>
       </section>
     </div>
 
@@ -159,66 +158,54 @@ const SL = {
     ['size', 'Size', 40, 1400, 1, 560, 'px'],
     ['leading', 'Leading', 0.6, 1.4, 0.01, 0.86, ''],
     ['tracking', 'Tracking', -60, 120, 1, 0, ''],
-    ['rot', 'Letter tilt', 0, 4, 0.05, 0.6, '°'],
   ],
   padSlider: [['pad', 'Margin', 0, 300, 1, 40, 'px']],
-  'g-edges': [
-    ['bleed', 'Ink spread', 0, 1, 0.01, 0.3, ''],
-    ['rough', 'Edge breakup', 0, 1, 0.01, 0.55, ''],
-    ['grain', 'Edge grain', 1, 16, 0.1, 4, 'px'],
+  'g-inkm': [
+    ['m_wear', 'Wear', 0, 1, 0.01, 0.5, '', 'Clean', 'Worn'],
+    ['m_spread', 'Ink spread', 0, 1, 0.01, 0.5, '', 'Tight', 'Bled'],
   ],
-  'g-cover': [
-    ['load', 'Ink load', 0.3, 1.3, 0.01, 0.92, ''],
-    ['patchy', 'Patchiness', 0, 1, 0.01, 0.45, ''],
-    ['patchSize', 'Patch size', 40, 800, 1, 240, 'px'],
-    ['squeeze', 'Edge squeeze', 0, 1, 0.01, 0.45, ''],
-    ['speckle', 'Speckle', 0, 1, 0.01, 0.55, ''],
-    ['streaks', 'Roller streaks', 0, 1, 0.01, 0.22, ''],
+  'g-pass2': [['m_off', 'Offset', 0, 30, 1, 8, 'px']],
+  'g-foilm': [
+    ['m_light', 'Light', 0, 1, 0.01, 0.45, '', 'Left', 'Right'],
+    ['m_shine', 'Finish', 0, 1, 0.01, 0.55, '', 'Matte', 'Mirror'],
   ],
-  'g-letters': [
-    ['letterVar', 'Ink per letter', 0, 1, 0.01, 0.5, ''],
-    ['wobble', 'Wobble', 0, 10, 0.1, 3, 'px'],
-  ],
-  'g-foil-shine': [
-    ['f_angle', 'Light angle', 0, 180, 1, 125, '°'],
-    ['f_pos', 'Light position', 0, 1, 0.01, 0.45, ''],
-    ['f_width', 'Light spread', 0.05, 1, 0.01, 0.2, ''],
-    ['f_contrast', 'Contrast', 0, 1, 0.01, 0.5, ''],
-  ],
-  'g-foil-surface': [
-    ['f_warp', 'Paper warp', 0, 1, 0.01, 0.45, ''],
-    ['f_scuff', 'Fine scratches', 0, 1, 0.01, 0.35, ''],
-    ['f_tooth', 'Paper tooth', 0, 1, 0.01, 0.3, ''],
-    ['f_breaks', 'Breaks', 0, 1, 0.01, 0, ''],
-  ],
-  'g-press': [
-    ['p_height', 'Depth', 0, 1, 0.01, 0.5, ''],
-    ['p_depth', 'Wall width', 0.5, 8, 0.1, 1.6, 'px'],
-    ['p_pull', 'Paper pull', 0, 1, 0.01, 0.3, ''],
-    ['p_grain', 'Paper texture', 0, 1, 0.01, 0.55, ''],
-    ['p_texScale', 'Texture scale', 0.5, 3, 0.05, 1, '×'],
-  ],
-  'g-light': [
-    ['p_light', 'Light from', 0, 360, 1, 135, '°'],
-    ['p_elev', 'Light height', 10, 80, 1, 38, '°'],
-    ['p_hi', 'Highlight', 0, 1, 0.01, 0.7, ''],
-    ['p_lo', 'Shadow', 0, 1, 0.01, 0.7, ''],
-    ['p_cast', 'Cast shadow', 0, 1, 0.01, 0.4, ''],
-  ],
-  'g-pass2': [
-    ['ox', 'Offset x', -40, 40, 1, 9, 'px'],
-    ['oy', 'Offset y', -40, 40, 1, 6, 'px'],
-    ['op2', 'Opacity', 0, 1, 0.01, 1, ''],
+  'g-pressm': [
+    ['m_depth', 'Depth', 0, 1, 0.01, 0.5, '', 'Subtle', 'Deep'],
+    ['m_paper', 'Paper', 0, 1, 0.01, 0.5, '', 'Smooth', 'Rough'],
   ],
 };
+// Each print style is a full set of settings tuned to look right; the sliders only move within it.
+const INK = {
+  letterpress: { bleed: .2, rough: .35, grain: 3, load: 1, patchy: .35, patchSize: 300, squeeze: .7, speckle: .35, streaks: .05, letterVar: .35, wobble: 1.5, rot: .3 },
+  riso:        { bleed: .1, rough: .3, grain: 2, load: .88, patchy: .5, patchSize: 180, squeeze: .1, speckle: .7, streaks: .35, letterVar: .5, wobble: 3, rot: .6 },
+  screen:      { bleed: .3, rough: .45, grain: 5, load: .95, patchy: .3, patchSize: 400, squeeze: .3, speckle: .25, streaks: .5, letterVar: .3, wobble: 2, rot: .4 },
+  stamp:       { bleed: .3, rough: .75, grain: 6, load: .8, patchy: .75, patchSize: 120, squeeze: .5, speckle: .75, streaks: .12, letterVar: .75, wobble: 4, rot: 1.2 },
+  copy:        { bleed: .45, rough: .6, grain: 2.5, load: 1.08, patchy: .15, patchSize: 500, squeeze: 0, speckle: .3, streaks: .2, letterVar: .1, wobble: .5, rot: .2 },
+  clean:       { bleed: .12, rough: .2, grain: 2.5, load: 1, patchy: .15, patchSize: 300, squeeze: .25, speckle: .15, streaks: 0, letterVar: .15, wobble: .8, rot: .15 },
+};
+let inkPreset = 'letterpress';
+P.p_light = 135;
+function applyMacros() {
+  const b = INK[inkPreset], w = 0.3 + P.m_wear * 1.4, sp = P.m_spread * 2;
+  Object.assign(P, b, {
+    bleed: clamp(b.bleed * sp, 0, 0.8), rough: clamp(b.rough * w, 0, 1), speckle: clamp(b.speckle * w, 0, 1), patchy: clamp(b.patchy * w, 0, 1),
+    streaks: clamp(b.streaks * w, 0, 1), letterVar: clamp(b.letterVar * w, 0, 1), wobble: b.wobble * w, rot: b.rot * w, load: b.load - (P.m_wear - 0.5) * 0.2,
+    ox: Math.round(P.m_off * 0.82), oy: Math.round(P.m_off * 0.57), op2: 1,
+  });
+  const sh = P.m_shine;
+  Object.assign(P, { f_angle: 125, f_pos: P.m_light, f_width: 0.42 - 0.27 * sh, f_contrast: 0.25 + 0.55 * sh, f_warp: 0.45, f_scuff: 0.55 - 0.35 * sh, f_tooth: 0.5 - 0.35 * sh, f_breaks: 0 });
+  const d = P.m_depth, pp = P.m_paper;
+  Object.assign(P, { p_height: 0.2 + 0.7 * d, p_depth: 1 + 1.6 * d, p_pull: 0.12 + 0.35 * d, p_cast: 0.2 + 0.4 * d, p_grain: 0.08 + 0.8 * pp, p_texScale: 0.8 + 0.6 * pp, p_elev: 38, p_hi: 0.7, p_lo: 0.7 });
+}
 for (const [box, list] of Object.entries(SL)) {
   const el = document.getElementById(box);
-  for (const [id, label, min, max, step, v, unit] of list) {
+  for (const [id, label, min, max, step, v, unit, lo, hi] of list) {
     P[id] = v;
     const row = document.createElement('div'); row.className = 'row';
     row.innerHTML = `<label for="s-${id}">${label}</label><input type="range" id="s-${id}" min="${min}" max="${max}" step="${step}" value="${v}"><output></output>`;
     const inp = row.querySelector('input'), out = row.querySelector('output');
-    const show = () => out.textContent = (step < 1 ? (+inp.value).toFixed(step < 0.1 ? 2 : 1) : inp.value) + unit;
+    const show = () => out.textContent = lo ? (inp.value < (min + max) / 2 - (max - min) * 0.08 ? lo : inp.value > (min + max) / 2 + (max - min) * 0.08 ? hi : 'Mid') : (step < 1 ? (+inp.value).toFixed(step < 0.1 ? 2 : 1) : inp.value) + unit;
+    if (lo) row.style.gridTemplateColumns = '92px 1fr 44px';
     show();
     inp.addEventListener('input', () => { P[id] = +inp.value; show(); schedule(); });
     inp.addEventListener('dblclick', () => { inp.value = v; P[id] = v; show(); schedule(); });
@@ -264,10 +251,12 @@ seg('#fx', 'f', f => {
   schedule();
 });
 seg('#metal', 'k', k => { metal = k; $('#foilColourRow').hidden = k !== 'custom'; schedule(); });
+seg('#inkPreset', 'k', k => { inkPreset = k; schedule(); });
+seg('#plight', 'k', k => { P.p_light = +k; schedule(); });
 seg('#ptex', 'k', k => { ptex = k; schedule(); });
 seg('#pfill', 'k', k => { pfill = k; $('#pressColourRow').hidden = k !== 'colour'; schedule(); });
 $('#paper').addEventListener('input', () => { paperTouched = true; });
-['#text', '#ink', '#paper', '#foilColour', '#pressColour', '#ink2', '#blend2', '#seed', '#canvasSize'].forEach(s => $(s).addEventListener('input', schedule));
+['#text', '#ink', '#paper', '#foilColour', '#pressColour', '#ink2', '#seed', '#canvasSize'].forEach(s => $(s).addEventListener('input', schedule));
 fontSel.addEventListener('change', schedule); weightSel.addEventListener('change', schedule);
 $('#pass2').addEventListener('change', e => { $('#pass2Box').hidden = !e.target.checked; schedule(); });
 $('#gfont').addEventListener('change', e => {
@@ -595,6 +584,7 @@ function press(src, W, H, s, seed, deboss) {
 }
 
 async function render(s, clean) {
+  applyMacros();
   const [FW, FH] = canvasDims(), W = Math.round(FW * s), H = Math.round(FH * s), seed = +$('#seed').value || 0;
   if (srcMode === 'text') await ensureFont(fontSel.value, weightSel.value);
   const src = drawSource(W, H, s, seed); if (!src) return null;
@@ -611,7 +601,7 @@ async function render(s, clean) {
   const main = paint(ink(src, W, H, s, seed), W, H, $('#ink').value, 1);
   if ($('#pass2').checked) {
     const src2 = shift(src, W, H, Math.round(P.ox * s), Math.round(P.oy * s));
-    const second = paint(ink(src2, W, H, s, seed + 1000), W, H, $('#ink2').value, P.op2), mode = $('#blend2').value;
+    const second = paint(ink(src2, W, H, s, seed + 1000), W, H, $('#ink2').value, P.op2), mode = 'under';
     if (mode === 'under') { x.drawImage(second, 0, 0); x.drawImage(main, 0, 0); }
     else { x.drawImage(main, 0, 0); x.globalCompositeOperation = mode === 'multiply' ? 'multiply' : 'source-over'; x.drawImage(second, 0, 0); x.globalCompositeOperation = 'source-over'; }
   } else x.drawImage(main, 0, 0);

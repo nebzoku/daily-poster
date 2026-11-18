@@ -233,17 +233,26 @@ weightSel.value = '800';
 let srcMode = 'text', align = 'left', inkIs = 'auto', srcImage = null, fx = 'ink', metal = 'copper', pfill = 'blind', pexp = 'type', paperTouched = false;
 
 const loaded = new Set();
+// Some Google families have been merged into one variable family with an optical-size axis.
+// Ask for the fixed display instance under the new name, so the real font loads.
+const FONT_ALIAS = {
+  'Big Shoulders Display': { family: 'Big Shoulders', axes: 'opsz,wght', pre: '72,' },
+  'Big Shoulders Text': { family: 'Big Shoulders', axes: 'opsz,wght', pre: '10,' },
+};
+const realFamily = name => (FONT_ALIAS[name] || {}).family || name;
+let fontOk = true;
 async function ensureFont(name, weight) {
-  if (name.startsWith('File: ')) return;
-  const key = name + weight;
+  if (name.startsWith('File: ')) { fontOk = true; return; }
+  const al = FONT_ALIAS[name], fam = realFamily(name), key = name + weight;
   if (!loaded.has(key)) {
     loaded.add(key);
     const l = document.createElement('link'); l.rel = 'stylesheet';
-    l.href = `https://fonts.googleapis.com/css2?family=${encodeURIComponent(name).replace(/%20/g, '+')}:wght@${weight}&display=block`;
+    l.href = `https://fonts.googleapis.com/css2?family=${encodeURIComponent(fam).replace(/%20/g, '+')}:${al ? al.axes : 'wght'}@${al ? al.pre : ''}${weight}&display=block`;
     document.head.appendChild(l);
     await new Promise(r => { l.onload = r; l.onerror = r; setTimeout(r, 4000); });
   }
-  try { await document.fonts.load(`${weight} 100px "${name}"`); } catch (e) {}
+  try { await document.fonts.load(`${weight} 100px "${fam}"`); } catch (e) {}
+  fontOk = document.fonts.check(`${weight} 100px "${fam}"`) && [...document.fonts].some(f => f.family.replace(/"/g, '') === fam && f.status === 'loaded');
 }
 
 function seg(sel, attr, fn) {
@@ -397,7 +406,7 @@ function drawSource(W, H, s, seed) {
     }
     return m;
   }
-  const fam = fontSel.value, wt = weightSel.value, size = P.size * s, track = P.tracking / 1000 * P.size * s;
+  const fam = realFamily(fontSel.value), wt = weightSel.value, size = P.size * s, track = P.tracking / 1000 * P.size * s;
   x.font = `${wt} ${size}px "${fam}"`; x.textBaseline = 'alphabetic'; x.fillStyle = '#000';
   const lines = $('#text').value.split('\n');
   const capH = x.measureText('H').actualBoundingBoxAscent || size * 0.7, lh = size * P.leading;
@@ -409,6 +418,8 @@ function drawSource(W, H, s, seed) {
     for (let i = 0; i < chars.length; i++) { const w = x.measureText(chars.slice(0, i + 1).join('')).width; adv.push(w - prev + track); prev = w; }
     const total = adv.reduce((a, b) => a + b, 0) - (chars.length ? track : 0);
     let cx = align === 'left' ? pad : align === 'right' ? W - pad - total : (W - total) / 2;
+    // Set perfectly: draw the line in one go so the browser does the font's own kerning and ligatures.
+    if (!P.m_kern && !P.m_bounce && !P.rot) { x.textAlign = 'left'; if (track) x.letterSpacing = track + 'px'; x.fillText(line, cx, y); x.letterSpacing = '0px'; y += lh; continue; }
     chars.forEach((ch, i) => {
       const w = x.measureText(ch).width, rot = (R() * 2 - 1) * P.rot * Math.PI / 180;
       const r1 = R(), r2 = R(), bx = (r1 * 2 - 1) * P.m_kern * 14 * s, by = (r2 * 2 - 1) * P.m_bounce * s;
@@ -692,7 +703,7 @@ async function run() {
   try { lastPreview = await render(previewScale()); cleanPreview = null; show(holding ? await cleanC() : lastPreview); }
   catch (e) { console.error(e); }
   const [W, H] = canvasDims();
-  $('#info').textContent = `${W} × ${H} · seed ${$('#seed').value} · ${Math.round(performance.now() - t)}ms`;
+  $('#info').textContent = (srcMode === 'text' && !fontOk ? `⚠ ${fontSel.value} ${weightSel.value} didn't load, so this is a fallback font · ` : '') + `${W} × ${H} · seed ${$('#seed').value} · ${Math.round(performance.now() - t)}ms`;
   $('#busy').hidden = true; running = false;
   if (again) { again = false; run(); }
 }

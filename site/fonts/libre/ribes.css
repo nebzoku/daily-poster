@@ -1,0 +1,5 @@
+/* Ribes by Luigi Gorlero (Collletttivo), SIL Open Font License 1.1, licence in ribes.zip. Text face from Google Fonts. */
+@import url("https://fonts.googleapis.com/css2?family=Fragment+Mono&display=swap");
+@font-face { font-family: "Ribes"; src: url("ribes/Ribes-Light.woff2") format("woff2"); font-weight: 200; font-display: block; }
+@font-face { font-family: "Ribes"; src: url("ribes/Ribes-Regular.woff2") format("woff2"); font-weight: 400; font-display: block; }
+@font-face { font-family: "Ribes"; src: url("ribes/Ribes-Black.woff2") format("woff2"); font-weight: 900; font-display: block; }

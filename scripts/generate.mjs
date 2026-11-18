@@ -173,7 +173,7 @@ function briefPrompt(stories, recent, colour, pairsOk) {
     .join("\n\n");
   const used = [...recent].reverse().slice(0, 7)
     .map((b) => `- ${b.date}: ${b.story.title}${b.story.theme ? ` (theme: ${b.story.theme})` : ""}`).join("\n") || "- none yet";
-  const pairs = pairsOk.map((f) => `${f.id}: ${f.display} + ${f.text}`).join("\n");
+  const pairs = pairsOk.map((f) => `${f.id}: ${f.display} + ${f.text}${f.libre ? ` (libre: ${f.display} by ${f.libre.designer}, ${f.libre.foundry})` : ""}`).join("\n");
   return `You write a daily brief for a designer who makes one A-size poster a day from the news.
 
 Pick ONE story from the list below. Choose something with real weight or a strong image in it: a turning point, a discovery, a strange or moving moment. Avoid celebrity gossip, sport results and stories that repeat recent briefs.
@@ -186,7 +186,7 @@ Then write:
 - Three Unsplash search terms for atmospheric photography. Unsplash has no news photos, so ask for textures, places, objects and light that evoke the story. Today's colour is ${colour}; lean towards imagery that would sit well with it.
 - Three search terms for museum collections (the Art Institute of Chicago and The Met), to find public-domain prints, paintings, posters and archive photographs that echo the story. Think in motifs and objects a museum would hold: "procession", "ledger", "banner", "crowd", "map".
 - Three material words for textures that suit the story and could be laid over type or a background: paper, plaster, fabric, metal, stone and so on.
-- One typeface pairing from this list, chosen to suit the story. Only these are available today, because no typeface repeats within ${TYPE_COOLDOWN_DAYS} days:
+- One typeface pairing from this list, chosen to suit the story. Pairings marked "libre" use a headline face from an independent foundry; they are a welcome change from the Google faces, so pick one whenever it suits the story as well as any other. Only these are available today, because no typeface repeats within ${TYPE_COOLDOWN_DAYS} days:
 ${pairs}
 
 Recent briefs, newest first. Don't repeat these stories. Designers make a poster every day, so variety matters: pick a story whose subject, setting and mood are clearly different from the last few briefs. If a recent brief was about the sea, ships or the coast, don't pick another sea story, however good; the same goes for any other subject.

@@ -1,0 +1,5 @@
+/* Mattone by Nunzio Mazzaferro (Collletttivo), SIL Open Font License 1.1, licence in mattone.zip. Text face from Google Fonts. */
+@import url("https://fonts.googleapis.com/css2?family=Albert+Sans&display=swap");
+@font-face { font-family: "Mattone"; src: url("mattone/Mattone-Regular.woff2") format("woff2"); font-weight: 400; font-display: block; }
+@font-face { font-family: "Mattone"; src: url("mattone/Mattone-Bold.woff2") format("woff2"); font-weight: 700; font-display: block; }
+@font-face { font-family: "Mattone"; src: url("mattone/Mattone-Black.woff2") format("woff2"); font-weight: 900; font-display: block; }

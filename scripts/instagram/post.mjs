@@ -22,7 +22,9 @@ const pad = (n) => String(n).padStart(3, "0");
 const longDate = (d) => new Intl.DateTimeFormat("en-GB", { weekday: "long", day: "numeric", month: "long", timeZone: "UTC" }).format(new Date(d + "T12:00:00Z"));
 
 // Captions, in plain words, no emoji.
-const TAGS = (issue) => `#dailyposter #dailyposter${pad(issue)} #posterdesign #typography #graphicdesign #designchallenge`;
+const TAGS = (issue, type) => `#dailyposter #dailyposter${pad(issue)} #posterdesign #typography #graphicdesign #designchallenge${type?.libre?.foundry === "Velvetyne" ? " #velvetyne_type_foundry" : ""}`;
+// Libre faces are credited to their designer and foundry, as their licences ask.
+const typeLine = (t) => `${t.display}${t.libre ? ` by ${t.libre.designer} (${t.libre.foundry})` : ""} and ${t.text}`;
 export function posterCaption(p, brief) {
   return [
     p.title,
@@ -32,14 +34,14 @@ export function posterCaption(p, brief) {
     brief.story.summary,
     "",
     `Source: ${brief.story.source}`,
-    `Type: ${p.typeUsed || `${brief.type.display} and ${brief.type.text}`}`,   // typeUsed: when a poster sets its own
+    `Type: ${p.typeUsed || typeLine(brief.type)}`,   // typeUsed: when a poster sets its own
     `Poster by ${p.instagram ? "@" + p.instagram.replace(/^@/, "") : p.designer}`,
     "",
     // A line on how it was made, when the archive entry has one (handy for moving posters).
     ...(p.made ? [`How it was made: ${p.made}`, ""] : []),
     "Today's brief is live at dailyposter.design",
     "",
-    TAGS(brief.issue),
+    TAGS(brief.issue, brief.type),
   ].join("\n");
 }
 // past: for briefs posted after their day (catching the feed up).
@@ -53,7 +55,9 @@ export function briefCaption(brief, past = false) {
     past ? `A new brief goes up every morning at dailyposter.design: three headlines to choose from, the day's palette, a typeface pairing, images and 3D renders. Make a poster, tag @dailyposter.design and add the day's number, like #dailyposter${pad(brief.issue)}.`
       : `Three headlines to choose from, today's palette, a typeface pairing, images and 3D renders, all at dailyposter.design. Make a poster, tag @dailyposter.design and add #dailyposter${pad(brief.issue)}.`,
     "",
-    TAGS(brief.issue),
+    // A libre face gets its own line: who made it, and that it's free to download from the brief.
+    ...(brief.type?.libre ? [`Today's headline face is ${brief.type.display} by ${brief.type.libre.designer}, from ${brief.type.libre.foundry}: free and open source, and you can download it from the brief.`, ""] : []),
+    TAGS(brief.issue, brief.type),
   ].join("\n");
 }
 

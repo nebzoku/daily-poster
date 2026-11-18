@@ -39,6 +39,22 @@ export const FONT_PAIRS = [
   { id: "antonio", display: "Antonio", text: "PT Serif" },
   { id: "league-gothic", display: "League Gothic", text: "Sometype Mono" },
   { id: "poiret", display: "Poiret One", text: "Figtree" },
+
+  // Libre faces from independent foundries (SIL Open Font License), hosted on the site in
+  // site/fonts/libre. The headline face isn't in Figma, so the brief offers it as a download;
+  // the text face is always a Google one, so a paste needs only one font installed.
+  { id: "terminal-grotesque", display: "Terminal Grotesque", text: "Martian Mono",
+    libre: { foundry: "Velvetyne", designer: "Raphaël Bastide", url: "https://velvetyne.fr/fonts/terminal-grotesque/" } },
+  { id: "absans", display: "Absans", text: "Literata",
+    libre: { foundry: "Collletttivo", designer: "Valerio Monopoli", url: "https://www.collletttivo.it/typefaces/absans" } },
+  { id: "mattone", display: "Mattone", text: "Albert Sans",
+    libre: { foundry: "Collletttivo", designer: "Nunzio Mazzaferro", url: "https://www.collletttivo.it/typefaces/mattone" } },
+  { id: "necto-mono", display: "Necto Mono", text: "Libre Baskerville",
+    libre: { foundry: "Collletttivo", designer: "Marco Condello", url: "https://www.collletttivo.it/typefaces/necto-mono" } },
+  { id: "ortica", display: "Ortica Linear", text: "Onest",
+    libre: { foundry: "Collletttivo", designer: "Benedetta Bovani", url: "https://www.collletttivo.it/typefaces/ortica" } },
+  { id: "ribes", display: "Ribes", text: "Fragment Mono",
+    libre: { foundry: "Collletttivo", designer: "Luigi Gorlero", url: "https://www.collletttivo.it/typefaces/ribes" } },
 ];
 
 // No typeface may appear in two briefs within this many days.
@@ -71,7 +87,15 @@ export function fontPair(id) {
 const plus = (n) => n.replace(/ /g, "+");
 
 // Stylesheet for the proof, and specimen pages so the designer can download them.
+// Libre pairings use the site's own stylesheet (the libre face plus the Google text face),
+// link the headline face to its foundry page, and add a zip of the font files and licence.
 export function fontAssets(pair) {
+  if (pair.libre) return {
+    css: `/fonts/libre/${pair.id}.css`,
+    displayUrl: pair.libre.url,
+    textUrl: `https://fonts.google.com/specimen/${plus(pair.text)}`,
+    download: `/fonts/libre/${pair.id}.zip`,
+  };
   return {
     css: `https://fonts.googleapis.com/css2?family=${plus(pair.display)}&family=${plus(pair.text)}&display=swap`,
     displayUrl: `https://fonts.google.com/specimen/${plus(pair.display)}`,

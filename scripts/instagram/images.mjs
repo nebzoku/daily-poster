@@ -16,6 +16,9 @@ const pad = (n) => String(n).padStart(3, "0");
 const lum = (hex) => { const c = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255).map((v) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4)); return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]; };
 
 // Fonts: Google's by default; IG_FONTS_CSS can point at local copies (for previews offline).
+// A libre pairing's stylesheet lives on the site ("/fonts/libre/…"); these pages render from a
+// local file, so point it at the live site.
+const cssUrl = (css) => (css.startsWith("/") ? "https://dailyposter.design" + css : css).replace("display=swap", "display=block");
 const FONTS = process.env.IG_FONTS_CSS || "https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400&family=Geist:wght@400&family=Geist+Mono:wght@400;500&display=block";
 
 // Today's brief as a carousel: three cards, one headline each, laid out like the homepage on a
@@ -101,7 +104,7 @@ export function briefStrip(brief, pictures, L = CAROUSEL) {
   <div class="m count">${[1, 2, 3].map((n) => `<span${n === i + 1 ? ' class="on"' : ""}>0${n}</span>`).join("")}</div>
   ${L.url ? '<div class="m url">dailyposter.design</div>' : ""}
 </section>${subFrame(i)}`).join("") + extra;
-  return `<!doctype html><html><head><link rel="stylesheet" href="${esc(FONTS)}">${L.pairs && ty.css ? `<link rel="stylesheet" href="${esc(ty.css.replace("display=swap", "display=block"))}">` : ""}
+  return `<!doctype html><html><head><link rel="stylesheet" href="${esc(FONTS)}">${L.pairs && ty.css ? `<link rel="stylesheet" href="${esc(cssUrl(ty.css))}">` : ""}
 <style>
 html,body{margin:0;width:${W * frames}px;height:${L.H}px;background:#fff;color:#111;overflow:hidden}
 img{position:absolute;display:block;object-fit:cover}

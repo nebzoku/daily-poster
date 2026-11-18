@@ -1,0 +1,5 @@
+/* Ortica Linear by Benedetta Bovani (Collletttivo), SIL Open Font License 1.1, licence in ortica.zip. Text face from Google Fonts. */
+@import url("https://fonts.googleapis.com/css2?family=Onest&display=swap");
+@font-face { font-family: "Ortica Linear"; src: url("ortica/OrticaLinear-Light.woff2") format("woff2"); font-weight: 300; font-display: block; }
+@font-face { font-family: "Ortica Linear"; src: url("ortica/OrticaLinear-Regular.woff2") format("woff2"); font-weight: 400; font-display: block; }
+@font-face { font-family: "Ortica Linear"; src: url("ortica/OrticaLinear-Bold.woff2") format("woff2"); font-weight: 700; font-display: block; }

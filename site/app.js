@@ -216,11 +216,29 @@
       el("span", { class: "aa", style: `font-family: "${family}"` }, "Aa"),
       el("p", { class: "tname" }, el("a", { href: url, target: "_blank", rel: "noopener" }, family)),
       el("p", { class: "trole" }, role));
-    $("pair").replaceChildren(block(t.display, "Typeface 01", t.displayUrl), block(t.text, "Typeface 02", t.textUrl));
-    $("font-links").replaceChildren(
-      "Built into Figma. For other apps, get ",
-      el("a", { href: t.displayUrl, target: "_blank", rel: "noopener" }, t.display), " and ",
-      el("a", { href: t.textUrl, target: "_blank", rel: "noopener" }, t.text), ".");
+    const L = t.libre; // a libre face from an independent foundry: credit it, and offer the files
+    $("pair").replaceChildren(block(t.display, L ? `Typeface 01 · by ${L.designer}, ${L.foundry}` : "Typeface 01", t.displayUrl),
+      block(t.text, "Typeface 02", t.textUrl));
+    if (L) {
+      const dl = el("a", { href: t.download, download: "" }, `Download ${t.display}`);
+      $("font-links").replaceChildren(
+        "Install ", t.display, " before you paste, or Figma will show it as missing: ", dl,
+        ` (free under the SIL Open Font License, from ${L.foundry}). `,
+        el("a", { href: t.textUrl, target: "_blank", rel: "noopener" }, t.text), " is built into Figma.");
+    } else {
+      $("font-links").replaceChildren(
+        "Built into Figma. For other apps, get ",
+        el("a", { href: t.displayUrl, target: "_blank", rel: "noopener" }, t.display), " and ",
+        el("a", { href: t.textUrl, target: "_blank", rel: "noopener" }, t.text), ".");
+    }
+    const credit = $("type-credit");
+    if (credit) {
+      credit.hidden = !L;
+      if (L) credit.replaceChildren(
+        `${t.display} is by ${L.designer}, from `, el("a", { href: L.url, target: "_blank", rel: "noopener" }, L.foundry),
+        ". It's free to use; credit them when you share your poster", L.foundry === "Velvetyne" ? " and tag #velvetyne_type_foundry." : ".", " ",
+        el("a", { href: t.download, download: "" }, "Download the font"), ".");
+    }
   }
 
   // The day's images and textures as one strip that loops across the page. Textures are
@@ -498,6 +516,8 @@
 
   // ---------- share ----------
   const dayTag = () => `#dailyposter${pad(brief.issue)}`;
+  // Libre faces are credited to their designer and foundry, as their licences ask.
+  const typeLine = (t) => `${t.display}${t.libre ? ` by ${t.libre.designer} (${t.libre.foundry})` : ""} + ${t.text}`;
   function caption() {
     const s = brief.story;
     return [
@@ -505,9 +525,9 @@
       brief.headlines[state.h],
       "",
       `Story: ${s.source}, ${fmt(s.published, { day: "numeric", month: "long", year: "numeric" })}`,
-      `Type: ${brief.type.display} + ${brief.type.text}`,
+      `Type: ${typeLine(brief.type)}`,
       "",
-      `@dailyposter.design ${dayTag()}`,
+      `@dailyposter.design ${dayTag()}${brief.type.libre?.foundry === "Velvetyne" ? " #velvetyne_type_foundry" : ""}`,
     ].join("\n");
   }
   function renderShare() {

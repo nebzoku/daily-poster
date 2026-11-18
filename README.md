@@ -10,6 +10,7 @@ Every morning a GitHub Action reads a handful of news feeds, asks Claude to pick
 - **Three sublines** with the facts, plus the story's date, time and source
 - **The day's palette.** Everyone uses the same one. The colour moves one step round a 12-step wheel each day (Blue, Teal, Jade, Green…), and black and white are always allowed
 - **One typeface pairing** you have to use, chosen to suit the story. Size, leading, tracking and case are up to you
+  Some pairings use a free, open-source headline face from an independent foundry (Velvetyne or Collletttivo). On those days the brief has a download link: install the font before pasting into Figma, and credit the designer and foundry when you share.
 - **Ten images**, if you want one: photos from Unsplash and public-domain works from the Art Institute of Chicago and The Met, picked by Claude looking at the candidates
 - **Four textures** for type or backgrounds, from [Poly Haven](https://polyhaven.com) (CC0) and Unsplash, mixed in with the images
 - **An 8 × 8 grid** on a 1080 × 1528 px artboard (A-series proportions, so it prints cleanly at A4, A3 and up): 16 px margin, no gutters, 131 px columns, 187 px rows. The grid is optional
@@ -53,6 +54,7 @@ From then on it runs by itself at 05:30 UTC every day.
 | How stories are picked and headlines written | `briefPrompt()` in `scripts/generate.mjs` |
 | The colour wheel and palette | `scripts/lib/palette.mjs` |
 | The typeface pairings | `scripts/lib/fonts.mjs` |
+| Libre faces (Velvetyne, Collletttivo): web fonts, stylesheets and download zips | `site/fonts/libre` |
 | The image sources | `scripts/lib/images.mjs` |
 | The time it runs | the `cron` line in `.github/workflows/daily.yml` |
 | The look of the page | `site/style.css` |

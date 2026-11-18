@@ -192,7 +192,7 @@ const SL = {
 const INK = {
   letterpress: { bleed: .2, rough: .35, grain: 3, load: 1, patchy: .35, patchSize: 300, squeeze: .7, speckle: .35, streaks: .05, letterVar: .35 },
   riso:        { bleed: .1, rough: .3, grain: 2, load: .88, patchy: .5, patchSize: 180, squeeze: .1, speckle: .7, streaks: .35, letterVar: .5 },
-  screen:      { bleed: .3, rough: .45, grain: 5, load: .95, patchy: .3, patchSize: 400, squeeze: .3, speckle: .25, streaks: .5, letterVar: .3 },
+  screen:      { bleed: .3, rough: .45, grain: 5, load: .95, patchy: .3, patchSize: 400, squeeze: .3, speckle: .25, streaks: .5, letterVar: .3, vStreaks: true },
   stamp:       { bleed: .3, rough: .75, grain: 6, load: .8, patchy: .75, patchSize: 120, squeeze: .5, speckle: .75, streaks: .12, letterVar: .75 },
   copy:        { bleed: .45, rough: .6, grain: 2.5, load: 1.08, patchy: .15, patchSize: 500, squeeze: 0, speckle: .3, streaks: .2, letterVar: .1 },
   clean:       { bleed: .12, rough: .2, grain: 2.5, load: 1, patchy: .15, patchSize: 300, squeeze: .25, speckle: .15, streaks: 0, letterVar: .15 },
@@ -201,7 +201,7 @@ let inkPreset = 'letterpress';
 P.p_light = 135;
 function applyMacros() {
   const b = INK[inkPreset], w = 0.3 + P.m_wear * 1.4, sp = P.m_spread * 2;
-  Object.assign(P, b, {
+  Object.assign(P, { vStreaks: false }, b, {
     bleed: clamp(b.bleed * sp, 0, 0.8), rough: clamp(b.rough * w, 0, 1), speckle: clamp(b.speckle * w, 0, 1), patchy: clamp(b.patchy * w, 0, 1),
     streaks: clamp(b.streaks * w, 0, 1), letterVar: clamp(b.letterVar * w, 0, 1), wobble: 0, rot: P.m_tilt, load: b.load - (P.m_wear - 0.5) * 0.2,
     ox: Math.round(P.m_off * 0.82), oy: Math.round(P.m_off * 0.57), op2: 1,
@@ -463,7 +463,9 @@ function ink(src, W, H, s, seed) {
   const b = blur(m, W, H, r), bb = blur(bm, W, H, r);
   const en = noise(W, H, P.grain * s * 1.6, P.grain * s * 1.6, seed + 1, 3);
   const patch = noise(W, H, P.patchSize * s, P.patchSize * s, seed + 2, 3);
-  const streak = P.streaks > 0 ? noise(W, H, P.patchSize * 2.5 * s, Math.max(1, 2.5 * s), seed + 3, 2) : null;
+  const streak = P.streaks > 0 ? (P.vStreaks
+    ? noise(W, H, Math.max(1, 2.5 * s), P.patchSize * 2.5 * s, seed + 3, 2)   // squeegee pulled down the screen
+    : noise(W, H, P.patchSize * 2.5 * s, Math.max(1, 2.5 * s), seed + 3, 2)) : null;
   const fine = noise(W, H, Math.max(1, 1.3 * s), Math.max(1, 1.3 * s), seed + 4, 2);
   const W2 = new Float32Array(W * H), R2 = rng(seed + 5);
   const thr = 0.5 - P.bleed * 0.3, out = new Float32Array(W * H);

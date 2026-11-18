@@ -159,7 +159,11 @@ const SL = {
     ['leading', 'Leading', 0.6, 1.4, 0.01, 0.86, ''],
     ['tracking', 'Tracking', -60, 120, 1, 0, ''],
   ],
-  padSlider: [['pad', 'Margin', 0, 300, 1, 40, 'px']],
+  padSlider: [
+    ['pad', 'Margin', 0, 300, 1, 40, 'px'],
+    ['m_tilt', 'Letter tilt', 0, 5, 0.05, 0.3, '°'],
+    ['m_bounce', 'Letter bounce', 0, 14, 0.1, 1.5, 'px'],
+  ],
   'g-inkm': [
     ['m_wear', 'Wear', 0, 1, 0.01, 0.5, '', 'Clean', 'Worn'],
     ['m_spread', 'Ink spread', 0, 1, 0.01, 0.5, '', 'Tight', 'Bled'],
@@ -177,12 +181,12 @@ const SL = {
 };
 // Each print style is a full set of settings tuned to look right; the sliders only move within it.
 const INK = {
-  letterpress: { bleed: .2, rough: .35, grain: 3, load: 1, patchy: .35, patchSize: 300, squeeze: .7, speckle: .35, streaks: .05, letterVar: .35, wobble: 1.5, rot: .3 },
-  riso:        { bleed: .1, rough: .3, grain: 2, load: .88, patchy: .5, patchSize: 180, squeeze: .1, speckle: .7, streaks: .35, letterVar: .5, wobble: 3, rot: .6 },
-  screen:      { bleed: .3, rough: .45, grain: 5, load: .95, patchy: .3, patchSize: 400, squeeze: .3, speckle: .25, streaks: .5, letterVar: .3, wobble: 2, rot: .4 },
-  stamp:       { bleed: .3, rough: .75, grain: 6, load: .8, patchy: .75, patchSize: 120, squeeze: .5, speckle: .75, streaks: .12, letterVar: .75, wobble: 4, rot: 1.2 },
-  copy:        { bleed: .45, rough: .6, grain: 2.5, load: 1.08, patchy: .15, patchSize: 500, squeeze: 0, speckle: .3, streaks: .2, letterVar: .1, wobble: .5, rot: .2 },
-  clean:       { bleed: .12, rough: .2, grain: 2.5, load: 1, patchy: .15, patchSize: 300, squeeze: .25, speckle: .15, streaks: 0, letterVar: .15, wobble: .8, rot: .15 },
+  letterpress: { bleed: .2, rough: .35, grain: 3, load: 1, patchy: .35, patchSize: 300, squeeze: .7, speckle: .35, streaks: .05, letterVar: .35 },
+  riso:        { bleed: .1, rough: .3, grain: 2, load: .88, patchy: .5, patchSize: 180, squeeze: .1, speckle: .7, streaks: .35, letterVar: .5 },
+  screen:      { bleed: .3, rough: .45, grain: 5, load: .95, patchy: .3, patchSize: 400, squeeze: .3, speckle: .25, streaks: .5, letterVar: .3 },
+  stamp:       { bleed: .3, rough: .75, grain: 6, load: .8, patchy: .75, patchSize: 120, squeeze: .5, speckle: .75, streaks: .12, letterVar: .75 },
+  copy:        { bleed: .45, rough: .6, grain: 2.5, load: 1.08, patchy: .15, patchSize: 500, squeeze: 0, speckle: .3, streaks: .2, letterVar: .1 },
+  clean:       { bleed: .12, rough: .2, grain: 2.5, load: 1, patchy: .15, patchSize: 300, squeeze: .25, speckle: .15, streaks: 0, letterVar: .15 },
 };
 let inkPreset = 'letterpress';
 P.p_light = 135;
@@ -190,7 +194,7 @@ function applyMacros() {
   const b = INK[inkPreset], w = 0.3 + P.m_wear * 1.4, sp = P.m_spread * 2;
   Object.assign(P, b, {
     bleed: clamp(b.bleed * sp, 0, 0.8), rough: clamp(b.rough * w, 0, 1), speckle: clamp(b.speckle * w, 0, 1), patchy: clamp(b.patchy * w, 0, 1),
-    streaks: clamp(b.streaks * w, 0, 1), letterVar: clamp(b.letterVar * w, 0, 1), wobble: b.wobble * w, rot: b.rot * w, load: b.load - (P.m_wear - 0.5) * 0.2,
+    streaks: clamp(b.streaks * w, 0, 1), letterVar: clamp(b.letterVar * w, 0, 1), wobble: 0, rot: P.m_tilt, load: b.load - (P.m_wear - 0.5) * 0.2,
     ox: Math.round(P.m_off * 0.82), oy: Math.round(P.m_off * 0.57), op2: 1,
   });
   const sh = P.m_shine;
@@ -397,7 +401,8 @@ function drawSource(W, H, s, seed) {
     let cx = align === 'left' ? pad : align === 'right' ? W - pad - total : (W - total) / 2;
     chars.forEach((ch, i) => {
       const w = x.measureText(ch).width, rot = (R() * 2 - 1) * P.rot * Math.PI / 180;
-      x.save(); x.translate(cx + w / 2, y - capH / 2); x.rotate(rot); x.fillText(ch, -w / 2, capH / 2); x.restore();
+      const bx = (R() * 2 - 1) * P.m_bounce * s * 0.6, by = (R() * 2 - 1) * P.m_bounce * s;
+      x.save(); x.translate(cx + w / 2 + bx, y - capH / 2 + by); x.rotate(rot); x.fillText(ch, -w / 2, capH / 2); x.restore();
       cx += adv[i];
     });
     y += lh;
@@ -607,11 +612,24 @@ function press(src, W, H, s, seed, deboss) {
   x.putImageData(im, 0, 0); return c;
 }
 
+function bounceShapes(src, W, H, s, seed) {
+  const R = rng(seed * 7 + 3), { lab, n } = labels(src, W, H, 0.15), dx = new Int32Array(n + 1), dy = new Int32Array(n + 1);
+  for (let c = 1; c <= n; c++) { dx[c] = Math.round((R() * 2 - 1) * P.m_bounce * s * 0.6); dy[c] = Math.round((R() * 2 - 1) * P.m_bounce * s); }
+  const m = new Float32Array(W * H);
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+    const i = y * W + x, v = src[i]; if (!v) continue; const c = lab[i];
+    const nx = x + (c ? dx[c] : 0), ny = y + (c ? dy[c] : 0); if (nx < 0 || ny < 0 || nx >= W || ny >= H) continue;
+    const j = ny * W + nx; if (v > m[j]) m[j] = v;
+  }
+  return m;
+}
+
 async function render(s, clean) {
   applyMacros();
   const [FW, FH] = canvasDims(), W = Math.round(FW * s), H = Math.round(FH * s), seed = +$('#seed').value || 0;
   if (srcMode === 'text') await ensureFont(fontSel.value, weightSel.value);
-  const src = drawSource(W, H, s, seed); if (!src) return null;
+  let src = drawSource(W, H, s, seed); if (!src) return null;
+  if (srcMode === 'file' && P.m_bounce > 0) src = bounceShapes(src, W, H, s, seed);
   const out = document.createElement('canvas'); out.width = W; out.height = H;
   const x = out.getContext('2d');
   if (clean) { x.drawImage(paint(src, W, H, $('#ink').value, 1), 0, 0); return out; }

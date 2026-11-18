@@ -179,6 +179,7 @@ const SL = {
   'g-foilm': [
     ['m_light', 'Light', 0, 1, 0.01, 0.45, '', 'Left', 'Right'],
     ['m_shine', 'Finish', 0, 1, 0.01, 0.55, '', 'Matte', 'Mirror'],
+    ['m_catch', 'Catches light', 0, 1, 0.01, 0.5, '', 'All over', 'In places'],
     ['m_dome', 'Shape', 0, 1, 0.01, 0, '', 'Flat', 'Sculpted'],
   ],
   'g-paper': [['m_paper', 'Texture', 0, 1, 0.01, 0.5, '', 'Smooth', 'Rough']],
@@ -540,6 +541,8 @@ function foil(src, W, H, s, seed) {
   const RB = rng(seed + 17), bands = [];
   for (let k = 0; k < 6; k++) bands.push({ c: RB() * 1.2 - 0.1, w: 0.005 + RB() * 0.05, v: k < 2 ? 0.95 : 0.35 + RB() * 0.4 });
   const horizon = 0.25 + RB() * 0.5;
+  // Only some of a real foil catches the light: small tilts in the stamp send the rest into shadow.
+  const catchN = P.m_catch > 0 ? noise(W, H, D * 0.09, D * 0.09, seed + 18, 3) : null;
   const scuff = P.f_scuff > 0 ? noiseRot(W, H, 160 * s, Math.max(0.7, 0.9 * s), ang + 1.2, seed + 12, 2) : null;
   const tooth = P.f_tooth > 0 ? noise(W, H, Math.max(1, 2.2 * s), Math.max(1, 2.2 * s), seed + 13, 2) : null;
   const brk = P.f_breaks > 0 ? noise(W, H, Math.max(1, 3 * s), Math.max(1, 3 * s), seed + 14, 2) : null;
@@ -587,6 +590,10 @@ function foil(src, W, H, s, seed) {
       let sharp = sstep(horizon - edgeW, horizon + edgeW, tm) * 0.22;
       for (const bd of bands) { const dd = Math.abs(tm - bd.c); if (dd < bd.w + edgeW) sharp = Math.max(sharp, bd.v * (1 - sstep(bd.w - edgeW, bd.w + edgeW, dd))); }
       e = e * (1 - 0.75 * mir) + Math.max(sharp, main * 0.45) * mir;
+    }
+    if (catchN) {
+      const g = sstep(0.62 - P.m_catch * 0.12, 0.72 - P.m_catch * 0.1, catchN[i] + (main - 0.5) * 0.35);
+      e = e * (1 - P.m_catch * 0.7 * (1 - g)) + g * P.m_catch * 0.18 * main;
     }
     if (gloss) e = 0.08 + (e - 0.12) * 0.55;
     if (Hp) e = Math.min(1, e + win * (gloss ? 0.95 : 0.6) + rim * (0.3 + 0.4 * main));
@@ -670,6 +677,24 @@ function paperOverlay(W, H, s, seed) {
   return paperCache.c;
 }
 
+// The same room light that the foil reflects also falls on the paper: a soft pool of light
+// where the foil's highlight sits, falling away to shadow elsewhere.
+function roomLight(W, H, s, seed) {
+  const D = Math.max(W, H), ang = P.f_angle * Math.PI / 180, ca = Math.cos(ang), sa = Math.sin(ang);
+  const warp = noise(W, H, D * 0.45, D * 0.45, seed + 11, 3);
+  let pmin = Infinity, pmax = -Infinity;
+  for (const [cx, cy] of [[0, 0], [W, 0], [0, H], [W, H]]) { const p = cx * ca + cy * sa; pmin = Math.min(pmin, p); pmax = Math.max(pmax, p); }
+  const span = pmax - pmin, wd = Math.max(0.2, P.f_width * 2.4);
+  const [c, x, im] = blankCanvas(W, H), d = im.data;
+  for (let y = 0; y < H; y++) for (let X = 0; X < W; X++) {
+    const i = y * W + X, t = ((X * ca + y * sa) - pmin) / span + (warp[i] - 0.5) * P.f_warp * 0.5, q = (t - P.f_pos) / wd;
+    const L = Math.exp(-q * q * 2), hi = 0.16 * L, lo = 0.22 * (1 - L);
+    const A = lo + hi * (1 - lo), o = i * 4, v = 255 * hi * (1 - lo) / A;
+    d[o] = v; d[o + 1] = v; d[o + 2] = v; d[o + 3] = A * 255;
+  }
+  x.putImageData(im, 0, 0); return c;
+}
+
 async function render(s, clean, exporting = false) {
   applyMacros();
   const [FW, FH] = canvasDims(), W = Math.round(FW * s), H = Math.round(FH * s), seed = +$('#seed').value || 0;
@@ -681,6 +706,8 @@ async function render(s, clean, exporting = false) {
   if (clean) { x.drawImage(paint(src, W, H, $('#ink').value, 1), 0, 0); return out; }
   const sheet = !exporting || pexp !== 'type', hasTex = sheet && P.m_paper > 0;
   if (exporting && pexp === 'paper') { x.fillStyle = $('#paper').value; x.fillRect(0, 0, W, H); }
+  const usesFoil = fx === 'foil' || ((fx === 'emboss' || fx === 'deboss') && pfill === 'foil');
+  if (usesFoil && sheet) x.drawImage(roomLight(W, H, s, seed), 0, 0);
   if (fx === 'foil') {
     x.drawImage(foil(src, W, H, s, seed), 0, 0);
     if (hasTex) { x.globalAlpha = 0.85; x.drawImage(paperOverlay(W, H, s, seed), 0, 0); x.globalAlpha = 1; }

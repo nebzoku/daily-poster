@@ -26,6 +26,7 @@
   .seg { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
   .seg.three { grid-template-columns: repeat(3, 1fr); }
   .seg.four { grid-template-columns: repeat(4, 1fr); }
+  .seg.six { grid-template-columns: repeat(3, 1fr); }
   .seg.five { grid-template-columns: repeat(5, 1fr); } .seg.five button { padding: 9px 0; font-size: 10px; }
   .tabs { position: sticky; top: -18px; background: #fff; z-index: 2; padding-bottom: 10px; }
   .seg button, .btn { font: 500 11px/1 var(--mono); text-transform: uppercase; letter-spacing: .04em; padding: 9px 6px; border: 1px solid var(--line); background: #fff; color: var(--fg); cursor: pointer; }
@@ -119,7 +120,7 @@ ROOF</textarea>
 
     <div id="tab-foil" hidden>
       <section><h2>Metal</h2>
-        <div class="seg five" id="metal"><button data-k="gold" class="on">Gold</button><button data-k="silver">Silver</button><button data-k="copper">Copper</button><button data-k="holo">Holo</button><button data-k="custom">Custom</button></div>
+        <div class="seg six" id="metal"><button data-k="gold">Gold</button><button data-k="silver">Silver</button><button data-k="copper" class="on">Copper</button><button data-k="rose">Rose</button><button data-k="holo">Holo</button><button data-k="custom">Custom</button></div>
         <div class="row" id="foilColourRow" style="grid-template-columns:92px 1fr" hidden><label>Foil colour</label><input type="color" id="foilColour" value="#8b2ff0"></div>
       </section>
       <section><h2>Shine</h2><div id="g-foil-shine"></div></section>
@@ -127,7 +128,9 @@ ROOF</textarea>
     </div>
 
     <div id="tab-press" hidden>
-      <section><h2>Press</h2><div id="g-press"></div></section>
+      <section><h2>Press</h2><div id="g-press"></div>
+        <div class="row" style="grid-template-columns:92px 1fr"><label>Texture on</label><div class="seg" id="ptex"><button data-k="sheet" class="on">Whole sheet</button><button data-k="type">Around type</button></div></div>
+      </section>
       <section><h2>Light</h2><div id="g-light"></div></section>
       <section><h2>Fill</h2>
         <div class="seg three" id="pfill"><button data-k="blind" class="on">Blind</button><button data-k="colour">Colour</button><button data-k="foil">Foil</button></div>
@@ -177,29 +180,30 @@ const SL = {
     ['wobble', 'Wobble', 0, 10, 0.1, 3, 'px'],
   ],
   'g-foil-shine': [
-    ['f_angle', 'Shine angle', 0, 180, 1, 35, '°'],
-    ['f_bands', 'Bands', 0.5, 8, 0.1, 2.2, ''],
-    ['f_contrast', 'Contrast', 0, 1, 0.01, 0.4, ''],
+    ['f_angle', 'Light angle', 0, 180, 1, 125, '°'],
+    ['f_pos', 'Light position', 0, 1, 0.01, 0.45, ''],
+    ['f_width', 'Light spread', 0.05, 1, 0.01, 0.2, ''],
+    ['f_contrast', 'Contrast', 0, 1, 0.01, 0.5, ''],
   ],
   'g-foil-surface': [
-    ['f_crinkle', 'Crinkle', 0, 1, 0.01, 0.25, ''],
-    ['f_crinkleSize', 'Crinkle size', 4, 300, 1, 90, 'px'],
-    ['f_brushed', 'Brushed', 0, 1, 0.01, 0, ''],
-    ['f_sparkle', 'Sparkle', 0, 1, 0.01, 0.3, ''],
-    ['f_relief', 'Edge relief', 0, 1, 0.01, 0.4, ''],
-    ['f_breaks', 'Breaks', 0, 1, 0.01, 0.12, ''],
+    ['f_warp', 'Paper warp', 0, 1, 0.01, 0.45, ''],
+    ['f_scuff', 'Fine scratches', 0, 1, 0.01, 0.35, ''],
+    ['f_tooth', 'Paper tooth', 0, 1, 0.01, 0.3, ''],
+    ['f_breaks', 'Breaks', 0, 1, 0.01, 0, ''],
   ],
   'g-press': [
-    ['p_depth', 'Depth', 1, 40, 0.5, 9, 'px'],
-    ['p_height', 'Height', 0, 1, 0.01, 0.6, ''],
-    ['p_grain', 'Paper grain', 0, 1, 0.01, 0.35, ''],
-    ['p_tone', 'Floor tone', 0, 1, 0.01, 0.3, ''],
+    ['p_height', 'Depth', 0, 1, 0.01, 0.5, ''],
+    ['p_depth', 'Wall width', 0.5, 8, 0.1, 1.6, 'px'],
+    ['p_pull', 'Paper pull', 0, 1, 0.01, 0.3, ''],
+    ['p_grain', 'Paper texture', 0, 1, 0.01, 0.55, ''],
+    ['p_texScale', 'Texture scale', 0.5, 3, 0.05, 1, '×'],
   ],
   'g-light': [
     ['p_light', 'Light from', 0, 360, 1, 135, '°'],
-    ['p_hi', 'Highlight', 0, 1, 0.01, 0.75, ''],
-    ['p_lo', 'Shadow', 0, 1, 0.01, 0.6, ''],
-    ['p_cast', 'Cast shadow', 0, 1, 0.01, 0.35, ''],
+    ['p_elev', 'Light height', 10, 80, 1, 38, '°'],
+    ['p_hi', 'Highlight', 0, 1, 0.01, 0.7, ''],
+    ['p_lo', 'Shadow', 0, 1, 0.01, 0.7, ''],
+    ['p_cast', 'Cast shadow', 0, 1, 0.01, 0.4, ''],
   ],
   'g-pass2': [
     ['ox', 'Offset x', -40, 40, 1, 9, 'px'],
@@ -227,7 +231,7 @@ const fontSel = $('#font'), weightSel = $('#weight');
 FONTS.forEach(f => fontSel.add(new Option(f, f)));
 [100,200,300,400,500,600,700,800,900].forEach(w => weightSel.add(new Option(w, w)));
 weightSel.value = '800';
-let srcMode = 'text', align = 'left', inkIs = 'auto', srcImage = null, fx = 'ink', metal = 'gold', pfill = 'blind', paperTouched = false;
+let srcMode = 'text', align = 'left', inkIs = 'auto', srcImage = null, fx = 'ink', metal = 'copper', pfill = 'blind', ptex = 'sheet', paperTouched = false;
 
 const loaded = new Set();
 async function ensureFont(name, weight) {
@@ -260,6 +264,7 @@ seg('#fx', 'f', f => {
   schedule();
 });
 seg('#metal', 'k', k => { metal = k; $('#foilColourRow').hidden = k !== 'custom'; schedule(); });
+seg('#ptex', 'k', k => { ptex = k; schedule(); });
 seg('#pfill', 'k', k => { pfill = k; $('#pressColourRow').hidden = k !== 'colour'; schedule(); });
 $('#paper').addEventListener('input', () => { paperTouched = true; });
 ['#text', '#ink', '#paper', '#foilColour', '#pressColour', '#ink2', '#blend2', '#seed', '#canvasSize'].forEach(s => $(s).addEventListener('input', schedule));
@@ -467,7 +472,12 @@ function paint(alpha, W, H, hex, opacity) {
   x.putImageData(im, 0, 0); return c;
 }
 /* ---------- foil ---------- */
-const METALS = { gold: ['#5c3d0c', '#c79a2a', '#fff1bf'], silver: ['#383b41', '#a7abb3', '#fbfcff'], copper: ['#4f2210', '#b5642f', '#ffd2b0'] };
+const METALS = {
+  gold:   ['#4a3510', '#9c7429', '#d8b65e', '#fff3cc'],
+  silver: ['#3c3f45', '#878b93', '#c6c9cf', '#fbfcfd'],
+  copper: ['#4e2210', '#9e512a', '#d58d60', '#fbe1cb'],
+  rose:   ['#5a2e2a', '#a7685e', '#dcab9d', '#fff0ea'],
+};
 const rgbOf = h => [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5, 7), 16)];
 const mixc = (a, b, t) => [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t];
 function hsl(h, s, l) {
@@ -475,30 +485,59 @@ function hsl(h, s, l) {
   const f = n => l - a * Math.max(-1, Math.min(k(n) - 3, 9 - k(n), 1));
   return [f(0) * 255, f(8) * 255, f(4) * 255];
 }
+function hash2(x, y, seed) {
+  let h = Math.imul(x, 374761393) + Math.imul(y, 668265263) + Math.imul(seed, 982451653) | 0;
+  h = Math.imul(h ^ (h >>> 13), 1274126177); h ^= h >>> 16; return (h >>> 0) / 4294967296;
+}
+// value noise sampled along a rotated axis (sx along the angle, sy across it)
+function noiseRot(W, H, sx, sy, ang, seed, oct) {
+  const out = new Float32Array(W * H), ca = Math.cos(ang), sa = Math.sin(ang);
+  let amp = 1, tot = 0;
+  for (let o = 0; o < oct; o++) {
+    const kx = (1 << o) / sx, ky = (1 << o) / sy, sd = seed * 31 + o * 7;
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+      const u = (x * ca + y * sa) * kx, v = (-x * sa + y * ca) * ky;
+      const iu = Math.floor(u), iv = Math.floor(v); let tu = u - iu, tv = v - iv;
+      tu = tu * tu * (3 - 2 * tu); tv = tv * tv * (3 - 2 * tv);
+      const a = hash2(iu, iv, sd), b = hash2(iu + 1, iv, sd), c = hash2(iu, iv + 1, sd), d = hash2(iu + 1, iv + 1, sd);
+      out[y * W + x] += amp * ((a + (b - a) * tu) * (1 - tv) + (c + (d - c) * tu) * tv);
+    }
+    tot += amp; amp *= 0.5;
+  }
+  for (let i = 0; i < out.length; i++) out[i] /= tot;
+  return out;
+}
+const tone4 = (st, e) => e < 1 / 3 ? mixc(st[0], st[1], e * 3) : e < 2 / 3 ? mixc(st[1], st[2], (e - 1 / 3) * 3) : mixc(st[2], st[3], (e - 2 / 3) * 3);
 function blankCanvas(W, H) { const c = document.createElement('canvas'); c.width = W; c.height = H; const x = c.getContext('2d'); return [c, x, x.createImageData(W, H)]; }
 function foil(src, W, H, s, seed) {
-  const m = blur(src, W, H, Math.max(1, 0.5 * s)), r = (1 + P.f_relief * 12) * s, hf = blur(src, W, H, r);
-  const crk = noise(W, H, P.f_crinkleSize * s, P.f_crinkleSize * s, seed + 11, 3);
-  const brush = P.f_brushed > 0 ? noise(W, H, 300 * s, Math.max(1, 1.2 * s), seed + 12, 2) : null;
-  const brk = P.f_breaks > 0 ? noise(W, H, Math.max(1, 3 * s), Math.max(1, 3 * s), seed + 13, 2) : null;
-  const R2 = rng(seed + 14), holo = metal === 'holo';
+  // Foil is a mirror: what you see is the room's light reflected across the whole sheet,
+  // continuous from letter to letter, bent a little by the paper and roughed by fine scratches.
+  const m = blur(src, W, H, Math.max(1, 0.5 * s)), D = Math.max(W, H);
+  const ang = P.f_angle * Math.PI / 180, ca = Math.cos(ang), sa = Math.sin(ang);
+  const warp = noise(W, H, D * 0.45, D * 0.45, seed + 11, 3);
+  const scuff = P.f_scuff > 0 ? noiseRot(W, H, 160 * s, Math.max(0.7, 0.9 * s), ang + 1.2, seed + 12, 2) : null;
+  const tooth = P.f_tooth > 0 ? noise(W, H, Math.max(1, 2.2 * s), Math.max(1, 2.2 * s), seed + 13, 2) : null;
+  const brk = P.f_breaks > 0 ? noise(W, H, Math.max(1, 3 * s), Math.max(1, 3 * s), seed + 14, 2) : null;
+  const holo = metal === 'holo';
   let st;
-  if (metal === 'custom') { const c = rgbOf($('#foilColour').value); st = [mixc(c, [0, 0, 0], 0.62), c, mixc(c, [255, 255, 255], 0.78)]; }
+  if (metal === 'custom') { const c = rgbOf($('#foilColour').value); st = [mixc(c, [0, 0, 0], 0.65), mixc(c, [0, 0, 0], 0.25), mixc(c, [255, 255, 255], 0.3), mixc(c, [255, 255, 255], 0.82)]; }
   else if (!holo) st = METALS[metal].map(rgbOf);
-  const a = P.f_angle * Math.PI / 180, ca = Math.cos(a), sa = Math.sin(a), D = Math.max(W, H), con = 1 + P.f_contrast * 2.5;
+  let pmin = Infinity, pmax = -Infinity;
+  for (const [cx, cy] of [[0, 0], [W, 0], [0, H], [W, H]]) { const p = cx * ca + cy * sa; pmin = Math.min(pmin, p); pmax = Math.max(pmax, p); }
+  const span = pmax - pmin, wd = P.f_width, pos = P.f_pos, con = 0.6 + P.f_contrast * 1.3;
   const [c, x, im] = blankCanvas(W, H), d = im.data;
   for (let y = 0; y < H; y++) for (let X = 0; X < W; X++) {
     const i = y * W + X, v = m[i]; if (v < 0.35) continue;
-    let al = sstep(0.4, 0.6, v);
+    let al = sstep(0.42, 0.58, v);
     if (brk) { const t = P.f_breaks * 0.55; al *= sstep(t - 0.03, t + 0.03, brk[i]); if (!al) continue; }
-    const gx = (hf[X < W - 1 ? i + 1 : i] - hf[X > 0 ? i - 1 : i]) * 0.5 * r, gy = (hf[y < H - 1 ? i + W : i] - hf[y > 0 ? i - W : i]) * 0.5 * r;
-    const u = (X * ca + y * sa) / D * P.f_bands + (gx * ca + gy * sa) * 1.2 * P.f_relief + (crk[i] - 0.5) * P.f_crinkle * 0.7 + (brush ? (brush[i] - 0.5) * P.f_brushed * 0.8 : 0);
-    let e = clamp(0.5 + Math.sin(u * 6.2832) * 0.5 * con, 0, 1);
-    e *= 1 - 0.4 * P.f_relief * (1 - clamp((hf[i] - 0.5) / 0.4, 0, 1));
-    let col;
-    if (holo) col = hsl(((u * 0.35 + crk[i] * 0.15) % 1 + 1) % 1, 0.5, 0.42 + 0.42 * e);
-    else col = e < 0.5 ? mixc(st[0], st[1], e * 2) : mixc(st[1], st[2], (e - 0.5) * 2);
-    if (P.f_sparkle > 0 && R2() > 1 - P.f_sparkle * 0.04) col = mixc(col, [255, 255, 255], 0.5 + 0.5 * R2());
+    const t = ((X * ca + y * sa) - pmin) / span + (warp[i] - 0.5) * P.f_warp * 0.5;
+    const d1 = (t - pos) / wd, d2 = (t - pos - 0.55) / (wd * 1.6), d3 = (t - pos + 0.5) / (wd * 2.2);
+    const main = Math.exp(-d1 * d1 * 2);
+    let e = 0.16 + 0.8 * Math.min(1, main * 0.95 + 0.28 * Math.exp(-d2 * d2 * 2) + 0.16 * Math.exp(-d3 * d3 * 2));
+    if (scuff) e += (scuff[i] - 0.5) * P.f_scuff * 0.22 * (0.35 + main);
+    if (tooth) e += (tooth[i] - 0.5) * P.f_tooth * 0.16;
+    e = clamp(0.5 + (e - 0.5) * con, 0, 1);
+    const col = holo ? hsl(((t * 0.9 + warp[i] * 0.4) % 1 + 1) % 1, 0.35, 0.38 + 0.5 * e) : tone4(st, e);
     const o = i * 4; d[o] = col[0]; d[o + 1] = col[1]; d[o + 2] = col[2]; d[o + 3] = al * 255;
   }
   x.putImageData(im, 0, 0); return c;
@@ -506,27 +545,49 @@ function foil(src, W, H, s, seed) {
 
 /* ---------- emboss / deboss ---------- */
 function press(src, W, H, s, seed, deboss) {
-  const r = (1 + P.p_depth) * s, h = blur(src, W, H, r), sgn = deboss ? -1 : 1;
-  const g = P.p_grain > 0 ? noise(W, H, Math.max(1, 1.5 * s), Math.max(1, 1.5 * s), seed + 21, 2) : null;
-  const fib = P.p_grain > 0 ? noise(W, H, 14 * s, 3 * s, seed + 22, 2) : null;
-  const th = P.p_light * Math.PI / 180, lx = Math.cos(th), ly = -Math.sin(th), K = P.p_height * 3;
-  const cd = Math.round(P.p_cast * r * 1.2), ox = Math.round(lx * cd), oy = Math.round(ly * cd);
+  // A real impression is a flat face with a thin, steep wall, and the paper's own fibres
+  // are what catch the light. So: build a height map in pixels (steep walls, gentle pull,
+  // fibrous paper, smoother where the die has crushed it), then light it properly.
+  const sg = deboss ? -1 : 1, Hs = P.p_height * 4 * s, ts = P.p_texScale;
+  const wall = blur(src, W, H, Math.max(1, P.p_depth * s * 0.6));
+  const pull = P.p_pull > 0 ? blur(src, W, H, 16 * s) : null;
+  const near = ptex === 'type' ? blur(src, W, H, 24 * s) : null;
+  let t1 = null, t2 = null, t3 = null, t4 = null;
+  if (P.p_grain > 0) {
+    t1 = noise(W, H, Math.max(1, 1.3 * s * ts), Math.max(1, 1.3 * s * ts), seed + 21, 2);
+    t2 = noise(W, H, 6 * s * ts, 6 * s * ts, seed + 22, 2);
+    t3 = noiseRot(W, H, 10 * s * ts, Math.max(0.8, 1.1 * s * ts), 0.5, seed + 23, 1);
+    t4 = noiseRot(W, H, 8 * s * ts, Math.max(0.8, 1.1 * s * ts), -1.1, seed + 24, 1);
+  }
+  const Hp = new Float32Array(W * H), face = new Float32Array(W * H);
+  for (let i = 0; i < Hp.length; i++) {
+    const base = sstep(0.3, 0.7, wall[i]); face[i] = base;
+    let h = Math.max(base, pull ? sstep(0, 0.5, pull[i]) * P.p_pull * 0.35 : 0) * Hs * sg;
+    if (t1) {
+      const tex = (t1[i] - 0.5) * 0.6 + (t2[i] - 0.5) * 0.35 + Math.max(t3[i] - 0.62, 0) * 1.1 + Math.max(t4[i] - 0.64, 0) * 0.9;
+      h += tex * P.p_grain * 1.6 * s * (1 - 0.65 * base) * (near ? sstep(0, 0.06, near[i]) : 1);
+    }
+    Hp[i] = h;
+  }
+  const th = P.p_light * Math.PI / 180, el = P.p_elev * Math.PI / 180;
+  const lx = Math.cos(th) * Math.cos(el), ly = -Math.sin(th) * Math.cos(el), lz = Math.sin(el), tanE = Math.tan(el);
+  const ux = Math.cos(th), uy = -Math.sin(th), cd = P.p_cast * Hs / tanE * 1.5;
   const [c, x, im] = blankCanvas(W, H), d = im.data;
   for (let y = 0; y < H; y++) for (let X = 0; X < W; X++) {
-    const i = y * W + X, hv = h[i], zone = sstep(0.003, 0.08, hv);
-    let lo = 0, hi = 0;
-    if (zone > 0) {
-      const gx = (h[X < W - 1 ? i + 1 : i] - h[X > 0 ? i - 1 : i]) * 0.5 * r, gy = (h[y < H - 1 ? i + W : i] - h[y > 0 ? i - W : i]) * 0.5 * r;
-      let sh = -(gx * lx + gy * ly) * K * sgn;
-      if (g) sh += ((g[i] - 0.5) * 0.7 + (fib[i] - 0.5) * 0.5) * P.p_grain * 0.35 * zone;
-      if (sh > 0) hi = sh * P.p_hi; else lo = -sh * P.p_lo;
-      if (deboss) lo += hv * P.p_tone * 0.18; else hi += hv * P.p_tone * 0.12;
+    const i = y * W + X;
+    const dx = (Hp[X < W - 1 ? i + 1 : i] - Hp[X > 0 ? i - 1 : i]) * 0.5, dy = (Hp[y < H - 1 ? i + W : i] - Hp[y > 0 ? i - W : i]) * 0.5;
+    const inv = 1 / Math.sqrt(dx * dx + dy * dy + 1);
+    const delta = (-dx * lx - dy * ly + lz) * inv - lz;
+    let hi = 0, lo = 0;
+    if (delta > 0) hi = delta / (1 - lz) * P.p_hi * 1.3; else lo = -delta / lz * P.p_lo * 1.1;
+    if (cd >= 1 && (wall[i] > 0.01 && wall[i] < 0.99 || face[i] > 0.5 === deboss)) {
+      for (let k = 1; k <= 3; k++) {
+        const dist = cd * k / 3, sx = Math.round(X + ux * dist), sy = Math.round(y + uy * dist);
+        if (sx < 0 || sy < 0 || sx >= W || sy >= H) break;
+        if (Hp[sy * W + sx] - Hp[i] > dist * tanE * 0.9) { lo += 0.35 * P.p_cast; break; }
+      }
     }
-    if (cd > 0) {
-      const sx = X + ox, sy = y + oy;
-      if (sx >= 0 && sy >= 0 && sx < W && sy < H) { const j = sy * W + sx, diff = deboss ? hv - h[j] : h[j] - hv; if (diff > 0) lo += clamp(diff * 1.5, 0, 1) * P.p_cast * 0.7; }
-    }
-    lo = clamp(lo, 0, 0.9); hi = clamp(hi, 0, 0.95);
+    lo = clamp(lo, 0, 0.85); hi = clamp(hi, 0, 0.85);
     const A = lo + hi * (1 - lo); if (A < 0.004) continue;
     const v = 255 * hi * (1 - lo) / A, o = i * 4; d[o] = v; d[o + 1] = v; d[o + 2] = v; d[o + 3] = A * 255;
   }

@@ -1,0 +1,293 @@
+{
+  "date": "2026-11-19",
+  "issue": 48,
+  "generatedAt": "2026-11-19T05:08:07.824Z",
+  "colour": {
+    "name": "Indigo",
+    "yesterday": "Violet",
+    "tomorrow": "Blue"
+  },
+  "story": {
+    "title": "Conservationists searching for large river eels",
+    "summary": "The Tees Rivers Trust is searching the river for large eels so it can tag them. The tags will let the team track the eels as they migrate out to sea.",
+    "source": "BBC News",
+    "url": "https://www.bbc.co.uk/news/articles/ck3rgl783xqro?at_medium=RSS&amp;at_campaign=rss",
+    "published": "2026-11-18T06:19:28.000Z",
+    "theme": "river wildlife migration"
+  },
+  "headlines": [
+    "Down the Dark River",
+    "Tagged for the Long Swim",
+    "Following the Silver Current"
+  ],
+  "sublines": [
+    "The Tees Rivers Trust is searching for large eels to tag and track on their migration to the sea.",
+    "Small tags will follow each eel as it leaves the river, revealing a journey few people ever see.",
+    "On the River Tees, conservationists are watching one of nature's most secretive migrations, one tagged eel at a time."
+  ],
+  "palette": {
+    "name": "Vivid",
+    "colours": [
+      "#473CED",
+      "#DDE3FF",
+      "#6E717E",
+      "#161B40"
+    ]
+  },
+  "always": [
+    "#000000",
+    "#FFFFFF"
+  ],
+  "type": {
+    "id": "instrument",
+    "display": "Instrument Serif",
+    "text": "Inter Tight",
+    "reason": "A graceful, elongated serif echoes the sinuous body of an eel and the quiet, nocturnal mood of the migration, while the clean sans carries the facts.",
+    "css": "https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter+Tight&display=swap",
+    "displayUrl": "https://fonts.google.com/specimen/Instrument+Serif",
+    "textUrl": "https://fonts.google.com/specimen/Inter+Tight"
+  },
+  "grid": {
+    "format": "A-size",
+    "size": [
+      1080,
+      1528
+    ],
+    "columns": 8,
+    "rows": 8,
+    "margin": 16,
+    "gutter": 0,
+    "column": 131,
+    "row": 187,
+    "unit": "px"
+  },
+  "images": [
+    {
+      "id": "unsplash:TAob5ICNK8s",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "lake surrounded by trees under blue sky during night time",
+      "credit": "Sole D'Alessandro G.",
+      "creditUrl": "https://unsplash.com/@s___d___g?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/lake-surrounded-by-trees-under-blue-sky-during-night-time-TAob5ICNK8s?utm_source=daily_poster&utm_medium=referral",
+      "alt": "lake surrounded by trees under blue sky during night time",
+      "thumb": "https://images.unsplash.com/photo-1613753598214-119055b017f7?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8ZGFyayUyMHJpdmVyJTIwbmlnaHR8ZW58MXx8fHwxNzk1MDY0ODg4fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1613753598214-119055b017f7?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8ZGFyayUyMHJpdmVyJTIwbmlnaHR8ZW58MXx8fHwxNzk1MDY0ODg4fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:420107",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Eel, from Fish from American Waters series (N39) for Allen & Ginter Cigarettes, 1889",
+      "credit": "Allen & Ginter",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/420107",
+      "page": "https://www.metmuseum.org/art/collection/search/420107",
+      "alt": "Eel, from Fish from American Waters series (N39) for Allen & Ginter Cigarettes",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP839072.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP839072.jpg",
+      "local": "media/2026-11-19/image-02-2160.jpg"
+    },
+    {
+      "id": "unsplash:TdOHDpcyzZU",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a light shines in the dark over a body of water",
+      "credit": "Alexandra Vo",
+      "creditUrl": "https://unsplash.com/@sashav3d?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-light-shines-in-the-dark-over-a-body-of-water-TdOHDpcyzZU?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a light shines in the dark over a body of water",
+      "thumb": "https://images.unsplash.com/photo-1560444750-54d6e66be0ac?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8ZGFyayUyMHJpdmVyJTIwbmlnaHR8ZW58MXx8fHwxNzk1MDY0ODg4fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1560444750-54d6e66be0ac?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8ZGFyayUyMHJpdmVyJTIwbmlnaHR8ZW58MXx8fHwxNzk1MDY0ODg4fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:437588",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Drawing the Eel, early 1650s",
+      "credit": "Salomon van Ruysdael",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/437588",
+      "page": "https://www.metmuseum.org/art/collection/search/437588",
+      "alt": "Drawing the Eel",
+      "thumb": "https://images.metmuseum.org/CRDImages/ep/web-large/DP147902.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/ep/original/DP147902.jpg",
+      "local": "media/2026-11-19/image-04-2160.jpg"
+    },
+    {
+      "id": "unsplash:8A9Di0TOAFM",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "ocean calm waves",
+      "credit": "Krzysztof Kowalik",
+      "creditUrl": "https://unsplash.com/@kowalikus?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/ocean-calm-waves-8A9Di0TOAFM?utm_source=daily_poster&utm_medium=referral",
+      "alt": "ocean calm waves",
+      "thumb": "https://images.unsplash.com/photo-1559255267-8f9c0b8df08f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8aW5kaWdvJTIwd2F0ZXIlMjByaXBwbGVzfGVufDF8fHx8MTc5NTA2NDg4OHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1559255267-8f9c0b8df08f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8aW5kaWdvJTIwd2F0ZXIlMjByaXBwbGVzfGVufDF8fHx8MTc5NTA2NDg4OHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:423300",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Lamprey Eel, from the series Fishers and Fish (N74) for Duke brand cigarettes, 1888",
+      "credit": "Knapp & Company",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/423300",
+      "page": "https://www.metmuseum.org/art/collection/search/423300",
+      "alt": "Lamprey Eel, from the series Fishers and Fish (N74) for Duke brand cigarettes",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DPB882820.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DPB882820.jpg",
+      "local": "media/2026-11-19/image-06-2160.jpg"
+    },
+    {
+      "id": "unsplash:E9ZOiIcUh8k",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a body of water at night with a clock tower in the distance",
+      "credit": "Nk Ni",
+      "creditUrl": "https://unsplash.com/@nkhasebe?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-body-of-water-at-night-with-a-clock-tower-in-the-distance-E9ZOiIcUh8k?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a body of water at night with a clock tower in the distance",
+      "thumb": "https://images.unsplash.com/photo-1673460655608-e75424d9dfa8?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8ZGFyayUyMHJpdmVyJTIwbmlnaHR8ZW58MXx8fHwxNzk1MDY0ODg4fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1673460655608-e75424d9dfa8?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8ZGFyayUyMHJpdmVyJTIwbmlnaHR8ZW58MXx8fHwxNzk1MDY0ODg4fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:437348",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "The River, ca. 1864",
+      "credit": "Pierre Puvis de Chavannes",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/437348",
+      "page": "https://www.metmuseum.org/art/collection/search/437348",
+      "alt": "The River",
+      "thumb": "https://images.metmuseum.org/CRDImages/ep/web-large/DP-14201-029.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/ep/original/DP-14201-029.jpg",
+      "local": "media/2026-11-19/image-08-2160.jpg"
+    },
+    {
+      "id": "unsplash:bMbBq7BjSxY",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a boat floating on top of a lake under a cloudy sky",
+      "credit": "Mehedi Hassan Palash",
+      "creditUrl": "https://unsplash.com/@mehedi_drafts?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-boat-floating-on-top-of-a-lake-under-a-cloudy-sky-bMbBq7BjSxY?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a boat floating on top of a lake under a cloudy sky",
+      "thumb": "https://images.unsplash.com/photo-1711791742053-184ee76291ed?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8ZGFyayUyMHJpdmVyJTIwbmlnaHR8ZW58MXx8fHwxNzk1MDY0ODg4fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1711791742053-184ee76291ed?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8ZGFyayUyMHJpdmVyJTIwbmlnaHR8ZW58MXx8fHwxNzk1MDY0ODg4fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:Ny0Bgf5HeI4",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "blue and white water waves",
+      "credit": "Ivan Bandura",
+      "creditUrl": "https://unsplash.com/@unstable_affliction?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/blue-and-white-water-waves-Ny0Bgf5HeI4?utm_source=daily_poster&utm_medium=referral",
+      "alt": "blue and white water waves",
+      "thumb": "https://images.unsplash.com/photo-1619388027141-3011678e3a29?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8aW5kaWdvJTIwd2F0ZXIlMjByaXBwbGVzfGVufDF8fHx8MTc5NTA2NDg4OHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1619388027141-3011678e3a29?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8aW5kaWdvJTIwd2F0ZXIlMjByaXBwbGVzfGVufDF8fHx8MTc5NTA2NDg4OHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    }
+  ],
+  "textures": [
+    {
+      "id": "unsplash:XXuVXLy5gHU",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "gray concrete floor",
+      "credit": "František G.",
+      "creditUrl": "https://unsplash.com/@fandyus?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/gray-concrete-floor-XXuVXLy5gHU?utm_source=daily_poster&utm_medium=referral",
+      "alt": "gray concrete floor",
+      "thumb": "https://images.unsplash.com/photo-1575722290270-626b0208df99?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8d2V0JTIwc2xhdGUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTA2NDg4OHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1575722290270-626b0208df99?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8d2V0JTIwc2xhdGUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTA2NDg4OHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:k4Lt0CjUnb0",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "white textured paper or plaster surface",
+      "credit": "João Vítor Duarte",
+      "creditUrl": "https://unsplash.com/@joaovtrduarte?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-k4Lt0CjUnb0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "white textured paper or plaster surface",
+      "thumb": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTA2NDg4OHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTA2NDg4OHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:tiros7-WV7E",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "blue and white abstract painting",
+      "credit": "Markus Spiske",
+      "creditUrl": "https://unsplash.com/@markusspiske?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/blue-and-white-abstract-painting-tiros7-WV7E?utm_source=daily_poster&utm_medium=referral",
+      "alt": "blue and white abstract painting",
+      "thumb": "https://images.unsplash.com/photo-1631435628939-467169ba6e08?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cmlwcGxlZCUyMGdsYXNzJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTUwNjQ4ODh8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1631435628939-467169ba6e08?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cmlwcGxlZCUyMGdsYXNzJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTUwNjQ4ODh8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:E9fN7ozC0Ds",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a close up of a black textured surface",
+      "credit": "Lakshya soni",
+      "creditUrl": "https://unsplash.com/@sonilakshya0177?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-close-up-of-a-black-textured-surface-E9fN7ozC0Ds?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a close up of a black textured surface",
+      "thumb": "https://images.unsplash.com/photo-1635789146064-ffa7966c32e3?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8d2V0JTIwc2xhdGUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTA2NDg4OHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1635789146064-ffa7966c32e3?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8d2V0JTIwc2xhdGUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTA2NDg4OHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    }
+  ],
+  "objects": [
+    {
+      "name": "fishing net float",
+      "material": "weathered painted steel",
+      "image": "media/2026-11-19/object-1.png",
+      "thumb": "media/2026-11-19/object-1-thumb.png",
+      "model": {
+        "title": "Inflatable Buoy",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-281e203b2b3a4461ba2661c82cd75a44",
+        "licence": "CC Attribution",
+        "creator": "ApprenticeRaccoon",
+        "creatorUrl": "https://sketchfab.com/ApprenticeRaccoon"
+      },
+      "texture": {
+        "title": "Rusty Painted Metal",
+        "url": "https://polyhaven.com/a/rusty_painted_metal"
+      }
+    },
+    {
+      "name": "compass",
+      "material": "polished brass",
+      "image": "media/2026-11-19/object-2.png",
+      "thumb": "media/2026-11-19/object-2-thumb.png",
+      "model": {
+        "title": "Compass, brass in Victorian style. Glass, copper",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-e31ff1e1715d4fffad5634919c83c6dc",
+        "licence": "CC Attribution",
+        "creator": "Rylae Shylna",
+        "creatorUrl": "https://sketchfab.com/risteralline"
+      },
+      "texture": null
+    },
+    {
+      "name": "stepping stones",
+      "material": "wet slate",
+      "image": "media/2026-11-19/object-3.png",
+      "thumb": "media/2026-11-19/object-3-thumb.png",
+      "model": {
+        "title": "Slate Stepping Stones",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-4b5d673e6b96490ab8040ead64586fcb",
+        "licence": "CC Attribution",
+        "creator": "Oyugi Mark",
+        "creatorUrl": "https://sketchfab.com/oyugi"
+      },
+      "texture": {
+        "title": "Slate Driveway",
+        "url": "https://polyhaven.com/a/slate_driveway"
+      }
+    }
+  ]
+}

@@ -1,5 +1,16 @@
 [
   {
+    "date": "2026-11-19",
+    "issue": 48,
+    "colour": "Indigo",
+    "headline": "Down the Dark River",
+    "bg": "#473CED",
+    "thumb": "https://images.unsplash.com/photo-1613753598214-119055b017f7?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8ZGFyayUyMHJpdmVyJTIwbmlnaHR8ZW58MXx8fHwxNzk1MDY0ODg4fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+    "display": "Instrument Serif",
+    "text": "Inter Tight",
+    "css": "https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter+Tight&display=swap"
+  },
+  {
     "date": "2026-11-18",
     "issue": 47,
     "colour": "Violet",

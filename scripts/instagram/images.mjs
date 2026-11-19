@@ -8,7 +8,7 @@
 import { mkdir, readdir, rm, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { join } from "node:path";
-import { DATA, IG_DIR, BACKFILL, readJSON, loadState, writeJSON, STATE, londonDate, pendingPosters, posterImage, briefImages, briefStories, SITE } from "./common.mjs";
+import { DATA, IG_DIR, BACKFILL, readJSON, loadState, writeJSON, STATE, londonDate, pendingPosters, posterImage, briefImages, briefStories, SITE, posterHash, posterSrcFile, posterPictureStatus } from "./common.mjs";
 
 const W = 1080, H = 1350;
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
@@ -202,12 +202,12 @@ async function todo(state) {
   const showcase = await readJSON(join(DATA, "showcase.json"), []);
   for (const k of queue.filter((q) => typeof q === "string")) {
     const p = k.startsWith("poster:") && !state.posted[k] && showcase.find((x) => `poster:${x.image}` === k);
-    if (p && !existsSync(posterImage(p))) jobs.push({ kind: "poster", poster: p, out: posterImage(p) });
+    if (p && posterPictureStatus(p) !== "fresh") jobs.push({ kind: "poster", poster: p, out: posterImage(p) });
   }
   // Posters waiting now, plus today's (they go out tomorrow).
   const waiting = [...await pendingPosters(state, "9999-12-31")];
   for (const p of waiting) {
-    if (existsSync(posterImage(p)) || jobs.some((j) => j.out === posterImage(p))) continue;
+    if (posterPictureStatus(p) === "fresh" || jobs.some((j) => j.out === posterImage(p))) continue;
     jobs.push({ kind: "poster", poster: p, out: posterImage(p) });
   }
   return jobs;
@@ -242,6 +242,7 @@ async function main() {
         await page.screenshot({ path: out, type: "jpeg", quality: 92, clip: { x: n * W, y: 0, width: W, height: h } });
         console.log(`Rendered ${out.slice(SITE.length + 1)}`);
       }
+      if (j.kind === "poster") await writeFile(posterSrcFile(j.poster), posterHash(j.poster) + "\n");
     }
     await browser.close();
   }
@@ -250,7 +251,7 @@ async function main() {
   const done = new Set(Object.entries(state.posted).filter(([, v]) => v.at < weekAgo).map(([k]) => k));
   for (const f of await readdir(IG_DIR)) {
     const m = f.match(/^brief-(\d{4}-\d{2}-\d{2})-(story-)?\d\.jpg$/);
-    const old = m ? m[1] < weekAgo.slice(0, 10) : [...done].some((k) => k.startsWith("poster:") && [".jpg", ".mp4"].some((e) => f === k.split("/").pop().replace(/\.[a-z]+$/i, "") + e));
+    const old = m ? m[1] < weekAgo.slice(0, 10) : [...done].some((k) => k.startsWith("poster:") && [".jpg", ".mp4", ".src"].some((e) => f === k.split("/").pop().replace(/\.[a-z]+$/i, "") + e));
     if (old) await rm(join(IG_DIR, f));
   }
 }

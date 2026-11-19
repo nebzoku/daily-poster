@@ -9,7 +9,7 @@ import { writeFile, mkdir } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { SITE, DATA, STATE, BACKFILL, SLOTS, WINDOW_MS, readJSON, writeJSON, loadState, londonDate, londonToUtc, addDays,
-  pendingPosters, posterImage, posterReel, posterMedia, briefImages, briefStories, url } from "./common.mjs";
+  pendingPosters, posterImage, posterReel, posterMedia, briefImages, briefStories, url, posterPictureStatus } from "./common.mjs";
 
 const TOKEN = process.env.INSTAGRAM_TOKEN, USER = process.env.INSTAGRAM_USER_ID;
 // Instagram Login tokens (IGAA…) go to graph.instagram.com and last 60 days, renewed weekly.
@@ -219,7 +219,9 @@ async function main() {
       job = { key: storiesKey, slot: briefSlot, stories: briefStories(today).map(url) };
   }
   if (!job) {
-    const waiting = (await pendingPosters(state, today)).filter((p) => existsSync(posterMedia(p)));
+    // A poster replaced since its picture was made waits for a fresh picture rather than going out as the old one.
+    const waiting = (await pendingPosters(state, today)).filter((p) => existsSync(posterMedia(p)) && (p.video || posterPictureStatus(p) !== "stale"));
+    for (const p of await pendingPosters(state, today)) if (!p.video && posterPictureStatus(p) === "stale") console.log(`::warning::${p.image} was replaced; waiting for its Instagram picture to be remade.`);
     for (const [time, needed] of SLOTS.posters) {
       const slot = `${today} ${time}`;
       if (!due(time) || state.slots[slot] || waiting.length < needed) continue;

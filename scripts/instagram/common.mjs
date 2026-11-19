@@ -6,7 +6,8 @@
 //   10:30         a third poster, only when three or more are waiting
 // Every poster goes out from the day after its brief, so the feed runs one day behind the site.
 import { readFile, writeFile } from "node:fs/promises";
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { join } from "node:path";
 
 export const ROOT = new URL("../../", import.meta.url).pathname;
@@ -42,6 +43,16 @@ export const posterImage = (x) => join(IG_DIR, `${stem(x.image)}.jpg`);
 // site/media/ig/<name>.mp4). Without that file it waits.
 export const posterReel = (x) => (x.video ? join(IG_DIR, `${stem(x.image)}.mp4`) : null);
 export const posterMedia = (x) => posterReel(x) || posterImage(x);
+// Each poster's Instagram picture remembers which version of the poster it was made from
+// (<name>.src next to it), so a poster replaced in the archive gets a fresh picture rather
+// than going out as the old one.
+export const posterHash = (x) => createHash("sha1").update(readFileSync(join(SITE, x.image))).digest("hex").slice(0, 16);
+export const posterSrcFile = (x) => posterImage(x).replace(/\.jpg$/, ".src");
+export function posterPictureStatus(x) {
+  if (!existsSync(posterImage(x))) return "missing";
+  if (!existsSync(posterSrcFile(x))) return "unknown";
+  try { return readFileSync(posterSrcFile(x), "utf8").trim() === posterHash(x) ? "fresh" : "stale"; } catch { return "unknown"; }
+}
 // Today's brief is a three-picture carousel, one headline each.
 export const briefImages = (date) => [1, 2, 3].map((n) => join(IG_DIR, `brief-${date}-${n}.jpg`));
 // The morning brief also goes out as nine stories (9:16): each headline then its subline, then the palette, the typefaces and how to take part.

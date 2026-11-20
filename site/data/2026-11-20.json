@@ -1,0 +1,288 @@
+{
+  "date": "2026-11-20",
+  "issue": 49,
+  "generatedAt": "2026-11-20T05:08:15.072Z",
+  "colour": {
+    "name": "Blue",
+    "yesterday": "Indigo",
+    "tomorrow": "Teal"
+  },
+  "story": {
+    "title": "An elevator, a brick wall and a bathroom: scientists use gravity to send ‘practically unblockable’ message",
+    "summary": "Australian physicists used gravity to send the word \"gravity\" in binary code through a brick wall, in a proof-of-concept experiment built around a slow 1950s elevator. The method is described as practically unblockable because walls cannot shield against gravitational pull.",
+    "source": "The Guardian",
+    "url": "https://www.theguardian.com/science/2026/nov/20/scientists-communicate-using-gravity-elevator-brick-wall-bathroom-experiment",
+    "published": "2026-11-19T23:30:26.000Z",
+    "theme": "physics and communication"
+  },
+  "headlines": [
+    "A Whisper Through Brick",
+    "Gravity Learns to Speak",
+    "The Message Nothing Blocks"
+  ],
+  "sublines": [
+    "Australian physicists sent the word 'gravity' in binary through a brick wall, using a slow 1950s elevator.",
+    "A proof-of-concept experiment shows gravitational pull can carry a signal that walls and shielding cannot stop.",
+    "Shifting mass up and down in a lift created tiny gravitational changes that a detector read as binary."
+  ],
+  "palette": {
+    "name": "Vivid",
+    "colours": [
+      "#2987F1",
+      "#D4E6FE",
+      "#6A727D",
+      "#041F3F"
+    ]
+  },
+  "always": [
+    "#000000",
+    "#FFFFFF"
+  ],
+  "type": {
+    "id": "terminal-grotesque",
+    "display": "Terminal Grotesque",
+    "text": "Martian Mono",
+    "libre": {
+      "foundry": "Velvetyne",
+      "designer": "Raphaël Bastide",
+      "url": "https://velvetyne.fr/fonts/terminal-grotesque/"
+    },
+    "reason": "Terminal Grotesque's raw, technical letterforms and Martian Mono's code-like rhythm suit a binary message sent through a wall by gravity.",
+    "css": "/fonts/libre/terminal-grotesque.css",
+    "displayUrl": "https://velvetyne.fr/fonts/terminal-grotesque/",
+    "textUrl": "https://fonts.google.com/specimen/Martian+Mono",
+    "download": "/fonts/libre/terminal-grotesque.zip"
+  },
+  "grid": {
+    "format": "A-size",
+    "size": [
+      1080,
+      1528
+    ],
+    "columns": 8,
+    "rows": 8,
+    "margin": 16,
+    "gutter": 0,
+    "column": 131,
+    "row": 187,
+    "unit": "px"
+  },
+  "images": [
+    {
+      "id": "unsplash:QMDap1TAu0g",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "gray concrete bricks painted in blue",
+      "credit": "Patrick Tomasso",
+      "creditUrl": "https://unsplash.com/@impatrickt?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/gray-concrete-bricks-painted-in-blue-QMDap1TAu0g?utm_source=daily_poster&utm_medium=referral",
+      "alt": "gray concrete bricks painted in blue",
+      "thumb": "https://images.unsplash.com/photo-1487088678257-3a541e6e3922?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Ymx1ZSUyMGJyaWNrJTIwd2FsbHxlbnwxfHx8fDE3OTUxNTEyOTV8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1487088678257-3a541e6e3922?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Ymx1ZSUyMGJyaWNrJTIwd2FsbHxlbnwxfHx8fDE3OTUxNTEyOTV8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:6QnEf_b47eA",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "wall lamp turned on on wall",
+      "credit": "Greg Rosenke",
+      "creditUrl": "https://unsplash.com/@greg_rosenke?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/wall-lamp-turned-on-on-wall-6QnEf_b47eA?utm_source=daily_poster&utm_medium=referral",
+      "alt": "wall lamp turned on on wall",
+      "thumb": "https://images.unsplash.com/photo-1553095066-5014bc7b7f2d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Ymx1ZSUyMGJyaWNrJTIwd2FsbHxlbnwxfHx8fDE3OTUxNTEyOTV8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1553095066-5014bc7b7f2d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Ymx1ZSUyMGJyaWNrJTIwd2FsbHxlbnwxfHx8fDE3OTUxNTEyOTV8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:BG-iyXjJiLs",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "gray steel frames",
+      "credit": "Robert V. Ruggiero",
+      "creditUrl": "https://unsplash.com/@rvrmakes?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/gray-steel-frames-BG-iyXjJiLs?utm_source=daily_poster&utm_medium=referral",
+      "alt": "gray steel frames",
+      "thumb": "https://images.unsplash.com/photo-1543593450-4faaab9a0f6e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8ZWxldmF0b3IlMjBzaGFmdHxlbnwxfHx8fDE3OTUxNTEyOTV8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1543593450-4faaab9a0f6e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8ZWxldmF0b3IlMjBzaGFmdHxlbnwxfHx8fDE3OTUxNTEyOTV8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:188495",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Pendulum clock, 18th century",
+      "credit": "Schöner",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/188495",
+      "page": "https://www.metmuseum.org/art/collection/search/188495",
+      "alt": "Pendulum clock",
+      "thumb": "https://images.metmuseum.org/CRDImages/es/web-large/36167.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/es/original/36167.jpg",
+      "local": "media/2026-11-20/image-04-2160.jpg"
+    },
+    {
+      "id": "unsplash:wy5QuZMI8V4",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "clear glass walled building during daytime",
+      "credit": "Nick Fewings",
+      "creditUrl": "https://unsplash.com/@jannerboy62?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/clear-glass-walled-building-during-daytime-wy5QuZMI8V4?utm_source=daily_poster&utm_medium=referral",
+      "alt": "clear glass walled building during daytime",
+      "thumb": "https://images.unsplash.com/photo-1595601265373-612a09303582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8ZWxldmF0b3IlMjBzaGFmdHxlbnwxfHx8fDE3OTUxNTEyOTV8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1595601265373-612a09303582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8ZWxldmF0b3IlMjBzaGFmdHxlbnwxfHx8fDE3OTUxNTEyOTV8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:194096",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Watch, ca. 1702",
+      "credit": "David Lestourgeon",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/194096",
+      "page": "https://www.metmuseum.org/art/collection/search/194096",
+      "alt": "Watch",
+      "thumb": "https://images.metmuseum.org/CRDImages/es/web-large/DP-12675-109.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/es/original/DP-12675-109.jpg",
+      "local": "media/2026-11-20/image-06-2160.jpg"
+    },
+    {
+      "id": "unsplash:hxrMdxeqJ7Q",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "Vintage elevator shaft with teal doors and metal railings",
+      "credit": "Nguyen Tony",
+      "creditUrl": "https://unsplash.com/@tannguyen200196?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/vintage-elevator-shaft-with-teal-doors-and-metal-railings-hxrMdxeqJ7Q?utm_source=daily_poster&utm_medium=referral",
+      "alt": "Vintage elevator shaft with teal doors and metal railings",
+      "thumb": "https://images.unsplash.com/photo-1763898260685-1a5b10346ba9?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8ZWxldmF0b3IlMjBzaGFmdHxlbnwxfHx8fDE3OTUxNTEyOTV8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1763898260685-1a5b10346ba9?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8ZWxldmF0b3IlMjBzaGFmdHxlbnwxfHx8fDE3OTUxNTEyOTV8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:209245",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Clock in the form of an oscillating pendulum (pendule oscillante), ca. 1815–30",
+      "credit": "Delaunoy (elève de Breguet)",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/209245",
+      "page": "https://www.metmuseum.org/art/collection/search/209245",
+      "alt": "Clock in the form of an oscillating pendulum (pendule oscillante)",
+      "thumb": "https://images.metmuseum.org/CRDImages/es/web-large/65441.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/es/original/65441.jpg",
+      "local": "media/2026-11-20/image-08-2160.jpg"
+    },
+    {
+      "id": "unsplash:kVAeTtdEqNM",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "grayscale photo of cable",
+      "credit": "Lasse Møller",
+      "creditUrl": "https://unsplash.com/@lalasse?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/grayscale-photo-of-cable-kVAeTtdEqNM?utm_source=daily_poster&utm_medium=referral",
+      "alt": "grayscale photo of cable",
+      "thumb": "https://images.unsplash.com/photo-1547377528-536d6cd031ad?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8ZWxldmF0b3IlMjBzaGFmdHxlbnwxfHx8fDE3OTUxNTEyOTV8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1547377528-536d6cd031ad?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8ZWxldmF0b3IlMjBzaGFmdHxlbnwxfHx8fDE3OTUxNTEyOTV8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:246909",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Bronze steelyard and weights, 4th–6th century CE",
+      "credit": "Roman",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/246909",
+      "page": "https://www.metmuseum.org/art/collection/search/246909",
+      "alt": "Bronze steelyard and weights",
+      "thumb": "https://images.metmuseum.org/CRDImages/gr/web-large/DP20386.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/gr/original/DP20386.jpg",
+      "local": "media/2026-11-20/image-10-2160.jpg"
+    }
+  ],
+  "textures": [
+    {
+      "id": "unsplash:iwBPEw_Oq5k",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "blue textile in close up photography",
+      "credit": "engin akyurt",
+      "creditUrl": "https://unsplash.com/@enginakyurt?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/blue-textile-in-close-up-photography-iwBPEw_Oq5k?utm_source=daily_poster&utm_medium=referral",
+      "alt": "blue textile in close up photography",
+      "thumb": "https://images.unsplash.com/photo-1611242319342-ed0d65b1a0f0?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Ymx1ZXByaW50JTIwcGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTE1MTI5NXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1611242319342-ed0d65b1a0f0?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Ymx1ZXByaW50JTIwcGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTE1MTI5NXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:UuBR5kbvt4Y",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a black and white photo of a concrete wall",
+      "credit": "Yan Ots",
+      "creditUrl": "https://unsplash.com/@yanots?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-black-and-white-photo-of-a-concrete-wall-UuBR5kbvt4Y?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a black and white photo of a concrete wall",
+      "thumb": "https://images.unsplash.com/photo-1521459467264-802e2ef3141f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Y29uY3JldGUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTE1MTI5NXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1521459467264-802e2ef3141f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Y29uY3JldGUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTE1MTI5NXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:xwb9RDqZKu8",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "A uniform blue carpet texture with a fine synthetic pile",
+      "credit": "engin akyurt",
+      "creditUrl": "https://unsplash.com/@enginakyurt?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/blue-synthetic-carpet-texture-xwb9RDqZKu8?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A uniform blue carpet texture with a fine synthetic pile",
+      "thumb": "https://images.unsplash.com/photo-1642077912812-6ff69ac639da?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Ymx1ZXByaW50JTIwcGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTE1MTI5NXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1642077912812-6ff69ac639da?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Ymx1ZXByaW50JTIwcGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTE1MTI5NXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:UUdnFuDqn1Q",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "red brick wall during daytime",
+      "credit": "Jason Dent",
+      "creditUrl": "https://unsplash.com/@jdent?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/red-brick-wall-during-daytime-UUdnFuDqn1Q?utm_source=daily_poster&utm_medium=referral",
+      "alt": "red brick wall during daytime",
+      "thumb": "https://images.unsplash.com/photo-1584505192555-4feb7834358a?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8YnJpY2slMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTE1MTI5NXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1584505192555-4feb7834358a?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8YnJpY2slMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTE1MTI5NXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    }
+  ],
+  "objects": [
+    {
+      "name": "brick wall",
+      "material": "weathered red brick",
+      "image": "media/2026-11-20/object-1.png",
+      "thumb": "media/2026-11-20/object-1-thumb.png",
+      "model": {
+        "title": "Low-Poly Brick Wall",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-8b3eb0618fb64e818a48e7713828174a",
+        "licence": "CC Attribution",
+        "creator": "SketcherGuy",
+        "creatorUrl": "https://sketchfab.com/thirdimensionalguy"
+      },
+      "texture": {
+        "title": "Broken Brick Wall",
+        "url": "https://polyhaven.com/a/broken_brick_wall"
+      }
+    },
+    {
+      "name": "elevator cage",
+      "material": "brushed steel",
+      "image": "media/2026-11-20/object-2.png",
+      "thumb": "media/2026-11-20/object-2-thumb.png",
+      "model": null,
+      "texture": {
+        "title": "Blue Metal Plate",
+        "url": "https://polyhaven.com/a/blue_metal_plate"
+      }
+    },
+    {
+      "name": "plumb bob",
+      "material": "polished brass",
+      "image": "media/2026-11-20/object-3.png",
+      "thumb": "media/2026-11-20/object-3-thumb.png",
+      "model": null,
+      "texture": {
+        "title": "Blue Metal Plate",
+        "url": "https://polyhaven.com/a/blue_metal_plate"
+      }
+    }
+  ]
+}

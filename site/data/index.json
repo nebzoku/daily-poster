@@ -1,5 +1,16 @@
 [
   {
+    "date": "2026-11-20",
+    "issue": 49,
+    "colour": "Blue",
+    "headline": "A Whisper Through Brick",
+    "bg": "#2987F1",
+    "thumb": "https://images.unsplash.com/photo-1487088678257-3a541e6e3922?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Ymx1ZSUyMGJyaWNrJTIwd2FsbHxlbnwxfHx8fDE3OTUxNTEyOTV8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+    "display": "Terminal Grotesque",
+    "text": "Martian Mono",
+    "css": "/fonts/libre/terminal-grotesque.css"
+  },
+  {
     "date": "2026-11-19",
     "issue": 48,
     "colour": "Indigo",

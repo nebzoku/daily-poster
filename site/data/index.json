@@ -1,5 +1,16 @@
 [
   {
+    "date": "2026-11-21",
+    "issue": 50,
+    "colour": "Teal",
+    "headline": "The Summer, Bottled Early",
+    "bg": "#4CEBEB",
+    "thumb": "https://images.unsplash.com/photo-1637181155600-f4487dabf8ba?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8dmluZXlhcmQlMjByb3dzJTIwYXV0dW1ufGVufDF8fHx8MTc5NTIzNzY5MHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+    "display": "Libre Caslon Display",
+    "text": "Libre Franklin",
+    "css": "https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Franklin&display=swap"
+  },
+  {
     "date": "2026-11-20",
     "issue": 49,
     "colour": "Blue",

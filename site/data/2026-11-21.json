@@ -1,0 +1,289 @@
+{
+  "date": "2026-11-21",
+  "issue": 50,
+  "generatedAt": "2026-11-21T05:08:10.117Z",
+  "colour": {
+    "name": "Teal",
+    "yesterday": "Blue",
+    "tomorrow": "Jade"
+  },
+  "story": {
+    "title": "‘Gloucestershire nouveau’: UK vineyard uncorks its 2026 answer to beaujolais",
+    "summary": "A Gloucestershire vineyard, Three Choirs, has released its 2026 First Release white wine, a English answer to beaujolais nouveau. A long, hot summer brought the earliest start to harvest there in 50 years.",
+    "source": "The Guardian",
+    "url": "https://www.theguardian.com/business/2026/nov/20/three-choirs-vineyard-2026-first-release-wine-record-early-harvest-beaujolais-nouveau",
+    "published": "2026-11-20T14:59:23.000Z",
+    "theme": "English wine harvest"
+  },
+  "headlines": [
+    "The Summer, Bottled Early",
+    "Fifty Years Since Grapes Ripened Sooner",
+    "First Taste of a Hot Year"
+  ],
+  "sublines": [
+    "Three Choirs in Gloucestershire has released its 2026 First Release white, an English answer to France's autumn beaujolais tradition.",
+    "A long, hot summer brought the earliest grape harvest at the vineyard in half a century.",
+    "From vine to glass in weeks: the year's first English vintage tastes of the season that made it."
+  ],
+  "palette": {
+    "name": "Vivid",
+    "colours": [
+      "#4CEBEB",
+      "#B6F2F1",
+      "#657575",
+      "#012525"
+    ]
+  },
+  "always": [
+    "#000000",
+    "#FFFFFF"
+  ],
+  "type": {
+    "id": "caslon",
+    "display": "Libre Caslon Display",
+    "text": "Libre Franklin",
+    "reason": "A high-contrast display serif gives the vintage-label elegance of wine, while the plain Franklin carries the facts.",
+    "css": "https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Franklin&display=swap",
+    "displayUrl": "https://fonts.google.com/specimen/Libre+Caslon+Display",
+    "textUrl": "https://fonts.google.com/specimen/Libre+Franklin"
+  },
+  "grid": {
+    "format": "A-size",
+    "size": [
+      1080,
+      1528
+    ],
+    "columns": 8,
+    "rows": 8,
+    "margin": 16,
+    "gutter": 0,
+    "column": 131,
+    "row": 187,
+    "unit": "px"
+  },
+  "images": [
+    {
+      "id": "unsplash:vyOpe3tvwxU",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "rows of vines in a vineyard with trees in the background",
+      "credit": "Lukáš Kulla",
+      "creditUrl": "https://unsplash.com/@lukajzz?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/rows-of-vines-in-a-vineyard-with-trees-in-the-background-vyOpe3tvwxU?utm_source=daily_poster&utm_medium=referral",
+      "alt": "rows of vines in a vineyard with trees in the background",
+      "thumb": "https://images.unsplash.com/photo-1637181155600-f4487dabf8ba?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8dmluZXlhcmQlMjByb3dzJTIwYXV0dW1ufGVufDF8fHx8MTc5NTIzNzY5MHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1637181155600-f4487dabf8ba?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8dmluZXlhcmQlMjByb3dzJTIwYXV0dW1ufGVufDF8fHx8MTc5NTIzNzY5MHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:436882",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "The Grape Harvest, 1884",
+      "credit": "Léon-Augustin Lhermitte",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/436882",
+      "page": "https://www.metmuseum.org/art/collection/search/436882",
+      "alt": "The Grape Harvest",
+      "thumb": "https://images.metmuseum.org/CRDImages/ep/web-large/DP318213.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/ep/original/DP318213.jpg",
+      "local": "media/2026-11-21/image-02-2160.jpg"
+    },
+    {
+      "id": "unsplash:K6WlR7hgvaU",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "Grapevines with autumn leaves in a vineyard under a low sun with lens flare",
+      "credit": "Edoardo Bortoli",
+      "creditUrl": "https://unsplash.com/@edo_bor?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/grapevines-in-vineyard-under-low-sun-K6WlR7hgvaU?utm_source=daily_poster&utm_medium=referral",
+      "alt": "Grapevines with autumn leaves in a vineyard under a low sun with lens flare",
+      "thumb": "https://images.unsplash.com/photo-1793480685845-3395a88ecbfe?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8dmluZXlhcmQlMjByb3dzJTIwYXV0dW1ufGVufDF8fHx8MTc5NTIzNzY5MHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1793480685845-3395a88ecbfe?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8dmluZXlhcmQlMjByb3dzJTIwYXV0dW1ufGVufDF8fHx8MTc5NTIzNzY5MHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:394646",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "The Grape Harvest",
+      "credit": "Philippe Louis Parizeau",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/394646",
+      "page": "https://www.metmuseum.org/art/collection/search/394646",
+      "alt": "The Grape Harvest",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP826260.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP826260.jpg",
+      "local": "media/2026-11-21/image-04-2160.jpg"
+    },
+    {
+      "id": "met:264980",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Vineyard of Camulos Ranch, 1876, printed ca. 1876",
+      "credit": "Carleton E. Watkins",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/264980",
+      "page": "https://www.metmuseum.org/art/collection/search/264980",
+      "alt": "Vineyard of Camulos Ranch",
+      "thumb": "https://images.metmuseum.org/CRDImages/ph/web-large/DP152259.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/ph/original/DP152259.jpg",
+      "local": "media/2026-11-21/image-05-2160.jpg"
+    },
+    {
+      "id": "unsplash:gtg3l3mhYlk",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a stack of wine bottles stacked on top of each other",
+      "credit": "Jana Kowalewicz",
+      "creditUrl": "https://unsplash.com/@janakowalewicz?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-stack-of-wine-bottles-stacked-on-top-of-each-other-gtg3l3mhYlk?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a stack of wine bottles stacked on top of each other",
+      "thumb": "https://images.unsplash.com/photo-1644326925909-b1ea9995261a?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8Z3JlZW4lMjB3aW5lJTIwYm90dGxlc3xlbnwxfHx8fDE3OTUyMzc2OTB8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1644326925909-b1ea9995261a?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8Z3JlZW4lMjB3aW5lJTIwYm90dGxlc3xlbnwxfHx8fDE3OTUyMzc2OTB8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:9867",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Wine Bottle, 1739–80",
+      "credit": "American",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/9867",
+      "page": "https://www.metmuseum.org/art/collection/search/9867",
+      "alt": "Wine Bottle",
+      "thumb": "https://images.metmuseum.org/CRDImages/ad/web-large/ADA4147.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/ad/original/ADA4147.jpg",
+      "local": "media/2026-11-21/image-07-2160.jpg"
+    },
+    {
+      "id": "unsplash:mHLHSn4gtno",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "green leaves in tilt shift lens",
+      "credit": "Flor Saurina",
+      "creditUrl": "https://unsplash.com/@saurinaf?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/green-leaves-in-tilt-shift-lens-mHLHSn4gtno?utm_source=daily_poster&utm_medium=referral",
+      "alt": "green leaves in tilt shift lens",
+      "thumb": "https://images.unsplash.com/photo-1618100789816-86508e3f2275?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Z3JhcGUlMjBsZWF2ZXMlMjBsaWdodHxlbnwxfHx8fDE3OTUyMzc2OTB8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1618100789816-86508e3f2275?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Z3JhcGUlMjBsZWF2ZXMlMjBsaWdodHxlbnwxfHx8fDE3OTUyMzc2OTB8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:385254",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Grape Harvest at the Gulf of Naples, 1770–1825",
+      "credit": "Christoph Heinrich Kniep",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/385254",
+      "page": "https://www.metmuseum.org/art/collection/search/385254",
+      "alt": "Grape Harvest at the Gulf of Naples",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP804151.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP804151.jpg",
+      "local": "media/2026-11-21/image-09-2160.jpg"
+    },
+    {
+      "id": "unsplash:fHrfdkW34eE",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "clear glass bottle with black background",
+      "credit": "Viktor Talashuk",
+      "creditUrl": "https://unsplash.com/@viktortalashuk?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/clear-glass-bottle-with-black-background-fHrfdkW34eE?utm_source=daily_poster&utm_medium=referral",
+      "alt": "clear glass bottle with black background",
+      "thumb": "https://images.unsplash.com/photo-1598866971869-22782ffd918e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8Z3JlZW4lMjB3aW5lJTIwYm90dGxlc3xlbnwxfHx8fDE3OTUyMzc2OTB8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1598866971869-22782ffd918e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8Z3JlZW4lMjB3aW5lJTIwYm90dGxlc3xlbnwxfHx8fDE3OTUyMzc2OTB8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    }
+  ],
+  "textures": [
+    {
+      "id": "polyhaven:rough_linen",
+      "source": "Poly Haven",
+      "licence": "CC0",
+      "title": "Rough Linen",
+      "credit": "colormass, Rico Cilliers",
+      "creditUrl": "https://polyhaven.com/a/rough_linen",
+      "page": "https://polyhaven.com/a/rough_linen",
+      "alt": "Rough Linen texture",
+      "thumb": "https://cdn.polyhaven.com/asset_img/thumbs/rough_linen.png?width=480&height=480",
+      "src": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/rough_linen/rough_linen_diff_2k.jpg",
+      "local": "media/2026-11-21/texture-01-2160.jpg"
+    },
+    {
+      "id": "unsplash:UuBR5kbvt4Y",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a black and white photo of a concrete wall",
+      "credit": "Yan Ots",
+      "creditUrl": "https://unsplash.com/@yanots?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-black-and-white-photo-of-a-concrete-wall-UuBR5kbvt4Y?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a black and white photo of a concrete wall",
+      "thumb": "https://images.unsplash.com/photo-1521459467264-802e2ef3141f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Z2xhc3MlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTIzNzY5MHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1521459467264-802e2ef3141f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Z2xhc3MlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTIzNzY5MHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:vS3idIiYxX0",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "white textured paper or plaster surface",
+      "credit": "Olga Thelavart",
+      "creditUrl": "https://unsplash.com/@olga_o?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-vS3idIiYxX0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "white textured paper or plaster surface",
+      "thumb": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTIzNzY5MHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTIzNzY5MHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:NqXqLPhdbvU",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "frosted textured glass with colorful light refraction",
+      "credit": "A. C.",
+      "creditUrl": "https://unsplash.com/@3tnik?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/frosted-textured-glass-with-colorful-light-refraction-NqXqLPhdbvU?utm_source=daily_poster&utm_medium=referral",
+      "alt": "frosted textured glass with colorful light refraction",
+      "thumb": "https://images.unsplash.com/photo-1584384689201-e0bcbe2c7f1d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Z2xhc3MlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTIzNzY5MHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1584384689201-e0bcbe2c7f1d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Z2xhc3MlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTIzNzY5MHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    }
+  ],
+  "objects": [
+    {
+      "name": "wine bottle",
+      "material": "dark green glass with foil",
+      "image": "media/2026-11-21/object-1.png",
+      "thumb": "media/2026-11-21/object-1-thumb.png",
+      "model": {
+        "title": "Wine bottle",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-b0ed331c418d4959a3f050ce88f47346",
+        "licence": "CC Attribution",
+        "creator": "Batuhan13",
+        "creatorUrl": "https://sketchfab.com/Batuhan13"
+      },
+      "texture": null
+    },
+    {
+      "name": "corkscrew",
+      "material": "polished steel",
+      "image": "media/2026-11-21/object-2.png",
+      "thumb": "media/2026-11-21/object-2-thumb.png",
+      "model": {
+        "title": "Winged Corkscrew (Animation)",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-21ddf470a3fe4095a0ef58778e897187",
+        "licence": "CC Attribution",
+        "creator": "jashanchopra",
+        "creatorUrl": "https://sketchfab.com/jashanchopra"
+      },
+      "texture": null
+    },
+    {
+      "name": "secateurs",
+      "material": "brushed steel",
+      "image": "media/2026-11-21/object-3.png",
+      "thumb": "media/2026-11-21/object-3-thumb.png",
+      "model": {
+        "title": "Pruning shears",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-09ee949f846a4aa2a63fb3468cd97b8a",
+        "licence": "CC Attribution",
+        "creator": "Charlotte_Eisfeld",
+        "creatorUrl": "https://sketchfab.com/Charlotte_Eisfeld"
+      },
+      "texture": null
+    }
+  ]
+}

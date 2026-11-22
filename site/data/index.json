@@ -1,5 +1,16 @@
 [
   {
+    "date": "2026-11-22",
+    "issue": 51,
+    "colour": "Jade",
+    "headline": "Pit Stop, Promoted to Destination",
+    "bg": "#4CF1B7",
+    "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP872030.jpg",
+    "display": "Mattone",
+    "text": "Albert Sans",
+    "css": "/fonts/libre/mattone.css"
+  },
+  {
     "date": "2026-11-21",
     "issue": 50,
     "colour": "Teal",

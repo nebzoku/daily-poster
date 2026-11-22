@@ -1,37 +1,37 @@
 {
-  "date": "2026-11-21",
-  "issue": 50,
-  "generatedAt": "2026-11-21T05:08:10.117Z",
+  "date": "2026-11-22",
+  "issue": 51,
+  "generatedAt": "2026-11-22T05:08:11.213Z",
   "colour": {
-    "name": "Teal",
-    "yesterday": "Blue",
-    "tomorrow": "Jade"
+    "name": "Jade",
+    "yesterday": "Teal",
+    "tomorrow": "Green"
   },
   "story": {
-    "title": "‘Gloucestershire nouveau’: UK vineyard uncorks its 2026 answer to beaujolais",
-    "summary": "A Gloucestershire vineyard, Three Choirs, has released its 2026 First Release white wine, a English answer to beaujolais nouveau. A long, hot summer brought the earliest start to harvest there in 50 years.",
-    "source": "The Guardian",
-    "url": "https://www.theguardian.com/business/2026/nov/20/three-choirs-vineyard-2026-first-release-wine-record-early-harvest-beaujolais-nouveau",
-    "published": "2026-11-20T14:59:23.000Z",
-    "theme": "English wine harvest"
+    "title": "From pit-stops to go-to destinations: The transformation of service stations",
+    "summary": "Motorway service stations, long seen as a quick stop for fuel and a sandwich, are being reimagined as places people choose to visit. Operators are investing in food, design and experiences that turn the pause on a journey into part of the trip.",
+    "source": "BBC News",
+    "url": "https://www.bbc.co.uk/news/articles/ckqx5rylp9elo?at_medium=RSS&amp;at_campaign=rss",
+    "published": "2026-11-22T00:06:03.000Z",
+    "theme": "roadside travel architecture"
   },
   "headlines": [
-    "The Summer, Bottled Early",
-    "Fifty Years Since Grapes Ripened Sooner",
-    "First Taste of a Hot Year"
+    "Pit Stop, Promoted to Destination",
+    "Neon in the Middle of Nowhere",
+    "The Long Road's Quiet Pause"
   ],
   "sublines": [
-    "Three Choirs in Gloucestershire has released its 2026 First Release white, an English answer to France's autumn beaujolais tradition.",
-    "A long, hot summer brought the earliest grape harvest at the vineyard in half a century.",
-    "From vine to glass in weeks: the year's first English vintage tastes of the season that made it."
+    "Once a quick break on a long journey, service stations are becoming places people travel to on purpose.",
+    "Fuel and a sandwich are giving way to better food, design and reasons to linger beside the motorway.",
+    "The humble roadside stop is being rebuilt as a destination, and the journey now includes the break."
   ],
   "palette": {
     "name": "Vivid",
     "colours": [
-      "#4CEBEB",
-      "#B6F2F1",
-      "#657575",
-      "#012525"
+      "#4CF1B7",
+      "#C0F2DB",
+      "#67756F",
+      "#002619"
     ]
   },
   "always": [
@@ -39,13 +39,19 @@
     "#FFFFFF"
   ],
   "type": {
-    "id": "caslon",
-    "display": "Libre Caslon Display",
-    "text": "Libre Franklin",
-    "reason": "A high-contrast display serif gives the vintage-label elegance of wine, while the plain Franklin carries the facts.",
-    "css": "https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Franklin&display=swap",
-    "displayUrl": "https://fonts.google.com/specimen/Libre+Caslon+Display",
-    "textUrl": "https://fonts.google.com/specimen/Libre+Franklin"
+    "id": "mattone",
+    "display": "Mattone",
+    "text": "Albert Sans",
+    "libre": {
+      "foundry": "Collletttivo",
+      "designer": "Nunzio Mazzaferro",
+      "url": "https://www.collletttivo.it/typefaces/mattone"
+    },
+    "reason": "Mattone's blocky, confident geometry echoes roadside signage and gives the huge headline a built, architectural weight.",
+    "css": "/fonts/libre/mattone.css",
+    "displayUrl": "https://www.collletttivo.it/typefaces/mattone",
+    "textUrl": "https://fonts.google.com/specimen/Albert+Sans",
+    "download": "/fonts/libre/mattone.zip"
   },
   "grid": {
     "format": "A-size",
@@ -63,227 +69,233 @@
   },
   "images": [
     {
-      "id": "unsplash:vyOpe3tvwxU",
-      "source": "Unsplash",
-      "licence": "Unsplash License",
-      "title": "rows of vines in a vineyard with trees in the background",
-      "credit": "Lukáš Kulla",
-      "creditUrl": "https://unsplash.com/@lukajzz?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/rows-of-vines-in-a-vineyard-with-trees-in-the-background-vyOpe3tvwxU?utm_source=daily_poster&utm_medium=referral",
-      "alt": "rows of vines in a vineyard with trees in the background",
-      "thumb": "https://images.unsplash.com/photo-1637181155600-f4487dabf8ba?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8dmluZXlhcmQlMjByb3dzJTIwYXV0dW1ufGVufDF8fHx8MTc5NTIzNzY5MHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1637181155600-f4487dabf8ba?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8dmluZXlhcmQlMjByb3dzJTIwYXV0dW1ufGVufDF8fHx8MTc5NTIzNzY5MHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
-    },
-    {
-      "id": "met:436882",
+      "id": "met:738487",
       "source": "The Met",
       "licence": "CC0",
-      "title": "The Grape Harvest, 1884",
-      "credit": "Léon-Augustin Lhermitte",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/436882",
-      "page": "https://www.metmuseum.org/art/collection/search/436882",
-      "alt": "The Grape Harvest",
-      "thumb": "https://images.metmuseum.org/CRDImages/ep/web-large/DP318213.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/ep/original/DP318213.jpg",
-      "local": "media/2026-11-21/image-02-2160.jpg"
+      "title": "Cuckfield (An Excursion to Brighthelmstone), June 1, 1790",
+      "credit": "Thomas Rowlandson",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/738487",
+      "page": "https://www.metmuseum.org/art/collection/search/738487",
+      "alt": "Cuckfield (An Excursion to Brighthelmstone)",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP872030.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP872030.jpg",
+      "local": "media/2026-11-22/image-01-2160.jpg"
     },
     {
-      "id": "unsplash:K6WlR7hgvaU",
+      "id": "unsplash:bLREPvW6WO0",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "Grapevines with autumn leaves in a vineyard under a low sun with lens flare",
-      "credit": "Edoardo Bortoli",
-      "creditUrl": "https://unsplash.com/@edo_bor?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/grapevines-in-vineyard-under-low-sun-K6WlR7hgvaU?utm_source=daily_poster&utm_medium=referral",
-      "alt": "Grapevines with autumn leaves in a vineyard under a low sun with lens flare",
-      "thumb": "https://images.unsplash.com/photo-1793480685845-3395a88ecbfe?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8dmluZXlhcmQlMjByb3dzJTIwYXV0dW1ufGVufDF8fHx8MTc5NTIzNzY5MHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1793480685845-3395a88ecbfe?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8dmluZXlhcmQlMjByb3dzJTIwYXV0dW1ufGVufDF8fHx8MTc5NTIzNzY5MHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "a long exposure shot of a highway at night",
+      "credit": "David Smart",
+      "creditUrl": "https://unsplash.com/@dsmart26?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-long-exposure-shot-of-a-highway-at-night-bLREPvW6WO0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a long exposure shot of a highway at night",
+      "thumb": "https://images.unsplash.com/photo-1689247040313-d8780d488a84?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8bW90b3J3YXklMjBuaWdodHxlbnwxfHx8fDE3OTUzMjQwOTF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1689247040313-d8780d488a84?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8bW90b3J3YXklMjBuaWdodHxlbnwxfHx8fDE3OTUzMjQwOTF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "met:394646",
+      "id": "met:348350",
       "source": "The Met",
       "licence": "CC0",
-      "title": "The Grape Harvest",
-      "credit": "Philippe Louis Parizeau",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/394646",
-      "page": "https://www.metmuseum.org/art/collection/search/394646",
-      "alt": "The Grape Harvest",
-      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP826260.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP826260.jpg",
-      "local": "media/2026-11-21/image-04-2160.jpg"
+      "title": "Filial Affection, or a Trip to Gretna Green, December 15, 1785",
+      "credit": "Thomas Rowlandson",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/348350",
+      "page": "https://www.metmuseum.org/art/collection/search/348350",
+      "alt": "Filial Affection, or a Trip to Gretna Green",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP880229.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP880229.jpg",
+      "local": "media/2026-11-22/image-03-2160.jpg"
     },
     {
-      "id": "met:264980",
-      "source": "The Met",
-      "licence": "CC0",
-      "title": "Vineyard of Camulos Ranch, 1876, printed ca. 1876",
-      "credit": "Carleton E. Watkins",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/264980",
-      "page": "https://www.metmuseum.org/art/collection/search/264980",
-      "alt": "Vineyard of Camulos Ranch",
-      "thumb": "https://images.metmuseum.org/CRDImages/ph/web-large/DP152259.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/ph/original/DP152259.jpg",
-      "local": "media/2026-11-21/image-05-2160.jpg"
-    },
-    {
-      "id": "unsplash:gtg3l3mhYlk",
+      "id": "unsplash:mbrF_62mp-Y",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "a stack of wine bottles stacked on top of each other",
-      "credit": "Jana Kowalewicz",
-      "creditUrl": "https://unsplash.com/@janakowalewicz?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/a-stack-of-wine-bottles-stacked-on-top-of-each-other-gtg3l3mhYlk?utm_source=daily_poster&utm_medium=referral",
-      "alt": "a stack of wine bottles stacked on top of each other",
-      "thumb": "https://images.unsplash.com/photo-1644326925909-b1ea9995261a?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8Z3JlZW4lMjB3aW5lJTIwYm90dGxlc3xlbnwxfHx8fDE3OTUyMzc2OTB8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1644326925909-b1ea9995261a?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8Z3JlZW4lMjB3aW5lJTIwYm90dGxlc3xlbnwxfHx8fDE3OTUyMzc2OTB8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "time lapse photography of cars on road during night time",
+      "credit": "Markus Spiske",
+      "creditUrl": "https://unsplash.com/@markusspiske?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/time-lapse-photography-of-cars-on-road-during-night-time-mbrF_62mp-Y?utm_source=daily_poster&utm_medium=referral",
+      "alt": "time lapse photography of cars on road during night time",
+      "thumb": "https://images.unsplash.com/photo-1581010105267-67447703cfe9?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8bW90b3J3YXklMjBuaWdodHxlbnwxfHx8fDE3OTUzMjQwOTF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1581010105267-67447703cfe9?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8bW90b3J3YXklMjBuaWdodHxlbnwxfHx8fDE3OTUzMjQwOTF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "met:9867",
-      "source": "The Met",
-      "licence": "CC0",
-      "title": "Wine Bottle, 1739–80",
-      "credit": "American",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/9867",
-      "page": "https://www.metmuseum.org/art/collection/search/9867",
-      "alt": "Wine Bottle",
-      "thumb": "https://images.metmuseum.org/CRDImages/ad/web-large/ADA4147.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/ad/original/ADA4147.jpg",
-      "local": "media/2026-11-21/image-07-2160.jpg"
-    },
-    {
-      "id": "unsplash:mHLHSn4gtno",
+      "id": "unsplash:OnmOFmwTlP0",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "green leaves in tilt shift lens",
-      "credit": "Flor Saurina",
-      "creditUrl": "https://unsplash.com/@saurinaf?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/green-leaves-in-tilt-shift-lens-mHLHSn4gtno?utm_source=daily_poster&utm_medium=referral",
-      "alt": "green leaves in tilt shift lens",
-      "thumb": "https://images.unsplash.com/photo-1618100789816-86508e3f2275?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Z3JhcGUlMjBsZWF2ZXMlMjBsaWdodHxlbnwxfHx8fDE3OTUyMzc2OTB8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1618100789816-86508e3f2275?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Z3JhcGUlMjBsZWF2ZXMlMjBsaWdodHxlbnwxfHx8fDE3OTUyMzc2OTB8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "a gas station at night with no people around",
+      "credit": "Hans Eiskonen",
+      "creditUrl": "https://unsplash.com/@eiskonen?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-gas-station-at-night-with-no-people-around-OnmOFmwTlP0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a gas station at night with no people around",
+      "thumb": "https://images.unsplash.com/photo-1695561324569-5e47c76dc0a3?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGV0cm9sJTIwc3RhdGlvbnxlbnwxfHx8fDE3OTUzMjQwOTF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1695561324569-5e47c76dc0a3?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGV0cm9sJTIwc3RhdGlvbnxlbnwxfHx8fDE3OTUzMjQwOTF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "met:385254",
-      "source": "The Met",
-      "licence": "CC0",
-      "title": "Grape Harvest at the Gulf of Naples, 1770–1825",
-      "credit": "Christoph Heinrich Kniep",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/385254",
-      "page": "https://www.metmuseum.org/art/collection/search/385254",
-      "alt": "Grape Harvest at the Gulf of Naples",
-      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP804151.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP804151.jpg",
-      "local": "media/2026-11-21/image-09-2160.jpg"
-    },
-    {
-      "id": "unsplash:fHrfdkW34eE",
+      "id": "unsplash:rPfaCWODxrc",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "clear glass bottle with black background",
-      "credit": "Viktor Talashuk",
-      "creditUrl": "https://unsplash.com/@viktortalashuk?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/clear-glass-bottle-with-black-background-fHrfdkW34eE?utm_source=daily_poster&utm_medium=referral",
-      "alt": "clear glass bottle with black background",
-      "thumb": "https://images.unsplash.com/photo-1598866971869-22782ffd918e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8Z3JlZW4lMjB3aW5lJTIwYm90dGxlc3xlbnwxfHx8fDE3OTUyMzc2OTB8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1598866971869-22782ffd918e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8Z3JlZW4lMjB3aW5lJTIwYm90dGxlc3xlbnwxfHx8fDE3OTUyMzc2OTB8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "a row of gas pumps sitting in a parking lot",
+      "credit": "Mohamed Elwaid",
+      "creditUrl": "https://unsplash.com/@waidshots?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-row-of-gas-pumps-sitting-in-a-parking-lot-rPfaCWODxrc?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a row of gas pumps sitting in a parking lot",
+      "thumb": "https://images.unsplash.com/photo-1678903434882-d8bc7782b953?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8cGV0cm9sJTIwc3RhdGlvbnxlbnwxfHx8fDE3OTUzMjQwOTF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1678903434882-d8bc7782b953?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8cGV0cm9sJTIwc3RhdGlvbnxlbnwxfHx8fDE3OTUzMjQwOTF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:40338",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Kannon Slope of the Kiso Highway, 19th century",
+      "credit": "Utagawa Hiroshige",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/40338",
+      "page": "https://www.metmuseum.org/art/collection/search/40338",
+      "alt": "Kannon Slope of the Kiso Highway",
+      "thumb": "https://images.metmuseum.org/CRDImages/as/web-large/4082.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/as/original/4082.jpg",
+      "local": "media/2026-11-22/image-07-2160.jpg"
+    },
+    {
+      "id": "unsplash:G6UihHmFicE",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "time lapse photography of cars on road during night time",
+      "credit": "Joachim Mell",
+      "creditUrl": "https://unsplash.com/@jopame?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/time-lapse-photography-of-cars-on-road-during-night-time-G6UihHmFicE?utm_source=daily_poster&utm_medium=referral",
+      "alt": "time lapse photography of cars on road during night time",
+      "thumb": "https://images.unsplash.com/photo-1620552819018-800ff13e9a08?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8bW90b3J3YXklMjBuaWdodHxlbnwxfHx8fDE3OTUzMjQwOTF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1620552819018-800ff13e9a08?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8bW90b3J3YXklMjBuaWdodHxlbnwxfHx8fDE3OTUzMjQwOTF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:LetXpVOXits",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "Cars driving on a wet city street at night",
+      "credit": "Sebastian Schuster",
+      "creditUrl": "https://unsplash.com/@sschusterphotoart?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/cars-driving-on-a-wet-city-street-at-night-LetXpVOXits?utm_source=daily_poster&utm_medium=referral",
+      "alt": "Cars driving on a wet city street at night",
+      "thumb": "https://images.unsplash.com/photo-1757372430145-7e56b7da4a47?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8bW90b3J3YXklMjBuaWdodHxlbnwxfHx8fDE3OTUzMjQwOTF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1757372430145-7e56b7da4a47?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8bW90b3J3YXklMjBuaWdodHxlbnwxfHx8fDE3OTUzMjQwOTF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:ZdzO5PgYObA",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "person taking a photo of blue and white gasoline station",
+      "credit": "Juan Fernandez",
+      "creditUrl": "https://unsplash.com/@juanlf?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/person-taking-a-photo-of-blue-and-white-gasoline-station-ZdzO5PgYObA?utm_source=daily_poster&utm_medium=referral",
+      "alt": "person taking a photo of blue and white gasoline station",
+      "thumb": "https://images.unsplash.com/photo-1527018601619-a508a2be00cd?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cGV0cm9sJTIwc3RhdGlvbnxlbnwxfHx8fDE3OTUzMjQwOTF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1527018601619-a508a2be00cd?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cGV0cm9sJTIwc3RhdGlvbnxlbnwxfHx8fDE3OTUzMjQwOTF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     }
   ],
   "textures": [
     {
-      "id": "polyhaven:rough_linen",
-      "source": "Poly Haven",
-      "licence": "CC0",
-      "title": "Rough Linen",
-      "credit": "colormass, Rico Cilliers",
-      "creditUrl": "https://polyhaven.com/a/rough_linen",
-      "page": "https://polyhaven.com/a/rough_linen",
-      "alt": "Rough Linen texture",
-      "thumb": "https://cdn.polyhaven.com/asset_img/thumbs/rough_linen.png?width=480&height=480",
-      "src": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/rough_linen/rough_linen_diff_2k.jpg",
-      "local": "media/2026-11-21/texture-01-2160.jpg"
-    },
-    {
-      "id": "unsplash:UuBR5kbvt4Y",
+      "id": "unsplash:6a3nqQ1YwBw",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "a black and white photo of a concrete wall",
-      "credit": "Yan Ots",
-      "creditUrl": "https://unsplash.com/@yanots?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/a-black-and-white-photo-of-a-concrete-wall-UuBR5kbvt4Y?utm_source=daily_poster&utm_medium=referral",
-      "alt": "a black and white photo of a concrete wall",
-      "thumb": "https://images.unsplash.com/photo-1521459467264-802e2ef3141f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Z2xhc3MlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTIzNzY5MHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1521459467264-802e2ef3141f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Z2xhc3MlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTIzNzY5MHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "dark textured plaster wall",
+      "credit": "Annie Spratt",
+      "creditUrl": "https://unsplash.com/@anniespratt?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/dark-textured-plaster-wall-6a3nqQ1YwBw?utm_source=daily_poster&utm_medium=referral",
+      "alt": "dark textured plaster wall",
+      "thumb": "https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8YXNwaGFsdCUyMHRleHR1cmV8ZW58MXx8fHwxNzk1MzI0MDkxfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8YXNwaGFsdCUyMHRleHR1cmV8ZW58MXx8fHwxNzk1MzI0MDkxfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:vS3idIiYxX0",
+      "id": "unsplash:k4Lt0CjUnb0",
       "source": "Unsplash",
       "licence": "Unsplash License",
       "title": "white textured paper or plaster surface",
-      "credit": "Olga Thelavart",
-      "creditUrl": "https://unsplash.com/@olga_o?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-vS3idIiYxX0?utm_source=daily_poster&utm_medium=referral",
+      "credit": "João Vítor Duarte",
+      "creditUrl": "https://unsplash.com/@joaovtrduarte?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-k4Lt0CjUnb0?utm_source=daily_poster&utm_medium=referral",
       "alt": "white textured paper or plaster surface",
-      "thumb": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTIzNzY5MHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTIzNzY5MHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "thumb": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTMyNDA5MXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTMyNDA5MXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:NqXqLPhdbvU",
+      "id": "unsplash:XXuVXLy5gHU",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "frosted textured glass with colorful light refraction",
-      "credit": "A. C.",
-      "creditUrl": "https://unsplash.com/@3tnik?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/frosted-textured-glass-with-colorful-light-refraction-NqXqLPhdbvU?utm_source=daily_poster&utm_medium=referral",
-      "alt": "frosted textured glass with colorful light refraction",
-      "thumb": "https://images.unsplash.com/photo-1584384689201-e0bcbe2c7f1d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Z2xhc3MlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTIzNzY5MHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1584384689201-e0bcbe2c7f1d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Z2xhc3MlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTIzNzY5MHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "gray concrete floor",
+      "credit": "František G.",
+      "creditUrl": "https://unsplash.com/@fandyus?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/gray-concrete-floor-XXuVXLy5gHU?utm_source=daily_poster&utm_medium=referral",
+      "alt": "gray concrete floor",
+      "thumb": "https://images.unsplash.com/photo-1575722290270-626b0208df99?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8YXNwaGFsdCUyMHRleHR1cmV8ZW58MXx8fHwxNzk1MzI0MDkxfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1575722290270-626b0208df99?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8YXNwaGFsdCUyMHRleHR1cmV8ZW58MXx8fHwxNzk1MzI0MDkxfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:BqKSPNzTKGo",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "black textile in close up photography",
+      "credit": "Sirisvisual",
+      "creditUrl": "https://unsplash.com/@sirisvisual?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/black-textile-in-close-up-photography-BqKSPNzTKGo?utm_source=daily_poster&utm_medium=referral",
+      "alt": "black textile in close up photography",
+      "thumb": "https://images.unsplash.com/photo-1611572705535-e4d6cd9a12cb?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8ZW5hbWVsJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTUzMjQwOTF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1611572705535-e4d6cd9a12cb?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8ZW5hbWVsJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTUzMjQwOTF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     }
   ],
   "objects": [
     {
-      "name": "wine bottle",
-      "material": "dark green glass with foil",
-      "image": "media/2026-11-21/object-1.png",
-      "thumb": "media/2026-11-21/object-1-thumb.png",
-      "model": {
-        "title": "Wine bottle",
-        "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-b0ed331c418d4959a3f050ce88f47346",
-        "licence": "CC Attribution",
-        "creator": "Batuhan13",
-        "creatorUrl": "https://sketchfab.com/Batuhan13"
-      },
-      "texture": null
-    },
-    {
-      "name": "corkscrew",
-      "material": "polished steel",
-      "image": "media/2026-11-21/object-2.png",
-      "thumb": "media/2026-11-21/object-2-thumb.png",
-      "model": {
-        "title": "Winged Corkscrew (Animation)",
-        "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-21ddf470a3fe4095a0ef58778e897187",
-        "licence": "CC Attribution",
-        "creator": "jashanchopra",
-        "creatorUrl": "https://sketchfab.com/jashanchopra"
-      },
-      "texture": null
-    },
-    {
-      "name": "secateurs",
+      "name": "fuel pump",
       "material": "brushed steel",
-      "image": "media/2026-11-21/object-3.png",
-      "thumb": "media/2026-11-21/object-3-thumb.png",
+      "image": "media/2026-11-22/object-1.png",
+      "thumb": "media/2026-11-22/object-1-thumb.png",
       "model": {
-        "title": "Pruning shears",
+        "title": "Gasoline pump",
         "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-09ee949f846a4aa2a63fb3468cd97b8a",
+        "url": "https://sketchfab.com/3d-models/none-b5a77ed450b64dac9141da87fc7d4c64",
         "licence": "CC Attribution",
-        "creator": "Charlotte_Eisfeld",
-        "creatorUrl": "https://sketchfab.com/Charlotte_Eisfeld"
+        "creator": "Artem Goyko",
+        "creatorUrl": "https://sketchfab.com/Artem.Goyko"
       },
-      "texture": null
+      "texture": {
+        "title": "Blue Metal Plate",
+        "url": "https://polyhaven.com/a/blue_metal_plate"
+      }
+    },
+    {
+      "name": "neon sign",
+      "material": "polished brass",
+      "image": "media/2026-11-22/object-2.png",
+      "thumb": "media/2026-11-22/object-2-thumb.png",
+      "model": {
+        "title": "Neon Open Sign",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-2efad97b50f34220b2df92fe99c8a2ad",
+        "licence": "CC Attribution",
+        "creator": "Logan S.",
+        "creatorUrl": "https://sketchfab.com/Logan_S"
+      },
+      "texture": {
+        "title": "Blue Metal Plate",
+        "url": "https://polyhaven.com/a/blue_metal_plate"
+      }
+    },
+    {
+      "name": "coffee cup",
+      "material": "enamelled steel",
+      "image": "media/2026-11-22/object-3.png",
+      "thumb": "media/2026-11-22/object-3-thumb.png",
+      "model": {
+        "title": "Coffee Cup",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-ce14e184dce0440ebf21246ae876fca6",
+        "licence": "CC Attribution",
+        "creator": "Blizzy",
+        "creatorUrl": "https://sketchfab.com/jeffbas"
+      },
+      "texture": {
+        "title": "Blue Metal Plate",
+        "url": "https://polyhaven.com/a/blue_metal_plate"
+      }
     }
   ]
 }

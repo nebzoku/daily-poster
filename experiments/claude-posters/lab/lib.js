@@ -688,3 +688,44 @@ function inkSafe(texts, o, maxW, ink = { preset: 'letterpress', wear: 0.35, spre
   for (let i = 0; i < 6; i++) { oo = { ...oo, minGap: (oo.minGap ?? 18) + 3 }; const r2 = sameOptical8(texts, oo, maxW); if (!merged(r2.lines, k)) return { ...r2, o: oo, ink: k }; }
   return { ...sameOptical8(texts, oo, maxW), o: oo, ink: k };
 }
+
+// ---------- print styles and paper stocks (vary them: one look across every poster is a giveaway) ----------
+// printHead(g, mask, colour, style, o): put a mask on the poster with a print process.
+//   ink:   'letterpress' | 'riso' | 'screen' | 'stamp' | 'copy' (photocopy) | 'clean' | 'bleed' (fat, soaked) | 'crisp'
+//   foil:  'foil-black' | 'foil-white' (gloss) | 'foil-gold' | 'foil-silver' | 'foil-copper' | 'foil-holo' |
+//          'foil-colour' (raised colourful foil in `colour`) | 'varnish' (spot varnish: tone-on-tone gloss, o.paper = the colour under it)
+//   press: 'emboss' (flat colour, raised) | 'deboss' (flat colour, pressed in)
+// o: wear, spread, seed, paper (the colour underneath, for varnish/tone), light.
+const PRINT_STYLES = ['letterpress', 'riso', 'screen', 'stamp', 'copy', 'clean', 'bleed', 'crisp', 'foil-black', 'foil-white', 'foil-gold', 'foil-silver', 'foil-holo', 'foil-colour', 'varnish', 'emboss', 'deboss'];
+function printHead(g, mask, colour, style = 'letterpress', o = {}) {
+  const seed = o.seed ?? 11;
+  const INKS = { bleed: ['riso', { wear: 0.6, spread: 0.85 }], crisp: ['clean', { wear: 0.1, spread: 0.15 }] };
+  if (INKS[style] || ['letterpress', 'riso', 'screen', 'stamp', 'copy', 'clean'].includes(style)) {
+    const [preset, d] = INKS[style] || [style, {}];
+    draw(g, tint(IM.print(mask, preset, { wear: o.wear ?? d.wear ?? 0.4, spread: o.spread ?? d.spread ?? 0.3, seed }), colour));
+    return;
+  }
+  if (style.startsWith('foil') || style === 'varnish') {
+    const metal = style === 'varnish' ? 'tone' : style === 'foil-colour' ? 'custom' : style.slice(5);
+    const fo = { metal, colour, paper: o.paper || colour, seed, shine: o.shine ?? (style === 'varnish' ? 0.75 : 0.6), light: o.light ?? 0.42,
+      dome: o.dome ?? (style === 'foil-colour' ? 0.55 : ['foil-black', 'foil-white'].includes(style) ? 0.35 : 0), edge: o.edge ?? 0.3 };
+    if (o.room !== false) draw(g, IM.foilRoom(fo), 'source-over', 0.35);   // once per poster: pass room: false for a second foil
+    draw(g, IM.foil(mask, fo));
+    if (style === 'foil-colour' || style === 'varnish') draw(g, IM.relief(mask, { depth: 0.45, seed }));
+    return;
+  }
+  if (style === 'emboss' || style === 'deboss') {
+    draw(g, tint(IM.print(mask, 'clean', { wear: 0.15, spread: 0.2, seed }), colour));
+    draw(g, IM.relief(mask, { deboss: style === 'deboss', depth: 0.6, seed }));
+  }
+}
+// stock(g, kind): the paper the poster is printed on, drawn last over everything.
+//   'smooth' | 'uncoated' | 'rough' | 'newsprint' (grey fibres and specks) | 'photocopy' (toner grain and streaks) | 'none'
+function stock(g, kind = 'uncoated', seedN = 1) {
+  if (kind === 'none') return;
+  const rough = { smooth: 0.15, uncoated: 0.45, rough: 0.9, newsprint: 0.7, photocopy: 0.3 }[kind] ?? 0.45;
+  draw(g, IM.paper(rough, seedN), 'source-over', kind === 'smooth' ? 0.5 : 0.8);
+  if (kind === 'newsprint') grain(g, 0.16, 0.9, 'multiply');
+  if (kind === 'photocopy') { grain(g, 0.12, 0.35, 'overlay'); const s = canvas(); s.g.fillStyle = 'rgba(0,0,0,0.06)'; for (let i = 0; i < 9; i++) s.g.fillRect(0, rand() * H, W, 1 + rand() * 3); draw(g, s, 'multiply'); }
+  else grain(g, kind === 'smooth' ? 0.04 : 0.07, 0.5);
+}

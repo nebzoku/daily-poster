@@ -29,6 +29,16 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   from the brief and different layout systems and treatments. Colourways only swap which palette colours play
   background, middle (image marks) and type. Ben picks the one(s) to post the next day.
 
+### Round 12 feedback (24 Nov 2026): vary the print and the paper
+- **Never print everything the same way**; one ink style on every poster is a giveaway. Each of the three concepts
+  gets a different print process for its headline (`printHead`), and change them day to day: letterpress, riso,
+  screenprint, rubber stamp, photocopy, crisp, bleeding/soaked ink, thick gloss black or white foil, metallic foils,
+  raised colourful foil, spot varnish (tone-on-tone gloss), emboss and deboss.
+- **Vary the paper stock too** (`stock`): smooth, uncoated, rough, newsprint, photocopy. Sometimes the ink bleeds,
+  sometimes it's crisp, sometimes it's photocopied. Log the print and stock used each day in `log.md`.
+- These come from the Ink Machine (site/ink-machine), the same code `inkm.js` wraps. Ben may send the exact settings
+  he uses on benharwood.design; when he does, add them as named styles.
+
 ### Round 11 feedback (24 Nov 2026): variety across the morning's options
 - **Mix the type treatments across the three concepts.** Not every geometric sans in sentence case, and serifs
   not avoided: in the morning's options, try **a serif headline in sentence case** (tight leading and tracking) and

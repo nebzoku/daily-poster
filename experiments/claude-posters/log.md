@@ -1,5 +1,7 @@
 # Log
 
+From 053, note each concept's print style and paper stock too.
+
 | No. | Concept 1 | Concept 2 | Concept 3 | Posted |
 | --- | --- | --- | --- | --- |
 | 049 | A whisper through brick: grid boxes, ASCII binary wall, three headlines small | Gravity learns to speak: full-bleed threshold, brick wall, pixel signal | The message nothing blocks: pixel circles of varying size, XOR | 1C, 3B |

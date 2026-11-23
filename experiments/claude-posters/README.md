@@ -10,7 +10,7 @@ Ben picks the ones to post; they go into the archive credited **Nebzokai** (Ben'
   - `lib.js`: type setting (`setOptical`, `sameOptical8`, `pinBlocks`, `pinInterlock`, `breaks`, `balance`, `block`),
     grid (`cell`, `COL`, `ROW`, `M`), masks and treatments (`lumMask`, `lineMask`, `levels`, `tone`, `pixelate`,
     `stretch`, `ascii`, `pixelCircle`, `xorShapes`, `circleMask`, `rectMask`), ink and paper (`press`, `IM.print`,
-    `IM.paper`, `grain`), and the little things (`asterisk`, `pixels`, `label`).
+    `IM.paper`, `grain`, `printHead` print styles incl. foils, varnish, emboss; `stock` paper stocks), and the little things (`asterisk`, `pixels`, `label`).
   - `inkm.js`: the Ink Machine's own print code (site/ink-machine), unchanged, wrapped as `IM`.
   - `index.html` + `render.mjs`: renders a poster script to `out/<name>.png` at 2160 × 3056.
   - `make.py <issue>`: fills each concept template with each colourway, renders all nine and builds
@@ -27,6 +27,7 @@ Ben picks the ones to post; they go into the archive credited **Nebzokai** (Ben'
    thing people recognise, the visual idea, the image and why, a mood check. Use different headlines from the brief
    and different layout systems and treatments across the three, and different from yesterday (see `log.md`).
    Mix the type too: across the three, include a serif headline in sentence case and a sans in all caps.
+   Give each concept a different print process (`printHead`) and paper stock (`stock`), different from yesterday.
 4. Write the three templates and the colourways (only swap which palette colours play background / middle / type).
 5. `python3 make.py <issue>`, then **look at every poster** and fix what breaks the rules: headline on the margins
    (cap height top, descenders on the bottom margin, widest line edge to edge), no touching letters (set headlines with

@@ -216,6 +216,117 @@ function applyMacros() {
   const d = P.m_depth, pp = P.m_paper;
   Object.assign(P, { p_height: 0.2 + 0.7 * d, p_depth: 1 + 1.6 * d, p_pull: 0.12 + 0.35 * d, p_cast: 0.2 + 0.4 * d, p_grain: 0.9 * pp, p_texScale: 0.8 + 0.6 * pp, p_elev: 38, p_hi: 0.7, p_lo: 0.7 });
 }
+  // --- foil (from the Ink Machine) and the state it reads from the page there ---
+  let metal = 'gold', paperHex = '#ffffff', foilHex = '#ffffff';
+  const $ = (sel) => ({ value: sel === '#paper' ? paperHex : foilHex });
+const METALS = {
+  gold:   ['#4a3510', '#9c7429', '#d8b65e', '#fff3cc'],
+  silver: ['#3c3f45', '#878b93', '#c6c9cf', '#fbfcfd'],
+  copper: ['#4e2210', '#9e512a', '#d58d60', '#fbe1cb'],
+  rose:   ['#5a2e2a', '#a7685e', '#dcab9d', '#fff0ea'],
+  black:  ['#040404', '#0e0e0e', '#3a3a3a', '#f4f4f4'],
+  white:  ['#9a9a9a', '#d8d8d8', '#f1f1f1', '#ffffff'],
+};
+const rgbOf = h => [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5, 7), 16)];
+const mixc = (a, b, t) => [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t];
+function hsl(h, s, l) {
+  const k = n => (n + h * 12) % 12, a = s * Math.min(l, 1 - l);
+  const f = n => l - a * Math.max(-1, Math.min(k(n) - 3, 9 - k(n), 1));
+  return [f(0) * 255, f(8) * 255, f(4) * 255];
+}
+const tone4 = (st, e) => e < 1 / 3 ? mixc(st[0], st[1], e * 3) : e < 2 / 3 ? mixc(st[1], st[2], (e - 1 / 3) * 3) : mixc(st[2], st[3], (e - 2 / 3) * 3);
+function foil(src, W, H, s, seed) {
+  // Foil is a mirror: what you see is the room's light reflected across the whole sheet,
+  // continuous from letter to letter, bent a little by the paper and roughed by fine scratches.
+  const m = roughEdges(src, W, H, s, seed, P.m_fedge), D = Math.max(W, H);
+  const ang = P.f_angle * Math.PI / 180, ca = Math.cos(ang), sa = Math.sin(ang);
+  const warp = noise(W, H, D * 0.45, D * 0.45, seed + 11, 3);
+  // Mirror finish: the foil reflects a real room, so add hard-edged reflections (softboxes, window bars,
+  // a horizon) that bend with the paper. Matte blurs them away into the smooth gradient.
+  const mir = Math.pow(P.m_shine, 1.3), edgeW = 0.003 + (1 - P.m_shine) * 0.06;
+  const ripple = mir > 0 ? noise(W, H, D * 0.07, D * 0.07, seed + 16, 3) : null;
+  const RB = rng(seed + 17), bands = [];
+  for (let k = 0; k < 6; k++) bands.push({ c: RB() * 1.2 - 0.1, w: 0.005 + RB() * 0.05, v: k < 2 ? 0.95 : 0.35 + RB() * 0.4 });
+  const horizon = 0.25 + RB() * 0.5;
+  // Only some of a real foil catches the light: small tilts in the stamp send the rest into shadow.
+  const catchN = P.m_catch > 0 ? noise(W, H, D * 0.09, D * 0.09, seed + 18, 3) : null;
+  const scuff = P.f_scuff > 0 ? noiseRot(W, H, 160 * s, Math.max(0.7, 0.9 * s), ang + 1.2, seed + 12, 2) : null;
+  const tooth = P.f_tooth > 0 ? noise(W, H, Math.max(1, 2.2 * s), Math.max(1, 2.2 * s), seed + 13, 2) : null;
+  const brk = P.f_breaks > 0 ? noise(W, H, Math.max(1, 3 * s), Math.max(1, 3 * s), seed + 14, 2) : null;
+  const holo = metal === 'holo';
+  let st;
+  if (metal === 'tone') {
+    // a satin foil a shade off the paper: nearly invisible until it catches the light
+    const c = rgbOf($('#paper').value), warm = mixc(c, [120, 60, 30], 0.18);
+    st = [mixc(warm, [0, 0, 0], 0.65), mixc(mixc(warm, [110, 45, 25], 0.25), [0, 0, 0], 0.3), mixc(warm, [200, 140, 105], 0.3), mixc(c, [255, 225, 200], 0.5)];
+  } else if (metal === 'custom') { const c = rgbOf($('#foilColour').value); st = [mixc(c, [0, 0, 0], 0.65), mixc(c, [0, 0, 0], 0.25), mixc(c, [255, 255, 255], 0.3), mixc(c, [255, 255, 255], 0.82)]; }
+  else if (!holo) st = METALS[metal].map(rgbOf);
+  let pmin = Infinity, pmax = -Infinity;
+  for (const [cx, cy] of [[0, 0], [W, 0], [0, H], [W, H]]) { const p = cx * ca + cy * sa; pmin = Math.min(pmin, p); pmax = Math.max(pmax, p); }
+  const span = pmax - pmin, wd = P.f_width, pos = P.f_pos, con = 0.6 + P.f_contrast * 1.3;
+  // Sculpted: a pillowed height map (plus a little liquid wobble) whose normals bend the reflection,
+  // so each letter picks up its own window highlight and rim, like a sculpted gloss foil.
+  const dome = P.m_dome, gloss = metal === 'black' || metal === 'white';
+  let Hp = null;
+  if (dome > 0) {
+    const r = (3 + 9 * dome) * s, b = blur(src, W, H, r), wob = noise(W, H, 70 * s, 70 * s, seed + 15, 2), Hs = dome * 9 * s;
+    Hp = new Float32Array(W * H);
+    for (let i = 0; i < Hp.length; i++) Hp[i] = (sstep(0.5, 0.97, b[i]) * Hs + (wob[i] - 0.5) * 4 * s * dome) * sstep(0.45, 0.6, b[i]);
+  }
+  const [c, x, im] = blankCanvas(W, H), d = im.data;
+  for (let y = 0; y < H; y++) for (let X = 0; X < W; X++) {
+    const i = y * W + X, v = m[i]; if (v < 0.02) continue;
+    let al = v;
+    if (brk) { const t = P.f_breaks * 0.55; al *= sstep(t - 0.03, t + 0.03, brk[i]); if (!al) continue; }
+    let t = ((X * ca + y * sa) - pmin) / span + (warp[i] - 0.5) * P.f_warp * 0.5, win = 0, rim = 0;
+    if (Hp) {
+      const dx = (Hp[X < W - 1 ? i + 1 : i] - Hp[X > 0 ? i - 1 : i]) * 0.5, dy = (Hp[y < H - 1 ? i + W : i] - Hp[y > 0 ? i - W : i]) * 0.5;
+      const inv = 1 / Math.sqrt(dx * dx + dy * dy + 1), nx = -dx * inv, ny = -dy * inv, nz = inv;
+      const rx = 2 * nz * nx, ry = 2 * nz * ny;
+      t += (rx * ca + ry * sa) * 0.8;
+      // a soft-edged studio window, up and to the left, seen in the reflection
+      const wx = (rx + 0.42) / 0.3, wy = (ry + 0.36) / 0.22;
+      win = (1 - sstep(0.7, 1, Math.abs(wx))) * (1 - sstep(0.6, 1, Math.abs(wy)));
+      rim = sstep(0.75, 0.35, nz) * 0.5;
+    }
+    const d1 = (t - pos) / wd, d2 = (t - pos - 0.55) / (wd * 1.6), d3 = (t - pos + 0.5) / (wd * 2.2);
+    const main = Math.exp(-d1 * d1 * 2);
+    let e = 0.12 + 0.74 * Math.min(1, main * 0.95 + 0.25 * Math.exp(-d2 * d2 * 2) + 0.14 * Math.exp(-d3 * d3 * 2));
+    if (mir > 0) {
+      const tm = t + (ripple[i] - 0.5) * 0.05 * mir - (pos - 0.45);
+      let sharp = sstep(horizon - edgeW, horizon + edgeW, tm) * 0.22;
+      for (const bd of bands) { const dd = Math.abs(tm - bd.c); if (dd < bd.w + edgeW) sharp = Math.max(sharp, bd.v * (1 - sstep(bd.w - edgeW, bd.w + edgeW, dd))); }
+      e = e * (1 - 0.75 * mir) + Math.max(sharp, main * 0.45) * mir;
+    }
+    if (catchN) {
+      const g = sstep(0.62 - P.m_catch * 0.12, 0.72 - P.m_catch * 0.1, catchN[i] + (main - 0.5) * 0.35);
+      e = e * (1 - P.m_catch * 0.7 * (1 - g)) + g * P.m_catch * 0.18 * main;
+    }
+    if (gloss) e = 0.08 + (e - 0.12) * 0.55;
+    if (Hp) e = Math.min(1, e + win * (gloss ? 0.95 : 0.6) + rim * (0.3 + 0.4 * main));
+    if (scuff) e += (scuff[i] - 0.5) * P.f_scuff * 0.22 * (0.35 + main) * (gloss ? 0.3 : 1);
+    if (tooth) e += (tooth[i] - 0.5) * P.f_tooth * 0.16;
+    e = clamp(0.5 + (e - 0.5) * con, 0, 1);
+    const col = holo ? hsl(((t * 0.9 + warp[i] * 0.4) % 1 + 1) % 1, 0.35, 0.38 + 0.5 * e) : tone4(st, e);
+    const o = i * 4; d[o] = col[0]; d[o + 1] = col[1]; d[o + 2] = col[2]; d[o + 3] = al * 255;
+  }
+  x.putImageData(im, 0, 0); return c;
+}
+function roomLight(W, H, s, seed) {
+  const D = Math.max(W, H), ang = P.f_angle * Math.PI / 180, ca = Math.cos(ang), sa = Math.sin(ang);
+  const warp = noise(W, H, D * 0.45, D * 0.45, seed + 11, 3);
+  let pmin = Infinity, pmax = -Infinity;
+  for (const [cx, cy] of [[0, 0], [W, 0], [0, H], [W, H]]) { const p = cx * ca + cy * sa; pmin = Math.min(pmin, p); pmax = Math.max(pmax, p); }
+  const span = pmax - pmin, wd = Math.max(0.2, P.f_width * 2.4);
+  const [c, x, im] = blankCanvas(W, H), d = im.data;
+  for (let y = 0; y < H; y++) for (let X = 0; X < W; X++) {
+    const i = y * W + X, t = ((X * ca + y * sa) - pmin) / span + (warp[i] - 0.5) * P.f_warp * 0.5, q = (t - P.f_pos) / wd;
+    const L = Math.exp(-q * q * 2), hi = 0.16 * L, lo = 0.22 * (1 - L);
+    const A = lo + hi * (1 - lo), o = i * 4, v = 255 * hi * (1 - lo) / A;
+    d[o] = v; d[o + 1] = v; d[o + 2] = v; d[o + 3] = A * 255;
+  }
+  x.putImageData(im, 0, 0); return c;
+}
   const alphaOf = (c) => { const d = c.getContext('2d').getImageData(0, 0, c.width, c.height).data, a = new Float32Array(c.width * c.height); for (let i = 0; i < a.length; i++) a[i] = d[i * 4 + 3] / 255; return a; };
   const toCanvas = (a, w, h) => { const c = canvas(w / K, h / K), im = c.g.createImageData(w, h), d = im.data; for (let i = 0; i < a.length; i++) { d[i * 4] = d[i * 4 + 1] = d[i * 4 + 2] = 255; d[i * 4 + 3] = clamp(a[i], 0, 1) * 255; } c.g.putImageData(im, 0, 0); return c; };
   // Print a mask (white on transparent) with an Ink Machine preset; returns a mask.
@@ -230,5 +341,27 @@ function applyMacros() {
     const c = press(new Float32Array(W * K * H * K), W * K, H * K, 1, seed, true, true);
     const o = canvas(); o.g.drawImage(c, 0, 0, W, H); return o;
   }
-  return { print, paper, P };
+  // Foil: metal 'gold' | 'silver' | 'copper' | 'rose' | 'black' | 'white' (gloss) | 'holo' | 'tone' (a satin foil a
+  // shade off the paper: use for spot varnish) | 'custom' (any colour: colourful foil). Returns a colour canvas.
+  // o: shine 0..1 (matte..mirror), light 0..1 (where the highlight sits), catch 0..1, dome 0..1 (flat..sculpted/raised),
+  //    edge 0..1 (crisp..rough), colour (custom), paper (tone), seed.
+  function foilPrint(mask, o = {}) {
+    metal = o.metal || 'gold'; foilHex = o.colour || '#ffffff'; paperHex = o.paper || '#ffffff';
+    Object.assign(P, { m_shine: o.shine ?? 0.55, m_light: o.light ?? 0.45, m_catch: o.catch ?? 0.5, m_dome: o.dome ?? 0, m_fedge: o.edge ?? 0.35 });
+    applyMacros();
+    const w = mask.width, h = mask.height, f = foil(alphaOf(mask), w, h, 1, o.seed ?? 47);
+    const c = canvas(w / K, h / K); c.g.drawImage(f, 0, 0, w / K, h / K); return c;
+  }
+  // The room light that falls on the paper around a foil (draw it under the foil, over the paper).
+  function foilRoom(o = {}) {
+    Object.assign(P, { m_shine: o.shine ?? 0.55, m_light: o.light ?? 0.45 }); applyMacros();
+    const r = roomLight(W * K, H * K, 1, o.seed ?? 47), c = canvas(); c.g.drawImage(r, 0, 0, W, H); return c;
+  }
+  // Emboss (raised) or deboss (pressed in): light and shadow only, to draw over whatever is printed there.
+  function relief(mask, o = {}) {
+    Object.assign(P, { m_depth: o.depth ?? 0.5, m_paper: o.paper ?? 0.5, p_light: o.light ?? 135 }); applyMacros();
+    const w = mask.width, h = mask.height, r = press(alphaOf(mask), w, h, 1, o.seed ?? 47, !!o.deboss, false);
+    const c = canvas(w / K, h / K); c.g.drawImage(r, 0, 0, w / K, h / K); return c;
+  }
+  return { print, paper, foil: foilPrint, foilRoom, relief, P };
 })();

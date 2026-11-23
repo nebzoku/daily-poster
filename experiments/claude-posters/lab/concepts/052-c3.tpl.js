@@ -29,7 +29,7 @@ window.POSTER = async () => {
 
   // three headlines, one size and leading, stepping a column at a time; ours strongest
   const L = ["A workman's house", 'of wonder', 'Every wall', 'became a garden', 'Morris by day', 'himself by night'];
-  const { lines } = sameOptical8(L, { font: T, weight: 800, size: 48, gap: 14, minGap: 6, word: 0.24 }, COL * 4);
+  const { lines } = inkSafe(L, { font: T, weight: 800, size: 48, gap: 14, minGap: 6, word: 0.24 }, COL * 4);
   const pitch = Math.max(...lines.map((t) => t.base - t.box.y)) * 1.12;
   const ours = canvas(), rest = canvas(); let y = M + ROW * 3 + 40;
   lines.forEach((t, i) => { const h = Math.floor(i / 2); place(h === 0 ? ours : rest, t, { left: M + COL * h, top: y }); y += pitch; });

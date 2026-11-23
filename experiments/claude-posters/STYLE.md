@@ -29,6 +29,11 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   from the brief and different layout systems and treatments. Colourways only swap which palette colours play
   background, middle (image marks) and type. Ben picks the one(s) to post the next day.
 
+### Round 10 feedback (24 Nov 2026)
+- **Ink must not run letters together.** Tight tracking plus ink spread was merging letters. Set headlines with
+  `inkSafe()`: it prints each line through the ink, counts the letters, and opens the tracking slightly until
+  none have merged. Tight, but every letter stays separate after printing.
+
 ### Round 9 feedback (24 Nov 2026)
 - **Break headlines where you'd pause saying them aloud**, and never leave one word stranded from a block that
   holds everything else (unless that word *is* the natural pause). "Gravity learns / to speak", not "Gravity /
@@ -41,9 +46,9 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
 - Credit in the archive: posters Claude designs are credited **Nebzokai**; Ben's own are **Nebzoku**. Never "Claude".
 
 ### Round 8 feedback (23 Nov 2026)
-- **Big headlines: the baseline sits on the bottom margin**, not the descender; descenders hang below it.
-  Likewise the first line's **cap height** sits on the top margin. Blocks are set by baseline and cap height, never by
-  ink boxes, so a Q's tail, a descender or an apostrophe can't push a line off the margins.
+- **Bottom margin: the last line's ink sits on it, descenders included** (revised 24 Nov: baselines on the margin
+  with descenders cut off by the edge looked wrong). The first line's **cap height** sits on the top margin, so an
+  apostrophe or accent can't push it down. Lines in a block are spaced by baseline and cap height.
 - **Overlapping circles:** use a difference look where they cross (`xorShapes` keeps it in the palette), vary
   the sizes (circles and pixel sizes) so it isn't uniform, and roughen the edges (pixel steps, noise or ink),
   never a perfect vector circle.

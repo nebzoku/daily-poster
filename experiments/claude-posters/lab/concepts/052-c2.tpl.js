@@ -12,7 +12,7 @@ window.POSTER = async () => {
   const out = canvas(), g = out.g;
   g.fillStyle = C.bg; g.fillRect(0, 0, W, H);
 
-  const { lines } = sameOptical8(['Morris by day', 'himself by night'], { font: T, weight: 800, size: 200, gap: 14, minGap: 6, word: 0.24 }, W - 2 * M);
+  const { lines } = inkSafe(['Morris by day', 'himself by night'], { font: T, weight: 800, size: 200, gap: 14, minGap: 6, word: 0.24 }, W - 2 * M);
   const head = canvas(); pinInterlock(head, lines, ['L', 'R'], 1, 6);
 
   const day = { x: M + COL * 3, y: M + ROW * 3.4, r: COL * 2.5 }, night = { x: M + COL * 5.2, y: M + ROW * 4.9, r: COL * 2.2 };

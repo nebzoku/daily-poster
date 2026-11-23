@@ -28,7 +28,8 @@ Ben picks the ones to post; they go into the archive credited **Nebzokai** (Ben'
    and different layout systems and treatments across the three, and different from yesterday (see `log.md`).
 4. Write the three templates and the colourways (only swap which palette colours play background / middle / type).
 5. `python3 make.py <issue>`, then **look at every poster** and fix what breaks the rules: headline on the margins
-   (cap height top, baseline bottom, widest line edge to edge), no touching letters, natural line breaks, subline
+   (cap height top, descenders on the bottom margin, widest line edge to edge), no touching letters (set headlines with
+   `inkSafe`), natural line breaks, subline
    block with no orphans, text on grid lines, nothing colliding.
 6. Send Ben the overview and the nine posters, and a push notification. Add the day to `log.md` and commit the
    templates + log (not the renders).

@@ -433,7 +433,8 @@ function pinBlocks(dst, lines, sides, split, lead = 0.12) {
   const put = (t, i, b) => { const s = sides[i], a = s === 'R' ? { right: W - M } : s === 'C' ? { cx: W / 2 } : { left: M }; return place(dst, t, { ...a, top: b - base(t) }); };
   let b = M + capH;
   for (let i = 0; i < split; i++) { R[i] = put(lines[i], i, b); b += pitch; }
-  b = H - M - (lines.length - split - 1) * pitch;
+  const last = lines[lines.length - 1];
+  b = H - M - (last.box.h - base(last)) - (lines.length - split - 1) * pitch;   // the last line's ink, descenders included, on the bottom margin
   for (let i = split; i < lines.length; i++) { R[i] = put(lines[i], i, b); b += pitch; }
   return R;
 }
@@ -476,7 +477,7 @@ function pinInterlock(dst, lines, sides, split, gap = 6) {
   let b = M + base(lines[0]);
   for (let i = 0; i < split; i++) { if (i) b += pitches[i]; R[i] = put(lines[i], i, b); }
   const last = lines[lines.length - 1];
-  b = H - M;                                            // the last BASELINE sits on the bottom margin; descenders hang below
+  b = H - M - (last.box.h - base(last));               // the last line's ink, descenders included, on the bottom margin
   for (let i = lines.length - 1; i >= split; i--) { R[i] = put(lines[i], i, b); b -= pitches[i]; }
   return R;
 }
@@ -656,4 +657,29 @@ function breaks(text) {
     out.push({ at: i, score: +s.toFixed(2), lines: [w.slice(0, i).join(' '), w.slice(i).join(' ')] });
   }
   return out.sort((a, b) => b.score - a.score);
+}
+
+// ---------- ink-safe spacing ----------
+// Count the letter-sized blobs in a mask (ignores specks under minArea px at full res).
+function blobs(c, minArea = 400) {
+  const w = c.width, h = c.height, d = c.getContext('2d').getImageData(0, 0, w, h).data, seen = new Uint8Array(w * h); let n = 0;
+  for (let i = 0; i < w * h; i++) {
+    if (seen[i] || d[i * 4 + 3] < 128) continue;
+    let area = 0; const st = [i]; seen[i] = 1;
+    while (st.length) { const p = st.pop(); area++; const x = p % w; for (const q of [p - 1, p + 1, p - w, p + w]) { if (q < 0 || q >= w * h || seen[q] || d[q * 4 + 3] < 128) continue; if ((q === p - 1 && x === 0) || (q === p + 1 && x === w - 1)) continue; seen[q] = 1; st.push(q); } }
+    if (area >= minArea) n++;
+  }
+  return n;
+}
+// Print each line through the given ink and check no letters have run together; if they have, open the tracking a
+// little (gap and minGap +6) and try again. Returns lines that survive the ink.
+function inkSafe(texts, o, maxW, ink = { preset: 'letterpress', wear: 0.35, spread: 0.25 }) {
+  let oo = { ...o };
+  for (let k = 0; k < 6; k++) {
+    const r = sameOptical8(texts, oo, maxW);
+    const bad = r.lines.some((t) => blobs(t.c) > blobs(IM.print(t.c, ink.preset, { wear: ink.wear, spread: ink.spread, seed: 7 })));
+    if (!bad) return { ...r, o: oo };
+    oo = { ...oo, gap: (oo.gap ?? 40) + 6, minGap: (oo.minGap ?? 18) + 6 };
+  }
+  return { ...sameOptical8(texts, oo, maxW), o: oo };
 }

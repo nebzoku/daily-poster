@@ -1,0 +1,13 @@
+{
+  "name": "claude-posters-lab",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@fontsource-variable/fraunces": "*",
+    "@fontsource/albert-sans": "*",
+    "@fontsource/libre-caslon-display": "*",
+    "@fontsource/libre-franklin": "*",
+    "@fontsource/manrope": "*",
+    "@fontsource/martian-mono": "*"
+  }
+}

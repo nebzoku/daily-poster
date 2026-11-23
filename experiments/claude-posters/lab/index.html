@@ -1,0 +1,36 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:"Fraunces";src:url("node_modules/@fontsource-variable/fraunces/files/fraunces-latin-full-normal.woff2") format("woff2");font-weight:100 900;font-style:normal}
+@font-face{font-family:"Fraunces";src:url("node_modules/@fontsource-variable/fraunces/files/fraunces-latin-full-italic.woff2") format("woff2");font-weight:100 900;font-style:italic}
+@font-face{font-family:"Libre Caslon Display";src:url("node_modules/@fontsource/libre-caslon-display/files/libre-caslon-display-latin-400-normal.woff2")}
+</style>
+<link rel="stylesheet" href="/site/fonts/libre/terminal-grotesque.css">
+<link rel="stylesheet" href="/site/fonts/libre/mattone.css">
+<link rel="stylesheet" href="/site/fonts/libre/absans.css">
+<link rel="stylesheet" href="/site/fonts/libre/necto-mono.css">
+<link rel="stylesheet" href="/site/fonts/libre/ortica.css">
+<link rel="stylesheet" href="/site/fonts/libre/ribes.css">
+<script>
+// Static text faces from fontsource, one face per weight.
+const FS = { 'Manrope': ['manrope', [200,300,400,500,600,700,800]], 'Libre Franklin': ['libre-franklin', [100,200,300,400,500,600,700,800,900]],
+  'Martian Mono': ['martian-mono', [100,200,300,400,500,600,700,800]], 'Albert Sans': ['albert-sans', [100,200,300,400,500,600,700,800,900]] };
+let css = '';
+for (const [fam, [slug, ws]] of Object.entries(FS)) for (const w of ws)
+  css += `@font-face{font-family:"${fam}";src:url("node_modules/@fontsource/${slug}/files/${slug}-latin-${w}-normal.woff2");font-weight:${w}}\n`;
+document.write(`<style>${css}</style>`);
+</script>
+<script src="lib.js"></script>
+<script src="inkm.js"></script>
+</head><body>
+<script>
+(async () => {
+  try {
+    const p = new URLSearchParams(location.search).get('p');
+    await new Promise((res, rej) => { const s = document.createElement('script'); s.src = p + '?t=' + Date.now(); s.onload = res; s.onerror = rej; document.body.appendChild(s); });
+    const out = await window.POSTER();
+    window.__done = out.toDataURL('image/png');
+  } catch (e) { window.__err = (e && e.stack) || String(e); }
+})();
+</script>
+</body></html>

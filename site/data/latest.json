@@ -1,37 +1,37 @@
 {
-  "date": "2026-11-22",
-  "issue": 51,
-  "generatedAt": "2026-11-22T05:08:11.213Z",
+  "date": "2026-11-23",
+  "issue": 52,
+  "generatedAt": "2026-11-23T05:08:20.199Z",
   "colour": {
-    "name": "Jade",
-    "yesterday": "Teal",
-    "tomorrow": "Green"
+    "name": "Green",
+    "yesterday": "Jade",
+    "tomorrow": "Lime"
   },
   "story": {
-    "title": "From pit-stops to go-to destinations: The transformation of service stations",
-    "summary": "Motorway service stations, long seen as a quick stop for fuel and a sandwich, are being reimagined as places people choose to visit. Operators are investing in food, design and experiences that turn the pause on a journey into part of the trip.",
-    "source": "BBC News",
-    "url": "https://www.bbc.co.uk/news/articles/ckqx5rylp9elo?at_medium=RSS&amp;at_campaign=rss",
-    "published": "2026-11-22T00:06:03.000Z",
-    "theme": "roadside travel architecture"
+    "title": "Exquisitely decorated home of Victorian workman David Parr wins blue plaque",
+    "summary": "David Parr was a Victorian labourer who spent his days applying William Morris's patterns to grand houses and Cambridge colleges. At night he covered his own Cambridge terrace house with designs of his own, and the home has now been awarded a blue plaque.",
+    "source": "The Guardian",
+    "url": "https://www.theguardian.com/culture/2026/nov/22/exquisitely-decorated-home-of-victorian-workman-david-parr-wins-blue-plaque-cambridge",
+    "published": "2026-11-22T10:59:28.000Z",
+    "theme": "Victorian design and craft"
   },
   "headlines": [
-    "Pit Stop, Promoted to Destination",
-    "Neon in the Middle of Nowhere",
-    "The Long Road's Quiet Pause"
+    "Every Wall Became a Garden",
+    "Morris by Day, Himself by Night",
+    "A Workman's House of Wonder"
   ],
   "sublines": [
-    "Once a quick break on a long journey, service stations are becoming places people travel to on purpose.",
-    "Fuel and a sandwich are giving way to better food, design and reasons to linger beside the motorway.",
-    "The humble roadside stop is being rebuilt as a destination, and the journey now includes the break."
+    "Victorian decorator David Parr papered mansions by day, then filled his own Cambridge terrace with patterns he designed.",
+    "His modest house, covered in his own designs, has earned a blue plaque for its remarkable interiors.",
+    "Paid to hang William Morris's patterns in grand rooms, a working man made a private palace at home."
   ],
   "palette": {
     "name": "Vivid",
     "colours": [
-      "#4CF1B7",
-      "#C0F2DB",
-      "#67756F",
-      "#002619"
+      "#4BF761",
+      "#CDF0CD",
+      "#6B756A",
+      "#032707"
     ]
   },
   "always": [
@@ -39,19 +39,13 @@
     "#FFFFFF"
   ],
   "type": {
-    "id": "mattone",
-    "display": "Mattone",
-    "text": "Albert Sans",
-    "libre": {
-      "foundry": "Collletttivo",
-      "designer": "Nunzio Mazzaferro",
-      "url": "https://www.collletttivo.it/typefaces/mattone"
-    },
-    "reason": "Mattone's blocky, confident geometry echoes roadside signage and gives the huge headline a built, architectural weight.",
-    "css": "/fonts/libre/mattone.css",
-    "displayUrl": "https://www.collletttivo.it/typefaces/mattone",
-    "textUrl": "https://fonts.google.com/specimen/Albert+Sans",
-    "download": "/fonts/libre/mattone.zip"
+    "id": "fraunces",
+    "display": "Fraunces",
+    "text": "Manrope",
+    "reason": "Fraunces has the soft, wonky, ornamental warmth of Arts and Crafts design, which suits a workman's handmade wall patterns.",
+    "css": "https://fonts.googleapis.com/css2?family=Fraunces&family=Manrope&display=swap",
+    "displayUrl": "https://fonts.google.com/specimen/Fraunces",
+    "textUrl": "https://fonts.google.com/specimen/Manrope"
   },
   "grid": {
     "format": "A-size",
@@ -69,142 +63,132 @@
   },
   "images": [
     {
-      "id": "met:738487",
+      "id": "unsplash:9KQ7V0CESoM",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "brown and white building during day",
+      "credit": "Dele Oke",
+      "creditUrl": "https://unsplash.com/@dele_oke?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/brown-and-white-building-during-day-9KQ7V0CESoM?utm_source=daily_poster&utm_medium=referral",
+      "alt": "brown and white building during day",
+      "thumb": "https://images.unsplash.com/photo-1578782785154-30ee3b8a3f95?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8dGVycmFjZSUyMGhvdXNlfGVufDF8fHx8MTc5NTQxMDUwMHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1578782785154-30ee3b8a3f95?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8dGVycmFjZSUyMGhvdXNlfGVufDF8fHx8MTc5NTQxMDUwMHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:fFUBw5bF38s",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "brown concrete building during daytime",
+      "credit": "Greg Willson",
+      "creditUrl": "https://unsplash.com/@gregwillson?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/brown-concrete-building-during-daytime-fFUBw5bF38s?utm_source=daily_poster&utm_medium=referral",
+      "alt": "brown concrete building during daytime",
+      "thumb": "https://images.unsplash.com/photo-1568293207619-df44ae062a9c?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8dGVycmFjZSUyMGhvdXNlfGVufDF8fHx8MTc5NTQxMDUwMHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1568293207619-df44ae062a9c?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8dGVycmFjZSUyMGhvdXNlfGVufDF8fHx8MTc5NTQxMDUwMHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:208146",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Cuckfield (An Excursion to Brighthelmstone), June 1, 1790",
-      "credit": "Thomas Rowlandson",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/738487",
-      "page": "https://www.metmuseum.org/art/collection/search/738487",
-      "alt": "Cuckfield (An Excursion to Brighthelmstone)",
-      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP872030.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP872030.jpg",
-      "local": "media/2026-11-22/image-01-2160.jpg"
+      "title": "Wallpaper, ca. 1830",
+      "credit": "Unknown artist",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/208146",
+      "page": "https://www.metmuseum.org/art/collection/search/208146",
+      "alt": "Wallpaper",
+      "thumb": "https://images.metmuseum.org/CRDImages/es/web-large/SF1993_298.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/es/original/SF1993_298.jpg",
+      "local": "media/2026-11-23/image-03-2160.jpg"
     },
     {
-      "id": "unsplash:bLREPvW6WO0",
-      "source": "Unsplash",
-      "licence": "Unsplash License",
-      "title": "a long exposure shot of a highway at night",
-      "credit": "David Smart",
-      "creditUrl": "https://unsplash.com/@dsmart26?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/a-long-exposure-shot-of-a-highway-at-night-bLREPvW6WO0?utm_source=daily_poster&utm_medium=referral",
-      "alt": "a long exposure shot of a highway at night",
-      "thumb": "https://images.unsplash.com/photo-1689247040313-d8780d488a84?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8bW90b3J3YXklMjBuaWdodHxlbnwxfHx8fDE3OTUzMjQwOTF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1689247040313-d8780d488a84?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8bW90b3J3YXklMjBuaWdodHxlbnwxfHx8fDE3OTUzMjQwOTF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
-    },
-    {
-      "id": "met:348350",
+      "id": "met:384421",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Filial Affection, or a Trip to Gretna Green, December 15, 1785",
-      "credit": "Thomas Rowlandson",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/348350",
-      "page": "https://www.metmuseum.org/art/collection/search/348350",
-      "alt": "Filial Affection, or a Trip to Gretna Green",
-      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP880229.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP880229.jpg",
-      "local": "media/2026-11-22/image-03-2160.jpg"
+      "title": "Ornament design, 18th century",
+      "credit": "Anonymous, French, 18th century",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/384421",
+      "page": "https://www.metmuseum.org/art/collection/search/384421",
+      "alt": "Ornament design",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP808624.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP808624.jpg",
+      "local": "media/2026-11-23/image-04-2160.jpg"
     },
     {
-      "id": "unsplash:mbrF_62mp-Y",
+      "id": "unsplash:OOE4xAnBhKo",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "time lapse photography of cars on road during night time",
-      "credit": "Markus Spiske",
-      "creditUrl": "https://unsplash.com/@markusspiske?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/time-lapse-photography-of-cars-on-road-during-night-time-mbrF_62mp-Y?utm_source=daily_poster&utm_medium=referral",
-      "alt": "time lapse photography of cars on road during night time",
-      "thumb": "https://images.unsplash.com/photo-1581010105267-67447703cfe9?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8bW90b3J3YXklMjBuaWdodHxlbnwxfHx8fDE3OTUzMjQwOTF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1581010105267-67447703cfe9?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8bW90b3J3YXklMjBuaWdodHxlbnwxfHx8fDE3OTUzMjQwOTF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "photo of green fern plant",
+      "credit": "Teemu Paananen",
+      "creditUrl": "https://unsplash.com/@xteemu?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/photo-of-green-fern-plant-OOE4xAnBhKo?utm_source=daily_poster&utm_medium=referral",
+      "alt": "photo of green fern plant",
+      "thumb": "https://images.unsplash.com/photo-1497250681960-ef046c08a56e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Z3JlZW4lMjB3YWxscGFwZXJ8ZW58MXx8fHwxNzk1NDEwNTAwfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1497250681960-ef046c08a56e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Z3JlZW4lMjB3YWxscGFwZXJ8ZW58MXx8fHwxNzk1NDEwNTAwfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:OnmOFmwTlP0",
+      "id": "unsplash:nrSzRUWqmoI",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "a gas station at night with no people around",
-      "credit": "Hans Eiskonen",
-      "creditUrl": "https://unsplash.com/@eiskonen?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/a-gas-station-at-night-with-no-people-around-OnmOFmwTlP0?utm_source=daily_poster&utm_medium=referral",
-      "alt": "a gas station at night with no people around",
-      "thumb": "https://images.unsplash.com/photo-1695561324569-5e47c76dc0a3?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGV0cm9sJTIwc3RhdGlvbnxlbnwxfHx8fDE3OTUzMjQwOTF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1695561324569-5e47c76dc0a3?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGV0cm9sJTIwc3RhdGlvbnxlbnwxfHx8fDE3OTUzMjQwOTF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "assorted-color concrete houses under white clouds during daytime",
+      "credit": "Toa Heftiba",
+      "creditUrl": "https://unsplash.com/@heftiba?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/assorted-color-concrete-houses-under-white-clouds-during-daytime-nrSzRUWqmoI?utm_source=daily_poster&utm_medium=referral",
+      "alt": "assorted-color concrete houses under white clouds during daytime",
+      "thumb": "https://images.unsplash.com/photo-1464082354059-27db6ce50048?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8dGVycmFjZSUyMGhvdXNlfGVufDF8fHx8MTc5NTQxMDUwMHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1464082354059-27db6ce50048?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8dGVycmFjZSUyMGhvdXNlfGVufDF8fHx8MTc5NTQxMDUwMHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:rPfaCWODxrc",
-      "source": "Unsplash",
-      "licence": "Unsplash License",
-      "title": "a row of gas pumps sitting in a parking lot",
-      "credit": "Mohamed Elwaid",
-      "creditUrl": "https://unsplash.com/@waidshots?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/a-row-of-gas-pumps-sitting-in-a-parking-lot-rPfaCWODxrc?utm_source=daily_poster&utm_medium=referral",
-      "alt": "a row of gas pumps sitting in a parking lot",
-      "thumb": "https://images.unsplash.com/photo-1678903434882-d8bc7782b953?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8cGV0cm9sJTIwc3RhdGlvbnxlbnwxfHx8fDE3OTUzMjQwOTF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1678903434882-d8bc7782b953?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8cGV0cm9sJTIwc3RhdGlvbnxlbnwxfHx8fDE3OTUzMjQwOTF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
-    },
-    {
-      "id": "met:40338",
+      "id": "met:383958",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Kannon Slope of the Kiso Highway, 19th century",
-      "credit": "Utagawa Hiroshige",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/40338",
-      "page": "https://www.metmuseum.org/art/collection/search/40338",
-      "alt": "Kannon Slope of the Kiso Highway",
-      "thumb": "https://images.metmuseum.org/CRDImages/as/web-large/4082.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/as/original/4082.jpg",
-      "local": "media/2026-11-22/image-07-2160.jpg"
+      "title": "Ornament Design, 17th century",
+      "credit": "Anonymous, German, 17th century",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/383958",
+      "page": "https://www.metmuseum.org/art/collection/search/383958",
+      "alt": "Ornament Design",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP804528.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP804528.jpg",
+      "local": "media/2026-11-23/image-07-2160.jpg"
     },
     {
-      "id": "unsplash:G6UihHmFicE",
-      "source": "Unsplash",
-      "licence": "Unsplash License",
-      "title": "time lapse photography of cars on road during night time",
-      "credit": "Joachim Mell",
-      "creditUrl": "https://unsplash.com/@jopame?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/time-lapse-photography-of-cars-on-road-during-night-time-G6UihHmFicE?utm_source=daily_poster&utm_medium=referral",
-      "alt": "time lapse photography of cars on road during night time",
-      "thumb": "https://images.unsplash.com/photo-1620552819018-800ff13e9a08?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8bW90b3J3YXklMjBuaWdodHxlbnwxfHx8fDE3OTUzMjQwOTF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1620552819018-800ff13e9a08?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8bW90b3J3YXklMjBuaWdodHxlbnwxfHx8fDE3OTUzMjQwOTF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "id": "met:69194",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Textile with floral pattern, 19th century",
+      "credit": "China",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/69194",
+      "page": "https://www.metmuseum.org/art/collection/search/69194",
+      "alt": "Textile with floral pattern",
+      "thumb": "https://images.metmuseum.org/CRDImages/as/web-large/LC-41_123_6_front.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/as/original/LC-41_123_6_front.jpg",
+      "local": "media/2026-11-23/image-08-2160.jpg"
     },
     {
-      "id": "unsplash:LetXpVOXits",
-      "source": "Unsplash",
-      "licence": "Unsplash License",
-      "title": "Cars driving on a wet city street at night",
-      "credit": "Sebastian Schuster",
-      "creditUrl": "https://unsplash.com/@sschusterphotoart?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/cars-driving-on-a-wet-city-street-at-night-LetXpVOXits?utm_source=daily_poster&utm_medium=referral",
-      "alt": "Cars driving on a wet city street at night",
-      "thumb": "https://images.unsplash.com/photo-1757372430145-7e56b7da4a47?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8bW90b3J3YXklMjBuaWdodHxlbnwxfHx8fDE3OTUzMjQwOTF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1757372430145-7e56b7da4a47?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8bW90b3J3YXklMjBuaWdodHxlbnwxfHx8fDE3OTUzMjQwOTF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "id": "met:392422",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Ornament Design, 19th century",
+      "credit": "Anonymous, French, 19th century",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/392422",
+      "page": "https://www.metmuseum.org/art/collection/search/392422",
+      "alt": "Ornament Design",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP812981.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP812981.jpg",
+      "local": "media/2026-11-23/image-09-2160.jpg"
     },
     {
-      "id": "unsplash:ZdzO5PgYObA",
+      "id": "unsplash:pH058mfJoL0",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "person taking a photo of blue and white gasoline station",
-      "credit": "Juan Fernandez",
-      "creditUrl": "https://unsplash.com/@juanlf?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/person-taking-a-photo-of-blue-and-white-gasoline-station-ZdzO5PgYObA?utm_source=daily_poster&utm_medium=referral",
-      "alt": "person taking a photo of blue and white gasoline station",
-      "thumb": "https://images.unsplash.com/photo-1527018601619-a508a2be00cd?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cGV0cm9sJTIwc3RhdGlvbnxlbnwxfHx8fDE3OTUzMjQwOTF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1527018601619-a508a2be00cd?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cGV0cm9sJTIwc3RhdGlvbnxlbnwxfHx8fDE3OTUzMjQwOTF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "a white house with blue doors and windows",
+      "credit": "Marie M",
+      "creditUrl": "https://unsplash.com/@marie190?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-white-house-with-blue-doors-and-windows-pH058mfJoL0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a white house with blue doors and windows",
+      "thumb": "https://images.unsplash.com/photo-1654707859900-879d22eeb52f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8dGVycmFjZSUyMGhvdXNlfGVufDF8fHx8MTc5NTQxMDUwMHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1654707859900-879d22eeb52f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8dGVycmFjZSUyMGhvdXNlfGVufDF8fHx8MTc5NTQxMDUwMHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     }
   ],
   "textures": [
-    {
-      "id": "unsplash:6a3nqQ1YwBw",
-      "source": "Unsplash",
-      "licence": "Unsplash License",
-      "title": "dark textured plaster wall",
-      "credit": "Annie Spratt",
-      "creditUrl": "https://unsplash.com/@anniespratt?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/dark-textured-plaster-wall-6a3nqQ1YwBw?utm_source=daily_poster&utm_medium=referral",
-      "alt": "dark textured plaster wall",
-      "thumb": "https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8YXNwaGFsdCUyMHRleHR1cmV8ZW58MXx8fHwxNzk1MzI0MDkxfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8YXNwaGFsdCUyMHRleHR1cmV8ZW58MXx8fHwxNzk1MzI0MDkxfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
-    },
     {
       "id": "unsplash:k4Lt0CjUnb0",
       "source": "Unsplash",
@@ -214,47 +198,74 @@
       "creditUrl": "https://unsplash.com/@joaovtrduarte?utm_source=daily_poster&utm_medium=referral",
       "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-k4Lt0CjUnb0?utm_source=daily_poster&utm_medium=referral",
       "alt": "white textured paper or plaster surface",
-      "thumb": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTMyNDA5MXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTMyNDA5MXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "thumb": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTQxMDUwMHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTQxMDUwMHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:XXuVXLy5gHU",
+      "id": "unsplash:WzFBUXQChFU",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "gray concrete floor",
-      "credit": "František G.",
-      "creditUrl": "https://unsplash.com/@fandyus?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/gray-concrete-floor-XXuVXLy5gHU?utm_source=daily_poster&utm_medium=referral",
-      "alt": "gray concrete floor",
-      "thumb": "https://images.unsplash.com/photo-1575722290270-626b0208df99?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8YXNwaGFsdCUyMHRleHR1cmV8ZW58MXx8fHwxNzk1MzI0MDkxfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1575722290270-626b0208df99?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8YXNwaGFsdCUyMHRleHR1cmV8ZW58MXx8fHwxNzk1MzI0MDkxfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "A grey wall with a repeating vintage damask pattern and textured surface",
+      "credit": "KHALIL MUSA",
+      "creditUrl": "https://unsplash.com/@mkphotography4?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/grey-wall-with-vintage-damask-pattern-WzFBUXQChFU?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A grey wall with a repeating vintage damask pattern and textured surface",
+      "thumb": "https://images.unsplash.com/photo-1599503815079-dfb7085fc667?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8d2FsbHBhcGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTU0MTA1MDB8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1599503815079-dfb7085fc667?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8d2FsbHBhcGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTU0MTA1MDB8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:BqKSPNzTKGo",
+      "id": "unsplash:kG-ZwDuQ8ME",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "black textile in close up photography",
-      "credit": "Sirisvisual",
-      "creditUrl": "https://unsplash.com/@sirisvisual?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/black-textile-in-close-up-photography-BqKSPNzTKGo?utm_source=daily_poster&utm_medium=referral",
-      "alt": "black textile in close up photography",
-      "thumb": "https://images.unsplash.com/photo-1611572705535-e4d6cd9a12cb?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8ZW5hbWVsJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTUzMjQwOTF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1611572705535-e4d6cd9a12cb?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8ZW5hbWVsJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTUzMjQwOTF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "weathered teal concrete wall texture",
+      "credit": "Annie Spratt",
+      "creditUrl": "https://unsplash.com/@anniespratt?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/weathered-teal-concrete-wall-texture-kG-ZwDuQ8ME?utm_source=daily_poster&utm_medium=referral",
+      "alt": "weathered teal concrete wall texture",
+      "thumb": "https://images.unsplash.com/photo-1578922427288-a47338083a57?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8d2FsbHBhcGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTU0MTA1MDB8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1578922427288-a47338083a57?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8d2FsbHBhcGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTU0MTA1MDB8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:UjupleczBOY",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a black and white photo of a marble surface",
+      "credit": "Scott Webb",
+      "creditUrl": "https://unsplash.com/@scottwebb?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-black-and-white-photo-of-a-marble-surface-UjupleczBOY?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a black and white photo of a marble surface",
+      "thumb": "https://images.unsplash.com/photo-1566305977571-5666677c6e98?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGxhc3RlciUyMHRleHR1cmV8ZW58MXx8fHwxNzk1NDEwNTAwfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1566305977571-5666677c6e98?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGxhc3RlciUyMHRleHR1cmV8ZW58MXx8fHwxNzk1NDEwNTAwfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     }
   ],
   "objects": [
     {
-      "name": "fuel pump",
-      "material": "brushed steel",
-      "image": "media/2026-11-22/object-1.png",
-      "thumb": "media/2026-11-22/object-1-thumb.png",
+      "name": "paintbrush",
+      "material": "polished brass and steel",
+      "image": "media/2026-11-23/object-1.png",
+      "thumb": "media/2026-11-23/object-1-thumb.png",
       "model": {
-        "title": "Gasoline pump",
+        "title": "Paintbrush",
         "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-b5a77ed450b64dac9141da87fc7d4c64",
+        "url": "https://sketchfab.com/3d-models/none-52cce098d4c94b04990c2e245eb6b4c1",
         "licence": "CC Attribution",
-        "creator": "Artem Goyko",
-        "creatorUrl": "https://sketchfab.com/Artem.Goyko"
+        "creator": "SolidXperts",
+        "creatorUrl": "https://sketchfab.com/solidxperts"
+      },
+      "texture": null
+    },
+    {
+      "name": "blue plaque",
+      "material": "glazed blue ceramic",
+      "image": "media/2026-11-23/object-2.png",
+      "thumb": "media/2026-11-23/object-2-thumb.png",
+      "model": {
+        "title": "Plaque of the Rudolf Haberfeld Banking House",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-e30326f4d8e94efda54da168d62ed489",
+        "licence": "CC0 Public Domain",
+        "creator": "Virtual Museums of Małopolska",
+        "creatorUrl": "https://sketchfab.com/WirtualneMuzeaMalopolski"
       },
       "texture": {
         "title": "Blue Metal Plate",
@@ -262,40 +273,19 @@
       }
     },
     {
-      "name": "neon sign",
-      "material": "polished brass",
-      "image": "media/2026-11-22/object-2.png",
-      "thumb": "media/2026-11-22/object-2-thumb.png",
+      "name": "door key",
+      "material": "aged wrought iron",
+      "image": "media/2026-11-23/object-3.png",
+      "thumb": "media/2026-11-23/object-3-thumb.png",
       "model": {
-        "title": "Neon Open Sign",
+        "title": "Old Key",
         "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-2efad97b50f34220b2df92fe99c8a2ad",
+        "url": "https://sketchfab.com/3d-models/none-dcf61f79745b47778ad10aa28199df50",
         "licence": "CC Attribution",
-        "creator": "Logan S.",
-        "creatorUrl": "https://sketchfab.com/Logan_S"
+        "creator": "Meerschaum Digital",
+        "creatorUrl": "https://sketchfab.com/meerschaumdigital"
       },
-      "texture": {
-        "title": "Blue Metal Plate",
-        "url": "https://polyhaven.com/a/blue_metal_plate"
-      }
-    },
-    {
-      "name": "coffee cup",
-      "material": "enamelled steel",
-      "image": "media/2026-11-22/object-3.png",
-      "thumb": "media/2026-11-22/object-3-thumb.png",
-      "model": {
-        "title": "Coffee Cup",
-        "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-ce14e184dce0440ebf21246ae876fca6",
-        "licence": "CC Attribution",
-        "creator": "Blizzy",
-        "creatorUrl": "https://sketchfab.com/jeffbas"
-      },
-      "texture": {
-        "title": "Blue Metal Plate",
-        "url": "https://polyhaven.com/a/blue_metal_plate"
-      }
+      "texture": null
     }
   ]
 }

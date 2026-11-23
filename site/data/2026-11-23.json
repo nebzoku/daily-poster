@@ -1,0 +1,291 @@
+{
+  "date": "2026-11-23",
+  "issue": 52,
+  "generatedAt": "2026-11-23T05:08:20.199Z",
+  "colour": {
+    "name": "Green",
+    "yesterday": "Jade",
+    "tomorrow": "Lime"
+  },
+  "story": {
+    "title": "Exquisitely decorated home of Victorian workman David Parr wins blue plaque",
+    "summary": "David Parr was a Victorian labourer who spent his days applying William Morris's patterns to grand houses and Cambridge colleges. At night he covered his own Cambridge terrace house with designs of his own, and the home has now been awarded a blue plaque.",
+    "source": "The Guardian",
+    "url": "https://www.theguardian.com/culture/2026/nov/22/exquisitely-decorated-home-of-victorian-workman-david-parr-wins-blue-plaque-cambridge",
+    "published": "2026-11-22T10:59:28.000Z",
+    "theme": "Victorian design and craft"
+  },
+  "headlines": [
+    "Every Wall Became a Garden",
+    "Morris by Day, Himself by Night",
+    "A Workman's House of Wonder"
+  ],
+  "sublines": [
+    "Victorian decorator David Parr papered mansions by day, then filled his own Cambridge terrace with patterns he designed.",
+    "His modest house, covered in his own designs, has earned a blue plaque for its remarkable interiors.",
+    "Paid to hang William Morris's patterns in grand rooms, a working man made a private palace at home."
+  ],
+  "palette": {
+    "name": "Vivid",
+    "colours": [
+      "#4BF761",
+      "#CDF0CD",
+      "#6B756A",
+      "#032707"
+    ]
+  },
+  "always": [
+    "#000000",
+    "#FFFFFF"
+  ],
+  "type": {
+    "id": "fraunces",
+    "display": "Fraunces",
+    "text": "Manrope",
+    "reason": "Fraunces has the soft, wonky, ornamental warmth of Arts and Crafts design, which suits a workman's handmade wall patterns.",
+    "css": "https://fonts.googleapis.com/css2?family=Fraunces&family=Manrope&display=swap",
+    "displayUrl": "https://fonts.google.com/specimen/Fraunces",
+    "textUrl": "https://fonts.google.com/specimen/Manrope"
+  },
+  "grid": {
+    "format": "A-size",
+    "size": [
+      1080,
+      1528
+    ],
+    "columns": 8,
+    "rows": 8,
+    "margin": 16,
+    "gutter": 0,
+    "column": 131,
+    "row": 187,
+    "unit": "px"
+  },
+  "images": [
+    {
+      "id": "unsplash:9KQ7V0CESoM",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "brown and white building during day",
+      "credit": "Dele Oke",
+      "creditUrl": "https://unsplash.com/@dele_oke?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/brown-and-white-building-during-day-9KQ7V0CESoM?utm_source=daily_poster&utm_medium=referral",
+      "alt": "brown and white building during day",
+      "thumb": "https://images.unsplash.com/photo-1578782785154-30ee3b8a3f95?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8dGVycmFjZSUyMGhvdXNlfGVufDF8fHx8MTc5NTQxMDUwMHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1578782785154-30ee3b8a3f95?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8dGVycmFjZSUyMGhvdXNlfGVufDF8fHx8MTc5NTQxMDUwMHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:fFUBw5bF38s",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "brown concrete building during daytime",
+      "credit": "Greg Willson",
+      "creditUrl": "https://unsplash.com/@gregwillson?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/brown-concrete-building-during-daytime-fFUBw5bF38s?utm_source=daily_poster&utm_medium=referral",
+      "alt": "brown concrete building during daytime",
+      "thumb": "https://images.unsplash.com/photo-1568293207619-df44ae062a9c?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8dGVycmFjZSUyMGhvdXNlfGVufDF8fHx8MTc5NTQxMDUwMHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1568293207619-df44ae062a9c?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8dGVycmFjZSUyMGhvdXNlfGVufDF8fHx8MTc5NTQxMDUwMHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:208146",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Wallpaper, ca. 1830",
+      "credit": "Unknown artist",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/208146",
+      "page": "https://www.metmuseum.org/art/collection/search/208146",
+      "alt": "Wallpaper",
+      "thumb": "https://images.metmuseum.org/CRDImages/es/web-large/SF1993_298.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/es/original/SF1993_298.jpg",
+      "local": "media/2026-11-23/image-03-2160.jpg"
+    },
+    {
+      "id": "met:384421",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Ornament design, 18th century",
+      "credit": "Anonymous, French, 18th century",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/384421",
+      "page": "https://www.metmuseum.org/art/collection/search/384421",
+      "alt": "Ornament design",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP808624.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP808624.jpg",
+      "local": "media/2026-11-23/image-04-2160.jpg"
+    },
+    {
+      "id": "unsplash:OOE4xAnBhKo",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "photo of green fern plant",
+      "credit": "Teemu Paananen",
+      "creditUrl": "https://unsplash.com/@xteemu?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/photo-of-green-fern-plant-OOE4xAnBhKo?utm_source=daily_poster&utm_medium=referral",
+      "alt": "photo of green fern plant",
+      "thumb": "https://images.unsplash.com/photo-1497250681960-ef046c08a56e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Z3JlZW4lMjB3YWxscGFwZXJ8ZW58MXx8fHwxNzk1NDEwNTAwfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1497250681960-ef046c08a56e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Z3JlZW4lMjB3YWxscGFwZXJ8ZW58MXx8fHwxNzk1NDEwNTAwfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:nrSzRUWqmoI",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "assorted-color concrete houses under white clouds during daytime",
+      "credit": "Toa Heftiba",
+      "creditUrl": "https://unsplash.com/@heftiba?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/assorted-color-concrete-houses-under-white-clouds-during-daytime-nrSzRUWqmoI?utm_source=daily_poster&utm_medium=referral",
+      "alt": "assorted-color concrete houses under white clouds during daytime",
+      "thumb": "https://images.unsplash.com/photo-1464082354059-27db6ce50048?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8dGVycmFjZSUyMGhvdXNlfGVufDF8fHx8MTc5NTQxMDUwMHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1464082354059-27db6ce50048?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8dGVycmFjZSUyMGhvdXNlfGVufDF8fHx8MTc5NTQxMDUwMHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:383958",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Ornament Design, 17th century",
+      "credit": "Anonymous, German, 17th century",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/383958",
+      "page": "https://www.metmuseum.org/art/collection/search/383958",
+      "alt": "Ornament Design",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP804528.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP804528.jpg",
+      "local": "media/2026-11-23/image-07-2160.jpg"
+    },
+    {
+      "id": "met:69194",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Textile with floral pattern, 19th century",
+      "credit": "China",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/69194",
+      "page": "https://www.metmuseum.org/art/collection/search/69194",
+      "alt": "Textile with floral pattern",
+      "thumb": "https://images.metmuseum.org/CRDImages/as/web-large/LC-41_123_6_front.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/as/original/LC-41_123_6_front.jpg",
+      "local": "media/2026-11-23/image-08-2160.jpg"
+    },
+    {
+      "id": "met:392422",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Ornament Design, 19th century",
+      "credit": "Anonymous, French, 19th century",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/392422",
+      "page": "https://www.metmuseum.org/art/collection/search/392422",
+      "alt": "Ornament Design",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP812981.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP812981.jpg",
+      "local": "media/2026-11-23/image-09-2160.jpg"
+    },
+    {
+      "id": "unsplash:pH058mfJoL0",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a white house with blue doors and windows",
+      "credit": "Marie M",
+      "creditUrl": "https://unsplash.com/@marie190?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-white-house-with-blue-doors-and-windows-pH058mfJoL0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a white house with blue doors and windows",
+      "thumb": "https://images.unsplash.com/photo-1654707859900-879d22eeb52f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8dGVycmFjZSUyMGhvdXNlfGVufDF8fHx8MTc5NTQxMDUwMHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1654707859900-879d22eeb52f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8dGVycmFjZSUyMGhvdXNlfGVufDF8fHx8MTc5NTQxMDUwMHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    }
+  ],
+  "textures": [
+    {
+      "id": "unsplash:k4Lt0CjUnb0",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "white textured paper or plaster surface",
+      "credit": "João Vítor Duarte",
+      "creditUrl": "https://unsplash.com/@joaovtrduarte?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-k4Lt0CjUnb0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "white textured paper or plaster surface",
+      "thumb": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTQxMDUwMHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTQxMDUwMHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:WzFBUXQChFU",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "A grey wall with a repeating vintage damask pattern and textured surface",
+      "credit": "KHALIL MUSA",
+      "creditUrl": "https://unsplash.com/@mkphotography4?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/grey-wall-with-vintage-damask-pattern-WzFBUXQChFU?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A grey wall with a repeating vintage damask pattern and textured surface",
+      "thumb": "https://images.unsplash.com/photo-1599503815079-dfb7085fc667?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8d2FsbHBhcGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTU0MTA1MDB8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1599503815079-dfb7085fc667?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8d2FsbHBhcGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTU0MTA1MDB8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:kG-ZwDuQ8ME",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "weathered teal concrete wall texture",
+      "credit": "Annie Spratt",
+      "creditUrl": "https://unsplash.com/@anniespratt?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/weathered-teal-concrete-wall-texture-kG-ZwDuQ8ME?utm_source=daily_poster&utm_medium=referral",
+      "alt": "weathered teal concrete wall texture",
+      "thumb": "https://images.unsplash.com/photo-1578922427288-a47338083a57?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8d2FsbHBhcGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTU0MTA1MDB8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1578922427288-a47338083a57?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8d2FsbHBhcGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTU0MTA1MDB8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:UjupleczBOY",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a black and white photo of a marble surface",
+      "credit": "Scott Webb",
+      "creditUrl": "https://unsplash.com/@scottwebb?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-black-and-white-photo-of-a-marble-surface-UjupleczBOY?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a black and white photo of a marble surface",
+      "thumb": "https://images.unsplash.com/photo-1566305977571-5666677c6e98?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGxhc3RlciUyMHRleHR1cmV8ZW58MXx8fHwxNzk1NDEwNTAwfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1566305977571-5666677c6e98?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGxhc3RlciUyMHRleHR1cmV8ZW58MXx8fHwxNzk1NDEwNTAwfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    }
+  ],
+  "objects": [
+    {
+      "name": "paintbrush",
+      "material": "polished brass and steel",
+      "image": "media/2026-11-23/object-1.png",
+      "thumb": "media/2026-11-23/object-1-thumb.png",
+      "model": {
+        "title": "Paintbrush",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-52cce098d4c94b04990c2e245eb6b4c1",
+        "licence": "CC Attribution",
+        "creator": "SolidXperts",
+        "creatorUrl": "https://sketchfab.com/solidxperts"
+      },
+      "texture": null
+    },
+    {
+      "name": "blue plaque",
+      "material": "glazed blue ceramic",
+      "image": "media/2026-11-23/object-2.png",
+      "thumb": "media/2026-11-23/object-2-thumb.png",
+      "model": {
+        "title": "Plaque of the Rudolf Haberfeld Banking House",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-e30326f4d8e94efda54da168d62ed489",
+        "licence": "CC0 Public Domain",
+        "creator": "Virtual Museums of Małopolska",
+        "creatorUrl": "https://sketchfab.com/WirtualneMuzeaMalopolski"
+      },
+      "texture": {
+        "title": "Blue Metal Plate",
+        "url": "https://polyhaven.com/a/blue_metal_plate"
+      }
+    },
+    {
+      "name": "door key",
+      "material": "aged wrought iron",
+      "image": "media/2026-11-23/object-3.png",
+      "thumb": "media/2026-11-23/object-3-thumb.png",
+      "model": {
+        "title": "Old Key",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-dcf61f79745b47778ad10aa28199df50",
+        "licence": "CC Attribution",
+        "creator": "Meerschaum Digital",
+        "creatorUrl": "https://sketchfab.com/meerschaumdigital"
+      },
+      "texture": null
+    }
+  ]
+}

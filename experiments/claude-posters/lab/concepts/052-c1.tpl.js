@@ -11,7 +11,8 @@ window.POSTER = async () => {
   const out = canvas(), g = out.g;
   g.fillStyle = C.bg; g.fillRect(0, 0, W, H);
 
-  const { lines } = inkSafe(['Every wall', 'became a garden'], { font: T, weight: 800, size: 200, gap: 14, minGap: 6, word: 0.24 }, W - 2 * M);
+  const HS = inkSafe(['Every wall', 'became a garden'], { font: T, weight: 800, size: 200, gap: 14, minGap: 6, word: 0.24 }, W - 2 * M);
+  const { lines } = HS;
   const head = canvas(); const R = pinInterlock(head, lines, ['L', 'L'], 1, 6);
   const bx = cell(5, 3, 3, 2), tb = cell(2, 3, 3, 2);
   const src = canvas(); cover(src.g, wallImg, { x: 0, y: 0, w: W, h: H }, { crop: [0.12, 0.1, 0.42, 0.8] });
@@ -25,7 +26,7 @@ window.POSTER = async () => {
   draw(g, press(vm, C.mid, 'riso', { wear: 0.45, spread: 0.5, seed: 1 }));
   draw(g, press(gm, C.mid2, 'riso', { wear: 0.45, spread: 0.5, seed: 2 }));
   draw(g, tone(levels(boxed(brush, bx, { crop: [0.33, 0.42, 0.22, 0.16] }), 0.02, 0.98), C.tones));
-  draw(g, press(head, C.type, 'letterpress', { wear: 0.35, spread: 0.25, seed: 52 }));
+  draw(g, press(head, C.type, HS.ink.preset, { ...HS.ink, seed: 52 }));
   const t = { font: T, size: 16, weight: 500, lead: 0.9, color: C.type };
   const sub = balance('Victorian decorator David Parr papered mansions by day, then filled his own Cambridge terrace with patterns he designed.', { ...t, minW: 200, maxW: COL * 2.6 });
   block(g, sub.lines, bx.x, bx.y, { ...t, align: 'right' });

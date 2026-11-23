@@ -30,9 +30,13 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   background, middle (image marks) and type. Ben picks the one(s) to post the next day.
 
 ### Round 10 feedback (24 Nov 2026)
-- **Ink must not run letters together.** Tight tracking plus ink spread was merging letters. Set headlines with
-  `inkSafe()`: it prints each line through the ink, counts the letters, and opens the tracking slightly until
-  none have merged. Tight, but every letter stays separate after printing.
+- **Ink must not run letters together, and the fix must not make the type gappy.** Set headlines with `inkSafe()`
+  and print them with the ink it returns. It prints each line, counts the letters, and if any have merged it first
+  **thins the ink** (the bleed is a fixed number of pixels, so it matters more as type gets smaller), and only then
+  raises the minimum gap a touch. It never opens the overall tracking. Smaller headlines stay as tight as big ones.
+- When the size snaps to a multiple of 8, the tracking may tighten freely to keep the widest line on the margins, but
+  may only loosen slightly (more for big type than small). Small type would rather fall a few pixels short than look
+  gappy.
 
 ### Round 9 feedback (24 Nov 2026)
 - **Break headlines where you'd pause saying them aloud**, and never leave one word stranded from a block that

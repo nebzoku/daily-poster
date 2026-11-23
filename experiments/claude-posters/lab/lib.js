@@ -555,17 +555,20 @@ const snap8 = (s) => Math.max(8, Math.floor(s / 8) * 8);
 // sameOptical with the size on a multiple of 8, and the widest line still exactly maxW: snapping changes the width,
 // so the tracking (gap between letters, never the glyphs) is solved to bring the widest line back to the margins.
 // Tries the multiple of 8 above first (tighter tracking), then the one below (looser).
-function sameOptical8(texts, o, maxW) {
-  const { size } = sameOptical(texts, o, maxW);
+function sameOptical8(texts, o, maxW, { loosen = null } = {}) {
+  // Size on a multiple of 8. Snapping changes the width, so the tracking is re-solved to bring the widest line back to
+  // maxW, but only within limits: it may TIGHTEN freely (down to minGap) and LOOSEN by at most `loosen` thousandths of
+  // an em. Small type gets gappy fast, so it would rather fall a few px short of maxW than open up.
+  const { size } = sameOptical(texts, o, maxW), g0 = o.gap ?? 40;
   const widest = (s, gap) => Math.max(...texts.map((t) => setOptical(t, { ...o, size: s, gap }).box.w));
   for (const s of [Math.ceil(size / 8) * 8, snap8(size)]) {
-    let lo = (o.minGap ?? 18) - 0.001, hi = (o.gap ?? 40) + 120;
-    if (widest(s, lo) > maxW + 0.5 || widest(s, hi) < maxW - 0.5) continue;    // can't reach maxW at this size
+    let lo = (o.minGap ?? 18) - 0.001, hi = g0 + (loosen ?? (s >= 120 ? 30 : 6));   // big type can take a little more
+    if (widest(s, lo) > maxW + 0.5) continue;                     // too wide even at the tightest: try the smaller size
+    if (widest(s, hi) < maxW - 0.5) { const lines = texts.map((t) => setOptical(t, { ...o, size: s, gap: hi })); return { size: s, gap: hi, lines }; }
     for (let k = 0; k < 18; k++) { const mid = (lo + hi) / 2; if (widest(s, mid) > maxW) hi = mid; else lo = mid; }
-    const gap = lo, lines = texts.map((t) => setOptical(t, { ...o, size: s, gap }));
-    return { size: s, gap, lines };
+    return { size: s, gap: lo, lines: texts.map((t) => setOptical(t, { ...o, size: s, gap: lo })) };
   }
-  const s = snap8(size); return { size: s, lines: texts.map((t) => setOptical(t, { ...o, size: s })) };
+  const s = snap8(size); return { size: s, gap: g0, lines: texts.map((t) => setOptical(t, { ...o, size: s })) };
 }
 // One text style for subline AND furniture: same size, same leading (90%), same case.
 const TEXT = { size: 16, lead: 0.9 };
@@ -674,12 +677,14 @@ function blobs(c, minArea = 400) {
 // Print each line through the given ink and check no letters have run together; if they have, open the tracking a
 // little (gap and minGap +6) and try again. Returns lines that survive the ink.
 function inkSafe(texts, o, maxW, ink = { preset: 'letterpress', wear: 0.35, spread: 0.25 }) {
+  // Keep the tight tracking and make the INK behave: print each line and count its letters; if any have merged, first
+  // thin the ink (lower spread: the ink bleeds a fixed number of pixels, which matters more the smaller the type), and
+  // only if that isn't enough, raise the minimum gap a little. Returns the lines AND the ink to print them with.
+  const r = sameOptical8(texts, o, maxW);
+  const merged = (lines, k) => lines.some((t) => blobs(t.c) > blobs(IM.print(t.c, k.preset, { wear: k.wear, spread: k.spread, seed: 7 })));
+  let k = { ...ink };
+  for (const sp of [ink.spread, 0.18, 0.12, 0.07, 0.03]) { k = { ...ink, spread: Math.min(ink.spread, sp) }; if (!merged(r.lines, k)) return { ...r, o, ink: k }; }
   let oo = { ...o };
-  for (let k = 0; k < 6; k++) {
-    const r = sameOptical8(texts, oo, maxW);
-    const bad = r.lines.some((t) => blobs(t.c) > blobs(IM.print(t.c, ink.preset, { wear: ink.wear, spread: ink.spread, seed: 7 })));
-    if (!bad) return { ...r, o: oo };
-    oo = { ...oo, gap: (oo.gap ?? 40) + 6, minGap: (oo.minGap ?? 18) + 6 };
-  }
-  return { ...sameOptical8(texts, oo, maxW), o: oo };
+  for (let i = 0; i < 6; i++) { oo = { ...oo, minGap: (oo.minGap ?? 18) + 3 }; const r2 = sameOptical8(texts, oo, maxW); if (!merged(r2.lines, k)) return { ...r2, o: oo, ink: k }; }
+  return { ...sameOptical8(texts, oo, maxW), o: oo, ink: k };
 }

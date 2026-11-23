@@ -12,7 +12,8 @@ window.POSTER = async () => {
   const out = canvas(), g = out.g;
   g.fillStyle = C.bg; g.fillRect(0, 0, W, H);
 
-  const { lines } = inkSafe(['Morris by day', 'himself by night'], { font: T, weight: 800, size: 200, gap: 14, minGap: 6, word: 0.24 }, W - 2 * M);
+  const HS = inkSafe(['Morris by day', 'himself by night'], { font: T, weight: 800, size: 200, gap: 14, minGap: 6, word: 0.24 }, W - 2 * M);
+  const { lines } = HS;
   const head = canvas(); pinInterlock(head, lines, ['L', 'R'], 1, 6);
 
   const day = { x: M + COL * 3, y: M + ROW * 3.4, r: COL * 2.5 }, night = { x: M + COL * 5.2, y: M + ROW * 4.9, r: COL * 2.2 };
@@ -30,7 +31,7 @@ window.POSTER = async () => {
   const ed = xo.g.getImageData(0, 0, xo.width, xo.height); for (let p = 0; p < ed.data.length; p += 4) if (ed.data[p] === 255 && ed.data[p + 1] === 0 && ed.data[p + 2] === 255) ed.data[p + 3] = 0; xo.g.putImageData(ed, 0, 0);
   draw(g, xo);
 
-  draw(g, press(head, C.type, 'letterpress', { wear: 0.35, spread: 0.25, seed: 52 }));
+  draw(g, press(head, C.type, HS.ink.preset, { ...HS.ink, seed: 52 }));
   const t = { font: T, size: 16, weight: 500, lead: 0.9, color: C.type };
   const sub = balance("Paid to hang William Morris's patterns in grand rooms, a working man made a private palace at home.", { ...t, minW: 200, maxW: COL * 2.4 });
   block(g, sub.lines, M, M + ROW * 6.5, t);

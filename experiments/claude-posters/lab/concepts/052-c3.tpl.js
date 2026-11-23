@@ -29,12 +29,13 @@ window.POSTER = async () => {
 
   // three headlines, one size and leading, stepping a column at a time; ours strongest
   const L = ["A workman's house", 'of wonder', 'Every wall', 'became a garden', 'Morris by day', 'himself by night'];
-  const { lines } = inkSafe(L, { font: T, weight: 800, size: 48, gap: 14, minGap: 6, word: 0.24 }, COL * 4);
+  const HS = inkSafe(L, { font: T, weight: 800, size: 48, gap: 14, minGap: 6, word: 0.24 }, COL * 4);
+  const { lines } = HS;
   const pitch = Math.max(...lines.map((t) => t.base - t.box.y)) * 1.12;
   const ours = canvas(), rest = canvas(); let y = M + ROW * 3 + 40;
   lines.forEach((t, i) => { const h = Math.floor(i / 2); place(h === 0 ? ours : rest, t, { left: M + COL * h, top: y }); y += pitch; });
   draw(g, tint(rest, C.ghost));
-  draw(g, press(ours, C.ink, 'letterpress', { wear: 0.3, spread: 0.25, seed: 52 }));
+  draw(g, press(ours, C.ink, HS.ink.preset, { ...HS.ink, seed: 52 }));
 
   const t = { font: T, size: 16, weight: 500, lead: 0.9, color: C.ink };
   [b1, b2, b3].forEach((b, i) => block(g, [`(0${i + 1})`], b.x + b.w, b.y + b.h + 8, { ...t, align: 'right' }));

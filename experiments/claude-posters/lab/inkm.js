@@ -257,8 +257,8 @@ function foil(src, W, H, s, seed) {
   let st;
   if (metal === 'tone') {
     // a satin foil a shade off the paper: nearly invisible until it catches the light
-    const c = rgbOf($('#paper').value), warm = mixc(c, [120, 60, 30], 0.18);
-    st = [mixc(warm, [0, 0, 0], 0.65), mixc(mixc(warm, [110, 45, 25], 0.25), [0, 0, 0], 0.3), mixc(warm, [200, 140, 105], 0.3), mixc(c, [255, 225, 200], 0.5)];
+    const c = rgbOf($('#paper').value), warm = c;   // neutral: the paper's own colour, no copper warmth (Daily Poster stays in palette)
+    st = [mixc(warm, [0, 0, 0], 0.55), mixc(warm, [0, 0, 0], 0.25), mixc(warm, [255, 255, 255], 0.25), mixc(c, [255, 255, 255], 0.6)];
   } else if (metal === 'custom') { const c = rgbOf($('#foilColour').value); st = [mixc(c, [0, 0, 0], 0.65), mixc(c, [0, 0, 0], 0.25), mixc(c, [255, 255, 255], 0.3), mixc(c, [255, 255, 255], 0.82)]; }
   else if (!holo) st = METALS[metal].map(rgbOf);
   let pmin = Infinity, pmax = -Infinity;

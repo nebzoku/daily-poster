@@ -31,13 +31,23 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
 
 ### Round 12 feedback (24 Nov 2026): vary the print and the paper
 - **Never print everything the same way**; one ink style on every poster is a giveaway. Each of the three concepts
-  gets a different print process for its headline (`printHead`), and change them day to day: letterpress, riso,
-  screenprint, rubber stamp, photocopy, crisp, bleeding/soaked ink, thick gloss black or white foil, metallic foils,
-  raised colourful foil, spot varnish (tone-on-tone gloss), emboss and deboss.
-- **Vary the paper stock too** (`stock`): smooth, uncoated, rough, newsprint, photocopy. Sometimes the ink bleeds,
-  sometimes it's crisp, sometimes it's photocopied. Log the print and stock used each day in `log.md`.
-- These come from the Ink Machine (site/ink-machine), the same code `inkm.js` wraps. Ben may send the exact settings
-  he uses on benharwood.design; when he does, add them as named styles.
+  gets a different print process for its headline (`printHead`), and change them day to day.
+- **The finishes are Ben's own, from benharwood.design** (`lab/pf.js`, wrapping his site's `ink-worker.js`, kept
+  unchanged as `lab/portfolio-ink-worker.js`; settings in `portfolio-ink-styles.md`):
+  - Inks, calm (about Wear 0.07, Ink spread 0.15), with the paper's grain showing through the letters:
+    `letterpress`, `riso`, `screen`, `stamp`, `inked-deboss`.
+  - Monochrome foils, black on light paper and white on dark: `foil` (domed gloss), `foil-flat` (hot-foil),
+    `foil-mirror`, `foil-satin` (graphite), `foil-emboss` (raised), `foil-debossed`.
+  - `foil-colour`: a bright foil in a palette colour (the site's brighter colour stops, not the Machine's dark ones).
+  - Spot varnishes, neutral, made from the colour underneath: `varnish`, `varnish-raised` (thick UV),
+    `varnish-satin`, `varnish-ink` (gloss over solid ink). Use them where the letters can still be read.
+  - From the Ink Machine, for rougher days: `bleed` (soaked), `copy` (photocopy), `crisp`, and the Machine's wilder
+    presets `machine-letterpress`, `machine-riso`, `machine-screen`, `machine-stamp`.
+- **Vary the paper stock too** (`stock`): smooth, uncoated, rough, newsprint, photocopy. Log the print and stock used
+  each day in `log.md`.
+- **Nothing outside the day's palette, plus black and white.** No gold, rose gold, copper or holographic foil. A
+  coloured foil uses a palette colour. Left out as Ben asked: blind emboss and deboss (not realistic), silver foil
+  (reads as mottled grey), hand-drawn marks.
 
 ### Round 11 feedback (24 Nov 2026): variety across the morning's options
 - **Mix the type treatments across the three concepts.** Not every geometric sans in sentence case, and serifs

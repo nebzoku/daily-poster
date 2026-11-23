@@ -690,34 +690,35 @@ function inkSafe(texts, o, maxW, ink = { preset: 'letterpress', wear: 0.35, spre
 }
 
 // ---------- print styles and paper stocks (vary them: one look across every poster is a giveaway) ----------
-// printHead(g, mask, colour, style, o): put a mask on the poster with a print process.
-//   ink:   'letterpress' | 'riso' | 'screen' | 'stamp' | 'copy' (photocopy) | 'clean' | 'bleed' (fat, soaked) | 'crisp'
-//   foil:  'foil-black' | 'foil-white' (gloss) | 'foil-gold' | 'foil-silver' | 'foil-copper' | 'foil-holo' |
-//          'foil-colour' (raised colourful foil in `colour`) | 'varnish' (spot varnish: tone-on-tone gloss, o.paper = the colour under it)
-//   press: 'emboss' (flat colour, raised) | 'deboss' (flat colour, pressed in)
-// o: wear, spread, seed, paper (the colour underneath, for varnish/tone), light.
-const PRINT_STYLES = ['letterpress', 'riso', 'screen', 'stamp', 'copy', 'clean', 'bleed', 'crisp', 'foil-black', 'foil-white', 'foil-gold', 'foil-silver', 'foil-holo', 'foil-colour', 'varnish', 'emboss', 'deboss'];
+// printHead(g, mask, colour, style, o): put a mask on the poster with a print process. Colour must be from the day's
+// palette (or black/white). o.bg = the colour underneath (decides black vs white foil, and is the varnish colour).
+// From Ben's portfolio (PF, his exact settings):
+//   ink:     'letterpress' | 'riso' | 'screen' | 'stamp' | 'inked-deboss'
+//   foil:    'foil' (domed gloss) | 'foil-flat' (hot-foil) | 'foil-mirror' | 'foil-satin' (graphite) | 'foil-emboss'
+//            (raised) | 'foil-debossed' | 'foil-colour' (bright foil in a palette colour)
+//   varnish: 'varnish' (spot gloss) | 'varnish-raised' (thick UV) | 'varnish-satin' | 'varnish-ink' (gloss over solid ink)
+//   Gloss black/white foils follow the background: white on dark, black on light.
+// From the Ink Machine, for rougher days: 'bleed' (soaked), 'copy' (photocopy), 'crisp', 'machine-letterpress',
+//   'machine-riso', 'machine-screen', 'machine-stamp' (the Machine's own, wilder presets).
+// Left out on Ben's instruction: blind emboss/deboss, silver foil, gold/rose/copper/holo (off-palette), hand-drawn marks.
+const PF_STYLES = ['letterpress', 'riso', 'screen', 'stamp', 'inked-deboss', 'foil', 'foil-flat', 'foil-mirror', 'foil-satin', 'foil-emboss', 'foil-debossed', 'foil-colour', 'varnish', 'varnish-raised', 'varnish-satin', 'varnish-ink'];
+const PRINT_STYLES = [...PF_STYLES, 'bleed', 'copy', 'crisp', 'machine-letterpress', 'machine-riso', 'machine-screen', 'machine-stamp'];
+const lum = (hex) => { const [r, gg, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255); return 0.2126 * r + 0.7152 * gg + 0.0722 * b; };
 function printHead(g, mask, colour, style = 'letterpress', o = {}) {
+  if (!PRINT_STYLES.includes(style)) throw new Error(`unknown or off-palette print style: ${style}`);
   const seed = o.seed ?? 11;
-  const INKS = { bleed: ['riso', { wear: 0.6, spread: 0.85 }], crisp: ['clean', { wear: 0.1, spread: 0.15 }] };
-  if (INKS[style] || ['letterpress', 'riso', 'screen', 'stamp', 'copy', 'clean'].includes(style)) {
-    const [preset, d] = INKS[style] || [style, {}];
-    draw(g, tint(IM.print(mask, preset, { wear: o.wear ?? d.wear ?? 0.4, spread: o.spread ?? d.spread ?? 0.3, seed }), colour));
+  if (PF_STYLES.includes(style)) {
+    const w = mask.width, h = mask.height, d = mask.getContext('2d').getImageData(0, 0, w, h).data, a = new Float32Array(w * h);
+    for (let i = 0; i < a.length; i++) a[i] = d[i * 4 + 3] / 255;
+    const bg = o.bg || '#000000', dark = lum(bg) < 0.45;
+    const px = PF.render({ mask: a, W: w, H: h, s: 1, seed, style, inkHex: colour, paperHex: bg, spotHex: colour, dark, light: o.light ?? 0.5 });
+    const c = document.createElement('canvas'); c.width = w; c.height = h; c.getContext('2d').putImageData(new ImageData(px, w, h), 0, 0);
+    g.save(); g.setTransform(1, 0, 0, 1, 0, 0); g.drawImage(c, 0, 0); g.restore();
     return;
   }
-  if (style.startsWith('foil') || style === 'varnish') {
-    const metal = style === 'varnish' ? 'tone' : style === 'foil-colour' ? 'custom' : style.slice(5);
-    const fo = { metal, colour, paper: o.paper || colour, seed, shine: o.shine ?? (style === 'varnish' ? 0.75 : 0.6), light: o.light ?? 0.42,
-      dome: o.dome ?? (style === 'foil-colour' ? 0.55 : ['foil-black', 'foil-white'].includes(style) ? 0.35 : 0), edge: o.edge ?? 0.3 };
-    if (o.room !== false) draw(g, IM.foilRoom(fo), 'source-over', 0.35);   // once per poster: pass room: false for a second foil
-    draw(g, IM.foil(mask, fo));
-    if (style === 'foil-colour' || style === 'varnish') draw(g, IM.relief(mask, { depth: 0.45, seed }));
-    return;
-  }
-  if (style === 'emboss' || style === 'deboss') {
-    draw(g, tint(IM.print(mask, 'clean', { wear: 0.15, spread: 0.2, seed }), colour));
-    draw(g, IM.relief(mask, { deboss: style === 'deboss', depth: 0.6, seed }));
-  }
+  const M2 = { bleed: ['riso', 0.6, 0.85], copy: ['copy', 0.45, 0.4], crisp: ['clean', 0.1, 0.15] };
+  const [preset, wear, spread] = M2[style] || [style.replace('machine-', ''), 0.45, 0.4];
+  draw(g, tint(IM.print(mask, preset, { wear: o.wear ?? wear, spread: o.spread ?? spread, seed }), colour));
 }
 // stock(g, kind): the paper the poster is printed on, drawn last over everything.
 //   'smooth' | 'uncoated' | 'rough' | 'newsprint' (grey fibres and specks) | 'photocopy' (toner grain and streaks) | 'none'

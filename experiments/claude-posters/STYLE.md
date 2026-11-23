@@ -29,6 +29,16 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   from the brief and different layout systems and treatments. Colourways only swap which palette colours play
   background, middle (image marks) and type. Ben picks the one(s) to post the next day.
 
+### Round 11 feedback (24 Nov 2026): variety across the morning's options
+- **Mix the type treatments across the three concepts.** Not every geometric sans in sentence case, and serifs
+  not avoided: in the morning's options, try **a serif headline in sentence case** (tight leading and tracking) and
+  **a sans in all caps**, alongside whatever else, so Ben can compare and refine. (A condensed face is still always
+  caps.) This loosens rule 3 below: serifs are fair game when they're one of the options, not a default to avoid.
+- **Don't default to overlapping pixelated circles.** Combine everything Ben has taught in different ways each day
+  (thresholded full bleeds, grid boxes, shapes and circles, pixelation, image stretch, ASCII, data-driven type, small
+  repeated headlines, objects in type, overprint, smooth vs harsh imagery). Some combinations won't work; that's
+  fine, Ben refines them each morning. Check `log.md` and avoid repeating yesterday's mixes.
+
 ### Round 10 feedback (24 Nov 2026)
 - **Ink must not run letters together, and the fix must not make the type gappy.** Set headlines with `inkSafe()`
   and print them with the ink it returns. It prints each line, counts the letters, and if any have merged it first

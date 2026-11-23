@@ -26,6 +26,7 @@ Ben picks the ones to post; they go into the archive credited **Nebzokai** (Ben'
 3. Concept step for each of the three (write it at the top of each template): the story in one line, the everyday
    thing people recognise, the visual idea, the image and why, a mood check. Use different headlines from the brief
    and different layout systems and treatments across the three, and different from yesterday (see `log.md`).
+   Mix the type too: across the three, include a serif headline in sentence case and a sans in all caps.
 4. Write the three templates and the colourways (only swap which palette colours play background / middle / type).
 5. `python3 make.py <issue>`, then **look at every poster** and fix what breaks the rules: headline on the margins
    (cap height top, descenders on the bottom margin, widest line edge to edge), no touching letters (set headlines with

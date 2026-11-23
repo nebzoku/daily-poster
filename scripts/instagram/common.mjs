@@ -18,7 +18,9 @@ export const STATE = join(ROOT, "instagram", "state.json");
 export const BACKFILL = join(ROOT, "instagram", "backfill.json");   // one-off catch-up queue
 export const SITE_URL = (process.env.SITE_URL || "https://dailyposter.design").replace(/\/$/, "");
 
-export const SLOTS = { brief: "08:00", posters: [["13:00", 1], ["19:00", 1], ["10:30", 3]] }; // [time, posters needed waiting]
+// [time, posters needed waiting]. 13:00 and 19:00 post whenever anything is waiting; the extra slots only fire while
+// there's a backlog, so the feed catches up at up to five a day and drops back to two once it's level.
+export const SLOTS = { brief: "08:00", posters: [["13:00", 1], ["19:00", 1], ["10:30", 3], ["16:00", 2], ["21:30", 3]] };
 export const WINDOW_MS = 3 * 3600e3;   // a slot can still be filled up to three hours late
 
 export const readJSON = async (p, fallback) => (existsSync(p) ? JSON.parse(await readFile(p, "utf8")) : fallback);

@@ -1,19 +1,31 @@
 [
   {
+    "issue": 50,
+    "date": "2026-11-21",
+    "title": "First Taste of a Hot Year",
+    "designer": "Nebzoku",
+    "image": "showcase/050-first-taste-of-a-hot-year.jpg"
+  },
+  {
+    "issue": 50,
+    "date": "2026-11-21",
+    "title": "The Summer Bottled Early",
+    "designer": "Nebzoku",
+    "image": "showcase/050-the-summer-bottled-early.jpg"
+  },
+  {
     "issue": 49,
     "date": "2026-11-20",
     "title": "A Whisper Through Brick",
-    "designer": "Claude",
-    "image": "showcase/049-a-whisper-through-brick.jpg",
-    "made": "designed by Claude, Anthropic's AI, from the brief, with art direction from Ben Harwood. Type set in Terminal Grotesque and Martian Mono; the brick wall is the brief's 3D render, printed through the Ink Machine."
+    "designer": "Nebzoku",
+    "image": "showcase/049-a-whisper-through-brick.jpg"
   },
   {
     "issue": 49,
     "date": "2026-11-20",
     "title": "The Message Nothing Blocks",
-    "designer": "Claude",
-    "image": "showcase/049-the-message-nothing-blocks.jpg",
-    "made": "designed by Claude, Anthropic's AI, from the brief, with art direction from Ben Harwood. Type set in Terminal Grotesque and Martian Mono; the brick wall is the brief's 3D render, printed through the Ink Machine."
+    "designer": "Nebzoku",
+    "image": "showcase/049-the-message-nothing-blocks.jpg"
   },
   {
     "issue": 48,

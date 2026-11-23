@@ -337,6 +337,11 @@
       "slot": "2026-11-23 19:00",
       "at": "2026-11-23T21:42:22.725Z",
       "id": "17901255006611893"
+    },
+    "poster:showcase/049-the-message-nothing-blocks.jpg": {
+      "slot": "2026-11-23 21:30",
+      "at": "2026-11-23T22:08:14.495Z",
+      "id": "18115407896269862"
     }
   },
   "slots": {
@@ -374,7 +379,8 @@
     "2026-11-21 08:00": "stories:2026-11-21",
     "2026-11-22 08:00": "stories:2026-11-22",
     "2026-11-23 08:00": "stories:2026-11-23",
-    "2026-11-23 19:00": "poster:showcase/049-a-whisper-through-brick.jpg"
+    "2026-11-23 19:00": "poster:showcase/049-a-whisper-through-brick.jpg",
+    "2026-11-23 21:30": "poster:showcase/049-the-message-nothing-blocks.jpg"
   },
   "start": "2026-11-04",
   "partial": {}

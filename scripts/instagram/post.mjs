@@ -132,7 +132,7 @@ async function publishReel(video, caption) {
   }
   throw new Error("Instagram was still processing the video after ten minutes");
 }
-// A poster with a zoom strip goes out as a carousel: the poster, then the close-up across three frames.
+// A poster with close-ups goes out as a carousel: the poster, then its four quarters.
 const posterJob = (p, brief) => ({
   ...(p.video ? { reel: url(posterReel(p)) } : { images: [posterImage(p), ...(posterZooms(p).every((f) => existsSync(f)) ? posterZooms(p) : [])].map(url) }),
   caption: posterCaption(p, brief), alt: `Poster: ${p.title}, by ${p.designer}, for Daily Poster No. ${pad(brief.issue)}.`,

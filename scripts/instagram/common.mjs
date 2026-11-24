@@ -47,9 +47,10 @@ export const posterImage = (x) => join(IG_DIR, `${stem(x.image)}.jpg`);
 export const posterReel = (x) => (x.video ? join(IG_DIR, `${stem(x.image)}.mp4`) : null);
 export const posterMedia = (x) => posterReel(x) || posterImage(x);
 // Extras made with Claude's posters (experiments/claude-posters/lab/extras.py), when they exist:
-//   <name>-zoom-2..4.jpg  a close-up strip across three frames, so the poster goes out as a four-frame carousel
+//   <name>-zoom-2..5.jpg  the poster in quarters (top left, top right, bottom left, bottom right), so the poster goes
+//                         out as a five-frame carousel
 //   <name>-making-of.mp4  a making-of reel; Ben posts it by hand from the app so he can add music
-export const posterZooms = (x) => [2, 3, 4].map((n) => join(IG_DIR, `${stem(x.image)}-zoom-${n}.jpg`));
+export const posterZooms = (x) => [2, 3, 4, 5].map((n) => join(IG_DIR, `${stem(x.image)}-zoom-${n}.jpg`));
 export const posterMakingOf = (x) => join(IG_DIR, `${stem(x.image)}-making-of.mp4`);
 // Each poster's Instagram picture remembers which version of the poster it was made from
 // (<name>.src next to it), so a poster replaced in the archive gets a fresh picture rather

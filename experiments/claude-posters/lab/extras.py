@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Instagram extras for the day's picks: python3 extras.py <issue> <pick> [<pick> ...]   e.g. python3 extras.py 053 1C 2B 3A
 Picks as Ben gives them (concept number + colourway letter), his favourite first. Run after the picks are in the archive.
-  - every pick: a zoom carousel (site/media/ig/<poster>-zoom-2..4.jpg; the poster's own picture is frame 1), so it
-    goes out as a four-frame carousel instead of a single picture
+  - every pick: close-ups (site/media/ig/<poster>-zoom-2..5.jpg, the poster in quarters; the poster's own picture is
+    frame 1), so it goes out as a five-frame carousel instead of a single picture
   - the first pick: the making-of reel (site/media/ig/<poster>-making-of.mp4), posted later that day as a Reel
 The poster's name comes from concepts/<issue>-names.json, matching site/showcase/<issue>-<name>.jpg.
 """
@@ -22,4 +22,4 @@ for n, pk in enumerate(picks):
         os.replace(f'deliver/reel/{issue}-{c}-{x}-making-of.mp4', f'{stem}-making-of.mp4')
     elif not os.path.exists(f'out/{issue}-{c}-{x}.png'): subprocess.run(['node', 'render.mjs', poster], check=True)
     subprocess.run(['python3', 'carousel.py', f'out/{issue}-{c}-{x}.png', stem], check=True)
-    print(f'{pk}: {stem}-zoom-2..4.jpg' + (', making-of reel' if n == 0 else ''))
+    print(f'{pk}: {stem}-zoom-2..5.jpg' + (', making-of reel' if n == 0 else ''))

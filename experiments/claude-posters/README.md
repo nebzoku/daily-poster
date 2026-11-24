@@ -49,3 +49,12 @@ Ben picks the ones to post; they go into the archive credited **Nebzokai** (Ben'
    the reel: he posts it by hand from the Instagram app so he can add music (the API can't); the auto-poster skips it.
 7. When Ben picks, copy the chosen PNGs to `site/showcase/<issue>-<slug>.jpg` (JPEG quality 90) and add entries to the
    top of `site/data/showcase.json` with `"designer": "Nebzokai"`, then commit and push to main.
+
+## Moving posters (prototype, 24 Nov 2026)
+A template can define `window.MOTION = async () => { ...setup...; return async (t) => canvas }` instead of
+`window.POSTER`: setup once, then one frame for each t from 0 to 1 (a loop). Render the frames with
+`FRAMES=48 K=1 node render.mjs posters/<name>.js` (K=1 keeps it to about 5 s a frame), then
+`python3 motion.py <name>` for the poster video and a 9:16 Instagram version in `deliver/motion/`. Reset `seed()` at
+the start of every frame so the paper and ink stay still and only what moves changes. Example:
+`concepts/053-c3.motion.tpl.js`.
+

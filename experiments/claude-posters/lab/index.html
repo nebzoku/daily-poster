@@ -30,8 +30,14 @@ document.write(`<style>${css}</style>`);
   try {
     const p = new URLSearchParams(location.search).get('p');
     await new Promise((res, rej) => { const s = document.createElement('script'); s.src = p + '?t=' + Date.now(); s.onload = res; s.onerror = rej; document.body.appendChild(s); });
-    const out = await window.POSTER();
-    window.__done = out.toDataURL('image/png');
+    if (window.MOTION) {   // a moving poster: set up once, then render frame by frame (render.mjs asks for each)
+      const frame = await window.MOTION();
+      window.__frame = async (t) => { try { return (await frame(t)).toDataURL('image/png'); } catch (e) { return 'ERR ' + ((e && e.stack) || e); } };
+      window.__done = 'motion';
+    } else {
+      const out = await window.POSTER();
+      window.__done = out.toDataURL('image/png');
+    }
   } catch (e) { window.__err = (e && e.stack) || String(e); }
 })();
 </script>

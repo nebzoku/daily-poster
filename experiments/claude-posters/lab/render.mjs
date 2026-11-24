@@ -27,6 +27,17 @@ try {
     const err = await page.evaluate('window.__err');
     if (err) { console.log(`[${name}] FAILED`, err); continue; }
     const data = await page.evaluate('window.__done');
+    if (data === 'motion') {   // FRAMES=n frames of a loop, t = i / n, to out/<name>-frames/
+      const n = +(process.env.FRAMES || 48), dir = path.join(LAB, 'out', `${name}-frames`);
+      fs.rmSync(dir, { recursive: true, force: true }); fs.mkdirSync(dir, { recursive: true });
+      for (let i = 0; i < n; i++) {
+        const d = await page.evaluate((t) => window.__frame(t), i / n);
+        if (d.startsWith('ERR')) { console.log(`[${name}] frame ${i} FAILED`, d); break; }
+        fs.writeFileSync(path.join(dir, `${String(i).padStart(4, '0')}.png`), Buffer.from(d.split(',')[1], 'base64'));
+        if (i % 12 === 0) console.log(`[${name}] frame ${i}/${n}`);
+      }
+      console.log(`[${name}] ok`); await page.close(); continue;
+    }
     fs.writeFileSync(path.join(LAB, 'out', `${name}.png`), Buffer.from(data.split(',')[1], 'base64'));
     if (process.env.CAP) {
       const snaps = await page.evaluate('window.SNAPS'), dir = path.join(LAB, 'out', `${name}-snaps`);

@@ -250,8 +250,9 @@ async function main() {
     }
   }
 
-  // A making-of reel, once a day, for a poster that has already gone out.
-  if (!job && due(SLOTS.makingOf) && !state.slots[`${today} ${SLOTS.makingOf}`]) {
+  // A making-of reel, once a day, for a poster that has already gone out. Off by default: Ben posts them by hand from
+  // the app so he can add music from Instagram's library, which the API can't do. AUTO_MAKING_OF=1 turns it back on.
+  if (!job && process.env.AUTO_MAKING_OF && due(SLOTS.makingOf) && !state.slots[`${today} ${SLOTS.makingOf}`]) {
     const showcase = await readJSON(join(DATA, "showcase.json"), []);
     const p = showcase.filter((x) => state.posted[`poster:${x.image}`] && !state.posted[`makingof:${x.image}`] && existsSync(posterMakingOf(x)))
       .sort((a, b) => a.date.localeCompare(b.date))[0];

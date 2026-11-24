@@ -4,7 +4,7 @@
 //   08:00         today's brief, as nine stories (no grid post)
 //   13:00, 19:00  posters made from earlier briefs, oldest first
 //   10:30         a third poster, only when three or more are waiting
-//   17:00         a making-of reel, for a poster that has one and has already gone out
+//   17:00         a making-of reel (only with AUTO_MAKING_OF=1; normally Ben posts them by hand, with music)
 // Every poster goes out from the day after its brief, so the feed runs one day behind the site.
 import { readFile, writeFile } from "node:fs/promises";
 import { existsSync, readFileSync } from "node:fs";
@@ -48,7 +48,7 @@ export const posterReel = (x) => (x.video ? join(IG_DIR, `${stem(x.image)}.mp4`)
 export const posterMedia = (x) => posterReel(x) || posterImage(x);
 // Extras made with Claude's posters (experiments/claude-posters/lab/extras.py), when they exist:
 //   <name>-zoom-2..4.jpg  a close-up strip across three frames, so the poster goes out as a four-frame carousel
-//   <name>-making-of.mp4  a making-of reel, posted on its own once the poster itself has gone out
+//   <name>-making-of.mp4  a making-of reel; Ben posts it by hand from the app so he can add music
 export const posterZooms = (x) => [2, 3, 4].map((n) => join(IG_DIR, `${stem(x.image)}-zoom-${n}.jpg`));
 export const posterMakingOf = (x) => join(IG_DIR, `${stem(x.image)}-making-of.mp4`);
 // Each poster's Instagram picture remembers which version of the poster it was made from

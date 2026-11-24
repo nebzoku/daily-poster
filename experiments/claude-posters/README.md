@@ -45,7 +45,7 @@ Ben picks the ones to post; they go into the archive credited **Nebzokai** (Ben'
 6b. Instagram extras, once Ben has picked and the picks are in the archive: `python3 lab/extras.py <issue> <picks, his
    favourite first>` (e.g. `1B 3A`). Every pick gets a zoom carousel (`site/media/ig/<name>-zoom-2..4.jpg`, a strip
    across the full width at the busiest height; `carousel.py` takes x y w to override it), so it goes out as a
-   four-frame carousel; his favourite also gets the making-of reel (`site/media/ig/<name>-making-of.mp4`), which
-   `scripts/instagram/post.mjs` posts at 17:00 once the poster itself has gone out (one a day).
+   four-frame carousel; his favourite also gets the making-of reel (`site/media/ig/<name>-making-of.mp4`). Send Ben
+   the reel: he posts it by hand from the Instagram app so he can add music (the API can't); the auto-poster skips it.
 7. When Ben picks, copy the chosen PNGs to `site/showcase/<issue>-<slug>.jpg` (JPEG quality 90) and add entries to the
    top of `site/data/showcase.json` with `"designer": "Nebzokai"`, then commit and push to main.

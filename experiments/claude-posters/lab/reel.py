@@ -82,8 +82,11 @@ guides = [('v', 16 + i * 131) for i in range(9)] + [('h', 16 + i * 187) for i in
 show_guides = {'on': False}
 bg = rgb('bg'); bgc = tuple(int(v) for v in bg[PH // 2, PW // 2])
 
+# 0. REVEAL=1: open on the finished poster for a beat, then cut to the empty artboard (testing whether showing the
+#    result first changes how many people watch to the end)
+if os.environ.get('REVEAL'): hold(0.75, 'end', rgb('final'))
 # 1. an empty artboard; the grid comes on
-hold(0.5, FIT, BLANK)
+hold(0.5, FIT, BLANK, cut=True)
 seg(0.01, lambda t: (show_guides.update(on=True), dict(poster=BLANK, cursor=tuple(cur), shape='arrow', over=[]))[1], FIT)
 move((-8, -8), FIT, BLANK)
 # 2. the background: a rectangle dragged out corner to corner
@@ -368,7 +371,7 @@ def frame(fi):
     return img
 
 os.makedirs('deliver/reel', exist_ok=True)
-outp = f'deliver/reel/{issue}-{concept}-{pick}-making-of.mp4'
+outp = f'deliver/reel/{issue}-{concept}-{pick}-making-of{"-reveal" if os.environ.get("REVEAL") else ""}.mp4'
 n = int(total * FPS)
 ff = subprocess.Popen(['ffmpeg', '-y', '-loglevel', 'error', '-f', 'rawvideo', '-pix_fmt', 'rgb24', '-s', f'{SW}x{SH}', '-r', str(FPS), '-i', '-',
                        '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '18', '-preset', 'medium', '-movflags', '+faststart', outp], stdin=subprocess.PIPE)

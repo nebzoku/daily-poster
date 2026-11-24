@@ -730,3 +730,96 @@ function stock(g, kind = 'uncoated', seedN = 1) {
   if (kind === 'photocopy') { grain(g, 0.12, 0.35, 'overlay'); const s = canvas(); s.g.fillStyle = 'rgba(0,0,0,0.06)'; for (let i = 0; i < 9; i++) s.g.fillRect(0, rand() * H, W, 1 + rand() * 3); draw(g, s, 'multiply'); }
   else grain(g, kind === 'smooth' ? 0.04 : 0.07, 0.5);
 }
+
+// ---------- round 14: print the whole sheet the way the headline is printed ----------
+// Ben, 24 Nov 2026: if the headline is inked, everything is inked (shapes, pixel blocks, box edges, rules, text), to
+// the same degree; if it's crisp, everything is crisp; a foil or varnish headline gets a crisp, clean print around it.
+// Tiny text (subline, furniture, labels) gets only a very light version so it stays legible.
+// printAll(g, C, o): call after everything except the headline is drawn, then printHead the headline, then stock().
+//   It splits the sheet into flat plates (every pixel snapped to the nearest colour in the colourway C), prints each
+//   plate through the Ink Machine with the process that matches the headline's finish, and lays them back down on
+//   the paper (the background colour) largest first. o.keep: masks left exactly as drawn (smooth images);
+//   o.boxes: rects whose contents are kept but whose edges are printed like everything else.
+const SHEET_PROCESS = {
+  letterpress: ['letterpress', 0.3, 0.5], 'inked-deboss': ['letterpress', 0.3, 0.5], riso: ['riso', 0.3, 0.5],
+  screen: ['screen', 0.3, 0.5], stamp: ['stamp', 0.3, 0.5], bleed: ['riso', 0.55, 0.75], copy: ['copy', 0.4, 0.5],
+  crisp: ['crisp'], 'machine-letterpress': ['letterpress', 0.4, 0.5], 'machine-riso': ['riso', 0.4, 0.5],
+  'machine-screen': ['screen', 0.4, 0.5], 'machine-stamp': ['stamp', 0.4, 0.5],
+};
+function sheetProcess(style) {
+  if (SHEET_PROCESS[style]) return SHEET_PROCESS[style];
+  if (/^(foil|varnish)/.test(style)) return ['crisp'];   // foiled or varnished headline: crisp, clean print around it
+  return null;                                           // purely graphic: leave it flat
+}
+// The light print for tiny text and crisp sheets: the shapes stay exactly as drawn, the ink just mottles a touch.
+function lightInk(m, amount = 0.14, seedN = 1) {
+  seed(seedN); const n = noise(0.8), o = canvas(m.width / K, m.height / K); draw(o.g, m);
+  const id = o.g.getImageData(0, 0, o.width, o.height), d = id.data;
+  for (let p = 0; p < n.length; p++) if (d[p * 4 + 3]) d[p * 4 + 3] *= 1 - amount * n[p];
+  o.g.putImageData(id, 0, 0); return o;
+}
+function alphaThr(c, t) {
+  const o = canvas(c.width / K, c.height / K); draw(o.g, c);
+  const id = o.g.getImageData(0, 0, o.width, o.height), d = id.data;
+  for (let i = 3; i < d.length; i += 4) d[i] = d[i] >= t * 255 ? 255 : 0;
+  o.g.putImageData(id, 0, 0); return o;
+}
+const blurred = (c, r) => { const o = canvas(c.width / K, c.height / K); o.g.filter = `blur(${r}px)`; draw(o.g, c); o.g.filter = 'none'; return o; };
+function printAll(g, C, o = {}) {
+  const proc = sheetProcess(o.style ?? C.finish); if (!proc) return;
+  const [preset, wear, spread] = proc, seedN = o.seed ?? 21;
+  const hexes = [...new Set(JSON.stringify(C).match(/#[0-9A-Fa-f]{6}/g).map((h) => h.toUpperCase()))];
+  const bg = (o.bg ?? C.bg ?? C.paper).toUpperCase(), cols = hexes.map((h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16)));
+  const src = g.canvas, w = src.width, h = src.height, sd = src.getContext('2d').getImageData(0, 0, w, h).data;
+  const keep = union(...(o.keep || []), ...(o.boxes || []).map(rectMask)), kd = keep.g.getImageData(0, 0, w, h).data;
+  // snap every pixel to its nearest colour → one plate per colour
+  const lab = new Uint8Array(w * h), count = new Array(hexes.length).fill(0);
+  for (let p = 0; p < w * h; p++) {
+    if (kd[p * 4 + 3] > 127) { lab[p] = 255; continue; }
+    let best = 0, bd = 1e9; const r = sd[p * 4], gg = sd[p * 4 + 1], b = sd[p * 4 + 2];
+    for (let k = 0; k < cols.length; k++) { const c = cols[k], dd = (r - c[0]) ** 2 + (gg - c[1]) ** 2 + (b - c[2]) ** 2; if (dd < bd) { bd = dd; best = k; } }
+    lab[p] = best; count[best]++;
+  }
+  const kept = canvas(); draw(kept.g, src); draw(kept.g, keep, 'destination-in');
+  const outC = canvas(); outC.g.fillStyle = bg; outC.g.fillRect(0, 0, W, H);
+  const plateMask = (k) => { const m = canvas(), id = m.g.createImageData(w, h), d = id.data; for (let p = 0; p < w * h; p++) if (lab[p] === k) { d[p * 4] = d[p * 4 + 1] = d[p * 4 + 2] = 255; d[p * 4 + 3] = 255; } m.g.putImageData(id, 0, 0); return m; };
+  const used = hexes.map((_, k) => k).filter((k) => count[k] > 0), masks = {};
+  used.forEach((k) => { masks[k] = plateMask(k); });
+  // thin parts of any colour (small text, hairlines, 1-2px rules, and the same cut out of a colour, like text knocked
+  // out to the paper) vanish under an opening: they keep exactly what was drawn and get only a light mottle
+  const thin = union(...used.map((k) => cut(masks[k], alphaThr(blurred(alphaThr(blurred(masks[k], 1.6), 0.8), 1.6), 0.2))));
+  const thinD = alphaThr(blurred(thin, 1.2), 0.05);
+  const order = used.filter((k) => hexes[k] !== bg).sort((a, b) => count[b] - count[a]);
+  order.forEach((k, n) => {
+    const m = cut(masks[k], thinD);
+    const plate = preset === 'crisp' ? lightInk(m, 0.12, seedN + n) : IM.print(m, preset, { wear, spread, seed: seedN + n });
+    draw(outC.g, tint(plate, hexes[k]));
+  });
+  // the thin parts as drawn, lightly inked
+  const thinOrig = canvas(); draw(thinOrig.g, src); draw(thinOrig.g, cut(thinD, keep), 'destination-in');
+  draw(outC.g, lightInk(thinOrig, 0.15, seedN + 77));
+  // smooth images stay as drawn; boxes get printed edges
+  draw(outC.g, cut(kept, union(...(o.boxes || []).map(rectMask))));
+  for (const [i, r] of (o.boxes || []).entries()) {
+    const edge = preset === 'crisp' ? rectMask(r) : IM.print(rectMask(r), preset, { wear, spread, seed: seedN + 80 + i });
+    const b = canvas(); draw(b.g, kept); draw(b.g, rectMask(r), 'destination-in'); draw(b.g, edge, 'destination-in'); draw(outC.g, b);
+  }
+  g.save(); g.setTransform(1, 0, 0, 1, 0, 0); g.globalCompositeOperation = 'source-over'; g.drawImage(outC, 0, 0); g.restore();
+}
+
+// ---------- round 14: words in the corners ----------
+// Ben, 24 Nov 2026: when a headline sits in blocks pinned to both margins and a line of two or more words falls a
+// little short of the measure (CATCH MERCURY / BEFORE SUNRISE), fake it: open the WORD spaces (never the letters)
+// so the line runs margin to margin and its outer words sit exactly in the corners. Returns line objects that drop
+// into pinBlocks / pinInterlock like setOptical's. maxShort: only lines within this fraction of the measure are
+// spread (a much shorter line keeps its own alignment).
+function spreadWords(lines, maxW, { maxShort = 0.12 } = {}) {
+  return lines.map((t) => {
+    const words = t.text.split(' ');
+    if (words.length < 2 || t.box.w >= maxW - 0.5 || t.box.w < maxW * (1 - maxShort)) return t;
+    const ws = words.map((wd) => setOptical(wd, t.o)), ink = ws.reduce((a, q) => a + q.box.w, 0), gap = (maxW - ink) / (words.length - 1);
+    const pad = t.o.size * 0.6, c = canvas(maxW + pad * 2, ws[0].c.height / K); let x = pad;
+    ws.forEach((q) => { c.g.drawImage(q.c, x - q.box.x, 0, q.c.width / K, q.c.height / K); x += q.box.w + gap; });
+    return { c, box: inkBox(c), base: ws[0].base, text: t.text, o: t.o };
+  });
+}

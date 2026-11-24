@@ -29,6 +29,20 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   from the brief and different layout systems and treatments. Colourways only swap which palette colours play
   background, middle (image marks) and type. Ben picks the one(s) to post the next day.
 
+### Round 14 feedback (24 Nov 2026): print the whole sheet, and words in the corners
+- **If the headline is printed, everything is printed, to the same degree.** Shapes, pixel blocks, bars, box edges,
+  rules and dots go through the same process as the headline: bleeding ink bleeds everywhere, a crisp print is crisp
+  everywhere, a photocopy is a photocopy all over. A foiled or varnished headline sits on a crisp, clean print (the
+  rest isn't foiled). A purely graphic headline can leave everything graphic. Within reason: tiny text (subline,
+  furniture, labels) and hairlines only get a very light version that keeps them legible, and smooth images keep
+  their tone but get printed edges. In the toolkit: draw everything except the headline, then
+  `printAll(g, C, { keep, boxes })`, then `printHead`, then `stock`. It splits the sheet into its flat colour plates
+  and prints each with the process that matches the headline's finish (`sheetProcess`).
+- **Words in the corners.** When a headline sits in blocks pinned to both margins and a line of two or more words
+  falls a little short of the measure (BEFORE SUNRISE under CATCH MERCURY), fake it: open the word spaces, never the
+  letters, so the line runs margin to margin and the outer words sit exactly in the corners (`spreadWords`). Four
+  words in four corners look sharp; one a few pixels off the corner looks like a mistake.
+
 ### Round 13 feedback (24 Nov 2026): track the small text
 - **Subline and page furniture are tracked -2%** (-20/1000 em), every poster, from No. 053 on. It's the default in
   `lib.js` (`TEXT.track`, used by `block`, `balance` and `small`), so don't pass `track: 0`; only the headline is

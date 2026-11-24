@@ -35,8 +35,6 @@ window.POSTER = async () => {
 
   // XOR: letters outside the telescope in the type colour, inside it knocked to the background colour
   const inScope = inter(head, scopeMask), outScope = cut(head, scopeMask);
-  printHead(g, outScope, C.type, C.finish, { bg: C.bg, seed: 55 });
-  printHead(g, inScope, C.knock, C.finish, { bg: C.scope, seed: 56 });
 
   // furniture, subline and the 88 days in the middle band, centred like the type
   const t = { font: T, size: 16, weight: 500, lead: 0.9, color: C.text };
@@ -52,6 +50,10 @@ window.POSTER = async () => {
   draw(g, tint(cut(sqM, scopeMask), C.squares)); draw(g, tint(inter(sqM, scopeMask), C.knock));   // XOR with the telescope too
   block(g, sub.lines, M, yB - sq - 16, { ...t, anchor: 'bottom' });
   block(g, ['(88) Days in', 'a Mercury year'], W - M, yB - sq - 16, { ...t, align: 'right', anchor: 'bottom' });
+  // the whole sheet photocopied like the headline (round 14), then the headline
+  printAll(g, C, { seed: 551 });
+  printHead(g, outScope, C.type, C.finish, { bg: C.bg, seed: 55 });
+  printHead(g, inScope, C.knock, C.finish, { bg: C.scope, seed: 56 });
   stock(g, C.stock, 55);
   return out;
 };

@@ -20,7 +20,8 @@ window.POSTER = async () => {
 
   // headline: two lines, one size, top block on the top margin, bottom block on the bottom margin
   const HS = inkSafe(['CATCH MERCURY', 'BEFORE SUNRISE'], { font: D, weight: 400, size: 300, gap: 30, minGap: 10, word: 0.12 }, W - 2 * M, { preset: 'letterpress', wear: 0.2, spread: 0.2 });
-  const head = canvas(); const R = pinBlocks(head, HS.lines, ['L', 'L'], 1, 0.1);
+  // both lines run margin to margin, so the four words sit in the four corners (round 14)
+  const head = canvas(); const R = pinBlocks(head, spreadWords(HS.lines, W - 2 * M), ['L', 'L'], 1, 0.1);
 
   // the horizon: a hard edge on a grid line; ground below it is the background
   const hz = M + ROW * 6;
@@ -55,15 +56,15 @@ window.POSTER = async () => {
   // ground
   g.fillStyle = C.bg; g.fillRect(0, hz, W, H - hz);
   block(g, ['(02) The sun, below the horizon'], M + COL * 5, hz - 10, { ...t, anchor: 'bottom', color: C.bg });
-  // the headline, foiled
-  printHead(g, head, C.type, C.finish, { bg: C.bg, seed: 53 });
-
   // subline and furniture in the dark sky under the top block, cap heights on a grid line
   const sub = balance('Mercury reached greatest western elongation on 20 November, giving a rare window to spot the smallest planet.', { ...t, minW: 220, maxW: COL * 2.8 });
   const gy = M + ROW * 2;
   block(g, sub.lines, M, gy, t);
   block(g, ['(Daily Poster)', '(No. 053)', '(Tuesday 24 November)', '(The Guardian)'], W - M, gy, { ...t, align: 'right' });
   pixels(g, M + COL * 4, gy, 8, ['#.#.#.', '.#.#.#'], C.mid);
+  // the sheet printed crisp around the foil (round 14), then the headline foiled, then the paper
+  printAll(g, C, { seed: 531 });
+  printHead(g, head, C.type, C.finish, { bg: C.bg, seed: 53 });
   stock(g, C.stock, 53);
   return out;
 };

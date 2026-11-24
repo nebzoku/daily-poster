@@ -53,6 +53,9 @@ window.POSTER = async () => {
   const sub = balance("Hugging the sun, the solar system's smallest world is usually lost in glare; this week it steps clear.", { ...t, minW: 200, maxW: Math.min(COL * 3, R[1].x - 32 - M) });
   block(g, sub.lines, M, bl, { ...t, anchor: 'bottom' });
 
+  // the whole sheet printed with the headline's letterpress (round 14); the clear box keeps its smooth image, its
+  // edges printed
+  printAll(g, C, { boxes: [box], seed: 541 });
   printHead(g, head, C.type, C.finish, { bg: C.bg, seed: 54 });
   stock(g, C.stock, 54);
   return out;

@@ -362,6 +362,11 @@
       "slot": "2026-11-24 16:00",
       "at": "2026-11-24T16:08:17.060Z",
       "id": "18581294740076516"
+    },
+    "poster:showcase/051-pit-stop-promoted-to-destination.jpg": {
+      "slot": "2026-11-24 19:00",
+      "at": "2026-11-24T19:08:29.000Z",
+      "id": "17915333172589795"
     }
   },
   "slots": {
@@ -400,7 +405,8 @@
     "2026-11-24 08:00": "stories:2026-11-24",
     "2026-11-24 10:30": "poster:showcase/050-first-taste-of-a-hot-year.jpg",
     "2026-11-24 13:00": "poster:showcase/050-the-summer-bottled-early.jpg",
-    "2026-11-24 16:00": "poster:showcase/051-neon-in-the-middle-of-nowhere.jpg"
+    "2026-11-24 16:00": "poster:showcase/051-neon-in-the-middle-of-nowhere.jpg",
+    "2026-11-24 19:00": "poster:showcase/051-pit-stop-promoted-to-destination.jpg"
   },
   "start": "2026-11-04",
   "partial": {}

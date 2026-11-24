@@ -78,8 +78,8 @@ window.POSTER = async () => {
     }
   }
   printAll(g, C, { seed: 551 });
-  printHead(g, outScope, C.type, C.finish, { bg: C.bg, seed: 55 });
-  printHead(g, inScope, C.knock, C.finish, { bg: C.scope, seed: 56 });
+  printHead(g, outScope, C.type, C.finish, { bg: C.bg, seed: 55, wear: HS.ink.wear, spread: HS.ink.spread });
+  printHead(g, inScope, C.knock, C.finish, { bg: C.scope, seed: 56, wear: HS.ink.wear, spread: HS.ink.spread });
   snap('printed', out);
   stock(g, C.stock, 55);
   snap('final', out);

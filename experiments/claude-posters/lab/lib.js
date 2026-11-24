@@ -683,7 +683,9 @@ function inkSafe(texts, o, maxW, ink = { preset: 'letterpress', wear: 0.35, spre
   // thin the ink (lower spread: the ink bleeds a fixed number of pixels, which matters more the smaller the type), and
   // only if that isn't enough, raise the minimum gap a little. Returns the lines AND the ink to print them with.
   const r = sameOptical8(texts, o, maxW);
-  const merged = (lines, k) => lines.some((t) => blobs(t.c) > blobs(IM.print(t.c, k.preset, { wear: k.wear, spread: k.spread, seed: 7 })));
+  // tested with a little more ink than will be used and on two seeds, so a different seed on the poster can't close a
+  // gap the test left open (053: the E and A of NEAR touched)
+  const merged = (lines, k) => lines.some((t) => [7, 55].some((sd) => blobs(t.c) > blobs(IM.print(t.c, k.preset, { wear: k.wear, spread: Math.min(0.9, k.spread * 1.25), seed: sd }))));
   let k = { ...ink };
   for (const sp of [ink.spread, 0.18, 0.12, 0.07, 0.03]) { k = { ...ink, spread: Math.min(ink.spread, sp) }; if (!merged(r.lines, k)) return { ...r, o, ink: k }; }
   let oo = { ...o };

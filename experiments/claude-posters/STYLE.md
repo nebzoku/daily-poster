@@ -123,6 +123,9 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   fine, Ben refines them each morning. Check `log.md` and avoid repeating yesterday's mixes.
 
 ### Round 10 feedback (24 Nov 2026)
+- Print the headline with the ink `inkSafe` returns (pass `HS.ink`'s wear and spread to `printHead`), never the
+  finish's default: on 053 the default ink closed the gap between the E and A of NEAR. inkSafe now tests with a little
+  extra ink on two seeds, so a gap that survives the test survives the print.
 - **Ink must not run letters together, and the fix must not make the type gappy.** Set headlines with `inkSafe()`
   and print them with the ink it returns. It prints each line, counts the letters, and if any have merged it first
   **thins the ink** (the bleed is a fixed number of pixels, so it matters more as type gets smaller), and only then

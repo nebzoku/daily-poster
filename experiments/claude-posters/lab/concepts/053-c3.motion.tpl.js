@@ -56,8 +56,8 @@ window.MOTION = async () => {
     block(g, sub.lines, M, yB - sq - 16, { ...t0, anchor: 'bottom' });
     block(g, ['(88) Days in', 'a Mercury year'], W - M, yB - sq - 16, { ...t0, align: 'right', anchor: 'bottom' });
     printAll(g, C, { seed: 551 });
-    printHead(g, outScope, C.type, C.finish, { bg: C.bg, seed: 55 });
-    printHead(g, inScope, C.knock, C.finish, { bg: C.scope, seed: 56 });
+    printHead(g, outScope, C.type, C.finish, { bg: C.bg, seed: 55, wear: HS.ink.wear, spread: HS.ink.spread });
+    printHead(g, inScope, C.knock, C.finish, { bg: C.scope, seed: 56, wear: HS.ink.wear, spread: HS.ink.spread });
     stock(g, C.stock, 55);
     return out;
   };

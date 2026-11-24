@@ -1,0 +1,293 @@
+{
+  "date": "2026-11-24",
+  "issue": 53,
+  "generatedAt": "2026-11-24T05:08:32.612Z",
+  "colour": {
+    "name": "Lime",
+    "yesterday": "Green",
+    "tomorrow": "Yellow"
+  },
+  "story": {
+    "title": "Starwatch: a rare chance to observe elusive Mercury",
+    "summary": "Mercury, the smallest planet and one of the hardest to see because it sits so close to the sun, reached its greatest western elongation on 20 November. That makes this week a rare good chance to spot it in the sky.",
+    "source": "The Guardian",
+    "url": "https://www.theguardian.com/science/2026/nov/23/starwatch-a-rare-chance-to-observe-elusive-mercury",
+    "published": "2026-11-23T06:00:49.000Z",
+    "theme": "astronomy and planet-watching"
+  },
+  "headlines": [
+    "The Smallest Planet Steps Out",
+    "Catch Mercury Before Sunrise",
+    "Chasing Light Near the Sun"
+  ],
+  "sublines": [
+    "Mercury reached greatest western elongation on 20 November, giving a rare window to spot the smallest planet.",
+    "Hugging the sun, the solar system's smallest world is usually lost in glare; this week it steps clear.",
+    "Stargazers get a good chance this week to see Mercury, one of the most elusive planets, low in the sky."
+  ],
+  "palette": {
+    "name": "Vivid",
+    "colours": [
+      "#B5E643",
+      "#DBECC1",
+      "#6F7467",
+      "#192400"
+    ]
+  },
+  "always": [
+    "#000000",
+    "#FFFFFF"
+  ],
+  "type": {
+    "id": "six-caps",
+    "display": "Six Caps",
+    "text": "Work Sans",
+    "reason": "Six Caps is a tall, slender condensed face that feels like a thin sliver of a planet hugging the horizon, perfect for something small and elusive set huge.",
+    "css": "https://fonts.googleapis.com/css2?family=Six+Caps&family=Work+Sans&display=swap",
+    "displayUrl": "https://fonts.google.com/specimen/Six+Caps",
+    "textUrl": "https://fonts.google.com/specimen/Work+Sans"
+  },
+  "grid": {
+    "format": "A-size",
+    "size": [
+      1080,
+      1528
+    ],
+    "columns": 8,
+    "rows": 8,
+    "margin": 16,
+    "gutter": 0,
+    "column": 131,
+    "row": 187,
+    "unit": "px"
+  },
+  "images": [
+    {
+      "id": "unsplash:pmUEwPKL5IE",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "photo of stars on sky",
+      "credit": "Grant McIver",
+      "creditUrl": "https://unsplash.com/@grantmciver?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/photo-of-stars-on-sky-pmUEwPKL5IE?utm_source=daily_poster&utm_medium=referral",
+      "alt": "photo of stars on sky",
+      "thumb": "https://images.unsplash.com/reserve/iFJ5qQylTD2POC68qBgh_Uluru.jpg?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8ZGF3biUyMGhvcml6b258ZW58MXx8fHwxNzk1NDk2OTEyfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/reserve/iFJ5qQylTD2POC68qBgh_Uluru.jpg?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8ZGF3biUyMGhvcml6b258ZW58MXx8fHwxNzk1NDk2OTEyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:358366",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "The Celestial Map- Northern Hemisphere, 1515",
+      "credit": "Albrecht Dürer",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/358366",
+      "page": "https://www.metmuseum.org/art/collection/search/358366",
+      "alt": "The Celestial Map- Northern Hemisphere",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP102235.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP102235.jpg",
+      "local": "media/2026-11-24/image-02-2160.jpg"
+    },
+    {
+      "id": "unsplash:pbuMoKhf07U",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "blue and orange sky during sunset",
+      "credit": "Luke Moss",
+      "creditUrl": "https://unsplash.com/@lmoss_photo?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/blue-and-orange-sky-during-sunset-pbuMoKhf07U?utm_source=daily_poster&utm_medium=referral",
+      "alt": "blue and orange sky during sunset",
+      "thumb": "https://images.unsplash.com/photo-1582641857491-7e9987c2e415?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8ZGF3biUyMGhvcml6b258ZW58MXx8fHwxNzk1NDk2OTEyfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1582641857491-7e9987c2e415?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8ZGF3biUyMGhvcml6b258ZW58MXx8fHwxNzk1NDk2OTEyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:941604",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Le telescope de la place de la Bastille, ca. 1900",
+      "credit": "Louis Vert",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/941604",
+      "page": "https://www.metmuseum.org/art/collection/search/941604",
+      "alt": "Le telescope de la place de la Bastille",
+      "thumb": "https://images.metmuseum.org/CRDImages/ph/web-large/DP-45617-020.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/ph/original/DP-45617-020.jpg",
+      "local": "media/2026-11-24/image-04-2160.jpg"
+    },
+    {
+      "id": "unsplash:j_3qB1KygQ4",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "landscape photography of sunset",
+      "credit": "Chris Galbraith",
+      "creditUrl": "https://unsplash.com/@heycrisso?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/landscape-photography-of-sunset-j_3qB1KygQ4?utm_source=daily_poster&utm_medium=referral",
+      "alt": "landscape photography of sunset",
+      "thumb": "https://images.unsplash.com/photo-1534568292380-49954e6859e8?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8ZGF3biUyMGhvcml6b258ZW58MXx8fHwxNzk1NDk2OTEyfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1534568292380-49954e6859e8?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8ZGF3biUyMGhvcml6b258ZW58MXx8fHwxNzk1NDk2OTEyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:283255",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "A Section of the Constellation Cygnus (August 13, 1885), 1885",
+      "credit": "Paul Henry",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/283255",
+      "page": "https://www.metmuseum.org/art/collection/search/283255",
+      "alt": "A Section of the Constellation Cygnus (August 13, 1885)",
+      "thumb": "https://images.metmuseum.org/CRDImages/ph/web-large/DP156450.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/ph/original/DP156450.jpg",
+      "local": "media/2026-11-24/image-06-2160.jpg"
+    },
+    {
+      "id": "unsplash:7lTscgXZ2rs",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "Full moon visible over a dark, grassy hill",
+      "credit": "Brett Jordan",
+      "creditUrl": "https://unsplash.com/@brett_jordan?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/full-moon-visible-over-a-dark-grassy-hill-7lTscgXZ2rs?utm_source=daily_poster&utm_medium=referral",
+      "alt": "Full moon visible over a dark, grassy hill",
+      "thumb": "https://images.unsplash.com/photo-1762161315326-b7b7b0478069?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8Z3JlZW4lMjB0d2lsaWdodCUyMHNreXxlbnwxfHx8fDE3OTU0OTY5MTN8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1762161315326-b7b7b0478069?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8Z3JlZW4lMjB0d2lsaWdodCUyMHNreXxlbnwxfHx8fDE3OTU0OTY5MTN8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:202011",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Sundial, probably ca. 1860–90",
+      "credit": "Unknown artist",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/202011",
+      "page": "https://www.metmuseum.org/art/collection/search/202011",
+      "alt": "Sundial",
+      "thumb": "https://images.metmuseum.org/CRDImages/es/web-large/164177.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/es/original/164177.jpg",
+      "local": "media/2026-11-24/image-08-2160.jpg"
+    },
+    {
+      "id": "unsplash:ZyQVK4tG4tY",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "body of water during sunset",
+      "credit": "Laib Khaled",
+      "creditUrl": "https://unsplash.com/@kh_led7?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/body-of-water-during-sunset-ZyQVK4tG4tY?utm_source=daily_poster&utm_medium=referral",
+      "alt": "body of water during sunset",
+      "thumb": "https://images.unsplash.com/photo-1501362343565-93d7318347cf?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8ZGF3biUyMGhvcml6b258ZW58MXx8fHwxNzk1NDk2OTEyfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1501362343565-93d7318347cf?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8ZGF3biUyMGhvcml6b258ZW58MXx8fHwxNzk1NDk2OTEyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:UaBK3fkTZ-Q",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "blue sea under blue sky during daytime",
+      "credit": "Hans",
+      "creditUrl": "https://unsplash.com/@hansphoto?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/blue-sea-under-blue-sky-during-daytime-UaBK3fkTZ-Q?utm_source=daily_poster&utm_medium=referral",
+      "alt": "blue sea under blue sky during daytime",
+      "thumb": "https://images.unsplash.com/photo-1613284877439-7b8f58349a71?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8ZGF3biUyMGhvcml6b258ZW58MXx8fHwxNzk1NDk2OTEyfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1613284877439-7b8f58349a71?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8ZGF3biUyMGhvcml6b258ZW58MXx8fHwxNzk1NDk2OTEyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    }
+  ],
+  "textures": [
+    {
+      "id": "unsplash:k4Lt0CjUnb0",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "white textured paper or plaster surface",
+      "credit": "João Vítor Duarte",
+      "creditUrl": "https://unsplash.com/@joaovtrduarte?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-k4Lt0CjUnb0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "white textured paper or plaster surface",
+      "thumb": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTQ5NjkxM3ww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTQ5NjkxM3ww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:TnQE5X48FMA",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "A fine-grained silver metallic texture with a subtle shimmering surface",
+      "credit": "Katie Harp",
+      "creditUrl": "https://unsplash.com/@kharp?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/silver-metallic-texture-with-shimmer-TnQE5X48FMA?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A fine-grained silver metallic texture with a subtle shimmering surface",
+      "thumb": "https://images.unsplash.com/photo-1656055448548-e26753307fc7?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8YnJ1c2hlZCUyMG1ldGFsJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTU0OTY5MTN8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1656055448548-e26753307fc7?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8YnJ1c2hlZCUyMG1ldGFsJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTU0OTY5MTN8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:kG-ZwDuQ8ME",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "weathered teal concrete wall texture",
+      "credit": "Annie Spratt",
+      "creditUrl": "https://unsplash.com/@anniespratt?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/weathered-teal-concrete-wall-texture-kG-ZwDuQ8ME?utm_source=daily_poster&utm_medium=referral",
+      "alt": "weathered teal concrete wall texture",
+      "thumb": "https://images.unsplash.com/photo-1578922427288-a47338083a57?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8YnJ1c2hlZCUyMG1ldGFsJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTU0OTY5MTN8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1578922427288-a47338083a57?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8YnJ1c2hlZCUyMG1ldGFsJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTU0OTY5MTN8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:vS3idIiYxX0",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "white textured paper or plaster surface",
+      "credit": "Olga Thelavart",
+      "creditUrl": "https://unsplash.com/@olga_o?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-vS3idIiYxX0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "white textured paper or plaster surface",
+      "thumb": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTQ5NjkxM3ww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTQ5NjkxM3ww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    }
+  ],
+  "objects": [
+    {
+      "name": "telescope",
+      "material": "brushed brass",
+      "image": "media/2026-11-24/object-1.png",
+      "thumb": "media/2026-11-24/object-1-thumb.png",
+      "model": {
+        "title": "Gregorian reflecting telescope (1700s)",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-385fa9f09a064c8b8d81e5085e2d76f4",
+        "licence": "CC0 Public Domain",
+        "creator": "Virtual Museums of Małopolska",
+        "creatorUrl": "https://sketchfab.com/WirtualneMuzeaMalopolski"
+      },
+      "texture": null
+    },
+    {
+      "name": "cratered rock",
+      "material": "dark weathered basalt",
+      "image": "media/2026-11-24/object-2.png",
+      "thumb": "media/2026-11-24/object-2-thumb.png",
+      "model": {
+        "title": "Meteorite",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-0a503e5bec784cbc9082e2f6b2d9f701",
+        "licence": "CC Attribution",
+        "creator": "Hailphilly",
+        "creatorUrl": "https://sketchfab.com/hailphilly"
+      },
+      "texture": {
+        "title": "Broken Wall",
+        "url": "https://polyhaven.com/a/broken_wall"
+      }
+    },
+    {
+      "name": "sundial",
+      "material": "oxidised bronze",
+      "image": "media/2026-11-24/object-3.png",
+      "thumb": "media/2026-11-24/object-3-thumb.png",
+      "model": {
+        "title": "CT4012 - Clock: Sundial",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-629cd7e55be145cf8fad5735af63ea33",
+        "licence": "CC Attribution",
+        "creator": "J. Pennell",
+        "creatorUrl": "https://sketchfab.com/jaminthecloud"
+      },
+      "texture": {
+        "title": "Rusty Metal 05",
+        "url": "https://polyhaven.com/a/rusty_metal_05"
+      }
+    }
+  ]
+}

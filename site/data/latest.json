@@ -1,37 +1,37 @@
 {
-  "date": "2026-11-23",
-  "issue": 52,
-  "generatedAt": "2026-11-23T05:08:20.199Z",
+  "date": "2026-11-24",
+  "issue": 53,
+  "generatedAt": "2026-11-24T05:08:32.612Z",
   "colour": {
-    "name": "Green",
-    "yesterday": "Jade",
-    "tomorrow": "Lime"
+    "name": "Lime",
+    "yesterday": "Green",
+    "tomorrow": "Yellow"
   },
   "story": {
-    "title": "Exquisitely decorated home of Victorian workman David Parr wins blue plaque",
-    "summary": "David Parr was a Victorian labourer who spent his days applying William Morris's patterns to grand houses and Cambridge colleges. At night he covered his own Cambridge terrace house with designs of his own, and the home has now been awarded a blue plaque.",
+    "title": "Starwatch: a rare chance to observe elusive Mercury",
+    "summary": "Mercury, the smallest planet and one of the hardest to see because it sits so close to the sun, reached its greatest western elongation on 20 November. That makes this week a rare good chance to spot it in the sky.",
     "source": "The Guardian",
-    "url": "https://www.theguardian.com/culture/2026/nov/22/exquisitely-decorated-home-of-victorian-workman-david-parr-wins-blue-plaque-cambridge",
-    "published": "2026-11-22T10:59:28.000Z",
-    "theme": "Victorian design and craft"
+    "url": "https://www.theguardian.com/science/2026/nov/23/starwatch-a-rare-chance-to-observe-elusive-mercury",
+    "published": "2026-11-23T06:00:49.000Z",
+    "theme": "astronomy and planet-watching"
   },
   "headlines": [
-    "Every Wall Became a Garden",
-    "Morris by Day, Himself by Night",
-    "A Workman's House of Wonder"
+    "The Smallest Planet Steps Out",
+    "Catch Mercury Before Sunrise",
+    "Chasing Light Near the Sun"
   ],
   "sublines": [
-    "Victorian decorator David Parr papered mansions by day, then filled his own Cambridge terrace with patterns he designed.",
-    "His modest house, covered in his own designs, has earned a blue plaque for its remarkable interiors.",
-    "Paid to hang William Morris's patterns in grand rooms, a working man made a private palace at home."
+    "Mercury reached greatest western elongation on 20 November, giving a rare window to spot the smallest planet.",
+    "Hugging the sun, the solar system's smallest world is usually lost in glare; this week it steps clear.",
+    "Stargazers get a good chance this week to see Mercury, one of the most elusive planets, low in the sky."
   ],
   "palette": {
     "name": "Vivid",
     "colours": [
-      "#4BF761",
-      "#CDF0CD",
-      "#6B756A",
-      "#032707"
+      "#B5E643",
+      "#DBECC1",
+      "#6F7467",
+      "#192400"
     ]
   },
   "always": [
@@ -39,13 +39,13 @@
     "#FFFFFF"
   ],
   "type": {
-    "id": "fraunces",
-    "display": "Fraunces",
-    "text": "Manrope",
-    "reason": "Fraunces has the soft, wonky, ornamental warmth of Arts and Crafts design, which suits a workman's handmade wall patterns.",
-    "css": "https://fonts.googleapis.com/css2?family=Fraunces&family=Manrope&display=swap",
-    "displayUrl": "https://fonts.google.com/specimen/Fraunces",
-    "textUrl": "https://fonts.google.com/specimen/Manrope"
+    "id": "six-caps",
+    "display": "Six Caps",
+    "text": "Work Sans",
+    "reason": "Six Caps is a tall, slender condensed face that feels like a thin sliver of a planet hugging the horizon, perfect for something small and elusive set huge.",
+    "css": "https://fonts.googleapis.com/css2?family=Six+Caps&family=Work+Sans&display=swap",
+    "displayUrl": "https://fonts.google.com/specimen/Six+Caps",
+    "textUrl": "https://fonts.google.com/specimen/Work+Sans"
   },
   "grid": {
     "format": "A-size",
@@ -63,129 +63,128 @@
   },
   "images": [
     {
-      "id": "unsplash:9KQ7V0CESoM",
+      "id": "unsplash:pmUEwPKL5IE",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "brown and white building during day",
-      "credit": "Dele Oke",
-      "creditUrl": "https://unsplash.com/@dele_oke?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/brown-and-white-building-during-day-9KQ7V0CESoM?utm_source=daily_poster&utm_medium=referral",
-      "alt": "brown and white building during day",
-      "thumb": "https://images.unsplash.com/photo-1578782785154-30ee3b8a3f95?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8dGVycmFjZSUyMGhvdXNlfGVufDF8fHx8MTc5NTQxMDUwMHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1578782785154-30ee3b8a3f95?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8dGVycmFjZSUyMGhvdXNlfGVufDF8fHx8MTc5NTQxMDUwMHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "photo of stars on sky",
+      "credit": "Grant McIver",
+      "creditUrl": "https://unsplash.com/@grantmciver?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/photo-of-stars-on-sky-pmUEwPKL5IE?utm_source=daily_poster&utm_medium=referral",
+      "alt": "photo of stars on sky",
+      "thumb": "https://images.unsplash.com/reserve/iFJ5qQylTD2POC68qBgh_Uluru.jpg?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8ZGF3biUyMGhvcml6b258ZW58MXx8fHwxNzk1NDk2OTEyfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/reserve/iFJ5qQylTD2POC68qBgh_Uluru.jpg?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8ZGF3biUyMGhvcml6b258ZW58MXx8fHwxNzk1NDk2OTEyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:fFUBw5bF38s",
-      "source": "Unsplash",
-      "licence": "Unsplash License",
-      "title": "brown concrete building during daytime",
-      "credit": "Greg Willson",
-      "creditUrl": "https://unsplash.com/@gregwillson?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/brown-concrete-building-during-daytime-fFUBw5bF38s?utm_source=daily_poster&utm_medium=referral",
-      "alt": "brown concrete building during daytime",
-      "thumb": "https://images.unsplash.com/photo-1568293207619-df44ae062a9c?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8dGVycmFjZSUyMGhvdXNlfGVufDF8fHx8MTc5NTQxMDUwMHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1568293207619-df44ae062a9c?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8dGVycmFjZSUyMGhvdXNlfGVufDF8fHx8MTc5NTQxMDUwMHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
-    },
-    {
-      "id": "met:208146",
+      "id": "met:358366",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Wallpaper, ca. 1830",
+      "title": "The Celestial Map- Northern Hemisphere, 1515",
+      "credit": "Albrecht Dürer",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/358366",
+      "page": "https://www.metmuseum.org/art/collection/search/358366",
+      "alt": "The Celestial Map- Northern Hemisphere",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP102235.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP102235.jpg",
+      "local": "media/2026-11-24/image-02-2160.jpg"
+    },
+    {
+      "id": "unsplash:pbuMoKhf07U",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "blue and orange sky during sunset",
+      "credit": "Luke Moss",
+      "creditUrl": "https://unsplash.com/@lmoss_photo?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/blue-and-orange-sky-during-sunset-pbuMoKhf07U?utm_source=daily_poster&utm_medium=referral",
+      "alt": "blue and orange sky during sunset",
+      "thumb": "https://images.unsplash.com/photo-1582641857491-7e9987c2e415?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8ZGF3biUyMGhvcml6b258ZW58MXx8fHwxNzk1NDk2OTEyfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1582641857491-7e9987c2e415?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8ZGF3biUyMGhvcml6b258ZW58MXx8fHwxNzk1NDk2OTEyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:941604",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Le telescope de la place de la Bastille, ca. 1900",
+      "credit": "Louis Vert",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/941604",
+      "page": "https://www.metmuseum.org/art/collection/search/941604",
+      "alt": "Le telescope de la place de la Bastille",
+      "thumb": "https://images.metmuseum.org/CRDImages/ph/web-large/DP-45617-020.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/ph/original/DP-45617-020.jpg",
+      "local": "media/2026-11-24/image-04-2160.jpg"
+    },
+    {
+      "id": "unsplash:j_3qB1KygQ4",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "landscape photography of sunset",
+      "credit": "Chris Galbraith",
+      "creditUrl": "https://unsplash.com/@heycrisso?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/landscape-photography-of-sunset-j_3qB1KygQ4?utm_source=daily_poster&utm_medium=referral",
+      "alt": "landscape photography of sunset",
+      "thumb": "https://images.unsplash.com/photo-1534568292380-49954e6859e8?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8ZGF3biUyMGhvcml6b258ZW58MXx8fHwxNzk1NDk2OTEyfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1534568292380-49954e6859e8?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8ZGF3biUyMGhvcml6b258ZW58MXx8fHwxNzk1NDk2OTEyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:283255",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "A Section of the Constellation Cygnus (August 13, 1885), 1885",
+      "credit": "Paul Henry",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/283255",
+      "page": "https://www.metmuseum.org/art/collection/search/283255",
+      "alt": "A Section of the Constellation Cygnus (August 13, 1885)",
+      "thumb": "https://images.metmuseum.org/CRDImages/ph/web-large/DP156450.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/ph/original/DP156450.jpg",
+      "local": "media/2026-11-24/image-06-2160.jpg"
+    },
+    {
+      "id": "unsplash:7lTscgXZ2rs",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "Full moon visible over a dark, grassy hill",
+      "credit": "Brett Jordan",
+      "creditUrl": "https://unsplash.com/@brett_jordan?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/full-moon-visible-over-a-dark-grassy-hill-7lTscgXZ2rs?utm_source=daily_poster&utm_medium=referral",
+      "alt": "Full moon visible over a dark, grassy hill",
+      "thumb": "https://images.unsplash.com/photo-1762161315326-b7b7b0478069?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8Z3JlZW4lMjB0d2lsaWdodCUyMHNreXxlbnwxfHx8fDE3OTU0OTY5MTN8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1762161315326-b7b7b0478069?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8Z3JlZW4lMjB0d2lsaWdodCUyMHNreXxlbnwxfHx8fDE3OTU0OTY5MTN8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:202011",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Sundial, probably ca. 1860–90",
       "credit": "Unknown artist",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/208146",
-      "page": "https://www.metmuseum.org/art/collection/search/208146",
-      "alt": "Wallpaper",
-      "thumb": "https://images.metmuseum.org/CRDImages/es/web-large/SF1993_298.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/es/original/SF1993_298.jpg",
-      "local": "media/2026-11-23/image-03-2160.jpg"
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/202011",
+      "page": "https://www.metmuseum.org/art/collection/search/202011",
+      "alt": "Sundial",
+      "thumb": "https://images.metmuseum.org/CRDImages/es/web-large/164177.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/es/original/164177.jpg",
+      "local": "media/2026-11-24/image-08-2160.jpg"
     },
     {
-      "id": "met:384421",
-      "source": "The Met",
-      "licence": "CC0",
-      "title": "Ornament design, 18th century",
-      "credit": "Anonymous, French, 18th century",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/384421",
-      "page": "https://www.metmuseum.org/art/collection/search/384421",
-      "alt": "Ornament design",
-      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP808624.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP808624.jpg",
-      "local": "media/2026-11-23/image-04-2160.jpg"
-    },
-    {
-      "id": "unsplash:OOE4xAnBhKo",
+      "id": "unsplash:ZyQVK4tG4tY",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "photo of green fern plant",
-      "credit": "Teemu Paananen",
-      "creditUrl": "https://unsplash.com/@xteemu?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/photo-of-green-fern-plant-OOE4xAnBhKo?utm_source=daily_poster&utm_medium=referral",
-      "alt": "photo of green fern plant",
-      "thumb": "https://images.unsplash.com/photo-1497250681960-ef046c08a56e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Z3JlZW4lMjB3YWxscGFwZXJ8ZW58MXx8fHwxNzk1NDEwNTAwfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1497250681960-ef046c08a56e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Z3JlZW4lMjB3YWxscGFwZXJ8ZW58MXx8fHwxNzk1NDEwNTAwfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "body of water during sunset",
+      "credit": "Laib Khaled",
+      "creditUrl": "https://unsplash.com/@kh_led7?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/body-of-water-during-sunset-ZyQVK4tG4tY?utm_source=daily_poster&utm_medium=referral",
+      "alt": "body of water during sunset",
+      "thumb": "https://images.unsplash.com/photo-1501362343565-93d7318347cf?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8ZGF3biUyMGhvcml6b258ZW58MXx8fHwxNzk1NDk2OTEyfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1501362343565-93d7318347cf?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8ZGF3biUyMGhvcml6b258ZW58MXx8fHwxNzk1NDk2OTEyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:nrSzRUWqmoI",
+      "id": "unsplash:UaBK3fkTZ-Q",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "assorted-color concrete houses under white clouds during daytime",
-      "credit": "Toa Heftiba",
-      "creditUrl": "https://unsplash.com/@heftiba?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/assorted-color-concrete-houses-under-white-clouds-during-daytime-nrSzRUWqmoI?utm_source=daily_poster&utm_medium=referral",
-      "alt": "assorted-color concrete houses under white clouds during daytime",
-      "thumb": "https://images.unsplash.com/photo-1464082354059-27db6ce50048?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8dGVycmFjZSUyMGhvdXNlfGVufDF8fHx8MTc5NTQxMDUwMHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1464082354059-27db6ce50048?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8dGVycmFjZSUyMGhvdXNlfGVufDF8fHx8MTc5NTQxMDUwMHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
-    },
-    {
-      "id": "met:383958",
-      "source": "The Met",
-      "licence": "CC0",
-      "title": "Ornament Design, 17th century",
-      "credit": "Anonymous, German, 17th century",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/383958",
-      "page": "https://www.metmuseum.org/art/collection/search/383958",
-      "alt": "Ornament Design",
-      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP804528.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP804528.jpg",
-      "local": "media/2026-11-23/image-07-2160.jpg"
-    },
-    {
-      "id": "met:69194",
-      "source": "The Met",
-      "licence": "CC0",
-      "title": "Textile with floral pattern, 19th century",
-      "credit": "China",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/69194",
-      "page": "https://www.metmuseum.org/art/collection/search/69194",
-      "alt": "Textile with floral pattern",
-      "thumb": "https://images.metmuseum.org/CRDImages/as/web-large/LC-41_123_6_front.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/as/original/LC-41_123_6_front.jpg",
-      "local": "media/2026-11-23/image-08-2160.jpg"
-    },
-    {
-      "id": "met:392422",
-      "source": "The Met",
-      "licence": "CC0",
-      "title": "Ornament Design, 19th century",
-      "credit": "Anonymous, French, 19th century",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/392422",
-      "page": "https://www.metmuseum.org/art/collection/search/392422",
-      "alt": "Ornament Design",
-      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP812981.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP812981.jpg",
-      "local": "media/2026-11-23/image-09-2160.jpg"
-    },
-    {
-      "id": "unsplash:pH058mfJoL0",
-      "source": "Unsplash",
-      "licence": "Unsplash License",
-      "title": "a white house with blue doors and windows",
-      "credit": "Marie M",
-      "creditUrl": "https://unsplash.com/@marie190?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/a-white-house-with-blue-doors-and-windows-pH058mfJoL0?utm_source=daily_poster&utm_medium=referral",
-      "alt": "a white house with blue doors and windows",
-      "thumb": "https://images.unsplash.com/photo-1654707859900-879d22eeb52f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8dGVycmFjZSUyMGhvdXNlfGVufDF8fHx8MTc5NTQxMDUwMHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1654707859900-879d22eeb52f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8dGVycmFjZSUyMGhvdXNlfGVufDF8fHx8MTc5NTQxMDUwMHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "blue sea under blue sky during daytime",
+      "credit": "Hans",
+      "creditUrl": "https://unsplash.com/@hansphoto?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/blue-sea-under-blue-sky-during-daytime-UaBK3fkTZ-Q?utm_source=daily_poster&utm_medium=referral",
+      "alt": "blue sea under blue sky during daytime",
+      "thumb": "https://images.unsplash.com/photo-1613284877439-7b8f58349a71?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8ZGF3biUyMGhvcml6b258ZW58MXx8fHwxNzk1NDk2OTEyfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1613284877439-7b8f58349a71?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8ZGF3biUyMGhvcml6b258ZW58MXx8fHwxNzk1NDk2OTEyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     }
   ],
   "textures": [
@@ -198,20 +197,20 @@
       "creditUrl": "https://unsplash.com/@joaovtrduarte?utm_source=daily_poster&utm_medium=referral",
       "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-k4Lt0CjUnb0?utm_source=daily_poster&utm_medium=referral",
       "alt": "white textured paper or plaster surface",
-      "thumb": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTQxMDUwMHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTQxMDUwMHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "thumb": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTQ5NjkxM3ww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTQ5NjkxM3ww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:WzFBUXQChFU",
+      "id": "unsplash:TnQE5X48FMA",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "A grey wall with a repeating vintage damask pattern and textured surface",
-      "credit": "KHALIL MUSA",
-      "creditUrl": "https://unsplash.com/@mkphotography4?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/grey-wall-with-vintage-damask-pattern-WzFBUXQChFU?utm_source=daily_poster&utm_medium=referral",
-      "alt": "A grey wall with a repeating vintage damask pattern and textured surface",
-      "thumb": "https://images.unsplash.com/photo-1599503815079-dfb7085fc667?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8d2FsbHBhcGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTU0MTA1MDB8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1599503815079-dfb7085fc667?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8d2FsbHBhcGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTU0MTA1MDB8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "A fine-grained silver metallic texture with a subtle shimmering surface",
+      "credit": "Katie Harp",
+      "creditUrl": "https://unsplash.com/@kharp?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/silver-metallic-texture-with-shimmer-TnQE5X48FMA?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A fine-grained silver metallic texture with a subtle shimmering surface",
+      "thumb": "https://images.unsplash.com/photo-1656055448548-e26753307fc7?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8YnJ1c2hlZCUyMG1ldGFsJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTU0OTY5MTN8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1656055448548-e26753307fc7?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8YnJ1c2hlZCUyMG1ldGFsJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTU0OTY5MTN8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
       "id": "unsplash:kG-ZwDuQ8ME",
@@ -222,70 +221,73 @@
       "creditUrl": "https://unsplash.com/@anniespratt?utm_source=daily_poster&utm_medium=referral",
       "page": "https://unsplash.com/photos/weathered-teal-concrete-wall-texture-kG-ZwDuQ8ME?utm_source=daily_poster&utm_medium=referral",
       "alt": "weathered teal concrete wall texture",
-      "thumb": "https://images.unsplash.com/photo-1578922427288-a47338083a57?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8d2FsbHBhcGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTU0MTA1MDB8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1578922427288-a47338083a57?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8d2FsbHBhcGVyJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTU0MTA1MDB8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "thumb": "https://images.unsplash.com/photo-1578922427288-a47338083a57?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8YnJ1c2hlZCUyMG1ldGFsJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTU0OTY5MTN8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1578922427288-a47338083a57?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8YnJ1c2hlZCUyMG1ldGFsJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTU0OTY5MTN8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:UjupleczBOY",
+      "id": "unsplash:vS3idIiYxX0",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "a black and white photo of a marble surface",
-      "credit": "Scott Webb",
-      "creditUrl": "https://unsplash.com/@scottwebb?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/a-black-and-white-photo-of-a-marble-surface-UjupleczBOY?utm_source=daily_poster&utm_medium=referral",
-      "alt": "a black and white photo of a marble surface",
-      "thumb": "https://images.unsplash.com/photo-1566305977571-5666677c6e98?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGxhc3RlciUyMHRleHR1cmV8ZW58MXx8fHwxNzk1NDEwNTAwfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1566305977571-5666677c6e98?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGxhc3RlciUyMHRleHR1cmV8ZW58MXx8fHwxNzk1NDEwNTAwfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "white textured paper or plaster surface",
+      "credit": "Olga Thelavart",
+      "creditUrl": "https://unsplash.com/@olga_o?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-vS3idIiYxX0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "white textured paper or plaster surface",
+      "thumb": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTQ5NjkxM3ww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTQ5NjkxM3ww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     }
   ],
   "objects": [
     {
-      "name": "paintbrush",
-      "material": "polished brass and steel",
-      "image": "media/2026-11-23/object-1.png",
-      "thumb": "media/2026-11-23/object-1-thumb.png",
+      "name": "telescope",
+      "material": "brushed brass",
+      "image": "media/2026-11-24/object-1.png",
+      "thumb": "media/2026-11-24/object-1-thumb.png",
       "model": {
-        "title": "Paintbrush",
+        "title": "Gregorian reflecting telescope (1700s)",
         "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-52cce098d4c94b04990c2e245eb6b4c1",
-        "licence": "CC Attribution",
-        "creator": "SolidXperts",
-        "creatorUrl": "https://sketchfab.com/solidxperts"
-      },
-      "texture": null
-    },
-    {
-      "name": "blue plaque",
-      "material": "glazed blue ceramic",
-      "image": "media/2026-11-23/object-2.png",
-      "thumb": "media/2026-11-23/object-2-thumb.png",
-      "model": {
-        "title": "Plaque of the Rudolf Haberfeld Banking House",
-        "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-e30326f4d8e94efda54da168d62ed489",
+        "url": "https://sketchfab.com/3d-models/none-385fa9f09a064c8b8d81e5085e2d76f4",
         "licence": "CC0 Public Domain",
         "creator": "Virtual Museums of Małopolska",
         "creatorUrl": "https://sketchfab.com/WirtualneMuzeaMalopolski"
       },
+      "texture": null
+    },
+    {
+      "name": "cratered rock",
+      "material": "dark weathered basalt",
+      "image": "media/2026-11-24/object-2.png",
+      "thumb": "media/2026-11-24/object-2-thumb.png",
+      "model": {
+        "title": "Meteorite",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-0a503e5bec784cbc9082e2f6b2d9f701",
+        "licence": "CC Attribution",
+        "creator": "Hailphilly",
+        "creatorUrl": "https://sketchfab.com/hailphilly"
+      },
       "texture": {
-        "title": "Blue Metal Plate",
-        "url": "https://polyhaven.com/a/blue_metal_plate"
+        "title": "Broken Wall",
+        "url": "https://polyhaven.com/a/broken_wall"
       }
     },
     {
-      "name": "door key",
-      "material": "aged wrought iron",
-      "image": "media/2026-11-23/object-3.png",
-      "thumb": "media/2026-11-23/object-3-thumb.png",
+      "name": "sundial",
+      "material": "oxidised bronze",
+      "image": "media/2026-11-24/object-3.png",
+      "thumb": "media/2026-11-24/object-3-thumb.png",
       "model": {
-        "title": "Old Key",
+        "title": "CT4012 - Clock: Sundial",
         "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-dcf61f79745b47778ad10aa28199df50",
+        "url": "https://sketchfab.com/3d-models/none-629cd7e55be145cf8fad5735af63ea33",
         "licence": "CC Attribution",
-        "creator": "Meerschaum Digital",
-        "creatorUrl": "https://sketchfab.com/meerschaumdigital"
+        "creator": "J. Pennell",
+        "creatorUrl": "https://sketchfab.com/jaminthecloud"
       },
-      "texture": null
+      "texture": {
+        "title": "Rusty Metal 05",
+        "url": "https://polyhaven.com/a/rusty_metal_05"
+      }
     }
   ]
 }

@@ -1,5 +1,16 @@
 [
   {
+    "date": "2026-11-24",
+    "issue": 53,
+    "colour": "Lime",
+    "headline": "The Smallest Planet Steps Out",
+    "bg": "#B5E643",
+    "thumb": "https://images.unsplash.com/reserve/iFJ5qQylTD2POC68qBgh_Uluru.jpg?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8ZGF3biUyMGhvcml6b258ZW58MXx8fHwxNzk1NDk2OTEyfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+    "display": "Six Caps",
+    "text": "Work Sans",
+    "css": "https://fonts.googleapis.com/css2?family=Six+Caps&family=Work+Sans&display=swap"
+  },
+  {
     "date": "2026-11-23",
     "issue": 52,
     "colour": "Green",

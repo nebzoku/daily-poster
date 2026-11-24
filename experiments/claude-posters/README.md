@@ -29,6 +29,12 @@ Ben picks the ones to post; they go into the archive credited **Nebzokai** (Ben'
    Mix the type too: across the three, include a serif headline in sentence case and a sans in all caps.
    Give each concept a different print process (`printHead`) and paper stock (`stock`), different from yesterday.
 4. Write the three templates and the colourways (only swap which palette colours play background / middle / type).
+4a. Mark the build steps in each template for the making-of reel (no effect on the poster): `snap('bg', out)` after the
+   background, then after each move `snap('place-<x>', out)` (image or object placed), `snap('step-<group>-<n>', out)`
+   (a treatment applied in stages, e.g. pixelation; for the in-between stages draw onto a copy inside
+   `if (CAPTURE) {...}`), `snap('shape-<x>', out)` (a shape drawn), `snap('text-<x>', out)` (small type); then
+   `snapLines(<headline tinted>, R)`, `inkTrials(out, (g, k) => <print the sheet and headline with ink k×>)`,
+   `snap('printed', out)` after the headline is printed and `snap('final', out)` at the end. See 053-c3 or 052-c2.
 4b. In each template, draw everything except the headline, then `printAll(g, C, ...)`, then `printHead`, then `stock`.
 5. `python3 make.py <issue>`, then **look at every poster** and fix what breaks the rules: headline on the margins
    (cap height top, descenders on the bottom margin, widest line edge to edge), no touching letters (set headlines with

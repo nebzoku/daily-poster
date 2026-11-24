@@ -32,16 +32,16 @@ window.POSTER = async () => {
   // the brass's shadows, pixelated at the same size, as a second ink inside the silhouette
   const lv = levels(sc, 0.02, 0.98), shade = inter(lumMask(pixelate(lumMask(lv, 1 - pct(lv, 0.35), { invert: true }), 24, ['#ffffff']), 0.5, { soft: 0.01 }), scopeMask);
   if (CAPTURE) {   // the making-of: the render dropped in, then pixelated harder and harder into the palette
-    const ph = canvas(); draw(ph.g, out); draw(ph.g, sc); snap('photo', ph);
+    const ph = canvas(); draw(ph.g, out); draw(ph.g, sc); snap('place-photo', ph);
     for (const px of [4, 8, 12, 16, 20]) {
       const p = canvas(), sm = lumMask(pixelate(om, px, ['#ffffff']), 0.5, { soft: 0.01 });
       const sh = inter(lumMask(pixelate(lumMask(lv, 1 - pct(lv, 0.35), { invert: true }), px, ['#ffffff']), 0.5, { soft: 0.01 }), sm);
-      draw(p.g, out); draw(p.g, tint(sm, C.scope)); draw(p.g, tint(sh, C.shade)); snap(`pixel-${px}`, p);
+      draw(p.g, out); draw(p.g, tint(sm, C.scope)); draw(p.g, tint(sh, C.shade)); snap(`step-pix-${String(px).padStart(2, '0')}`, p);
     }
   }
   draw(g, tint(scopeMask, C.scope));
   draw(g, tint(shade, C.shade));
-  snap('pixel-24', out);
+  snap('step-pix-24', out);
 
   // XOR: letters outside the telescope in the type colour, inside it knocked to the background colour
   const inScope = inter(head, scopeMask), outScope = cut(head, scopeMask);
@@ -51,7 +51,7 @@ window.POSTER = async () => {
   const midTop = R[1].y + R[1].h, midBot = R[2].y;
   const yTop = Math.ceil((midTop + 24 - M) / ROW) * ROW + M;   // first grid line clear of the top block
   block(g, ['(Daily Poster)', '(No. 053)', '(Tuesday 24 November)', '(The Guardian)'], W - M, yTop, { ...t, align: 'right' });
-  snap('furniture', out);
+  snap('text-furniture', out);
   const sub = balance('Stargazers get a good chance this week to see Mercury, one of the most elusive planets, low in the sky.', { ...t, minW: 220, maxW: COL * 2.6 });
   // 88 days: 8px squares on an 11px pitch, centred, on the grid line above the bottom block
   const n = 88, pitch = 11, sq = 8, rowW = (n - 1) * pitch + sq, x0 = Math.round((W - rowW) / 2);
@@ -59,10 +59,10 @@ window.POSTER = async () => {
   const sqM = canvas(); sqM.g.fillStyle = '#fff';
   for (let i = 0; i < n; i++) sqM.g.fillRect(x0 + i * pitch, yB - sq, sq, sq);
   draw(g, tint(cut(sqM, scopeMask), C.squares)); draw(g, tint(inter(sqM, scopeMask), C.knock));   // XOR with the telescope too
-  snap('squares', out);
+  snap('shape-squares', out);
   block(g, sub.lines, M, yB - sq - 16, { ...t, anchor: 'bottom' });
   block(g, ['(88) Days in', 'a Mercury year'], W - M, yB - sq - 16, { ...t, align: 'right', anchor: 'bottom' });
-  snap('text', out);
+  snap('text-sub', out);
   if (CAPTURE) HS.lines.forEach((ln, i) => {   // each headline line on its own, flat, for typing it in
     const one = canvas(); one.g.fillStyle = '#fff'; one.g.fillRect(R[i].x - 4, R[i].y - 4, R[i].w + 8, R[i].h + 8);
     const L = canvas(); draw(L.g, tint(inter(outScope, one), C.type)); draw(L.g, tint(inter(inScope, one), C.knock)); snap(`line-${i}`, L);

@@ -908,3 +908,14 @@ function snap(name, c) {
   const s = document.createElement('canvas'); s.width = W * K; s.height = H * K; s.getContext('2d').drawImage(c, 0, 0, W * K, H * K);
   window.SNAPS.push([name, s.toDataURL('image/png')]);
 }
+// The headline's lines, one layer each, for typing them in (layer: the headline already in its colours).
+function snapLines(layer, R) {
+  if (!CAPTURE) return;
+  R.forEach((r, i) => { const one = canvas(); one.g.fillStyle = '#fff'; one.g.fillRect(r.x - 4, r.y - 4, r.w + 8, r.h + 8); snap(`line-${i}`, inter(layer, one)); });
+}
+// Ink trials for the reel: fn(g, k) prints the sheet with the ink k× the chosen setting. Snaps lighter, much
+// heavier, then a bit heavier, before the real print (which the template snaps as 'printed').
+function inkTrials(out, fn) {
+  if (!CAPTURE) return;
+  for (const [nm, k] of [['ink-light', 0.35], ['ink-heavy', 1.7], ['ink-mid', 1.3]]) { const tmp = canvas(); draw(tmp.g, out); fn(tmp.g, k); snap(nm, tmp); }
+}

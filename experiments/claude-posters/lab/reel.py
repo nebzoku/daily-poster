@@ -89,31 +89,51 @@ move((-8, -8), FIT, BLANK)
 # 2. the background: a rectangle dragged out corner to corner
 def rect_poster(t):
     img = BLANK.copy(); x1, y1 = path((-8, -8), (DW + 8, DH + 8), t, 0.04)
-    img[:int(min(DH, max(0, y1)) * K), :int(min(DW, max(0, x1)) * K)] = bgc; return img
+    yk, xk = int(min(DH, max(0, y1)) * K), int(min(DW, max(0, x1)) * K); img[:yk, :xk] = bg[:yk, :xk]; return img
 seg(0.9, lambda t: dict(poster=rect_poster(t), cursor=path((-8, -8), (DW + 8, DH + 8), t, 0.04), shape='cross',
                         over=[('box', -8, -8, *path((-8, -8), (DW + 8, DH + 8), t, 0.04), False)]), FIT)
 cur[:] = [DW + 8, DH + 8]
 hold(0.25, FIT, bg, lambda t: [('box', 0, 0, DW, DH, True)])
-# 3. the image placed, then dragged into position (it snaps to centre)
-photo = layer_of(bg, rgb('photo')); pb = bb_of(photo); off = (170, 120)
-grab = ((pb[0] + pb[2]) / 2 + off[0], (pb[1] + pb[3]) / 2 + off[1])
-move(grab, FIT, bg, extra=0.1)
-hold(0.15, FIT, lambda t: over(bg, shift(photo, *off)), lambda t: [('box', pb[0] + off[0], pb[1] + off[1], pb[2] + off[0], pb[3] + off[1], True)], cut=True)
-def drag_photo(t):
-    u = path((0, 0), (1, 1), t, 0.1)[0]; return off[0] * (1 - u), off[1] * (1 - u)
-seg(0.75, lambda t: (lambda o: dict(poster=over(bg, shift(photo, *o)), cursor=(grab[0] - off[0] + o[0], grab[1] - off[1] + o[1]), shape='arrow', press=True,
-                                     over=[('box', pb[0] + o[0], pb[1] + o[1], pb[2] + o[0], pb[3] + o[1], True)] + ([('vline', DW / 2), ('hline', DH / 2)] if t > 0.82 else [])))(drag_photo(t)), FIT)
-cur[:] = [grab[0] - off[0], grab[1] - off[1]]
-hold(0.2, FIT, rgb('photo'), lambda t: [('box', *pb, True)])
-# 4. pixelated, click by click, up close
-pix = [n for n, _ in snaps if n.startswith('pixel-')]
-pbx = diffbox(bg, rgb(pix[-1])); zc = ((pbx[0] + pbx[2]) / 2 - 40, (pbx[1] + pbx[3]) / 2 - 120)
-ZOOM = (zc[0], zc[1], 1.55)
-move((zc[0] + 90, zc[1] + 30), ZOOM, rgb('photo'), lambda t: [('box', *pb, True)])
-for n in pix:
-    hold(0.11, ZOOM, rgb(n), lambda t: [('box', *pb, True)], press=True)
-    hold(0.2, ZOOM, rgb(n), lambda t: [('box', *pb, True)])
-state = rgb(pix[-1])
+# 3-5. the build, step by step, from the template's snaps (named by what kind of move made them):
+#   place-*  an image or object placed, then dragged into position (snaps to centre)
+#   step-<group>-*  a treatment applied click by click (pixelate, threshold...), watched up close
+#   shape-*  a shape drawn: dragged out from its corner
+#   text-*   small type set in text boxes (one per separate block)
+def place_step(n, state):
+    L = layer_of(state, rgb(n)); pb = bb_of(L); off = (rng.uniform(120, 200) * rng.choice([-1, 1]), rng.uniform(80, 140))
+    grab = ((pb[0] + pb[2]) / 2 + off[0], (pb[1] + pb[3]) / 2 + off[1])
+    cam = ((pb[0] + pb[2]) / 2 + off[0] / 2, (pb[1] + pb[3]) / 2 + off[1] / 2, max(0.7, min(1.3, SH * 0.7 / (pb[3] - pb[1] + 200), SW * 0.85 / (pb[2] - pb[0] + 200))))
+    move(grab, cam, state, extra=0.05)
+    hold(0.12, cam, over(state, shift(L, *off)), lambda t: [('box', pb[0] + off[0], pb[1] + off[1], pb[2] + off[0], pb[3] + off[1], True)], cut=True)
+    def drag(t, state=state, L=L, pb=pb, off=off, grab=grab):
+        u = path((0, 0), (1, 1), t, 0.1)[0]; o = (off[0] * (1 - u), off[1] * (1 - u))
+        return dict(poster=over(state, shift(L, *o)), cursor=(grab[0] - off[0] + o[0], grab[1] - off[1] + o[1]), shape='arrow', press=True,
+                    over=[('box', pb[0] + o[0], pb[1] + o[1], pb[2] + o[0], pb[3] + o[1], True)] + ([('vline', (pb[0] + pb[2]) / 2)] if t > 0.82 else []))
+    seg(0.6, drag, cam)
+    cur[:] = [grab[0] - off[0], grab[1] - off[1]]
+    hold(0.15, cam, rgb(n), lambda t: [('box', *pb, True)])
+    return rgb(n)
+def step_group(names, state):
+    pbx = diffbox(state, rgb(names[-1])); bw, bh = pbx[2] - pbx[0], pbx[3] - pbx[1]
+    z = max(1.0, min(1.7, SW * 0.9 / bw, SH * 0.7 / bh))
+    zc = ((pbx[0] + pbx[2]) / 2 + rng.uniform(-0.15, 0.15) * bw, (pbx[1] + pbx[3]) / 2 + rng.uniform(-0.15, 0.15) * bh)
+    ZOOM = (zc[0], zc[1], z)
+    move((zc[0] + 90, zc[1] + 30), ZOOM, state)
+    for n in names:
+        hold(0.1, ZOOM, rgb(n), press=True)
+        hold(0.18, ZOOM, rgb(n))
+    return rgb(names[-1])
+def shape_step(n, state):
+    b = diffbox(state, rgb(n)); cam = ((b[0] + b[2]) / 2, (b[1] + b[3]) / 2, max(0.75, min(1.4, SW * 0.7 / (b[2] - b[0] + 60), SH * 0.6 / (b[3] - b[1] + 60))))
+    move((b[0], b[1]), cam, state, shape='cross')
+    L = layer_of(state, rgb(n))
+    def grow(t, b=b, L=L, state=state):
+        x, y = path((b[0], b[1]), (b[2], b[3]), t, 0.03); m = L.copy(); m[int(y * K):, :, 3] = 0; m[:, int(x * K):, 3] = 0
+        return dict(poster=over(state, m), cursor=(x, y), shape='cross', press=True, over=[('box', b[0], b[1], x, y, False)])
+    seg(0.55, grow, cam)
+    cur[:] = [b[2], b[3]]
+    hold(0.12, cam, rgb(n), lambda t: [('box', *b, True)])
+    return rgb(n)
 # 5. the small type in text boxes, the squares repeated along
 def textbox(name, state):
     # one text box per separate block (a subline and a label side by side are two boxes, set one after the other)
@@ -134,18 +154,16 @@ def textbox(name, state):
         state = over(state, L)
         hold(0.12, cam, state, lambda t, x0=x0, y0=y0, x1=x1, y1=y1: [('box', x0, y0, x1, y1, True)])
     return rgb(name)
-last = pix[-1]
-for n in ['furniture', 'squares', 'text']:
-    if n in S:
-        if n == 'squares':        # the squares: one drawn, then dragged out along the row
-            b = diffbox(state, rgb(n)); cam = ((b[0] + b[2]) / 2, (b[1] + b[3]) / 2, 0.95)
-            move((b[0], b[3]), cam, state, shape='cross')
-            L = layer_of(state, rgb(n))
-            seg(0.7, lambda t, b=b, L=L, state=state: dict(poster=over(state, L, int((b[0] + (b[2] - b[0]) * ease_out(t)) * K)), cursor=(b[0] + (b[2] - b[0]) * ease_out(t), b[3] + 6), shape='arrow', press=True,
-                                                             over=[('box', b[0], b[1], b[0] + (b[2] - b[0]) * ease_out(t), b[3], True)]), cam)
-            cur[:] = [b[2], b[3] + 6]; state = rgb(n)
-        else: state = textbox(n, state)
-        last = n
+state = bg
+build = [n for n, _ in snaps if n.split('-')[0] in ('place', 'step', 'shape', 'text')]
+k = 0
+while k < len(build):
+    n = build[k]; kind = n.split('-')[0]
+    if kind == 'step':
+        grp = n.split('-')[1]; names = []
+        while k < len(build) and build[k].startswith(f'step-{grp}-'): names.append(build[k]); k += 1
+        state = step_group(names, state); continue
+    state = {'place': place_step, 'shape': shape_step, 'text': textbox}[kind](n, state); k += 1
 # 6. the headline: the first line typed loose, its tracking tightened, dragged onto its place (a magenta guide when it
 #    snaps); the other lines are duplicates of it, dragged into place and retyped
 lines = [n for n, _ in snaps if n.startswith('line-')]
@@ -157,21 +175,21 @@ for i, n in enumerate(lines):
     if i > 0:
         # once the first line's style is found, the rest are duplicates of it: alt-drag a copy into place, then
         # retype the words (already tracked, so no tightening again)
-        dy = (lb[1] + lb[3]) / 2 - (lb0[1] + lb0[3]) / 2; grab0 = ((lb0[0] + lb0[2]) / 2, (lb0[1] + lb0[3]) / 2)
+        dy = (lb[1] + lb[3]) / 2 - (lb0[1] + lb0[3]) / 2; dx = (lb[0] + lb[2] - lb0[0] - lb0[2]) / 2; grab0 = ((lb0[0] + lb0[2]) / 2, (lb0[1] + lb0[3]) / 2)
         span = abs(dy) + (lb0[3] - lb0[1]) + 120
         camd = (DW / 2, grab0[1] + dy / 2, max(0.62, min(1.15, SH * 0.62 / span, SW * 0.92 / (lb0[2] - lb0[0] + 60))))
         move(grab0, camd, state)
-        def dup(t, state=state, dy=dy, grab0=grab0, lb=lb, i=i):
-            u = path((0, 0), (1, 1), t, 0.06)[0]; yy = dy * u
+        def dup(t, state=state, dy=dy, dx=dx, grab0=grab0, lb=lb, i=i):
+            u = path((0, 0), (1, 1), t, 0.06)[0]; yy = dy * u; xx = dx * u
             g = [('vline', DW / 2)] if t > 0.8 else []
             if t > 0.8 and i == len(lines) - 1: g.append(('hline', lb[3]))
-            return dict(poster=over(state, shift(F0, 0, yy)), cursor=(grab0[0], grab0[1] + yy), shape='arrow', press=True,
-                        over=[('box', lb0[0], lb0[1] + yy, lb0[2], lb0[3] + yy, True)] + g)
+            return dict(poster=over(state, shift(F0, xx, yy)), cursor=(grab0[0] + xx, grab0[1] + yy), shape='arrow', press=True,
+                        over=[('box', lb0[0] + xx, lb0[1] + yy, lb0[2] + xx, lb0[3] + yy, True)] + g)
         seg(0.5, dup, camd)
-        cur[:] = [grab0[0], grab0[1] + dy]
+        cur[:] = [grab0[0] + dx, grab0[1] + dy]
         camt = ((lb[0] + lb[2]) / 2, (lb[1] + lb[3]) / 2, max(0.7, min(1.25, SW * 0.86 / (lb[2] - lb[0] + 80))))
-        copy_ = shift(F0, 0, dy)
-        move((lb[0] - 10, (lb[1] + lb[3]) / 2), camt, over(state, copy_), lambda t, lb=lb, dy=dy: [('box', lb0[0], lb0[1] + dy, lb0[2], lb0[3] + dy, True)], shape='ibeam')
+        copy_ = shift(F0, dx, dy)
+        move((lb[0] - 10, (lb[1] + lb[3]) / 2), camt, over(state, copy_), lambda t, lb=lb, dy=dy: [('box', lb0[0] + dx, lb0[1] + dy, lb0[2] + dx, lb0[3] + dy, True)], shape='ibeam')
         cols_on = np.nonzero(flat[..., 3].max(0) > 80)[0]; ends = []; prev = cols_on[0]
         for x in cols_on[1:]:
             if x - prev > 3 * K: ends.append(prev + 1)
@@ -261,8 +279,8 @@ def spots(img_a, img_b, n=3):
         yy, xx = np.unravel_index(np.argmax(g), g.shape); out.append(((xx + 0.5) * 96 / K, (yy + 0.5) * 96 / K))
         g[max(0, yy - 9):yy + 10, max(0, xx - 9):xx + 10] = 0
     return out
-P = spots(state, rgb('ink-heavy'))
-trials = [(P[0], 2.3, 'ink-light'), (P[0], 2.3, 'ink-heavy'), (P[1], 2.0, 'ink-heavy'), (P[1], 2.0, 'ink-mid'), (P[2], 2.1, 'ink-mid'), (P[2], 2.1, 'printed')]
+P = spots(state, rgb('ink-heavy' if 'ink-heavy' in S else 'printed'))
+trials = [] if 'ink-heavy' not in S else [(P[0], 2.3, 'ink-light'), (P[0], 2.3, 'ink-heavy'), (P[1], 2.0, 'ink-heavy'), (P[1], 2.0, 'ink-mid'), (P[2], 2.1, 'ink-mid'), (P[2], 2.1, 'printed')]
 prev_img = state
 for k, (pt, z, nm) in enumerate(trials):
     cam = (pt[0], pt[1], z); cut_ = k % 2 == 0

@@ -116,14 +116,23 @@ for n in pix:
 state = rgb(pix[-1])
 # 5. the small type in text boxes, the squares repeated along
 def textbox(name, state):
-    b = diffbox(state, rgb(name)); x0, y0, x1, y1 = b[0] - 6, b[1] - 6, b[2] + 6, b[3] + 6
-    cam = ((x0 + x1) / 2, (y0 + y1) / 2, max(0.9, min(1.9, SW * 0.6 / (x1 - x0))))
-    move((x0, y0), cam, state, shape='ibeam')
-    seg(0.35, lambda t: dict(poster=state, cursor=path((x0, y0), (x1, y1), t, 0.02), shape='cross', over=[('box', x0, y0, *path((x0, y0), (x1, y1), t, 0.02), False)]), cam)
-    cur[:] = [x1, y1]
-    L = layer_of(state, rgb(name))
-    seg(0.45, lambda t: dict(poster=over(state, L, int(x0 * K + (x1 - x0) * K * ease(t))), cursor=(x1, y1), shape='ibeam', over=[('box', x0, y0, x1, y1, False)]), cam)
-    hold(0.15, cam, rgb(name), lambda t: [('box', x0, y0, x1, y1, True)])
+    # one text box per separate block (a subline and a label side by side are two boxes, set one after the other)
+    d = np.abs(state.astype(np.int16) - rgb(name).astype(np.int16)).sum(2) > 24
+    cols = np.nonzero(d.any(0))[0]; groups = [[cols[0], cols[0]]]
+    for x in cols[1:]:
+        if x - groups[-1][1] > 60 * K: groups.append([x, x])
+        else: groups[-1][1] = x
+    for gx0, gx1 in groups:
+        part = np.zeros_like(d); part[:, gx0:gx1 + 1] = d[:, gx0:gx1 + 1]; ys = np.nonzero(part.any(1))[0]
+        x0, y0, x1, y1 = gx0 / K - 6, ys[0] / K - 6, (gx1 + 1) / K + 6, (ys[-1] + 1) / K + 6
+        cam = ((x0 + x1) / 2, (y0 + y1) / 2, max(0.9, min(1.9, SW * 0.6 / (x1 - x0))))
+        move((x0, y0), cam, state, shape='ibeam')
+        seg(0.3, lambda t, state=state, x0=x0, y0=y0, x1=x1, y1=y1: dict(poster=state, cursor=path((x0, y0), (x1, y1), t, 0.02), shape='cross', over=[('box', x0, y0, *path((x0, y0), (x1, y1), t, 0.02), False)]), cam)
+        cur[:] = [x1, y1]
+        L = layer_of(state, rgb(name)); L[..., 3] *= part.astype(np.uint8)
+        seg(0.38, lambda t, state=state, L=L, x0=x0, y0=y0, x1=x1, y1=y1: dict(poster=over(state, L, int(x0 * K + (x1 - x0) * K * ease(t))), cursor=(x1, y1), shape='ibeam', over=[('box', x0, y0, x1, y1, False)]), cam)
+        state = over(state, L)
+        hold(0.12, cam, state, lambda t, x0=x0, y0=y0, x1=x1, y1=y1: [('box', x0, y0, x1, y1, True)])
     return rgb(name)
 last = pix[-1]
 for n in ['furniture', 'squares', 'text']:
@@ -137,13 +146,46 @@ for n in ['furniture', 'squares', 'text']:
             cur[:] = [b[2], b[3] + 6]; state = rgb(n)
         else: state = textbox(n, state)
         last = n
-# 6. the headline: each line typed loose, then dragged onto its place (a magenta guide when it snaps)
+# 6. the headline: the first line typed loose, its tracking tightened, dragged onto its place (a magenta guide when it
+#    snaps); the other lines are duplicates of it, dragged into place and retyped
 lines = [n for n, _ in snaps if n.startswith('line-')]
 for i, n in enumerate(lines):
     L = S[n]; lb = bb_of(L)
     # flat in the type's colour while it's being set; the crossings only flip once it lands on the image
     a = L[..., 3] > 200; cols, cnt = np.unique(L[..., :3][a].reshape(-1, 3), axis=0, return_counts=True); tc = cols[np.argmax(cnt)]
     flat = L.copy(); flat[..., :3] = tc
+    if i > 0:
+        # once the first line's style is found, the rest are duplicates of it: alt-drag a copy into place, then
+        # retype the words (already tracked, so no tightening again)
+        dy = (lb[1] + lb[3]) / 2 - (lb0[1] + lb0[3]) / 2; grab0 = ((lb0[0] + lb0[2]) / 2, (lb0[1] + lb0[3]) / 2)
+        span = abs(dy) + (lb0[3] - lb0[1]) + 120
+        camd = (DW / 2, grab0[1] + dy / 2, max(0.62, min(1.15, SH * 0.62 / span, SW * 0.92 / (lb0[2] - lb0[0] + 60))))
+        move(grab0, camd, state)
+        def dup(t, state=state, dy=dy, grab0=grab0, lb=lb, i=i):
+            u = path((0, 0), (1, 1), t, 0.06)[0]; yy = dy * u
+            g = [('vline', DW / 2)] if t > 0.8 else []
+            if t > 0.8 and i == len(lines) - 1: g.append(('hline', lb[3]))
+            return dict(poster=over(state, shift(F0, 0, yy)), cursor=(grab0[0], grab0[1] + yy), shape='arrow', press=True,
+                        over=[('box', lb0[0], lb0[1] + yy, lb0[2], lb0[3] + yy, True)] + g)
+        seg(0.5, dup, camd)
+        cur[:] = [grab0[0], grab0[1] + dy]
+        camt = ((lb[0] + lb[2]) / 2, (lb[1] + lb[3]) / 2, max(0.7, min(1.25, SW * 0.86 / (lb[2] - lb[0] + 80))))
+        copy_ = shift(F0, 0, dy)
+        move((lb[0] - 10, (lb[1] + lb[3]) / 2), camt, over(state, copy_), lambda t, lb=lb, dy=dy: [('box', lb0[0], lb0[1] + dy, lb0[2], lb0[3] + dy, True)], shape='ibeam')
+        cols_on = np.nonzero(flat[..., 3].max(0) > 80)[0]; ends = []; prev = cols_on[0]
+        for x in cols_on[1:]:
+            if x - prev > 3 * K: ends.append(prev + 1)
+            prev = x
+        ends.append(cols_on[-1] + 1); dur = 0.1 + 0.05 * len(ends)
+        def retype(t, state=state, flat=flat, ends=ends, lb=lb, dur=dur, tc=tuple(int(v) for v in tc)):
+            k = min(len(ends), int(t * (len(ends) + 0.6))); cut = ends[k - 1] if k else int(lb[0] * K)
+            ov = [('caret', cut / K + 4, lb[1], lb[3], tc)] if int(t * dur * 3) % 2 == 0 or t < 0.9 else []
+            return dict(poster=over(state, flat, cut), cursor=(lb[0] - 10, (lb[1] + lb[3]) / 2 + 26), shape='ibeam', over=ov)
+        seg(dur, retype, camt)
+        state = over(state, L)
+        hold(0.14, camt, state, lambda t, lb=lb: [('box', *lb, True)], shape='arrow')
+        continue
+    F0, lb0 = flat, lb
     o = (rng.uniform(-90, 90), rng.uniform(40, 90) * (1 if i < len(lines) / 2 else -1))
     fb = [lb[0] + o[0], lb[1] + o[1], lb[2] + o[0], lb[3] + o[1]]
     cam = ((lb[0] + lb[2]) / 2, (lb[1] + lb[3]) / 2 + o[1] / 2, max(0.78, min(1.25, SW * 0.86 / (lb[2] - lb[0] + abs(o[0]) + 80))))

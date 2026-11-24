@@ -352,6 +352,11 @@
       "slot": "2026-11-24 10:30",
       "at": "2026-11-24T10:33:29.898Z",
       "id": "18126842135470631"
+    },
+    "poster:showcase/050-the-summer-bottled-early.jpg": {
+      "slot": "2026-11-24 13:00",
+      "at": "2026-11-24T13:08:18.003Z",
+      "id": "18027521750945071"
     }
   },
   "slots": {
@@ -388,7 +393,8 @@
     "2026-11-23 19:00": "poster:showcase/049-a-whisper-through-brick.jpg",
     "2026-11-23 21:30": "poster:showcase/049-the-message-nothing-blocks.jpg",
     "2026-11-24 08:00": "stories:2026-11-24",
-    "2026-11-24 10:30": "poster:showcase/050-first-taste-of-a-hot-year.jpg"
+    "2026-11-24 10:30": "poster:showcase/050-first-taste-of-a-hot-year.jpg",
+    "2026-11-24 13:00": "poster:showcase/050-the-summer-bottled-early.jpg"
   },
   "start": "2026-11-04",
   "partial": {}

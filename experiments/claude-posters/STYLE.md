@@ -29,6 +29,11 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   from the brief and different layout systems and treatments. Colourways only swap which palette colours play
   background, middle (image marks) and type. Ben picks the one(s) to post the next day.
 
+### Round 13 feedback (24 Nov 2026): track the small text
+- **Subline and page furniture are tracked -2%** (-20/1000 em), every poster, from No. 053 on. It's the default in
+  `lib.js` (`TEXT.track`, used by `block`, `balance` and `small`), so don't pass `track: 0`; only the headline is
+  spaced by its own rules.
+
 ### Round 12 feedback (24 Nov 2026): vary the print and the paper
 - **Never print everything the same way**; one ink style on every poster is a giveaway. Each of the three concepts
   gets a different print process for its headline (`printHead`), and change them day to day.
@@ -94,7 +99,8 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   runs margin to margin. Always check the widest line touches both margins.
 
 **Subline and furniture: one text style**
-- Subline and furniture share one size, one leading and usually one case (default 16px, leading 90%).
+- Subline and furniture share one size, one leading, one tracking and usually one case (default 16px, leading 90%,
+  tracking -2%).
 - The subline is a **block**: lines of similar length, 3–4 short lines rather than 2 long ones, never an orphan
   or widow, never a last line much shorter than the rest (`balance`). The block must fit what's around it.
 - Text **aligns to the grid**: the cap height of the first line on a grid line, or the last baseline on one.

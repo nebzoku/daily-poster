@@ -98,7 +98,7 @@ function para(g, text, x, y, w, o) {
 }
 // Small type for page furniture, anchored by its cap height to the margin.
 function small(g, text, x, y, o) {
-  const { font, size = 12, weight = 500, color = '#000', align = 'left', track = 0, caps = false } = o;
+  const { font, size = 12, weight = 500, color = '#000', align = 'left', track = -20, caps = false } = o;   // furniture: -2% (see TEXT)
   g.save(); g.font = `${weight} ${size}px "${font}"`; g.fillStyle = color; g.letterSpacing = `${track * size / 1000}px`;
   const s = caps ? text.toUpperCase() : text; const mt = g.measureText(s);
   const asc = mt.actualBoundingBoxAscent, desc = mt.actualBoundingBoxDescent;
@@ -571,7 +571,7 @@ function sameOptical8(texts, o, maxW, { loosen = null } = {}) {
   const s = snap8(size); return { size: s, gap: g0, lines: texts.map((t) => setOptical(t, { ...o, size: s })) };
 }
 // One text style for subline AND furniture: same size, same leading (90%), same case.
-const TEXT = { size: 16, lead: 0.9 };
+const TEXT = { size: 16, lead: 0.9, track: -20 };   // Ben, 24 Nov 2026: subline and furniture tracked -2% (-20/1000 em)
 // Break text into lines for a width.
 function breakLines(g, text, w) {
   const words = text.split(/\s+/), lines = []; let line = [];
@@ -581,8 +581,8 @@ function breakLines(g, text, w) {
 // A subline as a block: try widths between minW and maxW, keep the one whose lines are most even, with 3–4 lines
 // preferred, never a one-word last line (no orphans) and never a last line much shorter than the rest.
 function balance(text, o) {
-  const { font, size = TEXT.size, weight = 500, minW = 160, maxW = 420, lines: want = [3, 4] } = o;
-  const g = canvas(10, 10).g; g.font = `${weight} ${size}px "${font}"`;
+  const { font, size = TEXT.size, weight = 500, minW = 160, maxW = 420, lines: want = [3, 4], track = TEXT.track } = o;
+  const g = canvas(10, 10).g; g.font = `${weight} ${size}px "${font}"`; g.letterSpacing = `${track * size / 1000}px`;
   let best = null;
   for (let w = minW; w <= maxW; w += 2) {
     const L = breakLines(g, text, w), ws = L.map((l) => g.measureText(l).width), mx = Math.max(...ws);
@@ -598,7 +598,7 @@ function balance(text, o) {
 // Set a block of lines with its ink edge exactly on x (left, or right with align 'right') and its first cap
 // height on y (anchor 'top') or its last baseline on y (anchor 'bottom'). Returns the block's rect.
 function block(g, lines, x, y, o) {
-  const { font, size = TEXT.size, weight = 500, lead = TEXT.lead, color = '#000', align = 'left', anchor = 'top', track = 0 } = o;
+  const { font, size = TEXT.size, weight = 500, lead = TEXT.lead, color = '#000', align = 'left', anchor = 'top', track = TEXT.track } = o;
   g.save(); g.font = `${weight} ${size}px "${font}"`; g.fillStyle = color; g.letterSpacing = `${track * size / 1000}px`;
   const pitch = size * lead, cap = g.measureText('H').actualBoundingBoxAscent;
   let b0 = anchor === 'top' ? y + cap : y - (lines.length - 1) * pitch;

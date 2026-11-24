@@ -111,6 +111,20 @@ jobs:
           echo "::warning::Couldn't save today's files to the repo; the site still deploys."
 
       # The link preview and the favicon take the day's colour.
+      # Turntables of today's 3D objects, for moving posters: a second Blender pass after the brief is saved, so it
+      # never holds the brief up. Reuses the models the object step downloaded. Saved in a commit of its own.
+      - name: Turntables of the 3D objects
+        env:
+          SPIN_ONLY: "1"
+        run: |
+          [ -f /tmp/daily-poster-objects/job.json ] || { echo "No objects rendered in this run."; exit 0; }
+          BLENDER_PYTHON=python timeout 50m npm run objects || { echo "::warning::The turntables didn't render today."; exit 0; }
+          git add site/data site/media
+          git diff --cached --quiet && exit 0
+          git commit -m "Turntables of the 3D objects for $(TZ=Europe/London date +%F)"
+          for i in 1 2 3 4; do git pull --rebase -q && git push && exit 0; sleep $((i * 15)); done
+          echo "::warning::Couldn't save the turntables."
+
       - name: Preview image for today
         run: |
           colour=$(node -p "require('./site/data/latest.json').colour.name.toLowerCase()")

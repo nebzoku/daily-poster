@@ -29,6 +29,18 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   from the brief and different layout systems and treatments. Colourways only swap which palette colours play
   background, middle (image marks) and type. Ben picks the one(s) to post the next day.
 
+### Round 17 feedback (24 Nov 2026): moving posters
+- **A moving poster every few days, not every day** (every issue divisible by 3), so it stays a treat.
+- **Never the same movement twice in a row.** Pick a different move each time, from the poster's own elements and
+  Ben's references: tracking breathing between tight and justified (Never the first choice); a shape sliding across
+  another so the flipped overlap grows and shrinks (an eclipse); a slit-scan band sweeping across an image; a numeral
+  sliding through a shape (00 3); a pixel size stepping between settings as if still being decided; a glow or bars
+  climbing; foil catching and losing the light; letters assembling from scattered positions; a 3D object turning on
+  its turntable; a single element running along a row of data (the 88 days); a whole-poster 3D flip.
+- **Only move what moves properly.** A line that would only shift a few pixels stays still (THE SUN on 053): a tiny
+  move looks like a mistake. Keep pairs symmetrical: if the top line holds, the bottom line holds.
+- Loops of about 4 seconds at 12 fps, printed frame by frame with the paper and ink seed held still.
+
 ### Round 16 feedback (24 Nov 2026): wear, and showing the work
 - **Scratches and scuffs.** Every poster picks up a little handling wear (`scratches`, run by `stock()`, so it's on
   by default): hairline scratches that catch the light where they cross dark ink and barely show on pale paper,

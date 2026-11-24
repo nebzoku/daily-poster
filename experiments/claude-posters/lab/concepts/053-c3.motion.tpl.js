@@ -1,6 +1,6 @@
 // No. 053 · Concept 3, moving · "CHASING / LIGHT / NEAR / THE SUN"
 // The still poster set in motion, a loop (t runs 0 → 1):
-//   - the headline breathes: LIGHT and NEAR open their tracking out to the full width and close back to the
+//   - the headline breathes: LIGHT and NEAR (the lines short enough to move properly) open their tracking out to the full width and close back to the
 //     hourglass (the "Never the first choice" move), so the type goes from hourglass to solid block and back
 //   - the telescope swings a few degrees on its stand; the pixel grid stays fixed to the page, so its stepped edge
 //     re-forms every frame
@@ -22,7 +22,8 @@ window.MOTION = async () => {
     if (setOptical(tx, { ...o, gap: lo }).box.w >= W - 2 * M - 1) return g0;
     for (let k = 0; k < 16; k++) { const mid = (lo + hi) / 2; if (setOptical(tx, { ...o, gap: mid }).box.w > W - 2 * M) hi = mid; else lo = mid; }
     return lo;
-  });
+  }).map((g, i) => (setOptical(TEXTS[i], { ...o, gap: g }).box.w - setOptical(TEXTS[i], { ...o, gap: g0 }).box.w > 0.1 * (W - 2 * M) ? g : g0));
+  // (a line that would only open a few pixels stays still: a tiny move looks like a mistake)
   const t0 = { font: T, size: 16, weight: 500, lead: 0.9, color: C.text };
   const sub = balance('Stargazers get a good chance this week to see Mercury, one of the most elusive planets, low in the sky.', { ...t0, minW: 220, maxW: COL * 2.6 });
   const Rstill = pinBlocks(canvas(), HS.lines, ['C', 'C', 'C', 'C'], 2, 0.1);   // the still layout fixes the small type's places

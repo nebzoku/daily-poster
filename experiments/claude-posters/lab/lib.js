@@ -919,3 +919,18 @@ function inkTrials(out, fn) {
   if (!CAPTURE) return;
   for (const [nm, k] of [['ink-light', 0.35], ['ink-heavy', 1.7], ['ink-mid', 1.3]]) { const tmp = canvas(); draw(tmp.g, out); fn(tmp.g, k); snap(nm, tmp); }
 }
+// A brief object's turntable, for moving posters: the 24 frames of a full turn (brief.objects[n].spin, from the
+// daily brief). const turn = await spinFrames(latest.objects[0]); then turn(t) is the object at t (0..1), already
+// trimmed to its edges like trim(). Falls back to the still image when a brief has no turntable.
+async function spinFrames(obj) {
+  if (!obj.spin) { const im = trim(await media(obj.image)); return () => im; }
+  const ims = await Promise.all([...Array(obj.spin.frames)].map((_, i) => media(`${obj.spin.path}${String(i).padStart(3, '0')}.${obj.spin.ext}`)));
+  const box = trim(ims[0]), w = box.width, h = box.height;   // one crop for all frames, so the object doesn't jump
+  const c0 = document.createElement('canvas'); c0.width = ims[0].width; c0.height = ims[0].height;
+  // the union of every frame's edges
+  let x0 = 1e9, y0 = 1e9, x1 = -1, y1 = -1;
+  for (const im of ims) { const g = c0.getContext('2d'); g.clearRect(0, 0, c0.width, c0.height); g.drawImage(im, 0, 0); const d = g.getImageData(0, 0, c0.width, c0.height).data;
+    for (let y = 0; y < c0.height; y += 2) for (let x = 0; x < c0.width; x += 2) if (d[(y * c0.width + x) * 4 + 3] > 10) { if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; } }
+  const crops = ims.map((im) => { const c = document.createElement('canvas'); c.width = x1 - x0 + 2; c.height = y1 - y0 + 2; c.getContext('2d').drawImage(im, -x0, -y0); return c; });
+  return (t) => crops[Math.floor(((t % 1) + 1) % 1 * crops.length) % crops.length];
+}

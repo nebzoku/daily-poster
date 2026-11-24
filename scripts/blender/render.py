@@ -4,7 +4,7 @@ Reads a job file:
   {"hdri": "path.hdr" | null, "out_size": 1080, "samples": 96,
    "objects": [{"model": "path.glb" | null, "shape": "rock" | "sphere" | ..., "out": "path.png",
                 "texture": {"diff": "...jpg", "rough": "...jpg", "arm": "...jpg" | null, "metal": true} | null,
-                "seed": 3}]}
+                "seed": 3, "spin": {"frames": 24, "size": 720, "samples": 16, "dir": "path"} | null}]}
 Each object is scaled to the same size, given the texture by box projection (low-poly
 models don't have usable UVs), lit by the studio HDRI and rendered on a transparent background.
 """
@@ -165,6 +165,20 @@ for i, ob in enumerate(job["objects"]):
     cam.data.lens = 85
     loc = Vector((5.2, -6.4, 3.4)).normalized() * 7.6   # three-quarter, a little above
     cam.location = loc; cam.rotation_euler = (-loc).to_track_quat("-Z", "Y").to_euler()
-    sc.render.filepath = ob["out"]
-    bpy.ops.render.render(write_still=True)
-    print(f"rendered {ob['out']} in {time.time() - t0:.0f}s", flush=True)
+    if not ob.get("spin_only"):   # the turntable pass reuses the job and skips the still
+        sc.render.filepath = ob["out"]
+        bpy.ops.render.render(write_still=True)
+        print(f"rendered {ob['out']} in {time.time() - t0:.0f}s", flush=True)
+    # A turntable for moving posters: the same object and light, turned a full circle on the spot, as a loop of
+    # frames (spin: {"frames": 24, "size": 720, "samples": 16, "dir": ".../object-1-spin"}).
+    spin = ob.get("spin")
+    if spin:
+        t1 = time.time()
+        sc.render.resolution_x = sc.render.resolution_y = spin.get("size", 720)
+        sc.cycles.samples = spin.get("samples", 16)
+        z0, n = o.rotation_euler.z, spin.get("frames", 24)
+        for f in range(n):
+            o.rotation_euler.z = z0 + 2 * math.pi * f / n
+            sc.render.filepath = f"{spin['dir']}/{f:03d}.png"
+            bpy.ops.render.render(write_still=True)
+        print(f"turntable {spin['dir']} ({n} frames) in {time.time() - t1:.0f}s", flush=True)

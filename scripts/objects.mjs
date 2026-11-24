@@ -5,7 +5,9 @@
 // and a material for each (rusted metal, polished steel, worn stone). Models come from
 // Poly Pizza (CC0 and CC-BY only; needs POLY_PIZZA_KEY) and Poly Haven (CC0), materials and
 // studio lighting from Poly Haven (CC0). Claude looks at the candidates and picks the best;
-// when nothing fits, a shape made in Blender stands in. One view of each is rendered.
+// when nothing fits, a shape made in Blender stands in. One view of each is rendered. Turntables for moving posters
+// (media/<date>/object-N-spin/000..023.webp, recorded as objects[].spin) come from a second pass, SPIN_ONLY=1, run
+// after the brief is saved (it reuses this run's downloaded models in /tmp), so they never hold the brief up.
 //
 //   ANTHROPIC_API_KEY  required
 //   POLY_PIZZA_KEY     optional: without it, only Poly Haven models and made shapes
@@ -13,7 +15,7 @@
 //   FORCE=1            render again even if today's brief already has objects
 //   OBJECT_REQUEST     one object on request (e.g. "beaver"), saved as media/<date>/extra-<name>.png
 //                      and left out of the brief
-import { readFile, writeFile, mkdir, rm } from "node:fs/promises";
+import { readFile, writeFile, mkdir, rm, readdir } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { spawnSync } from "node:child_process";
@@ -170,7 +172,33 @@ function score(asset, terms) {
   return terms.reduce((n, t) => n + (hay.includes(t) ? 1 : 0), 0);
 }
 
+const spinFor = (dir, j) => ({ frames: 24, size: +(process.env.SPIN_SIZE || 540), samples: +(process.env.SPIN_SAMPLES || 12), dir: join(dir, `object-${j + 1}-spin`) });
+async function spinToWebp(spinDir, date, j) {
+  if (!existsSync(spinDir)) return null;
+  const frames = (await readdir(spinDir)).filter((f) => f.endsWith(".png")).sort();
+  for (const f of frames) { await sharp(join(spinDir, f)).webp({ quality: 88, alphaQuality: 90 }).toFile(join(spinDir, f.replace(/\.png$/, ".webp"))); await rm(join(spinDir, f)); }
+  const all = (await readdir(spinDir)).filter((f) => f.endsWith(".webp"));
+  return all.length ? { frames: all.length, path: `media/${date}/object-${j + 1}-spin/`, ext: "webp" } : null;
+}
+// The second pass: turntables of today's objects, from the models the first pass downloaded and its job file.
+async function spinOnly() {
+  const latest = JSON.parse(await readFile(join(DATA, "latest.json"), "utf8")), date = latest.date, path = join(DATA, `${date}.json`);
+  const jobFile = join(WORK, "job.json");
+  if (!existsSync(jobFile)) { console.log("No render job from this run (objects were already done); no turntables."); return; }
+  const job = JSON.parse(await readFile(jobFile, "utf8")), dir = join(SITE, "media", date);
+  job.objects = job.objects.map((o, j) => ({ ...o, spin_only: true, spin: spinFor(dir, j) }));
+  const spinJob = join(WORK, "spin.json"); await writeFile(spinJob, JSON.stringify(job));
+  const r = spawnSync(process.env.BLENDER_PYTHON || "python3", [RENDER, spinJob], { stdio: "inherit", timeout: 55 * 60 * 1000 });
+  if (r.status !== 0) throw new Error(`Blender exited with ${r.status}`);
+  const brief = JSON.parse(await readFile(path, "utf8"));
+  for (const o of brief.objects || []) { const n = +(o.image.match(/object-(\d+)\.png$/)?.[1] || 0); if (!n) continue; const spin = await spinToWebp(join(dir, `object-${n}-spin`), date, n - 1); if (spin) o.spin = spin; }
+  await writeFile(path, JSON.stringify(brief, null, 2) + "\n");
+  if (latest.date === date) await writeFile(join(DATA, "latest.json"), JSON.stringify(brief, null, 2) + "\n");
+  console.log(`Turntables for ${date}: ${(brief.objects || []).filter((o) => o.spin).length}.`);
+}
+
 async function main() {
+  if (process.env.SPIN_ONLY) return spinOnly();
   const latest = JSON.parse(await readFile(join(DATA, "latest.json"), "utf8"));
   const date = latest.date;
   const path = join(DATA, `${date}.json`);
@@ -269,7 +297,9 @@ These were used in the last few days, so pick different objects: ${[...new Set(u
     }
     const slug = want.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
     const file = join(dir, want ? `extra-${slug}.png` : `object-${j + 1}.png`);
-    jobs.push({ keep: keep && !!modelFile, model: modelFile, shape: SHAPES.includes(g.idea.fallback) ? g.idea.fallback : "rock", seed: (brief.issue || 1) + j, texture, out: file, turn: 20 + j * 35 });
+    // A turntable of each brief object (for moving posters), with OBJECT_SPIN=1, or afterwards with SPIN_ONLY=1.
+    const spin = !want && process.env.OBJECT_SPIN === "1" ? spinFor(dir, j) : null;
+    jobs.push({ keep: keep && !!modelFile, model: modelFile, shape: SHAPES.includes(g.idea.fallback) ? g.idea.fallback : "rock", seed: (brief.issue || 1) + j, texture, out: file, turn: 20 + j * 35, spin });
     out.push({ name: g.idea.name, material: g.idea.material, model: modelFile ? model : null, texture: texture ? tex : null, file });
   }
 
@@ -288,8 +318,9 @@ These were used in the last few days, so pick different objects: ${[...new Set(u
     if (!existsSync(o.file)) continue;
     const thumb = join(dir, `object-${j + 1}-thumb.png`);
     await sharp(o.file).resize({ width: 540 }).png({ compressionLevel: 9, palette: false }).toFile(thumb);
+    const spin = await spinToWebp(join(dir, `object-${j + 1}-spin`), date, j);
     brief.objects.push({
-      name: o.name, material: o.material,
+      name: o.name, material: o.material, ...(spin ? { spin } : {}),
       image: `media/${date}/object-${j + 1}.png`, thumb: `media/${date}/object-${j + 1}-thumb.png`,
       model: o.model ? { title: o.model.title, source: o.model.source, url: o.model.url, licence: o.model.licence, creator: o.model.creator, creatorUrl: o.model.creatorUrl || "" } : null,
       texture: o.texture ? { title: o.texture.title, url: o.texture.url } : null,

@@ -357,6 +357,11 @@
       "slot": "2026-11-24 13:00",
       "at": "2026-11-24T13:08:18.003Z",
       "id": "18027521750945071"
+    },
+    "poster:showcase/051-neon-in-the-middle-of-nowhere.jpg": {
+      "slot": "2026-11-24 16:00",
+      "at": "2026-11-24T16:08:17.060Z",
+      "id": "18581294740076516"
     }
   },
   "slots": {
@@ -394,7 +399,8 @@
     "2026-11-23 21:30": "poster:showcase/049-the-message-nothing-blocks.jpg",
     "2026-11-24 08:00": "stories:2026-11-24",
     "2026-11-24 10:30": "poster:showcase/050-first-taste-of-a-hot-year.jpg",
-    "2026-11-24 13:00": "poster:showcase/050-the-summer-bottled-early.jpg"
+    "2026-11-24 13:00": "poster:showcase/050-the-summer-bottled-early.jpg",
+    "2026-11-24 16:00": "poster:showcase/051-neon-in-the-middle-of-nowhere.jpg"
   },
   "start": "2026-11-04",
   "partial": {}

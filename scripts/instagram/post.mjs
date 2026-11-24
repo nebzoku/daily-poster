@@ -22,7 +22,8 @@ const pad = (n) => String(n).padStart(3, "0");
 const longDate = (d) => new Intl.DateTimeFormat("en-GB", { weekday: "long", day: "numeric", month: "long", timeZone: "UTC" }).format(new Date(d + "T12:00:00Z"));
 
 // Captions, in plain words, no emoji.
-const TAGS = (issue, type) => `#dailyposter #dailyposter${pad(issue)} #posterdesign #typography #graphicdesign #designchallenge${type?.libre?.foundry === "Velvetyne" ? " #velvetyne_type_foundry" : ""}`;
+// Instagram allows at most five hashtags a post. extra replaces the last one (e.g. #makingof on a reel caption).
+const TAGS = (issue, type, extra) => `#dailyposter #dailyposter${pad(issue)} #posterdesign #typography ${extra || (type?.libre?.foundry === "Velvetyne" ? "#velvetyne_type_foundry" : "#graphicdesign")}`;
 // Libre faces are credited to their designer and foundry, as their licences ask.
 const typeLine = (t) => `${t.display}${t.libre ? ` by ${t.libre.designer} (${t.libre.foundry})` : ""} and ${t.text}`;
 export function posterCaption(p, brief) {
@@ -55,7 +56,7 @@ export function makingOfCaption(p, brief) {
     "",
     "Today's brief is live at dailyposter.design",
     "",
-    TAGS(brief.issue, brief.type) + " #makingof #designprocess",
+    TAGS(brief.issue, brief.type, "#makingof"),
   ].join("\n");
 }
 export function briefCaption(brief, past = false) {

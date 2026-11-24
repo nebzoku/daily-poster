@@ -42,8 +42,8 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   the artboard on a dark pasteboard, a cursor doing the work, blue selection boxes with handles, magenta smart guides
   when something snaps, quick eased zooms and jump cuts, the finished poster on black at the end. No app chrome,
   menus, labels or colourways. In the real build order: background rectangle dragged out, image placed and dragged
-  to centre, pixelated click by click up close, small type set in drawn text boxes, the headline typed loose then
-  dragged onto its line, select all, the ink and paper. The cursor moves on curved, Fitts-timed paths (quick out,
+  to centre, pixelated click by click up close, small type set in drawn text boxes, the headline typed loose, tightened (tracking closing up in nudges) and dragged onto its line, select all, then ink trials up close in
+  different spots (lighter, much heavier, back down to the one kept), and the paper. Under 30 seconds. The cursor moves on curved, Fitts-timed paths (quick out,
   slow landing). Templates mark the steps with `snap(name, canvas)`; render with `CAP=1`.
 
 ### Round 15 feedback (24 Nov 2026): centred blocks as an hourglass

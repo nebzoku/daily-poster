@@ -68,7 +68,8 @@ def tdur(p0, p1): return 0.18 + 0.12 * math.log2(1 + math.hypot(p1[0] - p0[0], p
 # ---------- the timeline: segments that each say, for t in 0..1, what's on the artboard and screen ----------
 segs = []   # (duration, fn(t) -> dict(poster, cursor, shape, over, cam, cut))
 cur = [DW + 260, DH * 0.75]           # cursor starts off the artboard, bottom right
-def seg(d, fn, cam, cut=False): segs.append((d, fn, cam, cut))
+SPEED = 0.8                            # everything a touch quicker than real time
+def seg(d, fn, cam, cut=False): segs.append((d * SPEED, fn, cam, cut))
 FIT = (DW / 2, DH / 2, 0.78)
 def move(to, cam, poster, ov=lambda t: [], shape='arrow', extra=0.0, bow=None):
     p0 = tuple(cur); d = tdur(p0, to) + extra
@@ -148,18 +149,44 @@ for i, n in enumerate(lines):
     cam = ((lb[0] + lb[2]) / 2, (lb[1] + lb[3]) / 2 + o[1] / 2, max(0.78, min(1.25, SW * 0.86 / (lb[2] - lb[0] + abs(o[0]) + 80))))
     move((fb[0] - 10, (fb[1] + fb[3]) / 2), cam, state, shape='ibeam')
     hold(0.08, cam, state, shape='ibeam', press=True)
-    cols_on = np.nonzero(flat[..., 3].max(0) > 80)[0]; ends = [];
+    cols_on = np.nonzero(flat[..., 3].max(0) > 80)[0]; ends = []
     prev = cols_on[0]
     for x in cols_on[1:]:
         if x - prev > 3 * K: ends.append(prev + 1)
         prev = x
-    ends.append(cols_on[-1] + 1); ends = [e + int(o[0] * K) for e in ends]
-    shifted = shift(flat, *o); dur = 0.12 + 0.065 * len(ends)
-    def typing(t, shifted=shifted, ends=ends, fb=fb, state=state, dur=dur, tc=tuple(int(v) for v in tc)):
-        k = min(len(ends), int(t * (len(ends) + 0.6))); cut = ends[k - 1] if k else int(fb[0] * K)
-        ov = [('caret', cut / K + 4, fb[1], fb[3], tc)] if int(t * dur * 3) % 2 == 0 or t < 0.9 else []
-        return dict(poster=over(state, shifted, cut), cursor=(fb[0] - 10, (fb[1] + fb[3]) / 2 + 26), shape='ibeam', over=ov)
+    ends.append(cols_on[-1] + 1)
+    starts_ = [cols_on[0]] + ends[:-1]; nL = len(ends)
+    ys_ = np.nonzero(flat[..., 3].max(1) > 0)[0]; ry0, ry1 = ys_[0], ys_[-1] + 1
+    LOOSE = 26                                                      # extra space per letter while it's set loose
+    PADD = 260; PADp = int(PADD * K)                                # the loose line can run off the artboard
+    def spaced(extra, flat=flat, starts_=starts_, ends=ends, nL=nL, ry0=ry0, ry1=ry1):
+        # the line with `extra` design units between letters, spread about its centre (never scales the glyphs),
+        # as a strip that floats over the canvas, so it can hang off the artboard onto the pasteboard
+        out = np.zeros((ry1 - ry0, PW + 2 * PADp, 4), np.uint8); band = flat[ry0:ry1]
+        for j, (s0, e0) in enumerate(zip(starts_, ends)):
+            off = int(round((j - (nL - 1) / 2) * extra * K)) + PADp
+            out[:, s0 + off:e0 + off] = np.maximum(out[:, s0 + off:e0 + off], band[:, s0:e0])
+        return out
+    org = (-PADD + o[0], ry0 / K + o[1])                            # the strip's top-left, design units
+    loose = spaced(LOOSE)
+    lends = [int(e + round((j - (nL - 1) / 2) * LOOSE * K) + PADp) for j, e in enumerate(ends)]
+    dur = 0.12 + 0.06 * nL
+    fb = [lb[0] + o[0] - (nL - 1) / 2 * LOOSE, lb[1] + o[1], lb[2] + o[0] + (nL - 1) / 2 * LOOSE, lb[3] + o[1]]
+    cam = ((fb[0] + fb[2]) / 2, (fb[1] + fb[3]) / 2, max(0.62, min(1.2, SW * 0.9 / (fb[2] - fb[0] + 60))))
+    def typing(t, loose=loose, ends=lends, fb=fb, state=state, dur=dur, org=org, tc=tuple(int(v) for v in tc)):
+        k = min(len(ends), int(t * (len(ends) + 0.6))); cut = ends[k - 1] if k else 0
+        ov = [('caret', org[0] + cut / K + 4, fb[1], fb[3], tc)] if int(t * dur * 3) % 2 == 0 or t < 0.9 else []
+        return dict(poster=state, float=(loose, org, cut), cursor=(fb[0] - 10, (fb[1] + fb[3]) / 2 + 26), shape='ibeam', over=ov)
     seg(dur, typing, cam)
+    # select it, then tighten the tracking: the letters close up in a few nudges, the box shrinking with them
+    def tighten(t, state=state, o=o, lb=lb, nL=nL, LOOSE=LOOSE, spaced=spaced, org=org):
+        u = ease(min(1, t * 1.15)); u = min(1, (math.floor(u * 4) / 4) * 0.35 + u * 0.65)   # a little stepped, like nudges
+        ex = LOOSE * (1 - u); half = (nL - 1) / 2 * ex
+        box = [lb[0] + o[0] - half, lb[1] + o[1], lb[2] + o[0] + half, lb[3] + o[1]]
+        return dict(poster=state, float=(spaced(ex), org, None), cursor=(box[2] + 30, box[3] + 34), shape='arrow', over=[('box', *box, True)])
+    seg(0.75 if i < 2 else 0.6, tighten, cam)
+    shifted = shift(flat, *o); fb = [lb[0] + o[0], lb[1] + o[1], lb[2] + o[0], lb[3] + o[1]]
+    cur[:] = [fb[2] + 34, fb[3] + 30]
     grabp = ((fb[0] + fb[2]) / 2, (fb[1] + fb[3]) / 2)
     hold(0.12, cam, over(state, shifted), lambda t, fb=fb: [('box', *fb, True)], shape='arrow')
     move(grabp, cam, over(state, shifted), lambda t, fb=fb: [('box', *fb, True)])
@@ -169,7 +196,7 @@ for i, n in enumerate(lines):
         if t > 0.8 and i in (0, len(lines) - 1): g.append(('hline', lb[1] if i == 0 else lb[3]))
         return dict(poster=over(state, shift(flat, dx, dy)), cursor=(grabp[0] - o[0] + dx, grabp[1] - o[1] + dy), shape='arrow', press=True,
                     over=[('box', lb[0] + dx, lb[1] + dy, lb[2] + dx, lb[3] + dy, True)] + g)
-    seg(0.55, drag, cam)
+    seg(0.45, drag, cam)
     cur[:] = [grabp[0] - o[0], grabp[1] - o[1]]
     state = over(state, L)
     hold(0.18, cam, state, lambda t, lb=lb: [('box', *lb, True)])
@@ -183,13 +210,33 @@ show_off = len(segs)
 dif = np.abs(rgb('printed').astype(np.int16) - state.astype(np.int16)).sum(2) > 30
 yy, xx = np.unravel_index(np.argmax(np.asarray(Image.fromarray(dif.astype(np.uint8) * 255).resize((PW // 64, PH // 64), Image.BOX))), (PH // 64, PW // 64))
 INK = ((xx + 0.5) * 64 / K, (yy + 0.5) * 64 / K, 2.2)
-hold(0.9, INK, rgb('printed'), cut=True)
-hold(0.5, FIT, rgb('printed'), cut=True)
+# trying inks: up close in different places, each setting a scrub of the hand, heavier then lighter, settling
+def spots(img_a, img_b, n=3):
+    d = np.abs(img_a.astype(np.int16) - img_b.astype(np.int16)).sum(2) > 30
+    g = np.asarray(Image.fromarray(d.astype(np.uint8) * 255).resize((PW // 96, PH // 96), Image.BOX)).astype(float)
+    out = []
+    for _ in range(n):
+        yy, xx = np.unravel_index(np.argmax(g), g.shape); out.append(((xx + 0.5) * 96 / K, (yy + 0.5) * 96 / K))
+        g[max(0, yy - 9):yy + 10, max(0, xx - 9):xx + 10] = 0
+    return out
+P = spots(state, rgb('ink-heavy'))
+trials = [(P[0], 2.3, 'ink-light'), (P[0], 2.3, 'ink-heavy'), (P[1], 2.0, 'ink-heavy'), (P[1], 2.0, 'ink-mid'), (P[2], 2.1, 'ink-mid'), (P[2], 2.1, 'printed')]
+prev_img = state
+for k, (pt, z, nm) in enumerate(trials):
+    cam = (pt[0], pt[1], z); cut_ = k % 2 == 0
+    if cut_:
+        cur[:] = [pt[0] + 120 / z, pt[1] + 140 / z]
+        hold(0.25, cam, prev_img, cut=True)
+    p0 = tuple(cur)
+    seg(0.32, lambda t, p0=p0, pv=prev_img, nm=nm: dict(poster=pv if t < 0.55 else rgb(nm), cursor=(p0[0] + math.sin(t * math.pi) * 34, p0[1]), shape='arrow', press=0.1 < t < 0.9, over=[]), cam)
+    hold(0.45, cam, rgb(nm))
+    prev_img = rgb(nm)
+hold(0.35, FIT, rgb('printed'), cut=True)
 seg(0.6, lambda t: dict(poster=(rgb('printed') * (1 - ease(t)) + rgb('final') * ease(t)).astype(np.uint8), cursor=(DW + 300, DH + 200), shape='arrow', over=[]), FIT)
 cur[:] = [DW + 300, DH + 200]
-hold(0.8, (DW / 2, DH / 2, 0.74), rgb('final'))
+hold(0.6, (DW / 2, DH / 2, 0.74), rgb('final'))
 # 8. the finished poster, on black
-hold(1.8, 'end', rgb('final'), cut=True)
+hold(1.9, 'end', rgb('final'), cut=True)
 
 # ---------- camera: quick eased zooms and pans between segment targets (like keyboard zoom), jump cuts where set ----------
 starts = np.cumsum([0] + [d for d, *_ in segs]); total = starts[-1]
@@ -232,6 +279,10 @@ def frame(fi):
     if px1 > px0 and py1 > py0:
         crop = Image.fromarray(poster[int(py0 * K):int(math.ceil(py1 * K)), int(px0 * K):int(math.ceil(px1 * K))])
         img.paste(crop.resize((max(1, round((px1 - px0) * s)), max(1, round((py1 - py0) * s))), Image.LANCZOS if s < K else Image.BICUBIC), (round(X(px0)), round(Y(py0))))
+    if st.get('float') is not None:
+        F, (ox_, oy_), cutp = st['float']; F = F if cutp is None else np.where((np.arange(F.shape[1]) < cutp)[None, :, None], F, 0).astype(np.uint8)
+        fim = Image.fromarray(F, 'RGBA'); fw, fh = round(F.shape[1] / K * s), round(F.shape[0] / K * s)
+        if fw > 0 and fh > 0: img.paste(fim.resize((fw, fh), Image.LANCZOS if s < K else Image.BICUBIC), (round(X(ox_)), round(Y(oy_))), fim.resize((fw, fh), Image.LANCZOS if s < K else Image.BICUBIC))
     if show_guides['on'] and i < show_off and fi > 0:
         for k, p in guides:
             if k == 'v': dr.line([(X(p), Y(0)), (X(p), Y(DH))], fill=GUIDE, width=1)

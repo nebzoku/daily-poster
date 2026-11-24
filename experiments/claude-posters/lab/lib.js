@@ -822,7 +822,7 @@ function alphaThr(c, t) {
 const blurred = (c, r) => { const o = canvas(c.width / K, c.height / K); o.g.filter = `blur(${r * K / 2}px)`; draw(o.g, c); o.g.filter = 'none'; return o; };
 function printAll(g, C, o = {}) {
   const proc = sheetProcess(o.style ?? C.finish); if (!proc) return;
-  const [preset, wear, spread] = proc, seedN = o.seed ?? 21;
+  const [preset, w0, s0] = proc, wear = o.wear ?? w0, spread = o.spread ?? s0, seedN = o.seed ?? 21;
   const hexes = [...new Set(JSON.stringify(C).match(/#[0-9A-Fa-f]{6}/g).map((h) => h.toUpperCase()))];
   const bg = (o.bg ?? C.bg ?? C.paper).toUpperCase(), cols = hexes.map((h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16)));
   const src = g.canvas, w = src.width, h = src.height, sd = src.getContext('2d').getImageData(0, 0, w, h).data;

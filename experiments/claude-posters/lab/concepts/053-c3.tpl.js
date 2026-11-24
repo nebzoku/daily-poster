@@ -68,6 +68,15 @@ window.POSTER = async () => {
     const L = canvas(); draw(L.g, tint(inter(outScope, one), C.type)); draw(L.g, tint(inter(inScope, one), C.knock)); snap(`line-${i}`, L);
   });
   // the whole sheet photocopied like the headline (round 14), then the headline
+  if (CAPTURE) {   // the making-of: ink trials, lighter and heavier, before the one that was kept
+    for (const [nm, k] of [['ink-light', 0.35], ['ink-heavy', 1.7], ['ink-mid', 1.3]]) {
+      const tmp = canvas(); draw(tmp.g, out);
+      printAll(tmp.g, C, { seed: 551, wear: 0.4 * k, spread: Math.min(0.85, 0.5 * k) });
+      printHead(tmp.g, outScope, C.type, C.finish, { bg: C.bg, seed: 55, wear: 0.45 * k, spread: Math.min(0.85, 0.4 * k) });
+      printHead(tmp.g, inScope, C.knock, C.finish, { bg: C.scope, seed: 56, wear: 0.45 * k, spread: Math.min(0.85, 0.4 * k) });
+      snap(nm, tmp);
+    }
+  }
   printAll(g, C, { seed: 551 });
   printHead(g, outScope, C.type, C.finish, { bg: C.bg, seed: 55 });
   printHead(g, inScope, C.knock, C.finish, { bg: C.scope, seed: 56 });

@@ -31,13 +31,15 @@ window.POSTER = async () => {
   draw(g, tint(cut(cm, union(rectMask(b1), rectMask(b2))), C.circle));
   draw(g, tint(inter(cm, rectMask(b2)), C.circle), 'multiply');
 
-  draw(g, press(head, C.ink, 'letterpress', { wear: 0.35, spread: 0.25, seed: 51 }));
   const t = { font: T, size: 16, weight: 500, lead: 0.9, color: C.ink };
   [b1, b2].forEach((b, i) => block(g, [`(0${i + 1})`], b.x, b.y + b.h + 8, t));
   const sub = balance('Fuel and a sandwich are giving way to better food, design and reasons to linger beside the motorway.', { ...t, minW: 200, maxW: COL * 2.6 });
   block(g, sub.lines, b3.x, b3.y + b3.h, { ...t, align: 'right', anchor: 'bottom' });
   block(g, ['(Daily Poster) (No. 051)', '(Saturday 22 November) (BBC News)'], W - M, b3.y + b3.h + 24, { ...t, align: 'right' });
   pixels(g, M, M + ROW * 3 + 40, 8, ['#.#..#', '.#.##.', '#....#'], C.ink);
+  // round 14 (re-rendered 24 Nov): the whole sheet printed like the headline, then the headline, then the paper
+  printAll(g, C, { style: 'letterpress', boxes: [b2, b3] });
+  draw(g, press(head, C.ink, 'letterpress', { wear: 0.35, spread: 0.25, seed: 51 }));
   draw(g, IM.paper(0.5, 51), 'source-over', 0.6); grain(g, 0.06, 0.5);
   return out;
 };

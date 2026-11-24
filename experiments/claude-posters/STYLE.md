@@ -29,6 +29,13 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   from the brief and different layout systems and treatments. Colourways only swap which palette colours play
   background, middle (image marks) and type. Ben picks the one(s) to post the next day.
 
+### Round 15 feedback (24 Nov 2026): centred blocks as an hourglass
+- **Centred headline in a top block and a bottom block: set it as an hourglass.** Break the lines so the widest ones
+  sit on the outer edges (the first line on the top margin, the last on the bottom margin) and they narrow towards
+  the middle, so the bottom block mirrors the top. And no short word stranded on the last line: "CHASING / LIGHT /
+  NEAR / THE SUN", not "CHASING / LIGHT / NEAR THE / SUN". Within reason: the breaks still have to read naturally
+  (Round 9).
+
 ### Round 14 feedback (24 Nov 2026): print the whole sheet, and words in the corners
 - **If the headline is printed, everything is printed, to the same degree.** Shapes, pixel blocks, bars, box edges,
   rules and dots go through the same process as the headline: bleeding ink bleeds everywhere, a crisp print is crisp

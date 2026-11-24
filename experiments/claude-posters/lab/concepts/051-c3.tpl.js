@@ -31,12 +31,14 @@ window.POSTER = async () => {
   g.fillStyle = C.winBg; g.fillRect(win.x, win.y, win.w, win.h);
   draw(g, press(wm, C.winInk, 'riso', { wear: 0.35, spread: 0.45, seed: 4 }));
 
-  draw(g, press(head, C.type, 'letterpress', { wear: 0.35, spread: 0.25, seed: 51 }));
   const t = { font: T, size: 16, weight: 500, lead: 0.9, color: C.type };
   const sub = balance('The humble roadside stop is being rebuilt as a destination, and the journey now includes the break.', { ...t, minW: 180, maxW: COL * 2 });
   block(g, sub.lines, W / 2, band.y + band.h + 40, { ...t, align: 'center' });
   block(g, ['(Daily Poster) (No. 051)', '(Saturday 22 November) (BBC News)'], W / 2, band.y - 40, { ...t, align: 'center', anchor: 'bottom' });
   block(g, ['(Pause)'], win.x, win.y - 10, { ...t, anchor: 'bottom' });
+  // round 14 (re-rendered 24 Nov): the whole sheet printed like the headline, then the headline, then the paper
+  printAll(g, C, { style: 'letterpress', boxes: [band] });
+  draw(g, press(head, C.type, 'letterpress', { wear: 0.35, spread: 0.25, seed: 51 }));
   draw(g, IM.paper(0.45, 51), 'source-over', 0.6); grain(g, 0.07, 0.5);
   return out;
 };

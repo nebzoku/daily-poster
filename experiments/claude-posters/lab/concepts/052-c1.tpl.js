@@ -26,13 +26,15 @@ window.POSTER = async () => {
   draw(g, press(vm, C.mid, 'riso', { wear: 0.45, spread: 0.5, seed: 1 }));
   draw(g, press(gm, C.mid2, 'riso', { wear: 0.45, spread: 0.5, seed: 2 }));
   draw(g, tone(levels(boxed(brush, bx, { crop: [0.33, 0.42, 0.22, 0.16] }), 0.02, 0.98), C.tones));
-  draw(g, press(head, C.type, HS.ink.preset, { ...HS.ink, seed: 52 }));
   const t = { font: T, size: 16, weight: 500, lead: 0.9, color: C.type };
   const sub = balance('Victorian decorator David Parr papered mansions by day, then filled his own Cambridge terrace with patterns he designed.', { ...t, minW: 200, maxW: COL * 2.6 });
   block(g, sub.lines, bx.x, bx.y, { ...t, align: 'right' });
   block(g, ['(Daily Poster)', '(No. 052)', '(Monday 23 November)', '(The Guardian)'], bx.x, bx.y + bx.h, { ...t, align: 'right', anchor: 'bottom' });
   block(g, ['(01)'], bx.x + bx.w, bx.y - 10, { ...t, align: 'right', anchor: 'bottom' });
   asterisk(g, tb.x + 14, tb.y + tb.h - 14, 12, C.mid);
+  // round 14 (re-rendered 24 Nov): the whole sheet printed like the headline, then the headline, then the paper
+  printAll(g, C, { style: 'letterpress', boxes: [bx] });
+  draw(g, press(head, C.type, HS.ink.preset, { ...HS.ink, seed: 52 }));
   draw(g, IM.paper(0.45, 52), 'source-over', 0.6); grain(g, 0.07, 0.5);
   return out;
 };

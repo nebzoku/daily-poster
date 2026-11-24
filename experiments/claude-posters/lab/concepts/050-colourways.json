@@ -1,0 +1,23 @@
+{
+ "c1": {
+  "b": {
+   "bg": "#4CEBEB",
+   "type": "#012525",
+   "mid2": "#012525",
+   "mid": "#FFFFFF",
+   "light": "#B6F2F1"
+  }
+ },
+ "c2": {
+  "b": {
+   "paper": "#012525",
+   "ink": "#B6F2F1",
+   "boxBg": "#012525",
+   "boxInk": "#657575",
+   "mid": "#4CEBEB",
+   "paperLight": "#B6F2F1",
+   "circle": "#4CEBEB",
+   "flip": "#012525"
+  }
+ }
+}

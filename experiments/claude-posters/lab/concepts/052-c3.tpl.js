@@ -35,7 +35,6 @@ window.POSTER = async () => {
   const ours = canvas(), rest = canvas(); let y = M + ROW * 3 + 40;
   lines.forEach((t, i) => { const h = Math.floor(i / 2); place(h === 0 ? ours : rest, t, { left: M + COL * h, top: y }); y += pitch; });
   draw(g, tint(rest, C.ghost));
-  draw(g, press(ours, C.ink, HS.ink.preset, { ...HS.ink, seed: 52 }));
 
   const t = { font: T, size: 16, weight: 500, lead: 0.9, color: C.ink };
   [b1, b2, b3].forEach((b, i) => block(g, [`(0${i + 1})`], b.x + b.w, b.y + b.h + 8, { ...t, align: 'right' }));
@@ -44,6 +43,9 @@ window.POSTER = async () => {
   block(g, ['(Daily Poster)', '(No. 052)', '(Monday 23 November)', '(The Guardian)'], b3.x + b3.w, b3.y + b3.h, { ...t, anchor: 'bottom' });
   asterisk(g, W - M - 14, H - M - 14, 12, C.ink);
   pixels(g, W - M - 48, M + ROW * 5 + 24, 8, ['#.##.#', '.#..#.', '#.##.#'], C.ink);
+  // round 14 (re-rendered 24 Nov): the whole sheet printed like the headline, then the headline, then the paper
+  printAll(g, C, { style: 'letterpress', boxes: [b1] });
+  draw(g, press(ours, C.ink, HS.ink.preset, { ...HS.ink, seed: 52 }));
   draw(g, IM.paper(0.5, 52), 'source-over', 0.6); grain(g, 0.06, 0.5);
   return out;
 };

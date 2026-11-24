@@ -33,12 +33,14 @@ window.POSTER = async () => {
   for (let p = 0; p < sum.length; p++) if (sum[p] >= 2 && sum[p] % 2 === 0) { id.data[p * 4] = fc[0]; id.data[p * 4 + 1] = fc[1]; id.data[p * 4 + 2] = fc[2]; id.data[p * 4 + 3] = 255; }
   xg.putImageData(id, 0, 0); g.save(); g.imageSmoothingEnabled = false; g.drawImage(xo, 0, 0, W, H); g.restore();
 
-  draw(g, press(head, C.type, 'riso', { wear: 0.25, spread: 0.28, seed: 51 }));
   const t = { font: T, size: 16, weight: 500, lead: 0.9, color: C.type };
   const sub = balance('Motorway service stations, long a quick stop for fuel and a sandwich, are being reimagined as places people choose to visit.', { ...t, minW: 200, maxW: COL * 2.6 });
   block(g, sub.lines, W - M, M + ROW * 6.5, { ...t, align: 'right' });
   block(g, ['(Daily Poster)', '(No. 051)', '(Saturday 22 November)', '(BBC News)'], W - M, R[0].y, { ...t, align: 'right' });
   asterisk(g, M + 14, M + ROW * 6.5 + 14, 12, C.type);
+  // round 14 (re-rendered 24 Nov): the whole sheet printed like the headline, then the headline, then the paper
+  printAll(g, C, { style: 'riso' });
+  draw(g, press(head, C.type, 'riso', { wear: 0.25, spread: 0.28, seed: 51 }));
   draw(g, IM.paper(0.4, 51), 'source-over', 0.5); grain(g, 0.08, 0.5);
   return out;
 };

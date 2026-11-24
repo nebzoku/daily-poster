@@ -1,5 +1,5 @@
-// No. 053 · Concept 3 · "CHASING / LIGHT / NEAR THE / SUN" · Work Sans ExtraBold, all caps, centred, one word (or
-// pair) per line, two blocks top and bottom.
+// No. 053 · Concept 3 · "CHASING / LIGHT / NEAR / THE SUN" · Work Sans ExtraBold, all caps, centred, two blocks
+// top and bottom set as an hourglass: the widest lines on the outer edges (CHASING, THE SUN), narrowing to the middle.
 // Story: spotting Mercury means chasing a speck of light that never strays far from the sun: you look for it in
 //   the brief window before the sun comes up and drowns it out.
 // Everyday thing: a telescope, the thing you point at the sky to chase that light.
@@ -20,7 +20,7 @@ window.POSTER = async () => {
   const out = canvas(), g = out.g;
   g.fillStyle = C.bg; g.fillRect(0, 0, W, H);
 
-  const HS = inkSafe(['CHASING', 'LIGHT', 'NEAR THE', 'SUN'], { font: D, weight: 800, size: 200, gap: 18, minGap: 8, word: 0.26 }, W - 2 * M, { preset: 'copy', wear: 0.45, spread: 0.4 });
+  const HS = inkSafe(['CHASING', 'LIGHT', 'NEAR', 'THE SUN'], { font: D, weight: 800, size: 200, gap: 18, minGap: 8, word: 0.26 }, W - 2 * M, { preset: 'copy', wear: 0.45, spread: 0.4 });
   const head = canvas(); const R = pinBlocks(head, HS.lines, ['C', 'C', 'C', 'C'], 2, 0.1);
 
   // the telescope: pixelated hard into the palette, centred, big, running through both blocks

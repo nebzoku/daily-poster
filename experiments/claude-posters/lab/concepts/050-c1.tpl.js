@@ -12,7 +12,7 @@ window.POSTER = async () => {
   g.fillStyle = C.bg; g.fillRect(0, 0, W, H);
 
   const { lines } = sameOptical8(['FIRST TASTE', 'OF A', 'HOT YEAR'], { font: F, weight: 900, size: 200, gap: 22, minGap: 10, word: 0.24 }, W - 2 * M);
-  const head = canvas(); const R = pinBlocks(head, lines, ['L', 'R', 'L'], 1, 0.06);
+  const head = canvas(); const R = pinBlocks(head, spreadWords(lines, W - 2 * M), ['L', 'R', 'L'], 1, 0.06);
   const y0 = R[0].y + R[0].h + 24, y1 = R[1].y - 24;
 
   // the corkscrew, zoomed to the gears, filling the middle band edge to edge
@@ -25,7 +25,6 @@ window.POSTER = async () => {
   draw(g, press(lite, C.mid, 'riso', { wear: 0.4, spread: 0.5, seed: 2 }));
   draw(g, press(hi, C.light, 'riso', { wear: 0.4, spread: 0.5, seed: 3 }));
 
-  draw(g, press(head, C.type, 'letterpress', { wear: 0.35, spread: 0.25, seed: 50 }));
 
   // subline + furniture: one style, under the top block, flush to the margins, cap height on the row line below
   const t = { font: F, size: 16, weight: 500, lead: 0.9, color: C.type };
@@ -35,6 +34,9 @@ window.POSTER = async () => {
   block(g, sub.lines, M, R[1].y, t);
   block(g, ['(Daily Poster)', '(No. 050)', '(Friday 21 November)', '(The Guardian)'], W - M, R[0].y + R[0].h + 24, { ...t, align: 'right' });
   asterisk(g, M + 12, R[0].y + R[0].h + 36, 12, C.type);
+  // round 14 (re-rendered 24 Nov): the whole sheet printed like the headline, then the headline, then the paper
+  printAll(g, C, { style: 'letterpress' });
+  draw(g, press(head, C.type, 'letterpress', { wear: 0.35, spread: 0.25, seed: 50 }));
   draw(g, IM.paper(0.45, 50), 'source-over', 0.6); grain(g, 0.07, 0.5);
   return out;
 };

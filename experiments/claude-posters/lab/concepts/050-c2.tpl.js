@@ -12,7 +12,7 @@ window.POSTER = async () => {
   paper(g, C.paper, { drift: 0.02, fibre: 0.05 });
 
   const { lines } = sameOptical8(['THE SUMMER', 'BOTTLED EARLY'], { font: F, weight: 900, size: 200, gap: 22, minGap: 10, word: 0.24 }, W - 2 * M);
-  const head = canvas(); pinBlocks(head, lines, ['L', 'L'], 2, 0.08);
+  const head = canvas(); pinBlocks(head, spreadWords(lines, W - 2 * M), ['L', 'L'], 2, 0.08);
 
   const A = cell(0, 2, 8, 3);
   let a = boxed(harvest, A, { crop: [0.0, 0.1, 1.0, 0.62], fy: 0.4 });
@@ -34,7 +34,6 @@ window.POSTER = async () => {
   draw(g, tint(cut(fInk, circ), C.ink));
   draw(g, tint(inter(fInk, circ), C.flip));
 
-  draw(g, press(head, C.ink, 'letterpress', { wear: 0.35, spread: 0.25, seed: 50 }));
 
   const t = { font: F, size: 16, weight: 500, lead: 0.9, color: C.ink };
   const sub = balance('A long, hot summer brought the earliest grape harvest at the Three Choirs vineyard in half a century.', { ...t, minW: 180, maxW: 300 });
@@ -44,6 +43,9 @@ window.POSTER = async () => {
   block(g, ['(01)'], A.x + A.w, A.y - 10, { ...t, align: 'right', anchor: 'bottom' });
   asterisk(g, A.x + A.w - 22, A.y + 22, 12, C.flip);
   pixels(g, M, A.y - 34, 8, ['#.#.', '.#.#', '#..#'], C.ink);
+  // round 14 (re-rendered 24 Nov): the whole sheet printed like the headline, then the headline, then the paper
+  printAll(g, C, { style: 'letterpress', boxes: [B] });
+  draw(g, press(head, C.ink, 'letterpress', { wear: 0.35, spread: 0.25, seed: 50 }));
   draw(g, IM.paper(0.5, 50), 'source-over', 0.6); grain(g, 0.06, 0.5);
   return out;
 };

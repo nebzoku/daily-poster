@@ -39,8 +39,11 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   stretched across three frames so a swipe pans along one close-up. Pick the strip where treatments meet (ink type
   over pixels, harsh next to smooth, stepped edges) and don't let it cut through small text.
 - **Making-of reel** (`lab/reel.py`): the poster rebuilt in the order it was really made (grid, background, image,
-  pixelation, small type, headline typed in, ink, paper), then a pull back to the colourways and the pick. No
-  interface or cursor. Templates mark the steps with `snap(name, canvas)`; render with `CAP=1`.
+  pixelation, small type, headline typed in, ink, paper). No labels, no page furniture, no interface or cursor, and
+  no colourways at the end: it settles on the finished poster. The camera moves like someone working on a design
+  canvas: drifting in, zooming to whatever is being worked on, following the caret as the headline is typed, close
+  on the ink as it spreads, then out; a soft spring with a little hand drift, never on rails. Templates mark the
+  steps with `snap(name, canvas)`; render with `CAP=1`.
 
 ### Round 15 feedback (24 Nov 2026): centred blocks as an hourglass
 - **Centred headline in a top block and a bottom block: set it as an hourglass.** Break the lines so the widest ones

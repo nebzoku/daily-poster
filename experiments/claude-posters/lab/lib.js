@@ -898,13 +898,13 @@ function spreadWords(lines, maxW, { maxShort = 0.12 } = {}) {
 }
 
 // ---------- making-of capture ----------
-// With ?cap=1 (CAP=1 node render.mjs ...), snap(name, canvas) keeps a 1080 × 1528 copy of the canvas at that moment
+// With ?cap=1 (CAP=1 node render.mjs ...), snap(name, canvas) keeps a full-size copy of the canvas at that moment
 // (the sheet so far, or a transparent layer on its own). render.mjs writes them to out/<poster>-snaps/ for the
 // making-of reel (reel.py). Without ?cap=1 it does nothing, so templates can call it freely.
 const CAPTURE = /[?&]cap=1/.test(location.search);
 window.SNAPS = [];
 function snap(name, c) {
   if (!CAPTURE) return;
-  const s = document.createElement('canvas'); s.width = W; s.height = H; s.getContext('2d').drawImage(c, 0, 0, W, H);
+  const s = document.createElement('canvas'); s.width = W * K; s.height = H * K; s.getContext('2d').drawImage(c, 0, 0, W * K, H * K);
   window.SNAPS.push([name, s.toDataURL('image/png')]);
 }

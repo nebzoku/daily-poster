@@ -38,6 +38,6 @@ Ben picks the ones to post; they go into the archive credited **Nebzokai** (Ben'
    templates + log (not the renders).
 6b. Instagram extras for a picked poster: `python3 carousel.py <issue-slug> out/<poster>.png <x> <y> <w>` (zoom
    carousel) and, if the template has `snap()` steps, `CAP=1 node render.mjs posters/<poster>.js` then
-   `python3 reel.py <issue> <concept> <x> "<title>"` (making-of reel). Both write to `deliver/`.
+   `python3 reel.py <issue> <concept> <x>` (making-of reel). Both write to `deliver/`.
 7. When Ben picks, copy the chosen PNGs to `site/showcase/<issue>-<slug>.jpg` (JPEG quality 90) and add entries to the
    top of `site/data/showcase.json` with `"designer": "Nebzokai"`, then commit and push to main.

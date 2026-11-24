@@ -1,169 +1,169 @@
 #!/usr/bin/env python3
-"""Making-of reel: python3 reel.py <issue> <concept> <picked colourway> "<title>"
-  e.g. python3 reel.py 053 c3 a "Chasing light near the sun"
-Needs the snapshots of the picked poster (CAP=1 node render.mjs posters/<issue>-<concept>-<x>.js → out/..-snaps/) and
-the finished renders of every colourway of that concept (out/<issue>-<concept>-*.png).
-The poster is rebuilt in the order it was really made, on an open canvas in the Daily Poster style: the grid, the
-background, the image dropped in and pixelated, the small type, the headline typed in, the ink, the paper, then a
-pull back to the three colourways and the pick. No interface, no cursor: just the work. 1080 × 1920, 30 fps.
+"""Making-of reel: python3 reel.py <issue> <concept> <picked colourway>
+  e.g. python3 reel.py 053 c3 a
+Needs the snapshots of the picked poster: CAP=1 node render.mjs posters/<issue>-<concept>-<x>.js → out/..-snaps/.
+The poster is rebuilt in the order it was really made, on an open dotted canvas, the way you'd watch someone work
+on a design canvas: the camera drifts in, zooms to whatever is being worked on (the image as it pixelates, the
+small type, each headline line as it's typed, following the caret), pulls out, pans across, and settles on the
+finished poster. No labels, no interface, no cursor. The camera is a soft spring chasing each target, with a little
+hand drift, so it never moves on rails. 1080 × 1920, 30 fps.
 """
 import glob, os, re, subprocess, sys
 import numpy as np
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
-issue, concept, pick, title = sys.argv[1:5]
+issue, concept, pick = sys.argv[1:4]
 FPS, SW, SH = 30, 1080, 1920
-PW, PH = 1080, 1528                          # poster, design units
-CANVAS, DOT, INK = (236, 236, 231), (204, 204, 198), (24, 24, 24)
-
-# fonts: the toolkit's Work Sans, converted for PIL
-def font(w, size):
-    path = f'out/work-sans-{w}.ttf'
-    if not os.path.exists(path):
-        from fontTools.ttLib import TTFont
-        f = TTFont(f'node_modules/@fontsource/work-sans/files/work-sans-latin-{w}-normal.woff2'); f.flavor = None; f.save(path)
-    return ImageFont.truetype(path, size)
-F16, F22 = font(500, 22), font(500, 26)
+CANVAS, DOT = (236, 236, 231), (210, 210, 204)
 
 snapdir = f'out/{issue}-{concept}-{pick}-snaps'
 snaps = [(re.sub(r'^\d+-', '', os.path.basename(p)[:-4]), p) for p in sorted(glob.glob(f'{snapdir}/*.png'))]
-load = lambda p: np.asarray(Image.open(p).convert('RGBA').resize((PW, PH), Image.LANCZOS)).astype(np.float32) / 255
-S = {n: load(p) for n, p in snaps}
-ways = sorted(glob.glob(f'out/{issue}-{concept}-[a-z].png'))
-WAYS = [np.asarray(Image.open(p).convert('RGB').resize((PW, PH), Image.LANCZOS)) for p in ways]
-pick_i = [os.path.basename(p)[-5] for p in ways].index(pick)
-rgb = lambda a: a[..., :3]
-over = lambda base, layer: rgb(base) * (1 - layer[..., 3:]) + rgb(layer) * layer[..., 3:]
+S = {n: np.asarray(Image.open(p).convert('RGBA')) for n, p in snaps}
+PH, PW = S['bg'].shape[:2]; K = PW / 1080                       # snaps are full size; camera works in design units
+rgb = lambda n: S[n][..., :3]
+def over(base, layer, cut=None):
+    a = layer[..., 3:4].astype(np.float32) / 255
+    if cut is not None: a = a.copy(); a[:, cut:] = 0
+    return (base * (1 - a) + layer[..., :3] * a).astype(np.uint8)
+def bbox(a, b):                                                    # where two states differ, in design units
+    d = np.abs(a.astype(np.int16) - b.astype(np.int16)).sum(2) > 24
+    ys, xs = np.nonzero(d)
+    if not len(xs): return None
+    lo = lambda v: np.percentile(v, 1); hi = lambda v: np.percentile(v, 99)
+    return [lo(xs) / K, lo(ys) / K, hi(xs) / K, hi(ys) / K]
+def ease(t): t = min(1, max(0, t)); return t * t * (3 - 2 * t)
 
-# ---------- the timeline: a list of (duration, frame(t 0..1) -> poster RGB float) ----------
-def ease(t): return t * t * (3 - 2 * t)
-blank = np.ones((PH, PW, 3), np.float32) * np.array([244, 244, 240]) / 255
-grid_lines = []   # the brief's 8×8 grid with 16px margins
+# ---------- the build, as steps: (duration, frame(t) -> poster RGB uint8, camera target) ----------
+# a camera target is (cx, cy, scale) in design units / screen px per design unit, or a function of t for followers
+FIT = 0.80
+whole = (540, 764, FIT)
+def frame_on(b, fill=0.72, smin=FIT, smax=2.6, aspect=SW / SH):
+    x0, y0, x1, y1 = b; w, h = max(40, x1 - x0), max(40, y1 - y0)
+    s = min(SW * fill / w, SH * fill / h); return ((x0 + x1) / 2, (y0 + y1) / 2, max(smin, min(smax, s)))
+
+blank = np.full((PH, PW, 3), 244, np.uint8)
 M, COL, ROW = 16, 131, 187
-for i in range(9): grid_lines += [('v', M + i * COL), ('h', M + i * ROW)]
-def grid(img, amount, colour=(0.55, 0.55, 0.55), alpha=0.6):
+lines = [('v', M + i * COL) for i in range(9)] + [('h', M + i * ROW) for i in range(9)]
+def grid(img, amount, colour, alpha):
     if amount <= 0: return img
-    img = img.copy(); n = len(grid_lines)
-    for j, (k, p) in enumerate(grid_lines):
-        f = np.clip(amount * n * 0.5 - j * 0.5, 0, 1)
+    img = img.copy(); n = len(lines); t = max(1, int(K))
+    for j, (k, p) in enumerate(lines):
+        f = min(1, max(0, amount * n * 0.5 - j * 0.5))
         if f <= 0: continue
-        if k == 'v': L = int((PH - 2 * M) * f); img[M:M + L, p:p + 1] = img[M:M + L, p:p + 1] * (1 - alpha) + np.array(colour) * alpha
-        else: L = int((PW - 2 * M) * f); img[p:p + 1, M:M + L] = img[p:p + 1, M:M + L] * (1 - alpha) + np.array(colour) * alpha
+        p = int(p * K)
+        if k == 'v': L = int((PH - 2 * M * K) * f); y0 = int(M * K); img[y0:y0 + L, p:p + t] = (img[y0:y0 + L, p:p + t] * (1 - alpha) + np.array(colour) * alpha).astype(np.uint8)
+        else: L = int((PW - 2 * M * K) * f); x0 = int(M * K); img[p:p + t, x0:x0 + L] = (img[p:p + t, x0:x0 + L] * (1 - alpha) + np.array(colour) * alpha).astype(np.uint8)
     return img
-def wipe(a, b, t, axis=1):          # b revealed left to right (axis 1) or top to bottom (axis 0)
-    t = ease(t); out = a.copy(); n = a.shape[axis]; k = int(n * t)
+def wipe(a, b, t, axis=1):
+    k = int((a.shape[axis]) * ease(t)); out = a.copy()
     if axis == 1: out[:, :k] = b[:, :k]
     else: out[:k] = b[:k]
     return out
-def letters(layer):                  # x positions where each letter of a line ends (gaps in the ink)
-    cols = layer[..., 3].max(0) > 0.3; xs = np.nonzero(cols)[0]
-    if not len(xs): return [PW]
-    ends, prev = [], xs[0]
+def fade(a, b, t): t = ease(t); return (a * (1 - t) + b * t).astype(np.uint8)
+def letter_ends(layer):
+    cols = layer[..., 3].max(0) > 80; xs = np.nonzero(cols)[0]; ends, prev = [], xs[0]
     for x in xs[1:]:
-        if x - prev > 3: ends.append(prev + 1)
+        if x - prev > 3 * K: ends.append(prev + 1)
         prev = x
-    return ends + [xs[-1] + 1], xs[0]
-rng = np.random.default_rng(53)
-dissolve = np.asarray(Image.fromarray((rng.random((PH // 24 + 1, PW // 24 + 1)) * 255).astype(np.uint8)).resize((PW, PH), Image.BICUBIC)).astype(np.float32) / 255
+    return xs[0], ends + [xs[-1] + 1]
 
-st = {}
-def state(n): return rgb(S[n])
-seq = []
-def add(d, f, cam=None, grid_a=0.6): seq.append((d, f, grid_a))
-add(0.6, lambda t: blank, grid_a=0)
-add(1.0, lambda t: grid(blank, ease(t)), grid_a=0)
-add(0.6, lambda t: wipe(blank, state('bg'), t, 0))
-add(0.9, lambda t: state('bg') * (1 - ease(t)) + state('photo') * ease(t))
-add(0.5, lambda t: state('photo'))
-for n, _ in snaps:
-    if n.startswith('pixel-'): add(0.28, (lambda n: lambda t: state(n))(n))
-add(0.4, lambda t: state('pixel-24'))
-last = 'pixel-24'
+steps = []
+def add(d, f, cam, grid_a=0.35): steps.append((d, f, cam, grid_a))
+add(0.7, lambda t: blank, (540, 764, 0.55), 0)
+add(1.1, lambda t: grid(blank, ease(t), (150, 150, 150), 0.7), whole, 0)
+add(0.6, lambda t: wipe(blank, rgb('bg'), t, 0), whole)
+b_img = bbox(rgb('bg'), rgb('photo'))
+add(1.0, lambda t: fade(rgb('bg'), rgb('photo'), t), frame_on(b_img, 0.95))
+pix = [n for n, _ in snaps if n.startswith('pixel-')]
+# watch the pixels coarsen up close, on the busiest part of the object
+b_pix = bbox(rgb('bg'), rgb(pix[-1])); cx, cy = (b_pix[0] + b_pix[2]) / 2, (b_pix[1] + b_pix[3]) / 2
+add(0.6, lambda t: rgb('photo'), (cx - 60, cy - 160, 1.7))
+for i, n in enumerate(pix): add(0.34, (lambda n: lambda t: rgb(n))(n), (cx - 60 + i * 30, cy - 160 + i * 50, 1.7 - i * 0.12))
+last = pix[-1]
+add(0.5, lambda t: rgb(last), frame_on(b_pix, 0.9))
 for n in ['furniture', 'squares', 'text']:
-    if n in S: add(0.6, (lambda a, b: lambda t: wipe(state(a), state(b), t))(last, n)); last = n
-# the headline, typed in line by line, letter by letter, with a caret
-lines = [n for n, _ in snaps if n.startswith('line-')]
-typed = [state(last)]
-for n in lines:
-    ends, x0 = letters(S[n]); base = typed[-1].copy(); layer = S[n]
-    ys = np.nonzero(layer[..., 3].max(1) > 0.3)[0]; y0, y1 = ys[0], ys[-1]
-    def f(t, base=base, layer=layer, ends=ends, y0=y0, y1=y1):
-        k = min(len(ends), int(t * (len(ends) + 1.5))); x = ends[k - 1] if k else ends[0] - (ends[0] - 0)
-        lay = layer.copy(); lay[:, x if k else 0:, 3] = 0
-        img = over(base, lay)
-        if t < 0.97 and int(t * 12) % 2 == 0:                     # the caret, in the type colour, blinking
-            cx = min(PW - 4, (x if k else letters(layer)[1]) + 6); img[y0:y1, cx:cx + 3] = rgb(layer)[(y0 + y1) // 2, np.argmax(layer[(y0 + y1) // 2, :, 3] > 0.5)]
+    if n in S:
+        b = bbox(rgb(last), rgb(n)); add(0.9, (lambda a, c: lambda t: wipe(rgb(a), rgb(c), t))(last, n), frame_on(b, 0.8, smax=2.4)); last = n
+state = rgb(last)
+# the headline: each line typed letter by letter, the camera following the caret
+for n in [n for n, _ in snaps if n.startswith('line-')]:
+    layer = S[n]; x0, ends = letter_ends(layer); ys = np.nonzero(layer[..., 3].max(1) > 80)[0]; y0, y1 = ys[0], ys[-1]
+    lw = (ends[-1] - x0) / K; s_line = max(FIT, min(2.0, SW * 0.82 / lw))
+    base = state; dur = 0.3 + 0.1 * len(ends)
+    def f(t, base=base, layer=layer, ends=ends, x0=x0, y0=y0, y1=y1, dur=dur):
+        k = min(len(ends), int(t * (len(ends) + 1.2)))
+        cut = ends[k - 1] if k else x0
+        img = over(base, layer, cut)
+        if t < 0.97 and int(t * dur * 3.2) % 2 == 0:              # a blinking caret, in the type's colour
+            mid = (y0 + y1) // 2; xs = np.nonzero(layer[mid, :, 3] > 200)[0]
+            col = layer[mid, xs[0], :3] if len(xs) else np.array([255, 255, 255])
+            cx = min(PW - 6, int(cut + 5 * K)); img[y0:y1, cx:cx + int(2 * K)] = col
         return img
-    add(0.25 + 0.09 * len(ends), f)
-    typed.append(over(base, layer))
-add(0.5, lambda t: typed[-1])
-# the ink: the flat sheet turns into the printed one, spreading in patches; the grid lifts off
-add(1.4, lambda t: np.where((dissolve < ease(t) * 1.1)[..., None], state('printed'), typed[-1]), grid_a=-1)
-add(0.9, lambda t: state('printed') * (1 - ease(t)) + state('final') * ease(t), grid_a=0)
-add(0.8, lambda t: state('final'), grid_a=0)
-build_end = sum(d for d, _, _ in seq)
-# the pull back to the colourways, then back in to the pick
-PULL, HOLD, IN, END = 2.2, 1.6, 1.6, 1.4
-total = build_end + PULL + HOLD + IN + END
+    def cam(t, x0=x0, ends=ends, y0=y0, y1=y1, s_line=s_line):
+        k = min(len(ends), int(t * (len(ends) + 1.2))); cut = ends[k - 1] if k else x0
+        half = SW / s_line / 2 * 0.7                               # keep the caret in the right-hand part of the screen
+        cx = min(max((cut / K) - half * 0.4, x0 / K + half * 0.6), ends[-1] / K - half * 0.6)
+        return (cx, (y0 + y1) / 2 / K, s_line)
+    add(dur, f, cam)
+    state = over(base, layer)
+add(0.5, lambda t: state, frame_on(bbox(rgb(last), state), 0.95))
+# the ink: up close on a crossing of type and image while it spreads, then out
+rng = np.random.default_rng(53)
+dis = np.asarray(Image.fromarray((rng.random((PH // 48 + 1, PW // 48 + 1)) * 255).astype(np.uint8)).resize((PW, PH), Image.BICUBIC)).astype(np.float32) / 255
+diff = np.abs(rgb('printed').astype(np.int16) - state.astype(np.int16)).sum(2)
+yy, xx = np.unravel_index(np.argmax(np.asarray(Image.fromarray((diff > 30).astype(np.uint8) * 255).resize((PW // 64, PH // 64), Image.BOX))), (PH // 64, PW // 64))
+ink_at = ((xx + 0.5) * 64 / K, (yy + 0.5) * 64 / K)
+add(1.6, lambda t: np.where((dis < ease(t) * 1.08)[..., None], rgb('printed'), state), (ink_at[0], ink_at[1], 2.3), -1)
+add(1.0, lambda t: fade(rgb('printed'), rgb('final'), t), (ink_at[0] + 40, ink_at[1] + 30, 2.0), 0)
+add(1.2, lambda t: rgb('final'), whole, 0)
+add(1.8, lambda t: rgb('final'), (540, 764, FIT * 1.06), 0)
 
-GAP = 120
-def pos(i): return (i - pick_i) * (PW + GAP)        # world x of each colourway, the pick at 0
-def camera(T):
-    s0, s1 = 0.74, 0.74 + 0.04 * min(1, T / build_end)  # a slow push in while it's built
-    if T < build_end: return 540, 764, s1
-    span = (len(WAYS) - 1) * (PW + GAP) + PW; cx_all = (pos(0) + pos(len(WAYS) - 1) + PW) / 2; s_all = 1000 / span
-    u = T - build_end
-    if u < PULL: k = ease(u / PULL); return 540 + (cx_all - 540) * k, 764, s1 + (s_all - s1) * k
-    if u < PULL + HOLD: return cx_all, 764, s_all
-    k = ease(min(1, (u - PULL - HOLD) / IN)); return cx_all + (540 - cx_all) * k, 764, s_all + (0.78 - s_all) * k
+# ---------- the camera: a critically damped spring chasing the targets, plus a little hand drift ----------
+starts = np.cumsum([0] + [d for d, *_ in steps]); total = starts[-1]
+LEAD = 0.35                                                       # the camera starts moving just before the work does
+def target(T):
+    i = int(np.searchsorted(starts, min(T + LEAD, total - 1e-3), 'right') - 1); d, f, cam, ga = steps[i]
+    t = (T + LEAD - starts[i]) / d
+    c = cam(min(1, max(0, t))) if callable(cam) else cam
+    return np.array([c[0], c[1], np.log(c[2])])
+n_frames = int(total * FPS)
+pos = target(0).copy(); vel = np.zeros(3); cams = []
+for i in range(n_frames):
+    T = i / FPS; tg = target(T)
+    w = np.array([5.4, 5.4, 4.4])                                 # stiffness: pans a touch quicker than zooms
+    for _ in range(4):                                            # substeps for a stable spring
+        dt = 1 / FPS / 4; a = w * w * (tg - pos) - 2 * w * vel; vel += a * dt; pos += vel * dt
+    drift = np.array([np.sin(T * 0.7) * 3 + np.sin(T * 1.9 + 1) * 1.2, np.sin(T * 0.53 + 2) * 3 + np.sin(T * 1.6) * 1.1, np.sin(T * 0.41) * 0.008])
+    cams.append((pos[0] + drift[0], pos[1] + drift[1], float(np.exp(pos[2] + drift[2]))))
 
-def frame(T):
-    cx, cy, s = camera(T)
+def frame(i):
+    T = i / FPS; cx, cy, s = cams[i]
     img = Image.new('RGB', (SW, SH), CANVAS); d = ImageDraw.Draw(img)
-    step = 48 * s                                              # the canvas dots move with the camera
+    step = 40 * s
+    while step < 14: step *= 2                                    # dots stay a comfortable size as you zoom out
     ox, oy = (SW / 2 - cx * s) % step, (SH / 2 - cy * s) % step
     for yy in np.arange(oy, SH, step):
-        for xx in np.arange(ox, SW, step): d.rectangle([xx, yy, xx + 1.5, yy + 1.5], fill=DOT)
-    # which poster image at this moment
-    if T < build_end:
-        acc = 0
-        for dur, f, ga in seq:
-            if T < acc + dur or (dur, f, ga) is seq[-1]:
-                t = min(1, max(0, (T - acc) / dur)); poster = f(t); g = ga; break
-            acc += dur
-        if g == -1: g = 0.6 * (1 - ease(t))
-        if g > 0 and not np.allclose(poster, blank): poster = grid(poster, 1, (0.85, 0.85, 0.85), 0.35 * g / 0.6)
-        posters = [(0, (np.clip(poster, 0, 1) * 255).astype(np.uint8), 1)]
-    else:
-        u = T - build_end
-        posters = []
-        for i, w in enumerate(WAYS):
-            a = 1 if i == pick_i else min(1, max(0, (u - 0.3 - 0.25 * abs(i - pick_i)) / 0.6))
-            if u > PULL + HOLD * 0.4 and i != pick_i: a *= max(0.35, 1 - (u - PULL - HOLD * 0.4) / 0.8 * 0.65)
-            posters.append((pos(i), w, a))
-    for wx, arr, a in posters:
-        if a <= 0: continue
-        x, y, w, h = SW / 2 + (wx - cx) * s, SH / 2 + (0 - cy) * s, PW * s, PH * s
-        if x > SW or x + w < 0: continue
-        pim = Image.fromarray(arr).resize((max(1, round(w)), max(1, round(h))), Image.LANCZOS)
-        if a < 1: pim = Image.blend(Image.new('RGB', pim.size, CANVAS), pim, a)
-        img.paste(pim, (round(x), round(y)))
-        if wx == 0 or T >= build_end:                      # the frame's name, small, above it, like a label on a sheet
-            name = f'(No. {issue}) {title}' if wx == 0 else f'(No. {issue}) Colourway {"ABC"[[pos(i) for i in range(len(WAYS))].index(wx)]}'
-            if T >= build_end and wx == 0: name = f'(No. {issue}) Colourway {pick.upper()}  (Picked)' if T > build_end + PULL else name
-            d.text((round(x), round(y) - 34 * max(0.6, s / 0.8)), name, font=F16 if s > 0.5 else font(500, 18), fill=INK if a > 0.5 else (150, 150, 150))
-    # furniture, inside Instagram's safe area
-    d.text((60, 240), '(Daily Poster)', font=F22, fill=INK); d.text((SW - 60, 240), f'(No. {issue})', font=F22, fill=INK, anchor='ra')
-    d.text((60, SH - 320), '(Making of)', font=F22, fill=INK); d.text((SW - 60, SH - 320), '(Nebzokai)', font=F22, fill=INK, anchor='ra')
+        for xx in np.arange(ox, SW, step): d.rectangle([xx, yy, xx + 1.4, yy + 1.4], fill=DOT)
+    j = int(np.searchsorted(starts, T, 'right') - 1); j = min(j, len(steps) - 1); dur, f, cam, ga = steps[j]
+    t = min(1, max(0, (T - starts[j]) / dur)); poster = f(t)
+    g = 0.35 * (1 - ease(t)) if ga == -1 else ga
+    if g > 0 and poster is not blank: poster = grid(poster, 1, (220, 220, 220), g)
+    # only the part of the poster on screen, resized once
+    vx0, vy0 = cx - SW / 2 / s, cy - SH / 2 / s; vx1, vy1 = vx0 + SW / s, vy0 + SH / s
+    px0, py0, px1, py1 = max(0, vx0), max(0, vy0), min(1080, vx1), min(PH / K, vy1)
+    if px1 > px0 and py1 > py0:
+        crop = Image.fromarray(poster[int(py0 * K):int(np.ceil(py1 * K)), int(px0 * K):int(np.ceil(px1 * K))])
+        size = (max(1, round((px1 - px0) * s)), max(1, round((py1 - py0) * s)))
+        img.paste(crop.resize(size, Image.LANCZOS if s < K else Image.BICUBIC), (round((px0 - vx0) * s), round((py0 - vy0) * s)))
     return img
 
-os.makedirs(f'deliver/reel', exist_ok=True)
+os.makedirs('deliver/reel', exist_ok=True)
 outp = f'deliver/reel/{issue}-{concept}-{pick}-making-of.mp4'
-n = int(total * FPS)
 ff = subprocess.Popen(['ffmpeg', '-y', '-loglevel', 'error', '-f', 'rawvideo', '-pix_fmt', 'rgb24', '-s', f'{SW}x{SH}', '-r', str(FPS), '-i', '-',
                        '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '18', '-preset', 'medium', '-movflags', '+faststart', outp], stdin=subprocess.PIPE)
-for i in range(n):
-    fr = frame(i / FPS); ff.stdin.write(fr.tobytes())
-    if i in (int(n * 0.1), int(n * 0.35), int(n * 0.55), int(n * 0.75), n - 1): fr.save(f'deliver/reel/{issue}-{concept}-{pick}-still-{i:04d}.jpg', quality=85)
+keep = set(int(n_frames * q) for q in (0.08, 0.2, 0.3, 0.45, 0.6, 0.75, 0.88, 0.99))
+for i in range(n_frames):
+    fr = frame(i); ff.stdin.write(fr.tobytes())
+    if i in keep: fr.save(f'deliver/reel/still-{i:04d}.jpg', quality=80)
 ff.stdin.close(); ff.wait()
-print(outp, f'{total:.1f}s', n, 'frames')
+print(outp, f'{total:.1f}s', n_frames, 'frames')

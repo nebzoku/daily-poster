@@ -38,12 +38,13 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
 - **Instagram zoom carousel** (`lab/carousel.py`): frame 1 the poster as usual, frames 2-4 one 2.4:1 strip of it
   stretched across three frames so a swipe pans along one close-up. Pick the strip where treatments meet (ink type
   over pixels, harsh next to smooth, stepped edges) and don't let it cut through small text.
-- **Making-of reel** (`lab/reel.py`): the poster rebuilt in the order it was really made (grid, background, image,
-  pixelation, small type, headline typed in, ink, paper). No labels, no page furniture, no interface or cursor, and
-  no colourways at the end: it settles on the finished poster. The camera moves like someone working on a design
-  canvas: drifting in, zooming to whatever is being worked on, following the caret as the headline is typed, close
-  on the ink as it spreads, then out; a soft spring with a little hand drift, never on rails. Templates mark the
-  steps with `snap(name, canvas)`; render with `CAP=1`.
+- **Making-of reel** (`lab/reel.py`): a sped-up screen recording, like Ben's reference (an Illustrator build reel):
+  the artboard on a dark pasteboard, a cursor doing the work, blue selection boxes with handles, magenta smart guides
+  when something snaps, quick eased zooms and jump cuts, the finished poster on black at the end. No app chrome,
+  menus, labels or colourways. In the real build order: background rectangle dragged out, image placed and dragged
+  to centre, pixelated click by click up close, small type set in drawn text boxes, the headline typed loose then
+  dragged onto its line, select all, the ink and paper. The cursor moves on curved, Fitts-timed paths (quick out,
+  slow landing). Templates mark the steps with `snap(name, canvas)`; render with `CAP=1`.
 
 ### Round 15 feedback (24 Nov 2026): centred blocks as an hourglass
 - **Centred headline in a top block and a bottom block: set it as an hourglass.** Break the lines so the widest ones

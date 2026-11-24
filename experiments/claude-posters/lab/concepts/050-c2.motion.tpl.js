@@ -1,7 +1,8 @@
 // No. 050 · Concept 2, moving · "The summer bottled early" · a scan and a slide.
 // The slit-scan band sweeps across the harvest picture and back, smearing a different strip of the season into
 // stripes as it goes: the summer being compressed. The 50 slides left across the circle and back (the "00 3" move),
-// flipping colour where they cross, while the circle swells a little. The bottle and the type stay still.
+// flipping colour where they cross, while the circle swells a little. The bottle and the type stay still; where the
+// 50 or the circle passes under the small type, the type flips colour so it can still be read.
 window.MOTION = async () => {
   const C = __CW__;
   await fonts(['900 100px "Libre Franklin"', '500 16px "Libre Franklin"']);
@@ -33,10 +34,15 @@ window.MOTION = async () => {
     const fm = canvas(); place(fm, fifty, { right: W - M - COL * 1.6 * e, bottom: H - M });
     const fInk = IM.print(fm, 'letterpress', { wear: 0.35, spread: 0.3, seed: 7 });
     draw(g, tint(cut(circ, fInk), C.circle)); draw(g, tint(cut(fInk, circ), C.ink)); draw(g, tint(inter(fInk, circ), C.flip));
-    block(g, sub.lines, B.x + B.w, B.y + 16, t0);
-    block(g, ['(Daily Poster)', '(No. 050)', '(Friday 21 November)', '(The Guardian)'], B.x + B.w, B.y + B.h, { ...t0, anchor: 'bottom' });
-    block(g, ['(Years since a harvest', 'started this early)'], W - M, A.y + A.h + 24, { ...t0, align: 'right' });
-    block(g, ['(01)'], A.x + A.w, A.y - 10, { ...t0, align: 'right', anchor: 'bottom' });
+    // the small type on its own layer, so where the 50 or the circle passes under it, it flips to stay readable:
+    // pale on the dark page and on the dark crossing, dark on the pale 50 and on the circle
+    const txt = canvas(), tw = { ...t0, color: '#fff' };
+    block(txt.g, sub.lines, B.x + B.w, B.y + 16, tw);
+    block(txt.g, ['(Daily Poster)', '(No. 050)', '(Friday 21 November)', '(The Guardian)'], B.x + B.w, B.y + B.h, { ...tw, anchor: 'bottom' });
+    block(txt.g, ['(Years since a harvest', 'started this early)'], W - M, A.y + A.h + 24, { ...tw, align: 'right' });
+    block(txt.g, ['(01)'], A.x + A.w, A.y - 10, { ...tw, align: 'right', anchor: 'bottom' });
+    const fifty0 = solid(fm), light = cut(union(circ, fifty0), inter(circ, fifty0));   // the pale and cyan areas under the type
+    draw(g, tint(cut(txt, light), C.ink)); draw(g, tint(inter(txt, light), C.flip));
     asterisk(g, A.x + A.w - 22, A.y + 22, 12, C.flip);
     pixels(g, M, A.y - 34, 8, ['#.#.', '.#.#', '#..#'], C.ink);
     printAll(g, C, { style: 'letterpress', boxes: [B] });

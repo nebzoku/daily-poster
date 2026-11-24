@@ -39,6 +39,8 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   its turntable; a single element running along a row of data (the 88 days); a whole-poster 3D flip.
 - **Only move what moves properly.** A line that would only shift a few pixels stays still (THE SUN on 053): a tiny
   move looks like a mistake. Keep pairs symmetrical: if the top line holds, the bottom line holds.
+- **Moving things never make type unreadable.** Where a moving shape or number passes under small type, the type
+  flips colour over it (like the XOR crossings), so it can always be read (Ben on the 050 slide).
 - Loops of about 4 seconds at 12 fps, printed frame by frame with the paper and ink seed held still.
 
 ### Round 16 feedback (24 Nov 2026): wear, and showing the work

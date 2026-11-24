@@ -50,8 +50,8 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   from one drag, never neatly parallel; lengths, angles, curves, breaks and placement all random, seeded per poster.
   Subtle: you find them in the zoom, you don't see them from across the room.
 - **Instagram carousel** (`lab/carousel.py`): frame 1 the poster as usual, then the poster in quarters (top left,
-  top right, bottom left, bottom right), each 4:5 and half the poster tall, so the close-ups show the print and
-  together cover the whole sheet (Ben, 24 Nov: the single zoomed strip went in too far).
+  top right, bottom left, bottom right). Each pair spans exactly the full width with no overlap, so swiping across
+  them joins up seamlessly (Ben, 24 Nov: no visible join); a strip across the middle is left out, which is fine.
 - **Making-of reel** (`lab/reel.py`), one a day, of Ben's favourite pick. Shapes arrive as clean shapes and are
   then tried at different pixel sizes, back and forth, before settling (never dropped in already pixelated). a sped-up screen recording, like Ben's reference (an Illustrator build reel):
   the artboard on a dark pasteboard, a cursor doing the work, blue selection boxes with handles, magenta smart guides

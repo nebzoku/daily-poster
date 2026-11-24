@@ -21,8 +21,12 @@ window.POSTER = async () => {
   const dm = pixelCircle(day.x, day.y, day.r, 16), nm = pixelCircle(night.x, night.y, night.r, 48);
   // day: wallpaper thresholded in two inks
   const ds = canvas(); cover(ds.g, wallImg, { x: day.x - day.r, y: day.y - day.r, w: 2 * day.r, h: 2 * day.r }, { crop: [0.15, 0.15, 0.3, 0.42] });
+  if (CAPTURE) {   // the day circle drawn smooth, then its edge tried at different pixel sizes before settling on 16
+    const p = canvas(); draw(p.g, out); draw(p.g, tint(circleMask(day.x, day.y, day.r), C.day0)); snap('shape-day', p);
+    [40, 8, 28, 12].forEach((px, i) => { const q = canvas(); draw(q.g, out); draw(q.g, tint(pixelCircle(day.x, day.y, day.r, px), C.day0)); snap(`step-dedge-${i}`, q); });
+  }
   draw(g, tint(dm, C.day0));
-  snap('shape-day', out);
+  snap('step-dedge-9', out);
   draw(g, press(inter(lumMask(ds, pct(ds, 0.5), { blur: 1.5 }), dm), C.day1, 'riso', { wear: 0.4, spread: 0.45, seed: 1 }));
   snap('step-day-1', out);
   // night: ornament pixelated big, in the night inks
@@ -30,11 +34,12 @@ window.POSTER = async () => {
   cover(ns.g, orn, { x: night.x - night.r, y: night.y - night.r, w: 2 * night.r, h: 2 * night.r }, { crop: [0.3, 0.2, 0.4, 0.6] });
   if (CAPTURE) {   // the ornament placed in its circle, then pixelated harder
     const nt = tone(levels(ns, 0.05, 0.95), C.nightTones);
-    const p = canvas(); draw(p.g, out); draw(p.g, inter(nt, nm)); snap('place-night', p);
-    for (const px of [12, 24, 36]) { const q = canvas(); draw(q.g, out); draw(q.g, inter(pixelate(nt, px), nm)); snap(`step-night-${px}`, q); }
+    const p = canvas(); draw(p.g, out); draw(p.g, inter(nt, circleMask(night.x, night.y, night.r))); snap('place-night', p);
+    // pixelated back and forth, the edge stepping with it, before settling on 48
+    [16, 64, 24, 36].forEach((px, i) => { const cm = pixelCircle(night.x, night.y, night.r, px), q = canvas(); draw(q.g, out); draw(q.g, inter(pixelate(nt, px), cm)); snap(`step-night-${i}`, q); });
   }
   draw(g, inter(pixelate(tone(levels(ns, 0.05, 0.95), C.nightTones), 48), nm));
-  snap('step-night-48', out);
+  snap('step-night-9', out);
   // XOR overlap
   const xo = xorShapes([dm, nm], '#FF00FF', C.flip);
   const ed = xo.g.getImageData(0, 0, xo.width, xo.height); for (let p = 0; p < ed.data.length; p += 4) if (ed.data[p] === 255 && ed.data[p + 1] === 0 && ed.data[p + 2] === 255) ed.data[p + 3] = 0; xo.g.putImageData(ed, 0, 0);

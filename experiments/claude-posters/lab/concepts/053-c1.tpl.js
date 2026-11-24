@@ -17,6 +17,7 @@ window.POSTER = async () => {
   const plate = await media('media/2026-11-24/image-06-2160.jpg');
   const out = canvas(), g = out.g;
   g.fillStyle = C.bg; g.fillRect(0, 0, W, H);
+  snap('bg', out);
 
   // headline: two lines, one size, top block on the top margin, bottom block on the bottom margin
   const HS = inkSafe(['CATCH MERCURY', 'BEFORE SUNRISE'], { font: D, weight: 400, size: 300, gap: 30, minGap: 10, word: 0.12 }, W - 2 * M, { preset: 'letterpress', wear: 0.2, spread: 0.2 });
@@ -44,27 +45,41 @@ window.POSTER = async () => {
   const mx = M + COL * 5 + 48, my = M + ROW * 3 + 112;
   const merc = circleMask(mx, my, 10);
   draw(g, press(bars, C.mid, 'clean', { wear: 0.1, spread: 0.35, seed: 3 }));
+  snap('shape-bars', out);
+  if (CAPTURE) { const p = canvas(); draw(p.g, out); draw(p.g, inter(tone(levels(src, 0.05, 0.99), [C.bg, C.mid2]), rectMask({ x: 0, y: sky0, w: W, h: hz - sky0 }))); snap('place-plate', p); }
   draw(g, tint(starsHi, C.mid2));
   // overprint: where the stars cross the bars, they knock to the background
   draw(g, tint(inter(stars, bars), C.bg));
+  snap('step-stars-1', out);
   draw(g, tint(merc, C.dot));
   // box and labels on the grid
   const box = cell(5, 3, 1, 1);
   g.save(); g.strokeStyle = C.dot; g.lineWidth = 2; g.strokeRect(box.x + 1, box.y + 1, box.w - 2, box.h - 2); g.restore();
   const t = { font: T, size: 16, weight: 500, lead: 0.9, color: C.text };
+  snap('shape-mercury', out);
   block(g, ['(01) Mercury'], box.x, box.y - 8, { ...t, anchor: 'bottom', color: C.dot });
+  snap('text-mercury', out);
   // ground
   g.fillStyle = C.bg; g.fillRect(0, hz, W, H - hz);
+  snap('shape-ground', out);
   block(g, ['(02) The sun, below the horizon'], M + COL * 5, hz - 10, { ...t, anchor: 'bottom', color: C.bg });
+  snap('text-sun', out);
   // subline and furniture in the dark sky under the top block, cap heights on a grid line
   const sub = balance('Mercury reached greatest western elongation on 20 November, giving a rare window to spot the smallest planet.', { ...t, minW: 220, maxW: COL * 2.8 });
   const gy = M + ROW * 2;
   block(g, sub.lines, M, gy, t);
+  snap('text-sub', out);
   block(g, ['(Daily Poster)', '(No. 053)', '(Tuesday 24 November)', '(The Guardian)'], W - M, gy, { ...t, align: 'right' });
   pixels(g, M + COL * 4, gy, 8, ['#.#.#.', '.#.#.#'], C.mid);
+  snap('text-furniture', out);
+  snapLines(tint(head, C.type), R);
+  // foil trials: the same foil under different light, before the one kept
+  inkTrials(out, (gg, k) => { printAll(gg, C, { seed: 531 }); printHead(gg, head, C.type, C.finish, { bg: C.bg, seed: 53, light: Math.min(0.95, 0.15 + (k - 0.35) * 0.55) }); });
   // the sheet printed crisp around the foil (round 14), then the headline foiled, then the paper
   printAll(g, C, { seed: 531 });
   printHead(g, head, C.type, C.finish, { bg: C.bg, seed: 53 });
+  snap('printed', out);
   stock(g, C.stock, 53);
+  snap('final', out);
   return out;
 };

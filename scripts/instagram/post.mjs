@@ -9,7 +9,7 @@ import { writeFile, mkdir } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { SITE, DATA, STATE, BACKFILL, SLOTS, WINDOW_MS, readJSON, writeJSON, loadState, londonDate, londonToUtc, addDays,
-  pendingPosters, posterImage, posterReel, posterMedia, briefImages, briefStories, url, posterPictureStatus } from "./common.mjs";
+  pendingPosters, posterImage, posterReel, posterMedia, posterZooms, posterMakingOf, briefImages, briefStories, url, posterPictureStatus } from "./common.mjs";
 
 const TOKEN = process.env.INSTAGRAM_TOKEN, USER = process.env.INSTAGRAM_USER_ID;
 // Instagram Login tokens (IGAA…) go to graph.instagram.com and last 60 days, renewed weekly.
@@ -45,6 +45,19 @@ export function posterCaption(p, brief) {
   ].join("\n");
 }
 // past: for briefs posted after their day (catching the feed up).
+export function makingOfCaption(p, brief) {
+  return [
+    `The making of ${p.title}`,
+    "",
+    `How Daily Poster No. ${pad(brief.issue)} came together, from an empty artboard to the print.`,
+    "",
+    `Poster by ${p.instagram ? "@" + p.instagram.replace(/^@/, "") : p.designer}`,
+    "",
+    "Today's brief is live at dailyposter.design",
+    "",
+    TAGS(brief.issue, brief.type) + " #makingof #designprocess",
+  ].join("\n");
+}
 export function briefCaption(brief, past = false) {
   return [
     past ? `The brief for ${longDate(brief.date)}, No. ${pad(brief.issue)}. Swipe for all three headlines.`
@@ -118,8 +131,9 @@ async function publishReel(video, caption) {
   }
   throw new Error("Instagram was still processing the video after ten minutes");
 }
+// A poster with a zoom strip goes out as a carousel: the poster, then the close-up across three frames.
 const posterJob = (p, brief) => ({
-  ...(p.video ? { reel: url(posterReel(p)) } : { images: [url(posterImage(p))] }),
+  ...(p.video ? { reel: url(posterReel(p)) } : { images: [posterImage(p), ...(posterZooms(p).every((f) => existsSync(f)) ? posterZooms(p) : [])].map(url) }),
   caption: posterCaption(p, brief), alt: `Poster: ${p.title}, by ${p.designer}, for Daily Poster No. ${pad(brief.issue)}.`,
 });
 const send = (job) => (job.reel ? publishReel(job.reel, job.caption) : job.story ? publishStories(job.images) : publish(job.images, job.caption, job.alt));
@@ -234,6 +248,15 @@ async function main() {
       job = { key: `poster:${p.image}`, slot, ...posterJob(p, brief) };
       break;
     }
+  }
+
+  // A making-of reel, once a day, for a poster that has already gone out.
+  if (!job && due(SLOTS.makingOf) && !state.slots[`${today} ${SLOTS.makingOf}`]) {
+    const showcase = await readJSON(join(DATA, "showcase.json"), []);
+    const p = showcase.filter((x) => state.posted[`poster:${x.image}`] && !state.posted[`makingof:${x.image}`] && existsSync(posterMakingOf(x)))
+      .sort((a, b) => a.date.localeCompare(b.date))[0];
+    const brief = p && await readJSON(join(DATA, `${p.date}.json`), null);
+    if (brief) job = { key: `makingof:${p.image}`, slot: `${today} ${SLOTS.makingOf}`, reel: url(posterMakingOf(p)), caption: makingOfCaption(p, brief) };
   }
 
   if (job) {

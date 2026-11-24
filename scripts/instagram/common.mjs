@@ -4,6 +4,7 @@
 //   08:00         today's brief, as nine stories (no grid post)
 //   13:00, 19:00  posters made from earlier briefs, oldest first
 //   10:30         a third poster, only when three or more are waiting
+//   17:00         a making-of reel, for a poster that has one and has already gone out
 // Every poster goes out from the day after its brief, so the feed runs one day behind the site.
 import { readFile, writeFile } from "node:fs/promises";
 import { existsSync, readFileSync } from "node:fs";
@@ -20,7 +21,7 @@ export const SITE_URL = (process.env.SITE_URL || "https://dailyposter.design").r
 
 // [time, posters needed waiting]. 13:00 and 19:00 post whenever anything is waiting; the extra slots only fire while
 // there's a backlog, so the feed catches up at up to five a day and drops back to two once it's level.
-export const SLOTS = { brief: "08:00", posters: [["13:00", 1], ["19:00", 1], ["10:30", 3], ["16:00", 2], ["21:30", 3]] };
+export const SLOTS = { brief: "08:00", makingOf: "17:00", posters: [["13:00", 1], ["19:00", 1], ["10:30", 3], ["16:00", 2], ["21:30", 3]] };
 export const WINDOW_MS = 3 * 3600e3;   // a slot can still be filled up to three hours late
 
 export const readJSON = async (p, fallback) => (existsSync(p) ? JSON.parse(await readFile(p, "utf8")) : fallback);
@@ -45,6 +46,11 @@ export const posterImage = (x) => join(IG_DIR, `${stem(x.image)}.jpg`);
 // site/media/ig/<name>.mp4). Without that file it waits.
 export const posterReel = (x) => (x.video ? join(IG_DIR, `${stem(x.image)}.mp4`) : null);
 export const posterMedia = (x) => posterReel(x) || posterImage(x);
+// Extras made with Claude's posters (experiments/claude-posters/lab/extras.py), when they exist:
+//   <name>-zoom-2..4.jpg  a close-up strip across three frames, so the poster goes out as a four-frame carousel
+//   <name>-making-of.mp4  a making-of reel, posted on its own once the poster itself has gone out
+export const posterZooms = (x) => [2, 3, 4].map((n) => join(IG_DIR, `${stem(x.image)}-zoom-${n}.jpg`));
+export const posterMakingOf = (x) => join(IG_DIR, `${stem(x.image)}-making-of.mp4`);
 // Each poster's Instagram picture remembers which version of the poster it was made from
 // (<name>.src next to it), so a poster replaced in the archive gets a fresh picture rather
 // than going out as the old one.

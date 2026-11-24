@@ -1,0 +1,119 @@
+{
+ "c1": {
+  "a": {
+   "bg": "#192400",
+   "mid": "#B5E643",
+   "mid2": "#DBECC1",
+   "dot": "#FFFFFF",
+   "type": "#DBECC1",
+   "text": "#DBECC1",
+   "finish": "foil-colour",
+   "stock": "smooth"
+  },
+  "b": {
+   "bg": "#000000",
+   "mid": "#DBECC1",
+   "mid2": "#B5E643",
+   "dot": "#B5E643",
+   "type": "#B5E643",
+   "text": "#DBECC1",
+   "finish": "foil-colour",
+   "stock": "smooth"
+  },
+  "c": {
+   "bg": "#6F7467",
+   "mid": "#B5E643",
+   "mid2": "#FFFFFF",
+   "dot": "#FFFFFF",
+   "type": "#192400",
+   "text": "#192400",
+   "finish": "foil-colour",
+   "stock": "smooth"
+  }
+ },
+ "c2": {
+  "a": {
+   "bg": "#192400",
+   "mid": "#B5E643",
+   "mid2": "#6F7467",
+   "type": "#DBECC1",
+   "text": "#DBECC1",
+   "label": "#192400",
+   "tones": [
+    "#192400",
+    "#6F7467",
+    "#B5E643",
+    "#DBECC1"
+   ],
+   "finish": "inked-deboss",
+   "stock": "rough"
+  },
+  "b": {
+   "bg": "#DBECC1",
+   "mid": "#192400",
+   "mid2": "#B5E643",
+   "type": "#192400",
+   "text": "#192400",
+   "label": "#DBECC1",
+   "tones": [
+    "#192400",
+    "#6F7467",
+    "#B5E643",
+    "#DBECC1"
+   ],
+   "finish": "inked-deboss",
+   "stock": "rough"
+  },
+  "c": {
+   "bg": "#000000",
+   "mid": "#DBECC1",
+   "mid2": "#6F7467",
+   "type": "#B5E643",
+   "text": "#DBECC1",
+   "label": "#000000",
+   "tones": [
+    "#000000",
+    "#6F7467",
+    "#DBECC1",
+    "#FFFFFF"
+   ],
+   "finish": "inked-deboss",
+   "stock": "rough"
+  }
+ },
+ "c3": {
+  "a": {
+   "bg": "#192400",
+   "scope": "#B5E643",
+   "shade": "#6F7467",
+   "type": "#DBECC1",
+   "knock": "#192400",
+   "text": "#DBECC1",
+   "squares": "#B5E643",
+   "finish": "copy",
+   "stock": "photocopy"
+  },
+  "b": {
+   "bg": "#000000",
+   "scope": "#DBECC1",
+   "shade": "#6F7467",
+   "type": "#B5E643",
+   "knock": "#000000",
+   "text": "#DBECC1",
+   "squares": "#DBECC1",
+   "finish": "copy",
+   "stock": "photocopy"
+  },
+  "c": {
+   "bg": "#6F7467",
+   "scope": "#B5E643",
+   "shade": "#192400",
+   "type": "#FFFFFF",
+   "knock": "#192400",
+   "text": "#FFFFFF",
+   "squares": "#B5E643",
+   "finish": "copy",
+   "stock": "photocopy"
+  }
+ }
+}

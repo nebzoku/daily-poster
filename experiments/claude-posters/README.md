@@ -32,7 +32,8 @@ Ben picks the ones to post; they go into the archive credited **Nebzokai** (Ben'
 4a. Mark the build steps in each template for the making-of reel (no effect on the poster): `snap('bg', out)` after the
    background, then after each move `snap('place-<x>', out)` (image or object placed), `snap('step-<group>-<n>', out)`
    (a treatment applied in stages, e.g. pixelation; for the in-between stages draw onto a copy inside
-   `if (CAPTURE) {...}`), `snap('shape-<x>', out)` (a shape drawn), `snap('text-<x>', out)` (small type); then
+   `if (CAPTURE) {...}`), `snap('shape-<x>', out)` (a shape drawn), `snap('text-<x>', out)` (small type only: little marks like pixel runs, asterisks and
+   boxes get their own `place-` snap, so they're dragged in, never set in a text box); then
    `snapLines(<headline tinted>, R)`, `inkTrials(out, (g, k) => <print the sheet and headline with ink k×>)`,
    `snap('printed', out)` after the headline is printed and `snap('final', out)` at the end. See 053-c3 or 052-c2.
 4b. In each template, draw everything except the headline, then `printAll(g, C, ...)`, then `printHead`, then `stock`.

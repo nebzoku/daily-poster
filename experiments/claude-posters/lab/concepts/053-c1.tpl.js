@@ -70,8 +70,9 @@ window.POSTER = async () => {
   block(g, sub.lines, M, gy, t);
   snap('text-sub', out);
   block(g, ['(Daily Poster)', '(No. 053)', '(Tuesday 24 November)', '(The Guardian)'], W - M, gy, { ...t, align: 'right' });
-  pixels(g, M + COL * 4, gy, 8, ['#.#.#.', '.#.#.#'], C.mid);
   snap('text-furniture', out);
+  pixels(g, M + COL * 4, gy, 8, ['#.#.#.', '.#.#.#'], C.mid);
+  snap('place-pixels', out);   // a little mark, dragged in, not set in a text box
   snapLines(tint(head, C.type), R);
   // foil trials: the same foil under different light, before the one kept
   inkTrials(out, (gg, k) => { printAll(gg, C, { seed: 531 }); printHead(gg, head, C.type, C.finish, { bg: C.bg, seed: 53, light: Math.min(0.95, 0.15 + (k - 0.35) * 0.55) }); });

@@ -53,9 +53,11 @@ window.POSTER = async () => {
   snap('text-furniture', out);
   block(g, ['(Years since a harvest', 'started this early)'], W - M, A.y + A.h + 24, { ...t, align: 'right' });
   block(g, ['(01)'], A.x + A.w, A.y - 10, { ...t, align: 'right', anchor: 'bottom' });
-  asterisk(g, A.x + A.w - 22, A.y + 22, 12, C.flip);
-  pixels(g, M, A.y - 34, 8, ['#.#.', '.#.#', '#..#'], C.ink);
   snap('text-labels', out);
+  asterisk(g, A.x + A.w - 22, A.y + 22, 12, C.flip);
+  snap('place-asterisk', out);
+  pixels(g, M, A.y - 34, 8, ['#.#.', '.#.#', '#..#'], C.ink);
+  snap('place-pixels', out);   // little marks are dragged in, not set in a text box
   snapLines(tint(head, C.ink), R);
   inkTrials(out, (gg, k) => { printAll(gg, C, { style: 'letterpress', boxes: [B], wear: 0.3 * k, spread: Math.min(0.85, 0.5 * k) }); draw(gg, press(head, C.ink, 'letterpress', { wear: 0.35 * k, spread: Math.min(0.85, 0.4 * k), seed: 50 })); });
   // round 14 (re-rendered 24 Nov): the whole sheet printed like the headline, then the headline, then the paper

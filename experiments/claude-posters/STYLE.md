@@ -44,7 +44,7 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   when something snaps, quick eased zooms and jump cuts, the finished poster on black at the end. No app chrome,
   menus, labels or colourways. In the real build order: background rectangle dragged out, image placed and dragged
   to centre, pixelated click by click up close, small type set in drawn text boxes (one box per
-  separate block, set one after another), the first headline line typed loose, its tracking tightened in nudges
+  separate block, set one after another; little marks like pixel runs and asterisks are dragged in, never typed), the first headline line typed loose, its tracking tightened in nudges
   and dragged onto its line, the other lines alt-dragged copies of it with the words retyped (style found once,
   then duplicated), select all, then ink trials up close in
   different spots (for a foil, the light moving across it) (lighter, much heavier, back down to the one kept), and the paper. Under 30 seconds. The cursor moves on curved, Fitts-timed paths (quick out,

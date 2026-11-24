@@ -1,5 +1,7 @@
 // Daily Poster toolkit. Design in 1080×1528 units; every canvas is K× for print-quality output.
-const W = 1080, H = 1528, K = 2, M = 16;
+// K: pixels per design unit. 2 for posters (2160 × 3056); ?k=4 renders the same poster at twice the detail (the ink
+// and paper scale with it, so the print looks the same, just sharper) for close-up crops.
+const W = 1080, H = 1528, K = +(new URLSearchParams(location.search).get('k') || 2), M = 16;
 const COL = 131, ROW = 187; // the brief's 8×8 grid
 let _seed = 1;
 const rand = () => { _seed |= 0; _seed = (_seed + 0x6D2B79F5) | 0; let t = Math.imul(_seed ^ (_seed >>> 15), 1 | _seed); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
@@ -151,7 +153,7 @@ function trim(im) {
 function lumMask(src, t = 0.5, o = {}) {
   const { invert = false, soft = 0.02, blur = 0, gamma = 1 } = o;
   const c = canvas(src.width / K, src.height / K), g = c.g;
-  if (blur) g.filter = `blur(${blur}px)`; g.drawImage(src, 0, 0, src.width / K, src.height / K); g.filter = 'none';
+  if (blur) g.filter = `blur(${blur * K / 2}px)`; g.drawImage(src, 0, 0, src.width / K, src.height / K); g.filter = 'none';
   const id = g.getImageData(0, 0, c.width, c.height), d = id.data;
   for (let i = 0; i < d.length; i += 4) {
     let l = Math.pow((0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2]) / 255, gamma); if (invert) l = 1 - l;
@@ -711,7 +713,7 @@ function printHead(g, mask, colour, style = 'letterpress', o = {}) {
     const w = mask.width, h = mask.height, d = mask.getContext('2d').getImageData(0, 0, w, h).data, a = new Float32Array(w * h);
     for (let i = 0; i < a.length; i++) a[i] = d[i * 4 + 3] / 255;
     const bg = o.bg || '#000000', dark = lum(bg) < 0.45;
-    const px = PF.render({ mask: a, W: w, H: h, s: 1, seed, style, inkHex: colour, paperHex: bg, spotHex: colour, dark, light: o.light ?? 0.5 });
+    const px = PF.render({ mask: a, W: w, H: h, s: K / 2, seed, style, inkHex: colour, paperHex: bg, spotHex: colour, dark, light: o.light ?? 0.5 });
     const c = document.createElement('canvas'); c.width = w; c.height = h; c.getContext('2d').putImageData(new ImageData(px, w, h), 0, 0);
     g.save(); g.setTransform(1, 0, 0, 1, 0, 0); g.drawImage(c, 0, 0); g.restore();
     return;
@@ -722,8 +724,60 @@ function printHead(g, mask, colour, style = 'letterpress', o = {}) {
 }
 // stock(g, kind): the paper the poster is printed on, drawn last over everything.
 //   'smooth' | 'uncoated' | 'rough' | 'newsprint' (grey fibres and specks) | 'photocopy' (toner grain and streaks) | 'none'
-function stock(g, kind = 'uncoated', seedN = 1) {
+// Scratches and scuffs (Ben, 24 Nov 2026): the wear a real print picks up in handling. Hairline scratches that catch
+// the light where they cross dark ink (and barely show on pale paper), a few faint rubbed patches. Nothing uniform:
+// they come in small loose families (a few near-parallel hairlines from one drag), lengths from a few px to a
+// third of the sheet, slightly curved, broken in places, thick in the middle and fading at the ends, and they
+// gather where the noise says so rather than being sprinkled evenly. Different on every poster (seeded).
+function scratches(g, amount = 1, seedN = 1) {
+  if (amount <= 0) return;
+  seed(seedN * 7919 + 13);
+  const m = canvas(), c = m.g; c.lineCap = 'round';
+  const fams = Math.round((6 + rand() * 8) * amount);
+  for (let f = 0; f < fams; f++) {
+    // mostly lone hairlines; now and then two or three from one drag, never neatly parallel
+    const fx = rand() * W, fy = rand() * H, ang = rand() * Math.PI, len0 = 30 + Math.pow(rand(), 1.8) * 560;
+    const n = rand() < 0.7 ? 1 : 2 + Math.floor(rand() * 2);
+    for (let k = 0; k < n; k++) {
+      const a = ang + (rand() - 0.5) * 0.35, len = len0 * (0.3 + rand() * 0.9), bend = (rand() - 0.5) * len * 0.12;
+      const ox = fx + (rand() - 0.5) * 90, oy = fy + (rand() - 0.5) * 90, dx = Math.cos(a), dy = Math.sin(a);
+      const wmax = 0.25 + Math.pow(rand(), 2) * 0.8, alpha = 0.12 + rand() * 0.4, steps = Math.max(8, Math.round(len / 2));
+      const wob = [rand() * 6, rand() * 6], wf = [2 + rand() * 4, 9 + rand() * 14], wa = [0.6 + rand() * 1.6, 0.2 + rand() * 0.5];
+      const start = rand() * 0.25, stop = 1 - rand() * 0.25;   // it starts and stops faintly, at odd points
+      let gapLeft = 0;
+      for (let i = 0; i < steps; i++) {
+        const t0 = i / steps, t1 = (i + 1) / steps;
+        if (gapLeft > 0) { gapLeft--; continue; } if (rand() < 0.05) { gapLeft = 1 + Math.floor(rand() * 8); continue; }
+        const P = (t) => { const b = Math.sin(t * Math.PI) * bend + Math.sin(t * wf[0] + wob[0]) * wa[0] + Math.sin(t * wf[1] + wob[1]) * wa[1]; return [ox + dx * (t - 0.5) * len - dy * b, oy + dy * (t - 0.5) * len + dx * b]; };
+        const [x0, y0] = P(t0), [x1, y1] = P(t1), tm = (t0 + t1) / 2, taper = smooth(0, start + 0.08, tm) * (1 - smooth(stop - 0.08, 1, tm));
+        if (taper <= 0.02) continue;
+        c.strokeStyle = `rgba(255,255,255,${alpha * taper * (0.55 + rand() * 0.45)})`; c.lineWidth = wmax * (0.4 + 0.6 * taper) * (0.7 + rand() * 0.3);
+        c.beginPath(); c.moveTo(x0, y0); c.lineTo(x1, y1); c.stroke();
+      }
+    }
+  }
+  // nicks: tiny flecks where something caught the surface, in loose little clusters
+  for (let q = 0; q < Math.round((3 + rand() * 5) * amount); q++) {
+    const cx = rand() * W, cy = rand() * H, cnt = 2 + Math.floor(rand() * 6);
+    for (let i = 0; i < cnt; i++) {
+      const x = cx + (rand() - 0.5) * 40, y = cy + (rand() - 0.5) * 40, a = rand() * Math.PI, l = 1.5 + rand() * 7;
+      c.strokeStyle = `rgba(255,255,255,${0.2 + rand() * 0.45})`; c.lineWidth = 0.4 + rand() * 0.8;
+      c.beginPath(); c.moveTo(x, y); c.lineTo(x + Math.cos(a) * l, y + Math.sin(a) * l); c.stroke();
+    }
+  }
+  // a few scuffs: soft rubbed patches, streaked along one direction
+  const sc = canvas(); for (let i = 0; i < Math.round((1 + rand() * 3) * amount); i++) {
+    const x = rand() * W, y = rand() * H, r = 30 + rand() * 120; sc.g.save(); sc.g.translate(x, y); sc.g.rotate(rand() * Math.PI); sc.g.scale(1, 0.25 + rand() * 0.3);
+    const gr = sc.g.createRadialGradient(0, 0, 0, 0, 0, r); gr.addColorStop(0, 'rgba(255,255,255,0.09)'); gr.addColorStop(1, 'rgba(255,255,255,0)'); sc.g.fillStyle = gr; sc.g.fillRect(-r, -r, 2 * r, 2 * r); sc.g.restore();
+  }
+  const fine = noise(0.6); { const id = sc.g.getImageData(0, 0, sc.width, sc.height), d = id.data; for (let p = 0; p < fine.length; p++) d[p * 4 + 3] *= fine[p] > 0.5 ? 1 : 0.2; sc.g.putImageData(id, 0, 0); }
+  // light shows where the ink is scratched (lighten: invisible on pale paper), a faint dent on the pale paper
+  draw(g, tint(union(m, sc), '#dcdcd6'), 'lighten', 0.7);
+  draw(g, tint(m, '#000000'), 'multiply', 0.12);
+}
+function stock(g, kind = 'uncoated', seedN = 1, { wear = null } = {}) {
   if (kind === 'none') return;
+  scratches(g, wear ?? { smooth: 0.6, uncoated: 1, rough: 1.2, newsprint: 1.3, photocopy: 0.8 }[kind] ?? 1, seedN);
   const rough = { smooth: 0.15, uncoated: 0.45, rough: 0.9, newsprint: 0.7, photocopy: 0.3 }[kind] ?? 0.45;
   draw(g, IM.paper(rough, seedN), 'source-over', kind === 'smooth' ? 0.5 : 0.8);
   if (kind === 'newsprint') grain(g, 0.16, 0.9, 'multiply');
@@ -765,7 +819,7 @@ function alphaThr(c, t) {
   for (let i = 3; i < d.length; i += 4) d[i] = d[i] >= t * 255 ? 255 : 0;
   o.g.putImageData(id, 0, 0); return o;
 }
-const blurred = (c, r) => { const o = canvas(c.width / K, c.height / K); o.g.filter = `blur(${r}px)`; draw(o.g, c); o.g.filter = 'none'; return o; };
+const blurred = (c, r) => { const o = canvas(c.width / K, c.height / K); o.g.filter = `blur(${r * K / 2}px)`; draw(o.g, c); o.g.filter = 'none'; return o; };
 function printAll(g, C, o = {}) {
   const proc = sheetProcess(o.style ?? C.finish); if (!proc) return;
   const [preset, wear, spread] = proc, seedN = o.seed ?? 21;
@@ -789,7 +843,23 @@ function printAll(g, C, o = {}) {
   used.forEach((k) => { masks[k] = plateMask(k); });
   // thin parts of any colour (small text, hairlines, 1-2px rules, and the same cut out of a colour, like text knocked
   // out to the paper) vanish under an opening: they keep exactly what was drawn and get only a light mottle
-  const thin = union(...used.map((k) => cut(masks[k], alphaThr(blurred(alphaThr(blurred(masks[k], 1.6), 0.8), 1.6), 0.2))));
+  // and small pieces whole (letters of the subline, little squares): anything whose bounding box is under ~40px
+  const small = (k) => {
+    const c = canvas(), id = c.g.createImageData(w, h), d = id.data, seen = new Uint8Array(w * h), lim = 40 * K;
+    for (let i = 0; i < w * h; i++) {
+      if (seen[i] || lab[i] !== k) continue;
+      const st = [i], comp = []; seen[i] = 1; let x0 = 1e9, x1 = -1, y0 = 1e9, y1 = -1, big = false;
+      while (st.length) {
+        const q = st.pop(); comp.push(q); const x = q % w, y = (q / w) | 0;
+        if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y;
+        if (x1 - x0 > lim || y1 - y0 > lim) { big = true; }
+        for (const r of [q - 1, q + 1, q - w, q + w]) { if (r < 0 || r >= w * h || seen[r] || lab[r] !== k) continue; if ((r === q - 1 && x === 0) || (r === q + 1 && x === w - 1)) continue; seen[r] = 1; st.push(r); }
+      }
+      if (!big) for (const q of comp) { d[q * 4] = d[q * 4 + 1] = d[q * 4 + 2] = 255; d[q * 4 + 3] = 255; }
+    }
+    c.g.putImageData(id, 0, 0); return c;
+  };
+  const thin = union(...used.map((k) => union(small(k), cut(masks[k], alphaThr(blurred(alphaThr(blurred(masks[k], 1.6), 0.8), 1.6), 0.2)))));
   const thinD = alphaThr(blurred(thin, 1.2), 0.05);
   const order = used.filter((k) => hexes[k] !== bg).sort((a, b) => count[b] - count[a]);
   order.forEach((k, n) => {
@@ -825,4 +895,16 @@ function spreadWords(lines, maxW, { maxShort = 0.12 } = {}) {
     ws.forEach((q) => { c.g.drawImage(q.c, x - q.box.x, 0, q.c.width / K, q.c.height / K); x += q.box.w + gap; });
     return { c, box: inkBox(c), base: ws[0].base, text: t.text, o: t.o };
   });
+}
+
+// ---------- making-of capture ----------
+// With ?cap=1 (CAP=1 node render.mjs ...), snap(name, canvas) keeps a 1080 × 1528 copy of the canvas at that moment
+// (the sheet so far, or a transparent layer on its own). render.mjs writes them to out/<poster>-snaps/ for the
+// making-of reel (reel.py). Without ?cap=1 it does nothing, so templates can call it freely.
+const CAPTURE = /[?&]cap=1/.test(location.search);
+window.SNAPS = [];
+function snap(name, c) {
+  if (!CAPTURE) return;
+  const s = document.createElement('canvas'); s.width = W; s.height = H; s.getContext('2d').drawImage(c, 0, 0, W, H);
+  window.SNAPS.push([name, s.toDataURL('image/png')]);
 }

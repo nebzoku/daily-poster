@@ -37,6 +37,7 @@ window.POSTER = async () => {
   // round 14 (re-rendered 24 Nov): the whole sheet printed like the headline, then the headline, then the paper
   printAll(g, C, { style: 'letterpress' });
   draw(g, press(head, C.type, 'letterpress', { wear: 0.35, spread: 0.25, seed: 50 }));
+  scratches(g, 1, 501);   // wear from handling (round 16)
   draw(g, IM.paper(0.45, 50), 'source-over', 0.6); grain(g, 0.07, 0.5);
   return out;
 };

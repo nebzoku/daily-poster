@@ -29,6 +29,19 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   from the brief and different layout systems and treatments. Colourways only swap which palette colours play
   background, middle (image marks) and type. Ben picks the one(s) to post the next day.
 
+### Round 16 feedback (24 Nov 2026): wear, and showing the work
+- **Scratches and scuffs.** Every poster picks up a little handling wear (`scratches`, run by `stock()`, so it's on
+  by default): hairline scratches that catch the light where they cross dark ink and barely show on pale paper,
+  a few tiny nicks in loose clusters, and the odd faint rubbed patch. Mostly lone lines, sometimes two or three
+  from one drag, never neatly parallel; lengths, angles, curves, breaks and placement all random, seeded per poster.
+  Subtle: you find them in the zoom, you don't see them from across the room.
+- **Instagram zoom carousel** (`lab/carousel.py`): frame 1 the poster as usual, frames 2-4 one 2.4:1 strip of it
+  stretched across three frames so a swipe pans along one close-up. Pick the strip where treatments meet (ink type
+  over pixels, harsh next to smooth, stepped edges) and don't let it cut through small text.
+- **Making-of reel** (`lab/reel.py`): the poster rebuilt in the order it was really made (grid, background, image,
+  pixelation, small type, headline typed in, ink, paper), then a pull back to the colourways and the pick. No
+  interface or cursor. Templates mark the steps with `snap(name, canvas)`; render with `CAP=1`.
+
 ### Round 15 feedback (24 Nov 2026): centred blocks as an hourglass
 - **Centred headline in a top block and a bottom block: set it as an hourglass.** Break the lines so the widest ones
   sit on the outer edges (the first line on the top margin, the last on the bottom margin) and they narrow towards

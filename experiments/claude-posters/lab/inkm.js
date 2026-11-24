@@ -333,12 +333,12 @@ function roomLight(W, H, s, seed) {
   function print(mask, preset = 'letterpress', o = {}) {
     inkPreset = preset; P.m_wear = o.wear ?? 0.5; P.m_spread = o.spread ?? 0.5; applyMacros();
     const w = mask.width, h = mask.height;
-    return toCanvas(ink(alphaOf(mask), w, h, 1, o.seed ?? 47), w, h);
+    return toCanvas(ink(alphaOf(mask), w, h, K / 2, o.seed ?? 47), w, h);
   }
   // The machine's paper: fibres lit from the top left, as a light/shadow overlay to draw over everything.
   function paper(rough = 0.5, seed = 47) {
     P.m_paper = rough; applyMacros();
-    const c = press(new Float32Array(W * K * H * K), W * K, H * K, 1, seed, true, true);
+    const c = press(new Float32Array(W * K * H * K), W * K, H * K, K / 2, seed, true, true);
     const o = canvas(); o.g.drawImage(c, 0, 0, W, H); return o;
   }
   // Foil: metal 'gold' | 'silver' | 'copper' | 'rose' | 'black' | 'white' (gloss) | 'holo' | 'tone' (a satin foil a
@@ -349,18 +349,18 @@ function roomLight(W, H, s, seed) {
     metal = o.metal || 'gold'; foilHex = o.colour || '#ffffff'; paperHex = o.paper || '#ffffff';
     Object.assign(P, { m_shine: o.shine ?? 0.55, m_light: o.light ?? 0.45, m_catch: o.catch ?? 0.5, m_dome: o.dome ?? 0, m_fedge: o.edge ?? 0.35 });
     applyMacros();
-    const w = mask.width, h = mask.height, f = foil(alphaOf(mask), w, h, 1, o.seed ?? 47);
+    const w = mask.width, h = mask.height, f = foil(alphaOf(mask), w, h, K / 2, o.seed ?? 47);
     const c = canvas(w / K, h / K); c.g.drawImage(f, 0, 0, w / K, h / K); return c;
   }
   // The room light that falls on the paper around a foil (draw it under the foil, over the paper).
   function foilRoom(o = {}) {
     Object.assign(P, { m_shine: o.shine ?? 0.55, m_light: o.light ?? 0.45 }); applyMacros();
-    const r = roomLight(W * K, H * K, 1, o.seed ?? 47), c = canvas(); c.g.drawImage(r, 0, 0, W, H); return c;
+    const r = roomLight(W * K, H * K, K / 2, o.seed ?? 47), c = canvas(); c.g.drawImage(r, 0, 0, W, H); return c;
   }
   // Emboss (raised) or deboss (pressed in): light and shadow only, to draw over whatever is printed there.
   function relief(mask, o = {}) {
     Object.assign(P, { m_depth: o.depth ?? 0.5, m_paper: o.paper ?? 0.5, p_light: o.light ?? 135 }); applyMacros();
-    const w = mask.width, h = mask.height, r = press(alphaOf(mask), w, h, 1, o.seed ?? 47, !!o.deboss, false);
+    const w = mask.width, h = mask.height, r = press(alphaOf(mask), w, h, K / 2, o.seed ?? 47, !!o.deboss, false);
     const c = canvas(w / K, h / K); c.g.drawImage(r, 0, 0, w / K, h / K); return c;
   }
   return { print, paper, foil: foilPrint, foilRoom, relief, P };

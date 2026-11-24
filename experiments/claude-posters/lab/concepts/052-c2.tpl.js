@@ -40,6 +40,7 @@ window.POSTER = async () => {
   // round 14 (re-rendered 24 Nov): the whole sheet printed like the headline, then the headline, then the paper
   printAll(g, C, { style: 'letterpress', shapes: [cut(nm, dm)] });   // the night circle keeps its toned pixels; its edges are printed
   draw(g, press(head, C.type, HS.ink.preset, { ...HS.ink, seed: 52 }));
+  scratches(g, 1, 522);   // wear from handling (round 16)
   draw(g, IM.paper(0.45, 52), 'source-over', 0.6); grain(g, 0.07, 0.5);
   return out;
 };

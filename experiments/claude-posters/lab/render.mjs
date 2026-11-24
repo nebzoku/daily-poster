@@ -22,12 +22,18 @@ try {
     const page = await browser.newPage();
     page.on('pageerror', (e) => console.log(`[${name}] ERROR`, e.message));
     page.on('console', (m) => { if (!/willReadFrequently/.test(m.text())) console.log(`[${name}]`, m.text()); });
-    await page.goto(`http://127.0.0.1:${PORT}/${rel}/index.html?p=${encodeURIComponent(file)}`);
-    await page.waitForFunction('window.__done || window.__err', null, { timeout: 240000 });
+    await page.goto(`http://127.0.0.1:${PORT}/${rel}/index.html?p=${encodeURIComponent(file)}&k=${process.env.K || 2}${process.env.CAP ? '&cap=1' : ''}`);
+    await page.waitForFunction('window.__done || window.__err', null, { timeout: 900000 });
     const err = await page.evaluate('window.__err');
     if (err) { console.log(`[${name}] FAILED`, err); continue; }
     const data = await page.evaluate('window.__done');
     fs.writeFileSync(path.join(LAB, 'out', `${name}.png`), Buffer.from(data.split(',')[1], 'base64'));
+    if (process.env.CAP) {
+      const snaps = await page.evaluate('window.SNAPS'), dir = path.join(LAB, 'out', `${name}-snaps`);
+      fs.rmSync(dir, { recursive: true, force: true }); fs.mkdirSync(dir, { recursive: true });
+      snaps.forEach(([n, d], i) => fs.writeFileSync(path.join(dir, `${String(i).padStart(2, '0')}-${n}.png`), Buffer.from(d.split(',')[1], 'base64')));
+      console.log(`[${name}] ${snaps.length} snaps`);
+    }
     console.log(`[${name}] ok`);
     await page.close();
   }

@@ -41,6 +41,7 @@ window.POSTER = async () => {
   // round 14 (re-rendered 24 Nov): the whole sheet printed like the headline, then the headline, then the paper
   printAll(g, C, { style: 'riso' });
   draw(g, press(head, C.type, 'riso', { wear: 0.25, spread: 0.28, seed: 51 }));
+  scratches(g, 1, 511);   // wear from handling (round 16)
   draw(g, IM.paper(0.4, 51), 'source-over', 0.5); grain(g, 0.08, 0.5);
   return out;
 };

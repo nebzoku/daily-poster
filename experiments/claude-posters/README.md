@@ -36,5 +36,8 @@ Ben picks the ones to post; they go into the archive credited **Nebzokai** (Ben'
    block with no orphans, text on grid lines, nothing colliding.
 6. Send Ben the overview and the nine posters, and a push notification. Add the day to `log.md` and commit the
    templates + log (not the renders).
+6b. Instagram extras for a picked poster: `python3 carousel.py <issue-slug> out/<poster>.png <x> <y> <w>` (zoom
+   carousel) and, if the template has `snap()` steps, `CAP=1 node render.mjs posters/<poster>.js` then
+   `python3 reel.py <issue> <concept> <x> "<title>"` (making-of reel). Both write to `deliver/`.
 7. When Ben picks, copy the chosen PNGs to `site/showcase/<issue>-<slug>.jpg` (JPEG quality 90) and add entries to the
    top of `site/data/showcase.json` with `"designer": "Nebzokai"`, then commit and push to main.

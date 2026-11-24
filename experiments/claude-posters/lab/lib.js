@@ -738,8 +738,9 @@ function stock(g, kind = 'uncoated', seedN = 1) {
 // printAll(g, C, o): call after everything except the headline is drawn, then printHead the headline, then stock().
 //   It splits the sheet into flat plates (every pixel snapped to the nearest colour in the colourway C), prints each
 //   plate through the Ink Machine with the process that matches the headline's finish, and lays them back down on
-//   the paper (the background colour) largest first. o.keep: masks left exactly as drawn (smooth images);
-//   o.boxes: rects whose contents are kept but whose edges are printed like everything else.
+//   the paper (the background colour) largest first. o.keep: masks left exactly as drawn (avoid: their edges stay
+//   digital-crisp); o.boxes (rects) and o.shapes (masks, e.g. a pixelated circle): toned contents kept, but their
+//   edges printed like everything else and the ink lightly mottled. Prefer boxes/shapes over keep.
 const SHEET_PROCESS = {
   letterpress: ['letterpress', 0.3, 0.5], 'inked-deboss': ['letterpress', 0.3, 0.5], riso: ['riso', 0.3, 0.5],
   screen: ['screen', 0.3, 0.5], stamp: ['stamp', 0.3, 0.5], bleed: ['riso', 0.55, 0.75], copy: ['copy', 0.4, 0.5],
@@ -771,7 +772,8 @@ function printAll(g, C, o = {}) {
   const hexes = [...new Set(JSON.stringify(C).match(/#[0-9A-Fa-f]{6}/g).map((h) => h.toUpperCase()))];
   const bg = (o.bg ?? C.bg ?? C.paper).toUpperCase(), cols = hexes.map((h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16)));
   const src = g.canvas, w = src.width, h = src.height, sd = src.getContext('2d').getImageData(0, 0, w, h).data;
-  const keep = union(...(o.keep || []), ...(o.boxes || []).map(rectMask)), kd = keep.g.getImageData(0, 0, w, h).data;
+  const framed = [...(o.boxes || []).map(rectMask), ...(o.shapes || [])];   // kept inside, edges printed
+  const keep = union(...(o.keep || []), ...framed), kd = keep.g.getImageData(0, 0, w, h).data;
   // snap every pixel to its nearest colour → one plate per colour
   const lab = new Uint8Array(w * h), count = new Array(hexes.length).fill(0);
   for (let p = 0; p < w * h; p++) {
@@ -799,10 +801,11 @@ function printAll(g, C, o = {}) {
   const thinOrig = canvas(); draw(thinOrig.g, src); draw(thinOrig.g, cut(thinD, keep), 'destination-in');
   draw(outC.g, lightInk(thinOrig, 0.15, seedN + 77));
   // smooth images stay as drawn; boxes get printed edges
-  draw(outC.g, cut(kept, union(...(o.boxes || []).map(rectMask))));
-  for (const [i, r] of (o.boxes || []).entries()) {
-    const edge = preset === 'crisp' ? rectMask(r) : IM.print(rectMask(r), preset, { wear, spread, seed: seedN + 80 + i });
-    const b = canvas(); draw(b.g, kept); draw(b.g, rectMask(r), 'destination-in'); draw(b.g, edge, 'destination-in'); draw(outC.g, b);
+  draw(outC.g, cut(kept, union(...framed)));
+  for (const [i, fm] of framed.entries()) {
+    const edge = preset === 'crisp' ? fm : IM.print(fm, preset, { wear, spread, seed: seedN + 80 + i });
+    const b = canvas(); draw(b.g, kept); draw(b.g, fm, 'destination-in'); draw(b.g, edge, 'destination-in');
+    draw(outC.g, preset === 'crisp' ? b : lightInk(b, 0.1, seedN + 90 + i));
   }
   g.save(); g.setTransform(1, 0, 0, 1, 0, 0); g.globalCompositeOperation = 'source-over'; g.drawImage(outC, 0, 0); g.restore();
 }

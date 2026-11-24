@@ -45,6 +45,8 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   their tone but get printed edges. In the toolkit: draw everything except the headline, then
   `printAll(g, C, { keep, boxes })`, then `printHead`, then `stock`. It splits the sheet into its flat colour plates
   and prints each with the process that matches the headline's finish (`sheetProcess`).
+- Nothing stays digital-crisp on an inked sheet (Ben on 052 Morris, 24 Nov): a toned or pixelated shape keeps its
+  tones but its outline is printed too (`printAll`'s `boxes` and `shapes`, not `keep`).
 - **Words in the corners.** When a headline sits in blocks pinned to both margins and a line of two or more words
   falls a little short of the measure (BEFORE SUNRISE under CATCH MERCURY), fake it: open the word spaces, never the
   letters, so the line runs margin to margin and the outer words sit exactly in the corners (`spreadWords`). Four

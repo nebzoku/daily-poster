@@ -38,7 +38,7 @@ window.POSTER = async () => {
   block(g, ['(Day)'], day.x - day.r, day.y - day.r - 10, { ...t, anchor: 'bottom' });
   block(g, ['(Night)'], night.x + night.r, night.y + night.r + 24, { ...t, align: 'right' });
   // round 14 (re-rendered 24 Nov): the whole sheet printed like the headline, then the headline, then the paper
-  printAll(g, C, { style: 'letterpress', keep: [nm] });   // the night circle keeps its toned pixels
+  printAll(g, C, { style: 'letterpress', shapes: [cut(nm, dm)] });   // the night circle keeps its toned pixels; its edges are printed
   draw(g, press(head, C.type, HS.ink.preset, { ...HS.ink, seed: 52 }));
   draw(g, IM.paper(0.45, 52), 'source-over', 0.6); grain(g, 0.07, 0.5);
   return out;

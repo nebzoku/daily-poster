@@ -264,8 +264,10 @@ html { overflow-x: clip; }
 .track { display: flex; gap: var(--gap); width: max-content; min-height: clamp(320px, 50vh, 540px); padding: 24px 0 8px; animation: drift var(--drift, 80s) linear infinite; }
 .strip:hover .track, .strip:focus-within .track { animation-play-state: paused; }
 @keyframes drift { to { transform: translateX(calc(-50% - var(--gap) / 2)); } }
-.shot { display: grid; gap: 10px; flex: none; margin: 0; color: var(--fg); }
-.shot .frame { display: block; height: var(--h); aspect-ratio: var(--ar); overflow: hidden; background: var(--line); transform-origin: 50% 60%; }
+/* explicit widths: Safari on iOS gave shots whose picture hadn't loaded yet a width of 0 (aspect-ratio doesn't size
+   them there), so only the first image showed */
+.shot { display: grid; gap: 10px; flex: none; margin: 0; color: var(--fg); width: calc(var(--h) * var(--ar)); }
+.shot .frame { display: block; width: 100%; height: var(--h); aspect-ratio: var(--ar); overflow: hidden; background: var(--line); transform-origin: 50% 60%; }
 .shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
 /* seven size, shape and height variations, so the strip feels pinned up by hand */
 .track { align-items: flex-start; }

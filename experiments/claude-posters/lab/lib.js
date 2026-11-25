@@ -936,3 +936,64 @@ async function spinFrames(obj) {
   const crops = ims.map((im) => { const c = document.createElement('canvas'); c.width = x1 - x0 + 2; c.height = y1 - y0 + 2; c.getContext('2d').drawImage(im, -x0, -y0); return c; });
   return (t) => crops[Math.floor(((t % 1) + 1) % 1 * crops.length) % crops.length];
 }
+
+// ---------- round 20: the scanned sheet, and layers on it (Ben, 25 Nov 2026) ----------
+// scan(g, seedN): run after stock(). Makes the poster look like a print that has been laid on a flatbed scanner:
+// light falling off unevenly across the glass, one edge a touch darker where the sheet lifts, faint scanner banding
+// along the travel, a little dust and the odd hair. Luminance only, so the palette holds.
+function scan(g, seedN = 1, { amount = 1 } = {}) {
+  seed(seedN * 977 + 3);
+  const n = noise(420), m = noise(90), c = canvas(), id = c.g.createImageData(c.width, c.height), d = id.data, w = c.width, h = c.height;
+  const lift = rand() < 0.5 ? 0 : 1, band = new Float32Array(h); let v = 0;
+  for (let y = 0; y < h; y++) { v += (rand() - 0.5) * 0.02; v *= 0.995; band[y] = v + (rand() < 0.004 ? (rand() - 0.5) * 0.05 : 0); }
+  for (let p = 0; p < n.length; p++) {
+    const x = (p % w) / w, y = ((p / w) | 0);
+    const edge = Math.pow(lift ? x : 1 - x, 6) * 0.07;                       // the lifted edge
+    let l = 0.5 + ((n[p] - 0.5) * 0.09 + (m[p] - 0.5) * 0.025 + band[y] * 0.5 - edge) * amount;
+    d[p * 4] = d[p * 4 + 1] = d[p * 4 + 2] = clamp(l) * 255; d[p * 4 + 3] = 255;
+  }
+  c.g.putImageData(id, 0, 0); draw(g, c, 'soft-light', 1);
+  // dust and hairs
+  g.save(); g.lineCap = 'round';
+  for (let i = 0; i < 26 * amount; i++) { g.fillStyle = `rgba(0,0,0,${0.15 + rand() * 0.3})`; g.beginPath(); g.arc(rand() * W, rand() * H, 0.4 + Math.pow(rand(), 3) * 1.6, 0, 7); g.fill(); }
+  for (let i = 0; i < 2 * amount; i++) {
+    let x = rand() * W, y = rand() * H, a = rand() * 7; g.strokeStyle = `rgba(0,0,0,${0.12 + rand() * 0.12})`; g.lineWidth = 0.5; g.beginPath(); g.moveTo(x, y);
+    for (let k = 0; k < 30; k++) { a += (rand() - 0.5) * 0.5; x += Math.cos(a) * 2.2; y += Math.sin(a) * 2.2; g.lineTo(x, y); } g.stroke();
+  }
+  g.restore();
+}
+// A torn edge for tape: a ragged line across a strip end.
+function _torn(g, x0, x1, y, depth) { const n = Math.max(6, Math.round((x1 - x0) / 4)); for (let i = 0; i <= n; i++) g.lineTo(x0 + (x1 - x0) * i / n, y + (rand() - 0.5) * depth + (i % 2 ? depth * 0.3 : 0)); }
+// tape(g, {x, y, w, h, rot}, colour, seedN): a strip of masking tape stuck on the sheet, as scanned: slightly see-through,
+// torn ends, crepe texture, a soft shadow on its edges and a few creases. Long strips down a grid line divide the
+// sheet into columns (Ben: "large pieces of tape in vertical columns dividing where the grid lines are").
+function tape(g, r, colour = '#F1E5B8', seedN = 1, { alpha = 0.86 } = {}) {
+  seed(seedN * 131 + 7);
+  const shape = canvas(), sg = shape.g; sg.save(); sg.translate(r.x + r.w / 2, r.y + r.h / 2); sg.rotate(r.rot || 0);
+  sg.fillStyle = '#fff'; sg.beginPath(); sg.moveTo(-r.w / 2, -r.h / 2); _torn(sg, -r.w / 2, r.w / 2, -r.h / 2, 6); sg.lineTo(r.w / 2, r.h / 2); _torn(sg, r.w / 2, -r.w / 2, r.h / 2, 6); sg.closePath(); sg.fill(); sg.restore();
+  // shadow: a soft dark halo just outside the tape, mostly below and right (multiply)
+  const sh = canvas(); sh.g.filter = `blur(${3 * K}px)`; sh.g.drawImage(shape, 2, 3, W, H); sh.g.filter = 'none';
+  draw(g, tint(cut(sh, shape), '#000000'), 'multiply', 0.22);
+  // the tape: its colour, crepe texture (fine streaks across its length), a little see-through
+  const t = tint(shape, colour); const n = noise(0.9), c = canvas(), id = c.g.createImageData(c.width, c.height), d = id.data, w = c.width;
+  const rows = new Float32Array(c.height); for (let y = 0; y < rows.length; y++) rows[y] = (rand() - 0.5);
+  for (let p = 0; p < n.length; p++) { const y = (p / w) | 0, v = 0.5 + (n[p] - 0.5) * 0.25 + rows[y] * 0.06; d[p * 4] = d[p * 4 + 1] = d[p * 4 + 2] = clamp(v) * 255; d[p * 4 + 3] = 255; }
+  c.g.putImageData(id, 0, 0); draw(t.g, inter(c, shape), 'soft-light', 0.9);
+  draw(g, t, 'source-over', alpha);
+  // creases: a few faint diagonal light and dark hairlines inside the tape
+  const cr = canvas(); cr.g.save(); cr.g.translate(r.x + r.w / 2, r.y + r.h / 2); cr.g.rotate(r.rot || 0);
+  for (let i = 0; i < 3 + rand() * 4; i++) { const yy = (rand() - 0.5) * r.h, l = r.w * (0.2 + rand() * 0.5); cr.g.strokeStyle = rand() < 0.5 ? 'rgba(255,255,255,.35)' : 'rgba(0,0,0,.12)'; cr.g.lineWidth = 0.8; cr.g.beginPath(); cr.g.moveTo((rand() - 0.5) * r.w * 0.6 - l / 2, yy); cr.g.lineTo((rand() - 0.5) * r.w * 0.6 + l / 2, yy + (rand() - 0.5) * 30); cr.g.stroke(); }
+  cr.g.restore(); draw(g, inter(cr, shape));
+}
+// card(g, rect, colour, seedN): a piece of card laid on the sheet before scanning: a flat colour with a soft drop
+// shadow and slightly lighter cut edges, so the poster has depth.
+function card(g, r, colour, seedN = 1) {
+  seed(seedN * 71 + 5);
+  const m = canvas(); m.g.save(); m.g.translate(r.x + r.w / 2, r.y + r.h / 2); m.g.rotate(r.rot || 0); m.g.fillStyle = '#fff'; m.g.fillRect(-r.w / 2, -r.h / 2, r.w, r.h); m.g.restore();
+  const sh = canvas(); sh.g.filter = `blur(${7 * K}px)`; sh.g.drawImage(m, 4, 7, W, H); sh.g.filter = 'none';
+  draw(g, tint(sh, '#000000'), 'multiply', 0.3);
+  draw(g, tint(m, colour));
+  const edge = cut(m, alphaThr(blurred(cut(rectMask({ x: 0, y: 0, w: W, h: H }), m), 1.2), 0.02));
+  draw(g, tint(cut(m, edge), '#ffffff'), 'soft-light', 0.5);
+  return m;
+}

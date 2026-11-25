@@ -29,6 +29,24 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   from the brief and different layout systems and treatments. Colourways only swap which palette colours play
   background, middle (image marks) and type. Ben picks the one(s) to post the next day.
 
+### Round 20 feedback (25 Nov 2026): on the serif tests
+- **Condensed serifs fill the layouts.** The Vinho Verde moves work because the face is narrow (like Instrument
+  Serif): words go bigger and fill the lines. With a wide serif (Gloock), use fewer, shorter lines, or the giant-glyph
+  and top-and-bottom moves rather than the ledger.
+- **Even subtler.** "giant" running off the edge and "blight" eaten by spots were too obvious. Aim for something you
+  only catch on a second look: a faint after-image of one word, one letter a hair out of register or a touch lighter,
+  one leaf in a mirrored ornament that isn't mirrored.
+- **The scanned look.** The references feel real and human because the sheet looks scanned: light falling off
+  unevenly, a darker lifted edge, faint scanner banding, dust. Use `scan(g, seed)` after `stock()` in this style
+  (luminance only, so the palette holds).
+- **Layers on the sheet, scanned with it:** masking tape (`tape()`), a piece of card laid on top with its shadow
+  (`card()`), and long strips of tape running down grid lines to divide the sheet into columns. They give depth.
+  Keep tape off small type.
+- **Clean space is fine.** Empty paper between the type is part of the look.
+- **Giant letters with illustration round them,** like the swash A in the reference: vines curling into spirals,
+  leaves and seeds from the story, in an insular, Gaelic manuscript spirit, drawn in the type's colour and printed
+  with it.
+
 ### Round 19 feedback (25 Nov 2026): serif layouts, and type-only posters
 - **When the day's face is a serif** (Gloock, Instrument Serif, Young Serif and the like), work from Digital_Archive's
   Vinho Verde series (screenshots Ben sent on 25 Nov; not kept in the repo, as it's other designers' work). Borrow

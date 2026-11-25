@@ -1,2 +1,46 @@
-{"t1": {"a": {"bg": "#F1CF43", "type": "#261F01", "text": "#261F01", "finish": "letterpress", "stock": "uncoated"}},
- "t2": {"a": {"bg": "#F1E5B8", "type": "#757265", "text": "#757265", "canker": "#261F01", "tones": ["#261F01", "#757265", "#F1E5B8"], "finish": "letterpress", "stock": "uncoated"}}}
+{
+ "t1": {
+  "a": {
+   "bg": "#F1CF43",
+   "type": "#261F01",
+   "text": "#261F01",
+   "finish": "letterpress",
+   "stock": "uncoated"
+  }
+ },
+ "t2": {
+  "a": {
+   "bg": "#F1E5B8",
+   "type": "#757265",
+   "text": "#757265",
+   "canker": "#261F01",
+   "tones": [
+    "#261F01",
+    "#757265",
+    "#F1E5B8"
+   ],
+   "finish": "letterpress",
+   "stock": "uncoated"
+  }
+ },
+ "t3": {
+  "a": {
+   "bg": "#F1CF43",
+   "type": "#261F01",
+   "text": "#261F01",
+   "finish": "letterpress",
+   "stock": "uncoated"
+  }
+ },
+ "t4": {
+  "a": {
+   "bg": "#F1CF43",
+   "type": "#261F01",
+   "text": "#261F01",
+   "card": "#F1E5B8",
+   "tape": "#F1E5B8",
+   "finish": "letterpress",
+   "stock": "uncoated"
+  }
+ }
+}

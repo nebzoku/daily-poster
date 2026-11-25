@@ -34,7 +34,8 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   and the reel shows the motion being made: a bare timeline slides up under the artboard (ruler, one track, keyframe
   diamonds, playhead; no labels), the playhead is dragged to each keyframe and the keyframe clicked in, a quick
   before/after flick between two keys, then the playhead scrubbed back and forth as if getting the timing right. The
-  end card plays the finished loop instead of the still. Still under 30 seconds (the build runs a little quicker on
+  end card plays the finished loop instead of the still, started just before the movement so its rest falls at the
+  end, then **lingers on the finished poster** (about 2.5 s of stillness in all) before the reel restarts. Still under 30 seconds (the build runs a little quicker on
   moving days to make room). In the toolkit: `reel.py` adds the chapter whenever the favourite's motion frames exist
   (`out/<issue>-<concept>-<pick>-motion-frames/`), and `extras.py` renders those frames before the reel; keyframes
   are found where the movement starts and stops.

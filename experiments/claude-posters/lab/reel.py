@@ -348,19 +348,22 @@ if MF:
         cur[:] = kd; ph = float(k)
     # before and after: flick between the first and the busiest key
     a_, b_ = keys[0], keys[min(len(keys) - 1, 1)]
-    for f in (a_, b_, a_, b_):
+    for f in (a_, b_):
         seg(0.13, lambda t, f=f, ks=tuple(state_k): dict(poster=mframe(f), cursor=tuple(cur), shape='arrow', press=t < 0.3, over=[], tl=tl(f, ks, sel=f)), TLC)
     ph = float(b_)
     # scrub: the playhead dragged back and forth, quick then slower, settling at the start
     p0 = tuple(cur); g = to_design(sx(ph), PHY)
     seg(tdur(p0, g), lambda t, p0=p0, g=g, ph=ph, ks=tuple(state_k): dict(poster=mframe(ph), cursor=path(p0, g, t), shape='arrow', over=[], tl=tl(ph, ks)), TLC)
-    for nxt, d in [(NM * 0.85, 0.42), (NM * 0.2, 0.38), (NM * 0.6, 0.34), (NM - 1, 0.45)]:
+    for nxt, d in [(NM * 0.85, 0.42), (NM * 0.25, 0.4), (NM - 1, 0.45)]:
         seg(d, lambda t, a=ph, b=nxt, ks=tuple(state_k): (lambda f: dict(poster=mframe(f), cursor=to_design(sx(f), PHY), shape='arrow', press=True, over=[], tl=tl(f, ks)))(a + (b - a) * ease(t)), TLC)
         ph = nxt
     cur[:] = to_design(sx(ph), PHY)
     # 8. the finished poster, on black, moving: one full loop at its own speed (durations are scaled by SPEED)
-    loop_s = NM / MOTION_FPS
-    hold(loop_s / SPEED, 'end', lambda t: mframe(int(t * loop_s * MOTION_FPS)), cut=True)
+    #    The loop is started just before the movement begins, so all of its rest falls at the end, and then the
+    #    finished poster holds still a beat longer before the reel restarts (Ben, 25 Nov 2026).
+    loop_s = NM / MOTION_FPS; s0 = max(0, keys[0] - 2) if mv.any() and not mv.all() else 0
+    hold(loop_s / SPEED, 'end', lambda t: mframe(s0 + min(NM - 1, int(t * loop_s * MOTION_FPS))), cut=True)
+    hold(1.0 / SPEED, 'end', mframe(s0 + NM - 1))
 else:
     # 8. the finished poster, on black
     hold(1.9, 'end', rgb('final'), cut=True)

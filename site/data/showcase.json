@@ -7,7 +7,9 @@
     "image": "showcase/054-back-from-functional-extinction.jpg",
     "video": "showcase/054-back-from-functional-extinction.mp4",
     "postManually": true,
-    "preview": "showcase/054-back-from-functional-extinction-preview.mp4"
+    "preview": "showcase/054-back-from-functional-extinction-preview.mp4",
+    "previewAt": 0,
+    "previewLength": 4
   },
   {
     "issue": 53,

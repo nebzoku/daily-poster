@@ -439,7 +439,8 @@
     $("archive-list").replaceChildren(...list.map((x, i) =>
       el("li", { style: `--i:${i % 4}` }, el("button", { type: "button", "aria-current": String(x.date === brief.date),
         "aria-label": `View ${posterTitle(x)} by ${x.designer}`, onclick: (e) => openLightbox(list, i, e.currentTarget) },
-        el("div", { class: "poster" }, x.preview && !still
+        // a moving poster sits on its own still, so if the browser blanks a frame as the snippet loops, the poster shows, not a white flash
+        el("div", { class: "poster", ...(x.preview && !still ? { style: `background: #111 center / cover no-repeat url("${x.image}")` } : {}) }, x.preview && !still
           ? el("video", { class: "snip", "data-src": x.preview, poster: x.image, muted: "", loop: "", playsinline: "", preload: "none", "aria-label": `${posterTitle(x)}, by ${x.designer}` })
           : el("img", { src: x.image, alt: `${posterTitle(x)}, by ${x.designer}`, loading: "lazy" }),
           x.video ? el("span", { class: "tag-video" }, "Video") : null),
@@ -474,6 +475,7 @@
     // A moving poster plays in place of the picture, with its sound.
     if (x.video) {
       img.hidden = true; vid.hidden = false; vid.poster = x.image; vid.src = x.video;
+      vid.style.background = `center / contain no-repeat url("${x.image}")`;   // no white flash as it loops
       vid.setAttribute("aria-label", `${posterTitle(x)}, by ${x.designer}`);
       vid.play().catch(() => { vid.muted = true; vid.play().catch(() => {}); });
       requestAnimationFrame(() => vid.classList.add("on"));

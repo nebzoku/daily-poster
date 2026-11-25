@@ -45,7 +45,7 @@ if moving:
     os.replace(f'deliver/motion/{name}.mp4', f'../../../site/{vid}')
     sj = '../../../site/data/showcase.json'; show = json.load(open(sj))
     for e in show:
-        if e['image'] == f'showcase/{issue}-{names[c]}.jpg': e['video'] = vid; e['postManually'] = True
+        if e['image'] == f'showcase/{issue}-{names[c]}.jpg': e['video'] = vid; e['postManually'] = True; e['previewAt'] = 0; e['previewLength'] = 4   # archive snippet = one whole 4 s loop, so it loops with no jump
     json.dump(show, open(sj, 'w'), indent=2, ensure_ascii=False); open(sj, 'a').write('\n')
     print(f'{picks[0]} moves: site/{vid}; Instagram version deliver/motion/{name}-reel.mp4')
 

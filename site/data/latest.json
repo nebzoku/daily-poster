@@ -1,37 +1,37 @@
 {
-  "date": "2026-11-24",
-  "issue": 53,
-  "generatedAt": "2026-11-24T05:08:32.612Z",
+  "date": "2026-11-25",
+  "issue": 54,
+  "generatedAt": "2026-11-25T05:08:41.561Z",
   "colour": {
-    "name": "Lime",
-    "yesterday": "Green",
-    "tomorrow": "Yellow"
+    "name": "Yellow",
+    "yesterday": "Lime",
+    "tomorrow": "Orange"
   },
   "story": {
-    "title": "Starwatch: a rare chance to observe elusive Mercury",
-    "summary": "Mercury, the smallest planet and one of the hardest to see because it sits so close to the sun, reached its greatest western elongation on 20 November. That makes this week a rare good chance to spot it in the sky.",
+    "title": "Their loss changed Appalachian forests for ever. Now the American chestnut is back",
+    "summary": "The American chestnut once dominated Appalachian forests but was wiped out as a living canopy tree by a parasitic blight, leaving it functionally extinct for nearly a century. New breeding and genetic techniques are now producing young trees that resist the blight, and the species is returning.",
     "source": "The Guardian",
-    "url": "https://www.theguardian.com/science/2026/nov/23/starwatch-a-rare-chance-to-observe-elusive-mercury",
-    "published": "2026-11-23T06:00:49.000Z",
-    "theme": "astronomy and planet-watching"
+    "url": "https://www.theguardian.com/environment/2026/nov/24/american-chestnut-tree-restored-science-persistence-aoe",
+    "published": "2026-11-24T12:00:44.000Z",
+    "theme": "forest restoration and trees"
   },
   "headlines": [
-    "The Smallest Planet Steps Out",
-    "Catch Mercury Before Sunrise",
-    "Chasing Light Near the Sun"
+    "The Forest Remembers Its Giant",
+    "Back From Functional Extinction",
+    "A Century After the Blight"
   ],
   "sublines": [
-    "Mercury reached greatest western elongation on 20 November, giving a rare window to spot the smallest planet.",
-    "Hugging the sun, the solar system's smallest world is usually lost in glare; this week it steps clear.",
-    "Stargazers get a good chance this week to see Mercury, one of the most elusive planets, low in the sky."
+    "Nearly a century after a parasitic blight erased them, American chestnuts are being regrown across Appalachia from resistant seedlings.",
+    "New techniques are producing chestnut trees that can survive the fungus which once felled billions of stems across eastern forests.",
+    "Once the backbone of Appalachian woodland, the chestnut vanished from the canopy; scientists and growers are now planting its successors."
   ],
   "palette": {
     "name": "Vivid",
     "colours": [
-      "#B5E643",
-      "#DBECC1",
-      "#6F7467",
-      "#192400"
+      "#F1CF43",
+      "#F1E5B8",
+      "#757265",
+      "#261F01"
     ]
   },
   "always": [
@@ -39,13 +39,13 @@
     "#FFFFFF"
   ],
   "type": {
-    "id": "six-caps",
-    "display": "Six Caps",
-    "text": "Work Sans",
-    "reason": "Six Caps is a tall, slender condensed face that feels like a thin sliver of a planet hugging the horizon, perfect for something small and elusive set huge.",
-    "css": "https://fonts.googleapis.com/css2?family=Six+Caps&family=Work+Sans&display=swap",
-    "displayUrl": "https://fonts.google.com/specimen/Six+Caps",
-    "textUrl": "https://fonts.google.com/specimen/Work+Sans"
+    "id": "gloock",
+    "display": "Gloock",
+    "text": "Schibsted Grotesk",
+    "reason": "Gloock's sturdy, high-contrast serif has the weight of an old tree and the warmth of an autumn canopy, while the grotesk keeps the facts clear.",
+    "css": "https://fonts.googleapis.com/css2?family=Gloock&family=Schibsted+Grotesk&display=swap",
+    "displayUrl": "https://fonts.google.com/specimen/Gloock",
+    "textUrl": "https://fonts.google.com/specimen/Schibsted+Grotesk"
   },
   "grid": {
     "format": "A-size",
@@ -63,167 +63,131 @@
   },
   "images": [
     {
-      "id": "unsplash:pmUEwPKL5IE",
+      "id": "unsplash:drWkyKjLoCQ",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "photo of stars on sky",
-      "credit": "Grant McIver",
-      "creditUrl": "https://unsplash.com/@grantmciver?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/photo-of-stars-on-sky-pmUEwPKL5IE?utm_source=daily_poster&utm_medium=referral",
-      "alt": "photo of stars on sky",
-      "thumb": "https://images.unsplash.com/reserve/iFJ5qQylTD2POC68qBgh_Uluru.jpg?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8ZGF3biUyMGhvcml6b258ZW58MXx8fHwxNzk1NDk2OTEyfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/reserve/iFJ5qQylTD2POC68qBgh_Uluru.jpg?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8ZGF3biUyMGhvcml6b258ZW58MXx8fHwxNzk1NDk2OTEyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "a forest filled with lots of trees covered in leaves",
+      "credit": "Vlad ION",
+      "creditUrl": "https://unsplash.com/@vlad_ion?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-forest-filled-with-lots-of-trees-covered-in-leaves-drWkyKjLoCQ?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a forest filled with lots of trees covered in leaves",
+      "thumb": "https://images.unsplash.com/photo-1698178978757-79a35e2addbf?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8YXV0dW1uJTIwZm9yZXN0JTIweWVsbG93fGVufDF8fHx8MTc5NTU4MzMyMXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1698178978757-79a35e2addbf?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8YXV0dW1uJTIwZm9yZXN0JTIweWVsbG93fGVufDF8fHx8MTc5NTU4MzMyMXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "met:358366",
+      "id": "met:269072",
       "source": "The Met",
       "licence": "CC0",
-      "title": "The Celestial Map- Northern Hemisphere, 1515",
-      "credit": "Albrecht Dürer",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/358366",
-      "page": "https://www.metmuseum.org/art/collection/search/358366",
-      "alt": "The Celestial Map- Northern Hemisphere",
-      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP102235.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP102235.jpg",
-      "local": "media/2026-11-24/image-02-2160.jpg"
+      "title": "Homme allongé au pied d'un chàtaignier, 1850–53",
+      "credit": "Charles Marville",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/269072",
+      "page": "https://www.metmuseum.org/art/collection/search/269072",
+      "alt": "Homme allongé au pied d'un chàtaignier",
+      "thumb": "https://images.metmuseum.org/CRDImages/ph/web-large/DP158041.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/ph/original/DP158041.jpg",
+      "local": "media/2026-11-25/image-02-2160.jpg"
     },
     {
-      "id": "unsplash:pbuMoKhf07U",
+      "id": "unsplash:J5Cw-nsYPP8",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "blue and orange sky during sunset",
-      "credit": "Luke Moss",
-      "creditUrl": "https://unsplash.com/@lmoss_photo?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/blue-and-orange-sky-during-sunset-pbuMoKhf07U?utm_source=daily_poster&utm_medium=referral",
-      "alt": "blue and orange sky during sunset",
-      "thumb": "https://images.unsplash.com/photo-1582641857491-7e9987c2e415?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8ZGF3biUyMGhvcml6b258ZW58MXx8fHwxNzk1NDk2OTEyfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1582641857491-7e9987c2e415?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8ZGF3biUyMGhvcml6b258ZW58MXx8fHwxNzk1NDk2OTEyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "Chestnut tree branches laden with developing fruit",
+      "credit": "Sue Winston",
+      "creditUrl": "https://unsplash.com/@winniepix?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/chestnut-tree-branches-laden-with-developing-fruit-J5Cw-nsYPP8?utm_source=daily_poster&utm_medium=referral",
+      "alt": "Chestnut tree branches laden with developing fruit",
+      "thumb": "https://images.unsplash.com/photo-1758903178440-9c3488712a2e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Y2hlc3RudXQlMjBidXJyc3xlbnwxfHx8fDE3OTU1ODMzMjF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1758903178440-9c3488712a2e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Y2hlc3RudXQlMjBidXJyc3xlbnwxfHx8fDE3OTU1ODMzMjF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "met:941604",
+      "id": "met:904354",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Le telescope de la place de la Bastille, ca. 1900",
-      "credit": "Louis Vert",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/941604",
-      "page": "https://www.metmuseum.org/art/collection/search/941604",
-      "alt": "Le telescope de la place de la Bastille",
-      "thumb": "https://images.metmuseum.org/CRDImages/ph/web-large/DP-45617-020.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/ph/original/DP-45617-020.jpg",
-      "local": "media/2026-11-24/image-04-2160.jpg"
+      "title": "Untitled (Squirrels in a Chestnut Tree), ca. 1875–80",
+      "credit": "Susan Catherine Moore Waters",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/904354",
+      "page": "https://www.metmuseum.org/art/collection/search/904354",
+      "alt": "Untitled (Squirrels in a Chestnut Tree)",
+      "thumb": "https://images.metmuseum.org/CRDImages/ad/web-large/DP-32855-001.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/ad/original/DP-32855-001.jpg",
+      "local": "media/2026-11-25/image-04-2160.jpg"
     },
     {
-      "id": "unsplash:j_3qB1KygQ4",
+      "id": "unsplash:hkKSL5z_RPw",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "landscape photography of sunset",
-      "credit": "Chris Galbraith",
-      "creditUrl": "https://unsplash.com/@heycrisso?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/landscape-photography-of-sunset-j_3qB1KygQ4?utm_source=daily_poster&utm_medium=referral",
-      "alt": "landscape photography of sunset",
-      "thumb": "https://images.unsplash.com/photo-1534568292380-49954e6859e8?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8ZGF3biUyMGhvcml6b258ZW58MXx8fHwxNzk1NDk2OTEyfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1534568292380-49954e6859e8?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8ZGF3biUyMGhvcml6b258ZW58MXx8fHwxNzk1NDk2OTEyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "a plant with green leaves",
+      "credit": "Eric Prouzet",
+      "creditUrl": "https://unsplash.com/@eprouzet?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-plant-with-green-leaves-hkKSL5z_RPw?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a plant with green leaves",
+      "thumb": "https://images.unsplash.com/photo-1663534880928-1e6ddbf82740?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Y2hlc3RudXQlMjBidXJyc3xlbnwxfHx8fDE3OTU1ODMzMjF8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1663534880928-1e6ddbf82740?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Y2hlc3RudXQlMjBidXJyc3xlbnwxfHx8fDE3OTU1ODMzMjF8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "met:283255",
+      "id": "met:435879",
       "source": "The Met",
       "licence": "CC0",
-      "title": "A Section of the Constellation Cygnus (August 13, 1885), 1885",
-      "credit": "Paul Henry",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/283255",
-      "page": "https://www.metmuseum.org/art/collection/search/283255",
-      "alt": "A Section of the Constellation Cygnus (August 13, 1885)",
-      "thumb": "https://images.metmuseum.org/CRDImages/ph/web-large/DP156450.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/ph/original/DP156450.jpg",
-      "local": "media/2026-11-24/image-06-2160.jpg"
+      "title": "The Pool at Jas de Bouffan, ca. 1885–86",
+      "credit": "Paul Cézanne",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/435879",
+      "page": "https://www.metmuseum.org/art/collection/search/435879",
+      "alt": "The Pool at Jas de Bouffan",
+      "thumb": "https://images.metmuseum.org/CRDImages/ep/web-large/DT1492.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/ep/original/DT1492.jpg",
+      "local": "media/2026-11-25/image-06-2160.jpg"
     },
     {
-      "id": "unsplash:7lTscgXZ2rs",
-      "source": "Unsplash",
-      "licence": "Unsplash License",
-      "title": "Full moon visible over a dark, grassy hill",
-      "credit": "Brett Jordan",
-      "creditUrl": "https://unsplash.com/@brett_jordan?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/full-moon-visible-over-a-dark-grassy-hill-7lTscgXZ2rs?utm_source=daily_poster&utm_medium=referral",
-      "alt": "Full moon visible over a dark, grassy hill",
-      "thumb": "https://images.unsplash.com/photo-1762161315326-b7b7b0478069?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8Z3JlZW4lMjB0d2lsaWdodCUyMHNreXxlbnwxfHx8fDE3OTU0OTY5MTN8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1762161315326-b7b7b0478069?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8Z3JlZW4lMjB0d2lsaWdodCUyMHNreXxlbnwxfHx8fDE3OTU0OTY5MTN8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
-    },
-    {
-      "id": "met:202011",
+      "id": "met:659894",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Sundial, probably ca. 1860–90",
-      "credit": "Unknown artist",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/202011",
-      "page": "https://www.metmuseum.org/art/collection/search/202011",
-      "alt": "Sundial",
-      "thumb": "https://images.metmuseum.org/CRDImages/es/web-large/164177.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/es/original/164177.jpg",
-      "local": "media/2026-11-24/image-08-2160.jpg"
+      "title": "Cutout, ca. 1892",
+      "credit": "Lockwood de Forest",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/659894",
+      "page": "https://www.metmuseum.org/art/collection/search/659894",
+      "alt": "Cutout",
+      "thumb": "https://images.metmuseum.org/CRDImages/is/web-large/DP-13343-007.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/is/original/DP-13343-007.jpg",
+      "local": "media/2026-11-25/image-07-2160.jpg"
     },
     {
-      "id": "unsplash:ZyQVK4tG4tY",
+      "id": "unsplash:veyPaqJTZgk",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "body of water during sunset",
-      "credit": "Laib Khaled",
-      "creditUrl": "https://unsplash.com/@kh_led7?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/body-of-water-during-sunset-ZyQVK4tG4tY?utm_source=daily_poster&utm_medium=referral",
-      "alt": "body of water during sunset",
-      "thumb": "https://images.unsplash.com/photo-1501362343565-93d7318347cf?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8ZGF3biUyMGhvcml6b258ZW58MXx8fHwxNzk1NDk2OTEyfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1501362343565-93d7318347cf?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8ZGF3biUyMGhvcml6b258ZW58MXx8fHwxNzk1NDk2OTEyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "the sun shines through the leaves of a tree",
+      "credit": "Dominik Chelstowski",
+      "creditUrl": "https://unsplash.com/@jackomowa?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/the-sun-shines-through-the-leaves-of-a-tree-veyPaqJTZgk?utm_source=daily_poster&utm_medium=referral",
+      "alt": "the sun shines through the leaves of a tree",
+      "thumb": "https://images.unsplash.com/photo-1672488948454-b4cb8f7fb515?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8YXV0dW1uJTIwZm9yZXN0JTIweWVsbG93fGVufDF8fHx8MTc5NTU4MzMyMXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1672488948454-b4cb8f7fb515?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8YXV0dW1uJTIwZm9yZXN0JTIweWVsbG93fGVufDF8fHx8MTc5NTU4MzMyMXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:UaBK3fkTZ-Q",
+      "id": "unsplash:s45T-qd6n10",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "blue sea under blue sky during daytime",
-      "credit": "Hans",
-      "creditUrl": "https://unsplash.com/@hansphoto?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/blue-sea-under-blue-sky-during-daytime-UaBK3fkTZ-Q?utm_source=daily_poster&utm_medium=referral",
-      "alt": "blue sea under blue sky during daytime",
-      "thumb": "https://images.unsplash.com/photo-1613284877439-7b8f58349a71?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8ZGF3biUyMGhvcml6b258ZW58MXx8fHwxNzk1NDk2OTEyfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1613284877439-7b8f58349a71?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8ZGF3biUyMGhvcml6b258ZW58MXx8fHwxNzk1NDk2OTEyfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "a dirt road in the middle of a forest",
+      "credit": "Louise Pilgaard",
+      "creditUrl": "https://unsplash.com/@toft_pilgaard?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-dirt-road-in-the-middle-of-a-forest-s45T-qd6n10?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a dirt road in the middle of a forest",
+      "thumb": "https://images.unsplash.com/photo-1635186815014-e4a03bade26b?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8YXV0dW1uJTIwZm9yZXN0JTIweWVsbG93fGVufDF8fHx8MTc5NTU4MzMyMXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1635186815014-e4a03bade26b?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8YXV0dW1uJTIwZm9yZXN0JTIweWVsbG93fGVufDF8fHx8MTc5NTU4MzMyMXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:tMPKKNMeyLI",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "yellow trees",
+      "credit": "Joshua Humpfer",
+      "creditUrl": "https://unsplash.com/@jhvisuals_de?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/yellow-trees-tMPKKNMeyLI?utm_source=daily_poster&utm_medium=referral",
+      "alt": "yellow trees",
+      "thumb": "https://images.unsplash.com/photo-1571068160251-c8333566dad8?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8Z29sZGVuJTIwbGVhdmVzJTIwbGlnaHR8ZW58MXx8fHwxNzk1NTgzMzIxfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1571068160251-c8333566dad8?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8Z29sZGVuJTIwbGVhdmVzJTIwbGlnaHR8ZW58MXx8fHwxNzk1NTgzMzIxfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     }
   ],
   "textures": [
-    {
-      "id": "unsplash:k4Lt0CjUnb0",
-      "source": "Unsplash",
-      "licence": "Unsplash License",
-      "title": "white textured paper or plaster surface",
-      "credit": "João Vítor Duarte",
-      "creditUrl": "https://unsplash.com/@joaovtrduarte?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-k4Lt0CjUnb0?utm_source=daily_poster&utm_medium=referral",
-      "alt": "white textured paper or plaster surface",
-      "thumb": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTQ5NjkxM3ww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1637325258040-d2f09636ecf6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTQ5NjkxM3ww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
-    },
-    {
-      "id": "unsplash:TnQE5X48FMA",
-      "source": "Unsplash",
-      "licence": "Unsplash License",
-      "title": "A fine-grained silver metallic texture with a subtle shimmering surface",
-      "credit": "Katie Harp",
-      "creditUrl": "https://unsplash.com/@kharp?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/silver-metallic-texture-with-shimmer-TnQE5X48FMA?utm_source=daily_poster&utm_medium=referral",
-      "alt": "A fine-grained silver metallic texture with a subtle shimmering surface",
-      "thumb": "https://images.unsplash.com/photo-1656055448548-e26753307fc7?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8YnJ1c2hlZCUyMG1ldGFsJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTU0OTY5MTN8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1656055448548-e26753307fc7?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8YnJ1c2hlZCUyMG1ldGFsJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTU0OTY5MTN8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
-    },
-    {
-      "id": "unsplash:kG-ZwDuQ8ME",
-      "source": "Unsplash",
-      "licence": "Unsplash License",
-      "title": "weathered teal concrete wall texture",
-      "credit": "Annie Spratt",
-      "creditUrl": "https://unsplash.com/@anniespratt?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/weathered-teal-concrete-wall-texture-kG-ZwDuQ8ME?utm_source=daily_poster&utm_medium=referral",
-      "alt": "weathered teal concrete wall texture",
-      "thumb": "https://images.unsplash.com/photo-1578922427288-a47338083a57?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8YnJ1c2hlZCUyMG1ldGFsJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTU0OTY5MTN8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1578922427288-a47338083a57?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8YnJ1c2hlZCUyMG1ldGFsJTIwdGV4dHVyZXxlbnwxfHx8fDE3OTU0OTY5MTN8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
-    },
     {
       "id": "unsplash:vS3idIiYxX0",
       "source": "Unsplash",
@@ -233,60 +197,99 @@
       "creditUrl": "https://unsplash.com/@olga_o?utm_source=daily_poster&utm_medium=referral",
       "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-vS3idIiYxX0?utm_source=daily_poster&utm_medium=referral",
       "alt": "white textured paper or plaster surface",
-      "thumb": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTQ5NjkxM3ww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTQ5NjkxM3ww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "thumb": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTU4MzMyMXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTU4MzMyMXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:4u629vFD3vI",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "brown tree trunk during daytime",
+      "credit": "Clay Banks",
+      "creditUrl": "https://unsplash.com/@claybanks?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/brown-tree-trunk-during-daytime-4u629vFD3vI?utm_source=daily_poster&utm_medium=referral",
+      "alt": "brown tree trunk during daytime",
+      "thumb": "https://images.unsplash.com/photo-1616108738832-504f7b6addf2?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8YmFyayUyMHRleHR1cmV8ZW58MXx8fHwxNzk1NTgzMzIxfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1616108738832-504f7b6addf2?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8YmFyayUyMHRleHR1cmV8ZW58MXx8fHwxNzk1NTgzMzIxfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:mI-QcAP95Ok",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "brown tree bark in closeup photography",
+      "credit": "Jude Infantini",
+      "creditUrl": "https://unsplash.com/@judowoodo_?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/brown-tree-bark-in-closeup-photography-mI-QcAP95Ok?utm_source=daily_poster&utm_medium=referral",
+      "alt": "brown tree bark in closeup photography",
+      "thumb": "https://images.unsplash.com/photo-1519606247872-0440aae9b827?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8YmFyayUyMHRleHR1cmV8ZW58MXx8fHwxNzk1NTgzMzIxfDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1519606247872-0440aae9b827?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8YmFyayUyMHRleHR1cmV8ZW58MXx8fHwxNzk1NTgzMzIxfDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:65yifr9CCro",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a bunch of leaves that are laying on the ground",
+      "credit": "Ali Bakhtiari",
+      "creditUrl": "https://unsplash.com/@itshopelessfox?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-bunch-of-leaves-that-are-laying-on-the-ground-65yifr9CCro?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a bunch of leaves that are laying on the ground",
+      "thumb": "https://images.unsplash.com/photo-1639399018649-04cdbcd1e764?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8ZHJpZWQlMjBsZWF2ZXMlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTU4MzMyMnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1639399018649-04cdbcd1e764?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8ZHJpZWQlMjBsZWF2ZXMlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTU4MzMyMnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     }
   ],
   "objects": [
     {
-      "name": "telescope",
-      "material": "brushed brass",
-      "image": "media/2026-11-24/object-1.png",
-      "thumb": "media/2026-11-24/object-1-thumb.png",
+      "name": "chestnut burr",
+      "material": "weathered bronze",
+      "image": "media/2026-11-25/object-1.png",
+      "thumb": "media/2026-11-25/object-1-thumb.png",
       "model": {
-        "title": "Gregorian reflecting telescope (1700s)",
+        "title": "Chestnut with leaves",
         "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-385fa9f09a064c8b8d81e5085e2d76f4",
-        "licence": "CC0 Public Domain",
-        "creator": "Virtual Museums of Małopolska",
-        "creatorUrl": "https://sketchfab.com/WirtualneMuzeaMalopolski"
-      },
-      "texture": null
-    },
-    {
-      "name": "cratered rock",
-      "material": "dark weathered basalt",
-      "image": "media/2026-11-24/object-2.png",
-      "thumb": "media/2026-11-24/object-2-thumb.png",
-      "model": {
-        "title": "Meteorite",
-        "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-0a503e5bec784cbc9082e2f6b2d9f701",
+        "url": "https://sketchfab.com/3d-models/none-9c5c85c36c2e450489b0ae9a1fbb6292",
         "licence": "CC Attribution",
-        "creator": "Hailphilly",
-        "creatorUrl": "https://sketchfab.com/hailphilly"
-      },
-      "texture": {
-        "title": "Broken Wall",
-        "url": "https://polyhaven.com/a/broken_wall"
-      }
-    },
-    {
-      "name": "sundial",
-      "material": "oxidised bronze",
-      "image": "media/2026-11-24/object-3.png",
-      "thumb": "media/2026-11-24/object-3-thumb.png",
-      "model": {
-        "title": "CT4012 - Clock: Sundial",
-        "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-629cd7e55be145cf8fad5735af63ea33",
-        "licence": "CC Attribution",
-        "creator": "J. Pennell",
-        "creatorUrl": "https://sketchfab.com/jaminthecloud"
+        "creator": "Zinaida.Kovrova",
+        "creatorUrl": "https://sketchfab.com/Zinaida.Kovrova"
       },
       "texture": {
         "title": "Rusty Metal 05",
         "url": "https://polyhaven.com/a/rusty_metal_05"
+      }
+    },
+    {
+      "name": "tree stump",
+      "material": "weathered grey stone",
+      "image": "media/2026-11-25/object-2.png",
+      "thumb": "media/2026-11-25/object-2-thumb.png",
+      "model": {
+        "title": "Stylized tree stump",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-04d51f5c2fb643aab3b93b451d1b77c9",
+        "licence": "CC Attribution",
+        "creator": "Aartee",
+        "creatorUrl": "https://sketchfab.com/Aartee"
+      },
+      "texture": {
+        "title": "Rock 01",
+        "url": "https://polyhaven.com/a/rock_01"
+      }
+    },
+    {
+      "name": "hand axe",
+      "material": "rusted iron",
+      "image": "media/2026-11-25/object-3.png",
+      "thumb": "media/2026-11-25/object-3-thumb.png",
+      "model": {
+        "title": "Axe",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-5038f07f634345f5ac9bfa74fb821c97",
+        "licence": "CC Attribution",
+        "creator": "Yury Misiyuk",
+        "creatorUrl": "https://sketchfab.com/Tim0"
+      },
+      "texture": {
+        "title": "Rusty Metal 04",
+        "url": "https://polyhaven.com/a/rusty_metal_04"
       }
     }
   ]

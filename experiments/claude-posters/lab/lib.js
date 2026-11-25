@@ -972,8 +972,7 @@ function tape(g, r, colour = '#F1E5B8', seedN = 1, { alpha = 0.86 } = {}) {
   const shape = canvas(), sg = shape.g; sg.save(); sg.translate(r.x + r.w / 2, r.y + r.h / 2); sg.rotate(r.rot || 0);
   sg.fillStyle = '#fff'; sg.beginPath(); sg.moveTo(-r.w / 2, -r.h / 2); _torn(sg, -r.w / 2, r.w / 2, -r.h / 2, 6); sg.lineTo(r.w / 2, r.h / 2); _torn(sg, r.w / 2, -r.w / 2, r.h / 2, 6); sg.closePath(); sg.fill(); sg.restore();
   // shadow: a soft dark halo just outside the tape, mostly below and right (multiply)
-  const sh = canvas(); sh.g.filter = `blur(${3 * K}px)`; sh.g.drawImage(shape, 2, 3, W, H); sh.g.filter = 'none';
-  draw(g, tint(cut(sh, shape), '#000000'), 'multiply', 0.22);
+  contactShadow(g, shape, seedN, { strength: 0.6 });
   // the tape: its colour, crepe texture (fine streaks across its length), a little see-through
   const t = tint(shape, colour); const n = noise(0.9), c = canvas(), id = c.g.createImageData(c.width, c.height), d = id.data, w = c.width;
   const rows = new Float32Array(c.height); for (let y = 0; y < rows.length; y++) rows[y] = (rand() - 0.5);
@@ -985,15 +984,105 @@ function tape(g, r, colour = '#F1E5B8', seedN = 1, { alpha = 0.86 } = {}) {
   for (let i = 0; i < 3 + rand() * 4; i++) { const yy = (rand() - 0.5) * r.h, l = r.w * (0.2 + rand() * 0.5); cr.g.strokeStyle = rand() < 0.5 ? 'rgba(255,255,255,.35)' : 'rgba(0,0,0,.12)'; cr.g.lineWidth = 0.8; cr.g.beginPath(); cr.g.moveTo((rand() - 0.5) * r.w * 0.6 - l / 2, yy); cr.g.lineTo((rand() - 0.5) * r.w * 0.6 + l / 2, yy + (rand() - 0.5) * 30); cr.g.stroke(); }
   cr.g.restore(); draw(g, inter(cr, shape));
 }
-// card(g, rect, colour, seedN): a piece of card laid on the sheet before scanning: a flat colour with a soft drop
-// shadow and slightly lighter cut edges, so the poster has depth.
+// card(g, rect, colour, seedN): a piece of card laid on the sheet before scanning: a flat colour, a tight contact
+// shadow along its edges (not a soft drop shadow), one corner lifting a little so its shadow widens there, and
+// slightly lighter cut edges.
 function card(g, r, colour, seedN = 1) {
   seed(seedN * 71 + 5);
   const m = canvas(); m.g.save(); m.g.translate(r.x + r.w / 2, r.y + r.h / 2); m.g.rotate(r.rot || 0); m.g.fillStyle = '#fff'; m.g.fillRect(-r.w / 2, -r.h / 2, r.w, r.h); m.g.restore();
-  const sh = canvas(); sh.g.filter = `blur(${7 * K}px)`; sh.g.drawImage(m, 4, 7, W, H); sh.g.filter = 'none';
-  draw(g, tint(sh, '#000000'), 'multiply', 0.3);
+  contactShadow(g, m, seedN);
   draw(g, tint(m, colour));
-  const edge = cut(m, alphaThr(blurred(cut(rectMask({ x: 0, y: 0, w: W, h: H }), m), 1.2), 0.02));
-  draw(g, tint(cut(m, edge), '#ffffff'), 'soft-light', 0.5);
+  fibres(g, m, seedN, 0.5);
+  const core = cut(m, alphaThr(blurred(cut(rectMask({ x: 0, y: 0, w: W, h: H }), m), 1.2), 0.02));
+  draw(g, tint(cut(m, core), '#ffffff'), 'soft-light', 0.5);
   return m;
+}
+// The shadow a flat piece of paper casts on the sheet under a scanner lid: a thin, dark-ish line hugging the edges
+// away from the light, plus a wider soft patch under one lifted corner. Never used on type (Ben: no drop shadows on type).
+function contactShadow(g, m, seedN = 1, { strength = 1 } = {}) {
+  seed(seedN * 17 + 1);
+  const a = canvas(); a.g.filter = `blur(${1.6 * K}px)`; a.g.drawImage(m, 1.5, 2.5, W, H); a.g.filter = 'none';
+  draw(g, tint(cut(a, m), '#000000'), 'multiply', 0.32 * strength);
+  // one lifted corner: a soft shadow, strongest at a random corner of the piece's bounds
+  const b = inkBox(m); if (!b.w) return;
+  const cx = rand() < 0.5 ? b.x : b.x + b.w, cy = rand() < 0.5 ? b.y : b.y + b.h, R = Math.min(b.w, b.h) * 0.35 + 20;
+  const lift = canvas(); const gr = lift.g.createRadialGradient(cx, cy, 0, cx, cy, R); gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(1, 'rgba(255,255,255,0)');
+  lift.g.fillStyle = gr; lift.g.fillRect(0, 0, W, H);
+  const soft = canvas(); soft.g.filter = `blur(${6 * K}px)`; soft.g.drawImage(m, 4, 7, W, H); soft.g.filter = 'none';
+  draw(g, tint(cut(inter(soft, lift), m), '#000000'), 'multiply', 0.28 * strength);
+}
+// Faint paper fibres and tooth inside a mask (for card and torn paper pieces).
+function fibres(g, m, seedN = 1, amount = 1) {
+  seed(seedN * 23 + 9);
+  const n = noise(0.8), c = canvas(), id = c.g.createImageData(c.width, c.height), d = id.data;
+  for (let p = 0; p < n.length; p++) { const v = 0.5 + (n[p] - 0.5) * 0.22 * amount; d[p * 4] = d[p * 4 + 1] = d[p * 4 + 2] = clamp(v) * 255; d[p * 4 + 3] = 255; }
+  c.g.putImageData(id, 0, 0); draw(g, inter(c, m), 'soft-light', 0.8);
+}
+// A ragged closed outline around a rectangle (torn paper), by midpoint displacement along each side.
+function _raggedRect(r, rough) {
+  const pts = [], sides = [[r.x, r.y, r.x + r.w, r.y], [r.x + r.w, r.y, r.x + r.w, r.y + r.h], [r.x + r.w, r.y + r.h, r.x, r.y + r.h], [r.x, r.y + r.h, r.x, r.y]];
+  for (const [x0, y0, x1, y1] of sides) {
+    let seg = [[x0, y0], [x1, y1]], amp = rough;
+    for (let k = 0; k < 7; k++) { const nxt = []; for (let i = 0; i < seg.length - 1; i++) { const [ax, ay] = seg[i], [bx, by] = seg[i + 1], L = Math.hypot(bx - ax, by - ay) || 1; const o = (rand() - 0.5) * amp; nxt.push([ax, ay], [(ax + bx) / 2 + (-(by - ay) / L) * o, (ay + by) / 2 + ((bx - ax) / L) * o]); } nxt.push(seg[seg.length - 1]); seg = nxt; amp *= 0.55; }
+    pts.push(...seg.slice(0, -1));
+  }
+  return pts;
+}
+// torn(g, rect, colour, seedN, {rot, rough}): a torn piece of paper stuck on the sheet: ragged edges with a white
+// fringe of fibres where the paper tore, fibre texture, and a contact shadow. Returns its mask.
+function torn(g, r, colour, seedN = 1, { rot = 0, rough = 26 } = {}) {
+  seed(seedN * 53 + 11);
+  const pts = _raggedRect(r, rough), cx = r.x + r.w / 2, cy = r.y + r.h / 2;
+  const shape = (grow) => { const c = canvas(); c.g.save(); c.g.translate(cx, cy); c.g.rotate(rot); c.g.translate(-cx, -cy); c.g.fillStyle = '#fff'; c.g.beginPath(); pts.forEach(([x, y], i) => { const dx = x - cx, dy = y - cy, L = Math.hypot(dx, dy) || 1, gx = x + dx / L * grow * (0.5 + rand()), gy = y + dy / L * grow * (0.5 + rand()); i ? c.g.lineTo(gx, gy) : c.g.moveTo(gx, gy); }); c.g.closePath(); c.g.fill(); c.g.restore(); return c; };
+  const m = shape(0), fringe = shape(3.5);
+  contactShadow(g, fringe, seedN);
+  draw(g, tint(cut(fringe, m), '#ffffff'), 'source-over', 0.85);
+  draw(g, tint(m, colour));
+  fibres(g, m, seedN, 0.8);
+  return m;
+}
+// paint(g, points, colour, width, seedN): a dry-brush stroke of paint along a path, as in Ben's references (white
+// paint over a face): bristle streaks along the stroke, ragged dry ends, a little impasto light and shade.
+function paint(g, pts, colour, width = 60, seedN = 1, { dry = 0.5, alpha = 0.95 } = {}) {
+  seed(seedN * 97 + 13);
+  // resample the path evenly
+  const P = []; for (let i = 0; i < pts.length - 1; i++) { const [ax, ay] = pts[i], [bx, by] = pts[i + 1], n = Math.max(1, Math.ceil(Math.hypot(bx - ax, by - ay) / 3)); for (let k = 0; k < n; k++) P.push([ax + (bx - ax) * k / n, ay + (by - ay) * k / n]); } P.push(pts[pts.length - 1]);
+  const m = canvas(), mg = m.g; mg.lineCap = 'butt'; mg.lineJoin = 'round';
+  // the body of the stroke: solid, stopping short of the ends (the ends are left to the dry bristles)
+  const i0 = Math.floor(P.length * 0.06), i1 = Math.floor(P.length * (0.8 - dry * 0.15));
+  mg.strokeStyle = 'rgba(255,255,255,0.92)'; mg.lineWidth = width * 0.84; mg.beginPath(); mg.moveTo(...P[i0]); for (let i = i0 + 1; i <= i1; i++) mg.lineTo(...P[i]); mg.stroke();
+  // bristles: fine streaks across the full width, ending raggedly (dry brush at the tail)
+  const N = Math.max(24, Math.round(width * 1.4));
+  mg.lineCap = 'round';
+  for (let b = 0; b < N; b++) {
+    const off = (b / (N - 1) - 0.5) * width * (0.92 + rand() * 0.12);
+    const edge = Math.abs(off) / (width / 2);
+    const t0 = rand() * 0.05, t1 = 1 - Math.pow(rand(), 1.5) * (0.12 + dry * 0.35) - edge * rand() * 0.15;
+    mg.strokeStyle = `rgba(255,255,255,${0.55 + rand() * 0.45})`; mg.lineWidth = 1.2 + rand() * 1.8;
+    mg.beginPath(); let started = false;
+    for (let i = Math.floor(t0 * (P.length - 1)) + 1; i <= Math.floor(t1 * (P.length - 1)); i++) {
+      const [x0, y0] = P[i - 1], [x1, y1] = P[i], L = Math.hypot(x1 - x0, y1 - y0) || 1, nx = -(y1 - y0) / L, ny = (x1 - x0) / L;
+      const wob = Math.sin(i * 0.05 + b) * 0.6;
+      if (!started) { mg.moveTo(x0 + nx * (off + wob), y0 + ny * (off + wob)); started = true; }
+      mg.lineTo(x1 + nx * (off + wob), y1 + ny * (off + wob));
+    }
+    mg.stroke();
+  }
+  // a few dry gaps along the stroke where the brush skipped
+  const n = noise(2.5); { const id = mg.getImageData(0, 0, m.width, m.height), d = id.data; for (let p = 0; p < n.length; p++) if (d[p * 4 + 3]) d[p * 4 + 3] *= clamp(1 - smooth(0.68, 0.8, n[p]) * dry * 1.4); mg.putImageData(id, 0, 0); }
+  draw(g, tint(m, colour), 'source-over', alpha);
+  // impasto: a lit upper edge to the bristle ridges, a shaded lower edge
+  const hi = canvas(); hi.g.drawImage(m, -1, -1, W, H); draw(g, tint(cut(hi, m), '#ffffff'), 'soft-light', 0.5);
+  const lo = canvas(); lo.g.drawImage(m, 1.2, 1.6, W, H); draw(g, tint(cut(lo, m), '#000000'), 'multiply', 0.16);
+  return m;
+}
+// pencil(g, x0, y0, x1, y1, seedN, {ticks}): a graphite construction line, slightly uneven in pressure, with optional
+// tick marks at its ends (the measured layout lines on a paste-up).
+function pencil(g, x0, y0, x1, y1, seedN = 1, { ticks = false, alpha = 0.5 } = {}) {
+  seed(seedN * 29 + 3);
+  const L = Math.hypot(x1 - x0, y1 - y0), n = Math.max(2, Math.ceil(L / 6)), nx = -(y1 - y0) / L, ny = (x1 - x0) / L;
+  g.save(); g.lineCap = 'round'; g.lineWidth = 0.9;
+  for (let i = 0; i < n; i++) { const a = i / n, b = (i + 1) / n, j = (rand() - 0.5) * 0.4; g.strokeStyle = `rgba(0,0,0,${alpha * (0.55 + rand() * 0.45)})`; g.beginPath(); g.moveTo(x0 + (x1 - x0) * a + nx * j, y0 + (y1 - y0) * a + ny * j); g.lineTo(x0 + (x1 - x0) * b + nx * j, y0 + (y1 - y0) * b + ny * j); g.stroke(); }
+  if (ticks) for (const [x, y] of [[x0, y0], [x1, y1]]) { g.strokeStyle = `rgba(0,0,0,${alpha})`; g.beginPath(); g.moveTo(x - nx * 8, y - ny * 8); g.lineTo(x + nx * 8, y + ny * 8); g.stroke(); }
+  g.restore();
 }

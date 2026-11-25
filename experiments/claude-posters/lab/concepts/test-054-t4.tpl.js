@@ -4,8 +4,7 @@
 // Story: the chestnut was the giant of the eastern forests, gone for a century, now coming back.
 // Move: Vinho Verde ledger: big words one per line, each on a hairline rule, alternating indents, small engraved
 //   ornaments in the gaps, a tiny note in a corner. Type, ink and paper only.
-// The one subtle change, subtler than before: "remembers" is printed twice, the second pass a hair out of register
-//   and faint, like an after-image.
+// (Ben: no drop shadows on type, so the faint after-image on "remembers" is gone.)
 // Ornaments: cut from the brief's 1892 Lockwood de Forest gilt cutout (leaf scrolls), thresholded.
 // Finish and paper: letterpress on uncoated, tone on a lime-yellow ground.
 window.POSTER = async () => {
@@ -53,7 +52,6 @@ window.POSTER = async () => {
   // the after-image: "remembers" again, a hair out of register, faint
   const echo = canvas(); place(echo, L1, { right: W - M + 3, top: b1 - base(L1) - 2 });
   printAll(g, C, { seed: 549 });
-  draw(g, tint(cut(echo, head), C.type), 'source-over', 0.22);
   printHead(g, head, C.type, C.finish, { bg: C.bg, seed: 59, wear: HS.ink.wear, spread: HS.ink.spread });
   stock(g, C.stock, 549);
   // tape: a long strip down a grid line, and two short pieces holding the card's top corners

@@ -42,5 +42,20 @@
    "finish": "letterpress",
    "stock": "uncoated"
   }
+ },
+ "t5": {
+  "a": {
+   "bg": "#F1E5B8",
+   "paper2": "#F1CF43",
+   "cardc": "#261F01",
+   "cardtype": "#F1E5B8",
+   "type": "#261F01",
+   "text": "#261F01",
+   "paint": "#FFFFFF",
+   "tape": "#FFFFFF",
+   "finish": "letterpress",
+   "stock": "uncoated",
+   "tape2": "#F1CF43"
+  }
  }
 }

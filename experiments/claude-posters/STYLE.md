@@ -29,6 +29,22 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   from the brief and different layout systems and treatments. Colourways only swap which palette colours play
   background, middle (image marks) and type. Ben picks the one(s) to post the next day.
 
+### Round 21 feedback (25 Nov 2026): no shadows on type; a hand-made paste-up, scanned
+- **No drop shadows on type**, and nothing that reads like one (the faint offset after-image on "remembers" did).
+  Shadows belong only to the physical layers.
+- **Push the scanned paste-up** (Ben's references: Matt Willey's Stay Home, the Paler Fire paste-up with pencil
+  rules and pink tape, a collage with white paint over a face and torn cigarette packets, brush-lettered type over a
+  photo): layers of real material, each with the light and shade a scanner picks up:
+  - torn paper pieces with a white fibre fringe and a contact shadow (`torn()`), card with a tight contact shadow
+    and one corner lifting (`card()`), masking tape (`tape()`), including long strips down grid lines;
+  - dry-brush paint swipes, white or a palette colour, solid in the body and streaky at the tail (`paint()`), e.g.
+    painting out part of an image or ornament;
+  - pencil construction lines on the grid with tick marks, a compass circle (`pencil()`);
+  - the whole sheet scanned last (`scan()`).
+  Shadows are contact shadows: tight along the edges, wider only where a corner lifts. Never a soft offset glow.
+- **Big letters with drawn ornament** (the illuminated A) are worth pushing in this direction: more hand-rendered,
+  layered on paper, tape and paint.
+
 ### Round 20 feedback (25 Nov 2026): on the serif tests
 - **Condensed serifs fill the layouts.** The Vinho Verde moves work because the face is narrow (like Instrument
   Serif): words go bigger and fill the lines. With a wide serif (Gloock), use fewer, shorter lines, or the giant-glyph

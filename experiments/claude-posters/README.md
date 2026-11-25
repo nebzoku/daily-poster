@@ -4,6 +4,7 @@ Every morning Claude designs **three concepts, each in three colourways** from t
 Ben picks the ones to post; they go into the archive credited **Nebzokai** (Ben's own work is Nebzoku).
 
 - `STYLE.md`: every rule from Ben's feedback. Read it all before designing. It overrides anything here.
+- `posting.md`: the posting schedule (poster D+1, reel D+2) and what Ben has to post by hand, with dates.
 - `log.md`: one line per issue: the three concepts, their headline, layout system and image treatment, and what was
   picked. Use it to vary from the day before.
 - `lab/`: the toolkit.
@@ -41,7 +42,10 @@ Ben picks the ones to post; they go into the archive credited **Nebzokai** (Ben'
    (cap height top, descenders on the bottom margin, widest line edge to edge), no touching letters (set headlines with
    `inkSafe`), natural line breaks, subline
    block with no orphans, text on grid lines, nothing colliding.
-6. Send Ben the overview and the nine posters, and a push notification. Add the day to `log.md` and commit the
+6. Send Ben the overview and the nine posters, and a push notification. In the same message, tell him what he has
+   to post by hand today, from `posting.md` (Ben, 25 Nov 2026: posters go out the day after their brief, the
+   favourite's making-of reel the day after that; moving posters and reels are posted by hand). Flag anything
+   overdue, and keep `posting.md` up to date (new rows when picks come in, Posted filled when he says). Add the day to `log.md` and commit the
    templates + log (not the renders).
 6b. Instagram extras, once Ben has picked and the picks are in the archive: `python3 lab/extras.py <issue> <picks, his
    favourite first>` (e.g. `1B 3A`). Every pick gets close-ups (`site/media/ig/<name>-zoom-2..5.jpg`, the poster in

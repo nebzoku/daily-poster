@@ -254,6 +254,11 @@
       "texture": {
         "title": "Rusty Metal 05",
         "url": "https://polyhaven.com/a/rusty_metal_05"
+      },
+      "spin": {
+        "frames": 24,
+        "path": "media/2026-11-25/object-1-spin/",
+        "ext": "webp"
       }
     },
     {
@@ -272,6 +277,11 @@
       "texture": {
         "title": "Rock 01",
         "url": "https://polyhaven.com/a/rock_01"
+      },
+      "spin": {
+        "frames": 24,
+        "path": "media/2026-11-25/object-2-spin/",
+        "ext": "webp"
       }
     },
     {
@@ -290,6 +300,11 @@
       "texture": {
         "title": "Rusty Metal 04",
         "url": "https://polyhaven.com/a/rusty_metal_04"
+      },
+      "spin": {
+        "frames": 24,
+        "path": "media/2026-11-25/object-3-spin/",
+        "ext": "webp"
       }
     }
   ]

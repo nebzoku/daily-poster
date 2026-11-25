@@ -36,9 +36,12 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
 - **Tape is its own material,** not the paper's texture: a fine crepe of ridges across the strip, a little fibre,
   slightly darker long edges, ends torn in ragged teeth with loose fibres (never a clean cut), and a palette colour
   that differs from the paper (`tape()`).
-- **Handwriting over the top** (wanted, not yet built in): real handwriting from public-domain scans (letters,
-  manuscripts, copybooks, calligraphy; the more calligraphic the better, best if it relates to the story),
-  thresholded so it reads like dark biro or pen over the faded paper. Never handwriting drawn or faked by code.
+- **Handwriting over the top:** real handwriting from public-domain scans (letters, manuscripts, copybooks,
+  calligraphy; the more calligraphic the better, best if it relates to the story), lifted out by luminance and laid
+  over the faded paper in black like pen or biro (`handwriting()`, which finds the densest writing with `inkiest()`,
+  clear of page edges and bindings). Never handwriting drawn or faked by code. The scans come each morning from
+  `scripts/handwriting.mjs` (the Handwriting scans workflow, after the brief): `site/media/<date>/hand-*.jpg`, with
+  titles and credits in `hand.json`. Search terms can be set by hand in `requests/handwriting.txt`.
 
 ### Round 23 feedback (25 Nov 2026): tape at A4 scale, headlines that line up
 - **Tape is at A4 scale:** masking tape is about 24 mm wide on a 210 mm sheet, so about 120 px on the poster

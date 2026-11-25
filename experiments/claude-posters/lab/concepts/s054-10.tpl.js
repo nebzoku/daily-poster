@@ -6,6 +6,7 @@ window.POSTER = async () => {
   const D = 'Gloock', T = 'Schibsted Grotesk';
   await fonts([`400 100px "${D}"`, `500 16px "${T}"`]);
   const cez = await media('media/2026-11-25/image-06-2160.jpg');
+  const hand = await media('media/2026-11-25/hand-01.jpg');   // Fox Strangways to Bertoloni
   const { out, g, ink } = stylePoster(C, N);
   const gx = (c) => M + c * COL, gy = (r) => M + r * ROW;
   pencilGrid(g, [0, 4, 8], [0, 1, 8], N, 0.26);
@@ -29,6 +30,6 @@ window.POSTER = async () => {
   const t = { font: T, size: 16, weight: 500, lead: 0.9, color: '#fff' };
   block(ink.g, ['(Daily Poster)', '(No. 054)'], gx(0), b1 - capH, t);
   block(ink.g, ['(Wednesday 25 November)', '(The Guardian)'], gx(8), b2, { ...t, align: 'right', anchor: 'bottom' });
-  styleFinish(g, ink, C, N, { from: [0.1, 0.0], to: [0.9, 1.0], min: 0.6 }, (gg) => vtape(gg, W / 2, 'bottom', C.tape, 11, 110));
+  styleFinish(g, ink, C, N, { from: [0.1, 0.0], to: [0.9, 1.0], min: 0.6 }, (gg) => { vtape(gg, W / 2, 'bottom', C.tape, 11, 110); handwriting(gg, hand, { x: X(0.02) + 50, y: Y(0.4), w: COL * 2.6, h: ROW * 1.1 }, { rot: 0.04, thr: 0.13 }); });
   return out;
 };

@@ -6,6 +6,7 @@ window.POSTER = async () => {
   const D = 'Gloock', T = 'Schibsted Grotesk';
   await fonts([`400 100px "${D}"`, `500 16px "${T}"`]);
   const stump = trim(await media('media/2026-11-25/object-2.png'));
+  const hand = await media('media/2026-11-25/hand-02.jpg');   // Fox Talbot to the botanist Bertoloni, 1839
   const { out, g, ink } = stylePoster(C, N);
   pencilGrid(g, [0, 4, 8], [0, 8], N);
   const HL = sameOptical8(['Back from', 'functional', 'extinction'], { font: D, weight: 400, size: 200, gap: 20, minGap: 6, word: 0.22 }, W - 2 * M);
@@ -22,6 +23,6 @@ window.POSTER = async () => {
   const sub = balance('New techniques are producing chestnut trees that can survive the fungus which once felled billions of stems across eastern forests.', { ...t, minW: 220, maxW: COL * 2.6 });
   block(ink.g, sub.lines, M, ys[1] - 12, { ...t, anchor: 'bottom' });
   block(ink.g, ['(Daily Poster)', '(No. 054)', '(Wednesday 25 November)', '(The Guardian)'], W - M, ys[5] - 12, { ...t, align: 'right', anchor: 'bottom' });
-  styleFinish(g, ink, C, N, { from: [0.1, 0.1], to: [0.9, 0.9], min: 0.6 });
+  styleFinish(g, ink, C, N, { from: [0.1, 0.1], to: [0.9, 0.9], min: 0.6 }, (gg) => handwriting(gg, hand, { x: M + COL * 0.6, y: ys[3] + 18, w: COL * 4.6, h: Math.round((ys[4] - ys[3]) * 0.8) }, { rot: -0.03 }));
   return out;
 };

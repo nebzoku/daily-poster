@@ -6,6 +6,7 @@ window.POSTER = async () => {
   const D = 'Gloock', T = 'Schibsted Grotesk';
   await fonts([`400 100px "${D}"`, `500 16px "${T}"`]);
   const photo = await media('media/2026-11-25/image-02-2160.jpg');
+  const hand = await media('media/2026-11-25/hand-04.jpg');   // Fox Talbot to Bertoloni, 1840
   const { out, g, ink } = stylePoster(C, N);
   const pg = { x: M + COL, y: M + ROW * 0.5, w: COL * 6, h: ROW * 6 };
   const page = housed(photo, 'square', pg, { crop: [0.05, 0.05, 0.9, 0.7], thr: 0.42, invert: true, outline: 0 });
@@ -19,6 +20,6 @@ window.POSTER = async () => {
   const t = { font: T, size: 16, weight: 500, lead: 0.9, color: '#fff' };
   const bl = H - M - (HL.lines[1].box.h - (HL.lines[1].base - HL.lines[1].box.y));
   block(ink.g, ['(Daily Poster)', '(No. 054)', '(Wednesday 25 November)', '(The Guardian)'], W - M, bl, { ...t, align: 'right', anchor: 'bottom' });
-  styleFinish(g, ink, C, N, { from: [0.0, 0.0], to: [1.0, 1.0], min: 0.62 }, (gg) => { vtape(gg, M + COL, 'top', C.tape, 7, 120); vtape(gg, M + 7 * COL, 'top', C.tape, 8, 120); });
+  styleFinish(g, ink, C, N, { from: [0.0, 0.0], to: [1.0, 1.0], min: 0.62 }, (gg) => { vtape(gg, M + COL, 'top', C.tape, 7, 120); vtape(gg, M + 7 * COL, 'top', C.tape, 8, 120); handwriting(gg, hand, { x: M + COL * 3.4, y: M + ROW * 5.6, w: COL * 3.8, h: ROW * 0.9 }, { rot: -0.05, thr: 0.12 }); });
   return out;
 };

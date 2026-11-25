@@ -1222,3 +1222,42 @@ function styleFinish(g, ink, C, seedN, fade = {}, layers = null) {
   if (layers) layers(g);
   scan(g, seedN, { amount: 1.2 });
 }
+
+// ---------- round 25: real handwriting over the top (Ben, 25 Nov 2026) ----------
+// The day's handwriting scans (site/media/<date>/hand-*.jpg, listed in hand.json; scripts/handwriting.mjs fetches
+// public-domain letters, manuscripts and calligraphy) are laid over the finished sheet like pen or biro doodled on
+// it: the ink strokes are lifted out of the scan by luminance and printed dark and sharp over the faded paper.
+// inkiest(im, aspect): where in a scan the handwriting is densest; returns a crop [x, y, w, h] (fractions) with the
+// given aspect (w/h of the place it's going), avoiding blank margins and solid dark areas.
+function inkiest(im, aspect = 3, { size = 0.34, inset = 0.16 } = {}) {   // inset: keep clear of page edges, bindings and mounts
+  const sw = 90, sh = Math.max(8, Math.round(90 * im.height / im.width)), c = document.createElement('canvas'); c.width = sw; c.height = sh;
+  const cg = c.getContext('2d'); cg.drawImage(im, 0, 0, sw, sh); const d = cg.getImageData(0, 0, sw, sh).data, L = [];
+  for (let i = 0; i < sw * sh; i++) L.push(0.2126 * d[i * 4] + 0.7152 * d[i * 4 + 1] + 0.0722 * d[i * 4 + 2]);
+  const sorted = [...L].sort((a, b) => a - b), paper = sorted[Math.floor(L.length * 0.7)], thr = paper * 0.72;
+  const ww = Math.round(sw * size), wh = Math.max(3, Math.round(ww / aspect * im.width / im.height * sh / sw * sw / sh));
+  let best = [0, 0], bs = -1;
+  const x0 = Math.round(sw * inset), y0 = Math.round(sh * inset), x1 = sw - x0, y1 = sh - Math.round(sh * inset * 0.6);
+  for (let y = y0; y + wh <= y1; y += 1) for (let x = x0; x + ww <= x1; x += 1) {
+    let n = 0; for (let j = y; j < y + wh; j++) for (let i = x; i < x + ww; i++) n += L[j * sw + i] < thr;
+    const f = n / (ww * wh), s = f > 0.22 ? 0 : f;   // handwriting is sparse: dense strokes, never solid dark or ruled edges
+    if (s > bs) { bs = s; best = [x, y]; }
+  }
+  return [best[0] / sw, best[1] / sh, ww / sw, wh / sh];
+}
+// handwriting(g, im, at, {crop, rot, colour, alpha, thr}): lay an excerpt of a handwriting scan over the sheet at
+// rect `at` (rotated by rot), its strokes in a dark ink (black, or the palette's darkest), crisp and slightly uneven
+// like pen. thr: how much of the excerpt counts as ink (0.15 = the darkest 15%).
+function handwriting(g, im, at, o = {}) {
+  const { crop = inkiest(im, at.w / at.h), rot = 0, colour = '#000000', alpha = 0.92, thr = 0.14 } = o;
+  const c = canvas(); c.g.save(); c.g.translate(at.x + at.w / 2, at.y + at.h / 2); c.g.rotate(rot);
+  c.g.drawImage(im, crop[0] * im.width, crop[1] * im.height, crop[2] * im.width, crop[3] * im.height, -at.w / 2, -at.h / 2, at.w, at.h); c.g.restore();
+  const box = (() => { const m = canvas(); m.g.save(); m.g.translate(at.x + at.w / 2, at.y + at.h / 2); m.g.rotate(rot); m.g.fillStyle = '#fff'; m.g.fillRect(-at.w / 2, -at.h / 2, at.w, at.h); m.g.restore(); return m; })();
+  const lv = levels(inter(c, box), 0.02, 0.98);
+  // threshold at the darkest `thr` of the excerpt's own pixels
+  const id = lv.g.getImageData(0, 0, lv.width, lv.height).data, ls = [];
+  for (let i = 0; i < id.length; i += 4 * 3) if (id[i + 3] > 200) ls.push((0.2126 * id[i] + 0.7152 * id[i + 1] + 0.0722 * id[i + 2]) / 255);
+  ls.sort((a, b) => a - b); const t = ls[Math.floor(ls.length * thr)] || 0.3;
+  const strokes = inter(lumMask(lv, t, { invert: true, soft: 0.04, blur: 0.5 }), box);
+  draw(g, tint(strokes, colour), 'multiply', alpha);
+  return strokes;
+}

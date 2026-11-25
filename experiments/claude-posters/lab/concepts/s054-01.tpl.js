@@ -11,6 +11,7 @@ window.POSTER = async () => {
   await fonts([`400 100px "${D}"`, `500 16px "${T}"`]);
   const out = canvas(), g = out.g;
   sheet(g, C.paper, 6);
+  const hand = await media('media/2026-11-25/hand-01.jpg');   // Fox Strangways to Bertoloni
   // pencil, exactly on the grid: the margins, the centre column line, two row lines
   const gx = (c) => M + c * COL, gy = (r) => M + r * ROW;
   for (const c of [0, 4, 8]) pencil(g, gx(c), gy(0) - 10, gx(c), gy(8) + 10, c + 1, { alpha: 0.3 });
@@ -57,6 +58,7 @@ window.POSTER = async () => {
   vtape(g, W / 2, 'top', C.tape, 1, 84);   // short, so it stops above the headline
   vtape(g, W / 2, 'bottom', C.tape, 2, 130);
   stock(g, C.stock, 546);
+  handwriting(g, hand, { x: W - M - COL * 3.2, y: M + ROW * 1.15, w: COL * 3.1, h: ROW * 0.7 }, { rot: -0.04, thr: 0.13 });
   scan(g, 546, { amount: 1.2 });
   return out;
 };

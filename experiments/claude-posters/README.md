@@ -29,7 +29,8 @@ Ben picks the ones to post; they go into the archive credited **Nebzokai** (Ben'
    and different layout systems and treatments across the three, and different from yesterday (see `log.md`).
    Mix the type too: across the three, include a serif headline in sentence case and a sans in all caps. On serif
    days, use the Vinho Verde moves in STYLE.md Round 19, and feel free to make one option type-only (type, ink and
-   texture, one subtle change in the type carrying the story).
+   texture, one subtle change in the type carrying the story). That style can carry real handwriting over the top
+   from the day's scans (`site/media/<date>/hand-*.jpg`, see STYLE.md Round 24).
    Give each concept a different print process (`printHead`) and paper stock (`stock`), different from yesterday.
 4. Write the three templates and the colourways (only swap which palette colours play background / middle / type).
 4a. Mark the build steps in each template for the making-of reel (no effect on the poster): `snap('bg', out)` after the

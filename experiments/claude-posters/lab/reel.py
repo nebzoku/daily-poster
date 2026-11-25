@@ -20,7 +20,7 @@ from PIL import Image, ImageDraw, ImageFont
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 issue, concept, pick = sys.argv[1:4]
 FPS, SW, SH = 30, 1080, 1920
-PASTE, BLUE, MAGENTA, GUIDE = (52, 52, 52), (13, 153, 255), (255, 46, 191), (40, 150, 190)
+PASTE, BLUE, MAGENTA, GUIDE = (52, 52, 52), (13, 153, 255), (255, 46, 191), (60, 175, 225)
 rng = np.random.default_rng(int(issue) * 7 + 3)
 
 snapdir = f'out/{issue}-{concept}-{pick}-snaps'
@@ -91,6 +91,7 @@ bg = rgb('bg'); bgc = tuple(int(v) for v in bg[PH // 2, PW // 2])
 if os.environ.get('REVEAL'): hold(0.75, 'end', rgb('final'))
 # 1. an empty artboard; the grid comes on
 hold(0.5, FIT, BLANK, cut=True)
+grid_seg = len(segs)   # the grid comes on here (timed by segment, so a frame can't skip it)
 seg(0.01, lambda t: (show_guides.update(on=True), dict(poster=BLANK, cursor=tuple(cur), shape='arrow', over=[]))[1], FIT)
 move((-8, -8), FIT, BLANK)
 # 2. the background: a rectangle dragged out corner to corner
@@ -388,6 +389,17 @@ def draw_cursor(d, x, y, shape, press):
         d.line([(x - 11, y), (x + 11, y)], fill=(0, 0, 0), width=2); d.line([(x, y - 11), (x, y + 11)], fill=(0, 0, 0), width=2)
         d.line([(x - 10, y), (x + 10, y)], fill=(255, 255, 255), width=1); d.line([(x, y - 10), (x, y + 10)], fill=(255, 255, 255), width=1)
 
+# The grid: on while the poster is built, off for the print and the motion. Like a designer checking alignment,
+# it's switched off and on now and then (Ben, 25 Nov 2026): a few short blinks spread through the build, one of them
+# a quick double toggle.
+GRID_A, GRID_B = starts[grid_seg], starts[show_off]
+_span = GRID_B - GRID_A
+GRID_OFF = []
+for q, kind in ((0.22, 1), (0.41, 2), (0.6, 1), (0.8, 1)):
+    t0 = GRID_A + _span * q + rng.uniform(-0.04, 0.04) * _span
+    GRID_OFF += [(t0, t0 + 0.3)] if kind == 1 else [(t0, t0 + 0.14), (t0 + 0.26, t0 + 0.4)]
+def grid_on(T): return GRID_A <= T < GRID_B and not any(a <= T < b for a, b in GRID_OFF)
+
 def draw_timeline(d, T_):
     # a bare timeline, no labels: a panel, a ruler of frame ticks, one track with its keyframe diamonds, the playhead
     off = T_['rise'] * 420; y = TY + off
@@ -426,7 +438,7 @@ def frame(fi):
         F, (ox_, oy_), cutp = st['float']; F = F if cutp is None else np.where((np.arange(F.shape[1]) < cutp)[None, :, None], F, 0).astype(np.uint8)
         fim = Image.fromarray(F, 'RGBA'); fw, fh = round(F.shape[1] / K * s), round(F.shape[0] / K * s)
         if fw > 0 and fh > 0: img.paste(fim.resize((fw, fh), Image.LANCZOS if s < K else Image.BICUBIC), (round(X(ox_)), round(Y(oy_))), fim.resize((fw, fh), Image.LANCZOS if s < K else Image.BICUBIC))
-    if show_guides['on'] and i < show_off and fi > 0:
+    if grid_on(T):
         for k, p in guides:
             if k == 'v': dr.line([(X(p), Y(0)), (X(p), Y(DH))], fill=GUIDE, width=1)
             else: dr.line([(X(0), Y(p)), (X(DW), Y(p))], fill=GUIDE, width=1)

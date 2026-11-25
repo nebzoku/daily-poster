@@ -38,6 +38,10 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   moving days to make room). In the toolkit: `reel.py` adds the chapter whenever the favourite's motion frames exist
   (`out/<issue>-<concept>-<pick>-motion-frames/`), and `extras.py` renders those frames before the reel; keyframes
   are found where the movement starts and stops.
+- **The grid stays on while the poster is built** (every reel, not only moving days), so people see what lines up
+  where: the guides come on with the empty artboard and stay through the layout and the type, switched off and back
+  on a few times like a designer checking alignment (one a quick double toggle), then off for the print and the
+  motion. (On 054 it had silently dropped out: the switch was a 0.01 s segment that no frame landed on; it's now timed.)
 
 ### Round 17 feedback (24 Nov 2026): moving posters
 - **A moving poster every few days, not every day** (every issue divisible by 3), so it stays a treat.

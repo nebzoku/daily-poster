@@ -20,6 +20,6 @@ window.POSTER = async () => {
   const t = { font: T, size: 16, weight: 500, lead: 0.9, color: '#fff' };
   const bl = H - M - (HL.lines[1].box.h - (HL.lines[1].base - HL.lines[1].box.y));
   block(ink.g, ['(Daily Poster)', '(No. 054)', '(Wednesday 25 November)', '(The Guardian)'], W - M, bl, { ...t, align: 'right', anchor: 'bottom' });
-  styleFinish(g, ink, C, N, { from: [0.0, 0.0], to: [1.0, 1.0], min: 0.62 }, (gg) => { vtape(gg, M + COL, 'top', C.tape, 7, 120); vtape(gg, M + 7 * COL, 'top', C.tape, 8, 120); handwriting(gg, hand, { x: M + COL * 3.4, y: M + ROW * 5.6, w: COL * 3.8, h: ROW * 0.9 }, { rot: -0.05, thr: 0.12 }); });
+  styleFinish(g, ink, C, N, { from: [0.0, 0.0], to: [1.0, 1.0], min: 0.62 }, (gg) => { vtape(gg, M + 7 * COL, 'top', C.tape, 8, 120); handwriting(gg, hand, { x: M + COL * 3.4, y: M + ROW * 5.6, w: COL * 3.8, h: ROW * 0.9 }, { rot: -0.05, thr: 0.12 }); });
   return out;
 };

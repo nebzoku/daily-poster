@@ -1180,8 +1180,8 @@ function vine(g, pts, wMax = 14, { wMin = 1.2, curl = 1, swell = 0.45 } = {}) {
 // ---------- round 23 helpers for the scanned, two-colour style ----------
 // A4 scale: masking tape is about 24 mm wide on a 210 mm sheet, so about 120 px on the poster.
 const TAPE_W = 120;
-// vtape(g, x, end, colour, seedN, len): a straight vertical strip of tape on a grid or centre line, stuck over the
-// top ('top') or bottom ('bottom') edge of the sheet.
+// vtape(g, x, end, colour, seedN, len): a straight vertical strip of tape on a grid line, stuck over the top ('top')
+// or bottom ('bottom') edge of the sheet. One per poster (Ben).
 function vtape(g, x, end, colour, seedN = 1, len = 200) {
   const y = end === 'top' ? -40 : H - len + 40;
   tape(g, { x: x - TAPE_W / 2, y, w: TAPE_W, h: len }, colour, seedN);

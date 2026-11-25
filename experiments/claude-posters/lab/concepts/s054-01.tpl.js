@@ -56,7 +56,6 @@ window.POSTER = async () => {
   draw(g, fadedInk(ink, C.ink, 6, { from: [0.85, 0.05], to: [0.1, 0.95], min: 0.55 }));
   // two strips of masking tape on the centre line, opaque
   vtape(g, W / 2, 'top', C.tape, 1, 84);   // short, so it stops above the headline
-  vtape(g, W / 2, 'bottom', C.tape, 2, 130);
   stock(g, C.stock, 546);
   handwriting(g, hand, { x: W - M - COL * 3.2, y: M + ROW * 1.15, w: COL * 3.1, h: ROW * 0.7 }, { rot: -0.04, thr: 0.13 });
   scan(g, 546, { amount: 1.2 });

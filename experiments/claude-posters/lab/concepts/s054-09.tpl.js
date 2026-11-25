@@ -16,6 +16,6 @@ window.POSTER = async () => {
   const sub = balance('New techniques are producing chestnut trees that can survive the fungus which once felled billions of stems across eastern forests.', { ...t, minW: 200, maxW: COL * 1.8 });
   block(ink.g, sub.lines, M, M, t);
   block(ink.g, ['(Daily Poster)', '(No. 054)', '(Wednesday 25 November)', '(The Guardian)'], W - M, M, { ...t, align: 'right' });
-  styleFinish(g, ink, C, N, { from: [0.5, 0.0], to: [0.5, 1.0], min: 0.62 }, (gg) => { vtape(gg, M + 2 * COL, 'top', C.tape, 9, 170); vtape(gg, M + 6 * COL, 'top', C.tape, 10, 170); });
+  styleFinish(g, ink, C, N, { from: [0.5, 0.0], to: [0.5, 1.0], min: 0.62 }, (gg) => vtape(gg, M + 2 * COL, 'top', C.tape, 9, 170));
   return out;
 };

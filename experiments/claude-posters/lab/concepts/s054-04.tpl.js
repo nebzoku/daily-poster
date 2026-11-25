@@ -23,6 +23,6 @@ window.POSTER = async () => {
   block(knock.g, ['(Daily Poster) (No. 054)'], blk.x + 24, blk.y + blk.h - 24, { ...t, anchor: 'bottom' });
   block(knock.g, ['(Wednesday 25 November)'], blk.x + blk.w - 24, blk.y + blk.h - 24, { ...t, align: 'right', anchor: 'bottom' });
   draw(ink.g, cut(cut(rectMask(blk), inter(lit, rectMask(blk))), knock));
-  styleFinish(g, ink, C, N, { from: [0.9, 0.0], to: [0.1, 1.0], min: 0.6 }, (gg) => { vtape(gg, M + 2 * COL, 'top', C.tape, 4, 150); vtape(gg, M + 6 * COL, 'top', C.tape, 5, 150); });
+  styleFinish(g, ink, C, N, { from: [0.9, 0.0], to: [0.1, 1.0], min: 0.6 }, (gg) => vtape(gg, M + 6 * COL, 'top', C.tape, 5, 150));
   return out;
 };

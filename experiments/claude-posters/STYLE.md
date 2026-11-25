@@ -33,6 +33,8 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
 - **Not a pivot.** The scanned, two-colour, one-sheet style (Rounds 19–23) is an extra style to bring in for variety,
   mostly when the day's face is a serif. Most days, most concepts stay in the established styles; at most one of
   the morning's three is in this style.
+- **One piece of tape per poster, no more** (Ben, 25 Nov): a single straight strip over the top or bottom edge, sat
+  on any grid line (it needn't be the centre).
 - **Tape is its own material,** not the paper's texture: a fine crepe of ridges across the strip, a little fibre,
   slightly darker long edges, ends torn in ragged teeth with loose fibres (never a clean cut), and a palette colour
   that differs from the paper (`tape()`).

@@ -1,0 +1,158 @@
+{
+ "c1": {
+  "a": {
+   "bg": "#261F01",
+   "mid": "#F1CF43",
+   "mid2": "#757265",
+   "type": "#F1E5B8",
+   "text": "#F1E5B8",
+   "label": "#261F01",
+   "finish": "riso",
+   "stock": "uncoated"
+  },
+  "b": {
+   "bg": "#000000",
+   "mid": "#F1E5B8",
+   "mid2": "#757265",
+   "type": "#F1CF43",
+   "text": "#F1E5B8",
+   "label": "#000000",
+   "finish": "riso",
+   "stock": "uncoated"
+  },
+  "c": {
+   "bg": "#757265",
+   "mid": "#F1CF43",
+   "mid2": "#261F01",
+   "type": "#FFFFFF",
+   "text": "#FFFFFF",
+   "label": "#261F01",
+   "finish": "riso",
+   "stock": "uncoated"
+  }
+ },
+ "c2": {
+  "a": {
+   "bg": "#261F01",
+   "box": "#757265",
+   "tones": [
+    "#261F01",
+    "#757265",
+    "#F1CF43",
+    "#F1E5B8"
+   ],
+   "type": "#F1E5B8",
+   "knock": "#261F01",
+   "knock2": "#F1CF43",
+   "text": "#F1E5B8",
+   "finish": "screen",
+   "stock": "newsprint"
+  },
+  "b": {
+   "bg": "#000000",
+   "box": "#F1CF43",
+   "tones": [
+    "#000000",
+    "#757265",
+    "#F1E5B8",
+    "#FFFFFF"
+   ],
+   "type": "#F1CF43",
+   "knock": "#000000",
+   "knock2": "#000000",
+   "text": "#F1E5B8",
+   "finish": "screen",
+   "stock": "newsprint"
+  },
+  "c": {
+   "bg": "#F1E5B8",
+   "box": "#F1CF43",
+   "tones": [
+    "#261F01",
+    "#757265",
+    "#F1E5B8",
+    "#FFFFFF"
+   ],
+   "type": "#261F01",
+   "knock": "#000000",
+   "knock2": "#261F01",
+   "text": "#261F01",
+   "finish": "screen",
+   "stock": "newsprint"
+  }
+ },
+ "c3": {
+  "a": {
+   "bg": "#261F01",
+   "tones": [
+    "#261F01",
+    "#757265",
+    "#F1CF43",
+    "#F1E5B8"
+   ],
+   "box2": "#261F01",
+   "thr": "#F1CF43",
+   "thr2": "#757265",
+   "box3": "#261F01",
+   "pix": [
+    "#757265",
+    "#F1CF43",
+    "#F1E5B8"
+   ],
+   "line": "#757265",
+   "ghost": "#757265",
+   "type": "#F1E5B8",
+   "text": "#F1E5B8",
+   "finish": "foil-flat",
+   "stock": "rough"
+  },
+  "b": {
+   "bg": "#000000",
+   "tones": [
+    "#000000",
+    "#757265",
+    "#F1E5B8",
+    "#FFFFFF"
+   ],
+   "box2": "#000000",
+   "thr": "#F1E5B8",
+   "thr2": "#757265",
+   "box3": "#000000",
+   "pix": [
+    "#757265",
+    "#F1CF43",
+    "#F1E5B8"
+   ],
+   "line": "#757265",
+   "ghost": "#757265",
+   "type": "#FFFFFF",
+   "text": "#F1E5B8",
+   "finish": "foil-flat",
+   "stock": "rough"
+  },
+  "c": {
+   "bg": "#F1E5B8",
+   "tones": [
+    "#261F01",
+    "#757265",
+    "#F1CF43",
+    "#F1E5B8"
+   ],
+   "box2": "#F1CF43",
+   "thr": "#261F01",
+   "thr2": "#757265",
+   "box3": "#F1E5B8",
+   "pix": [
+    "#261F01",
+    "#757265",
+    "#F1CF43"
+   ],
+   "line": "#261F01",
+   "ghost": "#757265",
+   "type": "#261F01",
+   "text": "#261F01",
+   "finish": "foil-flat",
+   "stock": "rough"
+  }
+ }
+}

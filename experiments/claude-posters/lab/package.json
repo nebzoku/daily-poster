@@ -5,10 +5,12 @@
   "dependencies": {
     "@fontsource-variable/fraunces": "*",
     "@fontsource/albert-sans": "*",
+    "@fontsource/gloock": "^5.3.0",
     "@fontsource/libre-caslon-display": "*",
     "@fontsource/libre-franklin": "*",
     "@fontsource/manrope": "*",
     "@fontsource/martian-mono": "*",
+    "@fontsource/schibsted-grotesk": "^5.3.0",
     "@fontsource/six-caps": "^5.3.0",
     "@fontsource/work-sans": "^5.3.0",
     "@fontsource/young-serif": "^5.3.0"

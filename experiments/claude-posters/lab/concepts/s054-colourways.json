@@ -1,0 +1,82 @@
+{
+ "01": {
+  "a": {
+   "paper": "#F1CF43",
+   "ink": "#757265",
+   "tape": "#F1E5B8",
+   "stock": "uncoated"
+  }
+ },
+ "02": {
+  "a": {
+   "paper": "#F1E5B8",
+   "ink": "#757265",
+   "tape": "#F1CF43",
+   "stock": "uncoated"
+  }
+ },
+ "03": {
+  "a": {
+   "paper": "#757265",
+   "ink": "#F1E5B8",
+   "tape": "#F1E5B8",
+   "stock": "uncoated"
+  }
+ },
+ "04": {
+  "a": {
+   "paper": "#F1CF43",
+   "ink": "#261F01",
+   "tape": "#F1E5B8",
+   "stock": "uncoated"
+  }
+ },
+ "05": {
+  "a": {
+   "paper": "#F1E5B8",
+   "ink": "#261F01",
+   "tape": "#F1CF43",
+   "stock": "uncoated"
+  }
+ },
+ "06": {
+  "a": {
+   "paper": "#261F01",
+   "ink": "#F1CF43",
+   "tape": "#F1E5B8",
+   "stock": "uncoated"
+  }
+ },
+ "07": {
+  "a": {
+   "paper": "#F1CF43",
+   "ink": "#757265",
+   "tape": "#F1E5B8",
+   "stock": "uncoated"
+  }
+ },
+ "08": {
+  "a": {
+   "paper": "#F1E5B8",
+   "ink": "#757265",
+   "tape": "#F1CF43",
+   "stock": "uncoated"
+  }
+ },
+ "09": {
+  "a": {
+   "paper": "#F1CF43",
+   "ink": "#261F01",
+   "tape": "#F1E5B8",
+   "stock": "uncoated"
+  }
+ },
+ "10": {
+  "a": {
+   "paper": "#F1E5B8",
+   "ink": "#757265",
+   "tape": "#F1CF43",
+   "stock": "uncoated"
+  }
+ }
+}

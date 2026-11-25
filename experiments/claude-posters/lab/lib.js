@@ -972,7 +972,8 @@ function tape(g, r, colour = '#F1E5B8', seedN = 1, { alpha = 1 } = {}) {   // op
   const shape = canvas(), sg = shape.g; sg.save(); sg.translate(r.x + r.w / 2, r.y + r.h / 2); sg.rotate(r.rot || 0);
   sg.fillStyle = '#fff'; sg.beginPath(); sg.moveTo(-r.w / 2, -r.h / 2); _torn(sg, -r.w / 2, r.w / 2, -r.h / 2, 6); sg.lineTo(r.w / 2, r.h / 2); _torn(sg, r.w / 2, -r.w / 2, r.h / 2, 6); sg.closePath(); sg.fill(); sg.restore();
   // shadow: a soft dark halo just outside the tape, mostly below and right (multiply)
-  contactShadow(g, shape, seedN, { strength: 0.6 });
+  // tape lies flat: barely any shadow, just a faint darkening hugging its long edges (Ben: the shadow made it fake)
+  contactShadow(g, shape, seedN, { strength: 0.18, lift: false });
   // the tape: its colour, crepe texture (fine streaks across its length), a little see-through
   const t = tint(shape, colour); const n = noise(0.9), c = canvas(), id = c.g.createImageData(c.width, c.height), d = id.data, w = c.width;
   const rows = new Float32Array(c.height); for (let y = 0; y < rows.length; y++) rows[y] = (rand() - 0.5);
@@ -999,17 +1000,18 @@ function card(g, r, colour, seedN = 1) {
 }
 // The shadow a flat piece of paper casts on the sheet under a scanner lid: a thin, dark-ish line hugging the edges
 // away from the light, plus a wider soft patch under one lifted corner. Never used on type (Ben: no drop shadows on type).
-function contactShadow(g, m, seedN = 1, { strength = 1 } = {}) {
+function contactShadow(g, m, seedN = 1, { strength = 1, lift = true } = {}) {
   seed(seedN * 17 + 1);
   const a = canvas(); a.g.filter = `blur(${1.6 * K}px)`; a.g.drawImage(m, 1.5, 2.5, W, H); a.g.filter = 'none';
   draw(g, tint(cut(a, m), '#000000'), 'multiply', 0.32 * strength);
   // one lifted corner: a soft shadow, strongest at a random corner of the piece's bounds
+  if (!lift) return;
   const b = inkBox(m); if (!b.w) return;
   const cx = rand() < 0.5 ? b.x : b.x + b.w, cy = rand() < 0.5 ? b.y : b.y + b.h, R = Math.min(b.w, b.h) * 0.35 + 20;
-  const lift = canvas(); const gr = lift.g.createRadialGradient(cx, cy, 0, cx, cy, R); gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(1, 'rgba(255,255,255,0)');
-  lift.g.fillStyle = gr; lift.g.fillRect(0, 0, W, H);
+  const lc = canvas(); const gr = lc.g.createRadialGradient(cx, cy, 0, cx, cy, R); gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(1, 'rgba(255,255,255,0)');
+  lc.g.fillStyle = gr; lc.g.fillRect(0, 0, W, H);
   const soft = canvas(); soft.g.filter = `blur(${6 * K}px)`; soft.g.drawImage(m, 4, 7, W, H); soft.g.filter = 'none';
-  draw(g, tint(cut(inter(soft, lift), m), '#000000'), 'multiply', 0.28 * strength);
+  draw(g, tint(cut(inter(soft, lc), m), '#000000'), 'multiply', 0.28 * strength);
 }
 // Faint paper fibres and tooth inside a mask (for card and torn paper pieces).
 function fibres(g, m, seedN = 1, amount = 1) {
@@ -1157,4 +1159,50 @@ function vine(g, pts, wMax = 14, { wMin = 1.2, curl = 1, swell = 0.45 } = {}) {
   g.save(); g.strokeStyle = '#fff'; g.lineCap = 'round';
   for (let i = 1; i < out.length; i++) { const t = i / out.length, w = wMin + (wMax - wMin) * Math.pow(Math.sin(Math.PI * Math.min(1, t / (1 - swell * 0.3))), 1.2); g.lineWidth = Math.max(wMin, w); g.beginPath(); g.moveTo(...out[i - 1]); g.lineTo(...out[i]); g.stroke(); }
   g.restore();
+}
+
+// ---------- round 23 helpers for the scanned, two-colour style ----------
+// A4 scale: masking tape is about 24 mm wide on a 210 mm sheet, so about 120 px on the poster.
+const TAPE_W = 120;
+// vtape(g, x, end, colour, seedN, len): a straight vertical strip of tape on a grid or centre line, stuck over the
+// top ('top') or bottom ('bottom') edge of the sheet.
+function vtape(g, x, end, colour, seedN = 1, len = 200) {
+  const y = end === 'top' ? -40 : H - len + 40;
+  tape(g, { x: x - TAPE_W / 2, y, w: TAPE_W, h: len }, colour, seedN);
+}
+// pencilGrid(g, cols, rows, seedN): pencil lines exactly on the grid: column lines (0..8) and row lines (0..8).
+function pencilGrid(g, cols = [0, 8], rows = [0, 8], seedN = 1, alpha = 0.28) {
+  for (const c of cols) pencil(g, M + c * COL, M - 10, M + c * COL, H - M + 10, seedN + c, { alpha });
+  for (const r of rows) pencil(g, M - 10, M + r * ROW, W - M + 10, M + r * ROW, seedN + 20 + r, { alpha: alpha * 0.9 });
+}
+// housed(im, shape, r, {crop, thr, invert, outline, obj}): one of the day's images thresholded by luminance into a
+// single ink and housed in a shape ('circle' | 'square' | 'triangle' | 'diamond') in rect r. obj: true for a 3D
+// object PNG (fitted on black so only the object inks). Returns a mask for the ink.
+function housed(im, shape, r, o = {}) {
+  const { crop, thr = 0.5, invert = false, outline = 3, obj = false, zoom = 1 } = o;
+  const c = canvas();
+  if (obj) { c.g.fillStyle = '#000'; c.g.fillRect(r.x, r.y, r.w, r.h); fit(c.g, im, { x: r.x + r.w * (1 - zoom) / 2, y: r.y + r.h * (1 - zoom) / 2, w: r.w * zoom, h: r.h * zoom }); }
+  else clip(c.g, r, () => cover(c.g, im, r, { crop }));
+  const sh = canvas(), sg = sh.g; sg.fillStyle = '#fff'; sg.beginPath();
+  const { x, y, w, h } = r, cx = x + w / 2, cy = y + h / 2;
+  if (shape === 'circle') sg.arc(cx, cy, Math.min(w, h) / 2, 0, 7);
+  else if (shape === 'triangle') { sg.moveTo(x, y + h * 0.06); sg.lineTo(x + w, y + h * 0.06); sg.lineTo(cx, y + h); sg.closePath(); }
+  else if (shape === 'diamond') { sg.moveTo(cx, y); sg.lineTo(x + w, cy); sg.lineTo(cx, y + h); sg.lineTo(x, cy); sg.closePath(); }
+  else sg.rect(x, y, w, h);
+  sg.fill();
+  const L = levels(c, 0.02, 0.98), m = inter(lumMask(L, thr, { invert, blur: 0.7 }), sh);
+  if (!outline) return m;
+  const grow = alphaThr(blurred(sh, outline * 0.9), 0.02);
+  return union(m, cut(grow, sh));
+}
+// stylePoster(C, seedN): the ground for this style: one sheet of paper in C.paper. Returns {out, g, ink} where ink is
+// a mask canvas to draw everything printed in the single ink onto (type, housed images, vines, small type).
+function stylePoster(C, seedN) { const out = canvas(), g = out.g; sheet(g, C.paper, seedN); return { out, g, ink: canvas() }; }
+// styleFinish(g, ink, C, seedN, fade): print the ink layer with its fade, then the paper and the scanner. Tape and
+// paper pieces go on after this call's ink but before the scan: pass them as fn(g).
+function styleFinish(g, ink, C, seedN, fade = {}, layers = null) {
+  draw(g, fadedInk(ink, C.ink, seedN, fade));
+  stock(g, C.stock || 'uncoated', seedN);
+  if (layers) layers(g);
+  scan(g, seedN, { amount: 1.2 });
 }

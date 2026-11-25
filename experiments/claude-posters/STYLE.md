@@ -29,6 +29,17 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   from the brief and different layout systems and treatments. Colourways only swap which palette colours play
   background, middle (image marks) and type. Ben picks the one(s) to post the next day.
 
+### Round 23 feedback (25 Nov 2026): tape at A4 scale, headlines that line up
+- **Tape is at A4 scale:** masking tape is about 24 mm wide on a 210 mm sheet, so about 120 px on the poster
+  (`TAPE_W`, `vtape()`). It lies flat: almost no shadow, just a faint darkening along its long edges.
+- **Tape never covers type** in a way that hides letters; keep strips short where a headline sits under them.
+- **A small headline over a giant glyph** is centred over two or three lines, and the furniture lines up with it:
+  the left block's first cap height on the headline's first cap line, the right block's last baseline on its last
+  baseline.
+- The faded paper colour and the pencil lines on the grid work: keep them.
+- Toolkit for this style: `stylePoster()`, `housed()` (a day's image thresholded into the ink in a circle, square,
+  triangle or diamond), `pencilGrid()`, `vtape()`, `styleFinish()`. Worked examples: `concepts/s054-01..10`.
+
 ### Round 22 feedback (25 Nov 2026): strip it back; one sheet, one ink; only the day's imagery
 - **Fewer elements.** The paste-up tests had too much on them. Less is more.
 - **Two colours** in this style: one paper colour and one ink (tone-on-tone), not two yellows, two darks and white.

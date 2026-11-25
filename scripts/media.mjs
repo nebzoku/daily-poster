@@ -47,7 +47,10 @@ async function localise(date) {
   // Tidy away copies this brief no longer points to (an older size, say).
   if (existsSync(dir)) {
     const keep = new Set([...(brief.images || []), ...(brief.textures || [])].map((it) => it.local).filter(Boolean));
-    for (const o of brief.objects || []) { keep.add(o.image); keep.add(o.thumb); }   // the 3D renders (scripts/objects.mjs)
+    for (const o of brief.objects || []) {   // the 3D renders (scripts/objects.mjs) and their turntable folders
+      keep.add(o.image); keep.add(o.thumb);
+      if (o.spin?.path) keep.add(o.spin.path.replace(/\/+$/, ""));
+    }
     for (const f of await readdir(dir)) if (!keep.has(`media/${date}/${f}`) && !f.startsWith("extra-")) await rm(join(dir, f));   // extra-*: objects made on request
   }
   if (changed) {

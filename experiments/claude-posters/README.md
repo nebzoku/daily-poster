@@ -45,7 +45,9 @@ Ben picks the ones to post; they go into the archive credited **Nebzokai** (Ben'
 6. Send Ben the overview and the nine posters, and a push notification. In the same message, tell him what he has
    to post by hand today, from `posting.md` (Ben, 25 Nov 2026: posters go out the day after their brief, the
    favourite's making-of reel the day after that; moving posters and reels are posted by hand). Flag anything
-   overdue, and keep `posting.md` up to date (new rows when picks come in, Posted filled when he says). Add the day to `log.md` and commit the
+   overdue, and keep `posting.md` up to date (new rows when picks come in, Posted filled when he says). Schedule a
+   nudge (`send_later` into this session) for each of today's by-hand posts at its planned time: when it fires, send
+   the mp4 with SendUserFile, its caption in a code block, and a push notification. Add the day to `log.md` and commit the
    templates + log (not the renders).
 6b. Instagram extras, once Ben has picked and the picks are in the archive: `python3 lab/extras.py <issue> <picks, his
    favourite first>` (e.g. `1B 3A`). Every pick gets close-ups (`site/media/ig/<name>-zoom-2..5.jpg`, the poster in

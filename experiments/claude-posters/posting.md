@@ -12,16 +12,20 @@ A reel never goes out before its poster. Every morning run checks this file and 
 (`instagram/state.json`), and the concepts message tells Ben exactly what he has to post by hand that day (and
 flags anything overdue). When Ben says he's posted something, mark it here.
 
+**Nudges** (Ben, 25 Nov 2026): at the time of each by-hand post, nudge him with a push notification and resurface the
+file to post (SendUserFile of the mp4, plus its caption in a code block). The morning run schedules these with
+`send_later` into its own session for that day's by-hand items, at the planned times above.
+
 ## By hand (Ben)
 
 | Item | Brief | Due (D+1 poster / D+2 reel) | Plan | Posted |
 | --- | --- | --- | --- | --- |
-| 050 The Summer Bottled Early, making-of reel | 21 Nov | 23 Nov (overdue) | Wed 25 Nov, 12:00 | |
-| 051 The Long Road's Quiet Pause, making-of reel | 22 Nov | 24 Nov (overdue) | Wed 25 Nov, 17:00 | |
-| 052 Morris by Day Himself by Night, making-of reel | 23 Nov | 25 Nov (poster only out today, 13:00) | Thu 26 Nov, 12:00 | |
-| 053 Catch Mercury Before Sunrise, making-of reel | 24 Nov | 26 Nov (poster out today, 19:00) | Thu 26 Nov, 17:00 | |
+| 050 The Summer Bottled Early, making-of reel | 21 Nov | 23 Nov | | posted (over 1,000 views) |
+| 051 The Long Road's Quiet Pause, making-of reel | 22 Nov | 24 Nov (overdue) | Wed 25 Nov, 12:00 | |
+| 052 Morris by Day Himself by Night, making-of reel | 23 Nov | 25 Nov (its poster goes out 13:00 today) | Wed 25 Nov, 17:00 | |
 | 054 Back From Functional Extinction, moving poster (9:16) | 25 Nov | 26 Nov | Thu 26 Nov, 13:00 | |
-| 054 Back From Functional Extinction, making-of reel | 25 Nov | 27 Nov | Fri 27 Nov, 17:00 (back on the normal rhythm) | |
+| 053 Catch Mercury Before Sunrise, making-of reel | 24 Nov | 26 Nov | Thu 26 Nov, 17:00 | |
+| 054 Back From Functional Extinction, making-of reel | 25 Nov | 27 Nov | Fri 27 Nov, 17:00 | |
 
 ## Automatic (auto-poster), as queued on 25 Nov
 

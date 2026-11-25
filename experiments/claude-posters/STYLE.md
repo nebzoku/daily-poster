@@ -29,6 +29,28 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   from the brief and different layout systems and treatments. Colourways only swap which palette colours play
   background, middle (image marks) and type. Ben picks the one(s) to post the next day.
 
+### Round 19 feedback (25 Nov 2026): serif layouts, and type-only posters
+- **When the day's face is a serif** (Gloock, Instrument Serif, Young Serif and the like), work from Digital_Archive's
+  Vinho Verde series (screenshots Ben sent on 25 Nov; not kept in the repo, as it's other designers' work). Borrow
+  the moves, never the posters:
+  - **Ledger lines:** big words stacked one per line, each sitting on a hairline rule that runs margin to margin,
+    lines alternating their indent; small engraved ornaments (a diamond, a triangle, a shield) tucked into the gap at
+    the end of a short line; a tiny note in mono in a leftover corner.
+  - **Top and bottom words with a small picture between** (Quinta / Dourada): one word edge to edge on the top
+    margin, one on the bottom, a small image centred in the middle, and two small caps words flanking it at mid height.
+  - **Alphabet field:** the alphabet set huge in caps, rows cropped by the sheet's edges, tone-on-tone; a dark
+    rectangle in the middle holding an image, with the letters running over it.
+  - **One giant glyph or ligature** (an A with swashes, a "ga") filling the sheet, small columns of mono text tucked
+    into its counters, a found label or stamp overlapping it.
+  - **Archive page collage:** a scanned page (engraving, text) as the ground with a big glyph overprinted translucent
+    in a palette colour; or specimen boxes, single letters cropped inside thin frames.
+  - Throughout: tone-on-tone colour (the type a darker shade of the ground), fine grain and faded print, the serif's
+    swash alternates where it has them, and a found label or stamp as the only colour accent.
+- **Type-only options are welcome:** type, ink and a background texture, no image at all. They work best when one
+  subtle change in the type carries the story, e.g. Ben's "She summoned them to Rome", where the S of She was
+  blurred for a story about whether a king was a queen. One small change, still readable, that you notice on the
+  second look.
+
 ### Round 18 feedback (25 Nov 2026): show how the motion was made
 - **On moving days the making-of reel doesn't stop at the print.** After the poster is printed it goes into motion,
   and the reel shows the motion being made: a bare timeline slides up under the artboard (ruler, one track, keyframe

@@ -27,7 +27,9 @@ Ben picks the ones to post; they go into the archive credited **Nebzokai** (Ben'
 3. Concept step for each of the three (write it at the top of each template): the story in one line, the everyday
    thing people recognise, the visual idea, the image and why, a mood check. Use different headlines from the brief
    and different layout systems and treatments across the three, and different from yesterday (see `log.md`).
-   Mix the type too: across the three, include a serif headline in sentence case and a sans in all caps.
+   Mix the type too: across the three, include a serif headline in sentence case and a sans in all caps. On serif
+   days, use the Vinho Verde moves in STYLE.md Round 19, and feel free to make one option type-only (type, ink and
+   texture, one subtle change in the type carrying the story).
    Give each concept a different print process (`printHead`) and paper stock (`stock`), different from yesterday.
 4. Write the three templates and the colourways (only swap which palette colours play background / middle / type).
 4a. Mark the build steps in each template for the making-of reel (no effect on the poster): `snap('bg', out)` after the

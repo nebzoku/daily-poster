@@ -3,7 +3,8 @@
 Picks as Ben gives them (concept number + colourway letter), his favourite first. Run after the picks are in the archive.
   - every pick: close-ups (site/media/ig/<poster>-zoom-2..5.jpg, the poster in quarters; the poster's own picture is
     frame 1), so it goes out as a five-frame carousel instead of a single picture
-  - the first pick: the making-of reel (site/media/ig/<poster>-making-of.mp4), posted later that day as a Reel
+  - the first pick: the making-of reel (site/media/ig/<poster>-making-of.mp4), posted later that day as a Reel; on
+    moving days it ends with the motion being made (timeline, keyframes, scrubbing) and the end card moving
   - every third issue (issue number divisible by 3), if concepts/<issue>-cN.motion.tpl.js exists for the favourite:
     the moving version, rendered frame by frame, saved as site/showcase/<issue>-<name>.mp4 and set as that poster's
     "video" in showcase.json with "postManually": true (Ben posts it by hand, with music); the 9:16 version for
@@ -15,6 +16,13 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 issue, picks = sys.argv[1], sys.argv[2:]
 IG = '../../../site/media/ig'
 names, ways = json.load(open(f'concepts/{issue}-names.json')), json.load(open(f'concepts/{issue}-colourways.json'))
+# every third issue the favourite moves: render its frames first, so the making-of reel can end with the motion
+m = re.fullmatch(r'(\d)([A-Za-z])', picks[0].strip()); fc, fx = f'c{m[1]}', m[2].lower()
+mtpl = f'concepts/{issue}-{fc}.motion.tpl.js'; moving = int(issue) % 3 == 0 and os.path.exists(mtpl)
+if moving:
+    mname = f'{issue}-{fc}-{fx}-motion'
+    open(f'posters/{mname}.js', 'w').write(open(mtpl).read().replace('__CW__', json.dumps(ways[fc][fx])))
+    subprocess.run(['node', 'render.mjs', f'posters/{mname}.js'], env={**os.environ, 'FRAMES': '48', 'K': '1'}, check=True)
 for n, pk in enumerate(picks):
     m = re.fullmatch(r'(\d)([A-Za-z])', pk.strip()); c, x = f'c{m[1]}', m[2].lower()
     stem = f'{IG}/{issue}-{names[c]}'
@@ -29,12 +37,9 @@ for n, pk in enumerate(picks):
     print(f'{pk}: {stem}-zoom-2..5.jpg' + (', making-of reel' if n == 0 else ''))
 
 # every third issue: the favourite moves
-m = re.fullmatch(r'(\d)([A-Za-z])', picks[0].strip()); c, x = f'c{m[1]}', m[2].lower()
-tpl = f'concepts/{issue}-{c}.motion.tpl.js'
-if int(issue) % 3 == 0 and os.path.exists(tpl):
-    name = f'{issue}-{c}-{x}-motion'
-    open(f'posters/{name}.js', 'w').write(open(tpl).read().replace('__CW__', json.dumps(ways[c][x])))
-    subprocess.run(['node', 'render.mjs', f'posters/{name}.js'], env={**os.environ, 'FRAMES': '48', 'K': '1'}, check=True)
+c, x = fc, fx
+if moving:
+    name = mname
     subprocess.run(['python3', 'motion.py', name], check=True)
     vid = f'showcase/{issue}-{names[c]}.mp4'
     os.replace(f'deliver/motion/{name}.mp4', f'../../../site/{vid}')

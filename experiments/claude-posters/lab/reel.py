@@ -3,6 +3,9 @@
   e.g. python3 reel.py 053 c3 a
 Needs the snapshots of the picked poster: CAP=1 node render.mjs posters/<issue>-<concept>-<x>.js → out/..-snaps/.
 
+On moving days (when out/<issue>-<concept>-<pick>-motion-frames/ exists) it ends with the motion being made:
+a timeline, keyframes clicked in, before/after, the playhead scrubbed back and forth, and the end card moving.
+
 A sped-up screen recording of the poster being made, the way designers post them (Ben's reference, 24 Nov 2026):
 an artboard on a dark pasteboard, a cursor doing the work, selection boxes with handles, magenta smart guides when
 something snaps, quick zooms and jump cuts. No app chrome, no menus, no labels. In the order it was really made:
@@ -68,7 +71,8 @@ def tdur(p0, p1): return 0.18 + 0.12 * math.log2(1 + math.hypot(p1[0] - p0[0], p
 # ---------- the timeline: segments that each say, for t in 0..1, what's on the artboard and screen ----------
 segs = []   # (duration, fn(t) -> dict(poster, cursor, shape, over, cam, cut))
 cur = [DW + 260, DH * 0.75]           # cursor starts off the artboard, bottom right
-SPEED = 0.8                            # everything a touch quicker than real time
+MF = sorted(glob.glob(f'out/{issue}-{concept}-{pick}-motion-frames/*.png'))   # moving day: the motion chapter at the end
+SPEED = 0.8 if not MF else 0.74        # everything a touch quicker than real time (quicker still on moving days, to stay under 30 s)
 def seg(d, fn, cam, cut=False): segs.append((d * SPEED, fn, cam, cut))
 FIT = (DW / 2, DH / 2, 0.78)
 def move(to, cam, poster, ov=lambda t: [], shape='arrow', extra=0.0, bow=None):
@@ -298,8 +302,67 @@ hold(0.35, FIT, rgb('printed'), cut=True)
 seg(0.6, lambda t: dict(poster=(rgb('printed') * (1 - ease(t)) + rgb('final') * ease(t)).astype(np.uint8), cursor=(DW + 300, DH + 200), shape='arrow', over=[]), FIT)
 cur[:] = [DW + 300, DH + 200]
 hold(0.6, (DW / 2, DH / 2, 0.74), rgb('final'))
-# 8. the finished poster, on black
-hold(1.9, 'end', rgb('final'), cut=True)
+# 8b. moving days (Ben, 25 Nov 2026): the poster goes into motion and the reel shows how the motion was made. A
+#     timeline slides up under the artboard; the playhead is dragged to each keyframe and a keyframe clicked in; a
+#     before/after flick between two keys; then the playhead scrubbed back and forth, getting the timing right. The
+#     end card plays the finished loop instead of the still. Needs the moving poster's frames
+#     (out/<issue>-<concept>-<pick>-motion-frames/, which extras.py renders before the reel).
+MOTION_FPS = 12
+if MF:
+    NM = len(MF); _mc = {}
+    def mframe(i):
+        i = int(round(i)) % NM
+        if i not in _mc:
+            if len(_mc) > 16: _mc.pop(next(iter(_mc)))
+            _mc[i] = np.asarray(Image.open(MF[i]).convert('RGB').resize((PW, PH), Image.LANCZOS))
+        return _mc[i]
+    # keyframes: where the movement starts and stops (from how much each frame differs from the one before)
+    small_ = [np.asarray(Image.open(f).convert('L').resize((108, 153), Image.BILINEAR)).astype(np.float32) for f in MF]
+    speed = np.array([np.abs(small_[i] - small_[i - 1]).mean() for i in range(NM)])
+    mv = speed > 0.3 * speed.max()
+    keys = sorted({i for i in range(NM) if mv[i] != mv[i - 1]})
+    if len(keys) > 3: keys = [keys[int(round(j * (len(keys) - 1) / 2))] for j in range(3)]
+    if len(keys) < 2:
+        d0 = np.array([np.abs(f - small_[0]).mean() for f in small_]); keys = sorted({0, int(np.argmax(d0)), NM // 2})
+    TLC = (DW / 2, DH / 2 + 150, 0.72)                     # the artboard nudged up to make room for the timeline
+    TX0, TX1, TY = 120, SW - 80, 1560                      # timeline in screen pixels: track from TX0 to TX1 at TY
+    def sx(f): return TX0 + (TX1 - TX0) * f / (NM - 1)
+    def to_design(px, py): s_ = TLC[2]; return (TLC[0] + (px - SW / 2) / s_, TLC[1] + (py - SH / 2) / s_)
+    def tl(ph, ks, rise=0.0, sel=None): return dict(ph=ph, keys=list(ks), rise=rise, sel=sel)
+    PHY = TY - 70                                          # the playhead's handle sits on the ruler
+    state_k = []
+    # the timeline slides up; the artboard shows the poster's first frame
+    seg(0.45, lambda t: dict(poster=mframe(0), cursor=to_design(SW - 140, SH - 120), shape='arrow', over=[], tl=tl(0, [], 1 - ease_out(t))), TLC, cut=True)
+    cur[:] = to_design(SW - 140, SH - 120); ph = 0.0
+    for k in keys:
+        # grab the playhead, drag it to the key, click the diamond in
+        p0 = tuple(cur); g = to_design(sx(ph), PHY)
+        seg(tdur(p0, g), lambda t, p0=p0, g=g, ph=ph, ks=tuple(state_k): dict(poster=mframe(ph), cursor=path(p0, g, t), shape='arrow', over=[], tl=tl(ph, ks)), TLC)
+        seg(0.26, lambda t, a=ph, b=k, ks=tuple(state_k): (lambda f: dict(poster=mframe(f), cursor=to_design(sx(f), PHY), shape='arrow', press=True, over=[], tl=tl(f, ks)))(a + (b - a) * ease(t)), TLC)
+        kd = to_design(sx(k), TY)
+        seg(tdur(to_design(sx(k), PHY), kd) * 0.7, lambda t, k=k, kd=kd, ks=tuple(state_k): dict(poster=mframe(k), cursor=path(to_design(sx(k), PHY), kd, t), shape='arrow', over=[], tl=tl(k, ks)), TLC)
+        state_k.append(k)
+        hold_k = tuple(state_k)
+        seg(0.16, lambda t, k=k, kd=kd, ks=hold_k: dict(poster=mframe(k), cursor=kd, shape='arrow', press=t < 0.5, over=[], tl=tl(k, ks, sel=k)), TLC)
+        cur[:] = kd; ph = float(k)
+    # before and after: flick between the first and the busiest key
+    a_, b_ = keys[0], keys[min(len(keys) - 1, 1)]
+    for f in (a_, b_, a_, b_):
+        seg(0.13, lambda t, f=f, ks=tuple(state_k): dict(poster=mframe(f), cursor=tuple(cur), shape='arrow', press=t < 0.3, over=[], tl=tl(f, ks, sel=f)), TLC)
+    ph = float(b_)
+    # scrub: the playhead dragged back and forth, quick then slower, settling at the start
+    p0 = tuple(cur); g = to_design(sx(ph), PHY)
+    seg(tdur(p0, g), lambda t, p0=p0, g=g, ph=ph, ks=tuple(state_k): dict(poster=mframe(ph), cursor=path(p0, g, t), shape='arrow', over=[], tl=tl(ph, ks)), TLC)
+    for nxt, d in [(NM * 0.85, 0.42), (NM * 0.2, 0.38), (NM * 0.6, 0.34), (NM - 1, 0.45)]:
+        seg(d, lambda t, a=ph, b=nxt, ks=tuple(state_k): (lambda f: dict(poster=mframe(f), cursor=to_design(sx(f), PHY), shape='arrow', press=True, over=[], tl=tl(f, ks)))(a + (b - a) * ease(t)), TLC)
+        ph = nxt
+    cur[:] = to_design(sx(ph), PHY)
+    # 8. the finished poster, on black, moving: one full loop at its own speed (durations are scaled by SPEED)
+    loop_s = NM / MOTION_FPS
+    hold(loop_s / SPEED, 'end', lambda t: mframe(int(t * loop_s * MOTION_FPS)), cut=True)
+else:
+    # 8. the finished poster, on black
+    hold(1.9, 'end', rgb('final'), cut=True)
 
 # ---------- camera: quick eased zooms and pans between segment targets (like keyboard zoom), jump cuts where set ----------
 starts = np.cumsum([0] + [d for d, *_ in segs]); total = starts[-1]
@@ -324,6 +387,23 @@ def draw_cursor(d, x, y, shape, press):
     else:
         d.line([(x - 11, y), (x + 11, y)], fill=(0, 0, 0), width=2); d.line([(x, y - 11), (x, y + 11)], fill=(0, 0, 0), width=2)
         d.line([(x - 10, y), (x + 10, y)], fill=(255, 255, 255), width=1); d.line([(x, y - 10), (x, y + 10)], fill=(255, 255, 255), width=1)
+
+def draw_timeline(d, T_):
+    # a bare timeline, no labels: a panel, a ruler of frame ticks, one track with its keyframe diamonds, the playhead
+    off = T_['rise'] * 420; y = TY + off
+    d.rounded_rectangle([40, y - 130, SW - 40, y + 90], 14, fill=(30, 30, 30))
+    for f in range(NM):
+        x = sx(f); h = 16 if f % 12 == 0 else 8
+        d.line([(x, y - 92), (x, y - 92 + h)], fill=(110, 110, 110), width=2 if f % 12 == 0 else 1)
+    d.rounded_rectangle([TX0 - 14, y - 22, TX1 + 14, y + 22], 6, fill=(58, 58, 58))
+    if len(T_['keys']) > 1:
+        ks = sorted(T_['keys']); d.line([(sx(ks[0]), y), (sx(ks[-1]), y)], fill=(90, 90, 90), width=2)
+    for k in T_['keys']:
+        x = sx(k); r = 11; sel = T_['sel'] == k
+        d.polygon([(x, y - r), (x + r, y), (x, y + r), (x - r, y)], fill=BLUE if sel else (225, 225, 225), outline=(255, 255, 255) if sel else (20, 20, 20))
+    x = sx(T_['ph'])
+    d.line([(x, y - 76), (x, y + 70)], fill=BLUE, width=2)
+    d.polygon([(x - 10, y - 96), (x + 10, y - 96), (x + 10, y - 82), (x, y - 72), (x - 10, y - 82)], fill=BLUE)
 
 def frame(fi):
     T = fi / FPS; i = min(len(segs) - 1, int(np.searchsorted(starts, T, 'right') - 1))
@@ -367,6 +447,7 @@ def frame(fi):
         elif o[0] == 'vline': dr.line([(X(o[1]), Y(-40)), (X(o[1]), Y(DH + 40))], fill=MAGENTA, width=2)
         elif o[0] == 'hline': dr.line([(X(-40), Y(o[1])), (X(DW + 40), Y(o[1]))], fill=MAGENTA, width=2)
         elif o[0] == 'caret': dr.line([(X(o[1]), Y(o[2])), (X(o[1]), Y(o[3]))], fill=o[4], width=max(2, round(1.2 * s)))
+    if st.get('tl') is not None: draw_timeline(dr, st['tl'])
     cx_, cy_ = st['cursor']; draw_cursor(dr, X(cx_) + 0.0, Y(cy_), st.get('shape', 'arrow'), st.get('press', False))
     return img
 

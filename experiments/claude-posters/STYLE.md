@@ -29,6 +29,16 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   from the brief and different layout systems and treatments. Colourways only swap which palette colours play
   background, middle (image marks) and type. Ben picks the one(s) to post the next day.
 
+### Round 18 feedback (25 Nov 2026): show how the motion was made
+- **On moving days the making-of reel doesn't stop at the print.** After the poster is printed it goes into motion,
+  and the reel shows the motion being made: a bare timeline slides up under the artboard (ruler, one track, keyframe
+  diamonds, playhead; no labels), the playhead is dragged to each keyframe and the keyframe clicked in, a quick
+  before/after flick between two keys, then the playhead scrubbed back and forth as if getting the timing right. The
+  end card plays the finished loop instead of the still. Still under 30 seconds (the build runs a little quicker on
+  moving days to make room). In the toolkit: `reel.py` adds the chapter whenever the favourite's motion frames exist
+  (`out/<issue>-<concept>-<pick>-motion-frames/`), and `extras.py` renders those frames before the reel; keyframes
+  are found where the movement starts and stops.
+
 ### Round 17 feedback (24 Nov 2026): moving posters
 - **A moving poster every few days, not every day** (every issue divisible by 3), so it stays a treat.
 - **Never the same movement twice in a row.** Pick a different move each time, from the poster's own elements and

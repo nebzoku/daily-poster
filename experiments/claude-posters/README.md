@@ -61,6 +61,8 @@ the start of every frame so the paper and ink stay still and only what moves cha
 Every third issue (issue number divisible by 3) the favourite pick also moves: write
 `concepts/<issue>-cN.motion.tpl.js` for each concept alongside the still one, and `extras.py` renders the favourite's,
 puts it in the archive as a video poster and leaves the 9:16 Instagram version in `deliver/motion/` to send Ben.
+On those days the motion frames are rendered first, so the making-of reel ends with the motion being made (a timeline,
+keyframes clicked in, before/after, scrubbing) and the end card moving (STYLE.md, Round 18).
 Vary the movement every time (see STYLE.md, Round 17). For a brief object that turns, use `spinFrames(obj)` (the
 daily brief now renders a 24-frame turntable of each object).
 

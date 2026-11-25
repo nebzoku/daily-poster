@@ -47,7 +47,7 @@ window.POSTER = async () => {
   const LA = levels(inter(L, rectMask({ x: 0, y: split, w: W, h: bot - split })), 0.02, 0.98);
   const asc = ascii(LA, { x: 0, y: split, w: W, h: bot - split }, { size: 16, chars: ' .:ctsnuhe', font: 'Martian Mono', weight: 700, lh: 1 });
   draw(g, tint(cut(asc, labR), C.mid));
-  snap('step-ascii', out);
+  snap('step-ascii-1', out);
   // a hairline where the photograph becomes the record
   g.fillStyle = C.text; g.fillRect(0, split, W, 2);
   snap('shape-rule', out);

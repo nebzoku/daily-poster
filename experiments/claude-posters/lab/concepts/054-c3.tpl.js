@@ -45,7 +45,7 @@ window.POSTER = async () => {
   const hi = inter(lumMask(L2, pct(L2, 0.62), { blur: 1.2 }), m2), md = cut(inter(lumMask(L2, pct(L2, 0.36), { blur: 1.2 }), m2), hi);
   g.fillStyle = C.box2; g.fillRect(b2.x, b2.y, b2.w, b2.h);
   draw(g, tint(md, C.thr2)); draw(g, tint(hi, C.thr));
-  snap('step-thr', out);
+  snap('step-thr-1', out);
   // (03) the stump, pixelated big into the palette
   const sc = canvas(); fit(sc.g, stump, { x: b3.x + 8, y: b3.y + 24, w: b3.w - 16, h: b3.h - 24 });
   const st = stretchOpaque(sc);

@@ -36,8 +36,11 @@ window.POSTER = async () => {
   if (CAPTURE) { const p = canvas(); draw(p.g, out); draw(p.g, bc); snap('place-burr', p); }
   const burr = lumMask(bc, 0, { soft: 0.001, blur: 1 });
   const toned = inter(tone(levels(bc, 0.02, 0.98), C.tones), burr);
+  if (CAPTURE) {   // the making-of: the render toned in two passes, a flat duotone first, then the full tritone
+    const p = canvas(); draw(p.g, out); draw(p.g, inter(tone(levels(bc, 0.02, 0.98), [C.tones[0], C.tones[2]]), burr)); snap('step-tone-1', p);
+  }
   draw(g, toned);
-  snap('step-tone', out);
+  snap('step-tone-2', out);
 
   // small type: under the box, aligned to its left edge and the right margin, last baselines on a grid line
   const t = { font: T, size: 16, weight: 500, lead: 0.9, color: C.text };

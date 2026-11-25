@@ -29,6 +29,29 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   from the brief and different layout systems and treatments. Colourways only swap which palette colours play
   background, middle (image marks) and type. Ben picks the one(s) to post the next day.
 
+### Round 22 feedback (25 Nov 2026): strip it back; one sheet, one ink; only the day's imagery
+- **Fewer elements.** The paste-up tests had too much on them. Less is more.
+- **Two colours** in this style: one paper colour and one ink (tone-on-tone), not two yellows, two darks and white.
+  The ink is a mid tone, not the darkest dark (the dark looked too heavy for the style).
+- **One sheet of paper, scanned:** the ground fades unevenly across the sheet with grain (`sheet()` instead of a
+  flat fill), then `stock()` and `scan()`. Everything reads as one piece of paper.
+- **The ink runs:** its density fades across the sheet in a broad gradient with a fine speckle, through the letters
+  as in the swash A reference (`fadedInk()`), and the type and any image share the same ink.
+- **Images match the type:** an image is thresholded by luminance into the same single ink as the type (the
+  burgundy reference), and can be housed in a simple shape: a circle, a square, a triangle or a diamond.
+- **Only the day's imagery.** Pictures come from the brief's photos, museum images and 3D objects, never drawn up
+  (no invented leaves, burrs, ornaments or buds). Typographic flourishes and vines are fine; depictions of things
+  are not.
+- **Tape:** only straight strips, vertical, on the centre line or a grid line, top and/or bottom edge. Angled bits
+  look fake. Tape is opaque: nothing shows through it (`tape()` is opaque by default).
+- **Pencil lines look real; put them exactly on the grid lines** (margins, column and row lines).
+- **No white fringe on torn paper; no shadows under paint** (both looked fake), and paint moves in smooth curves,
+  never angular bends.
+- **Vines like a snake or a whiplash** (`vine()`): long S-curves with small teardrop loops and a hooked tip,
+  swelling and tapering; never perfect circles or spirals.
+- **Painted lettering for headlines is worth exploring** (`brushLetters()`: a wobbling brush edge, paint pooling at
+  the edges, faint vertical bristle streaks).
+
 ### Round 21 feedback (25 Nov 2026): no shadows on type; a hand-made paste-up, scanned
 - **No drop shadows on type**, and nothing that reads like one (the faint offset after-image on "remembers" did).
   Shadows belong only to the physical layers.

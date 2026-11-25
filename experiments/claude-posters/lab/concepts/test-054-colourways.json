@@ -57,5 +57,22 @@
    "stock": "uncoated",
    "tape2": "#F1CF43"
   }
+ },
+ "t6": {
+  "a": {
+   "bg": "#F1CF43",
+   "type": "#757265",
+   "tape": "#F1E5B8",
+   "finish": "letterpress",
+   "stock": "uncoated"
+  }
+ },
+ "t7": {
+  "a": {
+   "bg": "#F1E5B8",
+   "type": "#261F01",
+   "finish": "letterpress",
+   "stock": "uncoated"
+  }
  }
 }

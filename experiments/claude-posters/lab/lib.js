@@ -967,7 +967,7 @@ function _torn(g, x0, x1, y, depth) { const n = Math.max(6, Math.round((x1 - x0)
 // tape(g, {x, y, w, h, rot}, colour, seedN): a strip of masking tape stuck on the sheet, as scanned: slightly see-through,
 // torn ends, crepe texture, a soft shadow on its edges and a few creases. Long strips down a grid line divide the
 // sheet into columns (Ben: "large pieces of tape in vertical columns dividing where the grid lines are").
-function tape(g, r, colour = '#F1E5B8', seedN = 1, { alpha = 0.86 } = {}) {
+function tape(g, r, colour = '#F1E5B8', seedN = 1, { alpha = 1 } = {}) {   // opaque: nothing shows through tape (Ben)
   seed(seedN * 131 + 7);
   const shape = canvas(), sg = shape.g; sg.save(); sg.translate(r.x + r.w / 2, r.y + r.h / 2); sg.rotate(r.rot || 0);
   sg.fillStyle = '#fff'; sg.beginPath(); sg.moveTo(-r.w / 2, -r.h / 2); _torn(sg, -r.w / 2, r.w / 2, -r.h / 2, 6); sg.lineTo(r.w / 2, r.h / 2); _torn(sg, r.w / 2, -r.w / 2, r.h / 2, 6); sg.closePath(); sg.fill(); sg.restore();
@@ -1035,8 +1035,7 @@ function torn(g, r, colour, seedN = 1, { rot = 0, rough = 26 } = {}) {
   const pts = _raggedRect(r, rough), cx = r.x + r.w / 2, cy = r.y + r.h / 2;
   const shape = (grow) => { const c = canvas(); c.g.save(); c.g.translate(cx, cy); c.g.rotate(rot); c.g.translate(-cx, -cy); c.g.fillStyle = '#fff'; c.g.beginPath(); pts.forEach(([x, y], i) => { const dx = x - cx, dy = y - cy, L = Math.hypot(dx, dy) || 1, gx = x + dx / L * grow * (0.5 + rand()), gy = y + dy / L * grow * (0.5 + rand()); i ? c.g.lineTo(gx, gy) : c.g.moveTo(gx, gy); }); c.g.closePath(); c.g.fill(); c.g.restore(); return c; };
   const m = shape(0), fringe = shape(3.5);
-  contactShadow(g, fringe, seedN);
-  draw(g, tint(cut(fringe, m), '#ffffff'), 'source-over', 0.85);
+  contactShadow(g, m, seedN, { strength: 0.7 });   // no white fringe: it looked fake (Ben)
   draw(g, tint(m, colour));
   fibres(g, m, seedN, 0.8);
   return m;
@@ -1072,8 +1071,7 @@ function paint(g, pts, colour, width = 60, seedN = 1, { dry = 0.5, alpha = 0.95 
   const n = noise(2.5); { const id = mg.getImageData(0, 0, m.width, m.height), d = id.data; for (let p = 0; p < n.length; p++) if (d[p * 4 + 3]) d[p * 4 + 3] *= clamp(1 - smooth(0.68, 0.8, n[p]) * dry * 1.4); mg.putImageData(id, 0, 0); }
   draw(g, tint(m, colour), 'source-over', alpha);
   // impasto: a lit upper edge to the bristle ridges, a shaded lower edge
-  const hi = canvas(); hi.g.drawImage(m, -1, -1, W, H); draw(g, tint(cut(hi, m), '#ffffff'), 'soft-light', 0.5);
-  const lo = canvas(); lo.g.drawImage(m, 1.2, 1.6, W, H); draw(g, tint(cut(lo, m), '#000000'), 'multiply', 0.16);
+  // (no shadow under paint: it read as a drop shadow; Ben)
   return m;
 }
 // pencil(g, x0, y0, x1, y1, seedN, {ticks}): a graphite construction line, slightly uneven in pressure, with optional
@@ -1084,5 +1082,79 @@ function pencil(g, x0, y0, x1, y1, seedN = 1, { ticks = false, alpha = 0.5 } = {
   g.save(); g.lineCap = 'round'; g.lineWidth = 0.9;
   for (let i = 0; i < n; i++) { const a = i / n, b = (i + 1) / n, j = (rand() - 0.5) * 0.4; g.strokeStyle = `rgba(0,0,0,${alpha * (0.55 + rand() * 0.45)})`; g.beginPath(); g.moveTo(x0 + (x1 - x0) * a + nx * j, y0 + (y1 - y0) * a + ny * j); g.lineTo(x0 + (x1 - x0) * b + nx * j, y0 + (y1 - y0) * b + ny * j); g.stroke(); }
   if (ticks) for (const [x, y] of [[x0, y0], [x1, y1]]) { g.strokeStyle = `rgba(0,0,0,${alpha})`; g.beginPath(); g.moveTo(x - nx * 8, y - ny * 8); g.lineTo(x + nx * 8, y + ny * 8); g.stroke(); }
+  g.restore();
+}
+
+// ---------- round 22: one sheet of paper, faded ink, painted letters (Ben, 25 Nov 2026) ----------
+// sheet(g, colour, seedN): the ground as one piece of scanned paper: the colour with a broad, uneven fade across it
+// (lighter in one area, deeper towards an edge), fine grain and a few specks. Draw it first; it replaces a flat fill.
+function sheet(g, colour, seedN = 1, { fade = 1 } = {}) {
+  seed(seedN * 41 + 2);
+  g.fillStyle = colour; g.fillRect(0, 0, W, H);
+  const cx = W * (0.3 + rand() * 0.4), cy = H * (0.25 + rand() * 0.5), n = noise(260), f = noise(0.6);
+  const c = canvas(), id = c.g.createImageData(c.width, c.height), d = id.data, w = c.width;
+  for (let p = 0; p < n.length; p++) {
+    const x = (p % w) / K, y = ((p / w) | 0) / K, r = Math.hypot((x - cx) / W, (y - cy) / H);
+    const v = 0.5 + (0.07 - r * 0.16) * fade + (n[p] - 0.5) * 0.08 * fade + (f[p] - 0.5) * 0.1 + (rand() - 0.5) * 0.06;
+    d[p * 4] = d[p * 4 + 1] = d[p * 4 + 2] = clamp(v) * 255; d[p * 4 + 3] = 255;
+  }
+  c.g.putImageData(id, 0, 0); draw(g, c, 'soft-light', 1);
+}
+// fadedInk(mask, colour, seedN, {from, to, min}): ink that runs unevenly: its density fades across the sheet in a
+// broad gradient (heavier at `from`, lighter at `to`, never below `min`), with a fine riso-like speckle in it.
+// Returns a tinted layer to draw. Use the same call for the type and for an image mask, so they match.
+function fadedInk(mask, colour, seedN = 1, { from = [0.8, 0.1], to = [0.2, 0.95], min = 0.62, speckle = 0.12 } = {}) {
+  seed(seedN * 59 + 4);
+  const n = noise(140), f = noise(0.5), o = canvas(mask.width / K, mask.height / K); draw(o.g, mask);
+  const id = o.g.getImageData(0, 0, o.width, o.height), d = id.data, w = o.width;
+  const ax = from[0] * W, ay = from[1] * H, bx = to[0] * W, by = to[1] * H, L2 = (bx - ax) ** 2 + (by - ay) ** 2;
+  for (let p = 0; p < n.length; p++) {
+    if (!d[p * 4 + 3]) continue;
+    const x = (p % w) / K, y = ((p / w) | 0) / K, t = clamp(((x - ax) * (bx - ax) + (y - ay) * (by - ay)) / L2);
+    let a = 1 - (1 - min) * smooth(0, 1, t) + (n[p] - 0.5) * 0.18;
+    if (f[p] < speckle * 0.5 || rand() < speckle * 0.08) a *= 0.35;
+    d[p * 4 + 3] *= clamp(a);
+  }
+  o.g.putImageData(id, 0, 0); return tint(o, colour);
+}
+// brushLetters(mask, seedN, {dir}): turns set type (or any mask) into sign-painted letters: the edges a little
+// uneven, streaks of the bristles running along the strokes (vertical by default), and the paint thinning to dry
+// streaks here and there. Returns a mask. The letters keep their shapes (no distortion).
+function brushLetters(mask, seedN = 1, { streak = 0.22, rough = 1 } = {}) {
+  seed(seedN * 67 + 8);
+  // long vertical bristle streaks (most strokes of sign-written caps are pulled down)
+  const s = document.createElement('canvas'); s.width = Math.ceil(W / 1.4); s.height = Math.ceil(H / 70); const sg = s.getContext('2d'), sid = sg.createImageData(s.width, s.height);
+  for (let i = 0; i < sid.data.length; i += 4) { const v = rand() * 255; sid.data[i] = sid.data[i + 1] = sid.data[i + 2] = v; sid.data[i + 3] = 255; } sg.putImageData(sid, 0, 0);
+  const sc = canvas(); sc.g.imageSmoothingQuality = 'high'; sc.g.drawImage(s, 0, 0, W, H); const vs = sc.g.getImageData(0, 0, sc.width, sc.height).data;
+  const wob = noise(5), fine = noise(0.8), big = noise(40);
+  const soft = canvas(); soft.g.filter = `blur(${2.2 * K}px)`; draw(soft.g, mask); soft.g.filter = 'none';
+  const deep = canvas(); deep.g.filter = `blur(${7 * K}px)`; draw(deep.g, mask); deep.g.filter = 'none';
+  const id = soft.g.getImageData(0, 0, soft.width, soft.height), d = id.data, dd = deep.g.getImageData(0, 0, deep.width, deep.height).data;
+  for (let p = 0; p < fine.length; p++) {
+    let a = d[p * 4 + 3] / 255; if (!a) continue;
+    a = smooth(0.44, 0.56, a + (wob[p] - 0.5) * 0.5 * rough + (fine[p] - 0.5) * 0.12);   // a wobbling brush edge
+    const inner = dd[p * 4 + 3] / 255;                                                     // 1 deep inside, less near edges
+    const pool = 1 - 0.16 * smooth(0.75, 1, inner);                                        // paint pools at the edges, thinner inside
+    const st = vs[p * 4] / 255;
+    a *= pool * (1 - streak * smooth(0.3, 0.05, st)) * (1 - 0.18 * smooth(0.6, 0.85, big[p]));
+    d[p * 4] = d[p * 4 + 1] = d[p * 4 + 2] = 255; d[p * 4 + 3] = clamp(a) * 255;
+  }
+  soft.g.putImageData(id, 0, 0); return soft;
+}
+// vine(g, pts, wMax, {wMin, curl}): a hand-drawn vine through points (a smooth Catmull-Rom curve), swelling in the
+// middle and tapering to a hairline, ending in a small hook. Draw in white on a mask. For whiplash, snake-like
+// lines (Art Nouveau, Ben's swash A reference): give it S-bends and a loop that crosses itself, never a perfect
+// spiral.
+function vine(g, pts, wMax = 14, { wMin = 1.2, curl = 1, swell = 0.45 } = {}) {
+  const P = [pts[0], ...pts, pts[pts.length - 1]], out = [];
+  for (let i = 1; i < P.length - 2; i++) for (let k = 0; k < 24; k++) {
+    const t = k / 24, [p0, p1, p2, p3] = [P[i - 1], P[i], P[i + 1], P[i + 2]], t2 = t * t, t3 = t2 * t;
+    out.push([0, 1].map((j) => 0.5 * (2 * p1[j] + (-p0[j] + p2[j]) * t + (2 * p0[j] - 5 * p1[j] + 4 * p2[j] - p3[j]) * t2 + (-p0[j] + 3 * p1[j] - 3 * p2[j] + p3[j]) * t3)));
+  }
+  out.push(pts[pts.length - 1]);
+  // the end hook: a small tightening curl continuing the last direction
+  if (curl) { let [x, y] = out[out.length - 1], [px, py] = out[out.length - 2], a = Math.atan2(y - py, x - px), r = 9 * curl; for (let k = 0; k < 26; k++) { a += 0.22 * Math.sign(curl); r *= 0.95; x += Math.cos(a) * r * 0.22; y += Math.sin(a) * r * 0.22; out.push([x, y]); } }
+  g.save(); g.strokeStyle = '#fff'; g.lineCap = 'round';
+  for (let i = 1; i < out.length; i++) { const t = i / out.length, w = wMin + (wMax - wMin) * Math.pow(Math.sin(Math.PI * Math.min(1, t / (1 - swell * 0.3))), 1.2); g.lineWidth = Math.max(wMin, w); g.beginPath(); g.moveTo(...out[i - 1]); g.lineTo(...out[i]); g.stroke(); }
   g.restore();
 }

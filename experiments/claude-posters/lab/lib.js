@@ -962,28 +962,44 @@ function scan(g, seedN = 1, { amount = 1 } = {}) {
   }
   g.restore();
 }
-// A torn edge for tape: a ragged line across a strip end.
-function _torn(g, x0, x1, y, depth) { const n = Math.max(6, Math.round((x1 - x0) / 4)); for (let i = 0; i <= n; i++) g.lineTo(x0 + (x1 - x0) * i / n, y + (rand() - 0.5) * depth + (i % 2 ? depth * 0.3 : 0)); }
-// tape(g, {x, y, w, h, rot}, colour, seedN): a strip of masking tape stuck on the sheet, as scanned: slightly see-through,
-// torn ends, crepe texture, a soft shadow on its edges and a few creases. Long strips down a grid line divide the
-// sheet into columns (Ben: "large pieces of tape in vertical columns dividing where the grid lines are").
-function tape(g, r, colour = '#F1E5B8', seedN = 1, { alpha = 1 } = {}) {   // opaque: nothing shows through tape (Ben)
+// A torn end for tape: masking tape tears in a ragged zigzag of uneven teeth, not a clean line.
+function _torn(g, x0, x1, y, depth) {
+  let x = x0; const dir = Math.sign(x1 - x0), span = Math.abs(x1 - x0);
+  while (Math.abs(x - x0) < span) { const step = 2 + rand() * 7, d = (rand() - 0.3) * depth * (0.4 + rand()); x += dir * step; g.lineTo(Math.abs(x - x0) > span ? x1 : x, y + d); }
+}
+// tape(g, {x, y, w, h, rot}, colour, seedN): a strip of masking tape stuck on the sheet, as scanned. Its own material,
+// not the paper's: a fine crepe of ridges running across the strip, a little fibre, slightly darker long edges where
+// the adhesive meets the paper, long edges a touch uneven, and both ends torn in ragged teeth. Opaque (nothing shows
+// through). Use a palette colour that differs from the paper. Almost no shadow: it lies flat.
+function tape(g, r, colour = '#F1E5B8', seedN = 1, { alpha = 1 } = {}) {
   seed(seedN * 131 + 7);
-  const shape = canvas(), sg = shape.g; sg.save(); sg.translate(r.x + r.w / 2, r.y + r.h / 2); sg.rotate(r.rot || 0);
-  sg.fillStyle = '#fff'; sg.beginPath(); sg.moveTo(-r.w / 2, -r.h / 2); _torn(sg, -r.w / 2, r.w / 2, -r.h / 2, 6); sg.lineTo(r.w / 2, r.h / 2); _torn(sg, r.w / 2, -r.w / 2, r.h / 2, 6); sg.closePath(); sg.fill(); sg.restore();
-  // shadow: a soft dark halo just outside the tape, mostly below and right (multiply)
-  // tape lies flat: barely any shadow, just a faint darkening hugging its long edges (Ben: the shadow made it fake)
-  contactShadow(g, shape, seedN, { strength: 0.18, lift: false });
-  // the tape: its colour, crepe texture (fine streaks across its length), a little see-through
-  const t = tint(shape, colour); const n = noise(0.9), c = canvas(), id = c.g.createImageData(c.width, c.height), d = id.data, w = c.width;
-  const rows = new Float32Array(c.height); for (let y = 0; y < rows.length; y++) rows[y] = (rand() - 0.5);
-  for (let p = 0; p < n.length; p++) { const y = (p / w) | 0, v = 0.5 + (n[p] - 0.5) * 0.25 + rows[y] * 0.06; d[p * 4] = d[p * 4 + 1] = d[p * 4 + 2] = clamp(v) * 255; d[p * 4 + 3] = 255; }
-  c.g.putImageData(id, 0, 0); draw(t.g, inter(c, shape), 'soft-light', 0.9);
-  draw(g, t, 'source-over', alpha);
-  // creases: a few faint diagonal light and dark hairlines inside the tape
-  const cr = canvas(); cr.g.save(); cr.g.translate(r.x + r.w / 2, r.y + r.h / 2); cr.g.rotate(r.rot || 0);
-  for (let i = 0; i < 3 + rand() * 4; i++) { const yy = (rand() - 0.5) * r.h, l = r.w * (0.2 + rand() * 0.5); cr.g.strokeStyle = rand() < 0.5 ? 'rgba(255,255,255,.35)' : 'rgba(0,0,0,.12)'; cr.g.lineWidth = 0.8; cr.g.beginPath(); cr.g.moveTo((rand() - 0.5) * r.w * 0.6 - l / 2, yy); cr.g.lineTo((rand() - 0.5) * r.w * 0.6 + l / 2, yy + (rand() - 0.5) * 30); cr.g.stroke(); }
-  cr.g.restore(); draw(g, inter(cr, shape));
+  const long = r.h >= r.w, L = long ? r.h : r.w, Wd = long ? r.w : r.h;   // draw in the tape's own frame: length along y
+  const ang = (r.rot || 0) + (long ? 0 : Math.PI / 2);
+  const local = (fn) => { const c = canvas(); c.g.save(); c.g.translate(r.x + r.w / 2, r.y + r.h / 2); c.g.rotate(ang); fn(c.g); c.g.restore(); return c; };
+  const shape = local((sg) => {
+    sg.fillStyle = '#fff'; sg.beginPath(); sg.moveTo(-Wd / 2, -L / 2);
+    _torn(sg, -Wd / 2, Wd / 2, -L / 2, 9);
+    for (let y = -L / 2; y <= L / 2; y += 12) sg.lineTo(Wd / 2 + (rand() - 0.5) * 1.2, y);
+    _torn(sg, Wd / 2, -Wd / 2, L / 2, 9);
+    for (let y = L / 2; y >= -L / 2; y -= 12) sg.lineTo(-Wd / 2 + (rand() - 0.5) * 1.2, y);
+    sg.closePath(); sg.fill();
+    // a few loose fibres at the torn ends
+    sg.strokeStyle = '#fff'; sg.lineWidth = 0.7;
+    for (const e of [-1, 1]) for (let i = 0; i < 6; i++) { const x = (rand() - 0.5) * Wd * 0.9, y = e * L / 2; sg.beginPath(); sg.moveTo(x, y); sg.lineTo(x + (rand() - 0.5) * 4, y + e * (3 + rand() * 6)); sg.stroke(); }
+  });
+  contactShadow(g, shape, seedN, { strength: 0.14, lift: false });
+  // the tape's own surface: crepe ridges across the strip, fibre, darker long edges
+  const surf = local((sg) => {
+    sg.fillStyle = colour; sg.fillRect(-Wd / 2 - 10, -L / 2 - 14, Wd + 20, L + 28);
+    let y = -L / 2 - 14;
+    while (y < L / 2 + 14) { const gap = 1.4 + rand() * 2.6, a = 0.015 + rand() * 0.035; sg.fillStyle = rand() < 0.5 ? `rgba(255,255,255,${a})` : `rgba(0,0,0,${a * 0.8})`; sg.save(); sg.translate(0, y); sg.rotate((rand() - 0.5) * 0.05); sg.fillRect(-Wd / 2 - 10, 0, Wd + 20, 0.6 + rand() * 0.9); sg.restore(); y += gap; }
+    const gr = sg.createLinearGradient(-Wd / 2, 0, Wd / 2, 0); gr.addColorStop(0, 'rgba(0,0,0,0.09)'); gr.addColorStop(0.08, 'rgba(0,0,0,0)'); gr.addColorStop(0.92, 'rgba(0,0,0,0)'); gr.addColorStop(1, 'rgba(0,0,0,0.09)');
+    sg.fillStyle = gr; sg.fillRect(-Wd / 2 - 2, -L / 2 - 14, Wd + 4, L + 28);
+  });
+  const n = noise(0.7), fc = canvas(), id = fc.g.createImageData(fc.width, fc.height), d = id.data;
+  for (let p = 0; p < n.length; p++) { const v = 0.5 + (n[p] - 0.5) * 0.16; d[p * 4] = d[p * 4 + 1] = d[p * 4 + 2] = clamp(v) * 255; d[p * 4 + 3] = 255; }
+  fc.g.putImageData(id, 0, 0); draw(surf.g, fc, 'soft-light', 0.8);
+  draw(g, inter(surf, shape), 'source-over', alpha);
 }
 // card(g, rect, colour, seedN): a piece of card laid on the sheet before scanning: a flat colour, a tight contact
 // shadow along its edges (not a soft drop shadow), one corner lifting a little so its shadow widens there, and

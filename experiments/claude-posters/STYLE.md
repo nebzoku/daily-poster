@@ -29,6 +29,17 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   from the brief and different layout systems and treatments. Colourways only swap which palette colours play
   background, middle (image marks) and type. Ben picks the one(s) to post the next day.
 
+### Round 24 feedback (25 Nov 2026): the scanned two-colour style is one style in the mix
+- **Not a pivot.** The scanned, two-colour, one-sheet style (Rounds 19–23) is an extra style to bring in for variety,
+  mostly when the day's face is a serif. Most days, most concepts stay in the established styles; at most one of
+  the morning's three is in this style.
+- **Tape is its own material,** not the paper's texture: a fine crepe of ridges across the strip, a little fibre,
+  slightly darker long edges, ends torn in ragged teeth with loose fibres (never a clean cut), and a palette colour
+  that differs from the paper (`tape()`).
+- **Handwriting over the top** (wanted, not yet built in): real handwriting from public-domain scans (letters,
+  manuscripts, copybooks, calligraphy; the more calligraphic the better, best if it relates to the story),
+  thresholded so it reads like dark biro or pen over the faded paper. Never handwriting drawn or faked by code.
+
 ### Round 23 feedback (25 Nov 2026): tape at A4 scale, headlines that line up
 - **Tape is at A4 scale:** masking tape is about 24 mm wide on a 210 mm sheet, so about 120 px on the poster
   (`TAPE_W`, `vtape()`). It lies flat: almost no shadow, just a faint darkening along its long edges.

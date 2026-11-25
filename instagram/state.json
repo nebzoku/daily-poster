@@ -377,6 +377,11 @@
       "slot": "2026-11-25 08:00",
       "at": "2026-11-25T08:09:06.260Z",
       "id": "18082202192411047,18081106904452420,18102855848418046,17957279880293023,17878360734637545,18087463478710921,18082861577532331,18057512579810671,18222802081353093"
+    },
+    "poster:showcase/052-every-wall-became-a-garden.jpg": {
+      "slot": "2026-11-25 10:30",
+      "at": "2026-11-25T11:08:35.566Z",
+      "id": "18159944488520302"
     }
   },
   "slots": {
@@ -414,7 +419,8 @@
     "2026-11-24 16:00": "poster:showcase/051-neon-in-the-middle-of-nowhere.jpg",
     "2026-11-24 19:00": "poster:showcase/051-pit-stop-promoted-to-destination.jpg",
     "2026-11-24 21:30": "poster:showcase/051-the-long-roads-quiet-pause.jpg",
-    "2026-11-25 08:00": "stories:2026-11-25"
+    "2026-11-25 08:00": "stories:2026-11-25",
+    "2026-11-25 10:30": "poster:showcase/052-every-wall-became-a-garden.jpg"
   },
   "start": "2026-11-04",
   "partial": {}

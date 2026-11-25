@@ -1,0 +1,44 @@
+name: Handwriting scans
+
+# Public-domain scans of real handwriting for the day's posters (scripts/handwriting.mjs), saved next to the brief's
+# images as site/media/<date>/hand-*.jpg. Runs after the morning brief, by hand, or when requests/handwriting.txt
+# (search terms, one per line) changes.
+on:
+  schedule:
+    - cron: "41 5 * * *"
+    - cron: "17 6 * * *"
+  push:
+    branches: [main]
+    paths: [requests/handwriting.txt, scripts/handwriting.mjs]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: handwriting
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Fetch the scans
+        run: |
+          d=$(node -e "console.log(JSON.parse(require('fs').readFileSync('site/data/latest.json','utf8')).date)")
+          if [ "${{ github.event_name }}" = "schedule" ] && [ -f "site/media/$d/hand.json" ]; then echo "Already have today's."; exit 0; fi
+          node scripts/handwriting.mjs
+      - name: Save them
+        run: |
+          git config user.name "daily-poster-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add site/media
+          git diff --cached --quiet && exit 0
+          git commit -m "Handwriting scans for $(node -e "console.log(JSON.parse(require('fs').readFileSync('site/data/latest.json','utf8')).date)")"
+          for i in 1 2 3 4; do git pull --rebase -q && git push && exit 0; sleep $((i * 15)); done

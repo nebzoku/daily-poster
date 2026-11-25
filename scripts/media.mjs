@@ -51,7 +51,7 @@ async function localise(date) {
       keep.add(o.image); keep.add(o.thumb);
       if (o.spin?.path) keep.add(o.spin.path.replace(/\/+$/, ""));
     }
-    for (const f of await readdir(dir)) if (!keep.has(`media/${date}/${f}`) && !f.startsWith("extra-")) await rm(join(dir, f));   // extra-*: objects made on request
+    for (const f of await readdir(dir)) if (!keep.has(`media/${date}/${f}`) && !f.startsWith("extra-") && !f.startsWith("hand")) await rm(join(dir, f));   // extra-*: objects made on request; hand*: handwriting scans (scripts/handwriting.mjs)
   }
   if (changed) {
     await writeFile(path, JSON.stringify(brief, null, 2) + "\n");

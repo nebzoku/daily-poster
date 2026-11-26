@@ -1,0 +1,68 @@
+{
+ "i1": {
+  "a": {
+   "bg": "#FFDCD1",
+   "cloud": "#FFFFFF",
+   "line": "#000000",
+   "shadow": "#3A1004",
+   "body": "#F1592A",
+   "light": "#FFDCD1",
+   "type": "#3A1004",
+   "text": "#3A1004",
+   "finish": "riso",
+   "stock": "uncoated"
+  },
+  "b": {
+   "bg": "#3A1004",
+   "cloud": "#FFFFFF",
+   "line": "#000000",
+   "shadow": "#3A1004",
+   "body": "#F1592A",
+   "light": "#FFDCD1",
+   "type": "#F1592A",
+   "text": "#FFDCD1",
+   "finish": "riso",
+   "stock": "uncoated"
+  }
+ },
+ "i2": {
+  "a": {
+   "sky": "#FFDCD1",
+   "cloud": "#FFFFFF",
+   "lamp": "#FFDCD1",
+   "ball": "#F1592A",
+   "shade": "#3A1004",
+   "verge": "#F1592A",
+   "road": "#7D6E69",
+   "wall": "#FFFFFF",
+   "bikeS": "#3A1004",
+   "bikeB": "#FFDCD1",
+   "bikeL": "#FFFFFF",
+   "line": "#000000",
+   "type": "#3A1004",
+   "text": "#3A1004",
+   "bg": "#FFDCD1",
+   "finish": "riso",
+   "stock": "uncoated"
+  },
+  "b": {
+   "sky": "#F1592A",
+   "cloud": "#FFFFFF",
+   "lamp": "#FFDCD1",
+   "ball": "#FFDCD1",
+   "shade": "#3A1004",
+   "verge": "#3A1004",
+   "road": "#7D6E69",
+   "wall": "#FFDCD1",
+   "bikeS": "#7D6E69",
+   "bikeB": "#FFFFFF",
+   "bikeL": "#FFFFFF",
+   "line": "#000000",
+   "type": "#3A1004",
+   "text": "#3A1004",
+   "bg": "#F1592A",
+   "finish": "riso",
+   "stock": "uncoated"
+  }
+ }
+}

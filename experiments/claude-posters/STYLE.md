@@ -29,6 +29,25 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   from the brief and different layout systems and treatments. Colourways only swap which palette colours play
   background, middle (image marks) and type. Ben picks the one(s) to post the next day.
 
+### Round 26 (26 Nov 2026): an illustration style for the roster (on trial)
+- **Ben wants an illustrated option in the mix,** from references he sent on 26 Nov (contemporary editorial
+  illustration, other artists' work, not kept in the repo; borrow the moves, never the pictures): clean black outlines
+  of near-even weight that look a little worn, flat fills, one cel-shadow tone, hatching and dashes for texture
+  (grass, falling water, stone), big outlined cumulus, one bold object or a small figure against a big space,
+  one-point perspective scenes.
+- **Colour:** only the day's palette plus black and white; black for the line work.
+- **Relevant to the story:** the scene or object comes from the day's theme, images and story (the ball over the
+  clouds that never landed; the road outside the ground with the motorbike coming up it). The brief's 3D objects
+  become line drawings (`objectArt`), simple ones are drawn cleanly in code (`ballArt`); scenery (clouds, walls,
+  roads, floodlights) is drawn in code for this style. This is the one exception to Round 22's "only the day's
+  imagery": drawn scenery belongs to the illustration style only.
+- **Printed like the rest:** fills go through `printAll` gently (wear about 0.12), the line work is printed last on its
+  own layer as worn black ink (`illo().print`, `wornLines`), then the headline and `stock()` (paper and scratches).
+- Toolkit: `lab/illo.js` (`illo`, `outline`, `dilate`, `inkLine`, `curve`, `poly`, `cumulus`, `hatch`, `objectArt`,
+  `ballArt`, `wornLines`). Tests: `concepts/test-055-i1` (ball over clouds), `test-055-i2` (road scene).
+- **Next, if it works:** an illustration inspiration library (moves and compositions, not pictures) so the scenes vary
+  day to day.
+
 ### Round 25 feedback (26 Nov 2026): moving posters match the static ones in the grid
 - **The 9:16 moving poster sits in the profile grid at the same size and crop as the static posters.** Instagram's
   grid shows every post as a 3:4 tile: a static post (the poster 1262 px tall on a 1080 × 1350 black frame) is cropped at

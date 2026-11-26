@@ -387,3 +387,12 @@ async function sceneArt(prefix, cols, { shadowT = 0.35, lineT = 0.5 } = {}) {
   for (const [name, [col, shade]] of Object.entries(cols)) { if (!ids[name]) continue; const m = part(name); fills.push([m, col]); if (shade) fills.push([inter(m, shadow), shade]); }
   return { fills, lines: lumMask(L, lineT, { invert: true, soft: 0.05 }), part, shadow };
 }
+// A spot illustration: a crop of a scamp (or any picture) snapped to the day's colours and framed in a rect, a circle
+// or any mask: for the fourth, combined concept (Ben, 26 Nov: "spot illustrations included within frames amongst
+// other threshold images, masked images or pixelated images"). Returns a canvas (draw it, then card/tape over it).
+function spotIn(im, r, cols, { crop = [0, 0, 1, 1], shape = 'rect' } = {}) {
+  const c = canvas(); clip(c.g, { ...r, round: shape === 'circle' }, () => cover(c.g, im, r, { crop }));
+  const id = c.g.getImageData(0, 0, c.width, c.height), d = id.data, hx = cols.map((h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16)));
+  for (let p = 0; p < d.length; p += 4) { if (!d[p + 3]) continue; let bi = 0, bd = 1e9; for (let i = 0; i < hx.length; i++) { const q = hx[i], v = (d[p] - q[0]) ** 2 + (d[p + 1] - q[1]) ** 2 + (d[p + 2] - q[2]) ** 2; if (v < bd) { bd = v; bi = i; } } [d[p], d[p + 1], d[p + 2]] = hx[bi]; }
+  c.g.putImageData(id, 0, 0); return c;
+}

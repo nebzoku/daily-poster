@@ -32,6 +32,11 @@ Ben picks the ones to post; they go into the archive credited **Nebzokai** (Ben'
    texture, one subtle change in the type carrying the story). That style can carry real handwriting over the top
    from the day's scans (`site/media/<date>/hand-*.jpg`, see STYLE.md Round 24).
    Give each concept a different print process (`printHead`) and paper stock (`stock`), different from yesterday.
+3c. **The fourth, combined concept** (Ben, 26 Nov 2026): every morning, as well as the three, a fourth concept
+   (`concepts/<issue>-c4.tpl.js`, three colourways like the others) that combines the styles: a spot illustration
+   cropped from the day's scamp (`spotIn`) in a frame on a taped card, among thresholded / pixelated / masked image
+   boxes, on the scanned paste-up sheet, with our type. Start from the last combined concept Ben liked (log.md) and
+   change one or two things, guided by his last feedback on it. Worked example: `concepts/test-055-mix.tpl.js`.
 3b. **The illustrated concept** (Ben, 26 Nov 2026): most days, one of the three concepts is an illustration. The
    Illustration machine workflow (05:53 UTC, `scripts/illo-gen.mjs`) draws four Nano Banana scamps of the day's brief,
    styled on Ben's references and the illustrations he has kept, into `experiments/claude-posters/scamps/<date>/`

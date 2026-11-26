@@ -592,7 +592,7 @@ function balance(text, o) {
     let score = Math.min(...ws) / mx;                                    // evenness
     if (lastWords < 2) score -= 1;                                       // orphan
     if (ws[ws.length - 1] < mx * 0.6) score -= 0.5;                      // short last line
-    if (!(L.length >= want[0] && L.length <= want[1])) score -= 0.3;
+    if (!(L.length >= want[0] && L.length <= want[1])) score -= o.strict ? 5 : 0.3;   // strict: the line count must match (e.g. the furniture beside it)
     if (!best || score > best.score) best = { score, w: Math.ceil(mx), lines: L };
   }
   return best;

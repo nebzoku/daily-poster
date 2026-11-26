@@ -29,6 +29,16 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   from the brief and different layout systems and treatments. Colourways only swap which palette colours play
   background, middle (image marks) and type. Ben picks the one(s) to post the next day.
 
+### Round 31 (26 Nov 2026): a fourth, combined concept every day; subline beside furniture
+- **A fourth concept every morning that combines the styles** (Ben, 26 Nov): spot illustrations (a crop of the day's
+  scamp, `spotIn()`, in a circle or frame, on a card, taped) among thresholded, masked and pixelated image boxes, the
+  scanned paste-up (sheet, tape, card, pencil grid, `scan()`), and our typography. One colourway set like the others.
+  Ben feeds back on it every day; the aim, over time, is a combined style that is unique and ownable. Log what each
+  day's mix was and what Ben said, and change one thing at a time. First one: `concepts/test-055-mix.tpl.js`.
+- **Subline beside the furniture:** the same number of lines as the furniture (usually four; `balance(..., { lines:
+  [4, 4], strict: true })`, set wider), the same first cap line and the same last baseline, and a clear gap (28 px or
+  more) from the headline. Never a narrow five-line subline touching the headline (Ben on One Hand, Two Wheels).
+
 ### Round 30 (26 Nov 2026): Nano Banana scamps work
 - The first run of the illustration machine (Nano Banana 2.1, Ben's references, 4 scenes × 5 briefs) is a step change:
   right perspective, real figures and hands, depth, and it leaves the headline band plain as asked. 15 of 20 usable.

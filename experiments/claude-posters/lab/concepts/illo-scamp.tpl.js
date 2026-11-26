@@ -42,11 +42,15 @@ window.POSTER = async () => {
   const band0 = bands[0].col, typeCol = [...C.palette, '#000000', '#FFFFFF'].sort((a, b) => ratio(b, band0) - ratio(a, band0))[0];
   // furniture and subline tucked under (or over) the first band
   const t = { font: C.text_font, size: 16, weight: 500, lead: 0.9, color: typeCol };
-  const first = bands[0], top = first.isTop, yy = top ? first.y1 - 18 : first.y0 + 18;
+  // furniture left, subline right: the same number of lines (the subline balanced to four, wider), the same first
+  // cap line and last baseline, a clear gap from the headline (Ben, 26 Nov: five narrow lines touched the headline
+  // and didn't line up with the labels)
+  const first = bands[0], top = first.isTop;
+  const fb = top ? Math.max(...blocks[0].map((r) => r.y + r.h)) + 28 : Math.min(...blocks[0].map((r) => r.y)) - 28;
   const sm = canvas();
-  block(sm.g, C.furniture, M, yy, { ...t, anchor: top ? 'bottom' : 'top' });
-  const sub = balance(C.subline, { ...t, minW: 220, maxW: COL * 2.6 });
-  block(sm.g, sub.lines, W - M, yy, { ...t, align: 'right', anchor: top ? 'bottom' : 'top' });
+  const subLines = balance(C.subline, { ...t, minW: COL * 1.8, maxW: COL * 4, lines: [C.furniture.length, C.furniture.length], strict: true }).lines;
+  block(sm.g, C.furniture, M, fb, { ...t, anchor: top ? 'top' : 'bottom' });
+  block(sm.g, subLines, W - M, fb, { ...t, align: 'right', anchor: top ? 'top' : 'bottom' });
   snap('shape-bands', out);
   draw(g, tint(sm, typeCol));
   snap('text-small', out);

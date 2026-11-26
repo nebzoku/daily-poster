@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
     inputs:
       dates:
-        description: "Briefs to draw scamps for (YYYY-MM-DD, space separated); empty = today"
+        description: "Briefs to draw scamps for (YYYY-MM-DD, separated by commas or spaces); empty = today"
         required: false
         default: ""
       count:
@@ -54,10 +54,10 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           d=$(node -e "console.log(JSON.parse(require('fs').readFileSync('site/data/latest.json','utf8')).date)")
-          dates="${{ github.event.inputs.dates }}"; [ -z "$(echo $dates)" ] && dates="$d"
+          dates="$(echo "${{ github.event.inputs.dates }}" | tr ',;' '  ')"; [ -z "$(echo $dates)" ] && dates="$d"   # commas or spaces
           for x in $dates; do
             if [ "${{ github.event_name }}" = "schedule" ] && [ -f "experiments/claude-posters/scamps/$x/scamps.json" ]; then continue; fi
-            node scripts/illo-gen.mjs "$x" "${{ github.event.inputs.count || 4 }}"
+            node scripts/illo-gen.mjs "$x" "${{ github.event.inputs.count || 4 }}" || echo "::warning::No scamps for $x"
           done
       - name: Save them
         run: |

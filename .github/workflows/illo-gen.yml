@@ -35,6 +35,15 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - name: Unlock Ben's reference illustrations (encrypted, other artists' work, never committed as images)
+        env:
+          ILLO_REFS_KEY: ${{ secrets.ILLO_REFS_KEY }}
+        run: |
+          if [ -n "$ILLO_REFS_KEY" ] && [ -f experiments/claude-posters/illo-refs/refs.tar.enc ]; then
+            mkdir -p "$RUNNER_TEMP/illo-refs"
+            openssl enc -d -aes-256-cbc -pbkdf2 -pass env:ILLO_REFS_KEY -in experiments/claude-posters/illo-refs/refs.tar.enc | tar -x -C "$RUNNER_TEMP/illo-refs"
+            echo "ILLO_REFS_DIR=$RUNNER_TEMP/illo-refs" >> "$GITHUB_ENV"; ls "$RUNNER_TEMP/illo-refs" | wc -l
+          else echo "No ILLO_REFS_KEY: using our own illustrations as the style guide."; fi
       - name: Draw the scamps
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}

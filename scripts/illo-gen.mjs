@@ -1,14 +1,18 @@
 // The illustration machine (Ben, 26 Nov 2026: recreate his Weavy "Illustration Machine" flow in the daily repo).
 // Weavy's steps, and what does them here:
-//   1. Style Guide Maker: four reference images in a 2×2 grid → our own illustrations that worked
-//      (experiments/claude-posters/lab/illo-guide/*.jpg), composed into one guide image with sharp.
+//   1. Style Guide Maker: four reference images in a 2×2 grid → Ben's reference illustrations (other artists' work, so
+//      kept ENCRYPTED in experiments/claude-posters/illo-refs/refs.tar.enc and unpacked by the workflow with the
+//      ILLO_REFS_KEY secret into ILLO_REFS_DIR; never committed as images). A different selection each run. Without
+//      the key, our own illustrations that worked (lab/illo-guide/) stand in. Ben, 26 Nov: once we have enough of our
+//      own that we're happy with, they replace his references.
 //   2. Style Describer: a vision model writes a style description, tags and hex colours → written once, in words, in
 //      experiments/claude-posters/illo-style.md (so no other artist's pictures are stored or sent).
 //   3. Illustration Machine: an LLM writes N image prompts from a subject + the style → Claude reads today's brief and
 //      writes N scene prompts: subject from the story, a dramatic camera angle each, the day's palette and highlight,
 //      and where the headline will sit (kept as plain colour), plus the hands/faces rule.
-//   4. GPT Image / Nano Banana with the style guide as the reference image → OpenAI (OPENAI_API_KEY, gpt-image) or
-//      Google (GEMINI_API_KEY, Gemini image, "Nano Banana"), whichever key is set.
+//   4. GPT Image / Nano Banana with the style guide as the reference image → Google Nano Banana 2.1
+//      (GEMINI_API_KEY, model gemini-nano-banana-2.1 through the Interactions API; up to 14 reference images, so the
+//      references go in individually as well as the grid), or OpenAI (OPENAI_API_KEY) if that's the key set.
 //   5. Recraft Vectorizer → the lab's scampArt() redraws each scamp in the day's palette with our worn ink and paper.
 // Saves experiments/claude-posters/scamps/<date>/scamp-NN.png and scamps.json (prompts, angles, headline zones).
 // Usage: node scripts/illo-gen.mjs [date] [count]
@@ -25,12 +29,21 @@ const out = join(CP, "scamps", brief.date);
 const OPENAI = process.env.OPENAI_API_KEY, GEMINI = process.env.GEMINI_API_KEY;
 if (!OPENAI && !GEMINI) { console.log("No OPENAI_API_KEY or GEMINI_API_KEY: nothing to generate with. Add one as a repo secret."); process.exit(0); }
 
-// 1. the style guide image
-const gdir = join(CP, "lab", "illo-guide"), files = (await readdir(gdir)).filter((f) => /\.(jpe?g|png)$/i.test(f)).sort().slice(0, 4);
+// 1. the style guide: Ben's references when unlocked, else our own; a different pick each date (seeded)
+const RD = process.env.ILLO_REFS_DIR, useRefs = RD && existsSync(RD);
+const gdir = useRefs ? RD : join(CP, "lab", "illo-guide");
+const all = (await readdir(gdir)).filter((f) => /\.(jpe?g|png)$/i.test(f)).sort();
+let sd = [...brief.date].reduce((a, c) => a * 31 + c.charCodeAt(0), 7) >>> 0;
+const rnd = () => ((sd = (sd * 1103515245 + 12345) >>> 0) / 4294967296);
+const pick = useRefs ? [...all].sort(() => rnd() - 0.5).slice(0, 8) : all.slice(0, 4);
+const files = pick.slice(0, 4);
+console.log(`Style guide from ${useRefs ? "Ben's references" : "our own illustrations"}: ${pick.join(", ")}`);
+const refImgs = await Promise.all(pick.map((f) => sharp(join(gdir, f)).resize(768, 768, { fit: "inside" }).jpeg({ quality: 85 }).toBuffer()));
 const tiles = await Promise.all(files.map((f) => sharp(join(gdir, f)).resize(512, 512, { fit: "cover" }).toBuffer()));
 const guide = await sharp({ create: { width: 1024, height: 1024, channels: 3, background: "#ffffff" } })
   .composite(tiles.map((input, i) => ({ input, left: (i % 2) * 512, top: Math.floor(i / 2) * 512 }))).png().toBuffer();
-await mkdir(out, { recursive: true }); await writeFile(join(out, "style-guide.png"), guide);
+await mkdir(out, { recursive: true });
+if (!useRefs) await writeFile(join(out, "style-guide.png"), guide);   // Ben's references are never written to the repo
 
 // 2. the style description
 const style = await readFile(join(CP, "illo-style.md"), "utf8");
@@ -72,24 +85,34 @@ async function openai(prompt) {
   if (!r.ok) throw new Error(`OpenAI ${r.status}: ${(await r.text()).slice(0, 300)}`);
   return Buffer.from((await r.json()).data[0].b64_json, "base64");
 }
+// the first image found anywhere in a response (the Interactions API's shape varies by SDK version)
+function findImage(o) {
+  if (!o || typeof o !== "object") return null;
+  const mt = o.mime_type || o.mimeType;
+  if (typeof o.data === "string" && o.data.length > 1000 && (!mt || /^image\//.test(mt))) return o.data;
+  for (const v of Object.values(o)) { const r = findImage(v); if (r) return r; }
+  return null;
+}
 async function gemini(prompt) {
-  const model = process.env.GEMINI_IMAGE_MODEL || "gemini-2.5-flash-image";
-  const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, { method: "POST",
+  const model = process.env.GEMINI_IMAGE_MODEL || "gemini-nano-banana-2.1";
+  const refs = refImgs.map((b) => ({ type: "image", mime_type: "image/jpeg", data: b.toString("base64") }));
+  const r = await fetch("https://generativelanguage.googleapis.com/v1beta/interactions", { method: "POST",
     headers: { "content-type": "application/json", "x-goog-api-key": GEMINI },
-    body: JSON.stringify({ contents: [{ parts: [{ inline_data: { mime_type: "image/png", data: guide.toString("base64") } }, { text: prompt }] }],
-      generationConfig: { responseModalities: ["IMAGE"], imageConfig: { aspectRatio: "2:3" } } }) });
-  if (!r.ok) throw new Error(`Gemini ${r.status}: ${(await r.text()).slice(0, 300)}`);
-  const part = (await r.json()).candidates?.[0]?.content?.parts?.find((p) => p.inline_data || p.inlineData);
-  if (!part) throw new Error("Gemini returned no image");
-  return Buffer.from((part.inline_data || part.inlineData).data, "base64");
+    body: JSON.stringify({ model, input: [...refs, { type: "text", text: `${prompt}\n\nThe attached images are style references only: match their line, colour treatment and rendering, never their subjects, characters or compositions.` }],
+      response_format: { type: "image", aspect_ratio: "2:3", image_size: process.env.GEMINI_IMAGE_SIZE || "2K" } }) });
+  const body = await r.text();
+  if (!r.ok) throw new Error(`Gemini ${r.status}: ${body.slice(0, 400)}`);
+  const data = findImage(JSON.parse(body));
+  if (!data) throw new Error(`Gemini returned no image: ${body.slice(0, 400)}`);
+  return Buffer.from(data, "base64");
 }
 const made = [];
 for (const [i, s] of scenes.entries()) {
   const name = `scamp-${String(i + 1).padStart(2, "0")}.png`;
   try {
-    const buf = OPENAI ? await openai(s.prompt) : await gemini(s.prompt);
+    const buf = GEMINI ? await gemini(s.prompt) : await openai(s.prompt);
     await sharp(buf).png().toFile(join(out, name));
-    made.push({ file: name, ...s, model: OPENAI ? "openai" : "gemini" }); console.log(`Saved ${name}: ${s.angle} · ${s.headline}`);
+    made.push({ file: name, ...s, model: OPENAI && !GEMINI ? "openai" : process.env.GEMINI_IMAGE_MODEL || "gemini-nano-banana-2.1", style: useRefs ? "refs" : "own" }); console.log(`Saved ${name}: ${s.angle} · ${s.headline}`);
   } catch (e) { console.warn(`Scene ${i + 1} failed: ${e.message}`); made.push({ file: null, ...s, error: e.message }); }
 }
 await writeFile(join(out, "scamps.json"), JSON.stringify({ date: brief.date, palette, highlight: hl || null, scenes: made }, null, 2) + "\n");

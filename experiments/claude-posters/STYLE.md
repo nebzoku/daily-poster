@@ -34,8 +34,12 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   - **3D scamp** (`lab/3d/scene.py`, Blender via the bpy package): build the scene, shoot it from a super low/high
     angle, render ink lines + a part-ID map + light; `sceneArt()` fills each part with a palette colour, cel shadow from
     the light, Blender's lines as our worn ink. 049 redrawn this way is far stronger than the hand-built version.
-  - **AI scamp** (`scripts/illo-gen.mjs`, the repo's version of Ben's Weavy "Illustration Machine" flow): our style
-    guide image + `illo-style.md` + Claude-written scene prompts → an image model (OpenAI or Gemini/Nano Banana);
+  - **AI scamp** (`scripts/illo-gen.mjs`, the repo's version of Ben's Weavy "Illustration Machine" flow): Ben's
+    reference illustrations (Ben, 26 Nov: they're closest to where he wants the style; they stay the source until we
+    have enough of our own that he's happy with, then ours replace them) + `illo-style.md` + Claude-written scene
+    prompts → Nano Banana 2.1 (`gemini-nano-banana-2.1`, GEMINI_API_KEY). The references are other artists' work and the
+    repo is public, so they are only ever stored encrypted (`illo-refs/refs.tar.enc`, unlocked in CI by the
+    ILLO_REFS_KEY secret) and never written out as images;
     `scampArt()` redraws the result in the day's palette with our ink and paper. Needs an image key as a secret.
   - **Photo reference** (refs pull): trace contours by hand (`refFill`), only for simple poses.
 - **Hands, fingers and faces:** never improvise them from a few traced points (the 055 hand's thumb was too short and

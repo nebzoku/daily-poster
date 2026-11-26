@@ -397,6 +397,11 @@
       "slot": "2026-11-25 19:00",
       "at": "2026-11-25T19:09:07.756Z",
       "id": "17935857876423000"
+    },
+    "stories:2026-11-26": {
+      "slot": "2026-11-26 08:00",
+      "at": "2026-11-26T08:09:23.625Z",
+      "id": "18440998702195456,18121632989065300,18135416806772458,18099370994689032,18150611395569684,18109853102368136,17890255218492319,18116290481267953,18109816325365360"
     }
   },
   "slots": {
@@ -434,7 +439,8 @@
     "2026-11-25 10:30": "poster:showcase/052-every-wall-became-a-garden.jpg",
     "2026-11-25 13:00": "poster:showcase/052-morris-by-day-himself-by-night.jpg",
     "2026-11-25 16:00": "poster:showcase/052-a-workmans-house-of-wonder.jpg",
-    "2026-11-25 19:00": "poster:showcase/053-catch-mercury-before-sunrise.jpg"
+    "2026-11-25 19:00": "poster:showcase/053-catch-mercury-before-sunrise.jpg",
+    "2026-11-26 08:00": "stories:2026-11-26"
   },
   "start": "2026-11-04",
   "partial": {}

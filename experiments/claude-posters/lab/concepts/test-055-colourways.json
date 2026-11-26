@@ -64,5 +64,53 @@
    "finish": "riso",
    "stock": "uncoated"
   }
+ },
+ "i3": {
+  "a": {
+   "field": "#F1592A",
+   "field2": "#D44D24",
+   "fieldShade": "#B13F1C",
+   "pop": "#2987F1",
+   "wall": "#FFDCD1",
+   "wallShade": "#F5A498",
+   "road": "#7D6E69",
+   "roadShade": "#6D605C",
+   "roadShade2": "#5A4F4B",
+   "mark": "#FFFFFF",
+   "verge": "#B13F1C",
+   "bikeS": "#3A1004",
+   "bikeB": "#FFDCD1",
+   "bikeL": "#FFFFFF",
+   "ball": "#F1592A",
+   "ballShade": "#B13F1C",
+   "line": "#000000",
+   "type": "#3A1004",
+   "text": "#3A1004",
+   "finish": "riso",
+   "stock": "uncoated"
+  },
+  "b": {
+   "field": "#7D6E69",
+   "field2": "#6D605C",
+   "fieldShade": "#5A4F4B",
+   "pop": "#4CEBEB",
+   "wall": "#FFDCD1",
+   "wallShade": "#F5A498",
+   "road": "#3A1004",
+   "roadShade": "#000000",
+   "roadShade2": "#000000",
+   "mark": "#FFDCD1",
+   "verge": "#F1592A",
+   "bikeS": "#5A4F4B",
+   "bikeB": "#FFDCD1",
+   "bikeL": "#FFFFFF",
+   "ball": "#F1592A",
+   "ballShade": "#B13F1C",
+   "line": "#000000",
+   "type": "#FFDCD1",
+   "text": "#FFDCD1",
+   "finish": "riso",
+   "stock": "uncoated"
+  }
  }
 }

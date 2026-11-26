@@ -29,6 +29,24 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   from the brief and different layout systems and treatments. Colourways only swap which palette colours play
   background, middle (image marks) and type. Ben picks the one(s) to post the next day.
 
+### Round 27 feedback (26 Nov 2026): illustration, angles, line, a pop colour, tints and shades
+- **Test 1 (the ball over the clouds) is great; the flat road scene was not.** What makes the references work:
+- **Dramatic angles for wide scenes:** a very high angle looking down, a very low angle looking up, or a fish-eye
+  wide view where the bands bow with the lens. Never a flat, straight-on, one-point view of a road.
+- **Gaps in the line:** the black line work breaks where the pen lifted, scattered along every line, so it feels
+  organic (`wornLines` gaps, on by default in `illo().print`).
+- **Thin-line shading** like the ripples in water and blades in grass: short, thin, slightly curved strokes in loose
+  clusters, never an even fill (`ripples`, `blades`, `strata` in illo.js). Not ruled hatching across a whole area.
+- **Draw from photographic references:** people, poses, hands and objects comped together from real photos and
+  illustrated from them, rather than built from geometry. A separate pull of reference photos for illustrating, not
+  shown on the site (`scripts/illo-refs.mjs`, waiting on Ben's go-ahead to add the workflow).
+- **A pop colour, used very sparingly** (applies to every style, not just illustration): one bright colour from across
+  the colour wheel from the day's lead (orange with neon green, jade, teal or cobalt blue), on one small element only
+  (the rope, a kite, a hat, a sign). `popFor(brief)` picks it, rotating by issue. This loosens Round 12's "nothing
+  outside the day's palette": the palette plus black and white, plus one pop, plus tints and shades.
+- **Tints and shades of the palette colours** are allowed everywhere, for shading and to make illustrations feel
+  complete (`shadesOf(hex)`: two shades, the colour, two tints). Still no gold, rose, copper, holo or silver.
+
 ### Round 26 (26 Nov 2026): an illustration style for the roster (on trial)
 - **Ben wants an illustrated option in the mix,** from references he sent on 26 Nov (contemporary editorial
   illustration, other artists' work, not kept in the repo; borrow the moves, never the pictures): clean black outlines

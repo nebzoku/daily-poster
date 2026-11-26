@@ -1261,3 +1261,23 @@ function handwriting(g, im, at, o = {}) {
   draw(g, tint(strokes, colour), 'multiply', alpha);
   return strokes;
 }
+
+// ---------- round 27: a pop colour, and tints and shades (Ben, 26 Nov 2026) ----------
+// The brief's colour wheel (scripts/lib/palette.mjs): each day's lead colour is one step on it. A POP is a bright
+// colour from across the wheel (3 to 6 steps away, e.g. orange with neon green, jade, teal or cobalt blue), used very
+// sparingly: one small element per poster (a rope, a kite, a hat, a sign). popFor(brief) picks one, rotating by issue.
+const WHEEL = [['Red', '#F33446'], ['Orange', '#F1592A'], ['Yellow', '#F1CF43'], ['Lime', '#B5E643'], ['Green', '#4BF761'], ['Jade', '#4CF1B7'],
+  ['Teal', '#4CEBEB'], ['Blue', '#2987F1'], ['Indigo', '#473CED'], ['Violet', '#8D2EEE'], ['Magenta', '#F43BEC'], ['Rose', '#F33496']];
+function popOptions(colourName) {
+  const i = WHEEL.findIndex(([n]) => n === colourName); if (i < 0) return [];
+  return [3, 4, 5, 6, -3, -4, -5].map((d) => WHEEL[(i + d + 12) % 12]);
+}
+function popFor(brief, k = null) { const o = popOptions(brief.colour.name); return o[(k ?? brief.issue) % 4][1]; }
+// Tints and shades of a palette colour, for shading and for making an illustration feel complete: mix toward white
+// (t > 0) or black (t < 0) in linear light, so steps look even. shadesOf(hex) → [-0.5, -0.25, 0, 0.3, 0.6] steps.
+function mixLin(hex, t) {
+  const c = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255).map((v) => (v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4));
+  const m = c.map((v) => (t >= 0 ? v + (1 - v) * t : v * (1 + t)));
+  return '#' + m.map((v) => Math.round(255 * clamp(v <= 0.0031308 ? v * 12.92 : 1.055 * v ** (1 / 2.4) - 0.055)).toString(16).padStart(2, '0')).join('').toUpperCase();
+}
+const shadesOf = (hex, steps = [-0.5, -0.25, 0, 0.3, 0.6]) => steps.map((t) => (t ? mixLin(hex, t) : hex.toUpperCase()));

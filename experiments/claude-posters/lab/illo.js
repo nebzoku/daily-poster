@@ -128,13 +128,16 @@ function objectArt(im, r, o = {}) {
   return { fill: [shadow, body, light], lines, silhouette: sil };
 }
 // Wear the black line work like an old print: tiny breaks and a rougher edge, nothing that loses the drawing.
-function wornLines(lines, sd = 1, amount = 1) {
-  // edges roughened by a fine noise threshold, a few hairline breaks, the ink a touch mottled; thin lines survive
+function wornLines(lines, sd = 1, amount = 1, { gaps = 1 } = {}) {
+  // edges roughened by a fine noise threshold, the ink a touch mottled, and (Ben, 26 Nov: "there are often gaps in
+  // the lines which makes it feel more organic") real breaks: short gaps where the pen lifted, scattered along every
+  // line, more often on long lines than short marks
   seed(sd); const b = blurred(lines, 0.8), d0 = b.g.getImageData(0, 0, b.width, b.height), d = d0.data;
-  const n1 = noise(0.6), n2 = noise(6), n3 = noise(2.5);
+  const n1 = noise(0.6), n2 = noise(6), n3 = noise(2.5), n4 = noise(7), n5 = noise(16);
   for (let p = 0; p < n1.length; p++) {
     const a = d[p * 4 + 3] / 255; if (!a) continue;
-    const thr = 0.38 + (n1[p] - 0.5) * 0.45 * amount + (n3[p] > 0.86 ? 0.4 * amount : 0);
+    const lift = n4[p] > 0.79 - 0.05 * gaps && n5[p] > 0.35 ? 1 : 0;
+    const thr = 0.38 + (n1[p] - 0.5) * 0.45 * amount + (n3[p] > 0.86 ? 0.4 * amount : 0) + lift * gaps;
     let v = smooth(thr - 0.06, thr + 0.06, a) * (1 - 0.18 * amount * smooth(0.5, 0.9, n2[p]));
     d[p * 4] = d[p * 4 + 1] = d[p * 4 + 2] = 255; d[p * 4 + 3] = clamp(v) * 255;
   }
@@ -149,6 +152,41 @@ function illo(g) {
     fill(m, col) { draw(g, tint(m, col)); L = cut(L, m); },
     ink(m) { draw(L.g, m); },
     lines() { return L; },
-    print(gg, col, sd = 1, amount = 1) { draw(gg, tint(wornLines(L, sd, amount), col)); },
+    print(gg, col, sd = 1, amount = 1, o = {}) { draw(gg, tint(wornLines(L, sd, amount, o), col)); },
   };
+}
+
+// Shrink a mask by r design px.
+function erode(m, r) { const full = rectMask({ x: -20, y: -20, w: W + 40, h: H + 40 }); return cut(full, dilate(cut(full, m), r)); }
+// Thin-line shading (Ben, 26 Nov: "thin line shading the same way they do the ripples in the water or the blades in
+// the grass"): short, thin, slightly curved strokes in loose clusters, never an even fill.
+//   ripples(m): short horizontal strokes stacked in little groups (water, tarmac sheen, distance)
+//   blades(m):  tufts of 3-6 thin blades fanning up from a base (grass), denser and longer towards `near` (a y value)
+//   strata(m):  contour lines following the shape's edge inward, broken (cliffs, walls, folds of cloth)
+function ripples(m, { density = 0.0016, len = [10, 46], lw = 1.3, sd = 1, tilt = 0 } = {}) {
+  seed(sd); const c = canvas(), n = Math.round(W * H * density);
+  for (let i = 0; i < n; i++) {
+    const x = rand() * W, y = rand() * H, k = 1 + Math.floor(rand() * 3);
+    for (let j = 0; j < k; j++) { const L = len[0] + rand() * (len[1] - len[0]), yy = y + j * 5, xx = x + (rand() - 0.5) * 10;
+      inkLine(c, curve([[xx, yy], [xx + L / 2, yy - 1.2 + tilt * L / 2], [xx + L, yy + tilt * L]], 3), lw, { taper: 0.9, sd: i * 7 + j }); }
+  }
+  return inter(c, erode(m, 2));
+}
+function blades(m, { density = 0.0011, h = [8, 26], near = H, lw = 1.2, sd = 1, lean = 0.25 } = {}) {
+  seed(sd); const c = canvas(), n = Math.round(W * H * density);
+  for (let i = 0; i < n; i++) {
+    const x = rand() * W, y = rand() * H, f = 0.5 + 0.8 * Math.max(0, 1 - Math.abs(near - y) / H), k = 3 + Math.floor(rand() * 4);
+    for (let j = 0; j < k; j++) { const a = -Math.PI / 2 + lean + (j - k / 2) * 0.22 + (rand() - 0.5) * 0.2, L = (h[0] + rand() * (h[1] - h[0])) * f, bx = x + (j - k / 2) * 2.2;
+      inkLine(c, curve([[bx, y], [bx + Math.cos(a) * L * 0.5, y + Math.sin(a) * L * 0.5], [bx + Math.cos(a + 0.25) * L, y + Math.sin(a + 0.25) * L]], 2), lw, { taper: 0.85, sd: i * 11 + j }); }
+  }
+  return inter(c, m);
+}
+function strata(m, { step = 14, n = 5, lw = 1.3, sd = 1, keep = 0.55 } = {}) {
+  seed(sd); const c = canvas();
+  for (let i = 1; i <= n; i++) { const e = erode(m, step * i); if (!e) break; draw(c.g, outline(e, lw, { inner: true })); }
+  // broken: keep only some stretches of each contour
+  const brk = canvas(), nz = noise(18); const id = brk.g.createImageData(brk.width, brk.height);
+  for (let p = 0; p < nz.length; p++) if (nz[p] < keep) id.data[p * 4 + 3] = 255;
+  brk.g.putImageData(id, 0, 0);
+  return inter(c, brk);
 }

@@ -29,6 +29,15 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   from the brief and different layout systems and treatments. Colourways only swap which palette colours play
   background, middle (image marks) and type. Ben picks the one(s) to post the next day.
 
+### Round 30 (26 Nov 2026): Nano Banana scamps work
+- The first run of the illustration machine (Nano Banana 2.1, Ben's references, 4 scenes × 5 briefs) is a step change:
+  right perspective, real figures and hands, depth, and it leaves the headline band plain as asked. 15 of 20 usable.
+- Scamp → poster (`concepts/test-scamp.tpl.js`): snap every pixel to the palette + tints/shades + black/white + the
+  highlight and print it as plates (`printAll`), make the headline band perfectly flat in its own commonest colour,
+  set the headline there in the colour that reads best (`pinInterlock`, so lines never touch), the furniture and
+  subline on an extension of the band, then `stock()`.
+- Condensed faces in a single band go on one line (Six Caps two lines edge to edge filled 60% of the sheet).
+
 ### Round 29 feedback (26 Nov 2026): scamps first, calm headline zones, boxed illustrations
 - **Work from a scamp, not from nothing:** perspective, figures and objects need a rough to draw over. Three routes:
   - **3D scamp** (`lab/3d/scene.py`, Blender via the bpy package): build the scene, shoot it from a super low/high

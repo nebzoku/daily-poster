@@ -1,0 +1,50 @@
+{
+  "date": "2026-11-25",
+  "palette": [
+    "#F1CF43",
+    "#F1E5B8",
+    "#757265",
+    "#261F01",
+    "#000000",
+    "#FFFFFF"
+  ],
+  "highlight": null,
+  "scenes": [
+    {
+      "file": "scamp-01.png",
+      "headline": "The Forest Remembers Its Giant",
+      "angle": "very low worm's-eye looking up the trunk of a giant chestnut",
+      "headlineZone": "top",
+      "prompt": "Follows the attached style guide image (style only, not its subjects). Contemporary editorial illustration in clean fine black ink line and flat colour, slightly worn pen contours, one cel-shadow tone per surface, risograph print feel with paper grain. Very low worm's-eye view from the forest floor looking straight up a colossal American chestnut trunk with deep bark grooves drawn in thin hatched lines, branches spreading into a canopy of serrated long leaves and spiky burrs. Two small hikers in outline at the base, hands correct with five fingers, natural knuckles, full-length thumbs, one resting a palm on the bark, tiny beside the giant. Short hatched blades of grass and fallen leaves at the bottom. Hard-edged pools of light and shadow shapes through the canopy. Palette only: #F1CF43 yellow, #F1E5B8 cream, #757265 grey-brown, #261F01 dark brown, black line, white; tints and shades allowed. No highlight colour. The top 22% of the image is plain flat cream #F1E5B8 sky with no detail, no line work, for the headline. No text, letters, logos or signatures.",
+      "model": "gemini-nano-banana-2.1",
+      "style": "refs"
+    },
+    {
+      "file": "scamp-02.png",
+      "headline": "Back From Functional Extinction",
+      "angle": "high angle looking down on a seedling in a forest clearing",
+      "headlineZone": "bottom",
+      "prompt": "Follows the attached style guide image (style only, not its subjects). Contemporary editorial illustration in clean fine black ink line and flat colour, slightly broken pen contours, one cel-shadow tone per surface, risograph print feel, paper grain. Very high angle looking straight down on a forest floor of leaf litter, hatched grass blades and mossy rocks, where a single young chestnut sapling with serrated leaves grows in the centre inside a small protective mesh tube, a long hard-edged shadow cast across the ground. Around it, the grey stumps and pale fallen trunks of old dead chestnuts radiate like spokes, drawn with bark grooves. A researcher's gloved hand reaches in to touch a leaf, anatomically correct, five fingers, natural knuckles, full-length thumb. Palette only: #F1CF43 yellow, #F1E5B8 cream, #757265 grey-brown, #261F01 dark brown, black line, white; tints and shades. No highlight colour. The bottom 24% of the image is plain flat dark #261F01 colour with no detail for the headline. No text, letters, logos or signatures.",
+      "model": "gemini-nano-banana-2.1",
+      "style": "refs"
+    },
+    {
+      "file": "scamp-03.png",
+      "headline": "A Century After the Blight",
+      "angle": "one-point perspective down a long forest corridor of trees",
+      "headlineZone": "top-and-bottom",
+      "prompt": "Follows the attached style guide image (style only, not its subjects). Contemporary editorial illustration in clean fine black ink line and flat colour, slightly worn contours, one cel-shadow tone per surface, stepped-band glows, risograph print feel with paper grain. Strong one-point perspective looking down a straight Appalachian forest trail, a row of tall trunks on each side converging at a vanishing point of stepped yellow light. On the left the trunks are pale, dead, blighted grey chestnut snags with peeling bark and orange-less canker marks drawn in hatching; on the right they are young living chestnuts with leaves. A lone walker seen from behind in the middle of the path, naturally proportioned, simple outline, hands correct with five fingers. Hard-edged shadow stripes cross the path. Palette only: #F1CF43, #F1E5B8, #757265, #261F01, black line, white; tints and shades. No highlight colour. The top 16% and bottom 16% of the image are plain flat colour (cream at top, dark brown #261F01 at bottom) with no detail, for headlines. No text, letters, logos or signatures.",
+      "model": "gemini-nano-banana-2.1",
+      "style": "refs"
+    },
+    {
+      "file": "scamp-04.png",
+      "headline": "The Forest Remembers Its Giant",
+      "angle": "cutaway cross-section of a chestnut tree and soil",
+      "headlineZone": "left",
+      "prompt": "Follows the attached style guide image (style only, not its subjects). Contemporary editorial illustration in clean fine black ink line and flat colour, slightly broken pen lines, one cel-shadow tone per surface, risograph print feel, paper grain. A cutaway cross-section view: on the right, a young American chestnut tree in a hillside forest, with its trunk, serrated leaves and spiky burrs above ground, and below ground a cut-away of soil layers with branching roots, stones and tiny hatched textures. Beside the sapling stands the ghostly pale outline of a vast old chestnut giant, drawn in thin line with cream fill, towering above the hills as a memory. A scientist kneeling by the roots holds a seedling tray, correct anatomy, five fingers, natural knuckles, full-length thumbs. Rolling Appalachian ridges in stepped bands behind. Palette only: #F1CF43, #F1E5B8, #757265, #261F01, black line, white; tints and shades. No highlight colour. The left 35% of the image is plain flat cream #F1E5B8 with no detail or line work for the headline. No text, letters, logos or signatures.",
+      "model": "gemini-nano-banana-2.1",
+      "style": "refs"
+    }
+  ]
+}

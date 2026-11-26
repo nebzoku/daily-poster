@@ -1,0 +1,50 @@
+{
+  "date": "2026-11-22",
+  "palette": [
+    "#4CF1B7",
+    "#C0F2DB",
+    "#67756F",
+    "#002619",
+    "#000000",
+    "#FFFFFF"
+  ],
+  "highlight": null,
+  "scenes": [
+    {
+      "file": "scamp-01.png",
+      "headline": "Pit Stop, Promoted to Destination",
+      "angle": "very low worm's-eye looking up at a grand service station canopy",
+      "headlineZone": "top",
+      "prompt": "Follows the attached style guide image (style only, not its subjects). Contemporary editorial illustration in clean fine black ink line with small pen-lift breaks and flat colour, one cel-shadow tone per surface, risograph print feel with paper grain. Very low worm's-eye view looking up at a monumental modern motorway service station: a sweeping curved canopy roof on slender columns, a glass-fronted food hall with warm interior glow, and a tall fuel-price-free pylon shaped like a sculpture. Small figures with natural proportions, correct hands with five fingers, walk in with coffee cups and travel bags, tiny against the architecture. Thin-line texture on concrete and paving, hard-edged graphic shadows. Palette only: mint #4CF1B7, pale mint #C0F2DB, grey-green #67756F, deep green #002619, white, black line, plus tints and shades. The top 22% of the image is plain flat pale mint #C0F2DB sky with no detail. No highlight colour. No text, letters or logos. Portrait 1:1.41.",
+      "model": "gemini-nano-banana-2.1",
+      "style": "refs"
+    },
+    {
+      "file": "scamp-02.png",
+      "headline": "Neon in the Middle of Nowhere",
+      "angle": "lone object in a big sky: a glowing station seen from far away across an empty plain",
+      "headlineZone": "bottom",
+      "prompt": "Follows the attached style guide image (style only, not its subjects). Contemporary editorial illustration in clean fine black ink line and flat colour, stepped-band sky gradient and glow, cel shading with one shadow tone, risograph print feel with paper grain. Dusk scene: a tiny glowing service station with a ring-shaped canopy and a tall abstract neon-style pylon sits alone on a distant horizon, in a vast deep green #002619 sky of stepped bands rising to grey-green #67756F, a few thin pale streaks of cloud. A single road with dashed lines leads to it in one-point perspective, one small car heading toward the glow. Light from the station is drawn as stepped mint #4CF1B7 and #C0F2DB bands on the road. Short hatched blades of grass on the plain. Big simple space against small precise detail. Palette only: #4CF1B7, #C0F2DB, #67756F, #002619, white, black line, tints and shades. The bottom 25% is plain flat deep green #002619 with no detail. No highlight colour. No text, letters or logos. Portrait 1:1.41.",
+      "model": "gemini-nano-banana-2.1",
+      "style": "refs"
+    },
+    {
+      "file": "scamp-03.png",
+      "headline": "The Long Road's Quiet Pause",
+      "angle": "very high looking down on a picnic and rest area beside the motorway",
+      "headlineZone": "top-and-bottom",
+      "prompt": "Follows the attached style guide image (style only, not its subjects). Contemporary editorial illustration in clean fine slightly worn black ink line and flat colour, one cel-shadow tone per surface, thin-line hatched grass texture, risograph print feel with paper grain. Very high bird's-eye view looking down on a landscaped service-station garden: curving paths, round trees casting hard-edged shadow shapes, wooden benches, and a few calm people with natural proportions and correct hands with five fingers and full-length thumbs, one sitting with a hot drink, one stretching, one lying on the grass, a parked car with its door open. A strip of motorway with a few cars crosses the middle edge. Calm, warm, quietly humorous mood. Palette only: mint #4CF1B7, pale mint #C0F2DB, grey-green #67756F, deep green #002619, white, black line, tints and shades. The top 15% and bottom 15% are plain flat pale mint #C0F2DB with no detail. No highlight colour. No text, letters or logos. Portrait 1:1.41.",
+      "model": "gemini-nano-banana-2.1",
+      "style": "refs"
+    },
+    {
+      "file": "scamp-04.png",
+      "headline": "Pit Stop, Promoted to Destination",
+      "angle": "one-point interior perspective down a food hall, with a cutaway feel",
+      "headlineZone": "top",
+      "prompt": "Follows the attached style guide image (style only, not its subjects). Contemporary editorial illustration in clean fine black ink line with small breaks and flat colour, one cel-shadow tone per surface, risograph print feel with paper grain. One-point perspective interior of a reimagined motorway service station food hall: a long central aisle receding to a big window showing a night road, food stalls with counters on both sides, rounded booths, hanging pendant lamps, indoor plants and a tree growing through the roof. Diners and travellers drawn with confident outline, simple faces, natural proportions and correct hands with five fingers and natural thumbs, holding trays and cups. Pools of light on the floor and hard-edged shadows, floorboard line texture. Palette only: mint #4CF1B7, pale mint #C0F2DB, grey-green #67756F, deep green #002619, white, black line, tints and shades. The top 20% of the image is a plain flat deep green #002619 ceiling band with no detail. No highlight colour. No text, letters or logos. Portrait 1:1.41.",
+      "model": "gemini-nano-banana-2.1",
+      "style": "refs"
+    }
+  ]
+}

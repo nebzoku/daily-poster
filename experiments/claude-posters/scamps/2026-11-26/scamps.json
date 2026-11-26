@@ -1,0 +1,54 @@
+{
+  "date": "2026-11-26",
+  "palette": [
+    "#F1592A",
+    "#FFDCD1",
+    "#7D6E69",
+    "#3A1004",
+    "#000000",
+    "#FFFFFF"
+  ],
+  "highlight": {
+    "name": "Blue",
+    "hex": "#2987F1",
+    "use": "Sparingly, for a focal point: one small element that should catch the eye."
+  },
+  "scenes": [
+    {
+      "file": "scamp-01.png",
+      "headline": "One Hand, Two Wheels",
+      "angle": "very low worm's-eye looking up from the road surface",
+      "headlineZone": "top",
+      "prompt": "Follows the attached style guide image (style only, not its subjects). Contemporary editorial illustration in clean ink line and flat colour, fine slightly worn black contour lines, one cel-shadow tone per surface, risograph print feel with paper grain. Very low worm's-eye view from the tarmac looking up at a small motorbike speeding past with a rider and a passenger behind him, the passenger leaning out and stretching one arm high to catch a small cricket ball, hand drawn with correct anatomy: five fingers, natural knuckles, full-length thumb. Simple calm faces, dramatic perspective, foreshortened wheels, short hatched texture on the road, hard-edged shadow shapes. The ball is the only #2987F1 element, small and bright. All else uses only #F1592A, #FFDCD1, #7D6E69, #3A1004, #000000 and #FFFFFF with tints and shades. The top 25% of the image is plain flat #FFDCD1 with no detail, no clouds, no lines. Portrait 1:1.41. No text, letters, logos or signatures.",
+      "model": "gemini-nano-banana-2.1",
+      "style": "refs"
+    },
+    {
+      "file": "scamp-02.png",
+      "headline": "The Ball Never Landed",
+      "angle": "lone object in a big sky, high-contrast far-below view",
+      "headlineZone": "bottom",
+      "prompt": "Follows the attached style guide image (style only, not its subjects). Contemporary editorial illustration in clean ink line and flat colour, fine slightly worn black contour lines, one cel-shadow tone per surface, stepped-band sky gradient, risograph print feel with paper grain. A vast stepped-band sky in #F1592A fading to #FFDCD1 with a single small cricket ball arcing high above, drawn with a short curved motion trail; this ball is the only #2987F1 element. Far below at the lower edge, tiny stadium floodlight towers and a rooftop of a cricket ground in #3A1004 and #7D6E69 silhouette with thin ink detail, and a minute motorbike on a road with a passenger's raised arm. Big simple space against small precise detail, cinematic and quietly humorous. Palette only #F1592A, #FFDCD1, #7D6E69, #3A1004, #000000, #FFFFFF with tints and shades. The bottom 28% of the image is plain flat #3A1004 colour with no detail, no lines. Portrait 1:1.41. No text, letters, logos or signatures.",
+      "model": "gemini-nano-banana-2.1",
+      "style": "refs"
+    },
+    {
+      "file": "scamp-03.png",
+      "headline": "Caught Between Road and Rope",
+      "angle": "very high looking down, near-overhead view",
+      "headlineZone": "top-and-bottom",
+      "prompt": "Follows the attached style guide image (style only, not its subjects). Contemporary editorial illustration in clean ink line and flat colour, fine slightly worn black contour lines, one cel-shadow tone per surface, thin-line hatching on grass, risograph print feel with paper grain. Very high overhead view looking straight down on a cricket ground edge: a curved white boundary rope across short hatched grass in #FFDCD1 and #7D6E69 tints, and just beyond it a road running across the middle of the image with a small motorbike carrying two riders, the passenger's arm raised one-handed with correct anatomy, five fingers and full-length thumb. Hard-edged long shadows of the riders and bike on the tarmac. A tiny cricket ball in #2987F1 near the raised hand is the only blue element. Palette only #F1592A, #FFDCD1, #7D6E69, #3A1004, #000000, #FFFFFF with tints and shades. The top 18% and bottom 18% of the image are plain flat #F1592A colour with no detail or lines. Portrait 1:1.41. No text, letters, logos or signatures.",
+      "model": "gemini-nano-banana-2.1",
+      "style": "refs"
+    },
+    {
+      "file": "scamp-04.png",
+      "headline": "One Hand, Two Wheels",
+      "angle": "slight fish-eye street view, one-point perspective down a road",
+      "headlineZone": "top",
+      "prompt": "Follows the attached style guide image (style only, not its subjects). Contemporary editorial illustration in clean ink line and flat colour, fine slightly worn black contour lines, one cel-shadow tone per surface, stepped-band sky, risograph print feel with paper grain. Slight fish-eye one-point perspective down a road beside a cricket ground wall in Pakistan hill country, with a distant mountain range, a stadium fence, and spectators peeking over the wall pointing upward. In the middle distance a motorbike with two riders passes, the rear passenger holding one arm up having caught a small ball, correct hand anatomy with five fingers, natural knuckles, full-length thumb. Brick courses on the wall, hatched grass verge, hard-edged shadows. The ball is the only #2987F1 element. Palette only #F1592A, #FFDCD1, #7D6E69, #3A1004, #000000, #FFFFFF with tints and shades. The top 25% of the image is plain flat #FFDCD1 sky with no clouds or lines. Portrait 1:1.41. No text, letters, logos or signatures.",
+      "model": "gemini-nano-banana-2.1",
+      "style": "refs"
+    }
+  ]
+}

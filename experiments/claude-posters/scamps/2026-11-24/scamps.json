@@ -1,0 +1,50 @@
+{
+  "date": "2026-11-24",
+  "palette": [
+    "#B5E643",
+    "#DBECC1",
+    "#6F7467",
+    "#192400",
+    "#000000",
+    "#FFFFFF"
+  ],
+  "highlight": null,
+  "scenes": [
+    {
+      "file": "scamp-01.png",
+      "headline": "The Smallest Planet Steps Out",
+      "angle": "lone object in a big sky, very low horizon",
+      "headlineZone": "top",
+      "prompt": "Follows the attached style guide image (style only, not its subjects). Contemporary editorial illustration in clean fine black ink line with small pen-lift breaks, flat colour, cel shading with one shadow tone, risograph print feel with paper grain. A vast dawn sky seen from a low horizon: a tiny round Mercury drawn as a small pale disc (#DBECC1) with a thin black outline and a couple of crater marks, hovering just above a distant ridge of dark hills (#192400) with short hatched grass blades in the foreground. The sky is built from stepped flat bands moving from #192400 at the lower edge through #6F7467 to #B5E643 and #DBECC1 near the horizon glow, with a small sun-glow of stepped rings. The top 25% of the image is plain flat #192400 colour with no line detail, calm space for a headline. Big simple space against small precise detail. Palette only #B5E643, #DBECC1, #6F7467, #192400, #000000, #FFFFFF and their tints and shades; no highlight colour. No text, letters, logos or signatures. Portrait 1:1.41.",
+      "model": "gemini-nano-banana-2.1",
+      "style": "refs"
+    },
+    {
+      "file": "scamp-02.png",
+      "headline": "Catch Mercury Before Sunrise",
+      "angle": "very high looking down, rooftop view",
+      "headlineZone": "bottom",
+      "prompt": "Follows the attached style guide image (style only, not its subjects). Editorial illustration in clean fine black ink line, slightly worn with small breaks, flat colour areas, one cel-shadow tone per surface, risograph feel with paper grain. Very high angle looking down on a city rooftop before dawn: two people in warm coats stand by a low parapet, one holding a small pair of binoculars up toward the eastern sky, the other pointing, a thermos on the ledge. Naturally proportioned figures with simple faces and correct hands: five fingers, natural knuckles, full-length thumbs. Rooftop tiles, vents, a water tank and railings drawn with thin hatched line texture and hard-edged long shadows in #192400 and #6F7467; roof surfaces in #DBECC1 and #B5E643 flat areas. A faint stepped-band glow creeps in at one edge. The bottom 25% of the image is plain flat #DBECC1 colour with no line detail for a headline. Palette only #B5E643, #DBECC1, #6F7467, #192400, #000000, #FFFFFF and tints and shades; no highlight colour. No text, letters, logos or signatures. Portrait 1:1.41.",
+      "model": "gemini-nano-banana-2.1",
+      "style": "refs"
+    },
+    {
+      "file": "scamp-03.png",
+      "headline": "Chasing Light Near the Sun",
+      "angle": "worm's-eye looking up from a hilltop",
+      "headlineZone": "top-and-bottom",
+      "prompt": "Follows the attached style guide image (style only, not its subjects). Contemporary editorial illustration, clean fine black contour line with tiny pen-lift gaps, flat colour, cel shading with one shadow tone, stepped bands for sky and glow, risograph print look and paper grain. Very low worm's-eye view from the ground on a grassy hill looking up: a stargazer in silhouette-like outline with a small tripod telescope, tall hatched grass blades framing the sides, the telescope tilted toward a low bright sun-glow just rising behind the hill, drawn as concentric flat stepped rings in #B5E643 and #DBECC1, with a tiny Mercury disc nearby. Figure has correct anatomy, a hand on the telescope with five fingers, natural knuckles, full-length thumb. Strong perspective, dramatic foreshortening. Hard-edged shadows in #192400 and #6F7467. The top 20% and bottom 20% of the image are plain flat solid colour (#192400 at top, #6F7467 at bottom) with no line detail, calm for headlines. Palette only #B5E643, #DBECC1, #6F7467, #192400, #000000, #FFFFFF and tints and shades; no highlight colour. No text, letters, logos or signatures. Portrait 1:1.41.",
+      "model": "gemini-nano-banana-2.1",
+      "style": "refs"
+    },
+    {
+      "file": "scamp-04.png",
+      "headline": "The Smallest Planet Steps Out",
+      "angle": "one-point interior, looking through a window",
+      "headlineZone": "left",
+      "prompt": "Follows the attached style guide image (style only, not its subjects). Editorial illustration in clean fine black ink line, slightly worn with small breaks, flat colour, one cel-shadow tone per surface, risograph print feel, paper grain. One-point perspective interior of a quiet bedroom at dawn: a long floor with thin-line floorboards leads to a wide window at the far wall, a person in pyjamas leaning on the sill with a mug, looking out at a small pale Mercury disc above rooftops in a stepped-band sky of #DBECC1, #B5E643 and #6F7467. Window light casts a hard-edged pool of light across the floorboards, bookshelves and an unmade bed with simple detail on the right side. Correct hands anatomy: five fingers, natural knuckles, full-length thumb; simple face. The left 35% of the image is plain flat #192400 colour wall with no line detail, calm for a headline. Palette only #B5E643, #DBECC1, #6F7467, #192400, #000000, #FFFFFF and tints and shades; no highlight colour. No text, letters, logos or signatures. Portrait 1:1.41.",
+      "model": "gemini-nano-banana-2.1",
+      "style": "refs"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "date": "2026-11-21",
+  "palette": [
+    "#4CEBEB",
+    "#B6F2F1",
+    "#657575",
+    "#012525",
+    "#000000",
+    "#FFFFFF"
+  ],
+  "highlight": null,
+  "scenes": [
+    {
+      "file": "scamp-01.png",
+      "headline": "The Summer, Bottled Early",
+      "angle": "very low worm's-eye looking up through vine rows to a bottle in the sky",
+      "headlineZone": "top",
+      "prompt": "Follows the attached style guide image (style only, not its subjects). Contemporary editorial illustration in clean ink line and flat colour: fine, slightly worn black contour lines with tiny pen-lift breaks, one cel-shadow tone per surface, no soft gradients except stepped bands in the sky. Very low worm's-eye view from the ground between two rows of grapevines, trellis wires and leaves converging in strong one-point perspective upward. A tall pale wine bottle stands on a wooden crate in the middle distance, glowing sun hitting its glass in hard-edged shapes, bunches of grapes hanging heavy beside it. Short hatched blades of grass and bark-groove texture on the posts. Palette only: #4CEBEB, #B6F2F1, #657575, #012525, black and white, plus tints and shades; no highlight colour. The top 22% of the image is plain flat #B6F2F1 sky with no line detail, stepped bands only far below it. Calm, warm, quietly humorous mood, risograph print feel with paper grain. No text, letters, logos or signatures.",
+      "model": "gemini-nano-banana-2.1",
+      "style": "refs"
+    },
+    {
+      "file": "scamp-02.png",
+      "headline": "Fifty Years Since Grapes Ripened Sooner",
+      "angle": "very high looking down on a hillside vineyard with harvesters",
+      "headlineZone": "bottom",
+      "prompt": "Follows the attached style guide image (style only, not its subjects). Contemporary editorial illustration in clean ink line and flat colour: even fine black contour lines with small breaks, one cel-shadow tone per surface, thin-line hatching for grass and soil. Very high bird's-eye view straight down a Gloucestershire hillside vineyard, curving rows of vines in repeating diagonal stripes of #4CEBEB, #012525 and #657575, long hard-edged shadows cast by the vines. Three small naturally proportioned harvesters with crates and secateurs, correct anatomy, five fingers on each hand, simple faces, walk between rows; a small stone farm building with a tiled roof sits at the edge. Palette only: #4CEBEB, #B6F2F1, #657575, #012525, black and white with tints and shades; no highlight colour. The bottom 25% of the image is plain flat #012525 colour with no detail, the rows fading into it. Calm, observant mood, risograph print feel with paper grain. No text, letters, logos or signatures.",
+      "model": "gemini-nano-banana-2.1",
+      "style": "refs"
+    },
+    {
+      "file": "scamp-03.png",
+      "headline": "First Taste of a Hot Year",
+      "angle": "one-point interior of a cellar tasting room",
+      "headlineZone": "top-and-bottom",
+      "prompt": "Follows the attached style guide image (style only, not its subjects). Contemporary editorial illustration in clean ink line and flat colour: fine worn black contour lines, one cel-shadow tone per surface, no gradients, thin-line texture of brick courses, floorboards and barrel staves. One-point perspective interior of a vaulted stone winery cellar, rows of oak barrels receding to a bright arched doorway at the centre, sunlight pouring in as a hard-edged pool of light on the floor. In the foreground a woman and a man stand at a barrel table raising small glasses of pale wine to taste, naturally proportioned, simple faces, hands drawn correctly with five fingers, natural knuckles, full-length thumbs. Palette only: #4CEBEB, #B6F2F1, #657575, #012525, black and white with tints and shades; no highlight colour. The top 18% and bottom 18% of the image are plain flat solid colour (#012525 at top, #657575 at bottom) with no detail. Warm, quietly humorous mood, risograph print feel with paper grain. No text, letters, logos or signatures.",
+      "model": "gemini-nano-banana-2.1",
+      "style": "refs"
+    },
+    {
+      "file": "scamp-04.png",
+      "headline": "The Summer, Bottled Early",
+      "angle": "lone object in a big sky, a single bottle on a hilltop seen from low and far",
+      "headlineZone": "top",
+      "prompt": "Follows the attached style guide image (style only, not its subjects). Contemporary editorial illustration in clean ink line and flat colour: fine black contour with small pen-lift breaks, one cel-shadow tone per surface, sky built from stepped flat bands rather than smooth gradients. A lone oversized wine bottle with a pale cork stands on the crest of a rolling English hill planted with neat vine rows, seen from a low distant angle against a huge open sky; a big stepped-band sun in #B6F2F1 and white sits behind it, casting a long hard-edged shadow down the slope. Tiny thin-line hatched grass blades and a small stone wall in the foreground, a tiny figure beside the bottle for scale with correct anatomy. Palette only: #4CEBEB, #B6F2F1, #657575, #012525, black and white with tints and shades; no highlight colour. The top 30% of the image is plain flat #4CEBEB sky with no detail or lines. Calm, warm, quietly humorous mood, risograph print feel with paper grain. No text, letters, logos or signatures.",
+      "model": "gemini-nano-banana-2.1",
+      "style": "refs"
+    }
+  ]
+}

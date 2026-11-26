@@ -1272,7 +1272,8 @@ function popOptions(colourName) {
   const i = WHEEL.findIndex(([n]) => n === colourName); if (i < 0) return [];
   return [3, 4, 5, 6, -3, -4, -5].map((d) => WHEEL[(i + d + 12) % 12]);
 }
-function popFor(brief, k = null) { const o = popOptions(brief.colour.name); return o[(k ?? brief.issue) % 4][1]; }
+// The brief now carries its pop (brief.pop.hex, from scripts/lib/palette.mjs, same rotation); use that when present.
+function popFor(brief, k = null) { if (brief.pop && k == null) return brief.pop.hex; const o = popOptions(brief.colour.name); return o[(k ?? brief.issue) % 4][1]; }
 // Tints and shades of a palette colour, for shading and for making an illustration feel complete: mix toward white
 // (t > 0) or black (t < 0) in linear light, so steps look even. shadesOf(hex) → [-0.5, -0.25, 0, 0.3, 0.6] steps.
 function mixLin(hex, t) {

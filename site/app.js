@@ -205,7 +205,15 @@
     };
     $("swatches").replaceChildren(
       ...palette.colours.map((c, i) => band(c, String(i + 1).padStart(2, "0"))),
-      ...brief.always.map((c) => band(c, "Always")));
+      ...brief.always.map((c) => band(c, "Always")),
+      ...(brief.pop ? [band(brief.pop.hex, `Pop · ${brief.pop.name} · sparingly`)] : []));
+    // Tints and shades: two shades and two tints of each palette colour, a small row each.
+    const chip = (hex) => {
+      const fg = luminance(hex) > 0.4 ? "#111111" : "#FFFFFF";
+      return el("button", { type: "button", "aria-label": `Copy ${hex}`, title: hex, style: `background:${hex};color:${fg}`, onclick: () => copy(hex) }, el("span", {}, hex));
+    };
+    $("shades").replaceChildren(...(brief.shades || []).flatMap((r) => r.steps.map(chip)));
+    $("shades").hidden = !(brief.shades || []).length;
   }
 
   function renderType() {
@@ -683,10 +691,16 @@ ${inside}`;
     y += typeH + GAP;
 
     // Row 3: the colours.
-    const colours = palette.colours.concat(brief.always);
+    const colours = palette.colours.concat(brief.always, brief.pop ? [brief.pop.hex] : []);
     frame("Colours", 0, y, colours.length * 184 - 24, 160, colours.map((hex, i) =>
-      `<rect id="${hex}" x="${i * 184}" y="0" width="160" height="160" fill="${hex}"${hex === "#FFFFFF" ? ' stroke="#E6E6E3"' : ""}/>`).join("\n"));
+      `<rect id="${brief.pop && i === colours.length - 1 ? `Pop ${hex} (sparingly, for a focal point)` : hex}" x="${i * 184}" y="0" width="160" height="160" fill="${hex}"${hex === "#FFFFFF" ? ' stroke="#E6E6E3"' : ""}/>`).join("\n"));
     y += 160 + GAP;
+    // Row 3b: tints and shades, a row of four small chips under each palette colour's column.
+    if ((brief.shades || []).length) {
+      frame("Tints and shades", 0, y, brief.shades.length * 184 - 24, 4 * 40 - 8, brief.shades.flatMap((r, i) => r.steps.map((hex, j) =>
+        `<rect id="${hex}" x="${i * 184}" y="${j * 40}" width="160" height="32" fill="${hex}"/>`)).join("\n"));
+      y += 4 * 40 + GAP;
+    }
 
     // Rows 4 and 5: the images at their own proportions, then the textures.
     const got = await prepAssets();

@@ -38,6 +38,49 @@
     "#000000",
     "#FFFFFF"
   ],
+  "pop": {
+    "name": "Blue",
+    "hex": "#2987F1",
+    "use": "Sparingly, for a focal point: one small element that should catch the eye."
+  },
+  "shades": [
+    {
+      "colour": "#F1592A",
+      "steps": [
+        "#B13F1C",
+        "#D44D24",
+        "#F5A498",
+        "#FAD1CD"
+      ]
+    },
+    {
+      "colour": "#FFDCD1",
+      "steps": [
+        "#BCA199",
+        "#E1C2B8",
+        "#FFE7E0",
+        "#FFF2EE"
+      ]
+    },
+    {
+      "colour": "#7D6E69",
+      "steps": [
+        "#5A4F4B",
+        "#6D605C",
+        "#B2ABA9",
+        "#D7D5D4"
+      ]
+    },
+    {
+      "colour": "#3A1004",
+      "steps": [
+        "#280902",
+        "#320D03",
+        "#9B9695",
+        "#CECCCB"
+      ]
+    }
+  ],
   "type": {
     "id": "anybody",
     "display": "Anybody",

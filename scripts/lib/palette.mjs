@@ -96,3 +96,25 @@ export function paletteFor(date) {
 }
 
 export const ALWAYS = ["#000000", "#FFFFFF"];
+
+// ---- The pop, and tints and shades (Ben, 26 Nov 2026) ----
+// The pop: one bright colour from across the wheel from today's lead (3 to 6 steps away: orange with neon green,
+// jade, teal or cobalt blue), rotating day to day. Use it sparingly, for a focal point: one small element.
+export function popFor(date) {
+  const i = wheelIndex(date), steps = [3, 4, 5, 6], k = steps[(((issueNumber(date)) % 4) + 4) % 4];
+  const [name, hex] = [WHEEL[(i + k) % 12].name, WHEEL[(i + k) % 12].main];
+  return { name, hex, use: "Sparingly, for a focal point: one small element that should catch the eye." };
+}
+
+// Tints and shades of each palette colour, mixed toward black and white in linear light so the steps look even:
+// two shades, then two tints. For shading, depth and finishing touches.
+const toLin = (v) => (v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4);
+export function mix(hex, t) {
+  const c = [1, 3, 5].map((k) => toLin(parseInt(hex.slice(k, k + 2), 16) / 255));
+  const m = c.map((v) => (t >= 0 ? v + (1 - v) * t : v * (1 + t)));
+  return "#" + m.map((v) => Math.round(gammaEncode(v) * 255).toString(16).padStart(2, "0")).join("").toUpperCase();
+}
+export const SHADE_STEPS = [-0.5, -0.25, 0.3, 0.6];
+export function shadesFor(colours) {
+  return colours.map((hex) => ({ colour: hex, steps: SHADE_STEPS.map((t) => mix(hex, t)) }));
+}

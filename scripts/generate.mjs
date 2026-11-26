@@ -11,7 +11,7 @@ import { existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { XMLParser } from "fast-xml-parser";
-import { wheelFor, paletteFor, issueNumber, ALWAYS, daysBetween } from "./lib/palette.mjs";
+import { wheelFor, paletteFor, issueNumber, ALWAYS, daysBetween, popFor, shadesFor } from "./lib/palette.mjs";
 import { FONT_PAIRS, fontPair, fontAssets, availablePairs, TYPE_COOLDOWN_DAYS } from "./lib/fonts.mjs";
 import { gatherCandidates, gatherTextures, polyhavenFile, interleave, imageBlock } from "./lib/images.mjs";
 
@@ -413,6 +413,8 @@ async function main() {
     sublines: brief.sublines.map((s) => s.trim()),
     palette: paletteFor(date),
     always: ALWAYS,
+    pop: popFor(date),
+    shades: shadesFor(paletteFor(date).colours),
     type: { ...pair, reason: brief.fontReason, ...fontAssets(pair) },
     grid: { format: "A-size", size: [1080, 1528], columns: 8, rows: 8, margin: 16, gutter: 0, column: 131, row: 187, unit: "px" },
     ...(await chooseImages(brief, story, wheel.name)),

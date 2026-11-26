@@ -39,13 +39,16 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   clusters, never an even fill (`ripples`, `blades`, `strata` in illo.js). Not ruled hatching across a whole area.
 - **Draw from photographic references:** people, poses, hands and objects comped together from real photos and
   illustrated from them, rather than built from geometry. A separate pull of reference photos for illustrating, not
-  shown on the site (`scripts/illo-refs.mjs`, waiting on Ben's go-ahead to add the workflow).
+  shown on the site: `scripts/illo-refs.mjs` (the Illustration references workflow, after the brief) saves
+  `experiments/claude-posters/refs/<date>/ref-*.jpg` with credits in `refs.json`. Search terms can be set by hand in
+  `requests/illo-refs.txt`.
 - **A pop colour, used very sparingly** (applies to every style, not just illustration): one bright colour from across
   the colour wheel from the day's lead (orange with neon green, jade, teal or cobalt blue), on one small element only
-  (the rope, a kite, a hat, a sign). `popFor(brief)` picks it, rotating by issue. This loosens Round 12's "nothing
+  (the rope, a kite, a hat, a sign): a focal point. It's in the public brief too (`brief.pop`, from
+  `scripts/lib/palette.mjs`, with the same guidance for everyone); `popFor(brief)` reads it. This loosens Round 12's "nothing
   outside the day's palette": the palette plus black and white, plus one pop, plus tints and shades.
 - **Tints and shades of the palette colours** are allowed everywhere, for shading and to make illustrations feel
-  complete (`shadesOf(hex)`: two shades, the colour, two tints). Still no gold, rose, copper, holo or silver.
+  complete (`shadesOf(hex)`: two shades, the colour, two tints; the brief lists them as `brief.shades`). Still no gold, rose, copper, holo or silver.
 
 ### Round 26 (26 Nov 2026): an illustration style for the roster (on trial)
 - **Ben wants an illustrated option in the mix,** from references he sent on 26 Nov (contemporary editorial

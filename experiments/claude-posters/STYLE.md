@@ -36,6 +36,10 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   highlight and print it as plates (`printAll`), make the headline band perfectly flat in its own commonest colour,
   set the headline there in the colour that reads best (`pinInterlock`, so lines never touch), the furniture and
   subline on an extension of the band, then `stock()`.
+- **Ben kept 7 of the 8** (fish-eye road, giant trunk, telescope glow, rooftop high angle, food hall, canopy, lone
+  bottle): "these are awesome". Dropped: the close-up pillion pair, "too cheesy and AI generated ... might be their
+  faces". So: no close-up posed, smiling faces; people at a distance, from behind or in profile, simply drawn. The
+  kept ones are now in `lab/illo-guide/` and go to Nano Banana alongside his references.
 - Condensed faces in a single band go on one line (Six Caps two lines edge to edge filled 60% of the sheet).
 
 ### Round 29 feedback (26 Nov 2026): scamps first, calm headline zones, boxed illustrations

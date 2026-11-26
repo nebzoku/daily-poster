@@ -29,3 +29,6 @@ line, plus ONE highlight colour used on a single small focal element. Whole scen
   the region: e.g. "the top 20% of the image is plain sky").
 - Portrait A-size (about 1:1.41). The subject is relevant to the day's story at a glance.
 - Hands, fingers and faces must be anatomically right: five fingers, natural knuckles, the thumb its true length.
+- Faces (Ben, 26 Nov: the close-up pillion pair looked "cheesy and AI generated"): no grinning, posed, glossy faces
+  looking at the viewer. Keep people at a distance, seen from behind or in profile, faces small and simply drawn (a
+  few lines, no shine, no airbrushed skin), absorbed in what they're doing. Never a stock-photo smile.

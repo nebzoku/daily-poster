@@ -35,10 +35,16 @@ const gdir = useRefs ? RD : join(CP, "lab", "illo-guide");
 const all = (await readdir(gdir)).filter((f) => /\.(jpe?g|png)$/i.test(f)).sort();
 let sd = [...brief.date].reduce((a, c) => a * 31 + c.charCodeAt(0), 7) >>> 0;
 const rnd = () => ((sd = (sd * 1103515245 + 12345) >>> 0) / 4294967296);
+// Ben's references (8, shuffled by date) plus the illustrations of ours he has kept (lab/illo-guide, up to 6): the
+// reference images can go in 14 at a time. As more of ours are kept they take over; then the references go.
+const ours = (await readdir(join(CP, "lab", "illo-guide"))).filter((f) => /\.(jpe?g|png)$/i.test(f)).sort();
 const pick = useRefs ? [...all].sort(() => rnd() - 0.5).slice(0, 8) : all.slice(0, 4);
+const oursPick = useRefs ? [...ours].sort(() => rnd() - 0.5).slice(0, 6) : [];
 const files = pick.slice(0, 4);
 console.log(`Style guide from ${useRefs ? "Ben's references" : "our own illustrations"}: ${pick.join(", ")}`);
-const refImgs = await Promise.all(pick.map((f) => sharp(join(gdir, f)).resize(768, 768, { fit: "inside" }).jpeg({ quality: 85 }).toBuffer()));
+const refImgs = await Promise.all([...pick.map((f) => join(gdir, f)), ...oursPick.map((f) => join(CP, "lab", "illo-guide", f))]
+  .map((f) => sharp(f).resize(768, 768, { fit: "inside" }).jpeg({ quality: 85 }).toBuffer()));
+if (oursPick.length) console.log(`Plus ours: ${oursPick.join(", ")}`);
 const tiles = await Promise.all(files.map((f) => sharp(join(gdir, f)).resize(512, 512, { fit: "cover" }).toBuffer()));
 const guide = await sharp({ create: { width: 1024, height: 1024, channels: 3, background: "#ffffff" } })
   .composite(tiles.map((input, i) => ({ input, left: (i % 2) * 512, top: Math.floor(i / 2) * 512 }))).png().toBuffer();

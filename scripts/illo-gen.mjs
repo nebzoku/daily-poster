@@ -38,9 +38,10 @@ const rnd = () => ((sd = (sd * 1103515245 + 12345) >>> 0) / 4294967296);
 // Ben's references (8, shuffled by date) plus the illustrations of ours he has kept (lab/illo-guide, up to 6): the
 // reference images can go in 14 at a time. As more of ours are kept they take over; then the references go.
 const ours = (await readdir(join(CP, "lab", "illo-guide"))).filter((f) => /\.(jpe?g|png)$/i.test(f)).sort();
-const pick = useRefs ? [...all].sort(() => rnd() - 0.5).slice(0, 8) : all.slice(0, 4);
+const faces = all.filter((f) => f.startsWith("face-")), rest = all.filter((f) => !f.startsWith("face-"));
+const pick = useRefs ? [...rest].sort(() => rnd() - 0.5).slice(0, 5).concat(faces.slice(0, 3 + (sd % 3))) : all.slice(0, 4);
 const oursPick = useRefs ? [...ours].sort(() => rnd() - 0.5).slice(0, 6) : [];
-const files = pick.slice(0, 4);
+const files = pick.filter((f) => !f.startsWith("face-")).slice(0, 4);
 console.log(`Style guide from ${useRefs ? "Ben's references" : "our own illustrations"}: ${pick.join(", ")}`);
 const refImgs = await Promise.all([...pick.map((f) => join(gdir, f)), ...oursPick.map((f) => join(CP, "lab", "illo-guide", f))]
   .map((f) => sharp(f).resize(768, 768, { fit: "inside" }).jpeg({ quality: 85 }).toBuffer()));
@@ -73,7 +74,7 @@ ${style}
 Write ${COUNT} different scenes. Each: a subject anyone connects to the story in a second (people, the key object, the place),
 a DIFFERENT dramatic camera angle (very low looking up, very high looking down, fish-eye, a lone object in a big sky, a
 one-point interior, a cutaway), portrait format 1:1.41, the named headline zone kept as flat plain colour with no detail,
-the palette by hex, black ink line, and the highlight stated plainly in the prompt as: "The <element> is solid ${hl ? hl.name.toLowerCase() : ""} (${hl ? hl.hex : ""}), the only ${hl ? hl.name.toLowerCase() : ""} thing in the whole image; it is the focal point." If hands or faces appear, ask for correct
+the palette by hex, black ink line, and the highlight stated plainly in the prompt as: "The <element> is solid ${hl ? hl.name.toLowerCase() : ""} (${hl ? hl.hex : ""}), the only ${hl ? hl.name.toLowerCase() : ""} thing in the whole image; it is the focal point." If people appear: name a specific, diverse cast true to the story's place (skin tones, ages, builds, genders, dress and head coverings), each face individual and drawn with very few lines as the faces section of the style says (no generic pretty faces, no toothy smiles); and ask for correct
 anatomy: five fingers, natural knuckles, full-length thumb. No text, letters, logos or signatures in the image. Never
 name an artist. Start each prompt by saying it follows the attached style guide image (style only, not its subjects).`;
 const res = await fetch("https://api.anthropic.com/v1/messages", { method: "POST",
@@ -106,7 +107,7 @@ async function gemini(prompt) {
   const refs = refImgs.map((b) => ({ type: "image", mime_type: "image/jpeg", data: b.toString("base64") }));
   const r = await fetch("https://generativelanguage.googleapis.com/v1beta/interactions", { method: "POST",
     headers: { "content-type": "application/json", "x-goog-api-key": GEMINI },
-    body: JSON.stringify({ model, input: [...refs, { type: "text", text: `${prompt}\n\nThe attached images are style references only: match their line, colour treatment and rendering, never their subjects, characters or compositions.` }],
+    body: JSON.stringify({ model, input: [...refs, { type: "text", text: `${prompt}\n\nThe attached images are style references only: match their line, colour treatment and rendering (faces drawn the way the face close-ups are: few lines, specific, characterful), never their subjects, characters or compositions.` }],
       response_format: { type: "image", aspect_ratio: "2:3", image_size: process.env.GEMINI_IMAGE_SIZE || "2K" } }) });
   const body = await r.text();
   if (!r.ok) throw new Error(`Gemini ${r.status}: ${body.slice(0, 400)}`);

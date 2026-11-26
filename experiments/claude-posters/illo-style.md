@@ -32,3 +32,18 @@ line, plus ONE highlight colour used on a single small focal element. Whole scen
 - Faces (Ben, 26 Nov: the close-up pillion pair looked "cheesy and AI generated"): no grinning, posed, glossy faces
   looking at the viewer. Keep people at a distance, seen from behind or in profile, faces small and simply drawn (a
   few lines, no shine, no airbrushed skin), absorbed in what they're doing. Never a stock-photo smile.
+
+## Faces (Ben, 26 Nov: generic faces are what make it look AI and less ownable)
+Every face is a specific person, not a template. Drawn with very few lines: small dot or short-dash eyes, a single
+line for the nose (often just its edge in profile), a short mouth line, no eyelashes, no lips, no shine, no rendered
+cheeks or airbrushed skin, flat skin colour with at most one hard shadow shape. Mostly profile or three-quarter, absorbed
+in something, rarely looking at us; at most a slight, wry expression, never a toothy smile. What makes each one
+individual is the character detail: a distinctive haircut or wrap, glasses, a hard hat, earrings, a moustache, a
+heavy brow, an unusual nose or chin, age lines, a slightly odd proportion. No two faces in a scene share the same face,
+build or hairstyle.
+
+## Cast (Ben, 26 Nov)
+Whenever there are people, cast them diversely and true to the story's place: a range of skin tones, ages, body types,
+genders and dress, never defaulting to a uniformly Western, white, young, slim crowd. If the story is set somewhere
+specific (Swat in Pakistan, Appalachia, Gloucestershire), the people look like the people who live there, with the
+clothes, hair and head coverings they'd actually wear.

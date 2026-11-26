@@ -29,6 +29,15 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   from the brief and different layout systems and treatments. Colourways only swap which palette colours play
   background, middle (image marks) and type. Ben picks the one(s) to post the next day.
 
+### Round 32 (26 Nov 2026): specific faces, a diverse cast
+- **Generic faces read as AI and aren't ownable** (Ben on the food hall: everyone has the same pleasant face). Faces
+  are drawn with very few lines and made individual by character detail (hair, glasses, hard hat, earrings, age, an odd
+  nose or chin), mostly in profile or three-quarter, never a toothy smile, no two alike. Ben's face close-ups are in
+  the encrypted reference pack (`face-*.jpg`) and 3 to 5 of them go to Nano Banana every run; the full description is
+  in `illo-style.md` (Faces).
+- **A diverse cast, true to the story's place,** whenever there are people: skin tones, ages, builds, genders, dress and
+  head coverings; never a uniformly Western crowd. Check every scamp for it before using it; skip one that fails.
+
 ### Round 31 (26 Nov 2026): a fourth, combined concept every day; subline beside furniture
 - **A fourth concept every morning that combines the styles** (Ben, 26 Nov): spot illustrations (a crop of the day's
   scamp, `spotIn()`, in a circle or frame, on a card, taped) among thresholded, masked and pixelated image boxes, the

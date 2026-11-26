@@ -48,7 +48,7 @@ window.POSTER = async () => {
   if (CAPTURE) { const p = canvas(); draw(p.g, out); draw(p.g, bc); snap('place-ball', p); }
   const ballM = lumMask(bc, 0, { soft: 0.001 });
   draw(g, inter(tone(levels(bc, 0.04, 0.96), C.tones), ballM));
-  snap('step-tone', out);
+  snap('step-tone-1', out);
 
   // the flight: small squares off the road, up and over, stopping at the ball
   const P0 = [M + 8, roadTop - 8], P1 = [330, -70], P2 = [bx - br - 24, by + 8];

@@ -21,15 +21,16 @@ file to post (SendUserFile of the mp4, plus its caption in a code block). The mo
 | Item | Brief | Due (D+1 poster / D+2 reel) | Plan | Posted |
 | --- | --- | --- | --- | --- |
 | 050 The Summer Bottled Early, making-of reel | 21 Nov | 23 Nov | | posted (over 1,000 views) |
-| 051 The Long Road's Quiet Pause, making-of reel | 22 Nov | 24 Nov (overdue) | Wed 25 Nov, 12:00 | |
-| 052 Morris by Day Himself by Night, making-of reel | 23 Nov | 25 Nov (its poster goes out 13:00 today) | Wed 25 Nov, 17:00 | |
+| 051 The Long Road's Quiet Pause, making-of reel | 22 Nov | 24 Nov (overdue) | Wed 25 Nov, 12:00 | posted (Ben, 26 Nov) |
+| 052 Morris by Day Himself by Night, making-of reel | 23 Nov | 25 Nov (its poster goes out 13:00 today) | Wed 25 Nov, 17:00 | posted (Ben, 26 Nov) |
 | 054 Back From Functional Extinction, moving poster (9:16) | 25 Nov | 26 Nov | Thu 26 Nov, 13:00 | |
 | 053 Catch Mercury Before Sunrise, making-of reel | 24 Nov | 26 Nov | Thu 26 Nov, 17:00 | |
 | 054 Back From Functional Extinction, making-of reel | 25 Nov | 27 Nov | Fri 27 Nov, 17:00 | |
+| 055 The Ball Never Landed, making-of reel | 26 Nov | 28 Nov | Sat 28 Nov, 17:00 | |
 
 ## Automatic (auto-poster), as queued on 25 Nov
 
 - Wed 25 Nov: 052 Every Wall Became a Garden 10:30, 052 Morris by Day Himself by Night 13:00, 052 A Workman's House
   of Wonder 16:00, 053 Catch Mercury Before Sunrise 19:00, 053 The Smallest Planet Steps Out 21:30.
 - Thu 26 Nov: 053 Chasing Light Near the Sun (first slot, a day late). From Fri 27 Nov the grid is on the normal
-  rhythm: No. 055's picks (brief 26 Nov) go out on 27 Nov.
+  rhythm: No. 055's picks (brief 26 Nov) go out on 27 Nov: 1A The Ball Never Landed, 3C Caught Between Road and Rope (stills, automatic).

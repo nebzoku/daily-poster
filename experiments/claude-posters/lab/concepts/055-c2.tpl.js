@@ -57,7 +57,7 @@ window.POSTER = async () => {
   const ballM = lumMask(balC, 0, { soft: 0.001 });
   if (CAPTURE) { const p = canvas(); draw(p.g, out); draw(p.g, balC); snap('place-ball', p); }
   draw(g, inter(tone(levels(balC, 0.04, 0.96), C.tones), ballM));
-  snap('step-tone', out);
+  snap('step-tone-1', out);
 
   // small type: furniture on the left and the subline on the right, cap heights on the row-1 grid line
   const t = { font: T, size: 16, weight: 500, lead: 0.9, color: C.text };

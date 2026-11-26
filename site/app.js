@@ -206,7 +206,7 @@
     $("swatches").replaceChildren(
       ...palette.colours.map((c, i) => band(c, String(i + 1).padStart(2, "0"))),
       ...brief.always.map((c) => band(c, "Always")),
-      ...(brief.pop ? [band(brief.pop.hex, `Pop · ${brief.pop.name} · sparingly`)] : []));
+      ...(brief.highlight ? [band(brief.highlight.hex, `Highlight · ${brief.highlight.name} · sparingly`)] : []));
     // Tints and shades: two shades and two tints of each palette colour, a small row each.
     const chip = (hex) => {
       const fg = luminance(hex) > 0.4 ? "#111111" : "#FFFFFF";
@@ -691,9 +691,9 @@ ${inside}`;
     y += typeH + GAP;
 
     // Row 3: the colours.
-    const colours = palette.colours.concat(brief.always, brief.pop ? [brief.pop.hex] : []);
+    const colours = palette.colours.concat(brief.always, brief.highlight ? [brief.highlight.hex] : []);
     frame("Colours", 0, y, colours.length * 184 - 24, 160, colours.map((hex, i) =>
-      `<rect id="${brief.pop && i === colours.length - 1 ? `Pop ${hex} (sparingly, for a focal point)` : hex}" x="${i * 184}" y="0" width="160" height="160" fill="${hex}"${hex === "#FFFFFF" ? ' stroke="#E6E6E3"' : ""}/>`).join("\n"));
+      `<rect id="${brief.highlight && i === colours.length - 1 ? `Highlight ${hex} (sparingly, for a focal point)` : hex}" x="${i * 184}" y="0" width="160" height="160" fill="${hex}"${hex === "#FFFFFF" ? ' stroke="#E6E6E3"' : ""}/>`).join("\n"));
     y += 160 + GAP;
     // Row 3b: tints and shades, a row of four small chips under each palette colour's column.
     if ((brief.shades || []).length) {

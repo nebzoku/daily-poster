@@ -1,0 +1,124 @@
+{
+ "049": {
+  "a": {
+   "wallT": "#2376D4",
+   "wallR": "#1B62B1",
+   "wallB": "#031A36",
+   "wallL": "#98B6F5",
+   "sky": "#EFF5FF",
+   "cage": "#6A727D",
+   "pop": "#F33446",
+   "popShade": "#D02B3A",
+   "line": "#02142C",
+   "type": "#EFF5FF",
+   "text": "#EFF5FF",
+   "finish": "riso",
+   "stock": "uncoated"
+  }
+ },
+ "050": {
+  "a": {
+   "ground": "#A0F1F1",
+   "ground2": "#4CEBEB",
+   "groundShade": "#42CFCF",
+   "groundShade2": "#35ADAD",
+   "lane": "#D0F7F7",
+   "shirt": "#FFFFFF",
+   "hat": "#E5FAFA",
+   "pop": "#F43BEC",
+   "grape": "#012525",
+   "line": "#011818",
+   "type": "#012525",
+   "text": "#012525",
+   "finish": "riso",
+   "stock": "uncoated"
+  }
+ },
+ "051": {
+  "a": {
+   "night": "#002619",
+   "star": "#C0F2DB",
+   "hill": "#002015",
+   "ground": "#4A5450",
+   "wet": "#67756F",
+   "pump": "#C0F2DB",
+   "lamp": "#E8FAF1",
+   "pillar": "#A9D5C1",
+   "canopy": "#5A6661",
+   "fascia": "#67756F",
+   "pop": "#F33496",
+   "line": "#000000",
+   "type": "#4CF1B7",
+   "text": "#C0F2DB",
+   "finish": "riso",
+   "stock": "uncoated"
+  }
+ },
+ "052": {
+  "a": {
+   "wall": "#EDF9ED",
+   "wallShade": "#B4D3B4",
+   "vine": "#022105",
+   "leaf": "#4BF761",
+   "tube": "#5D665C",
+   "deck": "#AAAEAA",
+   "pop": "#2987F1",
+   "popShade": "#2172CE",
+   "overall": "#FFFFFF",
+   "overallShade": "#B4D3B4",
+   "cap": "#41DA54",
+   "skin": "#DEF5DE",
+   "line": "#021A04",
+   "type": "#032707",
+   "text": "#032707",
+   "finish": "riso",
+   "stock": "uncoated"
+  }
+ },
+ "053": {
+  "a": {
+   "sky": [
+    "#192400",
+    "#50534A",
+    "#6F7467",
+    "#9FCA3A",
+    "#B5E643",
+    "#CFEE9D",
+    "#E5F5CF"
+   ],
+   "hills": [
+    "#61655A",
+    "#50534A",
+    "#151E00",
+    "#0F1700"
+   ],
+   "figure": "#0F1700",
+   "pop": "#473CED",
+   "line": "#0F1700",
+   "type": "#E5F5CF",
+   "text": "#E5F5CF",
+   "finish": "riso",
+   "stock": "uncoated"
+  }
+ },
+ "054": {
+  "a": {
+   "sky": "#FAEDCF",
+   "leaf": "#F1CF43",
+   "leaf2": "#D4B63A",
+   "bark": "#666458",
+   "barkLight": "#AEADA8",
+   "coat": "#261F01",
+   "coatShade": "#191401",
+   "trousers": "#F5EDD1",
+   "trousersShade": "#D4CAA2",
+   "skin": "#F5DF9D",
+   "pop": "#4CEBEB",
+   "line": "#191401",
+   "type": "#261F01",
+   "text": "#261F01",
+   "finish": "riso",
+   "stock": "uncoated"
+  }
+ }
+}

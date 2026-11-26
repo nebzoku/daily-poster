@@ -97,11 +97,12 @@ export function paletteFor(date) {
 
 export const ALWAYS = ["#000000", "#FFFFFF"];
 
-// ---- The pop, and tints and shades (Ben, 26 Nov 2026) ----
-// The pop: one bright colour from across the wheel from today's lead (3 to 6 steps away: orange with neon green,
+// ---- The highlight, and tints and shades (Ben, 26 Nov 2026) ----
+// The highlight (first called the pop): one bright colour from across the wheel from today's lead (3 to 6 steps away: orange with neon green,
 // jade, teal or cobalt blue), rotating day to day. Use it sparingly, for a focal point: one small element.
-export function popFor(date) {
-  const i = wheelIndex(date), steps = [3, 4, 5, 6], k = steps[(((issueNumber(date)) % 4) + 4) % 4];
+export function highlightFor(date) {
+  // the wheel steps back one place a day, so the offset jumps around (3, 5, 4, 6) to keep the highlight changing daily
+  const i = wheelIndex(date), steps = [3, 5, 4, 6], k = steps[(((issueNumber(date)) % 4) + 4) % 4];
   const [name, hex] = [WHEEL[(i + k) % 12].name, WHEEL[(i + k) % 12].main];
   return { name, hex, use: "Sparingly, for a focal point: one small element that should catch the eye." };
 }

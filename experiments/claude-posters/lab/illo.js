@@ -305,3 +305,35 @@ function photoShade(photo, viewW, P, mask, q = 0.35, { blur = 5, minArea = 300 }
   const L = inter(blurred(c, blur), mask);
   return removeSmall(alphaThr(blurred(inter(cut(mask, lumMask(L, pct(L, q), { soft: 0.01 })), mask), 2), 0.5), minArea);
 }
+
+// One traced shape from a reference: fill, cel shadow from the photo's light (photo optional), outline.
+function refFill(I, P, pts, col, shadeCol = null, photo = null, q = 0.4, lw = 3, viewW = 800) {
+  const m = closed(P(pts)); I.fill(m, col);
+  if (photo && shadeCol) I.fill(photoShade(photo, viewW, P, m, q, { blur: 4, minArea: 120 }), shadeCol);
+  I.ink(outline(m, lw)); return m;
+}
+// The usual furniture and subline, set over the illustration with a knock-out pad in `padCol` so they always read.
+function illoSmall(g, I, C, font, furniture, subline, { padCol, x = M, y = M + ROW } = {}) {
+  const t = { font, size: 16, weight: 500, lead: 0.9, color: C.text }, s = canvas();
+  block(s.g, furniture, x, y, t);
+  if (subline) { const sub = balance(subline, { ...t, minW: 220, maxW: COL * 2.6 }); block(s.g, sub.lines, W - M, y, { ...t, align: 'right' }); }
+  if (padCol) I.fill(dilate(alphaThr(s, 0.3), 10), padCol);
+  draw(g, tint(s, C.text));
+}
+// Print an illustrated sheet: fills gently, line work as worn black ink, then the headline and the paper.
+function illoPrint(g, I, C, head, HS, bg, sd) {
+  printAll(g, C, { seed: sd, wear: 0.12, spread: 0.5, bg });
+  I.print(g, C.line || '#000000', sd);
+  printHead(g, head, C.type, C.finish, { bg, seed: sd + 1, wear: HS.ink.wear, spread: HS.ink.spread });
+  snap('printed', g.canvas);
+  stock(g, C.stock, sd + 2);
+}
+// A sky or glow as stepped bands of tints (the references' gradients, kept flat so they print as plates):
+// cols from top to bottom, bands bowing with `bow` (positive = sagging in the middle, like a horizon glow).
+function bands(cols, y0, y1, { bow = 0, x0 = -40, x1 = W + 40 } = {}) {
+  const n = cols.length, out = [];
+  for (let i = 0; i < n; i++) { const a = y0 + (y1 - y0) * i / n, b = y0 + (y1 - y0) * (i + 1) / n;
+    const edge = (y) => curve([[x0, y], [(x0 + x1) / 2, y + bow], [x1, y]], 10);
+    out.push([poly([...edge(a), ...edge(b).reverse()]), cols[i]]); }
+  return out;
+}

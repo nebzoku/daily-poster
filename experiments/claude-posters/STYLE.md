@@ -29,6 +29,30 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   from the brief and different layout systems and treatments. Colourways only swap which palette colours play
   background, middle (image marks) and type. Ben picks the one(s) to post the next day.
 
+### Round 28 (26 Nov 2026): drawing from references, and the illustration moves library
+- **Draw from photos, by hand:** the subject's contours are traced as clean curves from a gridded view of a reference
+  photo (`refMap`, `closed`, `refFill`), and the photo supplies only the cel shadows inside them (`photoShade`).
+  Fully automatic tracing (`traceArt`) gives a posterised-photo look, not illustration: use it only for texture, never
+  for the subject. Scenery is drawn in code; ready-made objects (`ballArt`, `objectArt`) for simple things.
+- **From Ben's larger reference set (26 Nov; other artists' work, not kept in the repo, borrow the moves only):**
+  - line work is often a dark shade of the scene's own hue, not black (navy on a blue scene, bottle green on green);
+  - whole scenes in one hue family with one highlight, like a red factory, a blue kitchen, a green street;
+  - skies, glows and pools of light as stepped bands of tints (`bands`);
+  - single objects on a flat colour field (a lipstick, a frog, a bulb), cleanly outlined and cel-shaded;
+  - architectural perspective: interiors and streets in one- or two-point perspective, full of small detail;
+  - fine thin-line texture everywhere (grass, bark, water, brick), never a flat empty fill for long.
+- **The moves library** (rotate; never the same move two days running; log which was used):
+  1. Lone object in a big sky (055 "The ball never landed": ball over a cloud bank). Works.
+  2. Hero close-up from a reference, low angle against the sky (055 "One hand": the hand taking the ball). Works.
+  3. Low angle under an overhead structure (051: the forecourt canopy at night, lamps rushing overhead). Works.
+  4. Tiny figure, huge sky, stepped glow (053: a figure on a ridge, Mercury one dot). Works.
+  5. Worm's-eye up something tall (054: a giant trunk with a person at its foot). Works once the subject is drawn
+     with its own character (roots, knots, limbs); a plain tapering shape reads as a road.
+  6. Figure at work, traced, low angle (052: the decorator on his scaffold). OK; keep traced shadows simple.
+  7. Straight down from above (050: vineyard rows). OK as texture; people from above need to be bigger to read.
+  8. Looking up a shaft (049). Reads as a corridor; needs light falling down it and things seen from below.
+  9. To try: fish-eye street from a low angle; a cutaway; an interior in one-point perspective; isometric.
+
 ### Round 27 feedback (26 Nov 2026): illustration, angles, line, a pop colour, tints and shades
 - **Test 1 (the ball over the clouds) is great; the flat road scene was not.** What makes the references work:
 - **Dramatic angles for wide scenes:** a very high angle looking down, a very low angle looking up, or a fish-eye
@@ -42,9 +66,9 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   shown on the site: `scripts/illo-refs.mjs` (the Illustration references workflow, after the brief) saves
   `experiments/claude-posters/refs/<date>/ref-*.jpg` with credits in `refs.json`. Search terms can be set by hand in
   `requests/illo-refs.txt`.
-- **A pop colour, used very sparingly** (applies to every style, not just illustration): one bright colour from across
+- **A highlight colour (first called the pop), used very sparingly** (applies to every style, not just illustration): one bright colour from across
   the colour wheel from the day's lead (orange with neon green, jade, teal or cobalt blue), on one small element only
-  (the rope, a kite, a hat, a sign): a focal point. It's in the public brief too (`brief.pop`, from
+  (the rope, a kite, a hat, a sign): a focal point. It's in the public brief too as the highlight (`brief.highlight`, from
   `scripts/lib/palette.mjs`, with the same guidance for everyone); `popFor(brief)` reads it. This loosens Round 12's "nothing
   outside the day's palette": the palette plus black and white, plus one pop, plus tints and shades.
 - **Tints and shades of the palette colours** are allowed everywhere, for shading and to make illustrations feel

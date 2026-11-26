@@ -38,7 +38,7 @@
     "#000000",
     "#FFFFFF"
   ],
-  "pop": {
+  "highlight": {
     "name": "Blue",
     "hex": "#2987F1",
     "use": "Sparingly, for a focal point: one small element that should catch the eye."

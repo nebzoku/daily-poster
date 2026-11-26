@@ -23,8 +23,8 @@ file to post (SendUserFile of the mp4, plus its caption in a code block). The mo
 | 050 The Summer Bottled Early, making-of reel | 21 Nov | 23 Nov | | posted (over 1,000 views) |
 | 051 The Long Road's Quiet Pause, making-of reel | 22 Nov | 24 Nov (overdue) | Wed 25 Nov, 12:00 | posted (Ben, 26 Nov) |
 | 052 Morris by Day Himself by Night, making-of reel | 23 Nov | 25 Nov (its poster goes out 13:00 today) | Wed 25 Nov, 17:00 | posted (Ben, 26 Nov) |
-| 054 Back From Functional Extinction, moving poster (9:16) | 25 Nov | 26 Nov | Thu 26 Nov, 13:00 | |
-| 053 Catch Mercury Before Sunrise, making-of reel | 24 Nov | 26 Nov | Thu 26 Nov, 17:00 | |
+| 054 Back From Functional Extinction, moving poster (9:16) | 25 Nov | 26 Nov | Thu 26 Nov, 13:00 | posted (Ben, 26 Nov) |
+| 053 Catch Mercury Before Sunrise, making-of reel | 24 Nov | 26 Nov | Thu 26 Nov, 17:00 | posted (Ben, 26 Nov) |
 | 054 Back From Functional Extinction, making-of reel | 25 Nov | 27 Nov | Fri 27 Nov, 17:00 | |
 | 055 The Ball Never Landed, making-of reel | 26 Nov | 28 Nov | Sat 28 Nov, 17:00 | |
 

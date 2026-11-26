@@ -1,0 +1,289 @@
+{
+  "date": "2026-11-26",
+  "issue": 55,
+  "generatedAt": "2026-11-26T05:08:37.400Z",
+  "colour": {
+    "name": "Orange",
+    "yesterday": "Yellow",
+    "tomorrow": "Red"
+  },
+  "story": {
+    "title": "Greatest catch ever? Man on motorbike takes incredible grab",
+    "summary": "During a Swat Premier League match in Pakistan, a batter hit a six out of the ground. A passenger on a passing motorbike caught the ball one-handed, and the clip spread around the world.",
+    "source": "BBC News",
+    "url": "https://www.bbc.co.uk/sport/cricket/videos/cwx2e0g93l3eo?at_medium=RSS&amp;at_campaign=rss",
+    "published": "2026-11-25T16:23:03.000Z",
+    "theme": "cricket and everyday feats"
+  },
+  "headlines": [
+    "One Hand, Two Wheels",
+    "The Ball Never Landed",
+    "Caught Between Road and Rope"
+  ],
+  "sublines": [
+    "A motorbike passenger caught a six one-handed outside the ground at Pakistan's Swat Premier League.",
+    "The clip travelled the world, and the BBC has since tracked down the rider behind the catch.",
+    "Hit out of the ground in a local league match, the ball met a stranger's hand on the road."
+  ],
+  "palette": {
+    "name": "Vivid",
+    "colours": [
+      "#F1592A",
+      "#FFDCD1",
+      "#7D6E69",
+      "#3A1004"
+    ]
+  },
+  "always": [
+    "#000000",
+    "#FFFFFF"
+  ],
+  "type": {
+    "id": "anybody",
+    "display": "Anybody",
+    "text": "Azeret Mono",
+    "reason": "Anybody's stretched, variable-width letters suggest speed and a ball in flight, matching a catch made on the move.",
+    "css": "https://fonts.googleapis.com/css2?family=Anybody&family=Azeret+Mono&display=swap",
+    "displayUrl": "https://fonts.google.com/specimen/Anybody",
+    "textUrl": "https://fonts.google.com/specimen/Azeret+Mono"
+  },
+  "grid": {
+    "format": "A-size",
+    "size": [
+      1080,
+      1528
+    ],
+    "columns": 8,
+    "rows": 8,
+    "margin": 16,
+    "gutter": 0,
+    "column": 131,
+    "row": 187,
+    "unit": "px"
+  },
+  "images": [
+    {
+      "id": "unsplash:STnkEsmiZag",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "Silhouetted cricket player batting at sunset near the ocean",
+      "credit": "Thilina Alagiyawanna",
+      "creditUrl": "https://unsplash.com/@thilinaalagiyawanna?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/silhouetted-cricket-player-batting-at-sunset-near-the-ocean-STnkEsmiZag?utm_source=daily_poster&utm_medium=referral",
+      "alt": "Silhouetted cricket player batting at sunset near the ocean",
+      "thumb": "https://images.unsplash.com/photo-1783124759384-127efcd92eab?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8b3JhbmdlJTIwc3Vuc2V0JTIwY3JpY2tldHxlbnwxfHx8fDE3OTU2Njk3MTh8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1783124759384-127efcd92eab?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8b3JhbmdlJTIwc3Vuc2V0JTIwY3JpY2tldHxlbnwxfHx8fDE3OTU2Njk3MTh8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:t0HXB2DND0g",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "A cricket bat with an orange handle on a tiled floor in sunlight",
+      "credit": "Giri",
+      "creditUrl": "https://unsplash.com/@giridharan?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/cricket-bat-on-tiled-floor-t0HXB2DND0g?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A cricket bat with an orange handle on a tiled floor in sunlight",
+      "thumb": "https://images.unsplash.com/photo-1789121789069-bf47829d3c47?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8b3JhbmdlJTIwc3Vuc2V0JTIwY3JpY2tldHxlbnwxfHx8fDE3OTU2Njk3MTh8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1789121789069-bf47829d3c47?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8b3JhbmdlJTIwc3Vuc2V0JTIwY3JpY2tldHxlbnwxfHx8fDE3OTU2Njk3MTh8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:omEIcPs_WxU",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "man riding motorcycle on brown field during daytime",
+      "credit": "Bradley Dunn",
+      "creditUrl": "https://unsplash.com/@bradleycdunn?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/man-riding-motorcycle-on-brown-field-during-daytime-omEIcPs_WxU?utm_source=daily_poster&utm_medium=referral",
+      "alt": "man riding motorcycle on brown field during daytime",
+      "thumb": "https://images.unsplash.com/photo-1608566048123-c266ed1c7cd8?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8bW90b3JiaWtlJTIwZHVzdHklMjByb2FkfGVufDF8fHx8MTc5NTY2OTcxOHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1608566048123-c266ed1c7cd8?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8bW90b3JiaWtlJTIwZHVzdHklMjByb2FkfGVufDF8fHx8MTc5NTY2OTcxOHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:jKnb3R7rIrw",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "man riding on red and white dirt motorcycle during daytime",
+      "credit": "Dmitry Lothbrok",
+      "creditUrl": "https://unsplash.com/@dmlothbrok?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/man-riding-on-red-and-white-dirt-motorcycle-during-daytime-jKnb3R7rIrw?utm_source=daily_poster&utm_medium=referral",
+      "alt": "man riding on red and white dirt motorcycle during daytime",
+      "thumb": "https://images.unsplash.com/photo-1593771332065-1a56e718cef8?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8bW90b3JiaWtlJTIwZHVzdHklMjByb2FkfGVufDF8fHx8MTc5NTY2OTcxOHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1593771332065-1a56e718cef8?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8bW90b3JiaWtlJTIwZHVzdHklMjByb2FkfGVufDF8fHx8MTc5NTY2OTcxOHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:nQ2TaA_zphE",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "people riding motorcycle on brown grass field during daytime",
+      "credit": "vikram sundaramoorthy",
+      "creditUrl": "https://unsplash.com/@vikramstudio46?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/people-riding-motorcycle-on-brown-grass-field-during-daytime-nQ2TaA_zphE?utm_source=daily_poster&utm_medium=referral",
+      "alt": "people riding motorcycle on brown grass field during daytime",
+      "thumb": "https://images.unsplash.com/photo-1580357703484-4bbb329b83a7?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8bW90b3JiaWtlJTIwZHVzdHklMjByb2FkfGVufDF8fHx8MTc5NTY2OTcxOHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1580357703484-4bbb329b83a7?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8bW90b3JiaWtlJTIwZHVzdHklMjByb2FkfGVufDF8fHx8MTc5NTY2OTcxOHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:duXwICzzshc",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "man in black jacket riding motorcycle on road during daytime",
+      "credit": "Spencer Davis",
+      "creditUrl": "https://unsplash.com/@spencerdavis?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/man-in-black-jacket-riding-motorcycle-on-road-during-daytime-duXwICzzshc?utm_source=daily_poster&utm_medium=referral",
+      "alt": "man in black jacket riding motorcycle on road during daytime",
+      "thumb": "https://images.unsplash.com/photo-1617374898771-55ef1bb860da?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8bW90b3JiaWtlJTIwZHVzdHklMjByb2FkfGVufDF8fHx8MTc5NTY2OTcxOHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1617374898771-55ef1bb860da?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8bW90b3JiaWtlJTIwZHVzdHklMjByb2FkfGVufDF8fHx8MTc5NTY2OTcxOHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:360635",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "The Horseman, 1650",
+      "credit": "Wenceslaus Hollar",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/360635",
+      "page": "https://www.metmuseum.org/art/collection/search/360635",
+      "alt": "The Horseman",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP823360.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP823360.jpg",
+      "local": "media/2026-11-26/image-07-2160.jpg"
+    },
+    {
+      "id": "met:60712",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Cricket cage, 17th–19th century",
+      "credit": "China",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/60712",
+      "page": "https://www.metmuseum.org/art/collection/search/60712",
+      "alt": "Cricket cage",
+      "thumb": "https://images.metmuseum.org/CRDImages/as/web-large/28_186_9.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/as/original/28_186_9.jpg",
+      "local": "media/2026-11-26/image-08-2160.jpg"
+    },
+    {
+      "id": "unsplash:QnCGm0abMlk",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "Silhouette of an insect against a sunset",
+      "credit": "Sushanta Rokka",
+      "creditUrl": "https://unsplash.com/@sanoyatra?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/silhouette-of-an-insect-against-a-sunset-QnCGm0abMlk?utm_source=daily_poster&utm_medium=referral",
+      "alt": "Silhouette of an insect against a sunset",
+      "thumb": "https://images.unsplash.com/photo-1763480005956-705e43e9cee6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8b3JhbmdlJTIwc3Vuc2V0JTIwY3JpY2tldHxlbnwxfHx8fDE3OTU2Njk3MTh8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1763480005956-705e43e9cee6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8b3JhbmdlJTIwc3Vuc2V0JTIwY3JpY2tldHxlbnwxfHx8fDE3OTU2Njk3MTh8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:KCYPgBWZVJI",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "silhouette of two sticks",
+      "credit": "Xavier  Coiffic",
+      "creditUrl": "https://unsplash.com/@xaviercoiffic?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/silhouette-of-two-sticks-KCYPgBWZVJI?utm_source=daily_poster&utm_medium=referral",
+      "alt": "silhouette of two sticks",
+      "thumb": "https://images.unsplash.com/photo-1572339152404-10837f826617?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8b3JhbmdlJTIwc3Vuc2V0JTIwY3JpY2tldHxlbnwxfHx8fDE3OTU2Njk3MTh8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1572339152404-10837f826617?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8b3JhbmdlJTIwc3Vuc2V0JTIwY3JpY2tldHxlbnwxfHx8fDE3OTU2Njk3MTh8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    }
+  ],
+  "textures": [
+    {
+      "id": "unsplash:XFWiZTa2Ub0",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "crumpled beige parchment paper texture",
+      "credit": "SJ Objio",
+      "creditUrl": "https://unsplash.com/@sjobjio?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/crumpled-beige-parchment-paper-texture-XFWiZTa2Ub0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "crumpled beige parchment paper texture",
+      "thumb": "https://images.unsplash.com/photo-1603484477859-abe6a73f9366?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cm91Z2glMjBwYXBlciUyMHRleHR1cmV8ZW58MXx8fHwxNzk1NjY5NzE4fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1603484477859-abe6a73f9366?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cm91Z2glMjBwYXBlciUyMHRleHR1cmV8ZW58MXx8fHwxNzk1NjY5NzE4fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "polyhaven:rocky_trail_02",
+      "source": "Poly Haven",
+      "licence": "CC0",
+      "title": "Rocky Trail 02",
+      "credit": "Amal Kumar",
+      "creditUrl": "https://polyhaven.com/a/rocky_trail_02",
+      "page": "https://polyhaven.com/a/rocky_trail_02",
+      "alt": "Rocky Trail 02 texture",
+      "thumb": "https://cdn.polyhaven.com/asset_img/thumbs/rocky_trail_02.png?width=480&height=480",
+      "src": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/rocky_trail_02/rocky_trail_02_diff_2k.jpg",
+      "local": "media/2026-11-26/texture-02-2160.jpg"
+    },
+    {
+      "id": "unsplash:vS3idIiYxX0",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "white textured paper or plaster surface",
+      "credit": "Olga Thelavart",
+      "creditUrl": "https://unsplash.com/@olga_o?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-vS3idIiYxX0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "white textured paper or plaster surface",
+      "thumb": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cm91Z2glMjBwYXBlciUyMHRleHR1cmV8ZW58MXx8fHwxNzk1NjY5NzE4fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cm91Z2glMjBwYXBlciUyMHRleHR1cmV8ZW58MXx8fHwxNzk1NjY5NzE4fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:UuBR5kbvt4Y",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a black and white photo of a concrete wall",
+      "credit": "Yan Ots",
+      "creditUrl": "https://unsplash.com/@yanots?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-black-and-white-photo-of-a-concrete-wall-UuBR5kbvt4Y?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a black and white photo of a concrete wall",
+      "thumb": "https://images.unsplash.com/photo-1521459467264-802e2ef3141f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8ZHVzdCUyMHRleHR1cmV8ZW58MXx8fHwxNzk1NjY5NzE4fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1521459467264-802e2ef3141f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8ZHVzdCUyMHRleHR1cmV8ZW58MXx8fHwxNzk1NjY5NzE4fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    }
+  ],
+  "objects": [
+    {
+      "name": "cricket ball",
+      "material": "worn red leather with raised seam",
+      "image": "media/2026-11-26/object-1.png",
+      "thumb": "media/2026-11-26/object-1-thumb.png",
+      "model": {
+        "title": "Cricket Ball (Sports).",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-b13a0d69d6ca48d4b125de2cc2e7f940",
+        "licence": "CC Attribution",
+        "creator": "Rohit Pawar",
+        "creatorUrl": "https://sketchfab.com/rohit8999"
+      },
+      "texture": null
+    },
+    {
+      "name": "motorbike",
+      "material": "brushed steel",
+      "image": "media/2026-11-26/object-2.png",
+      "thumb": "media/2026-11-26/object-2-thumb.png",
+      "model": {
+        "title": "motorcycle",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-d3077af5fcf8464c884c6c1d611ff69b",
+        "licence": "CC Attribution",
+        "creator": "Chenchanchong",
+        "creatorUrl": "https://sketchfab.com/Chenchanchong"
+      },
+      "texture": {
+        "title": "Corrugated Iron",
+        "url": "https://polyhaven.com/a/corrugated_iron"
+      }
+    },
+    {
+      "name": "cricket bat",
+      "material": "weathered pale wood",
+      "image": "media/2026-11-26/object-3.png",
+      "thumb": "media/2026-11-26/object-3-thumb.png",
+      "model": {
+        "title": "Cricket bat used authentic photoscan and retop",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-9b6b52ac743449fab2e262097b1de086",
+        "licence": "CC Attribution",
+        "creator": "roystoncinemo",
+        "creatorUrl": "https://sketchfab.com/roystoncinemo"
+      },
+      "texture": null
+    }
+  ]
+}

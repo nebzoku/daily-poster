@@ -25,6 +25,9 @@ const longDate = (d) => new Intl.DateTimeFormat("en-GB", { weekday: "long", day:
 // Instagram allows at most five hashtags a post. extra replaces the last one (e.g. #makingof on a reel caption).
 const TAGS = (issue, type, extra) => `#dailyposter #dailyposter${pad(issue)} #posterdesign #typography ${extra || (type?.libre?.foundry === "Velvetyne" ? "#velvetyne_type_foundry" : "#graphicdesign")}`;
 // Libre faces are credited to their designer and foundry, as their licences ask.
+// Posters the machine makes are credited to Daily Poster, curated by Ben (Ben, 26 Nov 2026: so it's clear the machine
+// writes the brief and makes the posters, with a human in the loop setting the direction).
+const creditLine = (p) => (p.designer === "Daily Poster" ? "Made by Daily Poster, curated by Ben Harwood" : `Poster by ${p.instagram ? "@" + p.instagram.replace(/^@/, "") : p.designer}`);
 const typeLine = (t) => `${t.display}${t.libre ? ` by ${t.libre.designer} (${t.libre.foundry})` : ""} and ${t.text}`;
 export function posterCaption(p, brief) {
   return [
@@ -36,7 +39,7 @@ export function posterCaption(p, brief) {
     "",
     `Source: ${brief.story.source}`,
     `Type: ${p.typeUsed || typeLine(brief.type)}`,   // typeUsed: when a poster sets its own
-    `Poster by ${p.instagram ? "@" + p.instagram.replace(/^@/, "") : p.designer}`,
+    creditLine(p),
     "",
     // A line on how it was made, when the archive entry has one (handy for moving posters).
     ...(p.made ? [`How it was made: ${p.made}`, ""] : []),
@@ -52,7 +55,7 @@ export function makingOfCaption(p, brief) {
     "",
     `How Daily Poster No. ${pad(brief.issue)} came together, from an empty artboard to the print.`,
     "",
-    `Poster by ${p.instagram ? "@" + p.instagram.replace(/^@/, "") : p.designer}`,
+    creditLine(p),
     "",
     "Today's brief is live at dailyposter.design",
     "",

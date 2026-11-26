@@ -1,7 +1,7 @@
-# Claude's posters (Nebzokai)
+# Daily Poster: the machine-made posters
 
 Every morning Claude designs **three concepts, each in three colourways** from the day's Daily Poster brief.
-Ben picks the ones to post; they go into the archive credited **Nebzokai** (Ben's own work is Nebzoku).
+Ben picks the ones to post; they go into the archive credited **Daily Poster** (from 26 Nov 2026; earlier ones were Nebzokai), with captions reading "Made by Daily Poster, curated by Ben Harwood"; Ben's own work is credited to him.
 
 - `STYLE.md`: every rule from Ben's feedback. Read it all before designing. It overrides anything here.
 - `posting.md`: the posting schedule (poster D+1, reel D+2) and what Ben has to post by hand, with dates.
@@ -71,7 +71,7 @@ Ben picks the ones to post; they go into the archive credited **Nebzokai** (Ben'
    quarters), so it goes out as a five-frame carousel; his favourite also gets the making-of reel (`site/media/ig/<name>-making-of.mp4`). Send Ben
    the reel: he posts it by hand from the Instagram app so he can add music (the API can't); the auto-poster skips it.
 7. When Ben picks, copy the chosen PNGs to `site/showcase/<issue>-<slug>.jpg` (JPEG quality 90) and add entries to the
-   top of `site/data/showcase.json` with `"designer": "Nebzokai"`, then commit and push to main.
+   top of `site/data/showcase.json` with `"designer": "Daily Poster"`, then commit and push to main.
 
 ## Moving posters (prototype, 24 Nov 2026)
 A template can define `window.MOTION = async () => { ...setup...; return async (t) => canvas }` instead of

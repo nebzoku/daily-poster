@@ -406,7 +406,7 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   headline is split into a top and bottom block, the split goes on the strongest pause.
 - **Let the type mirror the shape of the image.** When the image is a centred or symmetrical shape (the bunch of
   grapes on 050 concept 3), centre the headline in the same position so the two echo each other.
-- Credit in the archive: posters Claude designs are credited **Nebzokai**; Ben's own are **Nebzoku**. Never "Claude".
+- Credit in the archive: posters Claude designs are credited **Daily Poster** (Ben, 26 Nov 2026; Nebzokai before), and captions say "Made by Daily Poster, curated by Ben Harwood"; Ben's own are credited to him. Never "Claude".
 
 ### Round 8 feedback (23 Nov 2026)
 - **Bottom margin: the last line's ink sits on it, descenders included** (revised 24 Nov: baselines on the margin

@@ -29,6 +29,14 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   from the brief and different layout systems and treatments. Colourways only swap which palette colours play
   background, middle (image marks) and type. Ben picks the one(s) to post the next day.
 
+### Round 25 feedback (26 Nov 2026): moving posters match the static ones in the grid
+- **The 9:16 moving poster sits in the profile grid at the same size and crop as the static posters.** Instagram's
+  grid shows every post as a 3:4 tile: a static post (the poster 1262 px tall on a 1080 × 1350 black frame) is cropped at
+  the sides, and a reel is cropped to its centre 1080 × 1440. So the reel's poster is 1346 px tall and 952 px wide,
+  centred on black (93.5% of the tile's height, like the static posts), not 1284 px as before, which looked smaller
+  (`motion.py`). `motion.py` also writes `<name>-reel-cover.jpg`, a still in the same layout, to set as the reel's
+  cover when posting.
+
 ### Round 24 feedback (25 Nov 2026): the scanned two-colour style is one style in the mix
 - **Not a pivot.** The scanned, two-colour, one-sheet style (Rounds 19–23) is an extra style to bring in for variety,
   mostly when the day's face is a serif. Most days, most concepts stay in the established styles; at most one of

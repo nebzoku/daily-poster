@@ -1,0 +1,175 @@
+{
+  "date": "2026-11-24",
+  "queries": [
+    "person with telescope hill silhouette",
+    "telescope eyepiece looking",
+    "dawn sky horizon",
+    "stargazing person looking up",
+    "observatory dome",
+    "hand adjusting telescope"
+  ],
+  "refs": [
+    {
+      "file": "ref-01.jpg",
+      "title": "photo of stars on sky",
+      "credit": "Grant McIver",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/photo-of-stars-on-sky-pmUEwPKL5IE?utm_source=daily_poster&utm_medium=referral",
+      "query": "brief"
+    },
+    {
+      "file": "ref-02.jpg",
+      "title": "blue and orange sky during sunset",
+      "credit": "Luke Moss",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/blue-and-orange-sky-during-sunset-pbuMoKhf07U?utm_source=daily_poster&utm_medium=referral",
+      "query": "brief"
+    },
+    {
+      "file": "ref-03.jpg",
+      "title": "landscape photography of sunset",
+      "credit": "Chris Galbraith",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/landscape-photography-of-sunset-j_3qB1KygQ4?utm_source=daily_poster&utm_medium=referral",
+      "query": "brief"
+    },
+    {
+      "file": "ref-04.jpg",
+      "title": "Full moon visible over a dark, grassy hill",
+      "credit": "Brett Jordan",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/full-moon-visible-over-a-dark-grassy-hill-7lTscgXZ2rs?utm_source=daily_poster&utm_medium=referral",
+      "query": "brief"
+    },
+    {
+      "file": "ref-05.jpg",
+      "title": "body of water during sunset",
+      "credit": "Laib Khaled",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/body-of-water-during-sunset-ZyQVK4tG4tY?utm_source=daily_poster&utm_medium=referral",
+      "query": "brief"
+    },
+    {
+      "file": "ref-06.jpg",
+      "title": "blue sea under blue sky during daytime",
+      "credit": "Hans",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/blue-sea-under-blue-sky-during-daytime-UaBK3fkTZ-Q?utm_source=daily_poster&utm_medium=referral",
+      "query": "brief"
+    },
+    {
+      "file": "ref-07.jpg",
+      "title": "silhouette of person holding telescope graphic",
+      "credit": "Michael Kemp",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/silhouette-of-person-holding-telescope-graphic-TUUO_xtq-NM?utm_source=daily_poster&utm_medium=referral",
+      "query": "person with telescope hill silhouette"
+    },
+    {
+      "file": "ref-08.jpg",
+      "title": "A person photographs sunrise from mountain",
+      "credit": "Sanjeev Shakya",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/a-person-photographs-sunrise-from-mountain-zY3WpB6StUA?utm_source=daily_poster&utm_medium=referral",
+      "query": "person with telescope hill silhouette"
+    },
+    {
+      "file": "ref-09.jpg",
+      "title": "silhouette of person standing on top of mountain during daytime",
+      "credit": "Michiel Annaert",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/silhouette-of-person-standing-on-top-of-mountain-during-daytime-67L1hJuIego?utm_source=daily_poster&utm_medium=referral",
+      "query": "person with telescope hill silhouette"
+    },
+    {
+      "file": "ref-10.jpg",
+      "title": "black telescope during day time",
+      "credit": "Matthew Ansley",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/black-telescope-during-day-time-8SjeH5pZbjw?utm_source=daily_poster&utm_medium=referral",
+      "query": "telescope eyepiece looking"
+    },
+    {
+      "file": "ref-11.jpg",
+      "title": "selective focus photography of grey coin operated telescope",
+      "credit": "Drew Dizzy Graham",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/selective-focus-photography-of-grey-coin-operated-telescope-_Sr03VSKIeg?utm_source=daily_poster&utm_medium=referral",
+      "query": "telescope eyepiece looking"
+    },
+    {
+      "file": "ref-12.jpg",
+      "title": "brown and silver telescope near body of water during daytime",
+      "credit": "Daniel Lerman",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/brown-and-silver-telescope-near-body-of-water-during-daytime-fr3YLb9UHSQ?utm_source=daily_poster&utm_medium=referral",
+      "query": "telescope eyepiece looking"
+    },
+    {
+      "file": "ref-13.jpg",
+      "title": "woman in gray top",
+      "credit": "Tachina Lee",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/woman-in-gray-top--wjk_SSqCE4?utm_source=daily_poster&utm_medium=referral",
+      "query": "stargazing person looking up"
+    },
+    {
+      "file": "ref-14.jpg",
+      "title": "woman looking above",
+      "credit": "David Kennedy",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/woman-looking-above-pcR61aG59zY?utm_source=daily_poster&utm_medium=referral",
+      "query": "stargazing person looking up"
+    },
+    {
+      "file": "ref-15.jpg",
+      "title": "man in brown shirt looking down",
+      "credit": "Mark Farías",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/man-in-brown-shirt-looking-down-WX5nrJtbJCo?utm_source=daily_poster&utm_medium=referral",
+      "query": "stargazing person looking up"
+    },
+    {
+      "file": "ref-16.jpg",
+      "title": "A very large dome with a lot of stars in the sky",
+      "credit": "Ahmed Atef",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/a-very-large-dome-with-a-lot-of-stars-in-the-sky-b7lnMZqv1YE?utm_source=daily_poster&utm_medium=referral",
+      "query": "observatory dome"
+    },
+    {
+      "file": "ref-17.jpg",
+      "title": "A dark dome against a cloudy sky",
+      "credit": "Al Butler",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/a-dark-dome-against-a-cloudy-sky-b3g3IQnr1PA?utm_source=daily_poster&utm_medium=referral",
+      "query": "observatory dome"
+    },
+    {
+      "file": "ref-18.jpg",
+      "title": "Observatory building with a domed roof under blue sky",
+      "credit": "Wolfgang Weiser",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/observatory-building-with-a-domed-roof-under-blue-sky-ORb397ZLwzo?utm_source=daily_poster&utm_medium=referral",
+      "query": "observatory dome"
+    }
+  ]
+}

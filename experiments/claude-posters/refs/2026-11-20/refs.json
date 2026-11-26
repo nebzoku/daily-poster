@@ -1,0 +1,175 @@
+{
+  "date": "2026-11-20",
+  "queries": [
+    "looking up elevator shaft",
+    "elevator cage interior",
+    "plumb bob hanging",
+    "hand on brick wall",
+    "scientist listening wall headphones",
+    "old brick building cross section"
+  ],
+  "refs": [
+    {
+      "file": "ref-01.jpg",
+      "title": "gray concrete bricks painted in blue",
+      "credit": "Patrick Tomasso",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/gray-concrete-bricks-painted-in-blue-QMDap1TAu0g?utm_source=daily_poster&utm_medium=referral",
+      "query": "brief"
+    },
+    {
+      "file": "ref-02.jpg",
+      "title": "wall lamp turned on on wall",
+      "credit": "Greg Rosenke",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/wall-lamp-turned-on-on-wall-6QnEf_b47eA?utm_source=daily_poster&utm_medium=referral",
+      "query": "brief"
+    },
+    {
+      "file": "ref-03.jpg",
+      "title": "gray steel frames",
+      "credit": "Robert V. Ruggiero",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/gray-steel-frames-BG-iyXjJiLs?utm_source=daily_poster&utm_medium=referral",
+      "query": "brief"
+    },
+    {
+      "file": "ref-04.jpg",
+      "title": "clear glass walled building during daytime",
+      "credit": "Nick Fewings",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/clear-glass-walled-building-during-daytime-wy5QuZMI8V4?utm_source=daily_poster&utm_medium=referral",
+      "query": "brief"
+    },
+    {
+      "file": "ref-05.jpg",
+      "title": "Vintage elevator shaft with teal doors and metal railings",
+      "credit": "Nguyen Tony",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/vintage-elevator-shaft-with-teal-doors-and-metal-railings-hxrMdxeqJ7Q?utm_source=daily_poster&utm_medium=referral",
+      "query": "brief"
+    },
+    {
+      "file": "ref-06.jpg",
+      "title": "grayscale photo of cable",
+      "credit": "Lasse Møller",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/grayscale-photo-of-cable-kVAeTtdEqNM?utm_source=daily_poster&utm_medium=referral",
+      "query": "brief"
+    },
+    {
+      "file": "ref-07.jpg",
+      "title": "A person looking up at purple arches and the glass elevator of Monumento a la Revolución",
+      "credit": "Julio Lopez",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/person-at-monumento-a-la-revolucion-LwuNGSM7m_M?utm_source=daily_poster&utm_medium=referral",
+      "query": "looking up elevator shaft"
+    },
+    {
+      "file": "ref-08.jpg",
+      "title": "closed elevator",
+      "credit": "Bruno Kelzer",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/closed-elevator-dendZhhfkTc?utm_source=daily_poster&utm_medium=referral",
+      "query": "elevator cage interior"
+    },
+    {
+      "file": "ref-09.jpg",
+      "title": "Plumb Bob with the Name of Hatshepsut, ca. 1473–1458 BCE",
+      "credit": "Unknown artist",
+      "source": "The Met",
+      "licence": "CC0",
+      "page": "https://www.metmuseum.org/art/collection/search/548705",
+      "query": "plumb bob hanging"
+    },
+    {
+      "file": "ref-10.jpg",
+      "title": "Portable compass dial, late 17th–early 18th century",
+      "credit": "Johann Klocksperger",
+      "source": "The Met",
+      "licence": "CC0",
+      "page": "https://www.metmuseum.org/art/collection/search/188834",
+      "query": "plumb bob hanging"
+    },
+    {
+      "file": "ref-11.jpg",
+      "title": "American Barque \"Jane Tudor,\" Conway Bay, ca. 1855",
+      "credit": "David Johnson",
+      "source": "The Met",
+      "licence": "CC0",
+      "page": "https://www.metmuseum.org/art/collection/search/267019",
+      "query": "plumb bob hanging"
+    },
+    {
+      "file": "ref-12.jpg",
+      "title": "wall with broken bricks",
+      "credit": "H&CO",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/wall-with-broken-bricks-M3KfixgdCko?utm_source=daily_poster&utm_medium=referral",
+      "query": "hand on brick wall"
+    },
+    {
+      "file": "ref-13.jpg",
+      "title": "a hand reaching out to a metal fence",
+      "credit": "David Cain",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/a-hand-reaching-out-to-a-metal-fence-1-dGkZmG7y0?utm_source=daily_poster&utm_medium=referral",
+      "query": "hand on brick wall"
+    },
+    {
+      "file": "ref-14.jpg",
+      "title": "A young man with dreadlocks in a white t-shirt against a stone wall",
+      "credit": "Michael Kyule",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/young-man-with-dreadlocks-in-white-nPE46y3grFE?utm_source=daily_poster&utm_medium=referral",
+      "query": "hand on brick wall"
+    },
+    {
+      "file": "ref-15.jpg",
+      "title": "black corded headphones",
+      "credit": "Kelly Sikkema",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/black-corded-headphones-0vyfyYBPYJ4?utm_source=daily_poster&utm_medium=referral",
+      "query": "scientist listening wall headphones"
+    },
+    {
+      "file": "ref-16.jpg",
+      "title": "Man with headphones enjoying music at his desk",
+      "credit": "Vitaly Gariev",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/man-with-headphones-enjoying-music-at-his-desk-h4DZC_B74io?utm_source=daily_poster&utm_medium=referral",
+      "query": "scientist listening wall headphones"
+    },
+    {
+      "file": "ref-17.jpg",
+      "title": "Woman wearing headphones and smiling against brick wall",
+      "credit": "Vitaly Gariev",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/woman-wearing-headphones-and-smiling-against-brick-wall-LtX5iXlJLKg?utm_source=daily_poster&utm_medium=referral",
+      "query": "scientist listening wall headphones"
+    },
+    {
+      "file": "ref-18.jpg",
+      "title": "brown brick wall",
+      "credit": "Pawel Czerwinski",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/brown-brick-wall-vBlJ2C84nf0?utm_source=daily_poster&utm_medium=referral",
+      "query": "old brick building cross section"
+    }
+  ]
+}

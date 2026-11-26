@@ -1,0 +1,175 @@
+{
+  "date": "2026-11-22",
+  "queries": [
+    "gas station at night low angle",
+    "neon sign night",
+    "petrol pump nozzle hand",
+    "roadside diner coffee cup counter",
+    "empty highway desert night",
+    "car headlights night road"
+  ],
+  "refs": [
+    {
+      "file": "ref-01.jpg",
+      "title": "a long exposure shot of a highway at night",
+      "credit": "David Smart",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/a-long-exposure-shot-of-a-highway-at-night-bLREPvW6WO0?utm_source=daily_poster&utm_medium=referral",
+      "query": "brief"
+    },
+    {
+      "file": "ref-02.jpg",
+      "title": "time lapse photography of cars on road during night time",
+      "credit": "Markus Spiske",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/time-lapse-photography-of-cars-on-road-during-night-time-mbrF_62mp-Y?utm_source=daily_poster&utm_medium=referral",
+      "query": "brief"
+    },
+    {
+      "file": "ref-03.jpg",
+      "title": "a gas station at night with no people around",
+      "credit": "Hans Eiskonen",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/a-gas-station-at-night-with-no-people-around-OnmOFmwTlP0?utm_source=daily_poster&utm_medium=referral",
+      "query": "brief"
+    },
+    {
+      "file": "ref-04.jpg",
+      "title": "a row of gas pumps sitting in a parking lot",
+      "credit": "Mohamed Elwaid",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/a-row-of-gas-pumps-sitting-in-a-parking-lot-rPfaCWODxrc?utm_source=daily_poster&utm_medium=referral",
+      "query": "brief"
+    },
+    {
+      "file": "ref-05.jpg",
+      "title": "time lapse photography of cars on road during night time",
+      "credit": "Joachim Mell",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/time-lapse-photography-of-cars-on-road-during-night-time-G6UihHmFicE?utm_source=daily_poster&utm_medium=referral",
+      "query": "brief"
+    },
+    {
+      "file": "ref-06.jpg",
+      "title": "Cars driving on a wet city street at night",
+      "credit": "Sebastian Schuster",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/cars-driving-on-a-wet-city-street-at-night-LetXpVOXits?utm_source=daily_poster&utm_medium=referral",
+      "query": "brief"
+    },
+    {
+      "file": "ref-07.jpg",
+      "title": "person taking a photo of blue and white gasoline station",
+      "credit": "Juan Fernandez",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/person-taking-a-photo-of-blue-and-white-gasoline-station-ZdzO5PgYObA?utm_source=daily_poster&utm_medium=referral",
+      "query": "brief"
+    },
+    {
+      "file": "ref-08.jpg",
+      "title": "a gas station lit up at night on the water",
+      "credit": "Valeriia Neganova",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/a-gas-station-lit-up-at-night-on-the-water-pvtrzin-usI?utm_source=daily_poster&utm_medium=referral",
+      "query": "gas station at night low angle"
+    },
+    {
+      "file": "ref-09.jpg",
+      "title": "a gas station at night",
+      "credit": "Dominik Perau",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/a-gas-station-at-night-HCqhgkH2woo?utm_source=daily_poster&utm_medium=referral",
+      "query": "gas station at night low angle"
+    },
+    {
+      "file": "ref-10.jpg",
+      "title": "a bunch of cars parked in front of a store",
+      "credit": "Jahanzeb Ahsan",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/a-bunch-of-cars-parked-in-front-of-a-store-7gSgXv-MqGI?utm_source=daily_poster&utm_medium=referral",
+      "query": "neon sign night"
+    },
+    {
+      "file": "ref-11.jpg",
+      "title": "sweet escape neon sign on wooden pier",
+      "credit": "Let's go Together",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/sweet-escape-neon-sign-on-wooden-pier-orYix9zFUZo?utm_source=daily_poster&utm_medium=referral",
+      "query": "neon sign night"
+    },
+    {
+      "file": "ref-12.jpg",
+      "title": "This is the sign you've been looking for neon signage",
+      "credit": "Austin Chan",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/this-is-the-sign-youve-been-looking-for-neon-signage-ukzHlkoz1IE?utm_source=daily_poster&utm_medium=referral",
+      "query": "neon sign night"
+    },
+    {
+      "file": "ref-13.jpg",
+      "title": "a man pumping gas into a car at a gas station",
+      "credit": "Marek Studzinski",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/a-man-pumping-gas-into-a-car-at-a-gas-station-OkDuyuQAPv4?utm_source=daily_poster&utm_medium=referral",
+      "query": "petrol pump nozzle hand"
+    },
+    {
+      "file": "ref-14.jpg",
+      "title": "a person's hand is holding a gas pump",
+      "credit": "Marek Studzinski",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/a-persons-hand-is-holding-a-gas-pump-H3iIPzvWp2I?utm_source=daily_poster&utm_medium=referral",
+      "query": "petrol pump nozzle hand"
+    },
+    {
+      "file": "ref-15.jpg",
+      "title": "a person pumping gas into a car at a gas station",
+      "credit": "Marek Studzinski",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/a-person-pumping-gas-into-a-car-at-a-gas-station-kInJXRQVOss?utm_source=daily_poster&utm_medium=referral",
+      "query": "petrol pump nozzle hand"
+    },
+    {
+      "file": "ref-16.jpg",
+      "title": "flag of U.S. America hanging on white painted concrete wall",
+      "credit": "Ian Baldwin",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/flag-of-us-america-hanging-on-white-painted-concrete-wall-Dlj-SxxTlQ0?utm_source=daily_poster&utm_medium=referral",
+      "query": "roadside diner coffee cup counter"
+    },
+    {
+      "file": "ref-17.jpg",
+      "title": "black disposable coffee cup on wooden table",
+      "credit": "Priscilla Du Preez 🇨🇦",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/black-disposable-coffee-cup-on-wooden-table-jxc2V0ayIfk?utm_source=daily_poster&utm_medium=referral",
+      "query": "roadside diner coffee cup counter"
+    },
+    {
+      "file": "ref-18.jpg",
+      "title": "a coffee cup sitting on top of a coffee machine",
+      "credit": "Sepehr Safari",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "page": "https://unsplash.com/photos/a-coffee-cup-sitting-on-top-of-a-coffee-machine-Sle_38DoXF0?utm_source=daily_poster&utm_medium=referral",
+      "query": "roadside diner coffee cup counter"
+    }
+  ]
+}

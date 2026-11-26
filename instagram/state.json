@@ -407,6 +407,11 @@
       "slot": "2026-11-26 13:00",
       "at": "2026-11-26T13:08:18.278Z",
       "id": "17946890478092415"
+    },
+    "poster:showcase/053-chasing-light-near-the-sun.jpg": {
+      "slot": "2026-11-26 19:00",
+      "at": "2026-11-26T19:08:23.968Z",
+      "id": "18108739901646592"
     }
   },
   "slots": {
@@ -446,7 +451,8 @@
     "2026-11-25 16:00": "poster:showcase/052-a-workmans-house-of-wonder.jpg",
     "2026-11-25 19:00": "poster:showcase/053-catch-mercury-before-sunrise.jpg",
     "2026-11-26 08:00": "stories:2026-11-26",
-    "2026-11-26 13:00": "poster:showcase/053-the-smallest-planet-steps-out.jpg"
+    "2026-11-26 13:00": "poster:showcase/053-the-smallest-planet-steps-out.jpg",
+    "2026-11-26 19:00": "poster:showcase/053-chasing-light-near-the-sun.jpg"
   },
   "start": "2026-11-04",
   "partial": {}

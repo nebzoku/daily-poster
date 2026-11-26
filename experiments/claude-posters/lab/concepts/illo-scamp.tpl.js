@@ -1,4 +1,4 @@
-// Scamp → poster: an image from the illustration machine (Nano Banana, styled on Ben's references) printed as a Daily
+// The illustrated concept's template (copy to concepts/<issue>-cN.tpl.js). Scamp → poster: an image from the illustration machine (Nano Banana, styled on Ben's references) printed as a Daily
 // Poster. Every pixel is snapped to the day's palette, its tints and shades, black, white and the highlight, and each
 // colour printed as a plate (printAll) like the rest of the toolkit; the headline goes in the plain band the scamp left
 // for it (made perfectly flat here), in the colour that reads best on it; then paper and scratches.
@@ -8,7 +8,18 @@ window.POSTER = async () => {
   await fonts([`${C.weight} 100px "${C.font}"`, `500 16px "${C.text_font}"`]);
   const sc = await img(C.scamp);
   const out = canvas(), g = out.g;
+  g.fillStyle = C.palette[3]; g.fillRect(0, 0, W, H);
+  snap('bg', out);
   cover(g, sc, { x: 0, y: 0, w: W, h: H });
+  // colourways: snap every pixel to the day's colours, then swap palette roles (C.remap: {from: to}, with each colour's
+  // tints and shades following it), so B and C are the same drawing in a different arrangement of the palette
+  if (C.remap && Object.keys(C.remap).length) {
+    const id = g.getImageData(0, 0, W * K, H * K), dd = id.data, hx = C.cols.map((h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16)));
+    const to = C.cols.map((h, i) => { const m = C.remap[h]; return m ? [1, 3, 5].map((k) => parseInt(m.slice(k, k + 2), 16)) : hx[i]; });
+    for (let p = 0; p < dd.length; p += 4) { let bi = 0, bd = 1e9; for (let i = 0; i < hx.length; i++) { const c = hx[i], v = (dd[p] - c[0]) ** 2 + (dd[p + 1] - c[1]) ** 2 + (dd[p + 2] - c[2]) ** 2; if (v < bd) { bd = v; bi = i; } } [dd[p], dd[p + 1], dd[p + 2]] = to[bi]; }
+    g.putImageData(id, 0, 0);
+  }
+  snap('place-illustration', out);
   const HS = inkSafe(C.lines, { font: C.font, weight: C.weight, size: 200, gap: C.caps ? 14 : 20, minGap: 8, word: C.caps ? 0.26 : 0.22 }, W - 2 * M, { preset: 'riso', wear: 0.12, spread: 0.18 });
   const head = canvas(); const R = pinInterlock(head, HS.lines, C.sides, C.split, C.caps ? 12 : 6);
   // each headline block's band: the scamp's most common colour there, made flat
@@ -36,9 +47,14 @@ window.POSTER = async () => {
   block(sm.g, C.furniture, M, yy, { ...t, anchor: top ? 'bottom' : 'top' });
   const sub = balance(C.subline, { ...t, minW: 220, maxW: COL * 2.6 });
   block(sm.g, sub.lines, W - M, yy, { ...t, align: 'right', anchor: top ? 'bottom' : 'top' });
+  snap('shape-bands', out);
   draw(g, tint(sm, typeCol));
+  snap('text-small', out);
+  snapLines(tint(head, typeCol), R);
   printAll(g, { ...C, bg: bands[0].col }, { seed: 7001, wear: 0.14, spread: 0.45, bg: bands[0].col });
   printHead(g, head, typeCol, C.finish, { bg: band0, seed: 7002, wear: HS.ink.wear, spread: HS.ink.spread });
+  snap('printed', out);
   stock(g, C.stock, 7003);
+  snap('final', out);
   return out;
 };

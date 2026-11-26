@@ -32,6 +32,15 @@ Ben picks the ones to post; they go into the archive credited **Nebzokai** (Ben'
    texture, one subtle change in the type carrying the story). That style can carry real handwriting over the top
    from the day's scans (`site/media/<date>/hand-*.jpg`, see STYLE.md Round 24).
    Give each concept a different print process (`printHead`) and paper stock (`stock`), different from yesterday.
+3b. **The illustrated concept** (Ben, 26 Nov 2026): most days, one of the three concepts is an illustration. The
+   Illustration machine workflow (05:53 UTC, `scripts/illo-gen.mjs`) draws four Nano Banana scamps of the day's brief,
+   styled on Ben's references and the illustrations he has kept, into `experiments/claude-posters/scamps/<date>/`
+   (`git pull` first; if they aren't there, skip the illustrated concept that day and say so). Look at all four, pick
+   the strongest that has the highlight and a different move from the last illustrated concept (`log.md`), and run
+   `python3 lab/illo_concept.py <issue> <cN> <scamp-number> <finish> <stock>`: it writes `concepts/<issue>-cN.tpl.js` and
+   that concept's three colourways (A as drawn; B vivid and mid swapped; C vivid and pale swapped) and reports whether
+   the highlight is in the scamp. Then `make.py` renders it with the other two. No posed, smiling close-up faces
+   (STYLE.md Round 30). Log it as "illustrated (scamp NN, the move)".
 4. Write the three templates and the colourways (only swap which palette colours play background / middle / type).
 4a. Mark the build steps in each template for the making-of reel (no effect on the poster): `snap('bg', out)` after the
    background, then after each move `snap('place-<x>', out)` (image or object placed), `snap('step-<group>-<n>', out)`

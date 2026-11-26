@@ -40,6 +40,11 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   bottle): "these are awesome". Dropped: the close-up pillion pair, "too cheesy and AI generated ... might be their
   faces". So: no close-up posed, smiling faces; people at a distance, from behind or in profile, simply drawn. The
   kept ones are now in `lab/illo-guide/` and go to Nano Banana alongside his references.
+- **Most mornings, one of the three concepts is illustrated** (Ben, 26 Nov: "yes please"), via `lab/illo_concept.py`
+  (README step 3b). The other two stay in the established styles.
+- **Every illustration uses the highlight** (Ben, 26 Nov: "most of the time we didn't use the highlight colour"): one
+  small focal element in it, named in each scene by the machine (`highlightElement`) and stated outright in the image
+  prompt; `illo_concept.py` checks the scamp and flags one without it.
 - Condensed faces in a single band go on one line (Six Caps two lines edge to edge filled 60% of the sheet).
 
 ### Round 29 feedback (26 Nov 2026): scamps first, calm headline zones, boxed illustrations

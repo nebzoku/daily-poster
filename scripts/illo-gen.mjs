@@ -56,22 +56,24 @@ const style = await readFile(join(CP, "illo-style.md"), "utf8");
 
 // 3. the prompts, from Claude
 const palette = [...brief.palette.colours, ...(brief.always || [])], hl = brief.highlight || brief.pop;
-const tool = { name: "scenes", description: "Image prompts for illustrated posters.", input_schema: { type: "object", required: ["scenes"], properties: { scenes: { type: "array", minItems: COUNT, maxItems: COUNT, items: { type: "object", required: ["headline", "angle", "headlineZone", "prompt"], properties: {
+const tool = { name: "scenes", description: "Image prompts for illustrated posters.", input_schema: { type: "object", required: ["scenes"], properties: { scenes: { type: "array", minItems: COUNT, maxItems: COUNT, items: { type: "object", required: ["headline", "angle", "headlineZone", "highlightElement", "prompt"], properties: {
   headline: { type: "string", description: "which of the brief's headlines this scene is for" },
   angle: { type: "string", description: "the camera move, e.g. worm's-eye, high angle, fish-eye street, lone object in sky, interior one-point" },
   headlineZone: { type: "string", enum: ["top", "bottom", "top-and-bottom", "left", "right"], description: "where the headline will sit; that area must be plain colour" },
+  highlightElement: { type: "string", description: "the ONE small focal element painted in the highlight colour (a ball, a hat, a sign, a lamp, a door)" },
   prompt: { type: "string", description: "the full image prompt, 120-220 words" } } } } } } };
 const ask = `You are art-directing illustrated posters for today's Daily Poster brief.
 Story: "${brief.story.title}". ${brief.story.summary}
 Headlines: ${brief.headlines.join(" | ")}
-Palette (use only these, plus tints and shades of them): ${palette.join(", ")}. Highlight colour, for ONE small focal element only: ${hl ? hl.hex : "none"}.
+Palette (use only these, plus tints and shades of them): ${palette.join(", ")}.
+Highlight colour: ${hl ? `${hl.name} ${hl.hex}` : "none"}. EVERY scene must use it, on exactly one small focal element (the thing the eye should land on), and nowhere else.
 The style, which every prompt must restate in its own words:
 ${style}
 
 Write ${COUNT} different scenes. Each: a subject anyone connects to the story in a second (people, the key object, the place),
 a DIFFERENT dramatic camera angle (very low looking up, very high looking down, fish-eye, a lone object in a big sky, a
 one-point interior, a cutaway), portrait format 1:1.41, the named headline zone kept as flat plain colour with no detail,
-the palette by hex, the highlight on one named small element, black ink line. If hands or faces appear, ask for correct
+the palette by hex, black ink line, and the highlight stated plainly in the prompt as: "The <element> is solid ${hl ? hl.name.toLowerCase() : ""} (${hl ? hl.hex : ""}), the only ${hl ? hl.name.toLowerCase() : ""} thing in the whole image; it is the focal point." If hands or faces appear, ask for correct
 anatomy: five fingers, natural knuckles, full-length thumb. No text, letters, logos or signatures in the image. Never
 name an artist. Start each prompt by saying it follows the attached style guide image (style only, not its subjects).`;
 const res = await fetch("https://api.anthropic.com/v1/messages", { method: "POST",

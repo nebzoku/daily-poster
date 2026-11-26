@@ -250,7 +250,12 @@
         "creator": "Rohit Pawar",
         "creatorUrl": "https://sketchfab.com/rohit8999"
       },
-      "texture": null
+      "texture": null,
+      "spin": {
+        "frames": 24,
+        "path": "media/2026-11-26/object-1-spin/",
+        "ext": "webp"
+      }
     },
     {
       "name": "motorbike",
@@ -268,6 +273,11 @@
       "texture": {
         "title": "Corrugated Iron",
         "url": "https://polyhaven.com/a/corrugated_iron"
+      },
+      "spin": {
+        "frames": 24,
+        "path": "media/2026-11-26/object-2-spin/",
+        "ext": "webp"
       }
     },
     {
@@ -283,7 +293,12 @@
         "creator": "roystoncinemo",
         "creatorUrl": "https://sketchfab.com/roystoncinemo"
       },
-      "texture": null
+      "texture": null,
+      "spin": {
+        "frames": 24,
+        "path": "media/2026-11-26/object-3-spin/",
+        "ext": "webp"
+      }
     }
   ]
 }

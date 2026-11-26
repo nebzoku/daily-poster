@@ -1,7 +1,7 @@
 # Daily Poster: the machine-made posters
 
 Every morning Claude designs **three concepts, each in three colourways** from the day's Daily Poster brief.
-Ben picks the ones to post; they go into the archive credited **Daily Poster** (from 26 Nov 2026; earlier ones were Nebzokai), with captions reading "Made by Daily Poster, curated by Ben Harwood"; Ben's own work is credited to him.
+Ben picks the ones to post; they go into the archive credited **Daily Poster** (from 26 Nov 2026; earlier ones were Nebzokai), with captions reading "Made by Daily Poster, curated by @benjamin_harwood"; Ben's own work is credited to him.
 
 - `STYLE.md`: every rule from Ben's feedback. Read it all before designing. It overrides anything here.
 - `posting.md`: the posting schedule (poster D+1, reel D+2) and what Ben has to post by hand, with dates.

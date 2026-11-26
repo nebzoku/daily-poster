@@ -1,0 +1,57 @@
+name: Illustration machine
+
+# Scamps for the illustrated posters (scripts/illo-gen.mjs, the repo's version of Ben's Weavy "Illustration Machine"):
+# Claude writes scene prompts from the brief and the style guide, an image model (OpenAI or Gemini, whichever key is
+# set) draws them, saved under experiments/claude-posters/scamps/<date>/. Does nothing until OPENAI_API_KEY or
+# GEMINI_API_KEY is added as a repository secret. Runs after the brief, or by hand for earlier dates.
+on:
+  schedule:
+    - cron: "53 5 * * *"
+  workflow_dispatch:
+    inputs:
+      dates:
+        description: "Briefs to draw scamps for (YYYY-MM-DD, space separated); empty = today"
+        required: false
+        default: ""
+      count:
+        description: "Scenes per brief"
+        required: false
+        default: "4"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: illo-gen
+  cancel-in-progress: false
+
+jobs:
+  draw:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Draw the scamps
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          d=$(node -e "console.log(JSON.parse(require('fs').readFileSync('site/data/latest.json','utf8')).date)")
+          dates="${{ github.event.inputs.dates }}"; [ -z "$(echo $dates)" ] && dates="$d"
+          for x in $dates; do
+            if [ "${{ github.event_name }}" = "schedule" ] && [ -f "experiments/claude-posters/scamps/$x/scamps.json" ]; then continue; fi
+            node scripts/illo-gen.mjs "$x" "${{ github.event.inputs.count || 4 }}"
+          done
+      - name: Save them
+        run: |
+          git config user.name "daily-poster-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add experiments/claude-posters/scamps
+          git diff --cached --quiet && exit 0
+          git commit -m "Illustration scamps"
+          for i in 1 2 3 4; do git pull --rebase -q && git push && exit 0; sleep $((i * 15)); done

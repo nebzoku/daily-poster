@@ -120,5 +120,29 @@
    "finish": "riso",
    "stock": "uncoated"
   }
+ },
+ "049b": {
+  "a": {
+   "wallN": "#2376D4",
+   "wallNs": "#1B62B1",
+   "wallS": "#041F3F",
+   "wallSs": "#02142C",
+   "wallE": "#98B6F5",
+   "wallEs": "#2376D4",
+   "wallW": "#6A727D",
+   "wallWs": "#4C525A",
+   "mortar": "#02142C",
+   "cage": "#D4E6FE",
+   "cageS": "#98B6F5",
+   "line2": "#02142C",
+   "sky": "#EFF5FF",
+   "pop": "#F33446",
+   "popShade": "#D02B3A",
+   "line": "#02142C",
+   "type": "#EFF5FF",
+   "text": "#EFF5FF",
+   "finish": "riso",
+   "stock": "uncoated"
+  }
  }
 }

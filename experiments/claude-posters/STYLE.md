@@ -29,6 +29,26 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   from the brief and different layout systems and treatments. Colourways only swap which palette colours play
   background, middle (image marks) and type. Ben picks the one(s) to post the next day.
 
+### Round 29 feedback (26 Nov 2026): scamps first, calm headline zones, boxed illustrations
+- **Work from a scamp, not from nothing:** perspective, figures and objects need a rough to draw over. Three routes:
+  - **3D scamp** (`lab/3d/scene.py`, Blender via the bpy package): build the scene, shoot it from a super low/high
+    angle, render ink lines + a part-ID map + light; `sceneArt()` fills each part with a palette colour, cel shadow from
+    the light, Blender's lines as our worn ink. 049 redrawn this way is far stronger than the hand-built version.
+  - **AI scamp** (`scripts/illo-gen.mjs`, the repo's version of Ben's Weavy "Illustration Machine" flow): our style
+    guide image + `illo-style.md` + Claude-written scene prompts → an image model (OpenAI or Gemini/Nano Banana);
+    `scampArt()` redraws the result in the day's palette with our ink and paper. Needs an image key as a secret.
+  - **Photo reference** (refs pull): trace contours by hand (`refFill`), only for simple poses.
+- **Hands, fingers and faces:** never improvise them from a few traced points (the 055 hand's thumb was too short and
+  the knuckle folds read as missing fingers). Take them from an AI scamp or a posed 3D hand, or crop them out.
+- **No ghost figures:** a figure is fully drawn (outline, flat fills, one shadow tone, features), never a pale traced
+  blob.
+- **Illustrate with the headline in mind:** where the headline sits the drawing goes calm (one flat colour, no line
+  work, no texture): `calmZone(I, headZone(R), masks, colour)`, its edge drawn as the front of the mass (bumpy for
+  foliage and cloud, straight for architecture). Better still, compose the scene so that area is sky or a plain wall.
+- **Illustrations can sit in grid boxes,** combined with the other techniques (055 test 5: illustration box +
+  pixelated bike box + thresholded road box, labelled (01)(02)(03)). Smooth illustration beside harsh pixels works.
+- **Highlight:** the "pop" is called the **highlight** (Ben, 26 Nov): `brief.highlight` on the site and in the brief.
+
 ### Round 28 (26 Nov 2026): drawing from references, and the illustration moves library
 - **Draw from photos, by hand:** the subject's contours are traced as clean curves from a gridded view of a reference
   photo (`refMap`, `closed`, `refFill`), and the photo supplies only the cel shadows inside them (`photoShade`).

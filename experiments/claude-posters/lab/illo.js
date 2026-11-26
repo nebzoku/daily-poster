@@ -152,6 +152,7 @@ function illo(g) {
     fill(m, col) { draw(g, tint(m, col)); L = cut(L, m); },
     ink(m) { draw(L.g, m); },
     lines() { return L; },
+    calm(m) { L = cut(L, m); },   // no line work in m (the headline's zone)
     print(gg, col, sd = 1, amount = 1, o = {}) { draw(gg, tint(wornLines(L, sd, amount, o), col)); },
   };
 }
@@ -336,4 +337,53 @@ function bands(cols, y0, y1, { bow = 0, x0 = -40, x1 = W + 40 } = {}) {
     const edge = (y) => curve([[x0, y], [(x0 + x1) / 2, y + bow], [x1, y]], 10);
     out.push([poly([...edge(a), ...edge(b).reverse()]), cols[i]]); }
   return out;
+}
+
+// Illustrate with the headline in mind (Ben, 26 Nov 2026): where the headline sits, the drawing goes calm: one flat
+// colour, no line work, no texture. headZone(R, pad) is the band the headline's lines occupy (plus pad), as a mask;
+// calmZone(I, zone, masks, col) flattens the given shapes to one colour inside the zone and lifts the ink there.
+function headZone(R, pad = 24, { edge = 'bumpy', sd = 3 } = {}) {
+  // one full-width band from the headline's first ink to its last, its inner edge bumpy like a front mass of leaves or
+  // cloud (edge 'straight' for architecture)
+  const y0 = Math.min(...R.map((r) => r.y)) - pad, y1 = Math.max(...R.map((r) => r.y + r.h)) + pad, top = y0 < H / 2;
+  const c = canvas(); c.g.fillStyle = '#fff';
+  if (top) c.g.fillRect(-20, -20, W + 40, y1 + 20); else c.g.fillRect(-20, y0, W + 40, H - y0 + 20);
+  if (edge === 'bumpy') { seed(sd); const yy = top ? y1 : y0; for (let x = -40; x < W + 60; x += 70 + rand() * 50) { const r = 40 + rand() * 46; c.g.beginPath(); c.g.arc(x, yy + (top ? -r * 0.35 : r * 0.35), r, 0, Math.PI * 2); c.g.fill(); } }
+  return c;
+}
+function calmZone(I, zone, masks, col, lw = 2.6) {
+  const all = masks && masks.length ? union(...masks) : null;
+  if (all) I.fill(inter(all, zone), col);
+  I.calm(zone);
+  if (all) I.ink(inter(outline(zone, lw), all));   // the calm mass's own edge, where it sits in front of the detail
+}
+// A scamp (from the illustration machine, a 3D render or a sketch) redrawn in the day's palette: its dark lines become
+// our worn ink, its colours are posterised by lightness into the ramp (dark → light). r: where it goes (cover).
+function scampArt(im, r, ramp, { lineT = 0.2, cuts = null, crop = [0, 0, 1, 1], minArea = 120 } = {}) {
+  const c = canvas(); clip(c.g, r, () => cover(c.g, im, r, { crop }));
+  const area = rectMask(r);
+  const lines = removeSmall(inter(lumMask(c, lineT, { invert: true, soft: 0.02 }), area), 20);
+  const body = cut(area, lines);
+  const L = inter(blurred(c, 1.5), body), qs = cuts || ramp.slice(1).map((_, i) => (i + 1) / ramp.length);
+  const ts = qs.map((q) => pct(L, q)), fills = [];
+  let prev = body;
+  for (let i = 0; i < ramp.length; i++) { const up = i < ts.length ? removeSmall(alphaThr(blurred(inter(lumMask(L, ts[i], { soft: 0.004 }), body), 1.5), 0.5), minArea) : null; fills.push([up ? cut(prev, up) : prev, ramp[i]]); if (up) prev = up; }
+  return { fills: fills.map(([m, col]) => [union(m, inter(dilate(m, 2), lines)), col]), lines };
+}
+// A 3D scamp (lab/3d/scene.py: <name>-lines.png, -ids.png, -light.png, -ids.json) drawn in the illustration style:
+// every part filled with its palette colour, a cel shadow where the light pass is dark, Blender's lines as our ink.
+//   const S = await sceneArt('/experiments/claude-posters/lab/3d/out/shaft', { wallN: [col, shadeCol], ... });
+//   S.fills: [[mask, colour]...], S.lines: mask, S.part(name): that part's mask
+async function sceneArt(prefix, cols, { shadowT = 0.35, lineT = 0.5 } = {}) {
+  const [li, id, lt, ids] = await Promise.all([img(prefix + '-lines.png'), img(prefix + '-ids.png'), img(prefix + '-light.png'), fetch(prefix + '-ids.json').then((r) => r.json())]);
+  const full = (im) => { const c = canvas(); c.g.drawImage(im, 0, 0, W, H); return c; };
+  const L = full(li), I2 = full(id), G = full(lt);
+  const d = I2.g.getImageData(0, 0, I2.width, I2.height).data, n = d.length / 4;
+  const part = (name) => { const [r, g, b] = ids[name], c = canvas(), o = c.g.createImageData(c.width, c.height);
+    for (let p = 0; p < n; p++) if (Math.abs(d[p * 4] - r) + Math.abs(d[p * 4 + 1] - g) + Math.abs(d[p * 4 + 2] - b) < 24) { o.data[p * 4 + 3] = 255; o.data[p * 4] = o.data[p * 4 + 1] = o.data[p * 4 + 2] = 255; }
+    c.g.putImageData(o, 0, 0); return removeSmall(alphaThr(blurred(c, 0.6), 0.5), 60); };
+  const shadow = removeSmall(alphaThr(blurred(lumMask(G, shadowT, { invert: true, soft: 0.01 }), 1.2), 0.5), 400);
+  const fills = [];
+  for (const [name, [col, shade]] of Object.entries(cols)) { if (!ids[name]) continue; const m = part(name); fills.push([m, col]); if (shade) fills.push([inter(m, shadow), shade]); }
+  return { fills, lines: lumMask(L, lineT, { invert: true, soft: 0.05 }), part, shadow };
 }

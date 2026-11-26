@@ -130,5 +130,47 @@
    "finish": "riso",
    "stock": "uncoated"
   }
+ },
+ "i5": {
+  "a": {
+   "bg": "#3A1004",
+   "sky": "#2987F1",
+   "cloud": "#FFFFFF",
+   "ball": "#F1592A",
+   "ballShade": "#B13F1C",
+   "line": "#000000",
+   "box2": "#7D6E69",
+   "pix": [
+    "#F1592A",
+    "#FFDCD1"
+   ],
+   "box3": "#3A1004",
+   "thr": "#F1592A",
+   "thr2": "#7D6E69",
+   "type": "#FFDCD1",
+   "text": "#FFDCD1",
+   "finish": "riso",
+   "stock": "uncoated"
+  },
+  "b": {
+   "bg": "#FFDCD1",
+   "sky": "#F1592A",
+   "cloud": "#FFFFFF",
+   "ball": "#2987F1",
+   "ballShade": "#2172CE",
+   "line": "#000000",
+   "box2": "#3A1004",
+   "pix": [
+    "#7D6E69",
+    "#FFDCD1"
+   ],
+   "box3": "#7D6E69",
+   "thr": "#3A1004",
+   "thr2": "#F5A498",
+   "type": "#3A1004",
+   "text": "#3A1004",
+   "finish": "riso",
+   "stock": "uncoated"
+  }
  }
 }

@@ -15,9 +15,10 @@ window.POSTER = async () => {
   const HS = inkSafe(['The forest remembers', 'its giant'], { font: D, weight: 400, size: 120, gap: 20, minGap: 8, word: 0.22 }, W - 2 * M, { preset: 'riso', wear: 0.1, spread: 0.12 });
   const head = canvas(); const R = pinInterlock(head, HS.lines, ['L', 'R'], 2, 6);
 
+  const canopyM = [];
   // the canopy: lumpy leaf masses (cumulus shapes) in two tones round the top, light breaking through
   for (const [x, y, w, h, s, col] of [[-200, 120, 700, 420, 41, C.leaf2], [520, 60, 760, 460, 42, C.leaf2], [-120, 260, 600, 360, 43, C.leaf], [480, 240, 700, 380, 44, C.leaf], [160, 340, 700, 300, 45, C.leaf]]) {
-    const cl = cumulus(x, y, w, h, s, { lobes: 12, curls: 7, lw: 2.2, flat: false }); I.fill(cl.fill, col); I.ink(cl.lines); }
+    const cl = cumulus(x, y, w, h, s, { lobes: 12, curls: 7, lw: 2.2, flat: false }); I.fill(cl.fill, col); I.ink(cl.lines); canopyM.push(cl.fill); }
   snap('place-canopy', out);
   // the trunk: off-centre, flaring into roots at the foot, bulging, knotted, splitting into limbs in the canopy
   const L = [[-220, H + 40], [-60, 1300], [40, 1180], [150, 1080], [250, 900], [330, 700], [360, 520], [300, 360], [220, 250]];
@@ -40,7 +41,7 @@ window.POSTER = async () => {
   I.ink(outline(trunk, lw));
   // fallen leaves and burrs at the foot
   I.ink(blades(poly([[-40, 1440], [W + 40, 1440], [W + 40, H + 40], [-40, H + 40]]), { density: 0.0012, h: [6, 16], lw: 1.2, sd: 22 }));
-  for (const [x, y, w, h, sd, col] of [[-260, 120, 520, 260, 51, C.leaf], [700, 70, 520, 240, 52, C.leaf], [200, 160, 420, 200, 53, C.leaf2]]) { const cl = cumulus(x, y, w, h, sd, { lobes: 10, curls: 5, lw: 2.2, flat: false }); I.fill(cl.fill, col); I.ink(cl.lines); }
+  for (const [x, y, w, h, sd, col] of [[-260, 120, 520, 260, 51, C.leaf], [700, 70, 520, 240, 52, C.leaf], [200, 160, 420, 200, 53, C.leaf2]]) { const cl = cumulus(x, y, w, h, sd, { lobes: 10, curls: 5, lw: 2.2, flat: false }); I.fill(cl.fill, col); I.ink(cl.lines); canopyM.push(cl.fill); }
   snap('place-trunk', out);
   // the person at the foot, hugging the trunk, traced
   const P = refMap(0.86, [300, 1198], [470, 1530]);
@@ -51,6 +52,8 @@ window.POSTER = async () => {
   refFill(I, P, [[440, 798], [470, 826], [452, 834], [425, 816]], C.skin, null, null, 0, 2);
   snap('place-person', out);
 
+  // the headline's zone goes calm: the canopy there is one flat colour, no line work
+  calmZone(I, headZone(R, 28), canopyM, C.leaf);
   illoSmall(g, I, C, T, ['(Daily Poster)', '(No. 054)', '(Wednesday 25 November)', '(The Guardian)'], 'Nearly a century after a parasitic blight erased them, American chestnuts are being regrown across Appalachia.', { padCol: C.sky, y: M + ROW * 1.5 });
   snap('text-small', out);
   snapLines(tint(head, C.type), R);

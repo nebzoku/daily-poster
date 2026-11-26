@@ -44,6 +44,15 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   scanned paste-up (sheet, tape, card, pencil grid, `scan()`), and our typography. One colourway set like the others.
   Ben feeds back on it every day; the aim, over time, is a combined style that is unique and ownable. Log what each
   day's mix was and what Ben said, and change one thing at a time. First one: `concepts/test-055-mix.tpl.js`.
+- **Ben on the first combined concept (055, Caught between road and rope):** "interesting but something feels a bit
+  uncanny". For the next ones:
+  - What's stuck on (cards, taped pieces) should be **textural**, like the thresholded road surface: scraps of
+    texture, photocopies, thresholded image, not cute illustrations.
+  - The illustration is **printed on the poster itself**, part of the sheet (in a box on the grid or bleeding under the
+    type), not a picture on a card stuck on top.
+  - No circle-in-a-square on a tilted card: it reads as "cute" and contrived. Pieces sit the way a real paste-up
+    would happen: square to the grid or casually, the illustration never in a vignette.
+  - We get there day by day: change one or two of these things each morning and see what works.
 - **Subline beside the furniture:** the same number of lines as the furniture (usually four; `balance(..., { lines:
   [4, 4], strict: true })`, set wider), the same first cap line and the same last baseline, and a clear gap (28 px or
   more) from the headline. Never a narrow five-line subline touching the headline (Ben on One Hand, Two Wheels).

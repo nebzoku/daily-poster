@@ -1,0 +1,170 @@
+{
+ "c1": {
+  "a": {
+   "bg": "#3A1004",
+   "mid": "#F1592A",
+   "mid2": "#7D6E69",
+   "type": "#FFDCD1",
+   "text": "#FFDCD1",
+   "tones": [
+    "#3A1004",
+    "#F1592A",
+    "#FFDCD1",
+    "#FFFFFF"
+   ],
+   "finish": "letterpress",
+   "stock": "smooth"
+  },
+  "b": {
+   "bg": "#000000",
+   "mid": "#FFDCD1",
+   "mid2": "#7D6E69",
+   "type": "#F1592A",
+   "text": "#FFDCD1",
+   "tones": [
+    "#000000",
+    "#F1592A",
+    "#FFDCD1",
+    "#FFFFFF"
+   ],
+   "finish": "letterpress",
+   "stock": "smooth"
+  },
+  "c": {
+   "bg": "#F1592A",
+   "mid": "#FFDCD1",
+   "mid2": "#3A1004",
+   "type": "#3A1004",
+   "text": "#3A1004",
+   "tones": [
+    "#3A1004",
+    "#F1592A",
+    "#FFDCD1",
+    "#FFFFFF"
+   ],
+   "finish": "letterpress",
+   "stock": "smooth"
+  }
+ },
+ "c2": {
+  "a": {
+   "bg": "#3A1004",
+   "ramp": [
+    "#3A1004",
+    "#7D6E69",
+    "#F1592A",
+    "#FFDCD1"
+   ],
+   "pix": [
+    "#7D6E69",
+    "#F1592A",
+    "#FFDCD1"
+   ],
+   "mid": "#F1592A",
+   "type": "#FFDCD1",
+   "text": "#FFDCD1",
+   "tones": [
+    "#3A1004",
+    "#F1592A",
+    "#FFDCD1",
+    "#FFFFFF"
+   ],
+   "finish": "stamp",
+   "stock": "photocopy"
+  },
+  "b": {
+   "bg": "#000000",
+   "ramp": [
+    "#000000",
+    "#7D6E69",
+    "#FFDCD1",
+    "#FFFFFF"
+   ],
+   "pix": [
+    "#7D6E69",
+    "#FFDCD1",
+    "#FFFFFF"
+   ],
+   "mid": "#F1592A",
+   "type": "#F1592A",
+   "text": "#FFDCD1",
+   "tones": [
+    "#000000",
+    "#F1592A",
+    "#FFDCD1",
+    "#FFFFFF"
+   ],
+   "finish": "stamp",
+   "stock": "photocopy"
+  },
+  "c": {
+   "bg": "#F1592A",
+   "ramp": [
+    "#3A1004",
+    "#7D6E69",
+    "#FFDCD1",
+    "#FFFFFF"
+   ],
+   "pix": [
+    "#3A1004",
+    "#7D6E69",
+    "#FFDCD1"
+   ],
+   "mid": "#3A1004",
+   "type": "#3A1004",
+   "text": "#3A1004",
+   "tones": [
+    "#3A1004",
+    "#7D6E69",
+    "#FFDCD1",
+    "#FFFFFF"
+   ],
+   "finish": "stamp",
+   "stock": "photocopy"
+  }
+ },
+ "c3": {
+  "a": {
+   "bg": "#3A1004",
+   "rope": "#FFDCD1",
+   "road": [
+    "#7D6E69",
+    "#F1592A",
+    "#FFDCD1"
+   ],
+   "mid": "#F1592A",
+   "type": "#FFDCD1",
+   "text": "#FFDCD1",
+   "finish": "foil-colour",
+   "stock": "uncoated"
+  },
+  "b": {
+   "bg": "#000000",
+   "rope": "#F1592A",
+   "road": [
+    "#7D6E69",
+    "#FFDCD1",
+    "#FFFFFF"
+   ],
+   "mid": "#FFDCD1",
+   "type": "#F1592A",
+   "text": "#FFDCD1",
+   "finish": "foil-colour",
+   "stock": "uncoated"
+  },
+  "c": {
+   "bg": "#F1592A",
+   "rope": "#3A1004",
+   "road": [
+    "#3A1004",
+    "#7D6E69",
+    "#FFDCD1"
+   ],
+   "mid": "#3A1004",
+   "type": "#FFDCD1",
+   "text": "#3A1004",
+   "finish": "foil-colour",
+   "stock": "uncoated"
+  }
+ }
+}

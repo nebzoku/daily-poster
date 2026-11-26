@@ -112,5 +112,23 @@
    "finish": "riso",
    "stock": "uncoated"
   }
+ },
+ "i4": {
+  "a": {
+   "sky": "#F1592A",
+   "cloud": "#FFFFFF",
+   "skin": "#FFDCD1",
+   "skinShade": "#F5A498",
+   "pop": "#2987F1",
+   "ball": "#B13F1C",
+   "ballShade": "#3A1004",
+   "ballLight": "#FAD1CD",
+   "stitch": "#FFFFFF",
+   "line": "#000000",
+   "type": "#3A1004",
+   "text": "#3A1004",
+   "finish": "riso",
+   "stock": "uncoated"
+  }
  }
 }

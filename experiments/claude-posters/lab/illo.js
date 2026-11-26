@@ -190,3 +190,118 @@ function strata(m, { step = 14, n = 5, lw = 1.3, sd = 1, keep = 0.55 } = {}) {
   brk.g.putImageData(id, 0, 0);
   return inter(c, brk);
 }
+
+// ---------- round 28: drawing from photographic references (Ben, 26 Nov 2026) ----------
+// traceArt(photo, rect, o): a reference photo (or a crop of one) turned into the illustration style, the way an
+// illustrator draws over a photo: shapes flattened (a Kuwahara filter: flat areas, edges kept), posterised into a few
+// cel tones, small bits merged away, and inked along the main contours only. Returns { levels: [masks dark → light],
+// lines, silhouette }. Colour the levels with a ramp of palette colours and their tints and shades.
+//   crop: [x, y, w, h] fractions of the photo; k: number of tones (3–4); kr: flattening radius (px at half size);
+//   edge: contour threshold (higher = fewer lines); minArea: smallest shape kept (design px²);
+//   subject: 'all' | 'auto' (cut the subject out from a plain or blurred background by its colour against the
+//   photo's border) | a mask canvas; flip: mirror; lw: line weight.
+function kuwahara(lum, w, h, r) {
+  const S = new Float64Array((w + 1) * (h + 1)), Q = new Float64Array((w + 1) * (h + 1)), out = new Float32Array(w * h);
+  for (let y = 0; y < h; y++) { let rs = 0, rq = 0; for (let x = 0; x < w; x++) { const v = lum[y * w + x]; rs += v; rq += v * v; S[(y + 1) * (w + 1) + x + 1] = S[y * (w + 1) + x + 1] + rs; Q[(y + 1) * (w + 1) + x + 1] = Q[y * (w + 1) + x + 1] + rq; } }
+  const box = (A, x0, y0, x1, y1) => A[(y1 + 1) * (w + 1) + x1 + 1] - A[y0 * (w + 1) + x1 + 1] - A[(y1 + 1) * (w + 1) + x0] + A[y0 * (w + 1) + x0];
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+    let best = 1e18, mean = lum[y * w + x];
+    for (const [ax, ay] of [[-1, -1], [1, -1], [-1, 1], [1, 1]]) {
+      const x0 = Math.max(0, Math.min(x, x + ax * r)), x1 = Math.min(w - 1, Math.max(x, x + ax * r)), y0 = Math.max(0, Math.min(y, y + ay * r)), y1 = Math.min(h - 1, Math.max(y, y + ay * r));
+      const n = (x1 - x0 + 1) * (y1 - y0 + 1), s = box(S, x0, y0, x1, y1), q = box(Q, x0, y0, x1, y1), m = s / n, v = q / n - m * m;
+      if (v < best) { best = v; mean = m; }
+    }
+    out[y * w + x] = mean;
+  }
+  return out;
+}
+function traceArt(photo, r, o = {}) {
+  let { subject = 'all' } = o;
+  const { crop = [0, 0, 1, 1], k = 3, kr = 5, passes = 2, edge = 0.09, minArea = 260, lw = 3, flip = false, cuts = null, subjT = 0.16, gamma = 1 } = o;
+  // the photo into the rect (cover), then worked at half size
+  const big = canvas(); clip(big.g, r, () => { if (flip) { big.g.save(); big.g.translate(r.x * 2 + r.w, 0); big.g.scale(-1, 1); } cover(big.g, photo, r, { crop }); if (flip) big.g.restore(); });
+  const w = Math.round(W / 2), h = Math.round(H / 2), sm = document.createElement('canvas'); sm.width = w; sm.height = h;
+  const sg = sm.getContext('2d'); sg.drawImage(big, 0, 0, w, h); const id = sg.getImageData(0, 0, w, h), d = id.data;
+  const lum = new Float32Array(w * h), inR = new Uint8Array(w * h);
+  for (let p = 0; p < w * h; p++) { lum[p] = Math.pow((0.2126 * d[p * 4] + 0.7152 * d[p * 4 + 1] + 0.0722 * d[p * 4 + 2]) / 255, gamma); inR[p] = d[p * 4 + 3] > 128 ? 1 : 0; }
+  // the subject: distance in colour from the photo's border colour
+  let subj = new Uint8Array(w * h).fill(1);
+  if (Array.isArray(subject)) { const pts = curve(subject.map(([fx, fy]) => [r.x + fx * r.w, r.y + fy * r.h]), 4); subject = poly(pts); }
+  if (subject === 'auto') {
+    const xs = [], x0 = Math.floor(r.x / 2) + 2, x1 = Math.ceil((r.x + r.w) / 2) - 3, y0 = Math.floor(r.y / 2) + 2, y1 = Math.ceil((r.y + r.h) / 2) - 3;
+    for (let x = x0; x <= x1; x += 3) for (const y of [y0, y1]) xs.push(y * w + x);
+    for (let y = y0; y <= y1; y += 3) for (const x of [x0, x1]) xs.push(y * w + x);
+    const med = [0, 1, 2].map((c) => xs.map((p) => d[p * 4 + c]).sort((a, b) => a - b)[xs.length >> 1]);
+    const dm = canvas(); const did = dm.g.createImageData(dm.width, dm.height);
+    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) { const p = y * w + x, dist = Math.hypot(d[p * 4] - med[0], d[p * 4 + 1] - med[1], d[p * 4 + 2] - med[2]) / 441;
+      const a = inR[p] && dist > subjT ? 255 : 0, f = dm.width / w; for (let yy = 0; yy < f; yy++) for (let xx = 0; xx < f; xx++) { const q = ((y * f + yy) * dm.width + x * f + xx) * 4; did.data[q + 3] = a; did.data[q] = did.data[q + 1] = did.data[q + 2] = 255; } }
+    dm.g.putImageData(did, 0, 0);
+    const solidS = keepLargest(alphaThr(blurred(alphaThr(blurred(dm, 6), 0.5), 3), 0.5));
+    subject = solidS;
+  }
+  let flat = lum; for (let i = 0; i < passes; i++) flat = kuwahara(flat, w, h, kr);
+  // back to full size as a canvas, for thresholding and edges
+  const fc = canvas(); { const t = document.createElement('canvas'); t.width = w; t.height = h; const tg = t.getContext('2d'), tid = tg.createImageData(w, h);
+    for (let p = 0; p < w * h; p++) { const v = Math.round(flat[p] * 255); tid.data[p * 4] = tid.data[p * 4 + 1] = tid.data[p * 4 + 2] = v; tid.data[p * 4 + 3] = inR[p] ? 255 : 0; }
+    tg.putImageData(tid, 0, 0); fc.g.imageSmoothingQuality = 'high'; fc.g.drawImage(t, 0, 0, W, H); }
+  const sil = subject === 'all' ? alphaThr(fc, 0.5) : inter(alphaThr(fc, 0.5), subject);
+  const F2 = inter(blurred(fc, o.soften ?? 3), sil);
+  const qs = cuts || (k === 4 ? [0.18, 0.45, 0.78] : k === 2 ? [0.4] : [0.25, 0.7]);
+  const ts = qs.map((q) => pct(F2, q));
+  const clean = (m) => removeSmall(alphaThr(blurred(m, 2.2), 0.5), minArea);
+  const ups = ts.map((t) => clean(inter(lumMask(F2, t, { soft: 0.004 }), sil)));   // pixels above each cut
+  const levels = []; levels.push(cut(sil, ups[0]));
+  for (let i = 0; i < ups.length; i++) levels.push(i + 1 < ups.length ? cut(ups[i], ups[i + 1]) : ups[i]);
+  // contours: strong edges of the flattened picture, plus the silhouette when the subject is cut out
+  const e = sobelMask(F2, edge);
+  let lines = removeSmall(alphaThr(blurred(e, 0.8), 0.45), minArea * 0.25);
+  if (subject !== 'all') lines = union(lines, outline(sil, lw));
+  else lines = inter(lines, erode(sil, 1));
+  return { levels, lines, silhouette: sil };
+}
+// Sobel edges of a canvas's luminance, as a mask of the pixels whose gradient is above t (0..1). Thinned to the
+// ridge so lines stay at an even weight.
+function sobelMask(c, t = 0.1) {
+  const w = c.width, h = c.height, d = c.getContext('2d').getImageData(0, 0, w, h).data, L = new Float32Array(w * h), G = new Float32Array(w * h);
+  for (let p = 0; p < w * h; p++) L[p] = d[p * 4 + 3] > 10 ? (0.2126 * d[p * 4] + 0.7152 * d[p * 4 + 1] + 0.0722 * d[p * 4 + 2]) / 255 : 1;
+  for (let y = 1; y < h - 1; y++) for (let x = 1; x < w - 1; x++) { const p = y * w + x;
+    const gx = -L[p - w - 1] - 2 * L[p - 1] - L[p + w - 1] + L[p - w + 1] + 2 * L[p + 1] + L[p + w + 1];
+    const gy = -L[p - w - 1] - 2 * L[p - w] - L[p - w + 1] + L[p + w - 1] + 2 * L[p + w] + L[p + w + 1]; G[p] = Math.hypot(gx, gy) / 4; }
+  const o = canvas(), oid = o.g.createImageData(w, h);
+  for (let y = 1; y < h - 1; y++) for (let x = 1; x < w - 1; x++) { const p = y * w + x, g = G[p]; if (g < t) continue;
+    // non-maximum: keep only the ridge across the gradient
+    if ((g >= G[p - 1] && g >= G[p + 1]) || (g >= G[p - w] && g >= G[p + w])) { oid.data[p * 4 + 3] = 255; oid.data[p * 4] = oid.data[p * 4 + 1] = oid.data[p * 4 + 2] = 255; } }
+  o.g.putImageData(oid, 0, 0); return dilate(o, 0.9);
+}
+// Drop connected pieces smaller than minArea (design px²) from a mask; keepLargest keeps only the biggest piece.
+function components(m) {
+  const w = m.width, h = m.height, d = m.getContext('2d').getImageData(0, 0, w, h).data, lab = new Int32Array(w * h).fill(-1), sizes = [];
+  for (let i = 0; i < w * h; i++) { if (lab[i] >= 0 || d[i * 4 + 3] < 128) continue; const id = sizes.length; let n = 0; const st = [i]; lab[i] = id;
+    while (st.length) { const p = st.pop(); n++; const x = p % w; for (const q of [p - 1, p + 1, p - w, p + w]) { if (q < 0 || q >= w * h || lab[q] >= 0 || d[q * 4 + 3] < 128) continue; if ((q === p - 1 && x === 0) || (q === p + 1 && x === w - 1)) continue; lab[q] = id; st.push(q); } }
+    sizes.push(n); }
+  return { lab, sizes, w, h };
+}
+function fromLabels({ lab, w, h }, keep) {
+  const o = canvas(), id = o.g.createImageData(w, h);
+  for (let p = 0; p < w * h; p++) if (lab[p] >= 0 && keep(lab[p])) { id.data[p * 4 + 3] = 255; id.data[p * 4] = id.data[p * 4 + 1] = id.data[p * 4 + 2] = 255; }
+  o.g.putImageData(id, 0, 0); return o;
+}
+function removeSmall(m, minArea) { const c = components(m), lim = minArea * K * K; return fromLabels(c, (i) => c.sizes[i] >= lim); }
+function keepLargest(m) { const c = components(m); let b = 0; c.sizes.forEach((s, i) => { if (s > c.sizes[b]) b = i; }); return fromLabels(c, (i) => i === b); }
+
+// Drawing from a reference by hand (Ben, 26 Nov: "get photographic references ... and then illustrate from"): the
+// contours are traced as clean curves from the photo (points read off a gridded view of the reference), and the photo
+// only supplies the cel shadows inside them, so the drawing is clean and the light is real.
+//   const P = refMap(scale, [px, py], [x, y]): maps reference points (px on a 800-wide view of the photo) to the
+//     poster, with the reference point [px, py] landing on poster point [x, y].
+//   closed(pts): a smooth closed shape through points; open curves: curve(pts).
+//   photoShade(photo, view, P, mask, q): the darkest q of the photo inside mask, smoothed into cel shapes.
+function refMap(s, [px, py], [x, y]) { return (pts) => pts.map(([a, b]) => [x + (a - px) * s, y + (b - py) * s]); }
+function closed(pts, step = 5) { const n = pts.length; const ext = [pts[n - 1], ...pts, pts[0], pts[1]]; const c = curve(ext, step); const cut0 = Math.round(c.length / (n + 2)); return poly(c.slice(cut0, c.length - cut0)); }
+function photoShade(photo, viewW, P, mask, q = 0.35, { blur = 5, minArea = 300 } = {}) {
+  // the photo laid under the poster exactly where the reference points map
+  const c = canvas(), s = viewW / photo.width, [o] = P([[0, 0]]), [o2] = P([[viewW, 0]]), k = (o2[0] - o[0]) / viewW;
+  c.g.drawImage(photo, o[0], o[1], photo.width * s * k, photo.height * s * k);
+  const L = inter(blurred(c, blur), mask);
+  return removeSmall(alphaThr(blurred(inter(cut(mask, lumMask(L, pct(L, q), { soft: 0.01 })), mask), 2), 0.5), minArea);
+}

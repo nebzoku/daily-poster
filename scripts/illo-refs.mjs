@@ -14,10 +14,13 @@ import sharp from "sharp";
 import { unsplash, met } from "./lib/images.mjs";
 
 const ROOT = new URL("../", import.meta.url).pathname, SITE = join(ROOT, "site");
-const brief = JSON.parse(await readFile(join(SITE, "data", "latest.json"), "utf8"));
+// node scripts/illo-refs.mjs [date]: today's brief by default, or an earlier one (site/data/<date>.json)
+const arg = process.argv[2];
+const brief = JSON.parse(await readFile(join(SITE, "data", arg ? `${arg}.json` : "latest.json"), "utf8"));
 const date = brief.date, dir = join(ROOT, "experiments", "claude-posters", "refs", date), PER = 3, MAX = 18;
-const manualFile = join(ROOT, "requests", "illo-refs.txt");
-const manual = existsSync(manualFile) ? (await readFile(manualFile, "utf8")).split("\n").map((s) => s.trim()).filter((s) => s && !s.startsWith("#")) : [];
+// hand-set queries: requests/illo-refs/<date>.txt for that day, else requests/illo-refs.txt (today only)
+const manualFile = existsSync(join(ROOT, "requests", "illo-refs", `${date}.txt`)) ? join(ROOT, "requests", "illo-refs", `${date}.txt`) : arg ? "" : join(ROOT, "requests", "illo-refs.txt");
+const manual = manualFile && existsSync(manualFile) ? (await readFile(manualFile, "utf8")).split("\n").map((s) => s.trim()).filter((s) => s && !s.startsWith("#")) : [];
 
 async function askClaude() {
   if (!process.env.ANTHROPIC_API_KEY) return null;

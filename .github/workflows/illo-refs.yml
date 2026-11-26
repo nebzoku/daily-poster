@@ -9,8 +9,13 @@ on:
     - cron: "23 6 * * *"
   push:
     branches: [main]
-    paths: [requests/illo-refs.txt, scripts/illo-refs.mjs]
+    paths: [requests/illo-refs.txt, "requests/illo-refs/**", scripts/illo-refs.mjs]
   workflow_dispatch:
+    inputs:
+      dates:
+        description: "Earlier briefs to pull references for (YYYY-MM-DD, space separated); empty = today"
+        required: false
+        default: ""
 
 permissions:
   contents: write
@@ -35,13 +40,17 @@ jobs:
           UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
         run: |
           d=$(node -e "console.log(JSON.parse(require('fs').readFileSync('site/data/latest.json','utf8')).date)")
-          if [ "${{ github.event_name }}" = "schedule" ] && [ -f "experiments/claude-posters/refs/$d/refs.json" ]; then echo "Already have today's."; exit 0; fi
-          node scripts/illo-refs.mjs
+          # dates from the dispatch input, or any day with a hand-set query file and no references yet
+          dates="${{ github.event.inputs.dates }}"
+          for f in requests/illo-refs/*.txt; do [ -f "$f" ] || continue; x=$(basename "$f" .txt); [ -f "experiments/claude-posters/refs/$x/refs.json" ] || dates="$dates $x"; done
+          for x in $dates; do node scripts/illo-refs.mjs "$x"; done
+          # today's, unless it's already there (a push or a hand run with no dates always refreshes it)
+          if [ ! -f "experiments/claude-posters/refs/$d/refs.json" ] || { [ "${{ github.event_name }}" != "schedule" ] && [ -z "$(echo ${{ github.event.inputs.dates }})" ] && [ -z "$(echo $dates)" ]; }; then node scripts/illo-refs.mjs; fi
       - name: Save them
         run: |
           git config user.name "daily-poster-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add experiments/claude-posters/refs
           git diff --cached --quiet && exit 0
-          git commit -m "Illustration references for $(node -e "console.log(JSON.parse(require('fs').readFileSync('site/data/latest.json','utf8')).date)")"
+          git commit -m "Illustration references"
           for i in 1 2 3 4; do git pull --rebase -q && git push && exit 0; sleep $((i * 15)); done

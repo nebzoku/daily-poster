@@ -305,6 +305,10 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
 - **Moving things never make type unreadable.** Where a moving shape or number passes under small type, the type
   flips colour over it (like the XOR crossings), so it can always be read (Ben on the 050 slide).
 - Loops of about 4 seconds at 12 fps, printed frame by frame with the paper and ink seed held still.
+- **The Instagram moving poster runs 30 seconds** (Ben, 26 Nov 2026: more of a good song fits, and people linger to hear
+  it): the loop repeated and cut at 30 s (`motion.py`). The archive version stays a few loops.
+- **Hold on the finished poster longer:** each loop rests on the finished poster for at least 2.5 s; `motion.py` finds
+  the loop's still stretch and repeats it. Design movements with a clear rest on the finished poster.
 
 ### Round 16 feedback (24 Nov 2026): wear, and showing the work
 - **Scratches and scuffs.** Every poster picks up a little handling wear (`scratches`, run by `stock()`, so it's on

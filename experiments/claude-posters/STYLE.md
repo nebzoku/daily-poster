@@ -29,6 +29,18 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   from the brief and different layout systems and treatments. Colourways only swap which palette colours play
   background, middle (image marks) and type. Ben picks the one(s) to post the next day.
 
+### Round 35 (27 Nov 2026): illustrations stay full bleed, no copy box
+- **Never paint a flat band or box across an illustration for the type** (Ben on 056: the copy box cut the illustration
+  off, so the poster felt less full bleed and less impactful). This replaces Round 30's "make the headline band
+  perfectly flat". The scamp already leaves a plain zone for the type: set the headline and small type straight onto
+  it. Only right round the headline's letters is faint detail (snow texture, soft shading, anything close to the zone's
+  own colour) calmed into that colour, and the drawing's real lines and shapes stay. The small type gets a tight
+  knockout of a few pixels round each letter, never a patch or bubble behind the block (`illo-scamp.tpl.js`).
+- **A faint gradient in the scamp's plain zone must not become a band.** Snapping to the palette (worse after a
+  colourway swap) can turn two near-identical pales into two different tints with a hard edge behind the type. The
+  plain area running into the headline zone is merged into the one colour most of it uses, and each spot near the
+  letters calms towards its own surroundings, never one colour for the whole zone.
+
 ### Round 34 (27 Nov 2026): pick the scamp with the boldest perspective
 - **Choose scamps for their viewpoint first.** Ben on 056: the eye-level village square (scamp 04, a "slight fish-eye"
   at street level) was "the most standard and boring"; the other three were far more interesting because of their

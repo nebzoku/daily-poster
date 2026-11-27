@@ -17,7 +17,8 @@ const FS = { 'Manrope': ['manrope', [200,300,400,500,600,700,800]], 'Libre Frank
   'Martian Mono': ['martian-mono', [100,200,300,400,500,600,700,800]], 'Albert Sans': ['albert-sans', [100,200,300,400,500,600,700,800,900]],
   'Six Caps': ['six-caps', [400]], 'Young Serif': ['young-serif', [400]], 'Work Sans': ['work-sans', [100,200,300,400,500,600,700,800,900]],
   'Gloock': ['gloock', [400]], 'Instrument Serif': ['instrument-serif', [400]], 'Schibsted Grotesk': ['schibsted-grotesk', [400,500,600,700,800,900]],
-  'Anybody': ['anybody', [100,200,300,400,500,600,700,800,900]], 'Azeret Mono': ['azeret-mono', [100,200,300,400,500,600,700,800,900]] };
+  'Anybody': ['anybody', [100,200,300,400,500,600,700,800,900]], 'Azeret Mono': ['azeret-mono', [100,200,300,400,500,600,700,800,900]],
+  'Alfa Slab One': ['alfa-slab-one', [400]], 'Sora': ['sora', [100,200,300,400,500,600,700,800]] };
 let css = '';
 for (const [fam, [slug, ws]] of Object.entries(FS)) for (const w of ws)
   css += `@font-face{font-family:"${fam}";src:url("node_modules/@fontsource/${slug}/files/${slug}-latin-${w}-normal.woff2");font-weight:${w}}\n`;

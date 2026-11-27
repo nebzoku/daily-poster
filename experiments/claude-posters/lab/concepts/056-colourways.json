@@ -1,0 +1,245 @@
+{
+ "c1": {
+  "a": {
+   "bg": "#3A0E0F",
+   "mid2": "#7D6D6C",
+   "mid": "#F33446",
+   "type": "#FFDBD9",
+   "text": "#FFDBD9",
+   "tones": [
+    "#6D5F5E",
+    "#B2ABAB",
+    "#FFDBD9",
+    "#FFFFFF"
+   ],
+   "hl": "#B5E643",
+   "finish": "screen",
+   "stock": "newsprint"
+  },
+  "b": {
+   "bg": "#000000",
+   "mid2": "#3A0E0F",
+   "mid": "#FFDBD9",
+   "type": "#F33446",
+   "text": "#FFDBD9",
+   "tones": [
+    "#5A4E4D",
+    "#7D6D6C",
+    "#FFDBD9",
+    "#FFFFFF"
+   ],
+   "hl": "#B5E643",
+   "finish": "screen",
+   "stock": "newsprint"
+  },
+  "c": {
+   "bg": "#F33446",
+   "mid2": "#B32331",
+   "mid": "#FFDBD9",
+   "type": "#3A0E0F",
+   "text": "#3A0E0F",
+   "tones": [
+    "#3A0E0F",
+    "#6D5F5E",
+    "#D7D4D4",
+    "#FFFFFF"
+   ],
+   "hl": "#B5E643",
+   "finish": "screen",
+   "stock": "newsprint"
+  }
+ },
+ "c2": {
+  "a": {
+   "bg": "#3A0E0F",
+   "tones": [
+    "#3A0E0F",
+    "#7D6D6C",
+    "#F33446",
+    "#FFDBD9"
+   ],
+   "road": "#7D6D6C",
+   "house": "#FFDBD9",
+   "fall": "#F33446",
+   "text": "#FFDBD9",
+   "type": "#FFDBD9",
+   "hl": "#B5E643",
+   "finish": "inked-deboss",
+   "stock": "rough"
+  },
+  "b": {
+   "bg": "#F33446",
+   "tones": [
+    "#3A0E0F",
+    "#B32331",
+    "#FFDBD9",
+    "#FFFFFF"
+   ],
+   "road": "#3A0E0F",
+   "house": "#FFDBD9",
+   "fall": "#3A0E0F",
+   "text": "#3A0E0F",
+   "type": "#3A0E0F",
+   "hl": "#B5E643",
+   "finish": "inked-deboss",
+   "stock": "rough"
+  },
+  "c": {
+   "bg": "#000000",
+   "tones": [
+    "#000000",
+    "#3A0E0F",
+    "#F33446",
+    "#FFDBD9"
+   ],
+   "road": "#7D6D6C",
+   "house": "#FFDBD9",
+   "fall": "#F33446",
+   "text": "#FFDBD9",
+   "type": "#FFDBD9",
+   "hl": "#B5E643",
+   "finish": "inked-deboss",
+   "stock": "rough"
+  }
+ },
+ "c3": {
+  "a": {
+   "bg": "#3A0E0F",
+   "tones": [
+    "#3A0E0F",
+    "#B32331",
+    "#F33446",
+    "#FFDBD9",
+    "#FFFFFF"
+   ],
+   "box2": "#F33446",
+   "thr": "#3A0E0F",
+   "pix": [
+    "#3A0E0F",
+    "#7D6D6C",
+    "#F33446",
+    "#FFDBD9"
+   ],
+   "over": "#7D6D6C",
+   "type": "#FFDBD9",
+   "text": "#FFDBD9",
+   "hl": "#B5E643",
+   "finish": "bleed",
+   "stock": "smooth"
+  },
+  "b": {
+   "bg": "#000000",
+   "tones": [
+    "#3A0E0F",
+    "#7D6D6C",
+    "#FFDBD9",
+    "#FFFFFF"
+   ],
+   "box2": "#7D6D6C",
+   "thr": "#000000",
+   "pix": [
+    "#000000",
+    "#3A0E0F",
+    "#F33446",
+    "#FFDBD9"
+   ],
+   "over": "#F33446",
+   "type": "#F33446",
+   "text": "#FFDBD9",
+   "hl": "#B5E643",
+   "finish": "bleed",
+   "stock": "smooth"
+  },
+  "c": {
+   "bg": "#FFDBD9",
+   "tones": [
+    "#3A0E0F",
+    "#F33446",
+    "#F79A9E",
+    "#FFFFFF"
+   ],
+   "box2": "#F33446",
+   "thr": "#3A0E0F",
+   "pix": [
+    "#3A0E0F",
+    "#7D6D6C",
+    "#F33446",
+    "#FFFFFF"
+   ],
+   "over": "#7D6D6C",
+   "type": "#3A0E0F",
+   "text": "#3A0E0F",
+   "hl": "#B5E643",
+   "finish": "bleed",
+   "stock": "smooth"
+  }
+ },
+ "c4": {
+  "a": {
+   "paper": "#FFDBD9",
+   "sky": "#F33446",
+   "cloud": "#FFFFFF",
+   "line": "#3A0E0F",
+   "shade": "#7D6D6C",
+   "canopy": "#D7D4D4",
+   "light": "#FFFFFF",
+   "pixBg": "#3A0E0F",
+   "pix": [
+    "#F33446",
+    "#FFDBD9"
+   ],
+   "scrap": "#FFFFFF",
+   "grain": "#3A0E0F",
+   "tape": "#F79A9E",
+   "type": "#3A0E0F",
+   "text": "#3A0E0F",
+   "hl": "#B5E643",
+   "finish": "copy",
+   "stock": "uncoated"
+  },
+  "b": {
+   "paper": "#F33446",
+   "sky": "#FFDBD9",
+   "cloud": "#FFFFFF",
+   "line": "#3A0E0F",
+   "shade": "#B2ABAB",
+   "canopy": "#FFE7E5",
+   "light": "#FFFFFF",
+   "pixBg": "#3A0E0F",
+   "pix": [
+    "#7D6D6C",
+    "#FFDBD9"
+   ],
+   "scrap": "#FFDBD9",
+   "grain": "#3A0E0F",
+   "tape": "#FFFFFF",
+   "type": "#3A0E0F",
+   "text": "#3A0E0F",
+   "hl": "#B5E643",
+   "finish": "copy",
+   "stock": "uncoated"
+  },
+  "c": {
+   "paper": "#7D6D6C",
+   "sky": "#3A0E0F",
+   "cloud": "#B2ABAB",
+   "line": "#000000",
+   "shade": "#6D5F5E",
+   "canopy": "#FFDBD9",
+   "light": "#FFFFFF",
+   "pixBg": "#000000",
+   "pix": [
+    "#F33446",
+    "#FFDBD9"
+   ],
+   "scrap": "#FFDBD9",
+   "grain": "#3A0E0F",
+   "tape": "#D7D4D4",
+   "type": "#FFDBD9",
+   "text": "#FFDBD9",
+   "hl": "#B5E643",
+   "finish": "copy",
+   "stock": "uncoated"
+  }
+ }
+}

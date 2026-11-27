@@ -109,6 +109,7 @@ hold(0.25, FIT, bg, lambda t: [('box', 0, 0, DW, DH, True)])
 #     onto the artboard, where the build carries on.
 def node_chapter():
     import json as _json
+    from PIL import ImageFilter
     try: cw = _json.load(open(f'concepts/{issue}-colourways.json'))[concept][pick]
     except Exception: return
     if not cw.get('scamp'): return
@@ -118,17 +119,38 @@ def node_chapter():
     try: meta = next((x for x in _json.load(open(f'{scdir}/scamps.json'))['scenes'] if x.get('file') == os.path.basename(sp)), {})
     except Exception: pass
     brief = {}
-    try: brief = _json.load(open(f'{root}/site/data/{os.path.basename(scdir)}.json'))
-    except Exception:
-        try: brief = _json.load(open(f'{root}/site/data/latest.json'))
+    for bp in (f'{root}/site/data/{os.path.basename(scdir)}.json', f'{root}/site/data/latest.json'):
+        try: brief = _json.load(open(bp)); break
         except Exception: pass
-    T1, T2, T3 = font(600, 22), font(500, 18), font(500, 15)
+    # Ben, 27 Nov: the graph's type matches the day's data typeface (the brief's text face), node copy tracked -2%;
+    # the prompt is set in mono (the text face if it is a mono, otherwise Azeret Mono), untracked
+    def face(family, w, size):
+        slug = family.lower().replace(' ', '-')
+        for ww in (w, 500, 400, 600, 700):
+            src = f'node_modules/@fontsource/{slug}/files/{slug}-latin-{ww}-normal.woff2'
+            if os.path.exists(src):
+                dst = f'out/{slug}-{ww}.ttf'
+                if not os.path.exists(dst):
+                    from fontTools.ttLib import TTFont
+                    f = TTFont(src); f.flavor = None; f.save(dst)
+                return ImageFont.truetype(dst, size)
+        return font(w if w in (500, 600) else 500, size)
+    F = 2                                                     # the canvas is drawn at 2x, so the zooms stay sharp
+    tf = ((brief.get('type') or {}).get('text') or 'Work Sans')
+    mono = tf if 'mono' in tf.lower() else 'Azeret Mono'
+    T1, T2, T3, TM = face(tf, 600, 22 * F), face(tf, 500, 18 * F), face(tf, 500, 15 * F), face(mono, 400, 14 * F)
+    TRK = -0.02
     BGc, DOT, NODE, EDGE, TXT, DIM, WIRE = (22, 22, 25), (46, 46, 52), (38, 38, 43), (72, 72, 80), (232, 232, 236), (150, 150, 158), (170, 170, 180)
-    def wrap(text, f, w, n):
+    meas = ImageDraw.Draw(Image.new('RGB', (1, 1)))
+    def tlen(t, f, trk): return sum(meas.textlength(ch, font=f) for ch in t) + trk * f.size * max(0, len(t) - 1)
+    def ttext(d, xy, t, f, fill, trk=TRK):
+        x, y = xy
+        for ch in t: d.text((x, y), ch, font=f, fill=fill); x += meas.textlength(ch, font=f) + trk * f.size
+    def wrap(text, f, w, n, trk=TRK):
         out, line = [], ''
         for wd in text.split():
             t = (line + ' ' + wd).strip()
-            if ImageDraw.Draw(Image.new('RGB', (1, 1))).textlength(t, font=f) > w and line: out.append(line); line = wd
+            if tlen(t, f, trk) > w * F and line: out.append(line); line = wd
             else: line = t
             if len(out) >= n: break
         if line and len(out) < n: out.append(line)
@@ -144,10 +166,13 @@ def node_chapter():
     cols = (cw.get('palette') or [])[:4] + ([brief.get('highlight', {}).get('hex')] if brief.get('highlight') else [])
     X0, X1 = 56, 476
     nodes = [('Brief', 250, 420), ('Prompt', 450, 780), ('Style', 810, 1010), ('References', 1040, 1240), ('Palette', 1270, 1370)]
-    G = (590, 760, 1024, 930); OUT = (590, 990, 1024, None)
-    scamp = Image.open(sp).convert('RGB'); ow = OUT[2] - OUT[0] - 32; oh = round(ow * scamp.height / scamp.width)
-    OUT = (OUT[0], OUT[1], OUT[2], OUT[1] + 52 + oh + 16); simg = scamp.resize((ow, oh), Image.LANCZOS)
-    noise = Image.fromarray((rng.random((oh // 6 + 1, ow // 6 + 1, 3)) * 255).astype(np.uint8)).resize((ow, oh), Image.NEAREST)
+    G = (590, 760, 1024, 930)
+    scamp = Image.open(sp).convert('RGB'); ow = 1024 - 590 - 32; oh = round(ow * scamp.height / scamp.width)
+    OUT = (590, 990, 1024, 990 + 52 + oh + 16)
+    simg = scamp.resize((ow * F, oh * F), Image.LANCZOS)
+    noise = Image.fromarray((rng.random((oh // 6 + 1, ow // 6 + 1, 3)) * 255).astype(np.uint8)).resize((ow * F, oh * F), Image.NEAREST)
+    tw = (X1 - X0 - 36 - 20) // 3
+    thumbs = {nm: [thumb(pth, tw * F, (y1 - y0 - 70) * F) for pth in (ours if nm == 'Style' else refs)] for nm, y0, y1 in nodes if nm in ('Style', 'References')}
     port_in = lambda i: (G[0], G[1] + 64 + i * 20)
     port_out = lambda i: (X1, (nodes[i][1] + nodes[i][2]) / 2)
     def bez(a, b, u=1.0, n=40):
@@ -158,72 +183,89 @@ def node_chapter():
         return pts
     title = (brief.get('story') or {}).get('title', '') or meta.get('headline', '')
     prompt = meta.get('prompt', '') or meta.get('angle', '')
-    def canvas_img(shown=5, wires=0.0, run=0.0, reveal=0.0, outa=1.0, drag=None):
-        im = Image.new('RGB', (SW, SH), BGc); d = ImageDraw.Draw(im)
-        for y in range(16, SH, 32):
-            for x in range(16, SW, 32): d.point((x, y), fill=DOT)
-        def box(x0, y0, x1, y1, name, a=1.0):
-            if a <= 0: return False
-            d.rounded_rectangle([x0, y0, x1, y1], 14, fill=NODE, outline=EDGE, width=2)
-            d.text((x0 + 18, y0 + 14), name, font=T1, fill=TXT); return True
-        for i, (nm, y0, y1) in enumerate(nodes):
-            if i >= shown: continue
-            box(X0, y0, X1, y1, nm)
-            iy = y0 + 52
-            if nm == 'Brief':
-                for k, ln in enumerate(wrap(title, T2, X1 - X0 - 36, 4)): d.text((X0 + 18, iy + k * 24), ln, font=T2, fill=DIM)
-            elif nm == 'Prompt':
-                for k, ln in enumerate(wrap(prompt, T3, X1 - X0 - 36, 13)): d.text((X0 + 18, iy + k * 20), ln, font=T3, fill=DIM)
-            elif nm in ('Style', 'References'):
-                ps = ours if nm == 'Style' else refs; tw = (X1 - X0 - 36 - 2 * 10) // 3
-                for k, pth in enumerate(ps): im.paste(thumb(pth, tw, y1 - iy - 18), (X0 + 18 + k * (tw + 10), iy))
-            elif nm == 'Palette':
-                for k, c in enumerate(cols):
-                    c = tuple(int(c[j:j + 2], 16) for j in (1, 3, 5)); d.rounded_rectangle([X0 + 18 + k * 74, iy, X0 + 18 + k * 74 + 62, iy + 34], 6, fill=c)
-            d.ellipse([X1 - 7, (y0 + y1) / 2 - 7, X1 + 7, (y0 + y1) / 2 + 7], fill=WIRE)
-        # wires: each one drawn in turn (wires = how many, with a fraction for the one being dragged)
+    brief_lines, prompt_lines = wrap(title, T2, X1 - X0 - 36, 4), wrap(prompt, TM, X1 - X0 - 36, 14, 0)
+    # the static canvas (dots, nodes and their contents), drawn once
+    base = Image.new('RGB', (SW * F, SH * F), BGc); bd = ImageDraw.Draw(base)
+    for y in range(16, SH, 32):
+        for x in range(16, SW, 32): bd.ellipse([x * F - 1, y * F - 1, x * F + 1, y * F + 1], fill=DOT)
+    def box(d, x0, y0, x1, y1, name):
+        d.rounded_rectangle([x0 * F, y0 * F, x1 * F, y1 * F], 14 * F, fill=NODE, outline=EDGE, width=2 * F)
+        ttext(d, ((x0 + 18) * F, (y0 + 14) * F), name, T1, TXT)
+    def node_layer(i):
+        nm, y0, y1 = nodes[i]; L = Image.new('RGBA', base.size, (0, 0, 0, 0)); d = ImageDraw.Draw(L)
+        box(d, X0, y0, X1, y1, nm); iy = y0 + 52
+        if nm == 'Brief':
+            for k, ln in enumerate(brief_lines): ttext(d, ((X0 + 18) * F, (iy + k * 24) * F), ln, T2, DIM)
+        elif nm == 'Prompt':
+            for k, ln in enumerate(prompt_lines): d.text(((X0 + 18) * F, (iy + k * 19) * F), ln, font=TM, fill=DIM)
+        elif nm in thumbs:
+            for k, th in enumerate(thumbs[nm]): L.paste(th, ((X0 + 18 + k * (tw + 10)) * F, iy * F))
+        elif nm == 'Palette':
+            for k, c in enumerate(cols):
+                c = tuple(int(c[j:j + 2], 16) for j in (1, 3, 5)); d.rounded_rectangle([(X0 + 18 + k * 74) * F, iy * F, (X0 + 80 + k * 74) * F, (iy + 34) * F], 6 * F, fill=c)
+        d.ellipse([(X1 - 7) * F, ((y0 + y1) / 2 - 7) * F, (X1 + 7) * F, ((y0 + y1) / 2 + 7) * F], fill=WIRE)
+        return L
+    layers = [node_layer(i) for i in range(len(nodes))]
+    gl = Image.new('RGBA', base.size, (0, 0, 0, 0)); gd = ImageDraw.Draw(gl)
+    box(gd, *G, 'Generate'); ttext(gd, ((G[0] + 18) * F, (G[1] + 50) * F), 'Image model', T3, DIM)
+    for i in range(len(nodes)): gd.ellipse([(G[0] - 7) * F, (port_in(i)[1] - 7) * F, (G[0] + 7) * F, (port_in(i)[1] + 7) * F], fill=WIRE)
+    gd.line([((G[0] + G[2]) / 2 * F, G[3] * F), ((G[0] + G[2]) / 2 * F, OUT[1] * F)], fill=WIRE, width=3 * F)
+    box(gd, *OUT, 'Output')
+    ox, oy = OUT[0] + 16, OUT[1] + 52
+    gd.rounded_rectangle([ox * F, oy * F, (ox + ow) * F, (oy + oh) * F], 6 * F, outline=EDGE, width=2 * F)
+    bx = (G[2] - 140, G[3] - 58, G[2] - 18, G[3] - 18)
+    def canvas_img(shown=5, wires=0.0, run=0.0, reveal=0.0, drag=None):
+        im = base.copy()
+        for i in range(min(shown, len(layers))): im.paste(layers[i], (0, 0), layers[i])
+        im.paste(gl, (0, 0), gl); d = ImageDraw.Draw(im)
         for i in range(len(nodes)):
             u = min(1, max(0, wires - i))
-            if u <= 0: continue
-            pts = bez(port_out(i), port_in(i), u); d.line(pts, fill=WIRE, width=3, joint='curve')
-        box(G[0], G[1], G[2], G[3], 'Generate')
-        d.text((G[0] + 18, G[1] + 50), 'image model', font=T3, fill=DIM)
-        for i in range(len(nodes)): d.ellipse([G[0] - 7, port_in(i)[1] - 7, G[0] + 7, port_in(i)[1] + 7], fill=WIRE)
-        bx = (G[2] - 140, G[3] - 58, G[2] - 18, G[3] - 18)
-        d.rounded_rectangle(bx, 10, fill=BLUE if run > 0 else (64, 64, 72)); d.text((bx[0] + 38, bx[1] + 9), 'Run', font=T2, fill=(255, 255, 255))
+            if u > 0: d.line([(x * F, y * F) for x, y in bez(port_out(i), port_in(i), u)], fill=WIRE, width=3 * F, joint='curve')
+        d.rounded_rectangle([v * F for v in bx], 10 * F, fill=BLUE if run > 0 else (64, 64, 72))
+        ttext(d, ((bx[0] + 40) * F, (bx[1] + 9) * F), 'Run', T2, (255, 255, 255))
         if run > 0:
-            d.rounded_rectangle([G[0] + 18, G[3] - 40, bx[0] - 20, G[3] - 32], 4, fill=(60, 60, 66))
-            d.rounded_rectangle([G[0] + 18, G[3] - 40, G[0] + 18 + (bx[0] - 38 - G[0]) * min(1, run), G[3] - 32], 4, fill=BLUE)
-        d.line([((G[0] + G[2]) / 2, G[3]), ((G[0] + G[2]) / 2, OUT[1])], fill=WIRE, width=3)
-        box(*OUT, 'Output')
-        ox, oy = OUT[0] + 16, OUT[1] + 52
-        if reveal > 0 and outa > 0:
-            blur = float(max(0, 18 * (1 - reveal)))
-            from PIL import ImageFilter
-            pic = Image.blend(noise, simg.filter(ImageFilter.GaussianBlur(blur)) if blur > 0.3 else simg, min(1, reveal * 1.4))
-            if drag is None: im.paste(pic, (ox, oy))
+            d.rounded_rectangle([(G[0] + 18) * F, (G[3] - 40) * F, (bx[0] - 20) * F, (G[3] - 32) * F], 4 * F, fill=(60, 60, 66))
+            d.rounded_rectangle([(G[0] + 18) * F, (G[3] - 40) * F, (G[0] + 18 + (bx[0] - 38 - G[0]) * min(1, run)) * F, (G[3] - 32) * F], 4 * F, fill=BLUE)
+        if reveal > 0:
+            blur = float(max(0, 18 * F * (1 - reveal)))
+            pic = Image.blend(noise, simg.filter(ImageFilter.GaussianBlur(blur)) if blur > 0.6 else simg, min(1.0, float(reveal) * 1.4))
+            if drag is None: im.paste(pic, (ox * F, oy * F))
             else:
-                d.rounded_rectangle([ox, oy, ox + ow, oy + oh], 6, outline=EDGE, width=2)
-                sc = drag[2]; pw_, ph_ = max(1, round(ow * sc)), max(1, round(oh * sc)); im.paste(simg.resize((pw_, ph_)), (round(drag[0] - pw_ / 2), round(drag[1] - ph_ / 2)))
-        else: d.rounded_rectangle([ox, oy, ox + ow, oy + oh], 6, outline=EDGE, width=2)
+                sc = drag[2]; pw_, ph_ = max(1, round(ow * F * sc)), max(1, round(oh * F * sc))
+                im.paste(simg.resize((pw_, ph_)), (round(drag[0] * F - pw_ / 2), round(drag[1] * F - ph_ / 2)))
         return im
-    def sseg(dur, fn, cut=False): segs.append((dur * SPEED, fn, FIT, cut))
+    # the camera: (centre x, centre y, zoom) in canvas px, eased between keys like the rest of the reel
+    def view(im, cam, cursor, press=False):
+        cx, cy, z = cam; w, h = SW / z, SH / z
+        cx = min(max(cx, w / 2), SW - w / 2); cy = min(max(cy, h / 2), SH - h / 2)
+        out = im.crop((round((cx - w / 2) * F), round((cy - h / 2) * F), round((cx + w / 2) * F), round((cy + h / 2) * F))).resize((SW, SH), Image.LANCZOS)
+        sx_, sy_ = (cursor[0] - cx) * z + SW / 2, (cursor[1] - cy) * z + SH / 2
+        return out, (sx_, sy_)
+    camk = [(540, 960, 1.0)]
+    def sseg(dur, scene, cam_to, cut=False):
+        c0 = camk[-1]; camk.append(cam_to)
+        def fn(t, scene=scene, c0=c0, c1=cam_to):
+            u = ease(min(1, t / 0.75)); cam = tuple(a + (b - a) * u for a, b in zip(c0, c1))
+            sc = scene(t); im, cpos = view(sc['img'], cam, sc['cursor'])
+            return dict(screen=im, cursor=cpos, shape='arrow', press=sc.get('press', False), over=[])
+        segs.append((dur * SPEED, fn, FIT, cut))
     sc0 = (SW + 80, SH * 0.6)
-    sseg(0.55, lambda t: dict(screen=canvas_img(shown=min(5, int(t * 6.5))), cursor=sc0, shape='arrow', over=[]), cut=True)
+    sseg(0.6, lambda t: dict(img=canvas_img(shown=min(5, int(t * 6.5))), cursor=sc0), (540, 960, 1.0), cut=True)
     pc = sc0
     for i in range(len(nodes)):
-        a = port_out(i); b = port_in(i)
-        sseg(0.2, lambda t, p0=pc, a=a, i=i: dict(screen=canvas_img(wires=i), cursor=path(p0, a, t), shape='arrow', over=[]))
-        sseg(0.3, lambda t, a=a, b=b, i=i: dict(screen=canvas_img(wires=i + ease(t)), cursor=bez(a, b, ease(t))[-1], shape='arrow', press=True, over=[]))
+        a, b = port_out(i), port_in(i); c = (X0 + (G[0] + 60 - X0) / 2 - 20, (a[1] + b[1]) / 2, 1.6 if i else 1.5)   # node titles on the left and the Generate node both in view
+        sseg(0.24, lambda t, p0=pc, a=a, i=i: dict(img=canvas_img(wires=i), cursor=path(p0, a, t)), c)
+        sseg(0.32, lambda t, a=a, b=b, i=i: dict(img=canvas_img(wires=i + ease(t)), cursor=bez(a, b, ease(t))[-1], press=True), c)
         pc = b
     run_at = (G[2] - 80, G[3] - 38)
-    sseg(0.25, lambda t, p0=pc: dict(screen=canvas_img(wires=5), cursor=path(p0, run_at, t), shape='arrow', over=[]))
-    sseg(0.15, lambda t: dict(screen=canvas_img(wires=5, run=0.01), cursor=run_at, shape='arrow', press=True, over=[]))
-    sseg(1.3, lambda t: dict(screen=canvas_img(wires=5, run=ease(min(1, t * 1.25)), reveal=ease(t)), cursor=run_at, shape='arrow', over=[]))
-    mid = (OUT[0] + 16 + ow / 2, OUT[1] + 52 + oh / 2)
-    sseg(0.25, lambda t: dict(screen=canvas_img(wires=5, run=1, reveal=1), cursor=path(run_at, mid, t), shape='arrow', over=[]))
-    sseg(0.4, lambda t: dict(screen=canvas_img(wires=5, run=1, reveal=1, drag=(mid[0] + (SW / 2 - mid[0]) * ease(t), mid[1] + (SH / 2 - 200 - mid[1]) * ease(t), 1 + 0.25 * ease(t))),
-                             cursor=(mid[0] + (SW / 2 - mid[0]) * ease(t), mid[1] + (SH / 2 - 200 - mid[1]) * ease(t)), shape='arrow', press=True, over=[]))
+    sseg(0.28, lambda t, p0=pc: dict(img=canvas_img(wires=5), cursor=path(p0, run_at, t)), (G[2] - 120, G[3] - 40, 2.1))
+    sseg(0.16, lambda t: dict(img=canvas_img(wires=5, run=0.01), cursor=run_at, press=True), (G[2] - 120, G[3] - 40, 2.1))
+    mid = (ox + ow / 2, oy + oh / 2)
+    sseg(1.4, lambda t: dict(img=canvas_img(wires=5, run=ease(min(1, t * 1.25)), reveal=ease(t)), cursor=run_at), (mid[0] - 40, mid[1] - 60, 1.45))
+    sseg(0.25, lambda t: dict(img=canvas_img(wires=5, run=1, reveal=1), cursor=path(run_at, mid, t)), (mid[0] - 60, mid[1] - 40, 1.45))
+    end = (SW / 2, SH / 2 - 200)
+    sseg(0.45, lambda t: dict(img=canvas_img(wires=5, run=1, reveal=1, drag=(mid[0] + (end[0] - mid[0]) * ease(t), mid[1] + (end[1] - mid[1]) * ease(t), 1 + 0.25 * ease(t))),
+                              cursor=(mid[0] + (end[0] - mid[0]) * ease(t), mid[1] + (end[1] - mid[1]) * ease(t)), press=True), (540, 960, 1.0))
 if 'place-illustration' in S:
     _n0 = len(segs); node_chapter()
     if len(segs) > _n0: hold(0.2, FIT, bg, cut=True)

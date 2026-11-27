@@ -36,6 +36,10 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   brief, the scene prompt, a style node, the brief's images as references and the palette are wired into a Generate
   node; Run, the picture resolves out of noise in the output node, and it's dragged onto the artboard. The style node
   only ever shows OUR kept illustrations (`illo-guide/ours-*`, none with close-up faces), never Ben's reference pack.
+- **The node graph moves like the rest of the reel** (Ben, 27 Nov): drawn at 2x, the camera zooms in on each wire
+  being connected and scrolls down the inputs, zooms into Run, scrolls down to the output as it resolves, then pulls
+  back as the picture is dragged out. Its type matches the day's data typeface (the brief's text face) with node
+  copy tracked -2%; the prompt is set in mono (the text face if it's a mono, otherwise Azeret Mono), untracked.
 
 ### Round 36 (27 Nov 2026): one style a day, in rotation; one grid post a day
 - **The morning's concepts rotate through five styles, one style a day** (Ben, 27 Nov: so no two days are the same and

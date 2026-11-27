@@ -1,0 +1,58 @@
+{
+  "date": "2026-11-27",
+  "palette": [
+    "#F33446",
+    "#FFDBD9",
+    "#7D6D6C",
+    "#3A0E0F",
+    "#000000",
+    "#FFFFFF"
+  ],
+  "highlight": {
+    "name": "Lime",
+    "hex": "#B5E643",
+    "use": "Sparingly, for a focal point: one small element that should catch the eye."
+  },
+  "scenes": [
+    {
+      "file": "scamp-01.png",
+      "headline": "Turkeys Fall From Alaskan Skies",
+      "angle": "very low worm's-eye looking straight up at a small plane and falling parcels",
+      "headlineZone": "top",
+      "highlightElement": "one parachute canopy carrying a turkey parcel",
+      "prompt": "Follows the attached style guide image (style only, not its subjects). Contemporary editorial illustration in clean fine black ink line with small pen-lift breaks, flat colour, one cel-shadow tone per surface, risograph print feel with paper grain. Very low worm's-eye view from a snowy village clearing looking up: a small bush plane crosses a big pale sky, dropping several small brown parcels on tiny parachutes in pinkish white and red. Stepped-band sky in pale pink #FFDBD9 deepening to red #F33446 at the horizon. In the foreground, tiny figures seen from behind with arms raised: an elderly Yup'ik woman in a fur-trimmed parka, a heavyset man in a dark beanie, a child in a red snowsuit; faces barely drawn, a dot and a line, no smiles. Correct anatomy, five fingers on each hand, full-length thumbs. Spruce trees and log cabins with hatched snow texture, long hard shadow shapes. Palette only #F33446, #FFDBD9, #7D6D6C, #3A0E0F, black, white. The top 22% of the image is plain flat pale pink sky with no detail for the headline. The parachute canopy is solid lime (#B5E643), the only lime thing in the whole image; it is the focal point. No text, letters or logos.",
+      "model": "gemini-nano-banana-2.1",
+      "style": "refs"
+    },
+    {
+      "file": "scamp-02.png",
+      "headline": "Where No Road Reaches",
+      "angle": "very high looking down on a winding frozen river and a tiny village",
+      "headlineZone": "bottom",
+      "highlightElement": "a single small plane's parcel crate on the snow",
+      "prompt": "Follows the attached style guide image (style only, not its subjects). Contemporary editorial illustration in clean fine black ink line, slightly worn with small breaks, flat colour, one shadow tone per surface, risograph print feel, paper grain. Very high bird's-eye view looking down on a remote Alaskan off-grid settlement: a handful of cabins with smoking chimneys, a frozen river winding in an S-curve, snowmobile tracks, dog sled lines, and thin-line hatched spruce forest. Snow in white and pale pink #FFDBD9, cabins roofs in red #F33446 and dark brown #3A0E0F, river in grey-brown #7D6D6C tints, hard-edged long shadows. A small bush plane's shadow glides across the snow. Tiny figures walk in from the cabins, seen from above with simple dots for heads: a man in a dark hooded parka, a woman with a patterned headscarf, a teenager pulling a sled, each distinct, correct anatomy. No roads anywhere. The bottom 25% of the image is plain flat white-pink snow with no detail for the headline. A parcel crate on the snow is solid lime (#B5E643), the only lime thing in the whole image; it is the focal point. No text, letters or logos.",
+      "model": "gemini-nano-banana-2.1",
+      "style": "refs"
+    },
+    {
+      "file": "scamp-03.png",
+      "headline": "Dinner Arrives by Parachute",
+      "angle": "one-point interior of a cockpit looking forward through the windshield",
+      "headlineZone": "top",
+      "highlightElement": "a small parachute bundle dangling from the pilot's hand-held drop cord",
+      "prompt": "Follows the attached style guide image (style only, not its subjects). Contemporary editorial illustration in clean fine black ink line, flat colour, cel shading with one shadow tone, risograph print feel, paper grain. One-point perspective interior of a small bush plane's cabin, looking toward the cockpit: two pilots seen from behind, one an older Black woman with short grey hair and headset, the other a broad Alaska Native man in a red wool cap, both in profile-ish, absorbed in looking out. Through the windshield a vast snowy valley and a tiny village far below under a stepped pink-to-red sky. Behind them, the cabin is stacked with brown-paper wrapped turkey parcels tied with string and small parachutes folded, an open side door with a rope. Hatched texture on seat fabric, rivets, floor ribs. Palette only #F33446, #FFDBD9, #7D6D6C, #3A0E0F, black and white. The top 22% is a flat plain dark brown #3A0E0F cabin ceiling with no detail for the headline. One folded parachute bundle by the door is solid lime (#B5E643), the only lime thing in the whole image; it is the focal point. Correct hands: five fingers, natural knuckles, full-length thumbs. No text, letters or logos.",
+      "model": "gemini-nano-banana-2.1",
+      "style": "refs"
+    },
+    {
+      "file": "scamp-04.png",
+      "headline": "Turkeys Fall From Alaskan Skies",
+      "angle": "slight fish-eye street-level view across a snowy village square at the moment of landing",
+      "headlineZone": "bottom",
+      "highlightElement": "one turkey parcel's small parachute landed in the snow",
+      "prompt": "Follows the attached style guide image (style only, not its subjects). Contemporary editorial illustration in clean fine black ink line with small pen breaks, flat colour, one cel-shadow tone, stepped sky bands, risograph print feel, paper grain. Slight fish-eye view at snow level in a remote Alaskan village: log cabins curving at the edges, a drying rack, a fuel drum, a snowmobile, and the sky above scattered with small parachutes and tiny parcels descending, a small plane distant. Villagers run and gather, drawn at a distance, in profile or from behind: a young Inupiaq woman in a fur-ruff parka hood, an older man with glasses and a flat cap, a stocky kid in a bobble hat holding a parcel, a woman in a floral kuspuk and boots. Faces a few lines only, no smiles. Correct anatomy, five fingers, full thumbs. Hatched snow marks, long hard shadows. Palette only #F33446, #FFDBD9, #7D6D6C, #3A0E0F, black and white. The bottom 25% is plain flat pale pink snow with no detail for the headline. One landed parachute in the snow is solid lime (#B5E643), the only lime thing in the whole image; it is the focal point. No text, letters or logos.",
+      "model": "gemini-nano-banana-2.1",
+      "style": "refs"
+    }
+  ]
+}

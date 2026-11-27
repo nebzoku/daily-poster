@@ -138,7 +138,8 @@ def node_chapter():
     F = 2                                                     # the canvas is drawn at 2x, so the zooms stay sharp
     tf = ((brief.get('type') or {}).get('text') or 'Work Sans')
     mono = tf if 'mono' in tf.lower() else 'Azeret Mono'
-    T1, T2, T3, TM = face(tf, 600, 22 * F), face(tf, 500, 18 * F), face(tf, 500, 15 * F), face(mono, 400, 14 * F)
+    BODY = 15   # one size for all body copy inside the nodes (Ben, 27 Nov)
+    T1, T2, T3, TM = face(tf, 600, 22 * F), face(tf, 500, 18 * F), face(tf, 500, BODY * F), face(mono, 400, BODY * F)
     TRK = -0.02
     BGc, DOT, NODE, EDGE, TXT, DIM, WIRE = (22, 22, 25), (46, 46, 52), (38, 38, 43), (72, 72, 80), (232, 232, 236), (150, 150, 158), (170, 170, 180)
     meas = ImageDraw.Draw(Image.new('RGB', (1, 1)))
@@ -183,7 +184,7 @@ def node_chapter():
         return pts
     title = (brief.get('story') or {}).get('title', '') or meta.get('headline', '')
     prompt = meta.get('prompt', '') or meta.get('angle', '')
-    brief_lines, prompt_lines = wrap(title, T2, X1 - X0 - 36, 4), wrap(prompt, TM, X1 - X0 - 36, 14, 0)
+    brief_lines, prompt_lines = wrap(title, T3, X1 - X0 - 36, 4), wrap(prompt, TM, X1 - X0 - 36, 13, 0)
     # the static canvas (dots, nodes and their contents), drawn once
     base = Image.new('RGB', (SW * F, SH * F), BGc); bd = ImageDraw.Draw(base)
     for y in range(16, SH, 32):
@@ -195,9 +196,9 @@ def node_chapter():
         nm, y0, y1 = nodes[i]; L = Image.new('RGBA', base.size, (0, 0, 0, 0)); d = ImageDraw.Draw(L)
         box(d, X0, y0, X1, y1, nm); iy = y0 + 52
         if nm == 'Brief':
-            for k, ln in enumerate(brief_lines): ttext(d, ((X0 + 18) * F, (iy + k * 24) * F), ln, T2, DIM)
+            for k, ln in enumerate(brief_lines): ttext(d, ((X0 + 18) * F, (iy + k * 20) * F), ln, T3, DIM)
         elif nm == 'Prompt':
-            for k, ln in enumerate(prompt_lines): d.text(((X0 + 18) * F, (iy + k * 19) * F), ln, font=TM, fill=DIM)
+            for k, ln in enumerate(prompt_lines): d.text(((X0 + 18) * F, (iy + k * 20) * F), ln, font=TM, fill=DIM)
         elif nm in thumbs:
             for k, th in enumerate(thumbs[nm]): L.paste(th, ((X0 + 18 + k * (tw + 10)) * F, iy * F))
         elif nm == 'Palette':

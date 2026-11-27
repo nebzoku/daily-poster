@@ -27,7 +27,7 @@ file to post (SendUserFile of the mp4, plus its caption in a code block). The mo
 | 053 Catch Mercury Before Sunrise, making-of reel | 24 Nov | 26 Nov | Thu 26 Nov, 17:00 | posted (Ben, 26 Nov) |
 | 054 Back From Functional Extinction, making-of reel | 25 Nov | 27 Nov | Fri 27 Nov, 17:00 | |
 | 055 The Ball Never Landed, making-of reel | 26 Nov | 28 Nov | Sat 28 Nov, 17:00 | |
-| 056 Where No Road Reaches, making-of reel | 27 Nov | 29 Nov | Sun 29 Nov, 17:00 | |
+| 056 Where No Road Reaches (illustrated), making-of reel | 27 Nov | 29 Nov | Sun 29 Nov, 17:00 | |
 
 ## Automatic (auto-poster), as queued on 25 Nov
 
@@ -35,4 +35,4 @@ file to post (SendUserFile of the mp4, plus its caption in a code block). The mo
   of Wonder 16:00, 053 Catch Mercury Before Sunrise 19:00, 053 The Smallest Planet Steps Out 21:30.
 - Thu 26 Nov: 053 Chasing Light Near the Sun (first slot, a day late). From Fri 27 Nov the grid is on the normal
   rhythm: No. 055's picks (brief 26 Nov) go out on 27 Nov: 1A The Ball Never Landed, 3C Caught Between Road and Rope (stills, automatic).
-- From 27 Nov, one grid post a day: 055's picks (1A, 3C) together at 13:00 on 27 Nov; 056's (2B cover, 3A) on Sat 28 Nov.
+- From 27 Nov, one grid post a day: 055's picks (1A, 3C) together at 13:00 on 27 Nov; 056's on Sat 28 Nov: 6B illustrated Where No Road Reaches as the cover, then 7A, 2B and 3A.

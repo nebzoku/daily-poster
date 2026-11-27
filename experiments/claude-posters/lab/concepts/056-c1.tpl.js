@@ -1,5 +1,6 @@
-// No. 056 · Concept 1 · "Dinner arrives / by parachute" · Alfa Slab One, sentence case, interlocked: "Dinner arrives"
-// edge to edge on the top margin, "by parachute" on the bottom margin (R).
+// No. 056 · Concept 1 · "Dinner arrives / by parachute" · Alfa Slab One, sentence case, interlocked and centred:
+// "Dinner arrives" edge to edge on the top margin, "by parachute" centred on the bottom margin, mirroring the centred
+// parachute (re-set after Ben's note that all four had the same top-left / bottom-right headline).
 // Story: a team of Alaskan bush pilots, the "turkey bombers", fly over off-grid villages and airdrop Thanksgiving
 //   turkeys to the people below, so places no road reaches still get the holiday meal.
 // Everyday thing: a parcel swinging under a parachute; the roasting pan on the Thanksgiving table.
@@ -24,7 +25,7 @@ window.POSTER = async () => {
 
   // headline: one size, sentence case, interlocked; "Dinner arrives" sets the measure
   const HS = inkSafe(['Dinner arrives', 'by parachute'], { font: D, weight: 400, size: 160, gap: 18, minGap: 8, word: 0.22 }, W - 2 * M, { preset: 'screen', wear: 0.1, spread: 0.12 });
-  const head = canvas(); const R = pinInterlock(head, HS.lines, ['L', 'R'], 1, 6);
+  const head = canvas(); const R = pinInterlock(head, HS.lines, ['C', 'C'], 1, 6);
 
   // the sky: Rowlandson's clouds, full bleed, thresholded in two layers (clouds bright, hatching mid)
   const src = canvas(); cover(src.g, sky, { x: 0, y: 0, w: W, h: H }, { crop: [0.56, 0.16, 0.34, 0.355] });

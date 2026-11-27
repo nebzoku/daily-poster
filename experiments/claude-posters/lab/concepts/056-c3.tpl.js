@@ -1,5 +1,5 @@
-// No. 056 · Concept 3 · "Turkeys fall / from Alaskan skies" · Sora SemiBold, sentence case, interlocked: "Turkeys
-// fall" on the top margin (L), "from Alaskan skies" edge to edge on the bottom margin.
+// No. 056 · Concept 3 · "Turkeys fall / from Alaskan skies" · Sora SemiBold, sentence case, interlocked, both lines in one
+// block on the top margin (the sky), the boxes falling away beneath it (re-set after Ben's note on samey layouts).
 // Story: each Thanksgiving a team of Alaskan pilots drops turkeys out of small planes to villages off the road network.
 // Everyday thing: the Thanksgiving turkey itself; something dropping out of the sky in stages.
 // Visual idea: one turkey, falling across the grid. The same old Dutch drawing of a turkey repeats in three grid boxes
@@ -22,10 +22,10 @@ window.POSTER = async () => {
 
   const HS = inkSafe(['Turkeys fall', 'from Alaskan skies'], { font: D, weight: 600, size: 160, gap: 8, minGap: 6, word: 0.24 }, W - 2 * M, { preset: 'riso', wear: 0.3, spread: 0.3 });
   const lines = [HS.lines[0], ...spreadWords([HS.lines[1]], W - 2 * M, { maxShort: 0.1 })];   // the bottom line margin to margin
-  const head = canvas(); const R = pinInterlock(head, lines, ['L', 'L'], 1, 6);
+  const head = canvas(); const R = pinInterlock(head, lines, ['L', 'L'], 2, 6);
 
   // three boxes stepping down the grid, 3.5 columns × 2 rows each
-  const B = [cell(4.5, 1, 3.5, 2), cell(2.75, 2.5, 3.5, 2), cell(1, 4, 3.5, 2)];
+  const B = [cell(4.5, 2, 3.5, 2), cell(2.75, 3.5, 3.5, 2), cell(1, 5, 3.5, 2)];
   const crop = [0.3, 0.17, 0.52, 0.68];
   const srcs = B.map((b) => boxed(bird, b, { crop }));
   const Ls = srcs.map((s) => levels(s, 0.02, 0.98));
@@ -60,12 +60,12 @@ window.POSTER = async () => {
     snap(i === 2 ? 'step-pix-4' : `step-box-${i + 1}`, out);
   });
 
-  // small type: subline under box 3 on its left edge, furniture beside it on its right edge; labels by each box
+  // small type: subline under box 3 on its left edge, furniture beside it in line with the labels; labels by each box
   const t = { font: T, size: 16, weight: 500, lead: 0.9, color: C.text };
   const ty = B[2].y + B[2].h + 24;
-  block(g, ['(Daily Poster)', '(No. 056)', '(Friday 27 November)', '(BBC News)'], B[2].x + B[2].w, ty, { ...t, align: 'right' });
+  block(g, ['(Daily Poster)', '(No. 056)', '(Friday 27 November)', '(BBC News)'], B[2].x + B[2].w + 16, ty, t);
   snap('text-furniture', out);
-  const sub = balance('For the last few years, the so-called turkey bombers have taken to the skies so isolated villages can share the holiday meal.', { ...t, minW: 200, maxW: B[2].w - 200, lines: [4, 4], strict: true });
+  const sub = balance('For the last few years, the so-called turkey bombers have taken to the skies so isolated villages can share the holiday meal.', { ...t, minW: 200, maxW: B[2].w - 8, lines: [4, 4], strict: true });
   block(g, sub.lines, B[2].x, ty, t);
   snap('text-sub', out);
   block(g, ['(01) Away'], B[0].x + B[0].w, B[0].y + B[0].h + 16, { ...t, align: 'right' });

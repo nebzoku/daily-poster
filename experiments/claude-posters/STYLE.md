@@ -29,6 +29,23 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   from the brief and different layout systems and treatments. Colourways only swap which palette colours play
   background, middle (image marks) and type. Ben picks the one(s) to post the next day.
 
+### Round 33 (27 Nov 2026): a different headline arrangement on every concept
+- **Never the same headline layout twice in a morning** (Ben on 056: all four set the headline top left and bottom
+  right, "the posters start to look really templated"). Before setting type, give each concept its own arrangement and
+  write it in the concept note. The arrangements to pick from:
+  - split top and bottom, ranged left/right (the old default; at most one concept a day);
+  - centred top and bottom, or an hourglass (Round 15), best when the image is centred;
+  - one block on the top margin, the image falling or hanging below it;
+  - one block on the bottom margin, the sky or space above it left open;
+  - words pushed into the four corners (`spreadWords`);
+  - one block cascading down the whole sheet, lines alternating sides;
+  - the headline in the middle band, over or through the image, the image owning top and bottom;
+  - all three brief headlines set small together, stepping a column (Round 7);
+  - one word giant, the rest small;
+  - an illustrated concept's plain band, centred (`illo_concept.py`).
+- Check it on the overview before sending: if two concepts' type sits in the same place, re-set one. And vary from
+  yesterday's arrangements too (log the arrangement in `log.md`).
+
 ### Round 32 (26 Nov 2026): specific faces, a diverse cast
 - **Generic faces read as AI and aren't ownable** (Ben on the food hall: everyone has the same pleasant face). Faces
   are drawn with very few lines and made individual by character detail (hair, glasses, hard hat, earrings, age, an odd

@@ -31,7 +31,11 @@ t = b['type']; display, text = t['display'], t['text']
 FONTS = {'Six Caps': (400, True), 'Mattone': (900, True), 'Anybody': (900, True), 'Terminal Grotesque': (400, True), 'Schibsted Grotesk': (900, True), 'Work Sans': (800, True)}
 weight, caps = FONTS.get(display, (400, False))
 if caps or display in ('Six Caps',): lines = [l.upper() for l in lines]
-else: lines = [lines[0][0].upper() + lines[0][1:].lower()] + [l.lower() for l in lines[1:]]
+else:   # sentence case, but proper nouns keep their capital (words the story itself capitalises mid-sentence: Alaskan)
+    story = ' '.join([b['story'].get('summary', ''), b['story'].get('title', '')] + b.get('sublines', []))
+    proper = {w for w in re.findall(r"(?<=[a-z,;:] )([A-Z][a-z']+)", story)}
+    low = lambda l: ' '.join(w if w in proper else w.lower() for w in l.split())
+    lines = [lines[0][0].upper() + low(lines[0])[1:]] + [low(l) for l in lines[1:]]
 if display == 'Six Caps': lines = [' '.join(lines)]                      # condensed faces in one band go on one line
 z = s.get('headlineZone', 'top-and-bottom')
 split = {'top': len(lines), 'bottom': 0}.get(z, 1 if len(lines) > 1 else len(lines))

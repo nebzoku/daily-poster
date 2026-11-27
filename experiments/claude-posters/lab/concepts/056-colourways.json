@@ -241,5 +241,200 @@
    "finish": "copy",
    "stock": "uncoated"
   }
+ },
+ "c5": {
+  "a": {
+   "scamp": "/experiments/claude-posters/scamps/2026-11-27/scamp-04.png",
+   "font": "Alfa Slab One",
+   "weight": 400,
+   "text_font": "Sora",
+   "caps": false,
+   "lines": [
+    "Turkeys fall",
+    "from Alaskan skies"
+   ],
+   "sides": [
+    "C",
+    "C"
+   ],
+   "split": 0,
+   "cols": [
+    "#F33446",
+    "#B32331",
+    "#D62D3D",
+    "#F79A9E",
+    "#FACDCF",
+    "#FFDBD9",
+    "#BCA19F",
+    "#E1C1BF",
+    "#FFE7E5",
+    "#FFF1F1",
+    "#7D6D6C",
+    "#5A4E4D",
+    "#6D5F5E",
+    "#B2ABAB",
+    "#D7D4D4",
+    "#3A0E0F",
+    "#280708",
+    "#320B0C",
+    "#9B9696",
+    "#CECCCC",
+    "#000000",
+    "#FFFFFF",
+    "#B5E643"
+   ],
+   "palette": [
+    "#F33446",
+    "#FFDBD9",
+    "#7D6D6C",
+    "#3A0E0F"
+   ],
+   "furniture": [
+    "(Daily Poster)",
+    "(No. 056)",
+    "(Friday 27 November)",
+    "(BBC News)"
+   ],
+   "subline": "Alaska's volunteer flying team drops Thanksgiving turkeys from small planes to residents of remote, off-grid communities.",
+   "finish": "machine-riso",
+   "stock": "photocopy",
+   "remap": {}
+  },
+  "b": {
+   "scamp": "/experiments/claude-posters/scamps/2026-11-27/scamp-04.png",
+   "font": "Alfa Slab One",
+   "weight": 400,
+   "text_font": "Sora",
+   "caps": false,
+   "lines": [
+    "Turkeys fall",
+    "from Alaskan skies"
+   ],
+   "sides": [
+    "C",
+    "C"
+   ],
+   "split": 0,
+   "cols": [
+    "#F33446",
+    "#B32331",
+    "#D62D3D",
+    "#F79A9E",
+    "#FACDCF",
+    "#FFDBD9",
+    "#BCA19F",
+    "#E1C1BF",
+    "#FFE7E5",
+    "#FFF1F1",
+    "#7D6D6C",
+    "#5A4E4D",
+    "#6D5F5E",
+    "#B2ABAB",
+    "#D7D4D4",
+    "#3A0E0F",
+    "#280708",
+    "#320B0C",
+    "#9B9696",
+    "#CECCCC",
+    "#000000",
+    "#FFFFFF",
+    "#B5E643"
+   ],
+   "palette": [
+    "#F33446",
+    "#FFDBD9",
+    "#7D6D6C",
+    "#3A0E0F"
+   ],
+   "furniture": [
+    "(Daily Poster)",
+    "(No. 056)",
+    "(Friday 27 November)",
+    "(BBC News)"
+   ],
+   "subline": "Alaska's volunteer flying team drops Thanksgiving turkeys from small planes to residents of remote, off-grid communities.",
+   "finish": "machine-riso",
+   "stock": "photocopy",
+   "remap": {
+    "#F33446": "#7D6D6C",
+    "#B32331": "#5A4E4D",
+    "#D62D3D": "#6D5F5E",
+    "#F79A9E": "#B2ABAB",
+    "#FACDCF": "#D7D4D4",
+    "#7D6D6C": "#F33446",
+    "#5A4E4D": "#B32331",
+    "#6D5F5E": "#D62D3D",
+    "#B2ABAB": "#F79A9E",
+    "#D7D4D4": "#FACDCF"
+   }
+  },
+  "c": {
+   "scamp": "/experiments/claude-posters/scamps/2026-11-27/scamp-04.png",
+   "font": "Alfa Slab One",
+   "weight": 400,
+   "text_font": "Sora",
+   "caps": false,
+   "lines": [
+    "Turkeys fall",
+    "from Alaskan skies"
+   ],
+   "sides": [
+    "C",
+    "C"
+   ],
+   "split": 0,
+   "cols": [
+    "#F33446",
+    "#B32331",
+    "#D62D3D",
+    "#F79A9E",
+    "#FACDCF",
+    "#FFDBD9",
+    "#BCA19F",
+    "#E1C1BF",
+    "#FFE7E5",
+    "#FFF1F1",
+    "#7D6D6C",
+    "#5A4E4D",
+    "#6D5F5E",
+    "#B2ABAB",
+    "#D7D4D4",
+    "#3A0E0F",
+    "#280708",
+    "#320B0C",
+    "#9B9696",
+    "#CECCCC",
+    "#000000",
+    "#FFFFFF",
+    "#B5E643"
+   ],
+   "palette": [
+    "#F33446",
+    "#FFDBD9",
+    "#7D6D6C",
+    "#3A0E0F"
+   ],
+   "furniture": [
+    "(Daily Poster)",
+    "(No. 056)",
+    "(Friday 27 November)",
+    "(BBC News)"
+   ],
+   "subline": "Alaska's volunteer flying team drops Thanksgiving turkeys from small planes to residents of remote, off-grid communities.",
+   "finish": "machine-riso",
+   "stock": "photocopy",
+   "remap": {
+    "#F33446": "#FFDBD9",
+    "#B32331": "#BCA19F",
+    "#D62D3D": "#E1C1BF",
+    "#F79A9E": "#FFE7E5",
+    "#FACDCF": "#FFF1F1",
+    "#FFDBD9": "#F33446",
+    "#BCA19F": "#B32331",
+    "#E1C1BF": "#D62D3D",
+    "#FFE7E5": "#F79A9E",
+    "#FFF1F1": "#FACDCF"
+   }
+  }
  }
 }

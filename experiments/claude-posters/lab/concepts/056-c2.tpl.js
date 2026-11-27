@@ -1,5 +1,6 @@
-// No. 056 · Concept 2 · "WHERE NO ROAD / REACHES" · Sora ExtraBold, all caps, a top block edge to edge on the top
-// margin and REACHES on the bottom margin (R), the furniture and subline tucked in beside it.
+// No. 056 · Concept 2 · "WHERE NO ROAD / REACHES" · Sora ExtraBold, all caps, one block on the bottom margin, both
+// lines ranged left (WHERE NO ROAD edge to edge, REACHES under it), the furniture and subline on the top margin and
+// the sky above left empty for the plane (re-set after Ben's note on samey headline layouts).
 // Story: in Alaska, villages that no road reaches still get their Thanksgiving turkey, dropped from a small plane by
 //   volunteer bush pilots.
 // Everyday thing: the end of the road (the tarmac just stops), and a small plane going over.
@@ -24,10 +25,10 @@ window.POSTER = async () => {
   // headline: one size, caps, the widest line margin to margin
   const HS = inkSafe(['WHERE NO ROAD', 'REACHES'], { font: D, weight: 800, size: 160, gap: 10, minGap: 8, word: 0.24 }, W - 2 * M, { preset: 'letterpress', wear: 0.1, spread: 0.12 });
   const lines = spreadWords(HS.lines, W - 2 * M, { maxShort: 0.12 });   // the top line's three words run margin to margin
-  const head = canvas(); const R = pinBlocks(head, lines, ['L', 'R'], 1, 0.1);
+  const head = canvas(); const R = pinBlocks(head, lines, ['L', 'L'], 0, 0.1);
 
   // the plane: on the left, nose to the left margin, between rows 2 and 4
-  const pw = COL * 5, ph = pw * plane.height / plane.width, px = M - 40, py = M + ROW * 3 - ph / 2;
+  const pw = COL * 5, ph = pw * plane.height / plane.width, px = M - 40, py = M + ROW * 2.5 - ph / 2;
   const pc = canvas(); pc.g.drawImage(plane, px, py, pw, ph);
   if (CAPTURE) { const p = canvas(); draw(p.g, out); draw(p.g, pc); snap('place-plane', p); }
   const planeM = lumMask(pc, 0, { soft: 0.001 });
@@ -62,12 +63,12 @@ window.POSTER = async () => {
   g.fillStyle = C.hl; g.fillRect(fx - 4, f1 - 16, 16, 16);
   snap('place-fall', out);
 
-  // small type: furniture in the bottom-left corner, last baseline on the bottom margin; subline beside it
+  // small type: furniture in the top-left corner, cap height on the top margin; subline beside it
   const t = { font: T, size: 16, weight: 500, lead: 0.9, color: C.text };
-  block(g, ['(Daily Poster)', '(No. 056)', '(Friday 27 November)', '(BBC News)'], M, H - M, { ...t, anchor: 'bottom' });
+  block(g, ['(Daily Poster)', '(No. 056)', '(Friday 27 November)', '(BBC News)'], M, M, t);
   snap('text-furniture', out);
-  const sub = balance('No roads, no shops, no problem: a small aircraft crosses the snow and delivers the feast to the doorstep.', { ...t, minW: 200, maxW: R[1].x - M - COL * 1.5 - 32, lines: [4, 4], strict: true });
-  block(g, sub.lines, M + COL * 1.5, H - M, { ...t, anchor: 'bottom' });
+  const sub = balance('No roads, no shops, no problem: a small aircraft crosses the snow and delivers the feast to the doorstep.', { ...t, minW: 200, maxW: COL * 2.6, lines: [4, 4], strict: true });
+  block(g, sub.lines, M + COL * 2, M, t);
   snap('text-sub', out);
   block(g, ['(01) End of the road'], M, ry + 16, t);
   block(g, ['(02) No road from here'], rw + 16, ry - 48, t);

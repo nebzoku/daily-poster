@@ -29,6 +29,15 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   from the brief and different layout systems and treatments. Colourways only swap which palette colours play
   background, middle (image marks) and type. Ben picks the one(s) to post the next day.
 
+### Round 34 (27 Nov 2026): pick the scamp with the boldest perspective
+- **Choose scamps for their viewpoint first.** Ben on 056: the eye-level village square (scamp 04, a "slight fish-eye"
+  at street level) was "the most standard and boring"; the other three were far more interesting because of their
+  perspectives: straight up from the ground at the plane and falling parcels, straight down on a winding river and a
+  tiny village, and from inside the cockpit looking out. Rank the scamps by how unusual the camera is (worm's-eye,
+  bird's-eye, inside-looking-out, extreme close-up) before story, cast or highlight; an eye-level, standing-height view
+  comes last, even with a good cast. A "slight" fish-eye at eye level still counts as standard.
+- When several scamps have strong viewpoints, it's fine to offer more than one illustrated concept that morning.
+
 ### Round 33 (27 Nov 2026): a different headline arrangement on every concept
 - **Never the same headline layout twice in a morning** (Ben on 056: all four set the headline top left and bottom
   right, "the posters start to look really templated"). Before setting type, give each concept its own arrangement and

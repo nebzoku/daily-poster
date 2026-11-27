@@ -1,6 +1,6 @@
 // No. 056 · Concept 5 · "Turkeys fall / from Alaskan skies" · Alfa Slab One, sentence case, in the plain band the scamp left
-// (bottom). Illustrated: scamp-04 from the illustration machine (Nano Banana, Ben's references + our kept set).
-// Scene: slight fish-eye street-level view across a snowy village square at the moment of landing.
+// (top). Illustrated: scamp-01 from the illustration machine (Nano Banana, Ben's references + our kept set).
+// Scene: very low worm's-eye looking straight up at a small plane and falling parcels.
 // Finish and paper: machine-riso on photocopy. Colourways: A as drawn, B vivid and mid swapped, C vivid and pale swapped.
 // The illustrated concept's template (copy to concepts/<issue>-cN.tpl.js). Scamp → poster: an image from the illustration machine (Nano Banana, styled on Ben's references) printed as a Daily
 // Poster. Every pixel is snapped to the day's palette, its tints and shades, black, white and the highlight, and each

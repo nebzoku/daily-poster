@@ -5,7 +5,7 @@ Picks as Ben gives them (concept number + colourway letter), his favourite first
     frame 1), so it goes out as a five-frame carousel instead of a single picture
   - the first pick: the making-of reel (site/media/ig/<poster>-making-of.mp4), posted later that day as a Reel; on
     moving days it ends with the motion being made (timeline, keyframes, scrubbing) and the end card moving
-  - every third issue (issue number divisible by 3), if concepts/<issue>-cN.motion.tpl.js exists for the favourite:
+  - on moving days (day 3 of the style rotation, STYLE.md Round 36), when concepts/<issue>-cN.motion.tpl.js exists for the favourite:
     the moving version, rendered frame by frame, saved as site/showcase/<issue>-<name>.mp4 and set as that poster's
     "video" in showcase.json with "postManually": true (Ben posts it by hand, with music); the 9:16 version for
     Instagram is left in deliver/motion/ to send him. The daily workflow makes the archive preview.
@@ -16,9 +16,9 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 issue, picks = sys.argv[1], sys.argv[2:]
 IG = '../../../site/media/ig'
 names, ways = json.load(open(f'concepts/{issue}-names.json')), json.load(open(f'concepts/{issue}-colourways.json'))
-# every third issue the favourite moves: render its frames first, so the making-of reel can end with the motion
+# on moving days the favourite moves: render its frames first, so the making-of reel can end with the motion
 m = re.fullmatch(r'(\d)([A-Za-z])', picks[0].strip()); fc, fx = f'c{m[1]}', m[2].lower()
-mtpl = f'concepts/{issue}-{fc}.motion.tpl.js'; moving = int(issue) % 3 == 0 and os.path.exists(mtpl)
+mtpl = f'concepts/{issue}-{fc}.motion.tpl.js'; moving = os.path.exists(mtpl)   # moving days (STYLE.md Round 36: day 3 of the rotation) have motion templates
 if moving:
     mname = f'{issue}-{fc}-{fx}-motion'
     open(f'posters/{mname}.js', 'w').write(open(mtpl).read().replace('__CW__', json.dumps(ways[fc][fx])))
@@ -36,7 +36,7 @@ for n, pk in enumerate(picks):
     subprocess.run(['python3', 'carousel.py', f'out/{issue}-{c}-{x}.png', stem], check=True)
     print(f'{pk}: {stem}-zoom-2..5.jpg' + (', making-of reel' if n == 0 else ''))
 
-# every third issue: the favourite moves
+# moving days: the favourite moves
 c, x = fc, fx
 if moving:
     name = mname

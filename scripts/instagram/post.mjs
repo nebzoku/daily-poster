@@ -29,10 +29,12 @@ const TAGS = (issue, type, extra) => `#dailyposter #dailyposter${pad(issue)} #po
 // writes the brief and makes the posters, with a human in the loop setting the direction).
 const creditLine = (p) => (p.designer === "Daily Poster" ? "Made by Daily Poster, curated by @benjamin_harwood" : `Poster by ${p.instagram ? "@" + p.instagram.replace(/^@/, "") : p.designer}`);
 const typeLine = (t) => `${t.display}${t.libre ? ` by ${t.libre.designer} (${t.libre.foundry})` : ""} and ${t.text}`;
-export function posterCaption(p, brief) {
+export function posterCaption(p, brief, others = []) {
   return [
     p.title,
     "",
+    // one post a day (Ben, 27 Nov): his other picks from the same brief ride along as the next slides
+    ...(others.length ? [`Swipe for ${others.length === 1 ? "another poster" : `${others.length} more posters`} from the same brief: ${others.map((o) => o.title).join(", ")}.`, ""] : []),
     `Daily Poster No. ${pad(brief.issue)}, made from the brief for ${longDate(brief.date)}.`,
     "",
     brief.story.summary,
@@ -135,11 +137,17 @@ async function publishReel(video, caption) {
   }
   throw new Error("Instagram was still processing the video after ten minutes");
 }
-// A poster with close-ups goes out as a carousel: the poster, then its four quarters.
-const posterJob = (p, brief) => ({
-  ...(p.video ? { reel: url(posterReel(p)) } : { images: [posterImage(p), ...(posterZooms(p).every((f) => existsSync(f)) ? posterZooms(p) : [])].map(url) }),
-  caption: posterCaption(p, brief), alt: `Poster: ${p.title}, by ${p.designer}, for Daily Poster No. ${pad(brief.issue)}.`,
-});
+// A poster with close-ups goes out as a carousel: the poster, then its four quarters. Ben, 27 Nov: one grid post a
+// day, so the other picks from the same brief (others) go in the same carousel, right after the favourite and before
+// its close-ups (Instagram's limit is ten slides).
+const posterJob = (p, brief, others = []) => {
+  const more = others.filter((o) => !o.video && existsSync(posterImage(o)));
+  return {
+    ...(p.video ? { reel: url(posterReel(p)) } : { images: [posterImage(p), ...more.map(posterImage), ...(posterZooms(p).every((f) => existsSync(f)) ? posterZooms(p) : [])].slice(0, 10).map(url) }),
+    caption: posterCaption(p, brief, p.video ? [] : more), alt: `Poster: ${p.title}, by ${p.designer}, for Daily Poster No. ${pad(brief.issue)}.`,
+    also: p.video ? [] : more.map((o) => `poster:${o.image}`),
+  };
+};
 const send = (job) => (job.reel ? publishReel(job.reel, job.caption) : job.story ? publishStories(job.images) : publish(job.images, job.caption, job.alt));
 
 // Stories, one after another (each is its own post; stories take no caption). Each one is noted as
@@ -244,12 +252,15 @@ async function main() {
     // A poster replaced since its picture was made waits for a fresh picture rather than going out as the old one.
     const waiting = (await pendingPosters(state, today)).filter((p) => existsSync(posterMedia(p)) && (p.video || posterPictureStatus(p) !== "stale"));
     for (const p of await pendingPosters(state, today)) if (!p.video && posterPictureStatus(p) === "stale") console.log(`::warning::${p.image} was replaced; waiting for its Instagram picture to be remade.`);
-    for (const [time, needed] of SLOTS.posters) {
+    // one grid post a day (Ben, 27 Nov): the oldest brief's picks together, his favourite (first in the archive) as
+    // the cover; the later slots are only back-ups if the first is missed
+    const postedToday = SLOTS.posters.some(([time]) => state.slots[`${today} ${time}`]);
+    for (const [time] of SLOTS.posters) {
       const slot = `${today} ${time}`;
-      if (!due(time) || state.slots[slot] || waiting.length < needed) continue;
+      if (postedToday || !due(time) || state.slots[slot] || !waiting.length) continue;
       const p = waiting[0], brief = await readJSON(join(DATA, `${p.date}.json`), null);
       if (!brief) continue;
-      job = { key: `poster:${p.image}`, slot, ...posterJob(p, brief) };
+      job = { key: `poster:${p.image}`, slot, ...posterJob(p, brief, waiting.filter((o) => o !== p && o.date === p.date)) };
       break;
     }
   }
@@ -275,6 +286,7 @@ async function main() {
           delete state.partial[job.key];
         } else id = await send(job);
         state.posted[job.key] = { slot: job.slot, at: new Date().toISOString(), id };
+        for (const k of job.also || []) state.posted[k] = { slot: job.slot, at: state.posted[job.key].at, id, in: job.key };   // went out as slides
         state.slots[job.slot] = job.key;
         console.log(`Posted: ${id}`);
       } catch (e) {

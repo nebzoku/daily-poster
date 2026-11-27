@@ -29,6 +29,29 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   from the brief and different layout systems and treatments. Colourways only swap which palette colours play
   background, middle (image marks) and type. Ben picks the one(s) to post the next day.
 
+### Round 36 (27 Nov 2026): one style a day, in rotation; one grid post a day
+- **The morning's concepts rotate through five styles, one style a day** (Ben, 27 Nov: so no two days are the same and
+  it keeps interesting). Day = `(issue - 57) % 5 + 1`, starting with No. 057:
+  1. **Classic:** thresholds, grid boxes and labels, shapes and bars on the grid, overprint and XOR, pixelation, image
+     stretch, ASCII, data-driven type, objects in the type (the established rounds).
+  2. **Type, scanned paper and handwriting:** type-led, the scanned one-sheet paste-up (Rounds 19 to 24: Vinho Verde
+     moves, `sheet`, `fadedInk`, one piece of tape, `pencilGrid`, real handwriting from `site/media/<date>/hand-*.jpg`).
+  3. **Moving:** every concept is a still plus its `.motion.tpl.js` (Rounds 17, 18, 25); the favourite moves. A
+     different movement on every concept and from the last moving day. The stills can be in any style.
+  4. **Illustrated:** every concept from the illustration machine's scamps (`illo_concept.py`), the boldest
+     perspectives first (Round 34), full bleed (Round 35), a different finish and paper each. No scamps: say so and
+     make the day classic.
+  5. **Combined:** every concept in the combined style (scamp spot illustration printed on the sheet, textural
+     stuck-on pieces, thresholded / pixelated boxes, scanned paste-up, our type), each a different variation, starting
+     from Ben's last feedback on it (Round 31).
+  Three concepts a day, three colourways each. This replaces "most days one concept is illustrated" (Round 30), the
+  daily fourth combined concept (Round 31) and "a moving poster every third issue" (Round 17). Variety inside a day
+  still comes from different headlines, headline arrangements (Round 33), images, moves, finishes and paper.
+- **One grid post a day on Instagram** (Ben, 27 Nov: so as not to overwhelm the audience, even when he likes several).
+  All his picks still go into the archive. They go out together as one carousel: his favourite as the cover, his other
+  picks as the next slides, then the favourite's close-ups (at most ten slides), with "Swipe for ..." in the caption
+  (`scripts/instagram/post.mjs`).
+
 ### Round 35 (27 Nov 2026): illustrations stay full bleed, no copy box
 - **Never paint a flat band or box across an illustration for the type** (Ben on 056: the copy box cut the illustration
   off, so the poster felt less full bleed and less impactful). This replaces Round 30's "make the headline band

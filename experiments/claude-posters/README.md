@@ -20,6 +20,11 @@ Ben picks the ones to post; they go into the archive credited **Daily Poster** (
     plus `<issue>-colourways.json` and `<issue>-names.json`. Past days are worked examples.
 
 ## The daily run
+**Style rotation (Ben, 27 Nov 2026, STYLE.md Round 36):** each morning's three concepts are all in one style, rotating
+day by day: day = `(issue - 57) % 5 + 1`: 1 classic, 2 type with scanned paper and handwriting, 3 moving, 4 illustrated,
+5 combined. Steps 3b and 3c below and the moving-poster section apply on their own days; on the other days skip them.
+Picks go out on Instagram as one grid post a day (favourite as cover, other picks as slides).
+
 1. `git pull`. Read `site/data/latest.json` (check its date is today in Europe/London), `STYLE.md`, `log.md`.
 2. `cd lab && npm install` (fontsource text faces). If the brief's fonts aren't covered, add them: Google faces via
    `npm i @fontsource/<slug>` and an entry in the `FS` map in `index.html`; the libre faces are already linked.
@@ -81,7 +86,7 @@ A template can define `window.MOTION = async () => { ...setup...; return async (
 the start of every frame so the paper and ink stay still and only what moves changes. Example:
 `concepts/053-c3.motion.tpl.js`.
 
-Every third issue (issue number divisible by 3) the favourite pick also moves: write
+On moving days (day 3 of the style rotation) the favourite pick also moves: write
 `concepts/<issue>-cN.motion.tpl.js` for each concept alongside the still one, and `extras.py` renders the favourite's,
 puts it in the archive as a video poster and leaves the 9:16 Instagram version in `deliver/motion/` to send Ben.
 On those days the motion frames are rendered first, so the making-of reel ends with the motion being made (a timeline,

@@ -297,6 +297,11 @@
       "texture": {
         "title": "Blue Metal Plate",
         "url": "https://polyhaven.com/a/blue_metal_plate"
+      },
+      "spin": {
+        "frames": 24,
+        "path": "media/2026-11-27/object-1-spin/",
+        "ext": "webp"
       }
     },
     {
@@ -315,6 +320,11 @@
       "texture": {
         "title": "Denim Fabric 06",
         "url": "https://polyhaven.com/a/denim_fabric_06"
+      },
+      "spin": {
+        "frames": 24,
+        "path": "media/2026-11-27/object-2-spin/",
+        "ext": "webp"
       }
     },
     {
@@ -330,7 +340,12 @@
         "creator": "propmaker1",
         "creatorUrl": "https://sketchfab.com/menX1151"
       },
-      "texture": null
+      "texture": null,
+      "spin": {
+        "frames": 24,
+        "path": "media/2026-11-27/object-3-spin/",
+        "ext": "webp"
+      }
     }
   ]
 }

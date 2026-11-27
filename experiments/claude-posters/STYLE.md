@@ -62,8 +62,10 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   still comes from different headlines, headline arrangements (Round 33), images, moves, finishes and paper.
 - **One grid post a day on Instagram** (Ben, 27 Nov: so as not to overwhelm the audience, even when he likes several).
   All his picks still go into the archive. They go out together as one carousel: his favourite as the cover, his other
-  picks as the next slides, then the favourite's close-ups (at most ten slides), with "Swipe for ..." in the caption
-  (`scripts/instagram/post.mjs`).
+  picks as the next slides, with "Swipe for ..." in the caption (`scripts/instagram/post.mjs`).
+- **Every poster in the carousel gets its close-ups** (Ben, 27 Nov), each set straight after its own poster. Within
+  Instagram's ten slides: two posters get all four quarters each; more than that, each gets its top pair (which joins
+  up across the full width), and a poster that still doesn't fit goes in on its own.
 
 ### Round 35 (27 Nov 2026): illustrations stay full bleed, no copy box
 - **Never paint a flat band or box across an illustration for the type** (Ben on 056: the copy box cut the illustration

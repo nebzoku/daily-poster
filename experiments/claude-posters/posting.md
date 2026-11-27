@@ -4,7 +4,8 @@ Ben's cadence (25 Nov 2026), once the account is up to date:
 
 - **Day D:** the brief comes out (08:00 stories) and the morning concepts go to Ben; he picks.
 - **Day D + 1:** the picked posters go out on the grid as ONE post (Ben, 27 Nov): a carousel with his favourite as the
-  cover, his other picks next, then the favourite's close-ups, in the 13:00 slot (the later slots are back-ups). On moving days the favourite's moving poster replaces its still on the grid, and Ben posts it by hand
+  cover, then his other picks, each poster followed by its own close-ups (all four quarters for two posters, the top pair
+  each when there are more, within Instagram's ten slides), in the 13:00 slot (the later slots are back-ups). On moving days the favourite's moving poster replaces its still on the grid, and Ben posts it by hand
   (with music), ideally in the 13:00 slot.
 - **Day D + 2:** the favourite's making-of reel, posted by hand by Ben (with music), around 17:00. One reel a day.
 

@@ -138,12 +138,27 @@ async function publishReel(video, caption) {
   throw new Error("Instagram was still processing the video after ten minutes");
 }
 // A poster with close-ups goes out as a carousel: the poster, then its four quarters. Ben, 27 Nov: one grid post a
-// day, so the other picks from the same brief (others) go in the same carousel, right after the favourite and before
-// its close-ups (Instagram's limit is ten slides).
+// day, so the other picks from the same brief (others) go in the same carousel, and every poster in it gets its
+// close-ups, each set straight after its own poster. Instagram's limit is ten slides, so when four quarters each
+// won't fit, each poster gets its top pair (which joins up across the full width), and a poster that still doesn't
+// fit goes in on its own.
+const carouselSlides = (posters, max = 10) => {
+  const zooms = posters.map((q) => (posterZooms(q).every((f) => existsSync(f)) ? posterZooms(q) : []));
+  for (const take of [4, 2]) {
+    if (posters.reduce((n, _, i) => n + 1 + Math.min(take, zooms[i].length), 0) <= max) return posters.flatMap((q, i) => [posterImage(q), ...zooms[i].slice(0, take)]);
+  }
+  const out = []; let left = max;
+  posters.forEach((q, i) => {
+    const after = posters.length - i - 1;                       // keep room for every later poster's own picture
+    const z = Math.min(2, zooms[i].length, Math.max(0, left - 1 - after)) >= 2 ? 2 : 0;
+    out.push(posterImage(q), ...zooms[i].slice(0, z)); left -= 1 + z;
+  });
+  return out.slice(0, max);
+};
 const posterJob = (p, brief, others = []) => {
   const more = others.filter((o) => !o.video && existsSync(posterImage(o)));
   return {
-    ...(p.video ? { reel: url(posterReel(p)) } : { images: [posterImage(p), ...more.map(posterImage), ...(posterZooms(p).every((f) => existsSync(f)) ? posterZooms(p) : [])].slice(0, 10).map(url) }),
+    ...(p.video ? { reel: url(posterReel(p)) } : { images: carouselSlides([p, ...more]).map(url) }),
     caption: posterCaption(p, brief, p.video ? [] : more), alt: `Poster: ${p.title}, by ${p.designer}, for Daily Poster No. ${pad(brief.issue)}.`,
     also: p.video ? [] : more.map((o) => `poster:${o.image}`),
   };

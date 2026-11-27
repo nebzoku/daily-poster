@@ -29,6 +29,14 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   from the brief and different layout systems and treatments. Colourways only swap which palette colours play
   background, middle (image marks) and type. Ben picks the one(s) to post the next day.
 
+### Round 37 (27 Nov 2026): the illustrated making-of reel
+- **Illustrated posters get the same close-ups and ink trials as the others** (Ben, 27 Nov: "I like those bits"):
+  `illo-scamp.tpl.js` snaps `inkTrials`, so the reel zooms in and tries the finish lighter, much heavier and back.
+- **Show how the illustration was made** as a simplified node graph (`reel.py`, chapter 2b): on a dark canvas the
+  brief, the scene prompt, a style node, the brief's images as references and the palette are wired into a Generate
+  node; Run, the picture resolves out of noise in the output node, and it's dragged onto the artboard. The style node
+  only ever shows OUR kept illustrations (`illo-guide/ours-*`, none with close-up faces), never Ben's reference pack.
+
 ### Round 36 (27 Nov 2026): one style a day, in rotation; one grid post a day
 - **The morning's concepts rotate through five styles, one style a day** (Ben, 27 Nov: so no two days are the same and
   it keeps interesting). Day = `(issue - 57) % 5 + 1`, starting with No. 057:

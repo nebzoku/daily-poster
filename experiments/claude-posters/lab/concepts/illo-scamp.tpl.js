@@ -94,6 +94,10 @@ window.POSTER = async () => {
   draw(g, tint(sm, typeCol));
   snap('text-small', out);
   snapLines(tint(head, typeCol), R);
+  // the making-of reel's ink trials, up close (Ben, 27 Nov: the illustrated reel needs the zooms and the finish going on
+  // too): lighter, much heavier, a bit heavier, then the real print
+  const foil = /^(foil|varnish)/.test(C.finish);
+  inkTrials(out, (gg, k) => { printAll(gg, { ...C, bg: bands[0].col }, { seed: 7001, wear: 0.14 * k, spread: Math.min(0.85, 0.45 * k), bg: bands[0].col }); printHead(gg, head, typeCol, C.finish, foil ? { bg: band0, seed: 7002, light: 0.3 + 0.25 * k } : { bg: band0, seed: 7002, wear: HS.ink.wear * k, spread: Math.min(0.85, HS.ink.spread * k) }); });
   printAll(g, { ...C, bg: bands[0].col }, { seed: 7001, wear: 0.14, spread: 0.45, bg: bands[0].col });
   printHead(g, head, typeCol, C.finish, { bg: band0, seed: 7002, wear: HS.ink.wear, spread: HS.ink.spread });
   snap('printed', out);

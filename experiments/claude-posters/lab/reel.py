@@ -102,6 +102,132 @@ seg(0.9, lambda t: dict(poster=rect_poster(t), cursor=path((-8, -8), (DW + 8, DH
                         over=[('box', -8, -8, *path((-8, -8), (DW + 8, DH + 8), t, 0.04), False)]), FIT)
 cur[:] = [DW + 8, DH + 8]
 hold(0.25, FIT, bg, lambda t: [('box', 0, 0, DW, DH, True)])
+# 2b. illustrated posters (Ben, 27 Nov 2026): how the illustration was made, as a simplified node graph on a dark canvas,
+#     like the Illustration Machine flow: the brief, the scene prompt, a style node (only OUR kept illustrations, never
+#     Ben's reference pack, which is other artists' work), the brief's images as references and the palette are wired
+#     into a Generate node; Run is clicked, the picture resolves out of noise in the output node, and it's dragged out
+#     onto the artboard, where the build carries on.
+def node_chapter():
+    import json as _json
+    try: cw = _json.load(open(f'concepts/{issue}-colourways.json'))[concept][pick]
+    except Exception: return
+    if not cw.get('scamp'): return
+    root = '../../..'; sp = root + cw['scamp']
+    if not os.path.exists(sp): return
+    scdir = os.path.dirname(sp); meta = {}
+    try: meta = next((x for x in _json.load(open(f'{scdir}/scamps.json'))['scenes'] if x.get('file') == os.path.basename(sp)), {})
+    except Exception: pass
+    brief = {}
+    try: brief = _json.load(open(f'{root}/site/data/{os.path.basename(scdir)}.json'))
+    except Exception:
+        try: brief = _json.load(open(f'{root}/site/data/latest.json'))
+        except Exception: pass
+    T1, T2, T3 = font(600, 22), font(500, 18), font(500, 15)
+    BGc, DOT, NODE, EDGE, TXT, DIM, WIRE = (22, 22, 25), (46, 46, 52), (38, 38, 43), (72, 72, 80), (232, 232, 236), (150, 150, 158), (170, 170, 180)
+    def wrap(text, f, w, n):
+        out, line = [], ''
+        for wd in text.split():
+            t = (line + ' ' + wd).strip()
+            if ImageDraw.Draw(Image.new('RGB', (1, 1))).textlength(t, font=f) > w and line: out.append(line); line = wd
+            else: line = t
+            if len(out) >= n: break
+        if line and len(out) < n: out.append(line)
+        return out
+    def thumb(path, w, h):
+        im = Image.open(path).convert('RGBA'); bgt = Image.new('RGBA', im.size, (58, 58, 64, 255)); bgt.alpha_composite(im); im = bgt.convert('RGB')
+        r = max(w / im.width, h / im.height); im = im.resize((max(w, round(im.width * r)), max(h, round(im.height * r))), Image.LANCZOS)
+        x, y = (im.width - w) // 2, (im.height - h) // 2; return im.crop((x, y, x + w, y + h))
+    # our own kept illustrations without close-up faces (Round 32: the food hall's faces read as generic)
+    ours = [p for p in ['illo-guide/ours-050-lone-bottle.jpg', 'illo-guide/ours-051-canopy-low-angle.jpg', 'illo-guide/ours-054-giant-trunk.jpg'] if os.path.exists(p)] or sorted(glob.glob('illo-guide/ours-*.jpg'))[:3]
+    med = os.path.join(root, 'site', 'media', os.path.basename(scdir))
+    refs = [p for p in [f'{med}/image-03-2160.jpg', f'{med}/image-06-2160.jpg', f'{med}/object-1.png', f'{med}/object-2.png'] if os.path.exists(p)][:3] or sorted(glob.glob(f'{med}/*.png'))[:3]
+    cols = (cw.get('palette') or [])[:4] + ([brief.get('highlight', {}).get('hex')] if brief.get('highlight') else [])
+    X0, X1 = 56, 476
+    nodes = [('Brief', 250, 420), ('Prompt', 450, 780), ('Style', 810, 1010), ('References', 1040, 1240), ('Palette', 1270, 1370)]
+    G = (590, 760, 1024, 930); OUT = (590, 990, 1024, None)
+    scamp = Image.open(sp).convert('RGB'); ow = OUT[2] - OUT[0] - 32; oh = round(ow * scamp.height / scamp.width)
+    OUT = (OUT[0], OUT[1], OUT[2], OUT[1] + 52 + oh + 16); simg = scamp.resize((ow, oh), Image.LANCZOS)
+    noise = Image.fromarray((rng.random((oh // 6 + 1, ow // 6 + 1, 3)) * 255).astype(np.uint8)).resize((ow, oh), Image.NEAREST)
+    port_in = lambda i: (G[0], G[1] + 64 + i * 20)
+    port_out = lambda i: (X1, (nodes[i][1] + nodes[i][2]) / 2)
+    def bez(a, b, u=1.0, n=40):
+        (x0, y0), (x1, y1) = a, b; c0, c1 = (x0 + 110, y0), (x1 - 110, y1); pts = []
+        for j in range(int(n * u) + 1):
+            t = j / n; mt = 1 - t
+            pts.append((mt ** 3 * x0 + 3 * mt * mt * t * c0[0] + 3 * mt * t * t * c1[0] + t ** 3 * x1, mt ** 3 * y0 + 3 * mt * mt * t * c0[1] + 3 * mt * t * t * c1[1] + t ** 3 * y1))
+        return pts
+    title = (brief.get('story') or {}).get('title', '') or meta.get('headline', '')
+    prompt = meta.get('prompt', '') or meta.get('angle', '')
+    def canvas_img(shown=5, wires=0.0, run=0.0, reveal=0.0, outa=1.0, drag=None):
+        im = Image.new('RGB', (SW, SH), BGc); d = ImageDraw.Draw(im)
+        for y in range(16, SH, 32):
+            for x in range(16, SW, 32): d.point((x, y), fill=DOT)
+        def box(x0, y0, x1, y1, name, a=1.0):
+            if a <= 0: return False
+            d.rounded_rectangle([x0, y0, x1, y1], 14, fill=NODE, outline=EDGE, width=2)
+            d.text((x0 + 18, y0 + 14), name, font=T1, fill=TXT); return True
+        for i, (nm, y0, y1) in enumerate(nodes):
+            if i >= shown: continue
+            box(X0, y0, X1, y1, nm)
+            iy = y0 + 52
+            if nm == 'Brief':
+                for k, ln in enumerate(wrap(title, T2, X1 - X0 - 36, 4)): d.text((X0 + 18, iy + k * 24), ln, font=T2, fill=DIM)
+            elif nm == 'Prompt':
+                for k, ln in enumerate(wrap(prompt, T3, X1 - X0 - 36, 13)): d.text((X0 + 18, iy + k * 20), ln, font=T3, fill=DIM)
+            elif nm in ('Style', 'References'):
+                ps = ours if nm == 'Style' else refs; tw = (X1 - X0 - 36 - 2 * 10) // 3
+                for k, pth in enumerate(ps): im.paste(thumb(pth, tw, y1 - iy - 18), (X0 + 18 + k * (tw + 10), iy))
+            elif nm == 'Palette':
+                for k, c in enumerate(cols):
+                    c = tuple(int(c[j:j + 2], 16) for j in (1, 3, 5)); d.rounded_rectangle([X0 + 18 + k * 74, iy, X0 + 18 + k * 74 + 62, iy + 34], 6, fill=c)
+            d.ellipse([X1 - 7, (y0 + y1) / 2 - 7, X1 + 7, (y0 + y1) / 2 + 7], fill=WIRE)
+        # wires: each one drawn in turn (wires = how many, with a fraction for the one being dragged)
+        for i in range(len(nodes)):
+            u = min(1, max(0, wires - i))
+            if u <= 0: continue
+            pts = bez(port_out(i), port_in(i), u); d.line(pts, fill=WIRE, width=3, joint='curve')
+        box(G[0], G[1], G[2], G[3], 'Generate')
+        d.text((G[0] + 18, G[1] + 50), 'image model', font=T3, fill=DIM)
+        for i in range(len(nodes)): d.ellipse([G[0] - 7, port_in(i)[1] - 7, G[0] + 7, port_in(i)[1] + 7], fill=WIRE)
+        bx = (G[2] - 140, G[3] - 58, G[2] - 18, G[3] - 18)
+        d.rounded_rectangle(bx, 10, fill=BLUE if run > 0 else (64, 64, 72)); d.text((bx[0] + 38, bx[1] + 9), 'Run', font=T2, fill=(255, 255, 255))
+        if run > 0:
+            d.rounded_rectangle([G[0] + 18, G[3] - 40, bx[0] - 20, G[3] - 32], 4, fill=(60, 60, 66))
+            d.rounded_rectangle([G[0] + 18, G[3] - 40, G[0] + 18 + (bx[0] - 38 - G[0]) * min(1, run), G[3] - 32], 4, fill=BLUE)
+        d.line([((G[0] + G[2]) / 2, G[3]), ((G[0] + G[2]) / 2, OUT[1])], fill=WIRE, width=3)
+        box(*OUT, 'Output')
+        ox, oy = OUT[0] + 16, OUT[1] + 52
+        if reveal > 0 and outa > 0:
+            blur = float(max(0, 18 * (1 - reveal)))
+            from PIL import ImageFilter
+            pic = Image.blend(noise, simg.filter(ImageFilter.GaussianBlur(blur)) if blur > 0.3 else simg, min(1, reveal * 1.4))
+            if drag is None: im.paste(pic, (ox, oy))
+            else:
+                d.rounded_rectangle([ox, oy, ox + ow, oy + oh], 6, outline=EDGE, width=2)
+                sc = drag[2]; pw_, ph_ = max(1, round(ow * sc)), max(1, round(oh * sc)); im.paste(simg.resize((pw_, ph_)), (round(drag[0] - pw_ / 2), round(drag[1] - ph_ / 2)))
+        else: d.rounded_rectangle([ox, oy, ox + ow, oy + oh], 6, outline=EDGE, width=2)
+        return im
+    def sseg(dur, fn, cut=False): segs.append((dur * SPEED, fn, FIT, cut))
+    sc0 = (SW + 80, SH * 0.6)
+    sseg(0.55, lambda t: dict(screen=canvas_img(shown=min(5, int(t * 6.5))), cursor=sc0, shape='arrow', over=[]), cut=True)
+    pc = sc0
+    for i in range(len(nodes)):
+        a = port_out(i); b = port_in(i)
+        sseg(0.2, lambda t, p0=pc, a=a, i=i: dict(screen=canvas_img(wires=i), cursor=path(p0, a, t), shape='arrow', over=[]))
+        sseg(0.3, lambda t, a=a, b=b, i=i: dict(screen=canvas_img(wires=i + ease(t)), cursor=bez(a, b, ease(t))[-1], shape='arrow', press=True, over=[]))
+        pc = b
+    run_at = (G[2] - 80, G[3] - 38)
+    sseg(0.25, lambda t, p0=pc: dict(screen=canvas_img(wires=5), cursor=path(p0, run_at, t), shape='arrow', over=[]))
+    sseg(0.15, lambda t: dict(screen=canvas_img(wires=5, run=0.01), cursor=run_at, shape='arrow', press=True, over=[]))
+    sseg(1.3, lambda t: dict(screen=canvas_img(wires=5, run=ease(min(1, t * 1.25)), reveal=ease(t)), cursor=run_at, shape='arrow', over=[]))
+    mid = (OUT[0] + 16 + ow / 2, OUT[1] + 52 + oh / 2)
+    sseg(0.25, lambda t: dict(screen=canvas_img(wires=5, run=1, reveal=1), cursor=path(run_at, mid, t), shape='arrow', over=[]))
+    sseg(0.4, lambda t: dict(screen=canvas_img(wires=5, run=1, reveal=1, drag=(mid[0] + (SW / 2 - mid[0]) * ease(t), mid[1] + (SH / 2 - 200 - mid[1]) * ease(t), 1 + 0.25 * ease(t))),
+                             cursor=(mid[0] + (SW / 2 - mid[0]) * ease(t), mid[1] + (SH / 2 - 200 - mid[1]) * ease(t)), shape='arrow', press=True, over=[]))
+if 'place-illustration' in S:
+    _n0 = len(segs); node_chapter()
+    if len(segs) > _n0: hold(0.2, FIT, bg, cut=True)
+
 # 3-5. the build, step by step, from the template's snaps (named by what kind of move made them):
 #   place-*  an image or object placed, then dragged into position (snaps to centre)
 #   step-<group>-*  a treatment applied click by click (pixelate, threshold...), watched up close
@@ -423,6 +549,8 @@ def draw_timeline(d, T_):
 def frame(fi):
     T = fi / FPS; i = min(len(segs) - 1, int(np.searchsorted(starts, T, 'right') - 1))
     d, fn, cam, cut = segs[i]; t = min(1, max(0, (T - starts[i]) / d)); st = fn(t)
+    if st.get('screen') is not None:                                # a full-screen view (the node graph), cursor in screen px
+        img = st['screen'].copy(); cx_, cy_ = st['cursor']; draw_cursor(ImageDraw.Draw(img), cx_, cy_, st.get('shape', 'arrow'), st.get('press', False)); return img
     poster = st['poster']; c = cam_at(i, T)
     if c == 'end':                                                  # the finished poster on black
         img = Image.new('RGB', (SW, SH), (0, 0, 0)); s = SW * 0.84 / DW

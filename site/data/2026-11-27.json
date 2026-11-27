@@ -1,0 +1,336 @@
+{
+  "date": "2026-11-27",
+  "issue": 56,
+  "generatedAt": "2026-11-27T05:08:18.184Z",
+  "colour": {
+    "name": "Red",
+    "yesterday": "Orange",
+    "tomorrow": "Rose"
+  },
+  "story": {
+    "title": "Watch: Alaskan flying team airdrops Thanksgiving turkeys to remote communities",
+    "summary": "A team of Alaskan pilots, nicknamed the turkey bombers, fly over remote off-grid communities and airdrop Thanksgiving turkeys to residents below. They have made the flights for the last few years, bringing the holiday meal to places that roads do not reach.",
+    "source": "BBC News",
+    "url": "https://www.bbc.co.uk/news/videos/cvze7yk7dy5lo?at_medium=RSS&amp;at_campaign=rss",
+    "published": "2026-11-26T09:22:34.000Z",
+    "theme": "Alaskan holiday airdrops"
+  },
+  "headlines": [
+    "Turkeys Fall From Alaskan Skies",
+    "Where No Road Reaches",
+    "Dinner Arrives by Parachute"
+  ],
+  "sublines": [
+    "Alaska's volunteer flying team drops Thanksgiving turkeys from small planes to residents of remote, off-grid communities.",
+    "For the last few years, the so-called turkey bombers have taken to the skies so isolated villages can share the holiday meal.",
+    "No roads, no shops, no problem: a small aircraft crosses the snow and delivers the feast to the doorstep."
+  ],
+  "palette": {
+    "name": "Vivid",
+    "colours": [
+      "#F33446",
+      "#FFDBD9",
+      "#7D6D6C",
+      "#3A0E0F"
+    ]
+  },
+  "always": [
+    "#000000",
+    "#FFFFFF"
+  ],
+  "highlight": {
+    "name": "Lime",
+    "hex": "#B5E643",
+    "use": "Sparingly, for a focal point: one small element that should catch the eye."
+  },
+  "shades": [
+    {
+      "colour": "#F33446",
+      "steps": [
+        "#B32331",
+        "#D62D3D",
+        "#F79A9E",
+        "#FACDCF"
+      ]
+    },
+    {
+      "colour": "#FFDBD9",
+      "steps": [
+        "#BCA19F",
+        "#E1C1BF",
+        "#FFE7E5",
+        "#FFF1F1"
+      ]
+    },
+    {
+      "colour": "#7D6D6C",
+      "steps": [
+        "#5A4E4D",
+        "#6D5F5E",
+        "#B2ABAB",
+        "#D7D4D4"
+      ]
+    },
+    {
+      "colour": "#3A0E0F",
+      "steps": [
+        "#280708",
+        "#320B0C",
+        "#9B9696",
+        "#CECCCC"
+      ]
+    }
+  ],
+  "type": {
+    "id": "alfa",
+    "display": "Alfa Slab One",
+    "text": "Sora",
+    "reason": "Alfa Slab One has the chunky, heavy-cargo feel of a hand-stamped parcel, which suits a story about a feast falling from the sky.",
+    "css": "https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Sora&display=swap",
+    "displayUrl": "https://fonts.google.com/specimen/Alfa+Slab+One",
+    "textUrl": "https://fonts.google.com/specimen/Sora"
+  },
+  "grid": {
+    "format": "A-size",
+    "size": [
+      1080,
+      1528
+    ],
+    "columns": 8,
+    "rows": 8,
+    "margin": 16,
+    "gutter": 0,
+    "column": 131,
+    "row": 187,
+    "unit": "px"
+  },
+  "images": [
+    {
+      "id": "unsplash:-vxPQH7b52U",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "brown wooden houses on snow covered field during daytime",
+      "credit": "Drew Dempsey",
+      "creditUrl": "https://unsplash.com/@drewdempsey?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/brown-wooden-houses-on-snow-covered-field-during-daytime--vxPQH7b52U?utm_source=daily_poster&utm_medium=referral",
+      "alt": "brown wooden houses on snow covered field during daytime",
+      "thumb": "https://images.unsplash.com/photo-1610389151638-8098ccba19d3?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8c25vd3klMjBBbGFza2ElMjB2aWxsYWdlfGVufDF8fHx8MTc5NTc1NjA5OHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1610389151638-8098ccba19d3?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8c25vd3klMjBBbGFza2ElMjB2aWxsYWdlfGVufDF8fHx8MTc5NTc1NjA5OHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:sQfW8vkSveM",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "snow covered mountain during daytime",
+      "credit": "Kathrine Coonjohn",
+      "creditUrl": "https://unsplash.com/@kayticloudkicker?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/snow-covered-mountain-during-daytime-sQfW8vkSveM?utm_source=daily_poster&utm_medium=referral",
+      "alt": "snow covered mountain during daytime",
+      "thumb": "https://images.unsplash.com/photo-1581011062468-93be6b8cb301?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8c25vd3klMjBBbGFza2ElMjB2aWxsYWdlfGVufDF8fHx8MTc5NTc1NjA5OHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1581011062468-93be6b8cb301?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8c25vd3klMjBBbGFza2ElMjB2aWxsYWdlfGVufDF8fHx8MTc5NTc1NjA5OHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:392690",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "The Parachute or a Sage Lady's Second Experiment, September 1785",
+      "credit": "Thomas Rowlandson",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/392690",
+      "page": "https://www.metmuseum.org/art/collection/search/392690",
+      "alt": "The Parachute or a Sage Lady's Second Experiment",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP871857.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP871857.jpg",
+      "local": "media/2026-11-27/image-03-2160.jpg"
+    },
+    {
+      "id": "unsplash:68KiA9ERyuM",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "A red biplane sits on a grassy field",
+      "credit": "Cook aynne",
+      "creditUrl": "https://unsplash.com/@cookaynne?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-red-biplane-sits-on-a-grassy-field-68KiA9ERyuM?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A red biplane sits on a grassy field",
+      "thumb": "https://images.unsplash.com/photo-1758471746349-17cbcae76b7d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cmVkJTIwc21hbGwlMjBwbGFuZXxlbnwxfHx8fDE3OTU3NTYwOTh8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1758471746349-17cbcae76b7d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cmVkJTIwc21hbGwlMjBwbGFuZXxlbnwxfHx8fDE3OTU3NTYwOTh8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:Re_HMpHbGPc",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "airplanes flying in formation",
+      "credit": "Yomex Owo",
+      "creditUrl": "https://unsplash.com/@yomex4life?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/airplanes-flying-in-formation-Re_HMpHbGPc?utm_source=daily_poster&utm_medium=referral",
+      "alt": "airplanes flying in formation",
+      "thumb": "https://images.unsplash.com/photo-1662642628203-e6f785032bb4?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8cmVkJTIwc21hbGwlMjBwbGFuZXxlbnwxfHx8fDE3OTU3NTYwOTh8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1662642628203-e6f785032bb4?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8cmVkJTIwc21hbGwlMjBwbGFuZXxlbnwxfHx8fDE3OTU3NTYwOTh8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:385465",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "A Turkey",
+      "credit": "Anonymous, Dutch",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/385465",
+      "page": "https://www.metmuseum.org/art/collection/search/385465",
+      "alt": "A Turkey",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP800004.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP800004.jpg",
+      "local": "media/2026-11-27/image-06-2160.jpg"
+    },
+    {
+      "id": "unsplash:Ux2MU3e26iY",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a red barn in the middle of a snowy field",
+      "credit": "JJ Shev",
+      "creditUrl": "https://unsplash.com/@skjev5280?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-red-barn-in-the-middle-of-a-snowy-field-Ux2MU3e26iY?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a red barn in the middle of a snowy field",
+      "thumb": "https://images.unsplash.com/photo-1708035471644-30e009655de0?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cmVkJTIwYmFybiUyMHNub3d8ZW58MXx8fHwxNzk1NzU2MDk4fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1708035471644-30e009655de0?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cmVkJTIwYmFybiUyMHNub3d8ZW58MXx8fHwxNzk1NzU2MDk4fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:ydM08oItvmI",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a red and white plane",
+      "credit": "Noé FAIZI",
+      "creditUrl": "https://unsplash.com/@n0e?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-red-and-white-plane-ydM08oItvmI?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a red and white plane",
+      "thumb": "https://images.unsplash.com/photo-1650968479400-991a1428f8fb?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cmVkJTIwc21hbGwlMjBwbGFuZXxlbnwxfHx8fDE3OTU3NTYwOTh8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1650968479400-991a1428f8fb?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cmVkJTIwc21hbGwlMjBwbGFuZXxlbnwxfHx8fDE3OTU3NTYwOTh8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:307649",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Palma with turkey, 800–1100 CE",
+      "credit": "Classic Veracruz artist(s)",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/307649",
+      "page": "https://www.metmuseum.org/art/collection/search/307649",
+      "alt": "Palma with turkey",
+      "thumb": "https://images.metmuseum.org/CRDImages/ao/web-large/DP-23818-001.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/ao/original/DP-23818-001.jpg",
+      "local": "media/2026-11-27/image-09-2160.jpg"
+    },
+    {
+      "id": "unsplash:gfeoayEtvvA",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a snowy landscape with a red barn and trees",
+      "credit": "Ian Taylor",
+      "creditUrl": "https://unsplash.com/@carrier_lost?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-snowy-landscape-with-a-red-barn-and-trees-gfeoayEtvvA?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a snowy landscape with a red barn and trees",
+      "thumb": "https://images.unsplash.com/photo-1671777489741-ffc67027a5be?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8cmVkJTIwYmFybiUyMHNub3d8ZW58MXx8fHwxNzk1NzU2MDk4fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1671777489741-ffc67027a5be?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8cmVkJTIwYmFybiUyMHNub3d8ZW58MXx8fHwxNzk1NzU2MDk4fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    }
+  ],
+  "textures": [
+    {
+      "id": "unsplash:L-EtvvlEdhM",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a close up of a red felt texture",
+      "credit": "engin akyurt",
+      "creditUrl": "https://unsplash.com/@enginakyurt?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-close-up-of-a-red-felt-texture-L-EtvvlEdhM?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a close up of a red felt texture",
+      "thumb": "https://images.unsplash.com/photo-1671528436649-4b347e86632a?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cmVkJTIwd29vbCUyMHRleHR1cmV8ZW58MXx8fHwxNzk1NzU2MDk4fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1671528436649-4b347e86632a?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cmVkJTIwd29vbCUyMHRleHR1cmV8ZW58MXx8fHwxNzk1NzU2MDk4fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:zJBxYP-hIS8",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "beige kraft paper texture background",
+      "credit": "Resource Boy",
+      "creditUrl": "https://unsplash.com/@resourceboy?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/beige-kraft-paper-texture-background-zJBxYP-hIS8?utm_source=daily_poster&utm_medium=referral",
+      "alt": "beige kraft paper texture background",
+      "thumb": "https://images.unsplash.com/photo-1659166925474-1706ba9546e4?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8a3JhZnQlMjBwYXBlciUyMHRleHR1cmV8ZW58MXx8fHwxNzk1NzU2MDk4fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1659166925474-1706ba9546e4?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8a3JhZnQlMjBwYXBlciUyMHRleHR1cmV8ZW58MXx8fHwxNzk1NzU2MDk4fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:fcZIyU-nbFE",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a black and white photo of snow on the ground",
+      "credit": "Nathan Anderson",
+      "creditUrl": "https://unsplash.com/@nathananderson?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-black-and-white-photo-of-snow-on-the-ground-fcZIyU-nbFE?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a black and white photo of snow on the ground",
+      "thumb": "https://images.unsplash.com/photo-1515387784663-e2e29a23f69e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8ZnJvc3QlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTc1NjA5OXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1515387784663-e2e29a23f69e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8ZnJvc3QlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTc1NjA5OXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "polyhaven:wood_table_worn",
+      "source": "Poly Haven",
+      "licence": "CC0",
+      "title": "Wood Table Worn",
+      "credit": "Dimitrios Savva, Rico Cilliers",
+      "creditUrl": "https://polyhaven.com/a/wood_table_worn",
+      "page": "https://polyhaven.com/a/wood_table_worn",
+      "alt": "Wood Table Worn texture",
+      "thumb": "https://cdn.polyhaven.com/asset_img/thumbs/wood_table_worn.png?width=480&height=480",
+      "src": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/wood_table_worn/wood_table_worn_diff_2k.jpg",
+      "local": "media/2026-11-27/texture-04-2160.jpg"
+    }
+  ],
+  "objects": [
+    {
+      "name": "bush plane",
+      "material": "brushed aluminium",
+      "image": "media/2026-11-27/object-1.png",
+      "thumb": "media/2026-11-27/object-1-thumb.png",
+      "model": {
+        "title": "Piper PA-18 Super Cub",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-8f6c8865288d432691ea50fcdf796bab",
+        "licence": "CC Attribution",
+        "creator": "DIGITAL01",
+        "creatorUrl": "https://sketchfab.com/DIGITAL01"
+      },
+      "texture": {
+        "title": "Blue Metal Plate",
+        "url": "https://polyhaven.com/a/blue_metal_plate"
+      }
+    },
+    {
+      "name": "parachute",
+      "material": "weathered canvas",
+      "image": "media/2026-11-27/object-2.png",
+      "thumb": "media/2026-11-27/object-2-thumb.png",
+      "model": {
+        "title": "Army Parachute",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-af52e08feebc4d94a244692212ac25bb",
+        "licence": "CC Attribution",
+        "creator": "amaraklov",
+        "creatorUrl": "https://sketchfab.com/amaraklov"
+      },
+      "texture": {
+        "title": "Denim Fabric 06",
+        "url": "https://polyhaven.com/a/denim_fabric_06"
+      }
+    },
+    {
+      "name": "roast pan",
+      "material": "polished steel",
+      "image": "media/2026-11-27/object-3.png",
+      "thumb": "media/2026-11-27/object-3-thumb.png",
+      "model": {
+        "title": "Solid cooking Pot",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-1b4f37a2fa5e4037a047bd708788b458",
+        "licence": "CC Attribution",
+        "creator": "propmaker1",
+        "creatorUrl": "https://sketchfab.com/menX1151"
+      },
+      "texture": null
+    }
+  ]
+}

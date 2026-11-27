@@ -1,37 +1,37 @@
 {
-  "date": "2026-11-26",
-  "issue": 55,
-  "generatedAt": "2026-11-26T05:08:37.400Z",
+  "date": "2026-11-27",
+  "issue": 56,
+  "generatedAt": "2026-11-27T05:08:18.184Z",
   "colour": {
-    "name": "Orange",
-    "yesterday": "Yellow",
-    "tomorrow": "Red"
+    "name": "Red",
+    "yesterday": "Orange",
+    "tomorrow": "Rose"
   },
   "story": {
-    "title": "Greatest catch ever? Man on motorbike takes incredible grab",
-    "summary": "During a Swat Premier League match in Pakistan, a batter hit a six out of the ground. A passenger on a passing motorbike caught the ball one-handed, and the clip spread around the world.",
+    "title": "Watch: Alaskan flying team airdrops Thanksgiving turkeys to remote communities",
+    "summary": "A team of Alaskan pilots, nicknamed the turkey bombers, fly over remote off-grid communities and airdrop Thanksgiving turkeys to residents below. They have made the flights for the last few years, bringing the holiday meal to places that roads do not reach.",
     "source": "BBC News",
-    "url": "https://www.bbc.co.uk/sport/cricket/videos/cwx2e0g93l3eo?at_medium=RSS&amp;at_campaign=rss",
-    "published": "2026-11-25T16:23:03.000Z",
-    "theme": "cricket and everyday feats"
+    "url": "https://www.bbc.co.uk/news/videos/cvze7yk7dy5lo?at_medium=RSS&amp;at_campaign=rss",
+    "published": "2026-11-26T09:22:34.000Z",
+    "theme": "Alaskan holiday airdrops"
   },
   "headlines": [
-    "One Hand, Two Wheels",
-    "The Ball Never Landed",
-    "Caught Between Road and Rope"
+    "Turkeys Fall From Alaskan Skies",
+    "Where No Road Reaches",
+    "Dinner Arrives by Parachute"
   ],
   "sublines": [
-    "A motorbike passenger caught a six one-handed outside the ground at Pakistan's Swat Premier League.",
-    "The clip travelled the world, and the BBC has since tracked down the rider behind the catch.",
-    "Hit out of the ground in a local league match, the ball met a stranger's hand on the road."
+    "Alaska's volunteer flying team drops Thanksgiving turkeys from small planes to residents of remote, off-grid communities.",
+    "For the last few years, the so-called turkey bombers have taken to the skies so isolated villages can share the holiday meal.",
+    "No roads, no shops, no problem: a small aircraft crosses the snow and delivers the feast to the doorstep."
   ],
   "palette": {
     "name": "Vivid",
     "colours": [
-      "#F1592A",
-      "#FFDCD1",
-      "#7D6E69",
-      "#3A1004"
+      "#F33446",
+      "#FFDBD9",
+      "#7D6D6C",
+      "#3A0E0F"
     ]
   },
   "always": [
@@ -39,56 +39,56 @@
     "#FFFFFF"
   ],
   "highlight": {
-    "name": "Blue",
-    "hex": "#2987F1",
+    "name": "Lime",
+    "hex": "#B5E643",
     "use": "Sparingly, for a focal point: one small element that should catch the eye."
   },
   "shades": [
     {
-      "colour": "#F1592A",
+      "colour": "#F33446",
       "steps": [
-        "#B13F1C",
-        "#D44D24",
-        "#F5A498",
-        "#FAD1CD"
+        "#B32331",
+        "#D62D3D",
+        "#F79A9E",
+        "#FACDCF"
       ]
     },
     {
-      "colour": "#FFDCD1",
+      "colour": "#FFDBD9",
       "steps": [
-        "#BCA199",
-        "#E1C2B8",
-        "#FFE7E0",
-        "#FFF2EE"
+        "#BCA19F",
+        "#E1C1BF",
+        "#FFE7E5",
+        "#FFF1F1"
       ]
     },
     {
-      "colour": "#7D6E69",
+      "colour": "#7D6D6C",
       "steps": [
-        "#5A4F4B",
-        "#6D605C",
-        "#B2ABA9",
-        "#D7D5D4"
+        "#5A4E4D",
+        "#6D5F5E",
+        "#B2ABAB",
+        "#D7D4D4"
       ]
     },
     {
-      "colour": "#3A1004",
+      "colour": "#3A0E0F",
       "steps": [
-        "#280902",
-        "#320D03",
-        "#9B9695",
-        "#CECCCB"
+        "#280708",
+        "#320B0C",
+        "#9B9696",
+        "#CECCCC"
       ]
     }
   ],
   "type": {
-    "id": "anybody",
-    "display": "Anybody",
-    "text": "Azeret Mono",
-    "reason": "Anybody's stretched, variable-width letters suggest speed and a ball in flight, matching a catch made on the move.",
-    "css": "https://fonts.googleapis.com/css2?family=Anybody&family=Azeret+Mono&display=swap",
-    "displayUrl": "https://fonts.google.com/specimen/Anybody",
-    "textUrl": "https://fonts.google.com/specimen/Azeret+Mono"
+    "id": "alfa",
+    "display": "Alfa Slab One",
+    "text": "Sora",
+    "reason": "Alfa Slab One has the chunky, heavy-cargo feel of a hand-stamped parcel, which suits a story about a feast falling from the sky.",
+    "css": "https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Sora&display=swap",
+    "displayUrl": "https://fonts.google.com/specimen/Alfa+Slab+One",
+    "textUrl": "https://fonts.google.com/specimen/Sora"
   },
   "grid": {
     "format": "A-size",
@@ -106,242 +106,231 @@
   },
   "images": [
     {
-      "id": "unsplash:STnkEsmiZag",
+      "id": "unsplash:-vxPQH7b52U",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "Silhouetted cricket player batting at sunset near the ocean",
-      "credit": "Thilina Alagiyawanna",
-      "creditUrl": "https://unsplash.com/@thilinaalagiyawanna?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/silhouetted-cricket-player-batting-at-sunset-near-the-ocean-STnkEsmiZag?utm_source=daily_poster&utm_medium=referral",
-      "alt": "Silhouetted cricket player batting at sunset near the ocean",
-      "thumb": "https://images.unsplash.com/photo-1783124759384-127efcd92eab?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8b3JhbmdlJTIwc3Vuc2V0JTIwY3JpY2tldHxlbnwxfHx8fDE3OTU2Njk3MTh8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1783124759384-127efcd92eab?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8b3JhbmdlJTIwc3Vuc2V0JTIwY3JpY2tldHxlbnwxfHx8fDE3OTU2Njk3MTh8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "brown wooden houses on snow covered field during daytime",
+      "credit": "Drew Dempsey",
+      "creditUrl": "https://unsplash.com/@drewdempsey?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/brown-wooden-houses-on-snow-covered-field-during-daytime--vxPQH7b52U?utm_source=daily_poster&utm_medium=referral",
+      "alt": "brown wooden houses on snow covered field during daytime",
+      "thumb": "https://images.unsplash.com/photo-1610389151638-8098ccba19d3?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8c25vd3klMjBBbGFza2ElMjB2aWxsYWdlfGVufDF8fHx8MTc5NTc1NjA5OHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1610389151638-8098ccba19d3?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8c25vd3klMjBBbGFza2ElMjB2aWxsYWdlfGVufDF8fHx8MTc5NTc1NjA5OHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:t0HXB2DND0g",
+      "id": "unsplash:sQfW8vkSveM",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "A cricket bat with an orange handle on a tiled floor in sunlight",
-      "credit": "Giri",
-      "creditUrl": "https://unsplash.com/@giridharan?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/cricket-bat-on-tiled-floor-t0HXB2DND0g?utm_source=daily_poster&utm_medium=referral",
-      "alt": "A cricket bat with an orange handle on a tiled floor in sunlight",
-      "thumb": "https://images.unsplash.com/photo-1789121789069-bf47829d3c47?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8b3JhbmdlJTIwc3Vuc2V0JTIwY3JpY2tldHxlbnwxfHx8fDE3OTU2Njk3MTh8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1789121789069-bf47829d3c47?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8b3JhbmdlJTIwc3Vuc2V0JTIwY3JpY2tldHxlbnwxfHx8fDE3OTU2Njk3MTh8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "snow covered mountain during daytime",
+      "credit": "Kathrine Coonjohn",
+      "creditUrl": "https://unsplash.com/@kayticloudkicker?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/snow-covered-mountain-during-daytime-sQfW8vkSveM?utm_source=daily_poster&utm_medium=referral",
+      "alt": "snow covered mountain during daytime",
+      "thumb": "https://images.unsplash.com/photo-1581011062468-93be6b8cb301?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8c25vd3klMjBBbGFza2ElMjB2aWxsYWdlfGVufDF8fHx8MTc5NTc1NjA5OHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1581011062468-93be6b8cb301?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8c25vd3klMjBBbGFza2ElMjB2aWxsYWdlfGVufDF8fHx8MTc5NTc1NjA5OHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:omEIcPs_WxU",
-      "source": "Unsplash",
-      "licence": "Unsplash License",
-      "title": "man riding motorcycle on brown field during daytime",
-      "credit": "Bradley Dunn",
-      "creditUrl": "https://unsplash.com/@bradleycdunn?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/man-riding-motorcycle-on-brown-field-during-daytime-omEIcPs_WxU?utm_source=daily_poster&utm_medium=referral",
-      "alt": "man riding motorcycle on brown field during daytime",
-      "thumb": "https://images.unsplash.com/photo-1608566048123-c266ed1c7cd8?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8bW90b3JiaWtlJTIwZHVzdHklMjByb2FkfGVufDF8fHx8MTc5NTY2OTcxOHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1608566048123-c266ed1c7cd8?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8bW90b3JiaWtlJTIwZHVzdHklMjByb2FkfGVufDF8fHx8MTc5NTY2OTcxOHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
-    },
-    {
-      "id": "unsplash:jKnb3R7rIrw",
-      "source": "Unsplash",
-      "licence": "Unsplash License",
-      "title": "man riding on red and white dirt motorcycle during daytime",
-      "credit": "Dmitry Lothbrok",
-      "creditUrl": "https://unsplash.com/@dmlothbrok?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/man-riding-on-red-and-white-dirt-motorcycle-during-daytime-jKnb3R7rIrw?utm_source=daily_poster&utm_medium=referral",
-      "alt": "man riding on red and white dirt motorcycle during daytime",
-      "thumb": "https://images.unsplash.com/photo-1593771332065-1a56e718cef8?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8bW90b3JiaWtlJTIwZHVzdHklMjByb2FkfGVufDF8fHx8MTc5NTY2OTcxOHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1593771332065-1a56e718cef8?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8bW90b3JiaWtlJTIwZHVzdHklMjByb2FkfGVufDF8fHx8MTc5NTY2OTcxOHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
-    },
-    {
-      "id": "unsplash:nQ2TaA_zphE",
-      "source": "Unsplash",
-      "licence": "Unsplash License",
-      "title": "people riding motorcycle on brown grass field during daytime",
-      "credit": "vikram sundaramoorthy",
-      "creditUrl": "https://unsplash.com/@vikramstudio46?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/people-riding-motorcycle-on-brown-grass-field-during-daytime-nQ2TaA_zphE?utm_source=daily_poster&utm_medium=referral",
-      "alt": "people riding motorcycle on brown grass field during daytime",
-      "thumb": "https://images.unsplash.com/photo-1580357703484-4bbb329b83a7?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8bW90b3JiaWtlJTIwZHVzdHklMjByb2FkfGVufDF8fHx8MTc5NTY2OTcxOHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1580357703484-4bbb329b83a7?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8bW90b3JiaWtlJTIwZHVzdHklMjByb2FkfGVufDF8fHx8MTc5NTY2OTcxOHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
-    },
-    {
-      "id": "unsplash:duXwICzzshc",
-      "source": "Unsplash",
-      "licence": "Unsplash License",
-      "title": "man in black jacket riding motorcycle on road during daytime",
-      "credit": "Spencer Davis",
-      "creditUrl": "https://unsplash.com/@spencerdavis?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/man-in-black-jacket-riding-motorcycle-on-road-during-daytime-duXwICzzshc?utm_source=daily_poster&utm_medium=referral",
-      "alt": "man in black jacket riding motorcycle on road during daytime",
-      "thumb": "https://images.unsplash.com/photo-1617374898771-55ef1bb860da?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8bW90b3JiaWtlJTIwZHVzdHklMjByb2FkfGVufDF8fHx8MTc5NTY2OTcxOHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1617374898771-55ef1bb860da?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8bW90b3JiaWtlJTIwZHVzdHklMjByb2FkfGVufDF8fHx8MTc5NTY2OTcxOHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
-    },
-    {
-      "id": "met:360635",
+      "id": "met:392690",
       "source": "The Met",
       "licence": "CC0",
-      "title": "The Horseman, 1650",
-      "credit": "Wenceslaus Hollar",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/360635",
-      "page": "https://www.metmuseum.org/art/collection/search/360635",
-      "alt": "The Horseman",
-      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP823360.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP823360.jpg",
-      "local": "media/2026-11-26/image-07-2160.jpg"
+      "title": "The Parachute or a Sage Lady's Second Experiment, September 1785",
+      "credit": "Thomas Rowlandson",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/392690",
+      "page": "https://www.metmuseum.org/art/collection/search/392690",
+      "alt": "The Parachute or a Sage Lady's Second Experiment",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP871857.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP871857.jpg",
+      "local": "media/2026-11-27/image-03-2160.jpg"
     },
     {
-      "id": "met:60712",
+      "id": "unsplash:68KiA9ERyuM",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "A red biplane sits on a grassy field",
+      "credit": "Cook aynne",
+      "creditUrl": "https://unsplash.com/@cookaynne?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-red-biplane-sits-on-a-grassy-field-68KiA9ERyuM?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A red biplane sits on a grassy field",
+      "thumb": "https://images.unsplash.com/photo-1758471746349-17cbcae76b7d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cmVkJTIwc21hbGwlMjBwbGFuZXxlbnwxfHx8fDE3OTU3NTYwOTh8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1758471746349-17cbcae76b7d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cmVkJTIwc21hbGwlMjBwbGFuZXxlbnwxfHx8fDE3OTU3NTYwOTh8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:Re_HMpHbGPc",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "airplanes flying in formation",
+      "credit": "Yomex Owo",
+      "creditUrl": "https://unsplash.com/@yomex4life?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/airplanes-flying-in-formation-Re_HMpHbGPc?utm_source=daily_poster&utm_medium=referral",
+      "alt": "airplanes flying in formation",
+      "thumb": "https://images.unsplash.com/photo-1662642628203-e6f785032bb4?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8cmVkJTIwc21hbGwlMjBwbGFuZXxlbnwxfHx8fDE3OTU3NTYwOTh8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1662642628203-e6f785032bb4?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8cmVkJTIwc21hbGwlMjBwbGFuZXxlbnwxfHx8fDE3OTU3NTYwOTh8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:385465",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Cricket cage, 17th–19th century",
-      "credit": "China",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/60712",
-      "page": "https://www.metmuseum.org/art/collection/search/60712",
-      "alt": "Cricket cage",
-      "thumb": "https://images.metmuseum.org/CRDImages/as/web-large/28_186_9.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/as/original/28_186_9.jpg",
-      "local": "media/2026-11-26/image-08-2160.jpg"
+      "title": "A Turkey",
+      "credit": "Anonymous, Dutch",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/385465",
+      "page": "https://www.metmuseum.org/art/collection/search/385465",
+      "alt": "A Turkey",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP800004.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP800004.jpg",
+      "local": "media/2026-11-27/image-06-2160.jpg"
     },
     {
-      "id": "unsplash:QnCGm0abMlk",
+      "id": "unsplash:Ux2MU3e26iY",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "Silhouette of an insect against a sunset",
-      "credit": "Sushanta Rokka",
-      "creditUrl": "https://unsplash.com/@sanoyatra?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/silhouette-of-an-insect-against-a-sunset-QnCGm0abMlk?utm_source=daily_poster&utm_medium=referral",
-      "alt": "Silhouette of an insect against a sunset",
-      "thumb": "https://images.unsplash.com/photo-1763480005956-705e43e9cee6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8b3JhbmdlJTIwc3Vuc2V0JTIwY3JpY2tldHxlbnwxfHx8fDE3OTU2Njk3MTh8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1763480005956-705e43e9cee6?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8b3JhbmdlJTIwc3Vuc2V0JTIwY3JpY2tldHxlbnwxfHx8fDE3OTU2Njk3MTh8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "a red barn in the middle of a snowy field",
+      "credit": "JJ Shev",
+      "creditUrl": "https://unsplash.com/@skjev5280?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-red-barn-in-the-middle-of-a-snowy-field-Ux2MU3e26iY?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a red barn in the middle of a snowy field",
+      "thumb": "https://images.unsplash.com/photo-1708035471644-30e009655de0?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cmVkJTIwYmFybiUyMHNub3d8ZW58MXx8fHwxNzk1NzU2MDk4fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1708035471644-30e009655de0?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cmVkJTIwYmFybiUyMHNub3d8ZW58MXx8fHwxNzk1NzU2MDk4fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:KCYPgBWZVJI",
+      "id": "unsplash:ydM08oItvmI",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "silhouette of two sticks",
-      "credit": "Xavier  Coiffic",
-      "creditUrl": "https://unsplash.com/@xaviercoiffic?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/silhouette-of-two-sticks-KCYPgBWZVJI?utm_source=daily_poster&utm_medium=referral",
-      "alt": "silhouette of two sticks",
-      "thumb": "https://images.unsplash.com/photo-1572339152404-10837f826617?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8b3JhbmdlJTIwc3Vuc2V0JTIwY3JpY2tldHxlbnwxfHx8fDE3OTU2Njk3MTh8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1572339152404-10837f826617?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8b3JhbmdlJTIwc3Vuc2V0JTIwY3JpY2tldHxlbnwxfHx8fDE3OTU2Njk3MTh8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "a red and white plane",
+      "credit": "Noé FAIZI",
+      "creditUrl": "https://unsplash.com/@n0e?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-red-and-white-plane-ydM08oItvmI?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a red and white plane",
+      "thumb": "https://images.unsplash.com/photo-1650968479400-991a1428f8fb?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cmVkJTIwc21hbGwlMjBwbGFuZXxlbnwxfHx8fDE3OTU3NTYwOTh8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1650968479400-991a1428f8fb?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cmVkJTIwc21hbGwlMjBwbGFuZXxlbnwxfHx8fDE3OTU3NTYwOTh8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:307649",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Palma with turkey, 800–1100 CE",
+      "credit": "Classic Veracruz artist(s)",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/307649",
+      "page": "https://www.metmuseum.org/art/collection/search/307649",
+      "alt": "Palma with turkey",
+      "thumb": "https://images.metmuseum.org/CRDImages/ao/web-large/DP-23818-001.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/ao/original/DP-23818-001.jpg",
+      "local": "media/2026-11-27/image-09-2160.jpg"
+    },
+    {
+      "id": "unsplash:gfeoayEtvvA",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a snowy landscape with a red barn and trees",
+      "credit": "Ian Taylor",
+      "creditUrl": "https://unsplash.com/@carrier_lost?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-snowy-landscape-with-a-red-barn-and-trees-gfeoayEtvvA?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a snowy landscape with a red barn and trees",
+      "thumb": "https://images.unsplash.com/photo-1671777489741-ffc67027a5be?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8cmVkJTIwYmFybiUyMHNub3d8ZW58MXx8fHwxNzk1NzU2MDk4fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1671777489741-ffc67027a5be?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8cmVkJTIwYmFybiUyMHNub3d8ZW58MXx8fHwxNzk1NzU2MDk4fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     }
   ],
   "textures": [
     {
-      "id": "unsplash:XFWiZTa2Ub0",
+      "id": "unsplash:L-EtvvlEdhM",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "crumpled beige parchment paper texture",
-      "credit": "SJ Objio",
-      "creditUrl": "https://unsplash.com/@sjobjio?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/crumpled-beige-parchment-paper-texture-XFWiZTa2Ub0?utm_source=daily_poster&utm_medium=referral",
-      "alt": "crumpled beige parchment paper texture",
-      "thumb": "https://images.unsplash.com/photo-1603484477859-abe6a73f9366?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cm91Z2glMjBwYXBlciUyMHRleHR1cmV8ZW58MXx8fHwxNzk1NjY5NzE4fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1603484477859-abe6a73f9366?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8M3x8cm91Z2glMjBwYXBlciUyMHRleHR1cmV8ZW58MXx8fHwxNzk1NjY5NzE4fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "a close up of a red felt texture",
+      "credit": "engin akyurt",
+      "creditUrl": "https://unsplash.com/@enginakyurt?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-close-up-of-a-red-felt-texture-L-EtvvlEdhM?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a close up of a red felt texture",
+      "thumb": "https://images.unsplash.com/photo-1671528436649-4b347e86632a?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cmVkJTIwd29vbCUyMHRleHR1cmV8ZW58MXx8fHwxNzk1NzU2MDk4fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1671528436649-4b347e86632a?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cmVkJTIwd29vbCUyMHRleHR1cmV8ZW58MXx8fHwxNzk1NzU2MDk4fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "polyhaven:rocky_trail_02",
+      "id": "unsplash:zJBxYP-hIS8",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "beige kraft paper texture background",
+      "credit": "Resource Boy",
+      "creditUrl": "https://unsplash.com/@resourceboy?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/beige-kraft-paper-texture-background-zJBxYP-hIS8?utm_source=daily_poster&utm_medium=referral",
+      "alt": "beige kraft paper texture background",
+      "thumb": "https://images.unsplash.com/photo-1659166925474-1706ba9546e4?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8a3JhZnQlMjBwYXBlciUyMHRleHR1cmV8ZW58MXx8fHwxNzk1NzU2MDk4fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1659166925474-1706ba9546e4?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8a3JhZnQlMjBwYXBlciUyMHRleHR1cmV8ZW58MXx8fHwxNzk1NzU2MDk4fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:fcZIyU-nbFE",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a black and white photo of snow on the ground",
+      "credit": "Nathan Anderson",
+      "creditUrl": "https://unsplash.com/@nathananderson?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-black-and-white-photo-of-snow-on-the-ground-fcZIyU-nbFE?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a black and white photo of snow on the ground",
+      "thumb": "https://images.unsplash.com/photo-1515387784663-e2e29a23f69e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8ZnJvc3QlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTc1NjA5OXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1515387784663-e2e29a23f69e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8ZnJvc3QlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTc1NjA5OXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "polyhaven:wood_table_worn",
       "source": "Poly Haven",
       "licence": "CC0",
-      "title": "Rocky Trail 02",
-      "credit": "Amal Kumar",
-      "creditUrl": "https://polyhaven.com/a/rocky_trail_02",
-      "page": "https://polyhaven.com/a/rocky_trail_02",
-      "alt": "Rocky Trail 02 texture",
-      "thumb": "https://cdn.polyhaven.com/asset_img/thumbs/rocky_trail_02.png?width=480&height=480",
-      "src": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/rocky_trail_02/rocky_trail_02_diff_2k.jpg",
-      "local": "media/2026-11-26/texture-02-2160.jpg"
-    },
-    {
-      "id": "unsplash:vS3idIiYxX0",
-      "source": "Unsplash",
-      "licence": "Unsplash License",
-      "title": "white textured paper or plaster surface",
-      "credit": "Olga Thelavart",
-      "creditUrl": "https://unsplash.com/@olga_o?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-vS3idIiYxX0?utm_source=daily_poster&utm_medium=referral",
-      "alt": "white textured paper or plaster surface",
-      "thumb": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cm91Z2glMjBwYXBlciUyMHRleHR1cmV8ZW58MXx8fHwxNzk1NjY5NzE4fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cm91Z2glMjBwYXBlciUyMHRleHR1cmV8ZW58MXx8fHwxNzk1NjY5NzE4fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
-    },
-    {
-      "id": "unsplash:UuBR5kbvt4Y",
-      "source": "Unsplash",
-      "licence": "Unsplash License",
-      "title": "a black and white photo of a concrete wall",
-      "credit": "Yan Ots",
-      "creditUrl": "https://unsplash.com/@yanots?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/a-black-and-white-photo-of-a-concrete-wall-UuBR5kbvt4Y?utm_source=daily_poster&utm_medium=referral",
-      "alt": "a black and white photo of a concrete wall",
-      "thumb": "https://images.unsplash.com/photo-1521459467264-802e2ef3141f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8ZHVzdCUyMHRleHR1cmV8ZW58MXx8fHwxNzk1NjY5NzE4fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1521459467264-802e2ef3141f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8ZHVzdCUyMHRleHR1cmV8ZW58MXx8fHwxNzk1NjY5NzE4fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "Wood Table Worn",
+      "credit": "Dimitrios Savva, Rico Cilliers",
+      "creditUrl": "https://polyhaven.com/a/wood_table_worn",
+      "page": "https://polyhaven.com/a/wood_table_worn",
+      "alt": "Wood Table Worn texture",
+      "thumb": "https://cdn.polyhaven.com/asset_img/thumbs/wood_table_worn.png?width=480&height=480",
+      "src": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/wood_table_worn/wood_table_worn_diff_2k.jpg",
+      "local": "media/2026-11-27/texture-04-2160.jpg"
     }
   ],
   "objects": [
     {
-      "name": "cricket ball",
-      "material": "worn red leather with raised seam",
-      "image": "media/2026-11-26/object-1.png",
-      "thumb": "media/2026-11-26/object-1-thumb.png",
+      "name": "bush plane",
+      "material": "brushed aluminium",
+      "image": "media/2026-11-27/object-1.png",
+      "thumb": "media/2026-11-27/object-1-thumb.png",
       "model": {
-        "title": "Cricket Ball (Sports).",
+        "title": "Piper PA-18 Super Cub",
         "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-b13a0d69d6ca48d4b125de2cc2e7f940",
+        "url": "https://sketchfab.com/3d-models/none-8f6c8865288d432691ea50fcdf796bab",
         "licence": "CC Attribution",
-        "creator": "Rohit Pawar",
-        "creatorUrl": "https://sketchfab.com/rohit8999"
-      },
-      "texture": null,
-      "spin": {
-        "frames": 24,
-        "path": "media/2026-11-26/object-1-spin/",
-        "ext": "webp"
-      }
-    },
-    {
-      "name": "motorbike",
-      "material": "brushed steel",
-      "image": "media/2026-11-26/object-2.png",
-      "thumb": "media/2026-11-26/object-2-thumb.png",
-      "model": {
-        "title": "motorcycle",
-        "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-d3077af5fcf8464c884c6c1d611ff69b",
-        "licence": "CC Attribution",
-        "creator": "Chenchanchong",
-        "creatorUrl": "https://sketchfab.com/Chenchanchong"
+        "creator": "DIGITAL01",
+        "creatorUrl": "https://sketchfab.com/DIGITAL01"
       },
       "texture": {
-        "title": "Corrugated Iron",
-        "url": "https://polyhaven.com/a/corrugated_iron"
-      },
-      "spin": {
-        "frames": 24,
-        "path": "media/2026-11-26/object-2-spin/",
-        "ext": "webp"
+        "title": "Blue Metal Plate",
+        "url": "https://polyhaven.com/a/blue_metal_plate"
       }
     },
     {
-      "name": "cricket bat",
-      "material": "weathered pale wood",
-      "image": "media/2026-11-26/object-3.png",
-      "thumb": "media/2026-11-26/object-3-thumb.png",
+      "name": "parachute",
+      "material": "weathered canvas",
+      "image": "media/2026-11-27/object-2.png",
+      "thumb": "media/2026-11-27/object-2-thumb.png",
       "model": {
-        "title": "Cricket bat used authentic photoscan and retop",
+        "title": "Army Parachute",
         "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-9b6b52ac743449fab2e262097b1de086",
+        "url": "https://sketchfab.com/3d-models/none-af52e08feebc4d94a244692212ac25bb",
         "licence": "CC Attribution",
-        "creator": "roystoncinemo",
-        "creatorUrl": "https://sketchfab.com/roystoncinemo"
+        "creator": "amaraklov",
+        "creatorUrl": "https://sketchfab.com/amaraklov"
       },
-      "texture": null,
-      "spin": {
-        "frames": 24,
-        "path": "media/2026-11-26/object-3-spin/",
-        "ext": "webp"
+      "texture": {
+        "title": "Denim Fabric 06",
+        "url": "https://polyhaven.com/a/denim_fabric_06"
       }
+    },
+    {
+      "name": "roast pan",
+      "material": "polished steel",
+      "image": "media/2026-11-27/object-3.png",
+      "thumb": "media/2026-11-27/object-3-thumb.png",
+      "model": {
+        "title": "Solid cooking Pot",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-1b4f37a2fa5e4037a047bd708788b458",
+        "licence": "CC Attribution",
+        "creator": "propmaker1",
+        "creatorUrl": "https://sketchfab.com/menX1151"
+      },
+      "texture": null
     }
   ]
 }

@@ -1,5 +1,16 @@
 [
   {
+    "date": "2026-11-27",
+    "issue": 56,
+    "colour": "Red",
+    "headline": "Turkeys Fall From Alaskan Skies",
+    "bg": "#F33446",
+    "thumb": "https://images.unsplash.com/photo-1610389151638-8098ccba19d3?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8c25vd3klMjBBbGFza2ElMjB2aWxsYWdlfGVufDF8fHx8MTc5NTc1NjA5OHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+    "display": "Alfa Slab One",
+    "text": "Sora",
+    "css": "https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Sora&display=swap"
+  },
+  {
     "date": "2026-11-26",
     "issue": 55,
     "colour": "Orange",

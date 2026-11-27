@@ -4,9 +4,16 @@ name: Handwriting scans
 # images as site/media/<date>/hand-*.jpg. Runs after the morning brief, by hand, or when requests/handwriting.txt
 # (search terms, one per line) changes.
 on:
+  # Started by the brief itself as soon as the Daily brief workflow finishes, so it never depends on GitHub firing a
+  # scheduled slot (on 27 Nov GitHub skipped every early-morning schedule except the brief's). The schedules are
+  # back-ups; a day that already has them is skipped, so extra runs cost nothing.
+  workflow_run:
+    workflows: ["Daily brief"]
+    types: [completed]
   schedule:
     - cron: "41 5 * * *"
     - cron: "17 6 * * *"
+    - cron: "3 8 * * *"
   push:
     branches: [main]
     paths: [requests/handwriting.txt, scripts/handwriting.mjs]
@@ -21,6 +28,8 @@ concurrency:
 
 jobs:
   fetch:
+    # after the brief only when it succeeded (it also runs on pushes to the site, so most of those runs skip below)
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -32,7 +41,7 @@ jobs:
       - name: Fetch the scans
         run: |
           d=$(node -e "console.log(JSON.parse(require('fs').readFileSync('site/data/latest.json','utf8')).date)")
-          if [ "${{ github.event_name }}" = "schedule" ] && [ -f "site/media/$d/hand.json" ]; then echo "Already have today's."; exit 0; fi
+          if { [ "${{ github.event_name }}" = "schedule" ] || [ "${{ github.event_name }}" = "workflow_run" ]; } && [ -f "site/media/$d/hand.json" ]; then echo "Already have today's."; exit 0; fi
           node scripts/handwriting.mjs
       - name: Save them
         run: |

@@ -4,9 +4,16 @@ name: Illustration references
 # experiments/claude-posters/refs/<date>/, not on the site. Runs after the morning brief, by hand, or when
 # requests/illo-refs.txt (search terms, one per line) or the script changes.
 on:
+  # Started by the brief itself as soon as the Daily brief workflow finishes, so it never depends on GitHub firing a
+  # scheduled slot (on 27 Nov GitHub skipped every early-morning schedule except the brief's). The schedules are
+  # back-ups; a day that already has them is skipped, so extra runs cost nothing.
+  workflow_run:
+    workflows: ["Daily brief"]
+    types: [completed]
   schedule:
     - cron: "47 5 * * *"
     - cron: "23 6 * * *"
+    - cron: "7 8 * * *"
   push:
     branches: [main]
     paths: [requests/illo-refs.txt, "requests/illo-refs/**", scripts/illo-refs.mjs]
@@ -26,6 +33,8 @@ concurrency:
 
 jobs:
   fetch:
+    # after the brief only when it succeeded (it also runs on pushes to the site, so most of those runs skip below)
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -45,7 +54,7 @@ jobs:
           for f in requests/illo-refs/*.txt; do [ -f "$f" ] || continue; x=$(basename "$f" .txt); [ -f "experiments/claude-posters/refs/$x/refs.json" ] || dates="$dates $x"; done
           for x in $dates; do node scripts/illo-refs.mjs "$x"; done
           # today's, unless it's already there (a push or a hand run with no dates always refreshes it)
-          if [ ! -f "experiments/claude-posters/refs/$d/refs.json" ] || { [ "${{ github.event_name }}" != "schedule" ] && [ -z "$(echo ${{ github.event.inputs.dates }})" ] && [ -z "$(echo $dates)" ]; }; then node scripts/illo-refs.mjs; fi
+          if [ ! -f "experiments/claude-posters/refs/$d/refs.json" ] || { { [ "${{ github.event_name }}" = "push" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; } && [ -z "$(echo ${{ github.event.inputs.dates }})" ] && [ -z "$(echo $dates)" ]; }; then node scripts/illo-refs.mjs; fi
       - name: Save them
         run: |
           git config user.name "daily-poster-bot"

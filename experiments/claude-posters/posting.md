@@ -38,4 +38,4 @@ file to post (SendUserFile of the mp4, plus its caption in a code block). The mo
 - Thu 26 Nov: 053 Chasing Light Near the Sun (first slot, a day late). From Fri 27 Nov the grid is on the normal
   rhythm: No. 055's picks (brief 26 Nov) go out on 27 Nov: 1A The Ball Never Landed, 3C Caught Between Road and Rope (stills, automatic).
 - From 27 Nov, one grid post a day: 055's picks (1A, 3C) together at 13:00 on 27 Nov; 056's on Sat 28 Nov: 6B illustrated Where No Road Reaches as the cover, then 7A, 2B and 3A.
-- Sun 29 Nov, 13:00: 057's picks as one carousel: 1B A Millimetre at a Time as the cover, then 2C The Ground Gives Way Slowly and 3A Seen From Orbit Cities Settle, each with its close-ups.
+- Sun 29 Nov, 13:00: 057's picks as one carousel: 1B A Millimetre at a Time as the cover, then 2C The Ground Gives Way Slowly and 3C Seen From Orbit Cities Settle, each with its close-ups.

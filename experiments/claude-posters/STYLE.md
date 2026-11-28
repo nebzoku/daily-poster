@@ -47,6 +47,9 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   photo to the treated image. Snap the stages as a `step-<group>-n` run: for ASCII, the image to greys, sampled into
   character-sized cells, the characters set over the cells, then the cells gone (`055-c3.tpl.js`); for a threshold,
   greys then the cut; for pixels, the cell sizes tried back and forth.
+- **The paper comes on up close in the reel** (Ben, 28 Nov): not at the end reveal, but zoomed in at the first ink-trial
+  spot, just before the trials, so people see the texture up close; every ink trial after it is shown on that paper,
+  and the reel cuts straight to the whole finished sheet (`reel.py`).
 
 ### Round 37 (27 Nov 2026): the illustrated making-of reel
 - **Illustrated posters get the same close-ups and ink trials as the others** (Ben, 27 Nov: "I like those bits"):

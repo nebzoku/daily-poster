@@ -11,7 +11,8 @@ an artboard on a dark pasteboard, a cursor doing the work, selection boxes with 
 something snaps, quick zooms and jump cuts. No app chrome, no menus, no labels. In the order it was really made:
 the background rectangle dragged out, the image placed and dragged into position, pixelated click by click, the
 small type set in text boxes, the squares repeated along, the headline typed line by line (set loose, then dragged
-onto its centre line), the whole sheet selected and printed, the paper, then the finished poster on black.
+onto its centre line), the whole sheet selected, the paper coming on up close, the ink trials on that paper, then
+the finished poster on black.
 1080 × 1920, 30 fps.
 """
 import glob, math, os, re, subprocess, sys
@@ -466,18 +467,32 @@ def spots(img_a, img_b, n=3):
     return out
 P = spots(state, rgb('ink-heavy' if 'ink-heavy' in S else 'printed'))
 trials = [] if 'ink-heavy' not in S else [(P[0], 2.3, 'ink-light'), (P[0], 2.3, 'ink-heavy'), (P[1], 2.0, 'ink-heavy'), (P[1], 2.0, 'ink-mid'), (P[2], 2.1, 'ink-mid'), (P[2], 2.1, 'printed')]
+# The paper comes on up close, before the ink trials (Ben, 28 Nov: so people see the texture while we're zoomed in),
+# and every trial is then shown on that paper. The paper is the difference the stock made (final - printed), laid
+# over each stage.
+PAPER = rgb('final').astype(np.int16) - rgb('printed').astype(np.int16)
+paper = lambda im: np.clip(im.astype(np.int16) + PAPER, 0, 255).astype(np.uint8)
 prev_img = state
+if trials:
+    pt, z = trials[0][0], trials[0][1]; cam = (pt[0], pt[1], z)
+    cur[:] = [pt[0] + 120 / z, pt[1] + 140 / z]
+    hold(0.3, cam, state, cut=True)
+    seg(0.55, lambda t, st=state: dict(poster=(st * (1 - ease(t)) + paper(st) * ease(t)).astype(np.uint8), cursor=tuple(cur), shape='arrow', over=[]), cam)
+    prev_img = paper(state)
+    hold(0.3, cam, prev_img)
 for k, (pt, z, nm) in enumerate(trials):
     cam = (pt[0], pt[1], z); cut_ = k % 2 == 0
     if cut_:
         cur[:] = [pt[0] + 120 / z, pt[1] + 140 / z]
         hold(0.25, cam, prev_img, cut=True)
     p0 = tuple(cur)
-    seg(0.32, lambda t, p0=p0, pv=prev_img, nm=nm: dict(poster=pv if t < 0.55 else rgb(nm), cursor=(p0[0] + math.sin(t * math.pi) * 34, p0[1]), shape='arrow', press=0.1 < t < 0.9, over=[]), cam)
-    hold(0.45, cam, rgb(nm))
-    prev_img = rgb(nm)
-hold(0.35, FIT, rgb('printed'), cut=True)
-seg(0.6, lambda t: dict(poster=(rgb('printed') * (1 - ease(t)) + rgb('final') * ease(t)).astype(np.uint8), cursor=(DW + 300, DH + 200), shape='arrow', over=[]), FIT)
+    seg(0.32, lambda t, p0=p0, pv=prev_img, nm=nm: dict(poster=pv if t < 0.55 else paper(rgb(nm)), cursor=(p0[0] + math.sin(t * math.pi) * 34, p0[1]), shape='arrow', press=0.1 < t < 0.9, over=[]), cam)
+    hold(0.45, cam, paper(rgb(nm)))
+    prev_img = paper(rgb(nm))
+if trials: hold(0.5, FIT, rgb('final'), cut=True)   # the paper is already on: straight to the whole sheet
+else:
+    hold(0.35, FIT, rgb('printed'), cut=True)
+    seg(0.6, lambda t: dict(poster=(rgb('printed') * (1 - ease(t)) + rgb('final') * ease(t)).astype(np.uint8), cursor=(DW + 300, DH + 200), shape='arrow', over=[]), FIT)
 cur[:] = [DW + 300, DH + 200]
 hold(0.6, (DW / 2, DH / 2, 0.74), rgb('final'))
 # 8b. moving days (Ben, 25 Nov 2026): the poster goes into motion and the reel shows how the motion was made. A

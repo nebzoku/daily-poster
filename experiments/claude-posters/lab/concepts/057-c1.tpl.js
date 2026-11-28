@@ -50,20 +50,24 @@ window.POSTER = async () => {
   draw(g, inter(tone(levels(pc, 0.02, 0.98), C.tones), upM));
   snap('step-tone-1', out);
   const pixOn = levels(pc, 0.02, 0.98);   // transparent round the pillar, so the cells follow its shape
-  // under the ground the pillar is a pixel column (a little wider than the pillar, the cells on a 32 px step)
-  const cell = 32, colX = Math.floor((px - 8) / cell) * cell, colW = Math.ceil((pw + 16) / cell) * cell;
+  // under the ground the pillar is a pixel column exactly as wide as the pillar where it meets the ground (Ben, 28 Nov:
+  // the pixels line up with the part above): its edges measured on the row just above the line, the cells dividing
+  // that width evenly, the grid starting at the pillar's left edge and the ground line
+  const edge = (() => { const w = pM.width, y = Math.round((gy - 2) * K), dd = pM.getContext('2d').getImageData(0, y, w, 1).data; let x0 = -1, x1 = -1; for (let x = 0; x < w; x++) if (dd[x * 4 + 3] > 127) { if (x0 < 0) x0 = x; x1 = x; } return [x0 / K, (x1 + 1) / K]; })();
+  const colX = edge[0], colW = edge[1] - edge[0], n = Math.round(colW / 32), cell = colW / n;
   const pixM = rectMask({ x: colX, y: gy, w: colW, h: py + ph - gy });
-  const pix = (s) => inter(pixelate(pixOn, s, C.pix), pixM);
-  if (CAPTURE) for (const [n, s] of [[1, 8], [2, 64], [3, 16]]) { const p = canvas(); draw(p.g, out); draw(p.g, pix(s)); snap(`step-pix-${n}`, p); }
+  const pix = (s) => { const sh = canvas(); offset(sh.g, pixOn, -colX, -gy); const p = canvas(); offset(p.g, pixelate(sh, s, C.pix), colX, gy); return inter(p, pixM); };
+  if (CAPTURE) for (const [k, f] of [[1, 0.25], [2, 2], [3, 0.5]]) { const p = canvas(); draw(p.g, out); draw(p.g, pix(cell * f)); snap(`step-pix-${k}`, p); }
   const pixL = pix(cell);
   draw(g, pixL);
   snap('step-pix-4', out);
 
   // the drop: a hairline where the top used to be, a lime square where it is now
   const was = py - 40;
-  g.fillStyle = C.text; g.fillRect(px - 40, was, pw + 80, 2);
+  const hx0 = M + COL * Math.floor((px - M) / COL), hx1 = M + COL * Math.ceil((px + pw - M) / COL);   // column line to column line
+  g.fillStyle = C.text; g.fillRect(hx0, was, hx1 - hx0, 2);
   snap('shape-was', out);
-  g.fillStyle = C.hl; g.fillRect(px + pw + 24, py - 8, 16, 16);
+  g.fillStyle = C.hl; g.fillRect(hx1 - 16, py - 8, 16, 16);   // ends on the column line
   snap('place-now', out);
 
   // the ruler: millimetre ticks down the left margin from the row-1 line to the ground
@@ -77,10 +81,10 @@ window.POSTER = async () => {
   const sub = balance('New satellite data shows Lagos, Alexandria and other African cities are subsiding faster than earlier studies had estimated.', { ...t, minW: 240, maxW: COL * 3.2, lines: [4, 4], strict: true });
   block(g, sub.lines, W - M, M, { ...t, align: 'right' });
   snap('text-sub', out);
-  block(g, ['(01) Where it stood'], px + pw + 56, was, { ...t, anchor: 'top' });
-  block(g, ['(02) Where it stands'], px + pw + 56, py - 8, { ...t, anchor: 'top' });
-  block(g, ['(03) Ground level'], M + 48, gy - 12, { ...t, anchor: 'bottom' });
-  block(g, ['(04) Below, by radar'], W - M, gy - 12, { ...t, align: 'right', anchor: 'bottom' });
+  block(g, ['(01)'], hx1 + 16, was, { ...t, anchor: 'top' });
+  block(g, ['(02)'], hx1 + 16, py - 8, { ...t, anchor: 'top' });
+  block(g, ['(03)'], M + 48, gy - 12, { ...t, anchor: 'bottom' });
+  block(g, ['(04)'], W - M, gy - 12, { ...t, align: 'right', anchor: 'bottom' });
   snap('text-labels', out);
 
   // the headline: where it crosses the pillar it flips colour, so it reads on both

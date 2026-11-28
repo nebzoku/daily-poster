@@ -55,7 +55,7 @@ window.POSTER = async () => {
     }
     return [a, b];
   };
-  const keepOut = union(satClear, rectMask({ x: tx - 12, y: ty + A - 20, w: 220, h: 40 }), rectMask({ x: 0, y: F.y + F.h + A * 0.2, w: W, h: H }));
+  const keepOut = union(satClear, rectMask({ x: sx + satW + 4, y: sy + satH * 0.3 - 16, w: 64, h: 44 }), rectMask({ x: tx - 12, y: ty + A - 20, w: 80, h: 40 }), rectMask({ x: 0, y: F.y + F.h + A * 0.2, w: W, h: H }));
   if (CAPTURE) { const [a, b] = field(0); const p = canvas(); draw(p.g, out); draw(p.g, tint(cut(union(a, b), keepOut), C.ascii)); snap('step-ascii-1', p); }
   if (CAPTURE) { const [a, b] = field(0.5); const p = canvas(); draw(p.g, out); draw(p.g, tint(cut(a, keepOut), C.ascii)); draw(p.g, tint(cut(b, keepOut), C.deep)); snap('step-ascii-2', p); }
   const [fa, fb] = field(1);
@@ -82,8 +82,8 @@ window.POSTER = async () => {
   const sub = balance('A fresh study maps the sinking of major African cities, giving planners firmer numbers to build on.', { ...t, minW: 240, maxW: COL * 3, lines: [4, 4], strict: true });
   block(g, sub.lines, M + COL * 2, yy, t);
   snap('text-sub', out);
-  block(g, ['(01) Radar, from orbit'], W - M, yy, { ...t, align: 'right' });
-  block(g, ['(02) The reading'], bx + 24, by - 8, t);
+  block(g, ['(01)'], sx + satW + 16, sy + satH * 0.3, t);
+  block(g, ['(02)'], bx + 24, by - 8, t);
   snap('text-labels', out);
 
   snapLines(tint(head, C.type), R);

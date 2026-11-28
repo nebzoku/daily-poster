@@ -84,6 +84,14 @@ def hold(d, cam, poster, ov=lambda t: [], shape='arrow', cut=False, press=False)
 
 guides = [('v', 16 + i * 131) for i in range(9)] + [('h', 16 + i * 187) for i in range(9)]
 show_guides = {'on': False}
+# Boxes drawn in the reel (text boxes, shapes dragged out) always run exactly from grid line to grid line (Ben, 28 Nov:
+# no rogue boxes of our own size): each edge goes out to the nearest column / row line (or the sheet's edge), and an
+# edge within 6 px of a line takes that line.
+GX = sorted({0.0, DW, *[16 + i * 131 for i in range(9)]}); GY = sorted({0.0, DH, *[16 + i * 187 for i in range(9)]})
+def gridbox(x0, y0, x1, y1, tol=6):
+    lo = lambda v, G: max([g for g in G if g <= v + tol] or [G[0]])
+    hi = lambda v, G: min([g for g in G if g >= v - tol] or [G[-1]])
+    return lo(x0, GX), lo(y0, GY), hi(x1, GX), hi(y1, GY)
 bg = rgb('bg'); bgc = tuple(int(v) for v in bg[PH // 2, PW // 2])
 
 # 0. REVEAL=1: open on the finished poster for a beat, then cut to the empty artboard (testing whether showing the
@@ -301,7 +309,7 @@ def step_group(names, state):
         hold(0.18, ZOOM, rgb(n))
     return rgb(names[-1])
 def shape_step(n, state):
-    b = diffbox(state, rgb(n)); cam = ((b[0] + b[2]) / 2, (b[1] + b[3]) / 2, max(0.75, min(1.4, SW * 0.7 / (b[2] - b[0] + 60), SH * 0.6 / (b[3] - b[1] + 60))))
+    b = gridbox(*diffbox(state, rgb(n))); cam = ((b[0] + b[2]) / 2, (b[1] + b[3]) / 2, max(0.75, min(1.4, SW * 0.7 / (b[2] - b[0] + 60), SH * 0.6 / (b[3] - b[1] + 60))))
     move((b[0], b[1]), cam, state, shape='cross')
     L = layer_of(state, rgb(n))
     def grow(t, b=b, L=L, state=state):
@@ -321,7 +329,7 @@ def textbox(name, state):
         else: groups[-1][1] = x
     for gx0, gx1 in groups:
         part = np.zeros_like(d); part[:, gx0:gx1 + 1] = d[:, gx0:gx1 + 1]; ys = np.nonzero(part.any(1))[0]
-        x0, y0, x1, y1 = gx0 / K - 6, ys[0] / K - 6, (gx1 + 1) / K + 6, (ys[-1] + 1) / K + 6
+        x0, y0, x1, y1 = gridbox(gx0 / K, ys[0] / K, (gx1 + 1) / K, (ys[-1] + 1) / K)
         cam = ((x0 + x1) / 2, (y0 + y1) / 2, max(0.9, min(1.9, SW * 0.6 / (x1 - x0))))
         move((x0, y0), cam, state, shape='ibeam')
         seg(0.3, lambda t, state=state, x0=x0, y0=y0, x1=x1, y1=y1: dict(poster=state, cursor=path((x0, y0), (x1, y1), t, 0.02), shape='cross', over=[('box', x0, y0, *path((x0, y0), (x1, y1), t, 0.02), False)]), cam)

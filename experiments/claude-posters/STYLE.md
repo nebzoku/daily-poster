@@ -29,6 +29,21 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   from the brief and different layout systems and treatments. Colourways only swap which palette colours play
   background, middle (image marks) and type. Ben picks the one(s) to post the next day.
 
+### Round 38 (28 Nov 2026): fewer words, cleaner joins, no outlines
+- **Labels are numbers only:** (01) (02) (03), never "(01) Where it stood" or "(02) The reading" (Ben on 057: the
+  explaining labels read like an AI narrating the picture and take away the poster's openness, so people can take it
+  in their own way). Furniture and the subline stay; diagram-style captions go. Use labels sparingly.
+- **A treated part of an image lines up with the untreated part.** When an object changes treatment across a line
+  (smooth above, pixelated below), the pixel block is exactly as wide as the object where it meets the line, its
+  cells dividing that width evenly and its grid starting on the object's edge and the line (057 concept 1's pillar).
+- **No outline or halo round type.** Never clear a blurred margin round the headline's letters on an image (it
+  reads as an outline, like the serif on 057 concept 2): set the headline straight over the image in a colour that
+  reads, or put the image where the type isn't. Small type may sit in a clearing squared to the grid.
+- **Every box, rectangle and shape sits exactly on grid lines** (Ben, 28 Nov), on the poster and in the making-of reel:
+  clearings, bars, rules and image boxes run from one column or row line to another (or to the sheet's edge), never a
+  size of our own like "the text plus 24 px". In the reel, the text boxes and the shapes being dragged out snap to the
+  column and row lines too (`gridbox()` in `reel.py`), so the cursor draws them from line to line.
+
 ### Round 37 (27 Nov 2026): the illustrated making-of reel
 - **Illustrated posters get the same close-ups and ink trials as the others** (Ben, 27 Nov: "I like those bits"):
   `illo-scamp.tpl.js` snaps `inkTrials`, so the reel zooms in and tries the finish lighter, much heavier and back.

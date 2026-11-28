@@ -44,12 +44,13 @@ window.POSTER = async () => {
 
   // small type sits in a clearing on the row-3.5 line, left
   const t = { font: T, size: 16, weight: 400, lead: 1.0, color: C.text };
-  const ty = M + ROW * 3.5;
+  const ty = M + ROW * 4;   // cap height on the row-4 line
   const sub = balance('Radar from orbit can detect ground movement of a few millimetres, revealing how fast the land under whole cities is shifting.', { ...t, minW: 240, maxW: COL * 3, lines: [4, 4], strict: true });
   const fx = M, sx = M + COL * 2;
-  const clearT = rectMask({ x: 0, y: ty - 32, w: M + COL * 5.5, h: 32 + 3 * 16 + 12 + 32 });   // a clearing on the grid: column 0 to the column-5.5 line
-  const lime = { x: M + COL * 6 + 16, y: sy - 8 };
-  const clear = union(alphaThr(blurred(head, 4), 0.08), clearT, rectMask({ x: M + COL * 6, y: sy - 48, w: W, h: 96 }));
+  const clearT = rectMask({ x: 0, y: M + ROW * 4, w: M + COL * 6, h: ROW });   // one grid box: edge to the column-6 line, row 4 to row 5
+  const lime = { x: M + COL * 6 - 16, y: sy - 16 };   // in the clearing's bottom-right corner, on the row-5 line
+  // no clearing round the headline (Ben, 28 Nov: no outline round type): it prints straight over the map
+  const clear = clearT;
 
   draw(g, tint(cut(mids, clear), C.mid2));
   snap('step-thr-1', out);
@@ -61,7 +62,7 @@ window.POSTER = async () => {
   snap('step-stretch-2', out);
 
   // the line where the pulling starts: a hairline across, broken where the type and pin are; lime pin on it
-  const hair = cut(rectMask({ x: 0, y: sy - 1, w: W, h: 2 }), union(alphaThr(blurred(head, 6), 0.04)));
+  const hair = rectMask({ x: 0, y: sy - 1, w: W, h: 2 });
   draw(g, tint(hair, C.text));
   snap('shape-line', out);
   g.fillStyle = C.hl; g.fillRect(lime.x, lime.y, 16, 16);
@@ -71,8 +72,7 @@ window.POSTER = async () => {
   snap('text-furniture', out);
   block(g, sub.lines, sx, ty, t);
   snap('text-sub', out);
-  block(g, ['(01) Benchmark'], lime.x + 32, sy - 12, { ...t, anchor: 'bottom' });
-  block(g, ['(02) Settling'], lime.x + 32, sy + 20, t);
+  block(g, ['(01)'], lime.x - 16, sy, { ...t, align: 'right', anchor: 'bottom' });
   snap('text-labels', out);
 
   snapLines(tint(head, C.type), R);

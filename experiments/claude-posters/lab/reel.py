@@ -132,7 +132,9 @@ def node_chapter():
         try: brief = _json.load(open(bp)); break
         except Exception: pass
     # Ben, 27 Nov: the graph's type matches the day's data typeface (the brief's text face), node copy tracked -2%;
-    # the prompt is set in mono (the text face if it is a mono, otherwise Azeret Mono), untracked
+    # the prompt is set in mono (the text face if it is a mono, otherwise Azeret Mono), untracked. Ben, 28 Nov: ALL body
+    # copy in the nodes (the brief, the prompt, the model line) in that one style: same face, size, tracking and leading;
+    # only the node titles are in the text face
     def face(family, w, size):
         slug = family.lower().replace(' ', '-')
         for ww in (w, 500, 400, 600, 700):
@@ -193,7 +195,7 @@ def node_chapter():
         return pts
     title = (brief.get('story') or {}).get('title', '') or meta.get('headline', '')
     prompt = meta.get('prompt', '') or meta.get('angle', '')
-    brief_lines, prompt_lines = wrap(title, T3, X1 - X0 - 36, 4), wrap(prompt, TM, X1 - X0 - 36, 13, 0)
+    brief_lines, prompt_lines = wrap(title, TM, X1 - X0 - 36, 4, 0), wrap(prompt, TM, X1 - X0 - 36, 13, 0)
     # the static canvas (dots, nodes and their contents), drawn once
     base = Image.new('RGB', (SW * F, SH * F), BGc); bd = ImageDraw.Draw(base)
     for y in range(16, SH, 32):
@@ -205,7 +207,7 @@ def node_chapter():
         nm, y0, y1 = nodes[i]; L = Image.new('RGBA', base.size, (0, 0, 0, 0)); d = ImageDraw.Draw(L)
         box(d, X0, y0, X1, y1, nm); iy = y0 + 52
         if nm == 'Brief':
-            for k, ln in enumerate(brief_lines): ttext(d, ((X0 + 18) * F, (iy + k * 20) * F), ln, T3, DIM)
+            for k, ln in enumerate(brief_lines): d.text(((X0 + 18) * F, (iy + k * 20) * F), ln, font=TM, fill=DIM)
         elif nm == 'Prompt':
             for k, ln in enumerate(prompt_lines): d.text(((X0 + 18) * F, (iy + k * 20) * F), ln, font=TM, fill=DIM)
         elif nm in thumbs:
@@ -217,7 +219,7 @@ def node_chapter():
         return L
     layers = [node_layer(i) for i in range(len(nodes))]
     gl = Image.new('RGBA', base.size, (0, 0, 0, 0)); gd = ImageDraw.Draw(gl)
-    box(gd, *G, 'Generate'); ttext(gd, ((G[0] + 18) * F, (G[1] + 50) * F), 'Image model', T3, DIM)
+    box(gd, *G, 'Generate'); gd.text(((G[0] + 18) * F, (G[1] + 50) * F), 'Image model', font=TM, fill=DIM)
     for i in range(len(nodes)): gd.ellipse([(G[0] - 7) * F, (port_in(i)[1] - 7) * F, (G[0] + 7) * F, (port_in(i)[1] + 7) * F], fill=WIRE)
     gd.line([((G[0] + G[2]) / 2 * F, G[3] * F), ((G[0] + G[2]) / 2 * F, OUT[1] * F)], fill=WIRE, width=3 * F)
     box(gd, *OUT, 'Output')

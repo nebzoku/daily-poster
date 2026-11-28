@@ -8,7 +8,7 @@
       "makingOf": true,
       "history": {
         "2026-11-28": {
-          "likes": 47,
+          "likes": 48,
           "comments": 0
         }
       },
@@ -169,5 +169,670 @@
       "trial": null
     }
   },
-  "updated": "2026-11-28T10:09:01.436Z"
+  "updated": "2026-11-28T11:11:06.074Z",
+  "posts": {
+    "18155965936556595": {
+      "id": "18155965936556595",
+      "permalink": "https://www.instagram.com/p/DgSHPxRjGWu/",
+      "posted": "2026-11-28T11:09:01+0000",
+      "title": "Where No Road Reaches",
+      "issue": "056",
+      "history": {
+        "2026-11-28": {
+          "likes": 0,
+          "comments": 0
+        }
+      }
+    },
+    "18144256507628581": {
+      "id": "18144256507628581",
+      "permalink": "https://www.instagram.com/p/DgPiYD5j60G/",
+      "posted": "2026-11-27T11:08:22+0000",
+      "title": "The Ball Never Landed",
+      "issue": "055",
+      "history": {
+        "2026-11-28": {
+          "likes": 3,
+          "comments": 0
+        }
+      }
+    },
+    "18108739901646592": {
+      "id": "18108739901646592",
+      "permalink": "https://www.instagram.com/p/DgN0gMiGg3f/",
+      "posted": "2026-11-26T19:08:20+0000",
+      "title": "Chasing Light Near the Sun",
+      "issue": "053",
+      "history": {
+        "2026-11-28": {
+          "likes": 3,
+          "comments": 0
+        }
+      }
+    },
+    "17946890478092415": {
+      "id": "17946890478092415",
+      "permalink": "https://www.instagram.com/p/DgNLS3uDVyt/",
+      "posted": "2026-11-26T13:08:14+0000",
+      "title": "The Smallest Planet Steps Out",
+      "issue": "053",
+      "history": {
+        "2026-11-28": {
+          "likes": 2,
+          "comments": 0
+        }
+      }
+    },
+    "17935857876423000": {
+      "id": "17935857876423000",
+      "permalink": "https://www.instagram.com/p/DgLPyfeE8jY/",
+      "posted": "2026-11-25T19:09:03+0000",
+      "title": "Catch Mercury Before Sunrise",
+      "issue": "053",
+      "history": {
+        "2026-11-28": {
+          "likes": 2,
+          "comments": 0
+        }
+      }
+    },
+    "18133703009503713": {
+      "id": "18133703009503713",
+      "permalink": "https://www.instagram.com/p/DgLCAEVCbwL/",
+      "posted": "2026-11-25T17:08:31+0000",
+      "title": "A Workman’s House of Wonder",
+      "issue": "052",
+      "history": {
+        "2026-11-28": {
+          "likes": 5,
+          "comments": 0
+        }
+      }
+    },
+    "18224570083349984": {
+      "id": "18224570083349984",
+      "permalink": "https://www.instagram.com/p/DgKmhkbIAPH/",
+      "posted": "2026-11-25T13:08:24+0000",
+      "title": "Morris by Day Himself by Night",
+      "issue": "052",
+      "history": {
+        "2026-11-28": {
+          "likes": 3,
+          "comments": 0
+        }
+      }
+    },
+    "18159944488520302": {
+      "id": "18159944488520302",
+      "permalink": "https://www.instagram.com/p/DgKYy7SIKnw/",
+      "posted": "2026-11-25T11:08:31+0000",
+      "title": "Every Wall Became a Garden",
+      "issue": "052",
+      "history": {
+        "2026-11-28": {
+          "likes": 1,
+          "comments": 0
+        }
+      }
+    },
+    "18144826675713082": {
+      "id": "18144826675713082",
+      "permalink": "https://www.instagram.com/p/DgI_iUBF5Yx/",
+      "posted": "2026-11-24T22:08:28+0000",
+      "title": "The Long Road’s Quiet Pause",
+      "issue": "051",
+      "history": {
+        "2026-11-28": {
+          "likes": 2,
+          "comments": 0
+        }
+      }
+    },
+    "17915333172589795": {
+      "id": "17915333172589795",
+      "permalink": "https://www.instagram.com/p/DgIq7b0jk2S/",
+      "posted": "2026-11-24T19:08:25+0000",
+      "title": "Pit Stop Promoted to Destination",
+      "issue": "051",
+      "history": {
+        "2026-11-28": {
+          "likes": 2,
+          "comments": 0
+        }
+      }
+    },
+    "18581294740076516": {
+      "id": "18581294740076516",
+      "permalink": "https://www.instagram.com/p/DgIWTkwj_Dr/",
+      "posted": "2026-11-24T16:08:12+0000",
+      "title": "Neon in the Middle of Nowhere",
+      "issue": "051",
+      "history": {
+        "2026-11-28": {
+          "likes": 2,
+          "comments": 0
+        }
+      }
+    },
+    "18027521750945071": {
+      "id": "18027521750945071",
+      "permalink": "https://www.instagram.com/p/DgIBta2IdLw/",
+      "posted": "2026-11-24T13:08:14+0000",
+      "title": "The Summer Bottled Early",
+      "issue": "050",
+      "history": {
+        "2026-11-28": {
+          "likes": 3,
+          "comments": 0
+        }
+      }
+    },
+    "18126842135470631": {
+      "id": "18126842135470631",
+      "permalink": "https://www.instagram.com/p/DgHv_cNDOMi/",
+      "posted": "2026-11-24T10:33:24+0000",
+      "title": "First Taste of a Hot Year",
+      "issue": "050",
+      "history": {
+        "2026-11-28": {
+          "likes": 2,
+          "comments": 0
+        }
+      }
+    },
+    "18115407896269862": {
+      "id": "18115407896269862",
+      "permalink": "https://www.instagram.com/p/DgGatRKGtjR/",
+      "posted": "2026-11-23T22:08:11+0000",
+      "title": "The Message Nothing Blocks",
+      "issue": "049",
+      "history": {
+        "2026-11-28": {
+          "likes": 3,
+          "comments": 0
+        }
+      }
+    },
+    "17901255006611893": {
+      "id": "17901255006611893",
+      "permalink": "https://www.instagram.com/p/DgGXvVoly8f/",
+      "posted": "2026-11-23T21:42:19+0000",
+      "title": "A Whisper Through Brick",
+      "issue": "049",
+      "history": {
+        "2026-11-28": {
+          "likes": 2,
+          "comments": 0
+        }
+      }
+    },
+    "18071250560521365": {
+      "id": "18071250560521365",
+      "permalink": "https://www.instagram.com/p/Df9ud-bF84U/",
+      "posted": "2026-11-20T13:07:41+0000",
+      "title": "Following the Silver Current",
+      "issue": "048",
+      "history": {
+        "2026-11-28": {
+          "likes": 1,
+          "comments": 0
+        }
+      }
+    },
+    "18599293027068757": {
+      "id": "18599293027068757",
+      "permalink": "https://www.instagram.com/p/Df7NQKEDohG/",
+      "posted": "2026-11-19T13:38:59+0000",
+      "title": "A Panel on Every Roof",
+      "issue": "047",
+      "history": {
+        "2026-11-28": {
+          "likes": 1,
+          "comments": 0
+        }
+      }
+    },
+    "18202674523380089": {
+      "id": "18202674523380089",
+      "permalink": "https://www.instagram.com/p/Df4k4RFF6p2/",
+      "posted": "2026-11-18T13:07:43+0000",
+      "title": "Five Suns Over Leipzig",
+      "issue": "046",
+      "history": {
+        "2026-11-28": {
+          "likes": 3,
+          "comments": 0
+        }
+      }
+    },
+    "18099946955539443": {
+      "id": "18099946955539443",
+      "permalink": "https://www.instagram.com/p/Df2AE_Zl4B7/",
+      "posted": "2026-11-17T13:07:39+0000",
+      "title": "Four Worlds Before Sunrise",
+      "issue": "045",
+      "history": {
+        "2026-11-28": {
+          "likes": 1,
+          "comments": 0
+        }
+      }
+    },
+    "18115315951896904": {
+      "id": "18115315951896904",
+      "permalink": "https://www.instagram.com/p/DfzbSEDoAwy/",
+      "posted": "2026-11-16T13:07:43+0000",
+      "title": "Let the Water Back In",
+      "issue": "044",
+      "history": {
+        "2026-11-28": {
+          "likes": 4,
+          "comments": 0
+        }
+      }
+    },
+    "18101762984095514": {
+      "id": "18101762984095514",
+      "permalink": "https://www.instagram.com/p/Dfw2fQrjwlc/",
+      "posted": "2026-11-15T13:07:41+0000",
+      "title": "The Secret Rhythm of Talk",
+      "issue": "043",
+      "history": {
+        "2026-11-28": {
+          "likes": 1,
+          "comments": 0
+        }
+      }
+    },
+    "17906277585607337": {
+      "id": "17906277585607337",
+      "permalink": "https://www.instagram.com/p/DfuRrPQl1An/",
+      "posted": "2026-11-14T13:07:34+0000",
+      "title": "Nine Hundred Million Galaxies",
+      "issue": "042",
+      "history": {
+        "2026-11-28": {
+          "likes": 4,
+          "comments": 0
+        }
+      }
+    },
+    "18104612249529256": {
+      "id": "18104612249529256",
+      "permalink": "https://www.instagram.com/p/Dftpa3ZmJFY/",
+      "posted": "2026-11-14T07:15:48+0000",
+      "title": "Mapping the Dark Between",
+      "issue": "042",
+      "history": {
+        "2026-11-28": {
+          "likes": 6,
+          "comments": 0
+        }
+      }
+    },
+    "18573490954079365": {
+      "id": "18573490954079365",
+      "permalink": "https://www.instagram.com/p/DftpLALlNp9/",
+      "posted": "2026-11-14T07:13:34+0000",
+      "title": "Nine Hundred Million Galaxies",
+      "issue": "042",
+      "history": {
+        "2026-11-28": {
+          "likes": 9,
+          "comments": 0
+        }
+      }
+    },
+    "18013429565987394": {
+      "id": "18013429565987394",
+      "permalink": "https://www.instagram.com/p/Dfrs6rflynR/",
+      "posted": "2026-11-13T13:07:53+0000",
+      "title": "The Fastest Ship Goes Down",
+      "issue": "041",
+      "history": {
+        "2026-11-28": {
+          "likes": 4,
+          "comments": 0
+        }
+      }
+    },
+    "18040967171652376": {
+      "id": "18040967171652376",
+      "permalink": "https://www.instagram.com/p/Dfri4LhnIln/",
+      "posted": "2026-11-13T11:40:06+0000",
+      "title": "A Liner Becomes a Reef",
+      "issue": "041",
+      "history": {
+        "2026-11-28": {
+          "likes": 5,
+          "comments": 0
+        }
+      }
+    },
+    "18059827181799786": {
+      "id": "18059827181799786",
+      "permalink": "https://www.instagram.com/p/DfnMgBpDYV_/",
+      "posted": "2026-11-11T19:07:36+0000",
+      "title": "Drawing the Land, Line by Line",
+      "issue": "039",
+      "history": {
+        "2026-11-28": {
+          "likes": 6,
+          "comments": 0
+        }
+      }
+    },
+    "18133410337752861": {
+      "id": "18133410337752861",
+      "permalink": "https://www.instagram.com/p/DfmjT5bF0Sd/",
+      "posted": "2026-11-11T13:07:43+0000",
+      "title": "Two Centuries of Exactitude",
+      "issue": "039",
+      "history": {
+        "2026-11-28": {
+          "likes": 4,
+          "comments": 0
+        }
+      }
+    },
+    "17880340737567866": {
+      "id": "17880340737567866",
+      "permalink": "https://www.instagram.com/p/DfmVkK0l3FF/",
+      "posted": "2026-11-11T11:07:39+0000",
+      "title": "Every Hill Has a Name",
+      "issue": "039",
+      "history": {
+        "2026-11-28": {
+          "likes": 3,
+          "comments": 0
+        }
+      }
+    },
+    "17989630673882053": {
+      "id": "17989630673882053",
+      "permalink": "https://www.instagram.com/p/Dfknsvtj7BV/",
+      "posted": "2026-11-10T19:07:38+0000",
+      "title": "Seeds Wake After Years Asleep",
+      "issue": "038",
+      "history": {
+        "2026-11-28": {
+          "likes": 7,
+          "comments": 0
+        }
+      }
+    },
+    "18118346153020179": {
+      "id": "18118346153020179",
+      "permalink": "https://www.instagram.com/p/Dfj-hmADBvS/",
+      "posted": "2026-11-10T13:07:46+0000",
+      "title": "The Driest Place Blooms",
+      "issue": "038",
+      "history": {
+        "2026-11-28": {
+          "likes": 7,
+          "comments": 0
+        }
+      }
+    },
+    "18110291504197243": {
+      "id": "18110291504197243",
+      "permalink": "https://www.instagram.com/p/DfjwxKrl-Pu/",
+      "posted": "2026-11-10T11:07:36+0000",
+      "title": "The Driest Place Blooms",
+      "issue": "038",
+      "history": {
+        "2026-11-28": {
+          "likes": 7,
+          "comments": 0
+        }
+      }
+    },
+    "18346362319285318": {
+      "id": "18346362319285318",
+      "permalink": "https://www.instagram.com/p/DfiC62GF7_B/",
+      "posted": "2026-11-09T19:07:40+0000",
+      "title": "Somerset Lights Up the Dark",
+      "issue": "037",
+      "history": {
+        "2026-11-28": {
+          "likes": 11,
+          "comments": 0
+        }
+      }
+    },
+    "17989174446111360": {
+      "id": "17989174446111360",
+      "permalink": "https://www.instagram.com/p/DfhZts-GJdE/",
+      "posted": "2026-11-09T13:07:42+0000",
+      "title": "The Whole Street Becomes Spectacle",
+      "issue": "037",
+      "history": {
+        "2026-11-28": {
+          "likes": 12,
+          "comments": 0
+        }
+      }
+    },
+    "17994879615070191": {
+      "id": "17994879615070191",
+      "permalink": "https://www.instagram.com/p/DfhL-9HFU-6/",
+      "posted": "2026-11-09T11:07:39+0000",
+      "title": "Slow Giants Glide Through Town",
+      "issue": "037",
+      "history": {
+        "2026-11-28": {
+          "likes": 13,
+          "comments": 0
+        }
+      }
+    },
+    "18577187896079558": {
+      "id": "18577187896079558",
+      "permalink": "https://www.instagram.com/p/DfenK8RjWve/",
+      "posted": "2026-11-08T11:07:28+0000",
+      "title": "A White Lattice Rises",
+      "issue": "036",
+      "history": {
+        "2026-11-28": {
+          "likes": 5,
+          "comments": 0
+        }
+      }
+    },
+    "18138411160641628": {
+      "id": "18138411160641628",
+      "permalink": "https://www.instagram.com/p/Dfc5ThljQaF/",
+      "posted": "2026-11-07T19:07:30+0000",
+      "title": "Something New Stirs in Ness",
+      "issue": "035",
+      "history": {
+        "2026-11-28": {
+          "likes": 5,
+          "comments": 0
+        }
+      }
+    },
+    "18195220942397993": {
+      "id": "18195220942397993",
+      "permalink": "https://www.instagram.com/p/DfcCY1MFE3y/",
+      "posted": "2026-11-07T11:07:38+0000",
+      "title": "Teeth, Timber and Deep Water",
+      "issue": "035",
+      "history": {
+        "2026-11-28": {
+          "likes": 3,
+          "comments": 1
+        }
+      }
+    },
+    "18334933594263837": {
+      "id": "18334933594263837",
+      "permalink": "https://www.instagram.com/p/DfaUg62l00u/",
+      "posted": "2026-11-06T19:07:32+0000",
+      "title": "Who Really Called the Legions?",
+      "issue": "034",
+      "history": {
+        "2026-11-28": {
+          "likes": 4,
+          "comments": 0
+        }
+      }
+    },
+    "18120988456984653": {
+      "id": "18120988456984653",
+      "permalink": "https://www.instagram.com/p/DfZrkYDDxcL/",
+      "posted": "2026-11-06T13:09:48+0000",
+      "title": "She Summoned Rome to Britain",
+      "issue": "034",
+      "history": {
+        "2026-11-28": {
+          "likes": 2,
+          "comments": 0
+        }
+      }
+    },
+    "18015130362003629": {
+      "id": "18015130362003629",
+      "permalink": "https://www.instagram.com/p/DfZaCkbE2-s/",
+      "posted": "2026-11-06T10:36:37+0000",
+      "title": "The King Who Wasn't",
+      "issue": "034",
+      "history": {
+        "2026-11-28": {
+          "likes": 2,
+          "comments": 0
+        }
+      }
+    },
+    "18015466781970826": {
+      "id": "18015466781970826",
+      "permalink": "https://www.instagram.com/p/DfXvt8nDGXO/",
+      "posted": "2026-11-05T19:07:32+0000",
+      "title": "Crystals Bloom Where Gravity Fails",
+      "issue": "033",
+      "history": {
+        "2026-11-28": {
+          "likes": 3,
+          "comments": 0
+        }
+      }
+    },
+    "18022152167730528": {
+      "id": "18022152167730528",
+      "permalink": "https://www.instagram.com/p/DfXGyO4F1x6/",
+      "posted": "2026-11-05T13:09:48+0000",
+      "title": "Crystals Bloom Where Gravity Fails",
+      "issue": "033",
+      "history": {
+        "2026-11-28": {
+          "likes": 5,
+          "comments": 0
+        }
+      }
+    },
+    "18434846725144655": {
+      "id": "18434846725144655",
+      "permalink": "https://www.instagram.com/p/DfW1McsF4Fe/",
+      "posted": "2026-11-05T10:36:09+0000",
+      "title": "A Cure Drifting Above Us",
+      "issue": "033",
+      "history": {
+        "2026-11-28": {
+          "likes": 7,
+          "comments": 0
+        }
+      }
+    },
+    "18354691267269367": {
+      "id": "18354691267269367",
+      "permalink": "https://www.instagram.com/p/DfVKP4GE8Sr/",
+      "posted": "2026-11-04T19:01:40+0000",
+      "title": "How Daily Poster works.",
+      "issue": "034",
+      "history": {
+        "2026-11-28": {
+          "likes": 22,
+          "comments": 1
+        }
+      }
+    },
+    "18127640341920459": {
+      "id": "18127640341920459",
+      "permalink": "https://www.instagram.com/p/DfU75allClg/",
+      "posted": "2026-11-04T16:56:12+0000",
+      "title": "Nine Stones Against The Trawl",
+      "issue": "032",
+      "history": {
+        "2026-11-28": {
+          "likes": 3,
+          "comments": 0
+        }
+      }
+    },
+    "18011895888003916": {
+      "id": "18011895888003916",
+      "permalink": "https://www.instagram.com/p/DfU7pQ9lEnv/",
+      "posted": "2026-11-04T16:54:02+0000",
+      "title": "Heavy Things Sunk On Purpose",
+      "issue": "032",
+      "history": {
+        "2026-11-28": {
+          "likes": 2,
+          "comments": 0
+        }
+      }
+    },
+    "18109286816213654": {
+      "id": "18109286816213654",
+      "permalink": "https://www.instagram.com/p/DfU7ZhflBay/",
+      "posted": "2026-11-04T16:51:49+0000",
+      "title": "Nine Stones Against The Trawl",
+      "issue": "032",
+      "history": {
+        "2026-11-28": {
+          "likes": 1,
+          "comments": 0
+        }
+      }
+    },
+    "18038802080853821": {
+      "id": "18038802080853821",
+      "permalink": "https://www.instagram.com/p/DfU623zlE7L/",
+      "posted": "2026-11-04T16:47:09+0000",
+      "title": "Erased, Then Carried Through Delhi",
+      "issue": "031",
+      "history": {
+        "2026-11-28": {
+          "likes": 2,
+          "comments": 0
+        }
+      }
+    },
+    "18644730304000685": {
+      "id": "18644730304000685",
+      "permalink": "https://www.instagram.com/p/DfU6mq1FGm8/",
+      "posted": "2026-11-04T16:44:57+0000",
+      "title": "A Kilometre of Missing Names",
+      "issue": "031",
+      "history": {
+        "2026-11-28": {
+          "likes": 2,
+          "comments": 0
+        }
+      }
+    },
+    "18111189419224902": {
+      "id": "18111189419224902",
+      "permalink": "https://www.instagram.com/p/DfU6WxQFLtJ/",
+      "posted": "2026-11-04T16:42:45+0000",
+      "title": "Every Name Still Counts",
+      "issue": "031",
+      "history": {
+        "2026-11-28": {
+          "likes": 4,
+          "comments": 0
+        }
+      }
+    }
+  }
 }

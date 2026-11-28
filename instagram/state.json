@@ -433,6 +433,29 @@
       "slot": "2026-11-28 08:00",
       "at": "2026-11-28T08:09:19.558Z",
       "id": "18068097635521061,17895916632526578,18599895682068704,17869585533679530,17898549468454612,18642454291031067,18119499161104259,17910415278603046,18133975240840478"
+    },
+    "poster:showcase/056-where-no-road-reaches-illustrated.jpg": {
+      "slot": "2026-11-28 10:30",
+      "at": "2026-11-28T11:09:05.772Z",
+      "id": "18155965936556595"
+    },
+    "poster:showcase/056-dinner-arrives-by-parachute-illustrated.jpg": {
+      "slot": "2026-11-28 10:30",
+      "at": "2026-11-28T11:09:05.772Z",
+      "id": "18155965936556595",
+      "in": "poster:showcase/056-where-no-road-reaches-illustrated.jpg"
+    },
+    "poster:showcase/056-where-no-road-reaches.jpg": {
+      "slot": "2026-11-28 10:30",
+      "at": "2026-11-28T11:09:05.772Z",
+      "id": "18155965936556595",
+      "in": "poster:showcase/056-where-no-road-reaches-illustrated.jpg"
+    },
+    "poster:showcase/056-turkeys-fall-from-alaskan-skies.jpg": {
+      "slot": "2026-11-28 10:30",
+      "at": "2026-11-28T11:09:05.772Z",
+      "id": "18155965936556595",
+      "in": "poster:showcase/056-where-no-road-reaches-illustrated.jpg"
     }
   },
   "slots": {
@@ -471,7 +494,8 @@
     "2026-11-26 19:00": "poster:showcase/053-chasing-light-near-the-sun.jpg",
     "2026-11-27 08:00": "stories:2026-11-27",
     "2026-11-27 10:30": "poster:showcase/055-the-ball-never-landed.jpg",
-    "2026-11-28 08:00": "stories:2026-11-28"
+    "2026-11-28 08:00": "stories:2026-11-28",
+    "2026-11-28 10:30": "poster:showcase/056-where-no-road-reaches-illustrated.jpg"
   },
   "start": "2026-11-04",
   "partial": {}

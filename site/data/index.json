@@ -1,5 +1,16 @@
 [
   {
+    "date": "2026-11-28",
+    "issue": 57,
+    "colour": "Rose",
+    "headline": "A Millimetre at a Time",
+    "bg": "#F33496",
+    "thumb": "https://images.unsplash.com/photo-1768007136135-26f9da49bb02?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8cGluayUyMGR1c2slMjBza3lsaW5lfGVufDF8fHx8MTc5NTg0MjUxMXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+    "display": "Necto Mono",
+    "text": "Libre Baskerville",
+    "css": "/fonts/libre/necto-mono.css"
+  },
+  {
     "date": "2026-11-27",
     "issue": 56,
     "colour": "Red",

@@ -1,37 +1,37 @@
 {
-  "date": "2026-11-27",
-  "issue": 56,
-  "generatedAt": "2026-11-27T05:08:18.184Z",
+  "date": "2026-11-28",
+  "issue": 57,
+  "generatedAt": "2026-11-28T05:08:31.267Z",
   "colour": {
-    "name": "Red",
-    "yesterday": "Orange",
-    "tomorrow": "Rose"
+    "name": "Rose",
+    "yesterday": "Red",
+    "tomorrow": "Magenta"
   },
   "story": {
-    "title": "Watch: Alaskan flying team airdrops Thanksgiving turkeys to remote communities",
-    "summary": "A team of Alaskan pilots, nicknamed the turkey bombers, fly over remote off-grid communities and airdrop Thanksgiving turkeys to residents below. They have made the flights for the last few years, bringing the holiday meal to places that roads do not reach.",
+    "title": "New satellite data shows how fast some African cities are sinking",
+    "summary": "A new study using satellite measurements finds that African cities including Lagos and Alexandria are sinking faster than earlier estimates suggested. The data tracks tiny shifts in ground level from orbit, giving planners a sharper picture of how the land beneath large cities is changing.",
     "source": "BBC News",
-    "url": "https://www.bbc.co.uk/news/videos/cvze7yk7dy5lo?at_medium=RSS&amp;at_campaign=rss",
-    "published": "2026-11-26T09:22:34.000Z",
-    "theme": "Alaskan holiday airdrops"
+    "url": "https://www.bbc.co.uk/news/articles/cq074p95z4llo?at_medium=RSS&amp;at_campaign=rss",
+    "published": "2026-11-27T19:03:18.000Z",
+    "theme": "satellite mapping of sinking cities"
   },
   "headlines": [
-    "Turkeys Fall From Alaskan Skies",
-    "Where No Road Reaches",
-    "Dinner Arrives by Parachute"
+    "A Millimetre at a Time",
+    "The Ground Gives Way Slowly",
+    "Seen From Orbit, Cities Settle"
   ],
   "sublines": [
-    "Alaska's volunteer flying team drops Thanksgiving turkeys from small planes to residents of remote, off-grid communities.",
-    "For the last few years, the so-called turkey bombers have taken to the skies so isolated villages can share the holiday meal.",
-    "No roads, no shops, no problem: a small aircraft crosses the snow and delivers the feast to the doorstep."
+    "New satellite data shows Lagos, Alexandria and other African cities are subsiding faster than earlier studies had estimated.",
+    "Radar from orbit can detect ground movement of a few millimetres, revealing how fast the land under whole cities is shifting.",
+    "A fresh study maps the sinking of major African cities, giving planners firmer numbers to build on."
   ],
   "palette": {
     "name": "Vivid",
     "colours": [
-      "#F33446",
-      "#FFDBD9",
-      "#7D6D6C",
-      "#3A0E0F"
+      "#F33496",
+      "#FFD9E6",
+      "#7C6D72",
+      "#370E21"
     ]
   },
   "always": [
@@ -39,56 +39,62 @@
     "#FFFFFF"
   ],
   "highlight": {
-    "name": "Lime",
-    "hex": "#B5E643",
+    "name": "Green",
+    "hex": "#4BF761",
     "use": "Sparingly, for a focal point: one small element that should catch the eye."
   },
   "shades": [
     {
-      "colour": "#F33446",
+      "colour": "#F33496",
       "steps": [
-        "#B32331",
-        "#D62D3D",
-        "#F79A9E",
-        "#FACDCF"
+        "#B3236D",
+        "#D62D83",
+        "#F79ABE",
+        "#FACDDD"
       ]
     },
     {
-      "colour": "#FFDBD9",
+      "colour": "#FFD9E6",
       "steps": [
-        "#BCA19F",
-        "#E1C1BF",
-        "#FFE7E5",
-        "#FFF1F1"
+        "#BC9FA9",
+        "#E1BFCA",
+        "#FFE5EE",
+        "#FFF1F5"
       ]
     },
     {
-      "colour": "#7D6D6C",
+      "colour": "#7C6D72",
       "steps": [
-        "#5A4E4D",
-        "#6D5F5E",
-        "#B2ABAB",
-        "#D7D4D4"
+        "#594E52",
+        "#6C5F64",
+        "#B1ABAD",
+        "#D7D4D5"
       ]
     },
     {
-      "colour": "#3A0E0F",
+      "colour": "#370E21",
       "steps": [
-        "#280708",
-        "#320B0C",
-        "#9B9696",
+        "#260715",
+        "#2F0B1C",
+        "#9B9697",
         "#CECCCC"
       ]
     }
   ],
   "type": {
-    "id": "alfa",
-    "display": "Alfa Slab One",
-    "text": "Sora",
-    "reason": "Alfa Slab One has the chunky, heavy-cargo feel of a hand-stamped parcel, which suits a story about a feast falling from the sky.",
-    "css": "https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Sora&display=swap",
-    "displayUrl": "https://fonts.google.com/specimen/Alfa+Slab+One",
-    "textUrl": "https://fonts.google.com/specimen/Sora"
+    "id": "necto-mono",
+    "display": "Necto Mono",
+    "text": "Libre Baskerville",
+    "libre": {
+      "foundry": "Collletttivo",
+      "designer": "Marco Condello",
+      "url": "https://www.collletttivo.it/typefaces/necto-mono"
+    },
+    "reason": "Necto Mono's measured, instrument-like letterforms echo satellite data and millimetre precision, while Libre Baskerville adds a human, explanatory voice.",
+    "css": "/fonts/libre/necto-mono.css",
+    "displayUrl": "https://www.collletttivo.it/typefaces/necto-mono",
+    "textUrl": "https://fonts.google.com/specimen/Libre+Baskerville",
+    "download": "/fonts/libre/necto-mono.zip"
   },
   "grid": {
     "format": "A-size",
@@ -106,245 +112,233 @@
   },
   "images": [
     {
-      "id": "unsplash:-vxPQH7b52U",
+      "id": "unsplash:HBI3truclMU",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "brown wooden houses on snow covered field during daytime",
-      "credit": "Drew Dempsey",
-      "creditUrl": "https://unsplash.com/@drewdempsey?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/brown-wooden-houses-on-snow-covered-field-during-daytime--vxPQH7b52U?utm_source=daily_poster&utm_medium=referral",
-      "alt": "brown wooden houses on snow covered field during daytime",
-      "thumb": "https://images.unsplash.com/photo-1610389151638-8098ccba19d3?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8c25vd3klMjBBbGFza2ElMjB2aWxsYWdlfGVufDF8fHx8MTc5NTc1NjA5OHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1610389151638-8098ccba19d3?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8c25vd3klMjBBbGFza2ElMjB2aWxsYWdlfGVufDF8fHx8MTc5NTc1NjA5OHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "City skyline under a soft pink sky",
+      "credit": "zero take",
+      "creditUrl": "https://unsplash.com/@zerotake?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/city-skyline-under-a-soft-pink-sky-HBI3truclMU?utm_source=daily_poster&utm_medium=referral",
+      "alt": "City skyline under a soft pink sky",
+      "thumb": "https://images.unsplash.com/photo-1768007136135-26f9da49bb02?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8cGluayUyMGR1c2slMjBza3lsaW5lfGVufDF8fHx8MTc5NTg0MjUxMXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1768007136135-26f9da49bb02?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8cGluayUyMGR1c2slMjBza3lsaW5lfGVufDF8fHx8MTc5NTg0MjUxMXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:sQfW8vkSveM",
+      "id": "unsplash:DUrZ0nNra5I",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "snow covered mountain during daytime",
-      "credit": "Kathrine Coonjohn",
-      "creditUrl": "https://unsplash.com/@kayticloudkicker?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/snow-covered-mountain-during-daytime-sQfW8vkSveM?utm_source=daily_poster&utm_medium=referral",
-      "alt": "snow covered mountain during daytime",
-      "thumb": "https://images.unsplash.com/photo-1581011062468-93be6b8cb301?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8c25vd3klMjBBbGFza2ElMjB2aWxsYWdlfGVufDF8fHx8MTc5NTc1NjA5OHww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1581011062468-93be6b8cb301?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8c25vd3klMjBBbGFza2ElMjB2aWxsYWdlfGVufDF8fHx8MTc5NTc1NjA5OHww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "Vibrant pink sunset over highway, city skyline, and dark forest",
+      "credit": "Leviosa Hou",
+      "creditUrl": "https://unsplash.com/@dsps?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/vibrant-pink-sunset-over-highway-city-skyline-and-dark-forest-DUrZ0nNra5I?utm_source=daily_poster&utm_medium=referral",
+      "alt": "Vibrant pink sunset over highway, city skyline, and dark forest",
+      "thumb": "https://images.unsplash.com/photo-1782775170261-de7d22dee0d2?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8cGluayUyMGR1c2slMjBza3lsaW5lfGVufDF8fHx8MTc5NTg0MjUxMXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1782775170261-de7d22dee0d2?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8cGluayUyMGR1c2slMjBza3lsaW5lfGVufDF8fHx8MTc5NTg0MjUxMXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "met:392690",
+      "id": "unsplash:UIJl9bgFT60",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "City skyline at dusk with pink clouds",
+      "credit": "bee",
+      "creditUrl": "https://unsplash.com/@bbmoon2?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/city-skyline-at-dusk-with-pink-clouds-UIJl9bgFT60?utm_source=daily_poster&utm_medium=referral",
+      "alt": "City skyline at dusk with pink clouds",
+      "thumb": "https://images.unsplash.com/photo-1760491991512-7a72ca2562f4?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8cGluayUyMGR1c2slMjBza3lsaW5lfGVufDF8fHx8MTc5NTg0MjUxMXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1760491991512-7a72ca2562f4?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8cGluayUyMGR1c2slMjBza3lsaW5lfGVufDF8fHx8MTc5NTg0MjUxMXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:381436",
       "source": "The Met",
       "licence": "CC0",
-      "title": "The Parachute or a Sage Lady's Second Experiment, September 1785",
-      "credit": "Thomas Rowlandson",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/392690",
-      "page": "https://www.metmuseum.org/art/collection/search/392690",
-      "alt": "The Parachute or a Sage Lady's Second Experiment",
-      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP871857.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP871857.jpg",
-      "local": "media/2026-11-27/image-03-2160.jpg"
+      "title": "Plan of the City of Rome, 1645",
+      "credit": "Antonio Tempesta",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/381436",
+      "page": "https://www.metmuseum.org/art/collection/search/381436",
+      "alt": "Plan of the City of Rome",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP278701.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP278701.jpg",
+      "local": "media/2026-11-28/image-04-2160.jpg"
     },
     {
-      "id": "unsplash:68KiA9ERyuM",
+      "id": "unsplash:HxxmKwvUbgI",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "A red biplane sits on a grassy field",
-      "credit": "Cook aynne",
-      "creditUrl": "https://unsplash.com/@cookaynne?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/a-red-biplane-sits-on-a-grassy-field-68KiA9ERyuM?utm_source=daily_poster&utm_medium=referral",
-      "alt": "A red biplane sits on a grassy field",
-      "thumb": "https://images.unsplash.com/photo-1758471746349-17cbcae76b7d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cmVkJTIwc21hbGwlMjBwbGFuZXxlbnwxfHx8fDE3OTU3NTYwOTh8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1758471746349-17cbcae76b7d?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cmVkJTIwc21hbGwlMjBwbGFuZXxlbnwxfHx8fDE3OTU3NTYwOTh8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "cracked brown soil",
+      "credit": "redcharlie",
+      "creditUrl": "https://unsplash.com/@redcharlie?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/cracked-brown-soil-HxxmKwvUbgI?utm_source=daily_poster&utm_medium=referral",
+      "alt": "cracked brown soil",
+      "thumb": "https://images.unsplash.com/photo-1549885606-bbc17accf949?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8Y3JhY2tlZCUyMGRyeSUyMGVhcnRofGVufDF8fHx8MTc5NTg0MjUxMXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1549885606-bbc17accf949?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8Y3JhY2tlZCUyMGRyeSUyMGVhcnRofGVufDF8fHx8MTc5NTg0MjUxMXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:Re_HMpHbGPc",
+      "id": "unsplash:73YJpOGgi4E",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "airplanes flying in formation",
-      "credit": "Yomex Owo",
-      "creditUrl": "https://unsplash.com/@yomex4life?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/airplanes-flying-in-formation-Re_HMpHbGPc?utm_source=daily_poster&utm_medium=referral",
-      "alt": "airplanes flying in formation",
-      "thumb": "https://images.unsplash.com/photo-1662642628203-e6f785032bb4?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8cmVkJTIwc21hbGwlMjBwbGFuZXxlbnwxfHx8fDE3OTU3NTYwOTh8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1662642628203-e6f785032bb4?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8cmVkJTIwc21hbGwlMjBwbGFuZXxlbnwxfHx8fDE3OTU3NTYwOTh8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "a person standing in the middle of a cracked road",
+      "credit": "Joshua Brown",
+      "creditUrl": "https://unsplash.com/@joshbrown?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-person-standing-in-the-middle-of-a-cracked-road-73YJpOGgi4E?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a person standing in the middle of a cracked road",
+      "thumb": "https://images.unsplash.com/photo-1534559733674-bf89abe1dda5?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8Y3JhY2tlZCUyMGRyeSUyMGVhcnRofGVufDF8fHx8MTc5NTg0MjUxMXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1534559733674-bf89abe1dda5?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8Y3JhY2tlZCUyMGRyeSUyMGVhcnRofGVufDF8fHx8MTc5NTg0MjUxMXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "met:385465",
+      "id": "met:380748",
       "source": "The Met",
       "licence": "CC0",
-      "title": "A Turkey",
-      "credit": "Anonymous, Dutch",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/385465",
-      "page": "https://www.metmuseum.org/art/collection/search/385465",
-      "alt": "A Turkey",
-      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP800004.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP800004.jpg",
-      "local": "media/2026-11-27/image-06-2160.jpg"
+      "title": "The City of New York: Longworth's Explanatory Map and Plan, 1817",
+      "credit": "David Longworth",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/380748",
+      "page": "https://www.metmuseum.org/art/collection/search/380748",
+      "alt": "The City of New York: Longworth's Explanatory Map and Plan",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP216131.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP216131.jpg",
+      "local": "media/2026-11-28/image-07-2160.jpg"
     },
     {
-      "id": "unsplash:Ux2MU3e26iY",
+      "id": "unsplash:fsgyO8vF7do",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "a red barn in the middle of a snowy field",
-      "credit": "JJ Shev",
-      "creditUrl": "https://unsplash.com/@skjev5280?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/a-red-barn-in-the-middle-of-a-snowy-field-Ux2MU3e26iY?utm_source=daily_poster&utm_medium=referral",
-      "alt": "a red barn in the middle of a snowy field",
-      "thumb": "https://images.unsplash.com/photo-1708035471644-30e009655de0?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cmVkJTIwYmFybiUyMHNub3d8ZW58MXx8fHwxNzk1NzU2MDk4fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1708035471644-30e009655de0?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cmVkJTIwYmFybiUyMHNub3d8ZW58MXx8fHwxNzk1NzU2MDk4fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "aerial view photography of houses",
+      "credit": "Peter Nguyen",
+      "creditUrl": "https://unsplash.com/@peterng1618?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/aerial-view-photography-of-houses-fsgyO8vF7do?utm_source=daily_poster&utm_medium=referral",
+      "alt": "aerial view photography of houses",
+      "thumb": "https://images.unsplash.com/photo-1496782850948-d8e6bbe11a9f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8YWVyaWFsJTIwY2l0eSUyMHJvb2Z0b3BzfGVufDF8fHx8MTc5NTg0MjUxMXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1496782850948-d8e6bbe11a9f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8YWVyaWFsJTIwY2l0eSUyMHJvb2Z0b3BzfGVufDF8fHx8MTc5NTg0MjUxMXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:ydM08oItvmI",
-      "source": "Unsplash",
-      "licence": "Unsplash License",
-      "title": "a red and white plane",
-      "credit": "Noé FAIZI",
-      "creditUrl": "https://unsplash.com/@n0e?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/a-red-and-white-plane-ydM08oItvmI?utm_source=daily_poster&utm_medium=referral",
-      "alt": "a red and white plane",
-      "thumb": "https://images.unsplash.com/photo-1650968479400-991a1428f8fb?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cmVkJTIwc21hbGwlMjBwbGFuZXxlbnwxfHx8fDE3OTU3NTYwOTh8MA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1650968479400-991a1428f8fb?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8cmVkJTIwc21hbGwlMjBwbGFuZXxlbnwxfHx8fDE3OTU3NTYwOTh8MA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
-    },
-    {
-      "id": "met:307649",
+      "id": "met:828471",
       "source": "The Met",
       "licence": "CC0",
-      "title": "Palma with turkey, 800–1100 CE",
-      "credit": "Classic Veracruz artist(s)",
-      "creditUrl": "https://www.metmuseum.org/art/collection/search/307649",
-      "page": "https://www.metmuseum.org/art/collection/search/307649",
-      "alt": "Palma with turkey",
-      "thumb": "https://images.metmuseum.org/CRDImages/ao/web-large/DP-23818-001.jpg",
-      "src": "https://images.metmuseum.org/CRDImages/ao/original/DP-23818-001.jpg",
-      "local": "media/2026-11-27/image-09-2160.jpg"
+      "title": "[Surveyor], ca. 1854",
+      "credit": "Unknown",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/828471",
+      "page": "https://www.metmuseum.org/art/collection/search/828471",
+      "alt": "[Surveyor]",
+      "thumb": "https://images.metmuseum.org/CRDImages/ph/web-large/DP-45425-001.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/ph/original/DP-45425-001.jpg",
+      "local": "media/2026-11-28/image-09-2160.jpg"
     },
     {
-      "id": "unsplash:gfeoayEtvvA",
-      "source": "Unsplash",
-      "licence": "Unsplash License",
-      "title": "a snowy landscape with a red barn and trees",
-      "credit": "Ian Taylor",
-      "creditUrl": "https://unsplash.com/@carrier_lost?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/a-snowy-landscape-with-a-red-barn-and-trees-gfeoayEtvvA?utm_source=daily_poster&utm_medium=referral",
-      "alt": "a snowy landscape with a red barn and trees",
-      "thumb": "https://images.unsplash.com/photo-1671777489741-ffc67027a5be?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8cmVkJTIwYmFybiUyMHNub3d8ZW58MXx8fHwxNzk1NzU2MDk4fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1671777489741-ffc67027a5be?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8cmVkJTIwYmFybiUyMHNub3d8ZW58MXx8fHwxNzk1NzU2MDk4fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "id": "met:334718",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Perspectival Study with a View of a Medieval City, 1613–50",
+      "credit": "Matthäus Merian the Elder",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/334718",
+      "page": "https://www.metmuseum.org/art/collection/search/334718",
+      "alt": "Perspectival Study with a View of a Medieval City",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP803069.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP803069.jpg",
+      "local": "media/2026-11-28/image-10-2160.jpg"
     }
   ],
   "textures": [
     {
-      "id": "unsplash:L-EtvvlEdhM",
+      "id": "unsplash:vS3idIiYxX0",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "a close up of a red felt texture",
-      "credit": "engin akyurt",
-      "creditUrl": "https://unsplash.com/@enginakyurt?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/a-close-up-of-a-red-felt-texture-L-EtvvlEdhM?utm_source=daily_poster&utm_medium=referral",
-      "alt": "a close up of a red felt texture",
-      "thumb": "https://images.unsplash.com/photo-1671528436649-4b347e86632a?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cmVkJTIwd29vbCUyMHRleHR1cmV8ZW58MXx8fHwxNzk1NzU2MDk4fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1671528436649-4b347e86632a?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8cmVkJTIwd29vbCUyMHRleHR1cmV8ZW58MXx8fHwxNzk1NzU2MDk4fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "white textured paper or plaster surface",
+      "credit": "Olga Thelavart",
+      "creditUrl": "https://unsplash.com/@olga_o?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-vS3idIiYxX0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "white textured paper or plaster surface",
+      "thumb": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8c3VydmV5JTIwcGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTg0MjUxMnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8c3VydmV5JTIwcGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTg0MjUxMnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:zJBxYP-hIS8",
+      "id": "unsplash:AehBpEOj6SI",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "beige kraft paper texture background",
-      "credit": "Resource Boy",
-      "creditUrl": "https://unsplash.com/@resourceboy?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/beige-kraft-paper-texture-background-zJBxYP-hIS8?utm_source=daily_poster&utm_medium=referral",
-      "alt": "beige kraft paper texture background",
-      "thumb": "https://images.unsplash.com/photo-1659166925474-1706ba9546e4?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8a3JhZnQlMjBwYXBlciUyMHRleHR1cmV8ZW58MXx8fHwxNzk1NzU2MDk4fDA&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1659166925474-1706ba9546e4?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8a3JhZnQlMjBwYXBlciUyMHRleHR1cmV8ZW58MXx8fHwxNzk1NzU2MDk4fDA&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "a gray concrete wall with some cracks in it",
+      "credit": "phil cruz",
+      "creditUrl": "https://unsplash.com/@bluzninja?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-gray-concrete-wall-with-some-cracks-in-it-AehBpEOj6SI?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a gray concrete wall with some cracks in it",
+      "thumb": "https://images.unsplash.com/photo-1635284305301-e485d088bf94?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8d2V0JTIwY29uY3JldGUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTg0MjUxMXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1635284305301-e485d088bf94?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8d2V0JTIwY29uY3JldGUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTg0MjUxMXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "unsplash:fcZIyU-nbFE",
+      "id": "unsplash:OG8L9s1bYKc",
       "source": "Unsplash",
       "licence": "Unsplash License",
-      "title": "a black and white photo of snow on the ground",
-      "credit": "Nathan Anderson",
-      "creditUrl": "https://unsplash.com/@nathananderson?utm_source=daily_poster&utm_medium=referral",
-      "page": "https://unsplash.com/photos/a-black-and-white-photo-of-snow-on-the-ground-fcZIyU-nbFE?utm_source=daily_poster&utm_medium=referral",
-      "alt": "a black and white photo of snow on the ground",
-      "thumb": "https://images.unsplash.com/photo-1515387784663-e2e29a23f69e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8ZnJvc3QlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTc1NjA5OXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
-      "src": "https://images.unsplash.com/photo-1515387784663-e2e29a23f69e?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8ZnJvc3QlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTc1NjA5OXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+      "title": "A pattern of deep cracks across dry brown earth",
+      "credit": "Ramin Khatibi",
+      "creditUrl": "https://unsplash.com/@raminix?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/cracked-dry-earth-pattern-OG8L9s1bYKc?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A pattern of deep cracks across dry brown earth",
+      "thumb": "https://images.unsplash.com/photo-1519806390608-acf7ef9c8d1b?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Y3JhY2tlZCUyMGNsYXklMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTg0MjUxMnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1519806390608-acf7ef9c8d1b?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Y3JhY2tlZCUyMGNsYXklMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTg0MjUxMnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     },
     {
-      "id": "polyhaven:wood_table_worn",
-      "source": "Poly Haven",
-      "licence": "CC0",
-      "title": "Wood Table Worn",
-      "credit": "Dimitrios Savva, Rico Cilliers",
-      "creditUrl": "https://polyhaven.com/a/wood_table_worn",
-      "page": "https://polyhaven.com/a/wood_table_worn",
-      "alt": "Wood Table Worn texture",
-      "thumb": "https://cdn.polyhaven.com/asset_img/thumbs/wood_table_worn.png?width=480&height=480",
-      "src": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/wood_table_worn/wood_table_worn_diff_2k.jpg",
-      "local": "media/2026-11-27/texture-04-2160.jpg"
+      "id": "unsplash:LhlxYMfnTF0",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a close up of a white wall with cracks in it",
+      "credit": "Vincent Burkhead",
+      "creditUrl": "https://unsplash.com/@creativejunkie?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-close-up-of-a-white-wall-with-cracks-in-it-LhlxYMfnTF0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a close up of a white wall with cracks in it",
+      "thumb": "https://images.unsplash.com/photo-1475965894430-b05c9d13568a?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Y3JhY2tlZCUyMGNsYXklMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTg0MjUxMnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1475965894430-b05c9d13568a?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Y3JhY2tlZCUyMGNsYXklMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTg0MjUxMnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
     }
   ],
   "objects": [
     {
-      "name": "bush plane",
+      "name": "satellite",
       "material": "brushed aluminium",
-      "image": "media/2026-11-27/object-1.png",
-      "thumb": "media/2026-11-27/object-1-thumb.png",
+      "image": "media/2026-11-28/object-1.png",
+      "thumb": "media/2026-11-28/object-1-thumb.png",
       "model": {
-        "title": "Piper PA-18 Super Cub",
+        "title": "Satellite",
         "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-8f6c8865288d432691ea50fcdf796bab",
+        "url": "https://sketchfab.com/3d-models/none-f8bd72434281441db77e85ce830f89c1",
         "licence": "CC Attribution",
-        "creator": "DIGITAL01",
-        "creatorUrl": "https://sketchfab.com/DIGITAL01"
+        "creator": "Phobos",
+        "creatorUrl": "https://sketchfab.com/1majaxed"
       },
       "texture": {
         "title": "Blue Metal Plate",
         "url": "https://polyhaven.com/a/blue_metal_plate"
-      },
-      "spin": {
-        "frames": 24,
-        "path": "media/2026-11-27/object-1-spin/",
-        "ext": "webp"
       }
     },
     {
-      "name": "parachute",
-      "material": "weathered canvas",
-      "image": "media/2026-11-27/object-2.png",
-      "thumb": "media/2026-11-27/object-2-thumb.png",
+      "name": "survey marker",
+      "material": "weathered brass",
+      "image": "media/2026-11-28/object-2.png",
+      "thumb": "media/2026-11-28/object-2-thumb.png",
       "model": {
-        "title": "Army Parachute",
+        "title": "Valence House Museum Marker Stone",
         "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-af52e08feebc4d94a244692212ac25bb",
+        "url": "https://sketchfab.com/3d-models/none-297515da4e2b480c924fdc06d7d3be26",
         "licence": "CC Attribution",
-        "creator": "amaraklov",
-        "creatorUrl": "https://sketchfab.com/amaraklov"
+        "creator": "artfletch",
+        "creatorUrl": "https://sketchfab.com/artfletch"
       },
       "texture": {
-        "title": "Denim Fabric 06",
-        "url": "https://polyhaven.com/a/denim_fabric_06"
-      },
-      "spin": {
-        "frames": 24,
-        "path": "media/2026-11-27/object-2-spin/",
-        "ext": "webp"
+        "title": "Rust Coarse 01",
+        "url": "https://polyhaven.com/a/rust_coarse_01"
       }
     },
     {
-      "name": "roast pan",
-      "material": "polished steel",
-      "image": "media/2026-11-27/object-3.png",
-      "thumb": "media/2026-11-27/object-3-thumb.png",
+      "name": "concrete pillar",
+      "material": "weathered concrete",
+      "image": "media/2026-11-28/object-3.png",
+      "thumb": "media/2026-11-28/object-3-thumb.png",
       "model": {
-        "title": "Solid cooking Pot",
+        "title": "Concrete pillar (Free Photoscan)",
         "source": "Sketchfab",
-        "url": "https://sketchfab.com/3d-models/none-1b4f37a2fa5e4037a047bd708788b458",
+        "url": "https://sketchfab.com/3d-models/none-fb1c4052f0cf4db0aefe12ea5df66dd5",
         "licence": "CC Attribution",
-        "creator": "propmaker1",
-        "creatorUrl": "https://sketchfab.com/menX1151"
+        "creator": "Kryštof Šuk",
+        "creatorUrl": "https://sketchfab.com/suk.krystof"
       },
-      "texture": null,
-      "spin": {
-        "frames": 24,
-        "path": "media/2026-11-27/object-3-spin/",
-        "ext": "webp"
+      "texture": {
+        "title": "Concrete Layers 02",
+        "url": "https://polyhaven.com/a/concrete_layers_02"
       }
     }
   ]

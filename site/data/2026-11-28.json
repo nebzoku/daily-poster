@@ -1,0 +1,345 @@
+{
+  "date": "2026-11-28",
+  "issue": 57,
+  "generatedAt": "2026-11-28T05:08:31.267Z",
+  "colour": {
+    "name": "Rose",
+    "yesterday": "Red",
+    "tomorrow": "Magenta"
+  },
+  "story": {
+    "title": "New satellite data shows how fast some African cities are sinking",
+    "summary": "A new study using satellite measurements finds that African cities including Lagos and Alexandria are sinking faster than earlier estimates suggested. The data tracks tiny shifts in ground level from orbit, giving planners a sharper picture of how the land beneath large cities is changing.",
+    "source": "BBC News",
+    "url": "https://www.bbc.co.uk/news/articles/cq074p95z4llo?at_medium=RSS&amp;at_campaign=rss",
+    "published": "2026-11-27T19:03:18.000Z",
+    "theme": "satellite mapping of sinking cities"
+  },
+  "headlines": [
+    "A Millimetre at a Time",
+    "The Ground Gives Way Slowly",
+    "Seen From Orbit, Cities Settle"
+  ],
+  "sublines": [
+    "New satellite data shows Lagos, Alexandria and other African cities are subsiding faster than earlier studies had estimated.",
+    "Radar from orbit can detect ground movement of a few millimetres, revealing how fast the land under whole cities is shifting.",
+    "A fresh study maps the sinking of major African cities, giving planners firmer numbers to build on."
+  ],
+  "palette": {
+    "name": "Vivid",
+    "colours": [
+      "#F33496",
+      "#FFD9E6",
+      "#7C6D72",
+      "#370E21"
+    ]
+  },
+  "always": [
+    "#000000",
+    "#FFFFFF"
+  ],
+  "highlight": {
+    "name": "Green",
+    "hex": "#4BF761",
+    "use": "Sparingly, for a focal point: one small element that should catch the eye."
+  },
+  "shades": [
+    {
+      "colour": "#F33496",
+      "steps": [
+        "#B3236D",
+        "#D62D83",
+        "#F79ABE",
+        "#FACDDD"
+      ]
+    },
+    {
+      "colour": "#FFD9E6",
+      "steps": [
+        "#BC9FA9",
+        "#E1BFCA",
+        "#FFE5EE",
+        "#FFF1F5"
+      ]
+    },
+    {
+      "colour": "#7C6D72",
+      "steps": [
+        "#594E52",
+        "#6C5F64",
+        "#B1ABAD",
+        "#D7D4D5"
+      ]
+    },
+    {
+      "colour": "#370E21",
+      "steps": [
+        "#260715",
+        "#2F0B1C",
+        "#9B9697",
+        "#CECCCC"
+      ]
+    }
+  ],
+  "type": {
+    "id": "necto-mono",
+    "display": "Necto Mono",
+    "text": "Libre Baskerville",
+    "libre": {
+      "foundry": "Collletttivo",
+      "designer": "Marco Condello",
+      "url": "https://www.collletttivo.it/typefaces/necto-mono"
+    },
+    "reason": "Necto Mono's measured, instrument-like letterforms echo satellite data and millimetre precision, while Libre Baskerville adds a human, explanatory voice.",
+    "css": "/fonts/libre/necto-mono.css",
+    "displayUrl": "https://www.collletttivo.it/typefaces/necto-mono",
+    "textUrl": "https://fonts.google.com/specimen/Libre+Baskerville",
+    "download": "/fonts/libre/necto-mono.zip"
+  },
+  "grid": {
+    "format": "A-size",
+    "size": [
+      1080,
+      1528
+    ],
+    "columns": 8,
+    "rows": 8,
+    "margin": 16,
+    "gutter": 0,
+    "column": 131,
+    "row": 187,
+    "unit": "px"
+  },
+  "images": [
+    {
+      "id": "unsplash:HBI3truclMU",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "City skyline under a soft pink sky",
+      "credit": "zero take",
+      "creditUrl": "https://unsplash.com/@zerotake?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/city-skyline-under-a-soft-pink-sky-HBI3truclMU?utm_source=daily_poster&utm_medium=referral",
+      "alt": "City skyline under a soft pink sky",
+      "thumb": "https://images.unsplash.com/photo-1768007136135-26f9da49bb02?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8cGluayUyMGR1c2slMjBza3lsaW5lfGVufDF8fHx8MTc5NTg0MjUxMXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1768007136135-26f9da49bb02?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8cGluayUyMGR1c2slMjBza3lsaW5lfGVufDF8fHx8MTc5NTg0MjUxMXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:DUrZ0nNra5I",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "Vibrant pink sunset over highway, city skyline, and dark forest",
+      "credit": "Leviosa Hou",
+      "creditUrl": "https://unsplash.com/@dsps?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/vibrant-pink-sunset-over-highway-city-skyline-and-dark-forest-DUrZ0nNra5I?utm_source=daily_poster&utm_medium=referral",
+      "alt": "Vibrant pink sunset over highway, city skyline, and dark forest",
+      "thumb": "https://images.unsplash.com/photo-1782775170261-de7d22dee0d2?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8cGluayUyMGR1c2slMjBza3lsaW5lfGVufDF8fHx8MTc5NTg0MjUxMXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1782775170261-de7d22dee0d2?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NXx8cGluayUyMGR1c2slMjBza3lsaW5lfGVufDF8fHx8MTc5NTg0MjUxMXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:UIJl9bgFT60",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "City skyline at dusk with pink clouds",
+      "credit": "bee",
+      "creditUrl": "https://unsplash.com/@bbmoon2?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/city-skyline-at-dusk-with-pink-clouds-UIJl9bgFT60?utm_source=daily_poster&utm_medium=referral",
+      "alt": "City skyline at dusk with pink clouds",
+      "thumb": "https://images.unsplash.com/photo-1760491991512-7a72ca2562f4?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8cGluayUyMGR1c2slMjBza3lsaW5lfGVufDF8fHx8MTc5NTg0MjUxMXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1760491991512-7a72ca2562f4?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8cGluayUyMGR1c2slMjBza3lsaW5lfGVufDF8fHx8MTc5NTg0MjUxMXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:381436",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Plan of the City of Rome, 1645",
+      "credit": "Antonio Tempesta",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/381436",
+      "page": "https://www.metmuseum.org/art/collection/search/381436",
+      "alt": "Plan of the City of Rome",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP278701.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP278701.jpg",
+      "local": "media/2026-11-28/image-04-2160.jpg"
+    },
+    {
+      "id": "unsplash:HxxmKwvUbgI",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "cracked brown soil",
+      "credit": "redcharlie",
+      "creditUrl": "https://unsplash.com/@redcharlie?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/cracked-brown-soil-HxxmKwvUbgI?utm_source=daily_poster&utm_medium=referral",
+      "alt": "cracked brown soil",
+      "thumb": "https://images.unsplash.com/photo-1549885606-bbc17accf949?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8Y3JhY2tlZCUyMGRyeSUyMGVhcnRofGVufDF8fHx8MTc5NTg0MjUxMXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1549885606-bbc17accf949?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8NHx8Y3JhY2tlZCUyMGRyeSUyMGVhcnRofGVufDF8fHx8MTc5NTg0MjUxMXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:73YJpOGgi4E",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a person standing in the middle of a cracked road",
+      "credit": "Joshua Brown",
+      "creditUrl": "https://unsplash.com/@joshbrown?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-person-standing-in-the-middle-of-a-cracked-road-73YJpOGgi4E?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a person standing in the middle of a cracked road",
+      "thumb": "https://images.unsplash.com/photo-1534559733674-bf89abe1dda5?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8Y3JhY2tlZCUyMGRyeSUyMGVhcnRofGVufDF8fHx8MTc5NTg0MjUxMXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1534559733674-bf89abe1dda5?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Nnx8Y3JhY2tlZCUyMGRyeSUyMGVhcnRofGVufDF8fHx8MTc5NTg0MjUxMXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:380748",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "The City of New York: Longworth's Explanatory Map and Plan, 1817",
+      "credit": "David Longworth",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/380748",
+      "page": "https://www.metmuseum.org/art/collection/search/380748",
+      "alt": "The City of New York: Longworth's Explanatory Map and Plan",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP216131.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP216131.jpg",
+      "local": "media/2026-11-28/image-07-2160.jpg"
+    },
+    {
+      "id": "unsplash:fsgyO8vF7do",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "aerial view photography of houses",
+      "credit": "Peter Nguyen",
+      "creditUrl": "https://unsplash.com/@peterng1618?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/aerial-view-photography-of-houses-fsgyO8vF7do?utm_source=daily_poster&utm_medium=referral",
+      "alt": "aerial view photography of houses",
+      "thumb": "https://images.unsplash.com/photo-1496782850948-d8e6bbe11a9f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8YWVyaWFsJTIwY2l0eSUyMHJvb2Z0b3BzfGVufDF8fHx8MTc5NTg0MjUxMXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1496782850948-d8e6bbe11a9f?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8YWVyaWFsJTIwY2l0eSUyMHJvb2Z0b3BzfGVufDF8fHx8MTc5NTg0MjUxMXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "met:828471",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "[Surveyor], ca. 1854",
+      "credit": "Unknown",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/828471",
+      "page": "https://www.metmuseum.org/art/collection/search/828471",
+      "alt": "[Surveyor]",
+      "thumb": "https://images.metmuseum.org/CRDImages/ph/web-large/DP-45425-001.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/ph/original/DP-45425-001.jpg",
+      "local": "media/2026-11-28/image-09-2160.jpg"
+    },
+    {
+      "id": "met:334718",
+      "source": "The Met",
+      "licence": "CC0",
+      "title": "Perspectival Study with a View of a Medieval City, 1613–50",
+      "credit": "Matthäus Merian the Elder",
+      "creditUrl": "https://www.metmuseum.org/art/collection/search/334718",
+      "page": "https://www.metmuseum.org/art/collection/search/334718",
+      "alt": "Perspectival Study with a View of a Medieval City",
+      "thumb": "https://images.metmuseum.org/CRDImages/dp/web-large/DP803069.jpg",
+      "src": "https://images.metmuseum.org/CRDImages/dp/original/DP803069.jpg",
+      "local": "media/2026-11-28/image-10-2160.jpg"
+    }
+  ],
+  "textures": [
+    {
+      "id": "unsplash:vS3idIiYxX0",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "white textured paper or plaster surface",
+      "credit": "Olga Thelavart",
+      "creditUrl": "https://unsplash.com/@olga_o?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/white-textured-paper-or-plaster-surface-vS3idIiYxX0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "white textured paper or plaster surface",
+      "thumb": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8c3VydmV5JTIwcGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTg0MjUxMnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8c3VydmV5JTIwcGFwZXIlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTg0MjUxMnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:AehBpEOj6SI",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a gray concrete wall with some cracks in it",
+      "credit": "phil cruz",
+      "creditUrl": "https://unsplash.com/@bluzninja?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-gray-concrete-wall-with-some-cracks-in-it-AehBpEOj6SI?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a gray concrete wall with some cracks in it",
+      "thumb": "https://images.unsplash.com/photo-1635284305301-e485d088bf94?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8d2V0JTIwY29uY3JldGUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTg0MjUxMXww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1635284305301-e485d088bf94?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8d2V0JTIwY29uY3JldGUlMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTg0MjUxMXww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:OG8L9s1bYKc",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "A pattern of deep cracks across dry brown earth",
+      "credit": "Ramin Khatibi",
+      "creditUrl": "https://unsplash.com/@raminix?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/cracked-dry-earth-pattern-OG8L9s1bYKc?utm_source=daily_poster&utm_medium=referral",
+      "alt": "A pattern of deep cracks across dry brown earth",
+      "thumb": "https://images.unsplash.com/photo-1519806390608-acf7ef9c8d1b?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Y3JhY2tlZCUyMGNsYXklMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTg0MjUxMnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1519806390608-acf7ef9c8d1b?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8Mnx8Y3JhY2tlZCUyMGNsYXklMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTg0MjUxMnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    },
+    {
+      "id": "unsplash:LhlxYMfnTF0",
+      "source": "Unsplash",
+      "licence": "Unsplash License",
+      "title": "a close up of a white wall with cracks in it",
+      "credit": "Vincent Burkhead",
+      "creditUrl": "https://unsplash.com/@creativejunkie?utm_source=daily_poster&utm_medium=referral",
+      "page": "https://unsplash.com/photos/a-close-up-of-a-white-wall-with-cracks-in-it-LhlxYMfnTF0?utm_source=daily_poster&utm_medium=referral",
+      "alt": "a close up of a white wall with cracks in it",
+      "thumb": "https://images.unsplash.com/photo-1475965894430-b05c9d13568a?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Y3JhY2tlZCUyMGNsYXklMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTg0MjUxMnww&ixlib=rb-4.1.0&w=480&q=70&fm=jpg",
+      "src": "https://images.unsplash.com/photo-1475965894430-b05c9d13568a?ixid=M3wxMTIyMTk4fDB8MXxzZWFyY2h8MXx8Y3JhY2tlZCUyMGNsYXklMjB0ZXh0dXJlfGVufDF8fHx8MTc5NTg0MjUxMnww&ixlib=rb-4.1.0&w=1600&q=80&fm=jpg"
+    }
+  ],
+  "objects": [
+    {
+      "name": "satellite",
+      "material": "brushed aluminium",
+      "image": "media/2026-11-28/object-1.png",
+      "thumb": "media/2026-11-28/object-1-thumb.png",
+      "model": {
+        "title": "Satellite",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-f8bd72434281441db77e85ce830f89c1",
+        "licence": "CC Attribution",
+        "creator": "Phobos",
+        "creatorUrl": "https://sketchfab.com/1majaxed"
+      },
+      "texture": {
+        "title": "Blue Metal Plate",
+        "url": "https://polyhaven.com/a/blue_metal_plate"
+      }
+    },
+    {
+      "name": "survey marker",
+      "material": "weathered brass",
+      "image": "media/2026-11-28/object-2.png",
+      "thumb": "media/2026-11-28/object-2-thumb.png",
+      "model": {
+        "title": "Valence House Museum Marker Stone",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-297515da4e2b480c924fdc06d7d3be26",
+        "licence": "CC Attribution",
+        "creator": "artfletch",
+        "creatorUrl": "https://sketchfab.com/artfletch"
+      },
+      "texture": {
+        "title": "Rust Coarse 01",
+        "url": "https://polyhaven.com/a/rust_coarse_01"
+      }
+    },
+    {
+      "name": "concrete pillar",
+      "material": "weathered concrete",
+      "image": "media/2026-11-28/object-3.png",
+      "thumb": "media/2026-11-28/object-3-thumb.png",
+      "model": {
+        "title": "Concrete pillar (Free Photoscan)",
+        "source": "Sketchfab",
+        "url": "https://sketchfab.com/3d-models/none-fb1c4052f0cf4db0aefe12ea5df66dd5",
+        "licence": "CC Attribution",
+        "creator": "Kryštof Šuk",
+        "creatorUrl": "https://sketchfab.com/suk.krystof"
+      },
+      "texture": {
+        "title": "Concrete Layers 02",
+        "url": "https://polyhaven.com/a/concrete_layers_02"
+      }
+    }
+  ]
+}

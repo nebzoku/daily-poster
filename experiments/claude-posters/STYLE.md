@@ -50,7 +50,8 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
 - **A raised or pressed foil overrides the paper** (Ben, 28 Nov): the stock's grain and fibres don't print over a foil
   that is raised or pressed hard enough; it gets its own smoother texture (a soft sheen and a very fine, even grain),
   though scratches still catch on it. How far each finish overrides the paper is `FOIL_OVERRIDE` in `lib.js` (emboss,
-  deboss fully; domed foil and raised varnish nearly; flat, mirror, colour and satin foils partly, less on rough stock).
+  deboss and domed foil fully; every other foil and raised varnish almost fully, 0.85 to 0.95: Ben, 28 Nov, the satin
+  foil at half still read as paper). Applied to every poster not yet posted when a rule like this changes.
   `printHead` remembers where the foil went and `stock()` does the rest.
 - **The paper comes on up close in the reel** (Ben, 28 Nov): not at the end reveal, but zoomed in at the first ink-trial
   spot, just before the trials, so people see the texture up close; every ink trial after it is shown on that paper,

@@ -783,7 +783,7 @@ function scratches(g, amount = 1, seedN = 1) {
 // Ben, 28 Nov 2026: a foil pressed or raised hard enough overrides the paper: the stock's grain and fibres don't show
 // through it; it gets its own smooth, fine sheen instead (scratches still catch on it). How far each finish overrides
 // the paper (1 = fully), a little less on rough stock where the fibres still push through a flat foil.
-const FOIL_OVERRIDE = { 'foil-emboss': 1, 'foil-debossed': 1, foil: 0.9, 'varnish-raised': 0.85, 'foil-mirror': 0.75, 'foil-flat': 0.65, 'foil-colour': 0.65, 'foil-satin': 0.6 };
+const FOIL_OVERRIDE = { 'foil-emboss': 1, 'foil-debossed': 1, foil: 1, 'varnish-raised': 0.95, 'foil-mirror': 0.9, 'foil-flat': 0.85, 'foil-colour': 0.85, 'foil-satin': 0.85 };
 const _foil = new WeakMap();
 function foilSheen(g, seedN) {   // the foil's own texture: a soft, broad sheen and a very fine, even grain, no fibres
   seed(seedN * 31 + 5); const a = noise(40), b = noise(0.5), c = canvas(), id = c.g.createImageData(c.width, c.height), d = id.data;
@@ -799,7 +799,7 @@ function stock(g, kind = 'uncoated', seedN = 1, o = {}) {
     _stock(g, kind, seedN, o);
     // over the foil: the sheet as it was before the paper, with the foil's own sheen and the same scratches
     const sm = canvas(); draw(sm.g, before); foilSheen(sm.g, seedN); scratches(sm.g, o.wear ?? 1, seedN);
-    const k = f.k * (kind === 'rough' ? 0.85 : kind === 'newsprint' ? 0.9 : 1);
+    const k = f.k * (kind === 'rough' ? 0.95 : 1);
     draw(g, inter(sm, alphaThr(f.mask, 0.5)), 'source-over', k);
     return;
   }

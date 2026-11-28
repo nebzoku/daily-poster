@@ -718,6 +718,9 @@ function printHead(g, mask, colour, style = 'letterpress', o = {}) {
     const px = PF.render({ mask: a, W: w, H: h, s: K / 2, seed, style, inkHex: colour, paperHex: bg, spotHex: colour, dark, light: o.light ?? 0.5 });
     const c = document.createElement('canvas'); c.width = w; c.height = h; c.getContext('2d').putImageData(new ImageData(px, w, h), 0, 0);
     g.save(); g.setTransform(1, 0, 0, 1, 0, 0); g.drawImage(c, 0, 0); g.restore();
+    if (FOIL_OVERRIDE[style] && g.canvas.width === mask.width) {   // remembered for stock(): the paper's grain doesn't print through it
+      const f = (_foil.get(g.canvas) || { mask: canvas(), k: 0 }); draw(f.mask.g, mask); f.k = Math.max(f.k, FOIL_OVERRIDE[style]); _foil.set(g.canvas, f);
+    }
     return;
   }
   const M2 = { bleed: ['riso', 0.6, 0.85], copy: ['copy', 0.45, 0.4], crisp: ['clean', 0.1, 0.15] };
@@ -777,8 +780,32 @@ function scratches(g, amount = 1, seedN = 1) {
   draw(g, tint(union(m, sc), '#dcdcd6'), 'lighten', 0.7);
   draw(g, tint(m, '#000000'), 'multiply', 0.12);
 }
-function stock(g, kind = 'uncoated', seedN = 1, { wear = null } = {}) {
+// Ben, 28 Nov 2026: a foil pressed or raised hard enough overrides the paper: the stock's grain and fibres don't show
+// through it; it gets its own smooth, fine sheen instead (scratches still catch on it). How far each finish overrides
+// the paper (1 = fully), a little less on rough stock where the fibres still push through a flat foil.
+const FOIL_OVERRIDE = { 'foil-emboss': 1, 'foil-debossed': 1, foil: 0.9, 'varnish-raised': 0.85, 'foil-mirror': 0.75, 'foil-flat': 0.65, 'foil-colour': 0.65, 'foil-satin': 0.6 };
+const _foil = new WeakMap();
+function foilSheen(g, seedN) {   // the foil's own texture: a soft, broad sheen and a very fine, even grain, no fibres
+  seed(seedN * 31 + 5); const a = noise(40), b = noise(0.5), c = canvas(), id = c.g.createImageData(c.width, c.height), d = id.data;
+  for (let p = 0; p < a.length; p++) { const v = clamp(0.5 + (a[p] - 0.5) * 0.5 + (b[p] - 0.5) * 0.12) * 255; d[p * 4] = d[p * 4 + 1] = d[p * 4 + 2] = v; d[p * 4 + 3] = 255; }
+  c.g.putImageData(id, 0, 0); draw(g, c, 'soft-light', 0.35);
+}
+function stock(g, kind = 'uncoated', seedN = 1, o = {}) {
   if (kind === 'none') return;
+  const f = _foil.get(g.canvas);
+  if (f) {
+    _foil.delete(g.canvas);
+    const before = canvas(); draw(before.g, g.canvas);
+    _stock(g, kind, seedN, o);
+    // over the foil: the sheet as it was before the paper, with the foil's own sheen and the same scratches
+    const sm = canvas(); draw(sm.g, before); foilSheen(sm.g, seedN); scratches(sm.g, o.wear ?? 1, seedN);
+    const k = f.k * (kind === 'rough' ? 0.85 : kind === 'newsprint' ? 0.9 : 1);
+    draw(g, inter(sm, alphaThr(f.mask, 0.5)), 'source-over', k);
+    return;
+  }
+  _stock(g, kind, seedN, o);
+}
+function _stock(g, kind = 'uncoated', seedN = 1, { wear = null } = {}) {
   scratches(g, wear ?? { smooth: 0.6, uncoated: 1, rough: 1.2, newsprint: 1.3, photocopy: 0.8 }[kind] ?? 1, seedN);
   const rough = { smooth: 0.15, uncoated: 0.45, rough: 0.9, newsprint: 0.7, photocopy: 0.3 }[kind] ?? 0.45;
   draw(g, IM.paper(rough, seedN), 'source-over', kind === 'smooth' ? 0.5 : 0.8);

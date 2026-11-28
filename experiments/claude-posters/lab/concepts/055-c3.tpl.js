@@ -52,8 +52,19 @@ window.POSTER = async () => {
   const L = levels(bc, 0.02, 0.98);
   const box = { x: cx - r, y: cy - r, w: r * 2, h: r * 2 };
   const asc = ascii(L, box, { size: 16, chars: ' .:+66', font: T, weight: 700, lh: 1 });
+  // for the making-of reel (Ben, 28 Nov: show how the ASCII conversion happens): the ball goes to greys, is sampled
+  // into character-sized cells, the characters are set over the cells by brightness, then the cells drop away
+  if (CAPTURE) {
+    const ballM = lumMask(bc, 0, { soft: 0.001 });
+    const grey = inter(tone(L, ['#000000', '#FFFFFF']), ballM);
+    const cw = 16 * 0.62, ch = 16, cols = Math.floor(box.w / cw), rows = Math.floor(box.h / ch);
+    const s = document.createElement('canvas'); s.width = cols; s.height = rows; s.getContext('2d').drawImage(grey, box.x * K, box.y * K, box.w * K, box.h * K, 0, 0, cols, rows);
+    const cells = canvas(); cells.g.imageSmoothingEnabled = false; cells.g.drawImage(s, box.x, box.y, cols * cw, rows * ch);
+    const steps = [grey, cells, (() => { const c = canvas(); draw(c.g, cells, 'source-over', 0.35); draw(c.g, tint(asc, C.mid)); return c; })()];
+    steps.forEach((st, i) => { const p = canvas(); draw(p.g, out); draw(p.g, st); snap(`step-ascii-${i + 1}`, p); });
+  }
   draw(g, tint(asc, C.mid));
-  snap('step-ascii-1', out);
+  snap('step-ascii-4', out);
 
   // small type: furniture left and subline right with cap heights on row 1; labels on the rope and the road
   const t = { font: T, size: 16, weight: 500, lead: 0.9, color: C.text };

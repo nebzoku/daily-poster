@@ -43,6 +43,10 @@ Round 1 (Nos. 049–052, 23 Nov 2026) feedback, turned into rules. These overrid
   clearings, bars, rules and image boxes run from one column or row line to another (or to the sheet's edge), never a
   size of our own like "the text plus 24 px". In the reel, the text boxes and the shapes being dragged out snap to the
   column and row lines too (`gridbox()` in `reel.py`), so the cursor draws them from line to line.
+- **Show how every conversion happens in the reel** (Ben, 28 Nov, on the ASCII ball): never cut straight from the
+  photo to the treated image. Snap the stages as a `step-<group>-n` run: for ASCII, the image to greys, sampled into
+  character-sized cells, the characters set over the cells, then the cells gone (`055-c3.tpl.js`); for a threshold,
+  greys then the cut; for pixels, the cell sizes tried back and forth.
 
 ### Round 37 (27 Nov 2026): the illustrated making-of reel
 - **Illustrated posters get the same close-ups and ink trials as the others** (Ben, 27 Nov: "I like those bits"):

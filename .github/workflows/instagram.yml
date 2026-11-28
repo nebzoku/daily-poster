@@ -56,6 +56,18 @@ jobs:
           GH_SECRETS_TOKEN: ${{ secrets.GH_SECRETS_TOKEN }}
         run: node scripts/instagram/post.mjs
 
+      # Once a day (the 22:00 run), snapshot every reel's views and engagement into instagram/insights.json, for the
+      # making-of reel trial (Ben, 28 Nov 2026; instagram/reel-trial.json). Never blocks posting.
+      - name: Reel insights
+        continue-on-error: true
+        env:
+          INSTAGRAM_TOKEN: ${{ secrets.INSTAGRAM_TOKEN }}
+          INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
+        run: |
+          if [ "$(TZ=Europe/London date +%-H)" = "22" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            node scripts/instagram/insights.mjs
+          fi
+
       # A renewed token is saved back to the repo's secrets, when a token that may do that is set.
       - name: Keep the Instagram token fresh
         if: always()

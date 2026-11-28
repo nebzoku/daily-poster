@@ -1,0 +1,63 @@
+{
+  "about": "Ben, 28 Nov 2026: for two weeks the making-of reels alternate day by day between opening on the finished poster (finished-first, reel.py REVEAL=1) and opening on the empty artboard (artboard-first). Keyed by issue; the reel for an issue is posted by hand two days after its brief. scripts/instagram/insights.mjs snapshots each reel's views and engagement daily into instagram/insights.json; the comparison runs on 14 Dec.",
+  "start": "2026-11-28",
+  "end": "2026-12-11",
+  "reels": {
+    "055": {
+      "posted": "2026-11-28",
+      "opening": "finished-first"
+    },
+    "056": {
+      "posted": "2026-11-29",
+      "opening": "artboard-first"
+    },
+    "057": {
+      "posted": "2026-11-30",
+      "opening": "finished-first"
+    },
+    "058": {
+      "posted": "2026-12-01",
+      "opening": "artboard-first"
+    },
+    "059": {
+      "posted": "2026-12-02",
+      "opening": "finished-first"
+    },
+    "060": {
+      "posted": "2026-12-03",
+      "opening": "artboard-first"
+    },
+    "061": {
+      "posted": "2026-12-04",
+      "opening": "finished-first"
+    },
+    "062": {
+      "posted": "2026-12-05",
+      "opening": "artboard-first"
+    },
+    "063": {
+      "posted": "2026-12-06",
+      "opening": "finished-first"
+    },
+    "064": {
+      "posted": "2026-12-07",
+      "opening": "artboard-first"
+    },
+    "065": {
+      "posted": "2026-12-08",
+      "opening": "finished-first"
+    },
+    "066": {
+      "posted": "2026-12-09",
+      "opening": "artboard-first"
+    },
+    "067": {
+      "posted": "2026-12-10",
+      "opening": "finished-first"
+    },
+    "068": {
+      "posted": "2026-12-11",
+      "opening": "artboard-first"
+    }
+  }
+}

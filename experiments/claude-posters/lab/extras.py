@@ -30,7 +30,11 @@ for n, pk in enumerate(picks):
     open(poster, 'w').write(open(f'concepts/{issue}-{c}.tpl.js').read().replace('__CW__', json.dumps(ways[c][x])))
     if n == 0:   # the favourite: render with the build steps captured, then the reel
         subprocess.run(['node', 'render.mjs', poster], env={**os.environ, 'CAP': '1'}, check=True)
-        subprocess.run(['python3', 'reel.py', issue, c, x], check=True)
+        # the two-week reel trial (Ben, 28 Nov 2026; instagram/reel-trial.json): some days open on the finished poster
+        trial = json.load(open('../../../instagram/reel-trial.json')) if os.path.exists('../../../instagram/reel-trial.json') else {}
+        first = trial.get('reels', {}).get(issue, {}).get('opening') == 'finished-first'
+        subprocess.run(['python3', 'reel.py', issue, c, x], check=True, env={**os.environ, **({'REVEAL': '1'} if first else {})})
+        if first: os.replace(f'deliver/reel/{issue}-{c}-{x}-making-of-reveal.mp4', f'deliver/reel/{issue}-{c}-{x}-making-of.mp4')
         os.replace(f'deliver/reel/{issue}-{c}-{x}-making-of.mp4', f'{stem}-making-of.mp4')
     elif not os.path.exists(f'out/{issue}-{c}-{x}.png'): subprocess.run(['node', 'render.mjs', poster], check=True)
     subprocess.run(['python3', 'carousel.py', f'out/{issue}-{c}-{x}.png', stem], check=True)

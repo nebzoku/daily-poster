@@ -17,6 +17,15 @@ flags anything overdue). When Ben says he's posted something, mark it here.
 file to post (SendUserFile of the mp4, plus its caption in a code block). The morning run schedules these with
 `send_later` into its own session for that day's by-hand items, at the planned times above.
 
+## Reel trial, 28 Nov to 11 Dec 2026 (Ben, 28 Nov)
+
+The making-of reels alternate day by day: one opens on the finished poster (finished-first, `REVEAL=1`), the next on
+the empty artboard (artboard-first). By post date: 28 Nov 055 finished-first, 29 Nov 056 artboard-first, 30 Nov 057
+finished-first, and so on to 11 Dec 068 artboard-first (the full list is `instagram/reel-trial.json`; `extras.py`
+follows it). Post each reel with its caption as given (the #dailyposterNNN tag is how the numbers are matched).
+The Instagram workflow snapshots every reel's views and engagement at 22:00 each day into `instagram/insights.json`;
+on 14 Dec, `node scripts/instagram/insights.mjs --report` compares the two openings at about 72 hours old.
+
 ## By hand (Ben)
 
 | Item | Brief | Due (D+1 poster / D+2 reel) | Plan | Posted |

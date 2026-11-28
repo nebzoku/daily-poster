@@ -27,10 +27,18 @@ async function snapshot() {
   if (!TOKEN || !USER) { console.log("No Instagram token: skipping insights."); return; }
   const db = await readJSON(FILE, { reels: {} }), trial = await readJSON(TRIAL, { reels: {} }), today = londonDate();
   let url = `${USER}/media`, params = { fields: "id,caption,media_type,media_product_type,timestamp,permalink,like_count,comments_count", limit: "50" }, seen = 0;
-  for (let page = 0; page < 4 && url; page++) {
+  for (let page = 0; page < 8 && url; page++) {
     const r = await get(url, params);
     for (const m of r.data || []) {
-      if (m.media_product_type !== "REELS" && m.media_type !== "VIDEO") continue;
+      // every grid post too (Ben, 28 Nov: to pick the best-liked posters): likes, comments, saves, reach
+      if (m.media_product_type !== "REELS" && m.media_type !== "VIDEO") {
+        const p = (db.posts ??= {})[m.id] ??= { id: m.id, permalink: m.permalink, posted: m.timestamp, title: (m.caption || "").split("\n")[0], issue: issueOf(m.caption), history: {} };
+        const snap = { likes: m.like_count, comments: m.comments_count };
+        for (const k of ["saved", "reach", "shares", "total_interactions"]) {
+          try { const x = await get(`${m.id}/insights`, { metric: k }); const v = x.data?.[0]?.values?.[0]?.value ?? x.data?.[0]?.total_value?.value; if (v != null) snap[k] = v; } catch {}
+        }
+        p.history[today] = snap; continue;
+      }
       const issue = issueOf(m.caption), makingOf = /^The making of /.test(m.caption || "");
       const e = (db.reels[m.id] ??= { id: m.id, permalink: m.permalink, posted: m.timestamp, issue, makingOf, history: {} });
       e.trial = makingOf && issue && trial.reels?.[issue] ? trial.reels[issue].opening : e.trial ?? null;

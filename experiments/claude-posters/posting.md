@@ -27,7 +27,7 @@ file to post (SendUserFile of the mp4, plus its caption in a code block). The mo
 | 054 Back From Functional Extinction, moving poster (9:16) | 25 Nov | 26 Nov | Thu 26 Nov, 13:00 | posted (Ben, 26 Nov) |
 | 053 Catch Mercury Before Sunrise, making-of reel | 24 Nov | 26 Nov | Thu 26 Nov, 17:00 | posted (Ben, 26 Nov) |
 | 054 Back From Functional Extinction, making-of reel | 25 Nov | 27 Nov | Fri 27 Nov, 17:00 | posted (Ben, 28 Nov) |
-| 055 The Ball Never Landed, making-of reel | 26 Nov | 28 Nov | Sat 28 Nov, 17:00 | |
+| 055 Caught Between Road and Rope, making-of reel (Ben, 28 Nov: this one instead of The Ball Never Landed; first trial opening on the finished poster, REVEAL=1) | 26 Nov | 28 Nov | Sat 28 Nov, 17:00 | |
 | 056 Where No Road Reaches (illustrated), making-of reel | 27 Nov | 29 Nov | Sun 29 Nov, 17:00 | |
 
 ## Automatic (auto-poster), as queued on 25 Nov

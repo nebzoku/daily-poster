@@ -64,7 +64,7 @@ jobs:
           INSTAGRAM_TOKEN: ${{ secrets.INSTAGRAM_TOKEN }}
           INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
         run: |
-          if [ "$(TZ=Europe/London date +%-H)" = "22" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+          if [ "$(TZ=Europe/London date +%-H)" = "22" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ] || [ ! -f instagram/insights.json ]; then
             node scripts/instagram/insights.mjs
           fi
 

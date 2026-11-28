@@ -428,6 +428,11 @@
       "at": "2026-11-27T11:08:27.043Z",
       "id": "18144256507628581",
       "in": "poster:showcase/055-the-ball-never-landed.jpg"
+    },
+    "stories:2026-11-28": {
+      "slot": "2026-11-28 08:00",
+      "at": "2026-11-28T08:09:19.558Z",
+      "id": "18068097635521061,17895916632526578,18599895682068704,17869585533679530,17898549468454612,18642454291031067,18119499161104259,17910415278603046,18133975240840478"
     }
   },
   "slots": {
@@ -465,7 +470,8 @@
     "2026-11-26 13:00": "poster:showcase/053-the-smallest-planet-steps-out.jpg",
     "2026-11-26 19:00": "poster:showcase/053-chasing-light-near-the-sun.jpg",
     "2026-11-27 08:00": "stories:2026-11-27",
-    "2026-11-27 10:30": "poster:showcase/055-the-ball-never-landed.jpg"
+    "2026-11-27 10:30": "poster:showcase/055-the-ball-never-landed.jpg",
+    "2026-11-28 08:00": "stories:2026-11-28"
   },
   "start": "2026-11-04",
   "partial": {}

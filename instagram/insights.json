@@ -167,9 +167,23 @@
         }
       },
       "trial": null
+    },
+    "18151061632606762": {
+      "id": "18151061632606762",
+      "permalink": "https://www.instagram.com/reel/DgSzGfftFi2/",
+      "posted": "2026-11-28T17:32:30+0000",
+      "issue": "055",
+      "makingOf": true,
+      "history": {
+        "2026-11-28": {
+          "likes": 1,
+          "comments": 0
+        }
+      },
+      "trial": "finished-first"
     }
   },
-  "updated": "2026-11-28T17:10:13.980Z",
+  "updated": "2026-11-28T18:09:03.216Z",
   "posts": {
     "18155965936556595": {
       "id": "18155965936556595",
@@ -179,7 +193,7 @@
       "issue": "056",
       "history": {
         "2026-11-28": {
-          "likes": 1,
+          "likes": 2,
           "comments": 0
         }
       }

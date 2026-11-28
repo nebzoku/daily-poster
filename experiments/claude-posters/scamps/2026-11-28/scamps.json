@@ -1,0 +1,58 @@
+{
+  "date": "2026-11-28",
+  "palette": [
+    "#F33496",
+    "#FFD9E6",
+    "#7C6D72",
+    "#370E21",
+    "#000000",
+    "#FFFFFF"
+  ],
+  "highlight": {
+    "name": "Green",
+    "hex": "#4BF761",
+    "use": "Sparingly, for a focal point: one small element that should catch the eye."
+  },
+  "scenes": [
+    {
+      "file": "scamp-01.png",
+      "headline": "A Millimetre at a Time",
+      "angle": "very high looking down, near top-down view of a street",
+      "headlineZone": "top",
+      "highlightElement": "a small survey marker disc set in the pavement",
+      "prompt": "Follows the attached style guide image (style only, not its subjects). Contemporary editorial illustration in clean fine black ink line, slightly worn with small pen-lift breaks, and flat colour with one cel-shadow tone per surface, risograph print feel, paper grain. Very high angle looking almost straight down on a Lagos street edge at midday: a pavement with a long hairline crack and one sagging slab, tilted tiles, thin-line hatching on cracks and kerb. A Nigerian woman surveyor in a wrapped headtie and work vest, seen from behind and small, kneels with a measuring staff; beside her a young Black man in a hard hat in profile, face drawn with a few lines. Five fingers, natural knuckles, full-length thumbs. Hard-edged shadow shapes. Palette only: hot pink #F33496, pale pink #FFD9E6, grey-mauve #7C6D72, deep plum #370E21, black and white, with tints and shades. The top 25% of the image is plain flat pale pink with no detail, for the headline. The survey marker disc is solid green (#4BF761), the only green thing in the whole image; it is the focal point. No text, letters, logos or signatures.",
+      "model": "gemini-nano-banana-2.1",
+      "style": "refs"
+    },
+    {
+      "file": "scamp-02.png",
+      "headline": "The Ground Gives Way Slowly",
+      "angle": "very low worm's-eye looking up at a tilted apartment tower",
+      "headlineZone": "top",
+      "highlightElement": "a single lit window in the tower",
+      "prompt": "Follows the attached style guide image (style only, not its subjects). Contemporary editorial illustration in clean fine black ink line with small breaks, flat colour, one cel-shadow tone per surface, stepped-band sky, risograph feel, paper grain. Very low worm's-eye angle looking up at a row of Alexandria seafront apartment blocks with balconies and shuttered windows, slightly leaning in strong perspective, the lower walls stained by a damp tide line drawn with thin hatching, water pooled in the street at the base reflecting with ripple lines. A small elderly Egyptian man in a galabeya and white skullcap, seen in profile and tiny, wades along the edge carrying a bag; his face a few simple lines, grey moustache. Five fingers, natural hands. Palette only: hot pink #F33496, pale pink #FFD9E6, grey-mauve #7C6D72, deep plum #370E21, black, white, with tints and shades. The top 25% is a plain flat stepped pink sky, no detail, for the headline. The lit window is solid green (#4BF761), the only green thing in the whole image; it is the focal point. No text, letters, logos or signatures.",
+      "model": "gemini-nano-banana-2.1",
+      "style": "refs"
+    },
+    {
+      "file": "scamp-03.png",
+      "headline": "Seen From Orbit, Cities Settle",
+      "angle": "lone object in a big sky, satellite small above a curved horizon",
+      "headlineZone": "top-and-bottom",
+      "highlightElement": "the satellite",
+      "prompt": "Follows the attached style guide image (style only, not its subjects). Contemporary editorial illustration in clean fine black ink line, flat colour, one cel-shadow tone, stepped-band glows, risograph print feel, paper grain. A lone small satellite with solar panels floats in a vast deep plum #370E21 sky above the curved edge of the Earth, which is drawn in the lower middle as flat grey-mauve and pink bands with a tiny grid of a coastal African city delta, thin-line hatched coastline and a fine scan beam of pale pink lines dropping from the satellite toward the city. Big simple space against small precise detail, fish-eye slight curvature. No people. Palette only: hot pink #F33496, pale pink #FFD9E6, grey-mauve #7C6D72, deep plum #370E21, black, white, with tints and shades. The top 20% and bottom 20% of the image are plain flat deep plum with no detail, for the headline. The satellite is solid green (#4BF761), the only green thing in the whole image; it is the focal point. No text, letters, logos or signatures.",
+      "model": "gemini-nano-banana-2.1",
+      "style": "refs"
+    },
+    {
+      "file": "scamp-04.png",
+      "headline": "A Millimetre at a Time",
+      "angle": "cutaway cross-section showing street above and ground layers below",
+      "headlineZone": "top",
+      "highlightElement": "a small green measuring pin driven into the ground",
+      "prompt": "Follows the attached style guide image (style only, not its subjects). Contemporary editorial illustration in clean fine black ink line with small pen-lift breaks, flat colour, one cel-shadow tone per surface, risograph feel, paper grain. Cutaway cross-section: above, a Lagos street with low buildings, a market stall with striped awning and a few small figures in profile, a Yoruba woman in a gele headwrap carrying a basket, a tall dark-skinned man in a cap on a bicycle, each face a few dashes. Below, the ground sliced open showing layers of soft sand, clay and water with thin hatching and ripple lines, building foundations slightly tilted, tiny arrows of settling drawn as short lines. Five fingers, natural hands, full thumbs. Palette only: hot pink #F33496, pale pink #FFD9E6, grey-mauve #7C6D72, deep plum #370E21, black, white, with tints and shades. The top 22% is plain flat pale pink with no detail, for the headline. The measuring pin is solid green (#4BF761), the only green thing in the whole image; it is the focal point. No text, letters, logos or signatures.",
+      "model": "gemini-nano-banana-2.1",
+      "style": "refs"
+    }
+  ]
+}
